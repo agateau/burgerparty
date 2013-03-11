@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -21,6 +22,20 @@ public class InventoryView extends Actor {
 		public BurgerItem item;
 		public AddBurgerItemEvent(BurgerItem item) {
 			this.item = item;
+		}
+	}
+	
+	public class Listener implements EventListener {
+		public boolean handle(Event event) {
+			if (!(event instanceof InventoryView.AddBurgerItemEvent)) {
+				return false;
+			}
+			BurgerItem item = ((InventoryView.AddBurgerItemEvent)event).item;
+			burgerItemClicked(item);
+			return false;
+		}
+		
+		public void burgerItemClicked(BurgerItem item) {
 		}
 	}
 
