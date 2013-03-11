@@ -27,9 +27,6 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		mStage.act(delta);
 		mStage.draw();
-		if (mWorld.getRemainingSeconds() == 0) {
-			Gdx.app.log("GameScreen", "Game Over!");
-		}
 	}
 
 	@Override

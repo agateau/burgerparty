@@ -9,6 +9,7 @@ import com.agateau.burgerparty.view.TextureDict;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,6 +25,7 @@ public class WorldView extends WidgetGroup {
 	private BurgerStackView mTargetBurgerStackView;
 	private Image mTrashActor;
 	private Label mTimerDisplay;
+	private Actor mGameOverWindow;
 
 	public WorldView(World world) {
 		setFillParent(true);
@@ -77,6 +79,11 @@ public class WorldView extends WidgetGroup {
 	public void act(float delta) {
 		super.act(delta);
 		updateTimerDisplay();
+		if (mWorld.getRemainingSeconds() == 0 && mGameOverWindow == null) {
+			showGameOverWindow();
+		} else if (mWorld.getRemainingSeconds() > 0 && mGameOverWindow != null) {
+			hideGameOverWindow();
+		}
 	}
 
 	private void setupInventoryView() {
@@ -104,5 +111,15 @@ public class WorldView extends WidgetGroup {
 		int seconds = mWorld.getRemainingSeconds();
 		String txt = String.valueOf(seconds);
 		mTimerDisplay.setText(txt);
+	}
+
+	private void showGameOverWindow() {
+		mGameOverWindow = new GameOverWindow(mWorld);
+		addActor(mGameOverWindow);
+	}
+
+	private void hideGameOverWindow() {
+		mGameOverWindow.remove();
+		mGameOverWindow = null;
 	}
 }
