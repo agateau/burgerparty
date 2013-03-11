@@ -29,7 +29,6 @@ public class GameOverWindow extends Table {
 		style.font = new BitmapFont();
 		style.fontColor = Color.WHITE;
 		Label label = new Label("Game Over", style);
-		add(label);
 
 		TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
 		buttonStyle.font = new BitmapFont();
@@ -40,6 +39,10 @@ public class GameOverWindow extends Table {
 				mWorld.restart();
 			}
 		});
+
+		pad(20);
+		add(label);
+		row();
 		add(button);
 
 		center();
