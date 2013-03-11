@@ -2,9 +2,7 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;
-import com.agateau.burgerparty.screens.WorldController;
 
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -14,15 +12,13 @@ public class GameScreen implements Screen {
 	private Stage mStage;
 	private World mWorld;
 	private WorldView mWorldView;
-	private WorldController mWorldController;
 
 	public GameScreen() {
 		mStage = new Stage(0, 0, true);
 		mWorld = new World();
 		mWorldView = new WorldView(mWorld);
 		mStage.addActor(mWorldView);
-		mWorldController = new WorldController(mWorld, mWorldView);
-		Gdx.input.setInputProcessor(new InputMultiplexer(mStage, mWorldController));
+		Gdx.input.setInputProcessor(mStage);
 	}
 	
 	@Override
