@@ -13,7 +13,6 @@ public class BurgerStackView extends Actor {
 	private BurgerStack mStack;
 	private TextureDict mTextureDict;
 
-	private final float Offset = 600;
 	private final float Overlap = 15;
 
 	public BurgerStackView(BurgerStack stack, TextureDict textureDict) {
@@ -23,12 +22,18 @@ public class BurgerStackView extends Actor {
 
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
-		float posY = 0;
+		float width = getWidth();
+		float maxItemWidth = mTextureDict.getByName("bottom").getWidth();
+		float scale = Math.min(width / maxItemWidth, 1);
+
+		float posY = getY();
 		for(BurgerItem item: mStack.getItems()) {
 			Texture texture = mTextureDict.getByName(item.getName());
-			float posX = Offset - texture.getWidth() / 2;
-			spriteBatch.draw(texture, posX, posY);
-			posY += texture.getHeight() - Overlap;
+			float textureW = texture.getWidth() * scale;
+			float textureH = texture.getHeight() * scale;
+			float posX = getX() + (width - textureW) / 2;
+			spriteBatch.draw(texture, posX, posY, textureW, textureH);
+			posY += textureH - Overlap * scale;
 		}
 	}
 }

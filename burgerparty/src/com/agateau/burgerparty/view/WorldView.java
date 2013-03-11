@@ -17,6 +17,7 @@ public class WorldView extends WidgetGroup {
 	private TextureDict mTextureDict;
 	private InventoryView mInventoryView;
 	private BurgerStackView mBurgerStackView;
+	private BurgerStackView mTargetBurgerStackView;
 	private Image mTrashActor;
 
 	public WorldView(World world) {
@@ -36,6 +37,9 @@ public class WorldView extends WidgetGroup {
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
 		addActor(mBurgerStackView);
 		
+		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mTextureDict);
+		addActor(mTargetBurgerStackView);
+		
 		Texture trash = mTextureDict.getByName("trash");
 		mTrashActor = new Image(trash);
 		mTrashActor.setX(0);
@@ -53,6 +57,17 @@ public class WorldView extends WidgetGroup {
 	}
 	
 	public void layout() {
-		mTrashActor.setY(getHeight() - mTrashActor.getHeight());
+		float width = getWidth();
+		float height = getHeight();
+		mTrashActor.setY(height - mTrashActor.getHeight());
+		
+		float inventoryWidth = width / 3;
+		mInventoryView.setBounds(0, 0, inventoryWidth, height);
+		
+		float stackSize = width - inventoryWidth;
+		mBurgerStackView.setBounds(inventoryWidth, 0, stackSize, height);
+		
+		float targetSize = width / 8;
+		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
 	}
 }
