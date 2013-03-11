@@ -60,7 +60,7 @@ public class WorldView extends WidgetGroup {
 		float stackSize = width - inventoryWidth;
 		mBurgerStackView.setBounds(inventoryWidth, 0, stackSize, height);
 		
-		float targetSize = width / 8;
+		float targetSize = width / 6;
 		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
 
 		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
