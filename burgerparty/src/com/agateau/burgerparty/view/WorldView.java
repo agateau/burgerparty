@@ -5,50 +5,53 @@ import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.InventoryView;
 import com.agateau.burgerparty.view.TextureDict;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class WorldView {
+public class WorldView extends WidgetGroup {
 	private World mWorld;
 	private TextureDict mTextureDict;
 	private InventoryView mInventoryView;
 	private BurgerStackView mBurgerStackView;
-	private OrthographicCamera mCam;
-	private Sprite mTrashSprite;
-	private SpriteBatch mSpriteBatch;	
+	private Image mTrashActor;
 
 	public WorldView(World world) {
+		setFillParent(true);
 		mWorld = world;
 		mTextureDict = new TextureDict();
 		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
-
-		mCam = new OrthographicCamera();
-		mCam.setToOrtho(false, 800, 480);
-		mSpriteBatch = new SpriteBatch();
 		
 		Texture trash = mTextureDict.getByName("trash");
-		mTrashSprite = new Sprite(trash);
-		mTrashSprite.setY(480 - trash.getHeight());
+		mTrashActor = new Image(trash);
+		mTrashActor.setX(0);
+		mTrashActor.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				mWorld.getBurgerStack().clear();
+			}
+		});
+		addActor(mTrashActor);
 	}
-
+	
 	public void render() {
-		mCam.update();
-		mSpriteBatch.setProjectionMatrix(mCam.combined);
-		mSpriteBatch.begin();
-		mInventoryView.drawSprites(mSpriteBatch);
-		mBurgerStackView.drawSprites(mSpriteBatch);
-		mTrashSprite.draw(mSpriteBatch);
-		mSpriteBatch.end();
+		SpriteBatch batch = getStage().getSpriteBatch();
+		batch.begin();
+		mInventoryView.drawSprites(batch);
+		mBurgerStackView.drawSprites(batch);
+		batch.end();
 	}
 	
 	public InventoryView getInventoryView() {
 		return mInventoryView;
 	}
 	
-	public Sprite getTrashSprite() {
-		return mTrashSprite;
+	public void layout() {
+		mTrashActor.setY(getHeight() - mTrashActor.getHeight());
 	}
 }
