@@ -5,8 +5,9 @@ import com.agateau.burgerparty.model.Inventory;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class InventoryView {
+public class InventoryView extends Actor {
 	private Inventory mInventory;
 	private TextureDict mTextureDict;
 	
@@ -21,7 +22,8 @@ public class InventoryView {
 		mTextureDict = textureDict;
 	}
 	
-	public void drawSprites(SpriteBatch spriteBatch) {
+	@Override
+	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		Texture bgTexture = mTextureDict.getByName("shelf");
 
 		float cellSize = mWidth / ColumnCount;

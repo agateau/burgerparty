@@ -5,7 +5,6 @@ import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.InventoryView;
 import com.agateau.burgerparty.view.TextureDict;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -24,6 +23,7 @@ public class WorldView extends WidgetGroup {
 		mWorld = world;
 		mTextureDict = new TextureDict();
 		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
+		addActor(mInventoryView);
 
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
 		addActor(mBurgerStackView);
@@ -38,13 +38,6 @@ public class WorldView extends WidgetGroup {
 			}
 		});
 		addActor(mTrashActor);
-	}
-	
-	public void render() {
-		SpriteBatch batch = getStage().getSpriteBatch();
-		batch.begin();
-		mInventoryView.drawSprites(batch);
-		batch.end();
 	}
 	
 	public InventoryView getInventoryView() {
