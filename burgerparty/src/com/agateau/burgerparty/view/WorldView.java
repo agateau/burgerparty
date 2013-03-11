@@ -26,6 +26,7 @@ public class WorldView extends WidgetGroup {
 	private BurgerStackView mTargetBurgerStackView;
 	private Image mTrashActor;
 	private Label mTimerDisplay;
+	private Label mScoreLabel;
 	private Actor mGameOverWindow;
 
 	public WorldView(World world) {
@@ -35,6 +36,7 @@ public class WorldView extends WidgetGroup {
 
 		setupInventoryView();
 		setupTimerDisplay();
+		setupScoreLabel();
 		setupTrash();
 
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
@@ -52,24 +54,29 @@ public class WorldView extends WidgetGroup {
 	public void layout() {
 		float width = getWidth();
 		float height = getHeight();
-		mTrashActor.setY(height - mTrashActor.getHeight());
-		
+
 		float inventoryWidth = width / 3;
 		mInventoryView.setBounds(0, 0, inventoryWidth, height);
-		
-		float stackSize = width - inventoryWidth;
+
+		float trashWidth = mTrashActor.getWidth();
+		mTrashActor.setPosition(width - trashWidth, 0);
+
+		float stackSize = width - inventoryWidth - trashWidth;
 		mBurgerStackView.setBounds(inventoryWidth, 0, stackSize, height);
-		
+
 		float targetSize = width / 6;
 		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
 
 		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
+
+		mScoreLabel.setBounds(0, height - mScoreLabel.getPrefHeight(), mScoreLabel.getPrefWidth(), mScoreLabel.getPrefHeight());
 	}
 
 	@Override
 	public void act(float delta) {
 		super.act(delta);
 		updateTimerDisplay();
+		updateScoreLabel();
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverWindow == null) {
 			showGameOverWindow();
 		} else if (mWorld.getRemainingSeconds() > 0 && mGameOverWindow != null) {
@@ -98,6 +105,15 @@ public class WorldView extends WidgetGroup {
 		addActor(mTimerDisplay);
 	}
 
+	private void setupScoreLabel() {
+		Label.LabelStyle style = new Label.LabelStyle();
+		style.font = new BitmapFont();
+		style.fontColor = Color.WHITE;
+		mScoreLabel = new Label("", style);
+		mScoreLabel.setAlignment(Align.left);
+		addActor(mScoreLabel);
+	}
+
 	private void setupTrash() {
 		TextureRegion trash = mAtlas.findRegion("trash");
 		mTrashActor = new Image(trash);
@@ -114,6 +130,11 @@ public class WorldView extends WidgetGroup {
 		int seconds = mWorld.getRemainingSeconds();
 		String txt = String.valueOf(seconds);
 		mTimerDisplay.setText(txt);
+	}
+
+	private void updateScoreLabel() {
+		String txt = String.format("SCORE: %07d", mWorld.getScore());
+		mScoreLabel.setText(txt);
 	}
 
 	private void showGameOverWindow() {

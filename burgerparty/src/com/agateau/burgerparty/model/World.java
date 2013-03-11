@@ -8,6 +8,7 @@ public class World {
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
 	private long mStartTime;
+	private int mScore;
 
 	static final int MAX_DURATION_SECS = 15;
 
@@ -31,6 +32,7 @@ public class World {
 
 	public void checkStackStatus() {
 		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
+			increaseScore();
 			restart();
 		}
 	}
@@ -44,6 +46,10 @@ public class World {
 	public int getRemainingSeconds() {
 		int deltaSecs = (int)((TimeUtils.nanoTime() - mStartTime) / (1000 * 1000 * 1000));
 		return Math.max(0, MAX_DURATION_SECS - deltaSecs);
+	}
+
+	public int getScore() {
+		return mScore;
 	}
 
 	private void generateTarget() {
@@ -60,5 +66,9 @@ public class World {
 		}
 
 		mTargetBurgerStack.addItem(new BurgerItem("top"));
+	}
+
+	private void increaseScore() {
+		mScore += 100 * getRemainingSeconds();
 	}
 }
