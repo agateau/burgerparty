@@ -4,6 +4,7 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -13,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class InventoryView extends Actor {
 	private Inventory mInventory;
-	private TextureDict mTextureDict;
+	private TextureAtlas mAtlas;
 	
 	private final int ColumnCount = 3;
 	private final float Padding = 10;
@@ -39,10 +40,10 @@ public class InventoryView extends Actor {
 		}
 	}
 
-	public InventoryView(Inventory inventory, TextureDict textureDict) {
+	public InventoryView(Inventory inventory, TextureAtlas atlas) {
 		setBounds(0, 0, 800 / 3, 480);
 		mInventory = inventory;
-		mTextureDict = textureDict;
+		mAtlas = atlas;
 	
 		addListener(new ClickListener() {
 			@Override
@@ -60,14 +61,14 @@ public class InventoryView extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
-		TextureRegion bgTexture = mTextureDict.getByName("shelf");
+		TextureRegion bgTexture = mAtlas.findRegion("shelf");
 
 		float cellSize = getWidth() / ColumnCount;
 
 		float posX = Padding;
 		float posY = 0;
 		for(BurgerItem item: mInventory.getItems()) {
-			TextureRegion texture = mTextureDict.getByName("burgeritems/" + item.getName());
+			TextureRegion texture = mAtlas.findRegion("burgeritems/" + item.getName());
 
 			float scale = (cellSize - Padding * 2) / Math.max(texture.getRegionWidth(), texture.getRegionHeight());
 			float width = texture.getRegionWidth() * scale;

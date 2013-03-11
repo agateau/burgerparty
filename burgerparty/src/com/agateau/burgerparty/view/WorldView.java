@@ -4,10 +4,11 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.view.InventoryView;
-import com.agateau.burgerparty.view.TextureDict;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -19,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WorldView extends WidgetGroup {
 	private World mWorld;
-	private TextureDict mTextureDict;
+	private TextureAtlas mAtlas;
 	private InventoryView mInventoryView;
 	private BurgerStackView mBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
@@ -30,18 +31,18 @@ public class WorldView extends WidgetGroup {
 	public WorldView(World world) {
 		setFillParent(true);
 		mWorld = world;
-		mTextureDict = new TextureDict();
+		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 
 		setupInventoryView();
 		setupTimerDisplay();
 
-		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
+		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
 		addActor(mBurgerStackView);
 		
-		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mTextureDict);
+		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
 		
-		TextureRegion trash = mTextureDict.getByName("trash");
+		TextureRegion trash = mAtlas.findRegion("trash");
 		mTrashActor = new Image(trash);
 		mTrashActor.setX(0);
 		mTrashActor.addListener(new ClickListener() {
@@ -87,7 +88,7 @@ public class WorldView extends WidgetGroup {
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
+		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
 		addActor(mInventoryView);
 		mInventoryView.addListener(mInventoryView.new Listener() {
 			@Override
