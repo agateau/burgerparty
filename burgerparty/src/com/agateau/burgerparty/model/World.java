@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.model.Inventory;
+import com.badlogic.gdx.Gdx;
 
 public class World {
 	private Inventory mInventory;
@@ -33,5 +34,11 @@ public class World {
 		mTargetBurgerStack.addItem(new BurgerItem("salad"));
 		mTargetBurgerStack.addItem(new BurgerItem("cheese"));
 		mTargetBurgerStack.addItem(new BurgerItem("top"));
+	}
+	
+	public void checkStackStatus() {
+		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
+			Gdx.app.log("World", "Won");
+		}
 	}
 }

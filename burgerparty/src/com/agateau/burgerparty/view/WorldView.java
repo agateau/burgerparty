@@ -25,14 +25,7 @@ public class WorldView extends WidgetGroup {
 		mWorld = world;
 		mTextureDict = new TextureDict();
 
-		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
-		addActor(mInventoryView);
-		mInventoryView.addListener(mInventoryView.new Listener() {
-			@Override
-			public void burgerItemClicked(BurgerItem item) {
-				mWorld.getBurgerStack().addItem(item);
-			}
-		});
+		setupInventoryView();
 
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
 		addActor(mBurgerStackView);
@@ -69,5 +62,17 @@ public class WorldView extends WidgetGroup {
 		
 		float targetSize = width / 8;
 		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
+	}
+	
+	private void setupInventoryView() {
+		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
+		addActor(mInventoryView);
+		mInventoryView.addListener(mInventoryView.new Listener() {
+			@Override
+			public void burgerItemClicked(BurgerItem item) {
+				mWorld.getBurgerStack().addItem(item);
+				mWorld.checkStackStatus();
+			}
+		});
 	}
 }
