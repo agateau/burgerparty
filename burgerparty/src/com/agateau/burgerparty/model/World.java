@@ -1,17 +1,20 @@
 package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.model.Inventory;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class World {
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
+	private long mStartTime;
+
+	static final int MAX_DURATION_SECS = 15;
 
 	public World() {
 		mInventory = new Inventory();
 		mBurgerStack = new BurgerStack();
 		mTargetBurgerStack = new BurgerStack();
-		generateTarget();
 	}
 	
 	public Inventory getInventory() {
@@ -26,7 +29,24 @@ public class World {
 		return mTargetBurgerStack;
 	}
 
-	public void generateTarget() {
+	public void checkStackStatus() {
+		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
+			restart();
+		}
+	}
+
+	public void restart() {
+		mStartTime = TimeUtils.nanoTime();
+		mBurgerStack.clear();
+		generateTarget();
+	}
+
+	public int getRemainingSeconds() {
+		int deltaSecs = (int)((TimeUtils.nanoTime() - mStartTime) / (1000 * 1000 * 1000));
+		return Math.max(0, MAX_DURATION_SECS - deltaSecs);
+	}
+
+	private void generateTarget() {
 		final String[] names = {"steak", "salad", "cheese", "tomato"};
 		int count = 2 + (int)(4 * Math.random());
 
@@ -40,12 +60,5 @@ public class World {
 		}
 
 		mTargetBurgerStack.addItem(new BurgerItem("top"));
-	}
-
-	public void checkStackStatus() {
-		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
-			mBurgerStack.clear();
-			generateTarget();
-		}
 	}
 }

@@ -6,10 +6,14 @@ import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.InventoryView;
 import com.agateau.burgerparty.view.TextureDict;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WorldView extends WidgetGroup {
@@ -19,6 +23,7 @@ public class WorldView extends WidgetGroup {
 	private BurgerStackView mBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
 	private Image mTrashActor;
+	private Label mTimerDisplay;
 
 	public WorldView(World world) {
 		setFillParent(true);
@@ -26,6 +31,7 @@ public class WorldView extends WidgetGroup {
 		mTextureDict = new TextureDict();
 
 		setupInventoryView();
+		setupTimerDisplay();
 
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mTextureDict);
 		addActor(mBurgerStackView);
@@ -48,7 +54,8 @@ public class WorldView extends WidgetGroup {
 	public InventoryView getInventoryView() {
 		return mInventoryView;
 	}
-	
+
+	@Override
 	public void layout() {
 		float width = getWidth();
 		float height = getHeight();
@@ -62,8 +69,16 @@ public class WorldView extends WidgetGroup {
 		
 		float targetSize = width / 8;
 		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
+
+		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
 	}
-	
+
+	@Override
+	public void act(float delta) {
+		super.act(delta);
+		updateTimerDisplay();
+	}
+
 	private void setupInventoryView() {
 		mInventoryView = new InventoryView(mWorld.getInventory(), mTextureDict);
 		addActor(mInventoryView);
@@ -74,5 +89,20 @@ public class WorldView extends WidgetGroup {
 				mWorld.checkStackStatus();
 			}
 		});
+	}
+
+	private void setupTimerDisplay() {
+		Label.LabelStyle style = new Label.LabelStyle();
+		style.font = new BitmapFont();
+		style.fontColor = Color.WHITE;
+		mTimerDisplay = new Label("", style);
+		mTimerDisplay.setAlignment(Align.center);
+		addActor(mTimerDisplay);
+	}
+
+	private void updateTimerDisplay() {
+		int seconds = mWorld.getRemainingSeconds();
+		String txt = String.valueOf(seconds);
+		mTimerDisplay.setText(txt);
 	}
 }
