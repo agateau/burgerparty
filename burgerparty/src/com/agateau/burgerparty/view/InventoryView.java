@@ -3,8 +3,8 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
@@ -60,18 +60,18 @@ public class InventoryView extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
-		Texture bgTexture = mTextureDict.getByName("shelf");
+		TextureRegion bgTexture = mTextureDict.getByName("shelf");
 
 		float cellSize = getWidth() / ColumnCount;
 
 		float posX = Padding;
 		float posY = 0;
 		for(BurgerItem item: mInventory.getItems()) {
-			Texture texture = mTextureDict.getByName(item.getName());
+			TextureRegion texture = mTextureDict.getByName("burgeritems/" + item.getName());
 
-			float scale = (cellSize - Padding * 2) / Math.max(texture.getWidth(), texture.getHeight());
-			float width = texture.getWidth() * scale;
-			float height = texture.getHeight() * scale;
+			float scale = (cellSize - Padding * 2) / Math.max(texture.getRegionWidth(), texture.getRegionHeight());
+			float width = texture.getRegionWidth() * scale;
+			float height = texture.getRegionHeight() * scale;
 
 			spriteBatch.draw(bgTexture, posX - Padding, posY - Padding, cellSize, cellSize);
 			spriteBatch.draw(texture, posX, posY + 4, width, height);

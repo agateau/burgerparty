@@ -7,8 +7,8 @@ import com.agateau.burgerparty.view.InventoryView;
 import com.agateau.burgerparty.view.TextureDict;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -41,7 +41,7 @@ public class WorldView extends WidgetGroup {
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mTextureDict);
 		addActor(mTargetBurgerStackView);
 		
-		Texture trash = mTextureDict.getByName("trash");
+		TextureRegion trash = mTextureDict.getByName("trash");
 		mTrashActor = new Image(trash);
 		mTrashActor.setX(0);
 		mTrashActor.addListener(new ClickListener() {

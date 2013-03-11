@@ -1,0 +1,66 @@
+
+burgerparty.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+burgeritems/top
+  rotate: false
+  xy: 1, 7
+  size: 240, 56
+  orig: 240, 56
+  offset: 0, 0
+  index: -1
+burgeritems/bottom
+  rotate: false
+  xy: 243, 27
+  size: 240, 36
+  orig: 240, 36
+  offset: 0, 0
+  index: -1
+burgeritems/salad
+  rotate: false
+  xy: 243, 1
+  size: 216, 24
+  orig: 216, 24
+  offset: 0, 0
+  index: -1
+burgeritems/steak
+  rotate: false
+  xy: 485, 29
+  size: 220, 34
+  orig: 220, 34
+  offset: 0, 0
+  index: -1
+burgeritems/cheese
+  rotate: false
+  xy: 707, 46
+  size: 224, 17
+  orig: 224, 17
+  offset: 0, 0
+  index: -1
+burgeritems/tomato
+  rotate: false
+  xy: 707, 10
+  size: 197, 34
+  orig: 197, 34
+  offset: 0, 0
+  index: -1
+
+burgerparty2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+shelf
+  rotate: false
+  xy: 1, 1
+  size: 248, 248
+  orig: 248, 248
+  offset: 0, 0
+  index: -1
+trash
+  rotate: false
+  xy: 251, 115
+  size: 120, 134
+  orig: 120, 134
+  offset: 0, 0
+  index: -1

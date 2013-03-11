@@ -1,31 +1,17 @@
 package com.agateau.burgerparty.view;
 
-import java.util.HashMap;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 public class TextureDict {
-	private HashMap<String, Texture> mMap;
+	private TextureAtlas mAtlas;
 
 	TextureDict() {
-		mMap = new HashMap<String, Texture>();
-		loadTexture("top");
-		loadTexture("bottom");
-		loadTexture("salad");
-		loadTexture("tomato");
-		loadTexture("steak");
-		loadTexture("cheese");
-		loadTexture("shelf");
-		loadTexture("trash");
+		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 	}
 
-	private void loadTexture(String name) {
-		Texture texture = new Texture(Gdx.files.internal(name + ".png"));
-		mMap.put(name, texture);
-	}
-
-	Texture getByName(String name) {
-		return mMap.get(name);
+	AtlasRegion getByName(String name) {
+		return mAtlas.findRegion(name);
 	}
 }
