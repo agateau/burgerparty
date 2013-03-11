@@ -35,23 +35,13 @@ public class WorldView extends WidgetGroup {
 
 		setupInventoryView();
 		setupTimerDisplay();
+		setupTrash();
 
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
 		addActor(mBurgerStackView);
 		
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
-		
-		TextureRegion trash = mAtlas.findRegion("trash");
-		mTrashActor = new Image(trash);
-		mTrashActor.setX(0);
-		mTrashActor.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				mWorld.getBurgerStack().clear();
-			}
-		});
-		addActor(mTrashActor);
 	}
 	
 	public InventoryView getInventoryView() {
@@ -106,6 +96,18 @@ public class WorldView extends WidgetGroup {
 		mTimerDisplay = new Label("", style);
 		mTimerDisplay.setAlignment(Align.center);
 		addActor(mTimerDisplay);
+	}
+
+	private void setupTrash() {
+		TextureRegion trash = mAtlas.findRegion("trash");
+		mTrashActor = new Image(trash);
+		mTrashActor.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				mWorld.getBurgerStack().clear();
+			}
+		});
+		addActor(mTrashActor);
 	}
 
 	private void updateTimerDisplay() {
