@@ -20,6 +20,30 @@
      id="defs4">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient3158">
+      <stop
+         style="stop-color:#333333;stop-opacity:1"
+         offset="0"
+         id="stop3160" />
+      <stop
+         style="stop-color:#666666;stop-opacity:1"
+         offset="1"
+         id="stop3162" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3150">
+      <stop
+         style="stop-color:#cccccc;stop-opacity:1"
+         offset="0"
+         id="stop3152" />
+      <stop
+         style="stop-color:#808080;stop-opacity:1"
+         offset="1"
+         id="stop3154" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient3127">
       <stop
          style="stop-color:#502d16;stop-opacity:1"
@@ -43,6 +67,24 @@
        x2="384"
        y2="844.36218"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3150"
+       id="linearGradient3156"
+       x1="592"
+       y1="136"
+       x2="696"
+       y2="136"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3158"
+       id="linearGradient3164"
+       x1="584"
+       y1="72"
+       x2="704"
+       y2="72"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -57,8 +99,8 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1331"
-     inkscape:window-height="748"
+     inkscape:window-width="1885"
+     inkscape:window-height="1060"
      inkscape:window-x="35"
      inkscape:window-y="0"
      inkscape:window-maximized="1">
@@ -339,13 +381,16 @@
          y="612.36218" />
     </g>
     <g
-       id="g3146">
+       id="g3146"
+       inkscape:export-filename="/home/aurelien/workspace/burgerparty-android/assets/trash.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3141"
          d="m 584,64 120,0 -16,120 c -24,8 -64,8 -88,0 z"
-         style="fill:#808080;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="fill:url(#linearGradient3156);fill-opacity:1;fill-rule:nonzero;stroke:none"
          transform="translate(0,572.36218)" />
       <path
          transform="translate(0,564.36218)"
@@ -355,7 +400,7 @@
          sodipodi:cy="72"
          sodipodi:cx="644"
          id="path3144"
-         style="fill:#4d4d4d;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="fill:url(#linearGradient3164);fill-opacity:1;fill-rule:nonzero;stroke:none"
          sodipodi:type="arc" />
     </g>
   </g>
