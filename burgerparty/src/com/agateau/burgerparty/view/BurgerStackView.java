@@ -7,8 +7,9 @@ import com.agateau.burgerparty.view.TextureDict;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class BurgerStackView {
+public class BurgerStackView extends Actor {
 	private BurgerStack mStack;
 	private TextureDict mTextureDict;
 
@@ -20,7 +21,8 @@ public class BurgerStackView {
 		mTextureDict = textureDict;
 	}
 
-	public void drawSprites(SpriteBatch spriteBatch) {
+	@Override
+	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		float posY = 0;
 		for(BurgerItem item: mStack.getItems()) {
 			Texture texture = mTextureDict.getByName(item.getName());
