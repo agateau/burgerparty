@@ -1,6 +1,10 @@
 package com.agateau.burgerparty.model;
 
+import java.util.Random;
+
 import com.agateau.burgerparty.model.Inventory;
+
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class World {
@@ -11,6 +15,8 @@ public class World {
 	private int mScore;
 
 	static final int MAX_DURATION_SECS = 15;
+	static final int MIN_ITEMS = 2;
+	static final int MAX_ITEMS = 6;
 
 	public World() {
 		mInventory = new Inventory();
@@ -53,15 +59,27 @@ public class World {
 	}
 
 	private void generateTarget() {
-		final String[] names = {"steak", "salad", "cheese", "tomato"};
-		int count = 2 + (int)(4 * Math.random());
+		Random random = new Random();
+		Array<String> names = new Array<String>();
+		names.add("steak");
+		names.add("salad");
+		names.add("cheese");
+		names.add("tomato");
+		int count = MIN_ITEMS + random.nextInt(MAX_ITEMS - MIN_ITEMS + 1);
 
 		mTargetBurgerStack.clear();
 
 		mTargetBurgerStack.addItem(new BurgerItem("bottom"));
 
-		for (; count >= 0; count--) {
-			String name = names[(int)(Math.random() * names.length)];
+		// Generate content, make sure items cannot appear two times consecutively
+		String lastName = new String();
+		for (; count > 0; count--) {
+			int index = random.nextInt(names.size);
+			String name = names.removeIndex(index);
+			if (!lastName.isEmpty()) {
+				names.add(lastName);
+			}
+			lastName = name;
 			mTargetBurgerStack.addItem(new BurgerItem(name));
 		}
 
