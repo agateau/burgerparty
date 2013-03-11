@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.model.Inventory;
-import com.badlogic.gdx.Gdx;
 
 public class World {
 	private Inventory mInventory;
@@ -28,17 +27,25 @@ public class World {
 	}
 
 	public void generateTarget() {
+		final String[] names = {"steak", "salad", "cheese", "tomato"};
+		int count = 2 + (int)(4 * Math.random());
+
 		mTargetBurgerStack.clear();
+
 		mTargetBurgerStack.addItem(new BurgerItem("bottom"));
-		mTargetBurgerStack.addItem(new BurgerItem("steak"));
-		mTargetBurgerStack.addItem(new BurgerItem("salad"));
-		mTargetBurgerStack.addItem(new BurgerItem("cheese"));
+
+		for (; count >= 0; count--) {
+			String name = names[(int)(Math.random() * names.length)];
+			mTargetBurgerStack.addItem(new BurgerItem(name));
+		}
+
 		mTargetBurgerStack.addItem(new BurgerItem("top"));
 	}
-	
+
 	public void checkStackStatus() {
 		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
-			Gdx.app.log("World", "Won");
+			mBurgerStack.clear();
+			generateTarget();
 		}
 	}
 }
