@@ -26,16 +26,27 @@ public class GameOverWindow extends Table {
 
 		Label label = new Label("Game Over", skin);
 
-		TextButton button = new TextButton("Try Again", skin);
-		button.addListener(new ChangeListener() {
+		TextButton tryAgainButton = new TextButton("Try Again", skin);
+		tryAgainButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.start();
 			}
 		});
 
-		add(label).padBottom(20);
+		TextButton menuButton = new TextButton("Menu", skin);
+		menuButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				mGame.showMenu();
+			}
+		});
+
+		add(label).padBottom(40);
+
 		row();
-		add(button);
+		add(tryAgainButton).padBottom(20);
+
+		row();
+		add(menuButton);
 
 		center();
 
