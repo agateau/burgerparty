@@ -33,8 +33,7 @@ public class GameOverWindow extends Table {
 			}
 		});
 
-		pad(20);
-		add(label);
+		add(label).padBottom(20);
 		row();
 		add(button);
 
