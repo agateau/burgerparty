@@ -8,16 +8,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen implements Screen {
 	private Stage mStage;
 	private World mWorld;
 	private WorldView mWorldView;
 
-	public GameScreen(TextureAtlas atlas) {
+	public GameScreen(TextureAtlas atlas, Skin skin) {
 		mStage = new Stage(0, 0, true);
 		mWorld = new World();
-		mWorldView = new WorldView(mWorld, atlas);
+		mWorldView = new WorldView(mWorld, atlas, skin);
 		mStage.addActor(mWorldView);
 		Gdx.input.setInputProcessor(mStage);
 	}

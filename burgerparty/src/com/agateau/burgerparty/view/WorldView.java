@@ -5,12 +5,11 @@ import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.view.InventoryView;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class WorldView extends WidgetGroup {
 	private World mWorld;
 	private TextureAtlas mAtlas;
+	private Skin mSkin;
 	private InventoryView mInventoryView;
 	private BurgerStackView mBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
@@ -28,10 +28,11 @@ public class WorldView extends WidgetGroup {
 	private Label mScoreLabel;
 	private Actor mGameOverWindow;
 
-	public WorldView(World world, TextureAtlas atlas) {
+	public WorldView(World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
 		mWorld = world;
 		mAtlas = atlas;
+		mSkin = skin;
 
 		setupInventoryView();
 		setupTimerDisplay();
@@ -96,19 +97,13 @@ public class WorldView extends WidgetGroup {
 	}
 
 	private void setupTimerDisplay() {
-		Label.LabelStyle style = new Label.LabelStyle();
-		style.font = new BitmapFont();
-		style.fontColor = Color.WHITE;
-		mTimerDisplay = new Label("", style);
+		mTimerDisplay = new Label("", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
 		addActor(mTimerDisplay);
 	}
 
 	private void setupScoreLabel() {
-		Label.LabelStyle style = new Label.LabelStyle();
-		style.font = new BitmapFont();
-		style.fontColor = Color.WHITE;
-		mScoreLabel = new Label("", style);
+		mScoreLabel = new Label("", mSkin);
 		mScoreLabel.setAlignment(Align.left);
 		addActor(mScoreLabel);
 	}
@@ -137,7 +132,7 @@ public class WorldView extends WidgetGroup {
 	}
 
 	private void showGameOverWindow() {
-		mGameOverWindow = new GameOverWindow(mWorld);
+		mGameOverWindow = new GameOverWindow(mWorld, mSkin);
 		addActor(mGameOverWindow);
 	}
 
