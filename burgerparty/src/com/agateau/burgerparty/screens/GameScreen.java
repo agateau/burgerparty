@@ -6,6 +6,7 @@ import com.agateau.burgerparty.view.WorldView;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameScreen implements Screen {
@@ -13,10 +14,10 @@ public class GameScreen implements Screen {
 	private World mWorld;
 	private WorldView mWorldView;
 
-	public GameScreen() {
+	public GameScreen(TextureAtlas atlas) {
 		mStage = new Stage(0, 0, true);
 		mWorld = new World();
-		mWorldView = new WorldView(mWorld);
+		mWorldView = new WorldView(mWorld, atlas);
 		mStage.addActor(mWorldView);
 		Gdx.input.setInputProcessor(mStage);
 	}

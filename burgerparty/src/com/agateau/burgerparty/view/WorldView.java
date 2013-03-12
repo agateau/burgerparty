@@ -5,7 +5,6 @@ import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.view.InventoryView;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -29,10 +28,10 @@ public class WorldView extends WidgetGroup {
 	private Label mScoreLabel;
 	private Actor mGameOverWindow;
 
-	public WorldView(World world) {
+	public WorldView(World world, TextureAtlas atlas) {
 		setFillParent(true);
 		mWorld = world;
-		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
+		mAtlas = atlas;
 
 		setupInventoryView();
 		setupTimerDisplay();
