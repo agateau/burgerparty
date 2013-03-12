@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.view;
 
-import com.agateau.burgerparty.model.World;
+import com.agateau.burgerparty.BurgerPartyGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -18,9 +18,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class GameOverWindow extends Table {
-	private World mWorld;
-	public GameOverWindow(World world, Skin skin) {
-		mWorld = world;
+	private BurgerPartyGame mGame;
+	public GameOverWindow(BurgerPartyGame game, Skin skin) {
+		mGame = game;
 
 		setFillParent(true);
 
@@ -29,7 +29,7 @@ public class GameOverWindow extends Table {
 		TextButton button = new TextButton("Try Again", skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mWorld.restart();
+				mGame.start();
 			}
 		});
 

@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.view;
 
+import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.World;
 
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WorldView extends WidgetGroup {
+	private BurgerPartyGame mGame;
 	private World mWorld;
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
@@ -28,8 +30,9 @@ public class WorldView extends WidgetGroup {
 	private Label mScoreLabel;
 	private Actor mGameOverWindow;
 
-	public WorldView(World world, TextureAtlas atlas, Skin skin) {
+	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
+		mGame = game;
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
@@ -79,8 +82,6 @@ public class WorldView extends WidgetGroup {
 		updateScoreLabel();
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverWindow == null) {
 			showGameOverWindow();
-		} else if (mWorld.getRemainingSeconds() > 0 && mGameOverWindow != null) {
-			hideGameOverWindow();
 		}
 	}
 
@@ -132,12 +133,7 @@ public class WorldView extends WidgetGroup {
 	}
 
 	private void showGameOverWindow() {
-		mGameOverWindow = new GameOverWindow(mWorld, mSkin);
+		mGameOverWindow = new GameOverWindow(mGame, mSkin);
 		addActor(mGameOverWindow);
-	}
-
-	private void hideGameOverWindow() {
-		mGameOverWindow.remove();
-		mGameOverWindow = null;
 	}
 }

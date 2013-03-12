@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.screens;
 
+import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;
 
@@ -15,14 +16,14 @@ public class GameScreen implements Screen {
 	private World mWorld;
 	private WorldView mWorldView;
 
-	public GameScreen(TextureAtlas atlas, Skin skin) {
+	public GameScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		mStage = new Stage(0, 0, true);
 		mWorld = new World();
-		mWorldView = new WorldView(mWorld, atlas, skin);
+		mWorldView = new WorldView(game, mWorld, atlas, skin);
 		mStage.addActor(mWorldView);
 		Gdx.input.setInputProcessor(mStage);
 	}
-	
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
