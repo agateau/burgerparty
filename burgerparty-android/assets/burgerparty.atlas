@@ -33,14 +33,14 @@ burgeritems/steak
   index: -1
 burgeritems/cheese
   rotate: false
-  xy: 707, 46
-  size: 224, 17
-  orig: 224, 17
+  xy: 707, 41
+  size: 224, 22
+  orig: 224, 22
   offset: 0, 0
   index: -1
 burgeritems/tomato
   rotate: false
-  xy: 707, 10
+  xy: 707, 5
   size: 197, 34
   orig: 197, 34
   offset: 0, 0
