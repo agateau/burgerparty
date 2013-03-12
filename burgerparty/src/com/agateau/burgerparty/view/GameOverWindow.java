@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -43,10 +44,10 @@ public class GameOverWindow extends Table {
 		add(label).padBottom(40);
 
 		row();
-		add(tryAgainButton).padBottom(20);
+		add(tryAgainButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT).padBottom(20);
 
 		row();
-		add(menuButton);
+		add(menuButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
 
 		center();
 

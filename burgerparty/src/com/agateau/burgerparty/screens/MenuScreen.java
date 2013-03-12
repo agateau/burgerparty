@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -80,6 +81,6 @@ public class MenuScreen implements Screen {
 				mGame.start();
 			}
 		});
-		table.add(startButton).expand();
+		table.add(startButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT).expand();
 	}
 }
