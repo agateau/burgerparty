@@ -11,6 +11,7 @@ import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -31,6 +32,7 @@ public class WorldView extends WidgetGroup {
 	private Skin mSkin;
 	private InventoryView mInventoryView;
 	private BurgerStackView mBurgerStackView;
+	private BurgerStackView mDoneBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
 	private Image mTrashActor;
 	private Label mTimerDisplay;
@@ -48,20 +50,18 @@ public class WorldView extends WidgetGroup {
 		setupTimerDisplay();
 		setupScoreLabel();
 		setupTrash();
-
-		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
-		addActor(mBurgerStackView);
+		setupBurgerStackView();
 		
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
 
 		mWorld.stackFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
-				showDoneActor();
+				showDoneFeedback();
 			}
 		});
 	}
-	
+
 	public InventoryView getInventoryView() {
 		return mInventoryView;
 	}
@@ -112,6 +112,11 @@ public class WorldView extends WidgetGroup {
 		});
 	}
 
+	private void setupBurgerStackView() {
+		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
+		addActor(mBurgerStackView);
+	}
+
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
@@ -152,6 +157,20 @@ public class WorldView extends WidgetGroup {
 		addActor(mGameOverWindow);
 	}
 
+	private void showDoneFeedback() {
+		showDoneActor();
+		mDoneBurgerStackView = mBurgerStackView;
+		mDoneBurgerStackView.addAction(
+			Actions.sequence(
+				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
+				Actions.moveTo(getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.removeActor()
+			)
+		);
+		setupBurgerStackView();
+		invalidate();
+	}
+	
 	private void showDoneActor() {
 		TextureRegion region = mAtlas.findRegion("done");
 		Image doneActor = new Image(region);
@@ -168,7 +187,8 @@ public class WorldView extends WidgetGroup {
 		doneActor.addAction(
 			Actions.sequence(
 				Actions.alpha(0),
-				Actions.fadeIn(0.05f),
+				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
+				Actions.alpha(1),
 				Actions.delay(0.3f),
 				Actions.fadeOut(0.05f),
 				Actions.removeActor()

@@ -41,15 +41,10 @@ public class World {
 	public void checkStackStatus() {
 		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
 			increaseScore();
+			mBurgerStack = new BurgerStack();
+			start();
 			stackFinished.emit();
-			restart();
 		}
-	}
-
-	public void restart() {
-		mStartTime = TimeUtils.nanoTime();
-		mBurgerStack.clear();
-		generateTarget();
 	}
 
 	public int getRemainingSeconds() {
@@ -59,6 +54,11 @@ public class World {
 
 	public int getScore() {
 		return mScore;
+	}
+
+	public void start() {
+		mStartTime = TimeUtils.nanoTime();
+		generateTarget();
 	}
 
 	private void generateTarget() {

@@ -39,7 +39,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		mWorld.restart();
+		mWorld.start();
 	}
 
 	@Override

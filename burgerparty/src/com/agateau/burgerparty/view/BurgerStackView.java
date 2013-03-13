@@ -21,11 +21,12 @@ public class BurgerStackView extends Group {
 	private TextureAtlas mAtlas;
 	private float mNextY;
 
-	private final float OVERLAP = 15;
-	private final float ADD_ACTION_HEIGHT = 100;
-	private final float ADD_ACTION_DURATION = 0.2f;
+	public static final float ADD_ACTION_DURATION = 0.2f;
+
+	private static final float OVERLAP = 15;
+	private static final float ADD_ACTION_HEIGHT = 100;
 	
-	private final float TRASH_ACTION_DURATION = 0.5f;
+	private static final float TRASH_ACTION_DURATION = 0.5f;
 
 	public BurgerStackView(BurgerStack stack, TextureAtlas atlas) {
 		mStack = stack;
