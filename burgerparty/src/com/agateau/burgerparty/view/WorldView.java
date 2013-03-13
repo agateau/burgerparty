@@ -117,7 +117,7 @@ public class WorldView extends WidgetGroup {
 		mTrashActor.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				mWorld.getBurgerStack().clear();
+				mWorld.getBurgerStack().trash();
 			}
 		});
 		addActor(mTrashActor);

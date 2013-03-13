@@ -11,10 +11,12 @@ public class BurgerStack {
 
 	public Signal1<BurgerItem> burgerItemAdded;
 	public Signal0 cleared;
+	public Signal0 trashed;
 
 	public BurgerStack() {
 		burgerItemAdded = new Signal1<BurgerItem>();
 		cleared = new Signal0();
+		trashed = new Signal0();
 		mItems = new Array<BurgerItem>();
 	}
 
@@ -22,10 +24,15 @@ public class BurgerStack {
 		mItems.add(item);
 		burgerItemAdded.emit(item);
 	}
-	
+
 	public void clear() {
 		mItems.clear();
 		cleared.emit();
+	}
+
+	public void trash() {
+		mItems.clear();
+		trashed.emit();
 	}
 	
 	public Array<BurgerItem> getItems() {
