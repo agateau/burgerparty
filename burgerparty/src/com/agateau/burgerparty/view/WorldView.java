@@ -65,10 +65,12 @@ public class WorldView extends WidgetGroup {
 		mTrashActor.setPosition(width - trashWidth, 0);
 
 		float stackSize = width - inventoryWidth - trashWidth;
-		mBurgerStackView.setBounds(inventoryWidth, 0, stackSize, height);
+		mBurgerStackView.setScale(Math.min(stackSize / mBurgerStackView.getWidth(), 1));
+		mBurgerStackView.setPosition(inventoryWidth + (stackSize - mBurgerStackView.getWidth() * mBurgerStackView.getScaleX()) / 2, 0);
 
 		float targetSize = width / 6;
-		mTargetBurgerStackView.setBounds(width - targetSize, height - targetSize, targetSize, targetSize);
+		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
+		mTargetBurgerStackView.setPosition(width - targetSize, height - targetSize);
 
 		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
 
