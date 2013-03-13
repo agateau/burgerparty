@@ -7,7 +7,9 @@ import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class BurgerStackView extends Group {
@@ -15,7 +17,9 @@ public class BurgerStackView extends Group {
 	private TextureAtlas mAtlas;
 	private float mNextY;
 
-	private final float Overlap = 15;
+	private final float OVERLAP = 15;
+	private final float ADD_ACTION_HEIGHT = 100;
+	private final float ADD_ACTION_DURATION = 0.2f;
 
 	public BurgerStackView(BurgerStack stack, TextureAtlas atlas) {
 		mStack = stack;
@@ -46,8 +50,15 @@ public class BurgerStackView extends Group {
 		float regionH = region.getRegionHeight();
 		float posX = (getWidth() - regionW) / 2;
 
-		image.setBounds(posX, mNextY, regionW, regionH);
+		image.setBounds(posX, mNextY + ADD_ACTION_HEIGHT, regionW, regionH);
 		addActor(image);
-		mNextY += regionH - Overlap;
+
+		image.addAction(Actions.alpha(0));
+		image.addAction(Actions.parallel(
+			Actions.moveBy(0, -ADD_ACTION_HEIGHT, ADD_ACTION_DURATION, Interpolation.pow2In),
+			Actions.fadeIn(ADD_ACTION_DURATION)
+			));
+
+		mNextY += regionH - OVERLAP;
 	}
 }
