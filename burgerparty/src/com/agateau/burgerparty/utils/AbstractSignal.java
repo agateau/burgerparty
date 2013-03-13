@@ -11,7 +11,8 @@ public class AbstractSignal<H> {
 		mHandlers = Collections.newSetFromMap(new WeakHashMap<H, Boolean>());
 	}
 
-	public void connect(H handler) {
+	public void connect(Set<Object> tracker, H handler) {
+		tracker.add(handler);
 		mHandlers.add(handler);
 	}
 }

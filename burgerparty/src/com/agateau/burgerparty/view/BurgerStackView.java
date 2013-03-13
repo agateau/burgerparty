@@ -1,5 +1,7 @@
 package com.agateau.burgerparty.view;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.model.BurgerStack;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.Signal0;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class BurgerStackView extends Group {
+	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private BurgerStack mStack;
 	private TextureAtlas mAtlas;
 	private float mNextY;
@@ -32,23 +35,24 @@ public class BurgerStackView extends Group {
 
 		mNextY = 0;
 
-		mStack.burgerItemAdded.connect(new Signal1.Handler<BurgerItem>() {
+		mStack.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
 			public void handle(BurgerItem item) {
 				addItem(item);
 			}
 		});
 
-		mStack.cleared.connect(new Signal0.Handler() {
+		mStack.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				mNextY = 0;
 				clear();
 			}
 		});
-		mStack.trashed.connect(new Signal0.Handler() {
+		mStack.trashed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				trash();
 			}
-		});	}
+		});
+	}
 
 	private void addItem(BurgerItem item) {
 		TextureRegion region = mAtlas.findRegion("burgeritems/" + item.getName());
