@@ -3,11 +3,13 @@ package com.agateau.burgerparty.model;
 import java.util.Random;
 
 import com.agateau.burgerparty.model.Inventory;
+import com.agateau.burgerparty.utils.Signal0;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class World {
+	public Signal0 stackFinished = new Signal0();
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
@@ -39,6 +41,7 @@ public class World {
 	public void checkStackStatus() {
 		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
 			increaseScore();
+			stackFinished.emit();
 			restart();
 		}
 	}

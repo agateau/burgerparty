@@ -1,15 +1,20 @@
 package com.agateau.burgerparty.view;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.World;
 
+import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -18,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WorldView extends WidgetGroup {
+	HashSet<Object> mHandlers = new HashSet<Object>();
+
 	private BurgerPartyGame mGame;
 	private World mWorld;
 	private TextureAtlas mAtlas;
@@ -47,6 +54,12 @@ public class WorldView extends WidgetGroup {
 		
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
+
+		mWorld.stackFinished.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				showDoneActor();
+			}
+		});
 	}
 	
 	public InventoryView getInventoryView() {
@@ -137,5 +150,29 @@ public class WorldView extends WidgetGroup {
 	private void showGameOverWindow() {
 		mGameOverWindow = new GameOverWindow(mGame, mSkin);
 		addActor(mGameOverWindow);
+	}
+
+	private void showDoneActor() {
+		TextureRegion region = mAtlas.findRegion("done");
+		Image doneActor = new Image(region);
+		doneActor.setTouchable(Touchable.disabled);
+
+		float centerX = mBurgerStackView.getX() + mBurgerStackView.getWidth() * mBurgerStackView.getScaleX() / 2;
+		float centerY = mBurgerStackView.getY() + getHeight() / 2;
+
+		float width = doneActor.getWidth();
+		float height = doneActor.getHeight();
+		doneActor.setBounds(centerX - width / 2, centerY - height / 2, width, height);
+
+		addActor(doneActor);
+		doneActor.addAction(
+			Actions.sequence(
+				Actions.alpha(0),
+				Actions.fadeIn(0.05f),
+				Actions.delay(0.3f),
+				Actions.fadeOut(0.05f),
+				Actions.removeActor()
+			)
+		);
 	}
 }

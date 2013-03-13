@@ -57,9 +57,16 @@ shelf
   orig: 248, 248
   offset: 0, 0
   index: -1
+done
+  rotate: false
+  xy: 251, 76
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
 trash
   rotate: false
-  xy: 251, 115
+  xy: 434, 115
   size: 120, 134
   orig: 120, 134
   offset: 0, 0

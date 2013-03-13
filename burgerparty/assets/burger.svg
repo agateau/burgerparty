@@ -137,9 +137,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.2992092"
-     inkscape:cx="144.71993"
-     inkscape:cy="376.41385"
+     inkscape:zoom="2.1496046"
+     inkscape:cx="542.52416"
+     inkscape:cy="196.40167"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -449,5 +449,15 @@
          style="fill:url(#linearGradient3164);fill-opacity:1;fill-rule:nonzero;stroke:none"
          sodipodi:type="arc" />
     </g>
+    <path
+       style="fill:#00ff00;stroke:#409e48;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 560,344 c 22.93524,20.26221 44.77185,43.08791 64,72 32.76198,-61.48562 73.46322,-113.44413 112,-168 -40,40 -82.7896,78.98463 -112,120 -22.31546,-13.89276 -42.79625,-16.77747 -64,-24 z"
+       id="path3051"
+       inkscape:connector-curvature="0"
+       transform="translate(0,572.36218)"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/done.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
