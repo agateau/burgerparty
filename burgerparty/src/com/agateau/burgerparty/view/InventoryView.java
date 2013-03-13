@@ -61,6 +61,7 @@ public class InventoryView extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
+		spriteBatch.setColor(1, 1, 1, parentAlpha);
 		TextureRegion bgTexture = mAtlas.findRegion("shelf");
 
 		float cellSize = getWidth() / ColumnCount;
