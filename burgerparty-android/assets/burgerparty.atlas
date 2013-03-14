@@ -64,3 +64,10 @@ done
   orig: 181, 173
   offset: 0, 0
   index: -1
+overlay-bg
+  rotate: false
+  xy: 251, 58
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

@@ -134,7 +134,7 @@ public class WorldView extends WidgetGroup {
 	}
 
 	private void showGameOverWindow() {
-		mGameOverWindow = new GameOverWindow(mGame, mSkin);
+		mGameOverWindow = new GameOverWindow(mGame, mAtlas, mSkin);
 		addActor(mGameOverWindow);
 	}
 
