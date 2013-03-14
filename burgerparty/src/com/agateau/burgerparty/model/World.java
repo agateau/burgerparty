@@ -39,11 +39,14 @@ public class World {
 	}
 
 	public void checkStackStatus() {
-		if (mBurgerStack.sameAs(mTargetBurgerStack)) {
+		BurgerStack.Status status = mBurgerStack.checkStatus(mTargetBurgerStack);
+		if (status == BurgerStack.Status.DONE) {
 			increaseScore();
 			mBurgerStack = new BurgerStack();
 			start();
 			stackFinished.emit();
+		} else if (status == BurgerStack.Status.WRONG) {
+			mBurgerStack.trash();
 		}
 	}
 

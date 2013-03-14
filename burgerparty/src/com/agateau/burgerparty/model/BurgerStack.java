@@ -13,6 +13,12 @@ public class BurgerStack {
 	public Signal0 cleared;
 	public Signal0 trashed;
 
+	public enum Status {
+		WIP,
+		DONE,
+		WRONG,
+	}
+
 	public BurgerStack() {
 		burgerItemAdded = new Signal1<BurgerItem>();
 		cleared = new Signal0();
@@ -39,15 +45,16 @@ public class BurgerStack {
 		return mItems;
 	}
 	
-	public boolean sameAs(BurgerStack other) {
-		if (mItems.size != other.mItems.size) {
-			return false;
+	public Status checkStatus(BurgerStack reference) {
+		if (mItems.size > reference.mItems.size) {
+			// Should not happen
+			return Status.WRONG;
 		}
 		for (int idx = 0; idx < mItems.size; ++idx) {
-			if (mItems.get(idx).getName() != other.mItems.get(idx).getName()) {
-				return false;
+			if (mItems.get(idx).getName() != reference.mItems.get(idx).getName()) {
+				return Status.WRONG;
 			}
 		}
-		return true;
+		return mItems.size == reference.mItems.size ? Status.DONE : Status.WIP;
 	}
 }
