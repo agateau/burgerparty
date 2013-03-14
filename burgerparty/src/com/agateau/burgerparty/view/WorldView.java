@@ -34,7 +34,7 @@ public class WorldView extends WidgetGroup {
 	private BurgerStackView mTargetBurgerStackView;
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
-	private Actor mGameOverWindow;
+	private Actor mGameOverOverlay;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -88,8 +88,8 @@ public class WorldView extends WidgetGroup {
 		super.act(delta);
 		updateTimerDisplay();
 		updateScoreLabel();
-		if (mWorld.getRemainingSeconds() == 0 && mGameOverWindow == null) {
-			showGameOverWindow();
+		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
+			showGameOverOverlay();
 		}
 	}
 
@@ -133,9 +133,9 @@ public class WorldView extends WidgetGroup {
 		mScoreLabel.setText(txt);
 	}
 
-	private void showGameOverWindow() {
-		mGameOverWindow = new GameOverWindow(mGame, mAtlas, mSkin);
-		addActor(mGameOverWindow);
+	private void showGameOverOverlay() {
+		mGameOverOverlay = new GameOverOverlay(mGame, mAtlas, mSkin);
+		addActor(mGameOverOverlay);
 	}
 
 	private void showDoneFeedback() {
