@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -21,7 +20,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WorldView extends WidgetGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
@@ -34,7 +32,6 @@ public class WorldView extends WidgetGroup {
 	private BurgerStackView mBurgerStackView;
 	private BurgerStackView mDoneBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
-	private Image mTrashActor;
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
 	private Actor mGameOverWindow;
@@ -49,7 +46,6 @@ public class WorldView extends WidgetGroup {
 		setupInventoryView();
 		setupTimerDisplay();
 		setupScoreLabel();
-		setupTrash();
 		setupBurgerStackView();
 		
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
@@ -74,10 +70,7 @@ public class WorldView extends WidgetGroup {
 		float inventoryWidth = width / 3;
 		mInventoryView.setBounds(0, 0, inventoryWidth, height);
 
-		float trashWidth = mTrashActor.getWidth();
-		mTrashActor.setPosition(width - trashWidth, 0);
-
-		float stackSize = width - inventoryWidth - trashWidth;
+		float stackSize = width - inventoryWidth;
 		mBurgerStackView.setScale(Math.min(stackSize / mBurgerStackView.getWidth(), 1));
 		mBurgerStackView.setPosition(inventoryWidth + (stackSize - mBurgerStackView.getWidth() * mBurgerStackView.getScaleX()) / 2, 0);
 
@@ -127,18 +120,6 @@ public class WorldView extends WidgetGroup {
 		mScoreLabel = new Label("", mSkin);
 		mScoreLabel.setAlignment(Align.left);
 		addActor(mScoreLabel);
-	}
-
-	private void setupTrash() {
-		TextureRegion trash = mAtlas.findRegion("trash");
-		mTrashActor = new Image(trash);
-		mTrashActor.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				mWorld.getBurgerStack().trash();
-			}
-		});
-		addActor(mTrashActor);
 	}
 
 	private void updateTimerDisplay() {
