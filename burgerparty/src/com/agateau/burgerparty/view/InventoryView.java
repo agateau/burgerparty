@@ -41,7 +41,6 @@ public class InventoryView extends Actor {
 	}
 
 	public InventoryView(Inventory inventory, TextureAtlas atlas) {
-		setBounds(0, 0, 800 / 3, 480);
 		mInventory = inventory;
 		mAtlas = atlas;
 	
