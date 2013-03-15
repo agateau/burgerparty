@@ -138,8 +138,8 @@ public class WorldView extends AnchorGroup {
 	private void setupAnchors() {
 		moveActor(mTargetBurgerStackView, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		moveActor(mCustomerIndicator, Anchor.TOP_RIGHT, mTargetBurgerStackView, Anchor.TOP_LEFT, -1, 0);
-		moveActor(mTimerDisplay, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER);
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
+		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
 	}
 
 	private void updateTimerDisplay() {
