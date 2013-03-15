@@ -26,7 +26,7 @@ public class BurgerPartyGame extends Game {
 		Level level;
 		level = new Level();
 		level.minStackSize = 2;
-		level.maxStackSize = 4;
+		level.maxStackSize = 3;
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
@@ -36,12 +36,45 @@ public class BurgerPartyGame extends Game {
 
 		level = new Level();
 		level.minStackSize = 2;
+		level.maxStackSize = 3;
+		level.inventoryItems.add("steak");
+		level.inventoryItems.add("tomato");
+		level.inventoryItems.add("salad");
+		level.inventoryItems.add("cheese");
+		level.customerCount = 5;
+		level.duration = 120;
+		mLevels.add(level);
+
+		level = new Level();
+		level.minStackSize = 2;
+		level.maxStackSize = 4;
+		level.inventoryItems.add("steak");
+		level.inventoryItems.add("tomato");
+		level.inventoryItems.add("salad");
+		level.inventoryItems.add("cheese");
+		level.customerCount = 6;
+		level.duration = 120;
+		mLevels.add(level);
+
+		level = new Level();
+		level.minStackSize = 2;
+		level.maxStackSize = 5;
+		level.inventoryItems.add("steak");
+		level.inventoryItems.add("tomato");
+		level.inventoryItems.add("salad");
+		level.inventoryItems.add("cheese");
+		level.customerCount = 7;
+		level.duration = 120;
+		mLevels.add(level);
+
+		level = new Level();
+		level.minStackSize = 3;
 		level.maxStackSize = 6;
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
 		level.inventoryItems.add("cheese");
-		level.customerCount = 4;
+		level.customerCount = 8;
 		level.duration = 120;
 		mLevels.add(level);
 	}
