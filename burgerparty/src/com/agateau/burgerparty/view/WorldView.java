@@ -184,6 +184,7 @@ public class WorldView extends AnchorGroup {
 	private void showDoneFeedback() {
 		showDoneActor();
 		mDoneBurgerStackView = mBurgerStackView;
+		removeRulesForActor(mDoneBurgerStackView);
 		mDoneBurgerStackView.addAction(
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
