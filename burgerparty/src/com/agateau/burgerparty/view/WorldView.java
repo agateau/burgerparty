@@ -67,7 +67,7 @@ public class WorldView extends WidgetGroup {
 		float width = getWidth();
 		float height = getHeight();
 
-		float inventoryWidth = width / 3;
+		float inventoryWidth = width * 0.4f;
 		mInventoryView.setBounds(0, 0, inventoryWidth, height);
 
 		float stackSize = width - inventoryWidth;
