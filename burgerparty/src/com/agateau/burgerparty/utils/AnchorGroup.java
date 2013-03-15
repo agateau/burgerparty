@@ -1,5 +1,7 @@
 package com.agateau.burgerparty.utils;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -76,6 +78,16 @@ public class AnchorGroup extends WidgetGroup {
 
 		rule.target.setPosition(targetPos.x, targetPos.y);
 		//Gdx.app.log("applyRule", rule.target.toString());
+	}
+
+	public void removeRulesForActor(Actor actor) {
+		Iterator<Rule> it = mRules.iterator();
+		for (; it.hasNext(); ) {
+			Rule rule = it.next();
+			if (rule.target == actor) {
+				it.remove();
+			}
+		}
 	}
 
 	public void layout() {
