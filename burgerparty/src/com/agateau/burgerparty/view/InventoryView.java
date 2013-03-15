@@ -11,12 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 
 public class InventoryView extends Actor {
+	private TextureRegion mBgRegion;
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
 	
-	private final int ColumnCount = 3;
+	private final int ColumnCount = 8;
+	private final int RowCount = 2;
 	private final float Padding = 10;
 
 	class AddBurgerItemEvent extends Event {
@@ -43,6 +46,8 @@ public class InventoryView extends Actor {
 	public InventoryView(Inventory inventory, TextureAtlas atlas) {
 		mInventory = inventory;
 		mAtlas = atlas;
+		mBgRegion = mAtlas.findRegion("shelf");
+		setHeight(mBgRegion.getRegionHeight() * 2);
 	
 		addListener(new ClickListener() {
 			@Override
@@ -57,34 +62,35 @@ public class InventoryView extends Actor {
 			}
 		});
 	}
-	
+
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		spriteBatch.setColor(1, 1, 1, parentAlpha);
-		TextureRegion bgTexture = mAtlas.findRegion("shelf");
 
-		float cellSize = getWidth() / ColumnCount;
+		float cellWidth = getWidth() / ColumnCount;
+		float cellHeight = mBgRegion.getRegionHeight();
 
-		float posX = Padding;
-		float posY = 0;
-		for(BurgerItem item: mInventory.getItems()) {
-			TextureRegion texture = mAtlas.findRegion("burgeritems/" + item.getName());
+		int index = 0;
+		Array<BurgerItem> items = mInventory.getItems();
+		for (int row = 0; row < RowCount; ++row) {
+			for (int col = 0; col < ColumnCount; ++col, ++index) {
+				float posX = getX() + col * cellWidth;
+				float posY = getY() + row * cellHeight;
 
-			float scale = (cellSize - Padding * 2) / Math.max(texture.getRegionWidth(), texture.getRegionHeight());
-			float width = texture.getRegionWidth() * scale;
-			float height = texture.getRegionHeight() * scale;
+				spriteBatch.draw(mBgRegion, posX, posY, cellWidth, cellHeight);
+				if (index >= items.size) {
+					continue;
+				}
+				TextureRegion region = mAtlas.findRegion("burgeritems/" + items.get(index).getName());
+				float scale = (cellWidth - Padding * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
+				float width = region.getRegionWidth() * scale;
+				float height = region.getRegionHeight() * scale;
 
-			spriteBatch.draw(bgTexture, posX - Padding, posY - Padding, cellSize, cellSize);
-			spriteBatch.draw(texture, posX, posY + 4, width, height);
-			
-			posX += cellSize;
-			if (posX > getWidth()) {
-				posX = Padding;
-				posY += cellSize;
+				spriteBatch.draw(region, posX + Padding, posY + Padding * 2, width, height);
 			}
 		}
 	}
-	
+
 	public int getIndexAt(float posX, float posY) {
 		int cellSize = (int)(getWidth() / ColumnCount);
 		int x = (int)posX;

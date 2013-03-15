@@ -50,30 +50,51 @@ burgerparty2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-shelf
+background
   rotate: false
-  xy: 1, 1
-  size: 248, 248
-  orig: 248, 248
+  xy: 1, 244
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+workbench
+  rotate: false
+  xy: 1, 160
+  size: 800, 82
+  orig: 800, 82
+  offset: 0, 0
+  index: -1
+platter
+  rotate: false
+  xy: 1, 93
+  size: 341, 65
+  orig: 341, 65
   offset: 0, 0
   index: -1
 done
   rotate: false
-  xy: 251, 76
+  xy: 803, 551
   size: 181, 173
   orig: 181, 173
   offset: 0, 0
   index: -1
+shelf
+  rotate: false
+  xy: 1, 1
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
 face
   rotate: false
-  xy: 251, 6
+  xy: 803, 481
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 434, 233
+  xy: 344, 142
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

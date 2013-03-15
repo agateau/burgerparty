@@ -12,6 +12,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -26,6 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 public class WorldView extends AnchorGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
 
+	private TextureRegion mBackgroundRegion;
 	private BurgerPartyGame mGame;
 	private World mWorld;
 	private TextureAtlas mAtlas;
@@ -38,6 +40,7 @@ public class WorldView extends AnchorGroup {
 	private Label mScoreLabel;
 	private Actor mGameOverOverlay;
 	private CustomerIndicator mCustomerIndicator;
+	private Image mWorkbench;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -46,7 +49,9 @@ public class WorldView extends AnchorGroup {
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
+		mBackgroundRegion = atlas.findRegion("background");
 
+		setupWorkbench();
 		setupTargetBurgerStackView();
 		setupInventoryView();
 		setupTimerDisplay();
@@ -74,14 +79,9 @@ public class WorldView extends AnchorGroup {
 	@Override
 	public void layout() {
 		float width = getWidth();
-		float height = getHeight();
 
-		float inventoryWidth = width * 0.4f;
-		mInventoryView.setBounds(0, 0, inventoryWidth, height);
-
-		float stackSize = width - inventoryWidth;
-		mBurgerStackView.setScale(Math.min(stackSize / mBurgerStackView.getWidth(), 1));
-		mBurgerStackView.setPosition(inventoryWidth + (stackSize - mBurgerStackView.getWidth() * mBurgerStackView.getScaleX()) / 2, 0);
+		mInventoryView.setWidth(width);
+		mWorkbench.setWidth(width);
 
 		float targetSize = width / 6;
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
@@ -98,6 +98,18 @@ public class WorldView extends AnchorGroup {
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
 			showGameOverOverlay();
 		}
+	}
+
+	@Override
+	public void draw(SpriteBatch batch, float parentAlpha) {
+		batch.setColor(1, 1, 1, parentAlpha);
+		batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
+		super.draw(batch, parentAlpha);
+	}
+
+	private void setupWorkbench() {
+		TextureRegion region = mAtlas.findRegion("workbench");
+		mWorkbench = new Image(region);
 	}
 
 	private void setupTargetBurgerStackView() {
@@ -118,7 +130,6 @@ public class WorldView extends AnchorGroup {
 
 	private void setupBurgerStackView() {
 		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
-		addActor(mBurgerStackView);
 	}
 
 	private void setupTimerDisplay() {
@@ -140,6 +151,8 @@ public class WorldView extends AnchorGroup {
 		moveActor(mCustomerIndicator, Anchor.TOP_RIGHT, mTargetBurgerStackView, Anchor.TOP_LEFT, -1, 0);
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
+		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
 	private void updateTimerDisplay() {
@@ -178,6 +191,7 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		setupBurgerStackView();
+		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 		invalidate();
 	}
 	
