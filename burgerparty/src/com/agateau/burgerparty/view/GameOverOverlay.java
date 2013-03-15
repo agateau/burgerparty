@@ -1,26 +1,23 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class GameOverOverlay extends Overlay {
 	private BurgerPartyGame mGame;
-	private Table mTable; 
+
 	public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-
-		mTable = new Table();
-		addActor(mTable);
-		mTable.setFillParent(true);
 
 		Label label = new Label("Game Over", skin);
 
@@ -38,14 +35,16 @@ public class GameOverOverlay extends Overlay {
 			}
 		});
 
-		mTable.add(label).padBottom(40);
+		tryAgainButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
+		menuButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
 
-		mTable.row();
-		mTable.add(tryAgainButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT).padBottom(20);
+		AnchorGroup group = new AnchorGroup();
+		addActor(group);
+		group.setFillParent(true);
+		group.setSpacing(20);
 
-		mTable.row();
-		mTable.add(menuButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
-
-		mTable.center();
+		group.moveActor(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
+		group.moveActor(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
+		group.moveActor(menuButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
 	}
 }

@@ -1,6 +1,8 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -8,8 +10,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -68,19 +70,22 @@ public class MenuScreen implements Screen {
 	}
 
 	private void setupWidgets(Skin skin) {
-		Table table = new Table(skin);
-		mStage.addActor(table);
-		table.setFillParent(true);
+		AnchorGroup group = new AnchorGroup();
+		group.setSpacing(20);
+		mStage.addActor(group);
+		group.setFillParent(true);
 
-		table.add("Burger Party").padTop(40);
+		Label titleLabel = new Label("Burger Party", skin);
 
-		table.row();
 		TextButton startButton = new TextButton("Start", skin);
 		startButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.start();
 			}
 		});
-		table.add(startButton).size(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT).expand();
+		startButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
+
+		group.moveActor(titleLabel, Anchor.BOTTOM_CENTER, group, Anchor.CENTER, 0, 1);
+		group.moveActor(startButton, Anchor.TOP_CENTER, group, Anchor.CENTER);
 	}
 }
