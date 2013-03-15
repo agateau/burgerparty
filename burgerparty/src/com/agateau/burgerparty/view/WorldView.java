@@ -37,7 +37,7 @@ public class WorldView extends AnchorGroup {
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
 	private Actor mGameOverOverlay;
-	private Label mCustomerIndicator;
+	private CustomerIndicator mCustomerIndicator;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -132,7 +132,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupCustomerIndicator() {
-		mCustomerIndicator = new Label("", mSkin);
+		mCustomerIndicator = new CustomerIndicator(mAtlas);
 	}
 
 	private void setupAnchors() {
@@ -156,12 +156,8 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void updateCustomerIndicator() {
-		String txt = "";
-		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
-			txt += "X";
-		}
-		mCustomerIndicator.setText(txt);
-		UiUtils.adjustToPrefSize(mCustomerIndicator);
+		mCustomerIndicator.setCount(mWorld.getCustomerCount());
+		mCustomerIndicator.setScale(0.5f);
 	}
 
 	private void showGameOverOverlay() {
