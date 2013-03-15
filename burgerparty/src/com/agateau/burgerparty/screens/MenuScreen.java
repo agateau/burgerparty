@@ -71,7 +71,7 @@ public class MenuScreen implements Screen {
 
 	private void setupWidgets(Skin skin) {
 		AnchorGroup group = new AnchorGroup();
-		group.setSpacing(20);
+		group.setSpacing(UiUtils.SPACING);
 		mStage.addActor(group);
 		group.setFillParent(true);
 

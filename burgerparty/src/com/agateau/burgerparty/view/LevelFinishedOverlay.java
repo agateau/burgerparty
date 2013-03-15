@@ -18,7 +18,7 @@ public class LevelFinishedOverlay extends Overlay {
 		super(atlas);
 		mGame = game;
 		AnchorGroup group = new AnchorGroup();
-		group.setSpacing(20);
+		group.setSpacing(UiUtils.SPACING);
 		group.setFillParent(true);
 		addActor(group);
 

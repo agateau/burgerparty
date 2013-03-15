@@ -41,7 +41,7 @@ public class GameOverOverlay extends Overlay {
 		AnchorGroup group = new AnchorGroup();
 		addActor(group);
 		group.setFillParent(true);
-		group.setSpacing(20);
+		group.setSpacing(UiUtils.SPACING);
 
 		group.moveActor(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
 		group.moveActor(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
