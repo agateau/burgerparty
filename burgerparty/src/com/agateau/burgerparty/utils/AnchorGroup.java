@@ -62,8 +62,12 @@ public class AnchorGroup extends WidgetGroup {
 		// Apply space
 		stagePos.add(rule.hSpace * mSpacing, rule.vSpace * mSpacing);
 
-		// Position target (use target reference because setPosition() is in reference coordinates)
-		Vector2 targetPos = rule.target.getParent().stageToLocalCoordinates(stagePos);
+		// Position target (use target parent because setPosition() works in parent coordinates)
+		Actor targetParent = rule.target.getParent();
+		if (targetParent == null) {
+			return;
+		}
+		Vector2 targetPos = targetParent.stageToLocalCoordinates(stagePos);
 
 		// Apply target offset
 		targetPos.add(
