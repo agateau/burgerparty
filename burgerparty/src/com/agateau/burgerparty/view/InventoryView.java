@@ -18,9 +18,9 @@ public class InventoryView extends Actor {
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
 	
-	private final int ColumnCount = 8;
-	private final int RowCount = 2;
-	private final float Padding = 10;
+	private static final int COLUMN_COUNT = 8;
+	private static final int ROW_COUNT = 2;
+	private static final float PADDING = 10;
 
 	class AddBurgerItemEvent extends Event {
 		public BurgerItem item;
@@ -67,13 +67,13 @@ public class InventoryView extends Actor {
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		spriteBatch.setColor(1, 1, 1, parentAlpha);
 
-		float cellWidth = getWidth() / ColumnCount;
+		float cellWidth = getWidth() / COLUMN_COUNT;
 		float cellHeight = mBgRegion.getRegionHeight();
 
 		int index = 0;
 		Array<BurgerItem> items = mInventory.getItems();
-		for (int row = 0; row < RowCount; ++row) {
-			for (int col = 0; col < ColumnCount; ++col, ++index) {
+		for (int row = 0; row < ROW_COUNT; ++row) {
+			for (int col = 0; col < COLUMN_COUNT; ++col, ++index) {
 				float posX = getX() + col * cellWidth;
 				float posY = getY() + row * cellHeight;
 
@@ -82,19 +82,19 @@ public class InventoryView extends Actor {
 					continue;
 				}
 				TextureRegion region = mAtlas.findRegion("burgeritems/" + items.get(index).getName());
-				float scale = (cellWidth - Padding * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
+				float scale = (cellWidth - PADDING * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
 				float width = region.getRegionWidth() * scale;
 				float height = region.getRegionHeight() * scale;
 
-				spriteBatch.draw(region, posX + Padding, posY + Padding * 2, width, height);
+				spriteBatch.draw(region, posX + PADDING, posY + PADDING * 2, width, height);
 			}
 		}
 	}
 
 	public int getIndexAt(float posX, float posY) {
-		int cellSize = (int)(getWidth() / ColumnCount);
+		int cellSize = (int)(getWidth() / COLUMN_COUNT);
 		int x = (int)posX;
 		int y = (int)posY;
-		return (y / cellSize) * ColumnCount + x / cellSize;
+		return (y / cellSize) * COLUMN_COUNT + x / cellSize;
 	}
 }
