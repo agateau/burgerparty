@@ -6,6 +6,8 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.World;
 
+import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
@@ -17,12 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
-public class WorldView extends WidgetGroup {
+public class WorldView extends AnchorGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private BurgerPartyGame mGame;
@@ -40,19 +41,19 @@ public class WorldView extends WidgetGroup {
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
+		setSpacing(UiUtils.SPACING);
 		mGame = game;
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
 
+		setupTargetBurgerStackView();
 		setupInventoryView();
 		setupTimerDisplay();
 		setupScoreLabel();
 		setupCustomerIndicator();
 		setupBurgerStackView();
-
-		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
-		addActor(mTargetBurgerStackView);
+		setupAnchors();
 
 		mWorld.stackFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
@@ -84,13 +85,8 @@ public class WorldView extends WidgetGroup {
 
 		float targetSize = width / 6;
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
-		mTargetBurgerStackView.setPosition(width - targetSize, height - targetSize);
 
-		mCustomerIndicator.setPosition(mTargetBurgerStackView.getX() - mCustomerIndicator.getWidth(), height - mCustomerIndicator.getHeight());
-
-		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
-
-		mScoreLabel.setBounds(0, height - mScoreLabel.getPrefHeight(), mScoreLabel.getPrefWidth(), mScoreLabel.getPrefHeight());
+		super.layout();
 	}
 
 	@Override
@@ -102,6 +98,10 @@ public class WorldView extends WidgetGroup {
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
 			showGameOverOverlay();
 		}
+	}
+
+	private void setupTargetBurgerStackView() {
+		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 	}
 
 	private void setupInventoryView() {
@@ -124,29 +124,35 @@ public class WorldView extends WidgetGroup {
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
-		addActor(mTimerDisplay);
 	}
 
 	private void setupScoreLabel() {
 		mScoreLabel = new Label("", mSkin);
 		mScoreLabel.setAlignment(Align.left);
-		addActor(mScoreLabel);
 	}
 
 	private void setupCustomerIndicator() {
 		mCustomerIndicator = new Label("", mSkin);
-		addActor(mCustomerIndicator);
+	}
+
+	private void setupAnchors() {
+		moveActor(mTargetBurgerStackView, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
+		moveActor(mCustomerIndicator, Anchor.TOP_RIGHT, mTargetBurgerStackView, Anchor.TOP_LEFT, -1, 0);
+		moveActor(mTimerDisplay, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER);
+		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 	}
 
 	private void updateTimerDisplay() {
 		int seconds = mWorld.getRemainingSeconds();
 		String txt = String.valueOf(seconds);
 		mTimerDisplay.setText(txt);
+		UiUtils.adjustToPrefSize(mTimerDisplay);
 	}
 
 	private void updateScoreLabel() {
 		String txt = String.format("SCORE: %07d", mWorld.getScore());
 		mScoreLabel.setText(txt);
+		UiUtils.adjustToPrefSize(mScoreLabel);
 	}
 
 	private void updateCustomerIndicator() {
