@@ -143,8 +143,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void updateTimerDisplay() {
-		int seconds = mWorld.getRemainingSeconds();
-		String txt = String.valueOf(seconds);
+		int total = mWorld.getRemainingSeconds();
+		int minutes = total / 60;
+		int seconds = total % 60;
+		String txt = String.format("%d:%02d", minutes, seconds);
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);
 	}
