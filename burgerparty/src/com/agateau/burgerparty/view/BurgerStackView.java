@@ -45,6 +45,7 @@ public class BurgerStackView extends Group {
 		mStack.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				mNextY = 0;
+				adjustHeight();
 				clear();
 			}
 		});
@@ -73,10 +74,16 @@ public class BurgerStackView extends Group {
 			));
 
 		mNextY += regionH - OVERLAP;
+		adjustHeight();
+	}
+
+	private void adjustHeight() {
+		setHeight(mNextY + OVERLAP);
 	}
 
 	private void trash() {
 		mNextY = 0;
+		adjustHeight();
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;
