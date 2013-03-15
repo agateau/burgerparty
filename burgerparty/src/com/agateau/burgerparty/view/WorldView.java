@@ -155,7 +155,7 @@ public class WorldView extends WidgetGroup {
 			txt += "X";
 		}
 		mCustomerIndicator.setText(txt);
-		UiUtils.adjustWidgetSize(mCustomerIndicator);
+		UiUtils.adjustToPrefSize(mCustomerIndicator);
 	}
 
 	private void showGameOverOverlay() {

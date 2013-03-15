@@ -83,7 +83,7 @@ public class MenuScreen implements Screen {
 				mGame.startLevel(0);
 			}
 		});
-		startButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
+		UiUtils.setButtonSize(startButton);
 
 		group.moveActor(titleLabel, Anchor.BOTTOM_CENTER, group, Anchor.CENTER, 0, 1);
 		group.moveActor(startButton, Anchor.TOP_CENTER, group, Anchor.CENTER);

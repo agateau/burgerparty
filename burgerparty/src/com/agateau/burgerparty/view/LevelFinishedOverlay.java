@@ -47,8 +47,7 @@ public class LevelFinishedOverlay extends Overlay {
 		} else {
 			label.setText("Congratulations, you finished the game!");
 		}
-		label.setWidth(label.getPrefWidth());
-		label.setHeight(label.getPrefHeight());
+		UiUtils.adjustToPrefSize(label);
 
 		group.moveActor(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 1);
 		if (nextButton == null) {

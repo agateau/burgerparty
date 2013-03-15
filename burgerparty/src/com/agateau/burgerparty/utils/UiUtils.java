@@ -11,7 +11,7 @@ public class UiUtils {
 		actor.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
 	}
 
-	public static void adjustWidgetSize(Widget widget) {
+	public static void adjustToPrefSize(Widget widget) {
 		widget.setSize(widget.getPrefWidth(), widget.getPrefHeight());
 	}
 }

@@ -35,8 +35,8 @@ public class GameOverOverlay extends Overlay {
 			}
 		});
 
-		tryAgainButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
-		menuButton.setSize(UiUtils.BUTTON_WIDTH, UiUtils.BUTTON_HEIGHT);
+		UiUtils.setButtonSize(tryAgainButton);
+		UiUtils.setButtonSize(menuButton);
 
 		AnchorGroup group = new AnchorGroup();
 		addActor(group);
