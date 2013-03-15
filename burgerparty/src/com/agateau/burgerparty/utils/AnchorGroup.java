@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -60,6 +61,7 @@ public class AnchorGroup extends WidgetGroup {
 		// Position target (use target reference because setPosition() is in reference coordinates)
 		Vector2 targetPos = rule.target.getParent().stageToLocalCoordinates(stagePos);
 		rule.target.setPosition(targetPos.x, targetPos.y);
+		Gdx.app.log("applyRule", rule.target.toString());
 	}
 
 	public void layout() {
