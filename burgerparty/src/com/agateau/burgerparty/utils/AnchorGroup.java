@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -42,26 +41,37 @@ public class AnchorGroup extends WidgetGroup {
 		addActor(target);
 	}
 
+	// A version of Actor.localToStageCoordinates which works with scaled actors 
+	static private Vector2 localToStageCoordinates(Actor actor, Vector2 pos) {
+		while (actor != null) {
+			pos.x = actor.getX() + pos.x * actor.getScaleX();
+			pos.y = actor.getY() + pos.y * actor.getScaleY();
+			actor = actor.getParent();
+		}
+		return pos;
+	}
+
 	private void applyRule(Rule rule) {
 		// Compute reference position
 		Vector2 referencePos = new Vector2(
 			rule.reference.getWidth() * rule.referenceAnchor.hPercent,
 			rule.reference.getHeight() * rule.referenceAnchor.vPercent);
 
-		Vector2 stagePos = rule.reference.localToStageCoordinates(referencePos);
+		Vector2 stagePos = localToStageCoordinates(rule.reference, referencePos);
 
 		// Apply space
 		stagePos.add(rule.hSpace * mSpacing, rule.vSpace * mSpacing);
 
-		// Apply target offset
-		stagePos.add(
-			-rule.target.getWidth() * rule.targetAnchor.hPercent,
-			-rule.target.getHeight() * rule.targetAnchor.vPercent);
-
 		// Position target (use target reference because setPosition() is in reference coordinates)
 		Vector2 targetPos = rule.target.getParent().stageToLocalCoordinates(stagePos);
+
+		// Apply target offset
+		targetPos.add(
+			-rule.target.getWidth() * rule.target.getScaleX() * rule.targetAnchor.hPercent,
+			-rule.target.getHeight() * rule.target.getScaleY() * rule.targetAnchor.vPercent);
+
 		rule.target.setPosition(targetPos.x, targetPos.y);
-		Gdx.app.log("applyRule", rule.target.toString());
+		//Gdx.app.log("applyRule", rule.target.toString());
 	}
 
 	public void layout() {
