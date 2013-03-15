@@ -9,6 +9,7 @@ import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
@@ -119,9 +120,9 @@ public class WorldView extends AnchorGroup {
 	private void setupInventoryView() {
 		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
 		addActor(mInventoryView);
-		mInventoryView.addListener(mInventoryView.new Listener() {
+		mInventoryView.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
 			@Override
-			public void burgerItemClicked(BurgerItem item) {
+			public void handle(BurgerItem item) {
 				mWorld.getBurgerStack().addItem(item);
 				mWorld.checkStackStatus();
 			}
