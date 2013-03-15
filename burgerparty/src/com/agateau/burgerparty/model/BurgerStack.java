@@ -44,7 +44,11 @@ public class BurgerStack {
 	public Array<BurgerItem> getItems() {
 		return mItems;
 	}
-	
+
+	public int getSize() {
+		return mItems.size;
+	}
+
 	public Status checkStatus(BurgerStack reference) {
 		if (mItems.size > reference.mItems.size) {
 			// Should not happen

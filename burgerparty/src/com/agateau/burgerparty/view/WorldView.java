@@ -56,6 +56,11 @@ public class WorldView extends WidgetGroup {
 				showDoneFeedback();
 			}
 		});
+		mWorld.levelFinished.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				showLevelFinishedOverlay();
+			}
+		});
 	}
 
 	public InventoryView getInventoryView() {
@@ -175,5 +180,9 @@ public class WorldView extends WidgetGroup {
 				Actions.removeActor()
 			)
 		);
+	}
+
+	private void showLevelFinishedOverlay() {
+		addActor(new LevelFinishedOverlay(mGame, mWorld, mAtlas, mSkin));
 	}
 }

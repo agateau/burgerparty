@@ -5,22 +5,23 @@ import java.util.Random;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class World {
 	public Signal0 stackFinished = new Signal0();
+	public Signal0 levelFinished = new Signal0();
+	private Level mLevel;
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
 	private long mStartTime;
+	private int mCustomerCount;
 	private int mScore;
 
-	static final int MAX_DURATION_SECS = 15;
-	static final int MIN_ITEMS = 2;
-	static final int MAX_ITEMS = 6;
-
-	public World() {
+	public World(Level level) {
+		mLevel = level;
 		mInventory = new Inventory();
 		mBurgerStack = new BurgerStack();
 		mTargetBurgerStack = new BurgerStack();
@@ -41,10 +42,7 @@ public class World {
 	public void checkStackStatus() {
 		BurgerStack.Status status = mBurgerStack.checkStatus(mTargetBurgerStack);
 		if (status == BurgerStack.Status.DONE) {
-			increaseScore();
-			mBurgerStack = new BurgerStack();
-			start();
-			stackFinished.emit();
+			handleDoneStack();
 		} else if (status == BurgerStack.Status.WRONG) {
 			mBurgerStack.trash();
 		}
@@ -52,7 +50,7 @@ public class World {
 
 	public int getRemainingSeconds() {
 		int deltaSecs = (int)((TimeUtils.nanoTime() - mStartTime) / (1000 * 1000 * 1000));
-		return Math.max(0, MAX_DURATION_SECS - deltaSecs);
+		return Math.max(0, mLevel.duration - deltaSecs);
 	}
 
 	public int getScore() {
@@ -61,17 +59,14 @@ public class World {
 
 	public void start() {
 		mStartTime = TimeUtils.nanoTime();
+		mCustomerCount = mLevel.customerCount;
 		generateTarget();
 	}
 
 	private void generateTarget() {
 		Random random = new Random();
-		Array<String> names = new Array<String>();
-		names.add("steak");
-		names.add("salad");
-		names.add("cheese");
-		names.add("tomato");
-		int count = MIN_ITEMS + random.nextInt(MAX_ITEMS - MIN_ITEMS + 1);
+		Array<String> names = new Array<String>(mLevel.inventoryItems);
+		int count = mLevel.minStackSize + random.nextInt(mLevel.maxStackSize - mLevel.minStackSize + 1);
 
 		mTargetBurgerStack.clear();
 
@@ -92,7 +87,16 @@ public class World {
 		mTargetBurgerStack.addItem(new BurgerItem("top"));
 	}
 
-	private void increaseScore() {
-		mScore += 100 * getRemainingSeconds();
+	private void handleDoneStack() {
+		mScore += 100 * mBurgerStack.getSize();
+		mCustomerCount--;
+		Gdx.app.log("World", "mCustomerCount=" + mCustomerCount);
+		if (mCustomerCount > 0) {
+			mBurgerStack = new BurgerStack();
+			generateTarget();
+			stackFinished.emit();
+		} else {
+			levelFinished.emit();
+		}
 	}
 }

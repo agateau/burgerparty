@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;
 
@@ -16,9 +17,9 @@ public class GameScreen implements Screen {
 	private World mWorld;
 	private WorldView mWorldView;
 
-	public GameScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
+	public GameScreen(BurgerPartyGame game, Level level, TextureAtlas atlas, Skin skin) {
 		mStage = new Stage(0, 0, true);
-		mWorld = new World();
+		mWorld = new World(level);
 		mWorldView = new WorldView(game, mWorld, atlas, skin);
 		mStage.addActor(mWorldView);
 		Gdx.input.setInputProcessor(mStage);
