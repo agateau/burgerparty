@@ -5,7 +5,6 @@ import java.util.Random;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
@@ -57,6 +56,10 @@ public class World {
 		return mScore;
 	}
 
+	public int getCustomerCount() {
+		return mCustomerCount;
+	}
+
 	public void start() {
 		mStartTime = TimeUtils.nanoTime();
 		mCustomerCount = mLevel.customerCount;
@@ -90,7 +93,6 @@ public class World {
 	private void handleDoneStack() {
 		mScore += 100 * mBurgerStack.getSize();
 		mCustomerCount--;
-		Gdx.app.log("World", "mCustomerCount=" + mCustomerCount);
 		if (mCustomerCount > 0) {
 			mBurgerStack = new BurgerStack();
 			generateTarget();

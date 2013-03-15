@@ -7,6 +7,7 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -35,6 +36,7 @@ public class WorldView extends WidgetGroup {
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
 	private Actor mGameOverOverlay;
+	private Label mCustomerIndicator;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -46,8 +48,9 @@ public class WorldView extends WidgetGroup {
 		setupInventoryView();
 		setupTimerDisplay();
 		setupScoreLabel();
+		setupCustomerIndicator();
 		setupBurgerStackView();
-		
+
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
 
@@ -83,6 +86,8 @@ public class WorldView extends WidgetGroup {
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
 		mTargetBurgerStackView.setPosition(width - targetSize, height - targetSize);
 
+		mCustomerIndicator.setPosition(mTargetBurgerStackView.getX() - mCustomerIndicator.getWidth(), height - mCustomerIndicator.getHeight());
+
 		mTimerDisplay.setBounds(0, height - mTimerDisplay.getPrefHeight(), width, mTimerDisplay.getPrefHeight());
 
 		mScoreLabel.setBounds(0, height - mScoreLabel.getPrefHeight(), mScoreLabel.getPrefWidth(), mScoreLabel.getPrefHeight());
@@ -93,6 +98,7 @@ public class WorldView extends WidgetGroup {
 		super.act(delta);
 		updateTimerDisplay();
 		updateScoreLabel();
+		updateCustomerIndicator();
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
 			showGameOverOverlay();
 		}
@@ -127,6 +133,11 @@ public class WorldView extends WidgetGroup {
 		addActor(mScoreLabel);
 	}
 
+	private void setupCustomerIndicator() {
+		mCustomerIndicator = new Label("", mSkin);
+		addActor(mCustomerIndicator);
+	}
+
 	private void updateTimerDisplay() {
 		int seconds = mWorld.getRemainingSeconds();
 		String txt = String.valueOf(seconds);
@@ -136,6 +147,15 @@ public class WorldView extends WidgetGroup {
 	private void updateScoreLabel() {
 		String txt = String.format("SCORE: %07d", mWorld.getScore());
 		mScoreLabel.setText(txt);
+	}
+
+	private void updateCustomerIndicator() {
+		String txt = "";
+		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
+			txt += "X";
+		}
+		mCustomerIndicator.setText(txt);
+		UiUtils.adjustWidgetSize(mCustomerIndicator);
 	}
 
 	private void showGameOverOverlay() {
