@@ -23,7 +23,6 @@ public class BurgerStackView extends Group {
 
 	public static final float ADD_ACTION_DURATION = 0.2f;
 
-	private static final float OVERLAP = 15;
 	private static final float ADD_ACTION_HEIGHT = 100;
 	
 	private static final float TRASH_ACTION_DURATION = 0.5f;
@@ -45,7 +44,7 @@ public class BurgerStackView extends Group {
 		mStack.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				mNextY = 0;
-				adjustHeight();
+				setHeight(0);
 				clear();
 			}
 		});
@@ -73,17 +72,13 @@ public class BurgerStackView extends Group {
 			Actions.fadeIn(ADD_ACTION_DURATION)
 			));
 
-		mNextY += regionH - OVERLAP;
-		adjustHeight();
-	}
-
-	private void adjustHeight() {
-		setHeight(mNextY + OVERLAP);
+		mNextY += item.getHeight();
+		setHeight(image.getTop());
 	}
 
 	private void trash() {
 		mNextY = 0;
-		adjustHeight();
+		setHeight(0);
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;
