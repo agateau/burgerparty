@@ -18,12 +18,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.utils.Array;
 
 public class WorldView extends AnchorGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
@@ -40,10 +40,9 @@ public class WorldView extends AnchorGroup {
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
 	private Actor mGameOverOverlay;
-	private CustomerIndicator mCustomerIndicator;
 	private Image mWorkbench;
-	private Image mCustomer;
 	private Image mBubble;
+	private Array<Customer> mCustomers = new Array<Customer>();
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -54,13 +53,12 @@ public class WorldView extends AnchorGroup {
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion("background");
 
-		setupCustomer();
+		setupCustomers();
 		setupWorkbench();
 		setupTargetBurgerStackView();
 		setupInventoryView();
 		setupTimerDisplay();
 		setupScoreLabel();
-		setupCustomerIndicator();
 		setupBurgerStackView();
 		setupAnchors();
 
@@ -91,6 +89,15 @@ public class WorldView extends AnchorGroup {
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
 
 		super.layout();
+
+		float posX = width / 2;
+		float posY = mWorkbench.getTop();
+		for (int n = 0; n < mCustomers.size; n++) {
+			Customer customer = mCustomers.get(n);
+			customer.setScale(1 - 0.1f * n / mCustomers.size);
+			customer.setPosition(posX, posY);
+			posX += customer.getWidth() * 0.1 * customer.getScaleX();
+		}
 	}
 
 	@Override
@@ -98,7 +105,6 @@ public class WorldView extends AnchorGroup {
 		super.act(delta);
 		updateTimerDisplay();
 		updateScoreLabel();
-		updateCustomerIndicator();
 		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
 			showGameOverOverlay();
 		}
@@ -111,10 +117,13 @@ public class WorldView extends AnchorGroup {
 		super.draw(batch, parentAlpha);
 	}
 
-	private void setupCustomer() {
-		TextureRegion region = mAtlas.findRegion("customer");
-		mCustomer = new Image(region);
-		mBubble = new Image(mAtlas.findRegion("bubble"));
+	private void setupCustomers() {
+		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
+			Customer customer = new Customer(mAtlas);
+			addActor(customer);
+			mCustomers.add(customer);
+		}
+		mCustomers.reverse();
 	}
 
 	private void setupWorkbench() {
@@ -124,6 +133,7 @@ public class WorldView extends AnchorGroup {
 
 	private void setupTargetBurgerStackView() {
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
+		mBubble = new Image(mAtlas.findRegion("bubble"));
 	}
 
 	private void setupInventoryView() {
@@ -152,17 +162,11 @@ public class WorldView extends AnchorGroup {
 		mScoreLabel.setAlignment(Align.left);
 	}
 
-	private void setupCustomerIndicator() {
-		mCustomerIndicator = new CustomerIndicator(mAtlas);
-	}
-
 	private void setupAnchors() {
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
-		moveActor(mCustomerIndicator, Anchor.TOP_LEFT, mTimerDisplay, Anchor.BOTTOM_LEFT);
-		moveActor(mCustomer, Anchor.TOP_LEFT, mInventoryView, Anchor.TOP_CENTER, -2, 12);
 		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		moveActor(mBubble, Anchor.BOTTOM_LEFT, mCustomer, Anchor.TOP_RIGHT, -1, -5);
+		moveActor(mBubble, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -1, -1);
 		moveActor(mTargetBurgerStackView, Anchor.BOTTOM_RIGHT, mBubble, Anchor.BOTTOM_RIGHT, -1, 1);
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
@@ -182,55 +186,40 @@ public class WorldView extends AnchorGroup {
 		UiUtils.adjustToPrefSize(mScoreLabel);
 	}
 
-	private void updateCustomerIndicator() {
-		mCustomerIndicator.setCount(mWorld.getCustomerCount());
-		mCustomerIndicator.setScale(0.5f);
-	}
-
 	private void showGameOverOverlay() {
 		mGameOverOverlay = new GameOverOverlay(mGame, mAtlas, mSkin);
 		addActor(mGameOverOverlay);
 	}
 
 	private void showDoneFeedback() {
-		showDoneActor();
+		slideDoneBurgerStackView();
+		createNewBurgerStackView();
+	}
+
+	private void slideDoneBurgerStackView() {
 		mDoneBurgerStackView = mBurgerStackView;
 		removeRulesForActor(mDoneBurgerStackView);
 		mDoneBurgerStackView.addAction(
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
-				Actions.moveTo(getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.moveTo(-mDoneBurgerStackView.getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.removeActor()
 			)
 		);
+		Customer customer = mCustomers.removeIndex(0);
+		customer.addAction(
+			Actions.sequence(
+				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
+				Actions.moveTo(-customer.getWidth(), customer.getY(), 0.4f, Interpolation.pow2In),
+				Actions.removeActor()
+			)
+		);
+	}
+
+	private void createNewBurgerStackView() {
 		setupBurgerStackView();
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 		invalidate();
-	}
-	
-	private void showDoneActor() {
-		TextureRegion region = mAtlas.findRegion("done");
-		Image doneActor = new Image(region);
-		doneActor.setTouchable(Touchable.disabled);
-
-		float centerX = mBurgerStackView.getX() + mBurgerStackView.getWidth() * mBurgerStackView.getScaleX() / 2;
-		float centerY = mBurgerStackView.getY() + getHeight() / 2;
-
-		float width = doneActor.getWidth();
-		float height = doneActor.getHeight();
-		doneActor.setBounds(centerX - width / 2, centerY - height / 2, width, height);
-
-		addActor(doneActor);
-		doneActor.addAction(
-			Actions.sequence(
-				Actions.alpha(0),
-				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
-				Actions.alpha(1),
-				Actions.delay(0.3f),
-				Actions.fadeOut(0.05f),
-				Actions.removeActor()
-			)
-		);
 	}
 
 	private void showLevelFinishedOverlay() {
