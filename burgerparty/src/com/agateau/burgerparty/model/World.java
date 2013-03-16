@@ -21,7 +21,7 @@ public class World {
 
 	public World(Level level) {
 		mLevel = level;
-		mInventory = new Inventory();
+		mInventory = new Inventory(level.inventoryItems);
 		mBurgerStack = new BurgerStack();
 		mTargetBurgerStack = new BurgerStack();
 	}

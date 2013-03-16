@@ -7,14 +7,13 @@ import com.badlogic.gdx.utils.Array;
 public class Inventory {
 	private Array<BurgerItem> mItems;
 
-	public Inventory() {
+	public Inventory(Array<String> itemNames) {
 		mItems = new Array<BurgerItem>();
 		loadStoreItem("top");
 		loadStoreItem("bottom");
-		loadStoreItem("salad");
-		loadStoreItem("tomato");
-		loadStoreItem("steak");
-		loadStoreItem("cheese");
+		for (String name: itemNames) {
+			loadStoreItem(name);
+		}
 	}
 
 	private void loadStoreItem(String name) {
