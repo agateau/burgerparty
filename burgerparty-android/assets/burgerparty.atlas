@@ -5,16 +5,16 @@ filter: Nearest,Nearest
 repeat: none
 burgeritems/top
   rotate: false
-  xy: 1, 66
-  size: 244, 60
-  orig: 244, 60
+  xy: 1, 62
+  size: 244, 64
+  orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 1, 24
-  size: 244, 40
-  orig: 244, 40
+  xy: 1, 13
+  size: 244, 47
+  orig: 244, 47
   offset: 0, 0
   index: -1
 burgeritems/cheese

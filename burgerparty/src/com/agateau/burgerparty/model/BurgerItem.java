@@ -28,7 +28,7 @@ public class BurgerItem {
 	}
 
 	private void initMaps() {
-		sHeightMap.put("bottom", 20);
+		sHeightMap.put("bottom", 24);
 		sHeightMap.put("cheese", 8);
 		sHeightMap.put("onion", 8);
 		sHeightMap.put("steak", 22);
