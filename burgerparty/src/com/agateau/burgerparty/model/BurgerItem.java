@@ -35,6 +35,7 @@ public class BurgerItem {
 		sHeightMap.put("tomato", 12);
 		sHeightMap.put("salad", 8);
 		sHeightMap.put("top", 32);
+		sHeightMap.put("cucumber", 8);
 
 		sOffsetMap.put("bottom", 0);
 		sOffsetMap.put("cheese", -19);
@@ -43,5 +44,6 @@ public class BurgerItem {
 		sOffsetMap.put("tomato", -4);
 		sOffsetMap.put("salad", -4);
 		sOffsetMap.put("top", 0);
+		sOffsetMap.put("cucumber", -4);
 	}
 }

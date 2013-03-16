@@ -52,6 +52,13 @@ burgeritems/onion
   orig: 182, 44
   offset: 0, 0
   index: -1
+burgeritems/cucumber
+  rotate: false
+  xy: 698, 60
+  size: 181, 26
+  orig: 181, 26
+  offset: 0, 0
+  index: -1
 
 burgerparty2.png
 format: RGBA8888
