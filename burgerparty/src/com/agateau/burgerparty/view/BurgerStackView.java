@@ -62,7 +62,7 @@ public class BurgerStackView extends Group {
 		float regionH = region.getRegionHeight();
 		float posX = (getWidth() - regionW) / 2;
 
-		image.setBounds(posX, mNextY + ADD_ACTION_HEIGHT, regionW, regionH);
+		image.setBounds(posX, mNextY + item.getOffset() + ADD_ACTION_HEIGHT, regionW, regionH);
 		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
 		addActor(image);
 
