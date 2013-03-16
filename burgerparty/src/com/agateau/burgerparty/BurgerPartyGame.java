@@ -40,7 +40,7 @@ public class BurgerPartyGame extends Game {
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
-		level.inventoryItems.add("cheese");
+		level.inventoryItems.add("onion");
 		level.customerCount = 5;
 		level.duration = 120;
 		mLevels.add(level);
@@ -51,7 +51,7 @@ public class BurgerPartyGame extends Game {
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
-		level.inventoryItems.add("cheese");
+		level.inventoryItems.add("onion");
 		level.customerCount = 6;
 		level.duration = 120;
 		mLevels.add(level);
@@ -62,6 +62,7 @@ public class BurgerPartyGame extends Game {
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
+		level.inventoryItems.add("onion");
 		level.inventoryItems.add("cheese");
 		level.customerCount = 7;
 		level.duration = 120;
@@ -73,6 +74,7 @@ public class BurgerPartyGame extends Game {
 		level.inventoryItems.add("steak");
 		level.inventoryItems.add("tomato");
 		level.inventoryItems.add("salad");
+		level.inventoryItems.add("onion");
 		level.inventoryItems.add("cheese");
 		level.customerCount = 8;
 		level.duration = 120;
