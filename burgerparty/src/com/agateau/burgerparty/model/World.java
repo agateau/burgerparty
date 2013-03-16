@@ -21,6 +21,7 @@ public class World {
 
 	public World(Level level) {
 		mLevel = level;
+		mCustomerCount = mLevel.customerCount;
 		mInventory = new Inventory(level.inventoryItems);
 		mBurgerStack = new BurgerStack();
 		mTargetBurgerStack = new BurgerStack();
@@ -62,7 +63,6 @@ public class World {
 
 	public void start() {
 		mStartTime = TimeUtils.nanoTime();
-		mCustomerCount = mLevel.customerCount;
 		generateTarget();
 	}
 
