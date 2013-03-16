@@ -5,58 +5,58 @@ filter: Nearest,Nearest
 repeat: none
 burgeritems/top
   rotate: false
-  xy: 1, 62
+  xy: 1, 50
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 1, 13
+  xy: 1, 1
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
 burgeritems/cheese
   rotate: false
-  xy: 247, 79
+  xy: 247, 67
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
 burgeritems/steak
   rotate: false
-  xy: 472, 82
+  xy: 472, 70
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
+burgeritems/tomato
+  rotate: false
+  xy: 247, 33
+  size: 211, 32
+  orig: 211, 32
+  offset: 0, 0
+  index: -1
 burgeritems/salad
   rotate: false
-  xy: 247, 47
+  xy: 698, 84
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
-burgeritems/tomato
+burgeritems/cucumber
   rotate: false
-  xy: 698, 88
-  size: 201, 38
-  orig: 201, 38
+  xy: 247, 5
+  size: 181, 26
+  orig: 181, 26
   offset: 0, 0
   index: -1
 burgeritems/onion
   rotate: false
-  xy: 247, 1
+  xy: 698, 38
   size: 182, 44
   orig: 182, 44
-  offset: 0, 0
-  index: -1
-burgeritems/cucumber
-  rotate: false
-  xy: 698, 60
-  size: 181, 26
-  orig: 181, 26
   offset: 0, 0
   index: -1
 
