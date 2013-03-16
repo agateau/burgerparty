@@ -66,49 +66,63 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 1, 244
+  xy: 1, 469
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 workbench
   rotate: false
-  xy: 1, 160
+  xy: 1, 385
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 93
+  xy: 1, 318
   size: 341, 65
   orig: 341, 65
   offset: 0, 0
   index: -1
+bubble
+  rotate: false
+  xy: 1, 178
+  size: 235, 138
+  orig: 235, 138
+  offset: 0, 0
+  index: -1
 done
   rotate: false
-  xy: 803, 551
+  xy: 803, 776
   size: 181, 173
   orig: 181, 173
   offset: 0, 0
   index: -1
-shelf
+customer
   rotate: false
   xy: 1, 1
+  size: 164, 175
+  orig: 164, 175
+  offset: 0, 0
+  index: -1
+shelf
+  rotate: false
+  xy: 238, 226
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 face
   rotate: false
-  xy: 803, 481
+  xy: 803, 706
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 344, 142
+  xy: 344, 367
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

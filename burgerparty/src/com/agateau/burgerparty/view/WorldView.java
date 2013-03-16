@@ -42,6 +42,8 @@ public class WorldView extends AnchorGroup {
 	private Actor mGameOverOverlay;
 	private CustomerIndicator mCustomerIndicator;
 	private Image mWorkbench;
+	private Image mCustomer;
+	private Image mBubble;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -52,6 +54,7 @@ public class WorldView extends AnchorGroup {
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion("background");
 
+		setupCustomer();
 		setupWorkbench();
 		setupTargetBurgerStackView();
 		setupInventoryView();
@@ -84,7 +87,7 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.setWidth(width);
 		mWorkbench.setWidth(width);
 
-		float targetSize = width / 6;
+		float targetSize = mBubble.getWidth() - 60;
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
 
 		super.layout();
@@ -106,6 +109,12 @@ public class WorldView extends AnchorGroup {
 		batch.setColor(1, 1, 1, parentAlpha);
 		batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
 		super.draw(batch, parentAlpha);
+	}
+
+	private void setupCustomer() {
+		TextureRegion region = mAtlas.findRegion("customer");
+		mCustomer = new Image(region);
+		mBubble = new Image(mAtlas.findRegion("bubble"));
 	}
 
 	private void setupWorkbench() {
@@ -148,11 +157,13 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupAnchors() {
-		moveActor(mTargetBurgerStackView, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
-		moveActor(mCustomerIndicator, Anchor.TOP_RIGHT, mTargetBurgerStackView, Anchor.TOP_LEFT, -1, 0);
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
+		moveActor(mCustomerIndicator, Anchor.TOP_LEFT, mTimerDisplay, Anchor.BOTTOM_LEFT);
+		moveActor(mCustomer, Anchor.TOP_LEFT, mInventoryView, Anchor.TOP_CENTER, -2, 12);
 		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+		moveActor(mBubble, Anchor.BOTTOM_LEFT, mCustomer, Anchor.TOP_RIGHT, -1, -5);
+		moveActor(mTargetBurgerStackView, Anchor.BOTTOM_RIGHT, mBubble, Anchor.BOTTOM_RIGHT, -1, 1);
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
