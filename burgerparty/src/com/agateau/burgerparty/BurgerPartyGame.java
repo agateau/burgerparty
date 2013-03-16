@@ -19,11 +19,17 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void create() {
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
+
 		TextureAtlas skinAtlas = new TextureAtlas(Gdx.files.internal("skin/uiskin.atlas"));
 		mSkin = new Skin(Gdx.files.internal("skin/uiskin.json"), skinAtlas);
-			showMenu();
 
+		showMenu();
+		loadLevels();
+	}
+
+	private void loadLevels() {
 		Level level;
+
 		level = new Level();
 		level.minStackSize = 2;
 		level.maxStackSize = 3;
