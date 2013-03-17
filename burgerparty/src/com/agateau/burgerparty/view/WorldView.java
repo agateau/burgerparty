@@ -13,6 +13,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,7 +43,8 @@ public class WorldView extends AnchorGroup {
 	private Actor mGameOverOverlay;
 	private Image mWorkbench;
 	private Image mBubble;
-	private Array<Customer> mCustomers = new Array<Customer>();
+	private Array<Customer> mWaitingCustomers = new Array<Customer>();
+	private Customer mActiveCustomer;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -72,6 +74,8 @@ public class WorldView extends AnchorGroup {
 				showLevelFinishedOverlay();
 			}
 		});
+
+		goToNextCustomer();
 	}
 
 	public InventoryView getInventoryView() {
@@ -85,18 +89,23 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.setWidth(width);
 		mWorkbench.setWidth(width);
 
-		float targetSize = mBubble.getWidth() - 60;
-		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
-
 		super.layout();
 
-		float posX = width / 2;
+		float posX = width / 2 - 40;
 		float posY = mWorkbench.getTop();
-		for (int n = 0; n < mCustomers.size; n++) {
-			Customer customer = mCustomers.get(n);
-			customer.setScale(1 - 0.1f * n / mCustomers.size);
+
+		if (mActiveCustomer != null) {
+			mActiveCustomer.setPosition(posX + 20, posY);
+			mBubble.setPosition(mActiveCustomer.getRight() - 10, posY + 40);
+			float targetSize = mBubble.getWidth() - 60;
+			mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
+			mTargetBurgerStackView.setPosition(mBubble.getX() + 40, mBubble.getY() + 10);
+		}
+
+		for (int n = 0; n < mWaitingCustomers.size; n++) {
+			Customer customer = mWaitingCustomers.get(n);
+			posX -= customer.getWidth() + 10;
 			customer.setPosition(posX, posY);
-			posX += customer.getWidth() * 0.1 * customer.getScaleX();
 		}
 	}
 
@@ -121,9 +130,10 @@ public class WorldView extends AnchorGroup {
 		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
 			Customer customer = new Customer(mAtlas);
 			addActor(customer);
-			mCustomers.add(customer);
+			mWaitingCustomers.add(customer);
 		}
-		mCustomers.reverse();
+		// Reverse array so that customer with highest Z index is first
+		mWaitingCustomers.reverse();
 	}
 
 	private void setupWorkbench() {
@@ -132,8 +142,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupTargetBurgerStackView() {
-		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		mBubble = new Image(mAtlas.findRegion("bubble"));
+		addActor(mBubble);
+		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
+		addActor(mTargetBurgerStackView);
 	}
 
 	private void setupInventoryView() {
@@ -166,8 +178,6 @@ public class WorldView extends AnchorGroup {
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
 		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		moveActor(mBubble, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -1, -1);
-		moveActor(mTargetBurgerStackView, Anchor.BOTTOM_RIGHT, mBubble, Anchor.BOTTOM_RIGHT, -1, 1);
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
@@ -202,18 +212,26 @@ public class WorldView extends AnchorGroup {
 		mDoneBurgerStackView.addAction(
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
-				Actions.moveTo(-mDoneBurgerStackView.getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.moveTo(getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.removeActor()
 			)
 		);
-		Customer customer = mCustomers.removeIndex(0);
-		customer.addAction(
+		mBubble.setVisible(false);
+		mTargetBurgerStackView.setVisible(false);
+		mActiveCustomer.addAction(
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
-				Actions.moveTo(-customer.getWidth(), customer.getY(), 0.4f, Interpolation.pow2In),
+				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
+				Actions.run(new Runnable() {
+					@Override
+					public void run() {
+						goToNextCustomer();
+					}
+				}),
 				Actions.removeActor()
 			)
 		);
+		mActiveCustomer = null;
 	}
 
 	private void createNewBurgerStackView() {
@@ -224,5 +242,11 @@ public class WorldView extends AnchorGroup {
 
 	private void showLevelFinishedOverlay() {
 		addActor(new LevelFinishedOverlay(mGame, mWorld, mAtlas, mSkin));
+	}
+
+	private void goToNextCustomer() {
+		mActiveCustomer = mWaitingCustomers.removeIndex(0);
+		mBubble.setVisible(true);
+		mTargetBurgerStackView.setVisible(true);
 	}
 }
