@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -45,6 +46,9 @@ public class WorldView extends AnchorGroup {
 	private Image mBubble;
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
+
+	private float mWidth = -1;
+	private float mHeight = -1;
 
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
@@ -85,28 +89,25 @@ public class WorldView extends AnchorGroup {
 	@Override
 	public void layout() {
 		float width = getWidth();
+		float height = getHeight();
+		boolean resized = width != mWidth || height != mHeight;
+		mWidth = width;
+		mHeight = height;
 
-		mInventoryView.setWidth(width);
-		mWorkbench.setWidth(width);
+		if (resized) {
+			mInventoryView.setWidth(width);
+			mWorkbench.setWidth(width);
+		}
 
 		super.layout();
 
-		float posX = width / 2 - 40;
-		float posY = mWorkbench.getTop();
-
+		if (!resized) {
+			return;
+		}
 		if (mActiveCustomer != null) {
-			mActiveCustomer.setPosition(posX + 20, posY);
-			mBubble.setPosition(mActiveCustomer.getRight() - 10, posY + 40);
-			float targetSize = mBubble.getWidth() - 60;
-			mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
-			mTargetBurgerStackView.setPosition(mBubble.getX() + 40, mBubble.getY() + 10);
+			showBubble();
 		}
-
-		for (int n = 0; n < mWaitingCustomers.size; n++) {
-			Customer customer = mWaitingCustomers.get(n);
-			posX -= customer.getWidth() + 10;
-			customer.setPosition(posX, posY);
-		}
+		updateCustomerPositions();
 	}
 
 	@Override
@@ -130,6 +131,7 @@ public class WorldView extends AnchorGroup {
 		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
 			Customer customer = new Customer(mAtlas);
 			addActor(customer);
+			customer.setX(-customer.getWidth());
 			mWaitingCustomers.add(customer);
 		}
 		// Reverse array so that customer with highest Z index is first
@@ -146,6 +148,8 @@ public class WorldView extends AnchorGroup {
 		addActor(mBubble);
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
+		mBubble.setVisible(false);
+		mTargetBurgerStackView.setVisible(false);
 	}
 
 	private void setupInventoryView() {
@@ -246,7 +250,51 @@ public class WorldView extends AnchorGroup {
 
 	private void goToNextCustomer() {
 		mActiveCustomer = mWaitingCustomers.removeIndex(0);
+		updateCustomerPositions();
+	}
+
+	private void updateCustomerPositions() {
+		if (mWidth == -1) {
+			// Wait until we have been resized to correct sizes
+			return;
+		}
+		Array<Customer> customers = new Array<Customer>(mWaitingCustomers);
+		if (mActiveCustomer != null) {
+			customers.insert(0, mActiveCustomer);
+		}
+		float centerX = getWidth() / 2;
+		float posY = mWorkbench.getTop();
+		final float padding = 10;
+		float delay = 0;
+		for(Customer customer: customers) {
+			float width = customer.getWidth();
+			customer.addAction(
+				Actions.sequence(
+					Actions.moveTo(customer.getX(), posY), // Force posY to avoid getting from under the workbench at startup
+					Actions.delay(delay),
+					Actions.moveTo(centerX - width / 2, posY, 0.3f, Interpolation.sineOut)
+				)
+			);
+			centerX -= width + padding;
+			delay += 0.1;
+		}
+		if (mActiveCustomer != null) {
+			Action doShowBubble = Actions.run(new Runnable() {
+				@Override
+				public void run() {
+					showBubble();
+				}
+			});
+			mActiveCustomer.addAction(Actions.after(doShowBubble));
+		}
+	}
+
+	private void showBubble() {
 		mBubble.setVisible(true);
 		mTargetBurgerStackView.setVisible(true);
+		mBubble.setPosition(mActiveCustomer.getRight() - 10, mActiveCustomer.getY() + 50);
+		float targetSize = mBubble.getWidth() - 60;
+		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
+		mTargetBurgerStackView.setPosition(mBubble.getX() + 40, mBubble.getY() + 10);
 	}
 }
