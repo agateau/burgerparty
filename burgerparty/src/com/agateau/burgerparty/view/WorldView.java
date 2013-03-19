@@ -13,7 +13,6 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -44,6 +43,7 @@ public class WorldView extends AnchorGroup {
 	private Actor mGameOverOverlay;
 	private Image mWorkbench;
 	private Image mBubble;
+	private SimpleCustomerFactory mCustomerFactory = new SimpleCustomerFactory();
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
 
@@ -129,7 +129,7 @@ public class WorldView extends AnchorGroup {
 
 	private void setupCustomers() {
 		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
-			Customer customer = new Customer(mAtlas);
+			Customer customer = mCustomerFactory.create(mAtlas);
 			addActor(customer);
 			customer.setX(-customer.getWidth());
 			mWaitingCustomers.add(customer);

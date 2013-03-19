@@ -125,17 +125,178 @@ burgerparty3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-customers/a
+customers/1
   rotate: false
-  xy: 1, 1
+  xy: 1, 333
+  size: 113, 178
+  orig: 113, 178
+  offset: 0, 0
+  index: -1
+customers/3
+  rotate: false
+  xy: 116, 338
+  size: 118, 173
+  orig: 118, 173
+  offset: 0, 0
+  index: -1
+customers/0
+  rotate: false
+  xy: 1, 155
   size: 113, 176
   orig: 113, 176
   offset: 0, 0
   index: -1
-customers/b
+customers/4
   rotate: false
-  xy: 116, 1
+  xy: 116, 160
   size: 113, 176
   orig: 113, 176
+  offset: 0, 0
+  index: -1
+customers/5
+  rotate: false
+  xy: 236, 339
+  size: 113, 172
+  orig: 113, 172
+  offset: 0, 0
+  index: -1
+customers/2
+  rotate: false
+  xy: 351, 354
+  size: 113, 157
+  orig: 113, 157
+  offset: 0, 0
+  index: -1
+customers/body-0
+  rotate: false
+  xy: 1, 11
+  size: 109, 142
+  orig: 109, 142
+  offset: 0, 0
+  index: -1
+customers/body-1
+  rotate: false
+  xy: 231, 194
+  size: 109, 142
+  orig: 109, 142
+  offset: 0, 0
+  index: -1
+customers/body-2
+  rotate: false
+  xy: 342, 195
+  size: 109, 142
+  orig: 109, 142
+  offset: 0, 0
+  index: -1
+customers/hair-0
+  rotate: false
+  xy: 231, 118
+  size: 104, 74
+  orig: 104, 74
+  offset: 0, 0
+  index: -1
+customers/hair-1
+  rotate: false
+  xy: 116, 82
+  size: 104, 76
+  orig: 104, 76
+  offset: 0, 0
+  index: -1
+customers/hair-2
+  rotate: false
+  xy: 112, 5
+  size: 102, 75
+  orig: 102, 75
+  offset: 0, 0
+  index: -1
+customers/top-2
+  rotate: false
+  xy: 222, 59
+  size: 104, 57
+  orig: 104, 57
+  offset: 0, 0
+  index: -1
+customers/top-1
+  rotate: false
+  xy: 216, 1
+  size: 101, 56
+  orig: 101, 56
+  offset: 0, 0
+  index: -1
+customers/top-0
+  rotate: false
+  xy: 319, 1
+  size: 90, 56
+  orig: 90, 56
+  offset: 0, 0
+  index: -1
+customers/top-4
+  rotate: false
+  xy: 328, 59
+  size: 104, 57
+  orig: 104, 57
+  offset: 0, 0
+  index: -1
+customers/top-3
+  rotate: false
+  xy: 411, 4
+  size: 68, 53
+  orig: 68, 53
+  offset: 0, 0
+  index: -1
+customers/eyes-0
+  rotate: false
+  xy: 342, 163
+  size: 71, 30
+  orig: 71, 30
+  offset: 0, 0
+  index: -1
+customers/eyes-2
+  rotate: false
+  xy: 337, 129
+  size: 71, 32
+  orig: 71, 32
+  offset: 0, 0
+  index: -1
+customers/eyes-1
+  rotate: false
+  xy: 415, 163
+  size: 71, 30
+  orig: 71, 30
+  offset: 0, 0
+  index: -1
+customers/mouth-1
+  rotate: false
+  xy: 410, 145
+  size: 56, 16
+  orig: 56, 16
+  offset: 0, 0
+  index: -1
+customers/mouth-0
+  rotate: false
+  xy: 351, 342
+  size: 51, 10
+  orig: 51, 10
+  offset: 0, 0
+  index: -1
+customers/mouth-2
+  rotate: false
+  xy: 466, 504
+  size: 45, 7
+  orig: 45, 7
+  offset: 0, 0
+  index: -1
+customers/mouth-3
+  rotate: false
+  xy: 1, 2
+  size: 22, 7
+  orig: 22, 7
+  offset: 0, 0
+  index: -1
+customers/nose-0
+  rotate: false
+  xy: 337, 121
+  size: 14, 6
+  orig: 14, 6
   offset: 0, 0
   index: -1
