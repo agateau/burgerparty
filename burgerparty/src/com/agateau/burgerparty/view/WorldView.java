@@ -263,7 +263,7 @@ public class WorldView extends AnchorGroup {
 			customers.insert(0, mActiveCustomer);
 		}
 		float centerX = getWidth() / 2;
-		float posY = mWorkbench.getTop();
+		float posY = mWorkbench.getTop() - 4;
 		final float padding = 10;
 		float delay = 0;
 		for(Customer customer: customers) {
