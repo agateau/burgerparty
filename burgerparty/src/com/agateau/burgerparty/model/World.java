@@ -6,7 +6,7 @@ import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 stackFinished = new Signal0();
@@ -15,9 +15,10 @@ public class World {
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
-	private long mStartTime;
 	private int mCustomerCount;
 	private int mScore;
+	private Timer mTimer = new Timer();
+	private int mRemainingSeconds;
 
 	public World(Level level) {
 		mLevel = level;
@@ -49,8 +50,7 @@ public class World {
 	}
 
 	public int getRemainingSeconds() {
-		int deltaSecs = (int)((TimeUtils.nanoTime() - mStartTime) / (1000 * 1000 * 1000));
-		return Math.max(0, mLevel.duration - deltaSecs);
+		return mRemainingSeconds;
 	}
 
 	public int getScore() {
@@ -62,7 +62,17 @@ public class World {
 	}
 
 	public void start() {
-		mStartTime = TimeUtils.nanoTime();
+		mRemainingSeconds = mLevel.duration;
+		Timer.Task task = new Timer.Task() {
+			@Override
+			public void run() {
+				mRemainingSeconds--;
+				if (mRemainingSeconds == 0) {
+					cancel();
+				}
+			}
+		};
+		mTimer.scheduleTask(task, 1, 1);
 		generateTarget();
 	}
 
