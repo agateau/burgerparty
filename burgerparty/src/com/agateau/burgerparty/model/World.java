@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Timer;
 public class World {
 	public Signal0 stackFinished = new Signal0();
 	public Signal0 levelFinished = new Signal0();
+	public Signal0 levelFailed = new Signal0();
 	private Level mLevel;
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
@@ -69,6 +70,7 @@ public class World {
 				mRemainingSeconds--;
 				if (mRemainingSeconds == 0) {
 					cancel();
+					levelFailed.emit();
 				}
 			}
 		};

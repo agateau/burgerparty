@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -40,7 +39,6 @@ public class WorldView extends AnchorGroup {
 	private BurgerStackView mTargetBurgerStackView;
 	private Label mTimerDisplay;
 	private Label mScoreLabel;
-	private Actor mGameOverOverlay;
 	private Image mWorkbench;
 	private Image mBubble;
 	private ComposableCustomerFactory mCustomerFactory;
@@ -77,6 +75,11 @@ public class WorldView extends AnchorGroup {
 		mWorld.levelFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				showLevelFinishedOverlay();
+			}
+		});
+		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				showGameOverOverlay();
 			}
 		});
 
@@ -116,9 +119,6 @@ public class WorldView extends AnchorGroup {
 		super.act(delta);
 		updateTimerDisplay();
 		updateScoreLabel();
-		if (mWorld.getRemainingSeconds() == 0 && mGameOverOverlay == null) {
-			showGameOverOverlay();
-		}
 	}
 
 	@Override
@@ -202,8 +202,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void showGameOverOverlay() {
-		mGameOverOverlay = new GameOverOverlay(mGame, mAtlas, mSkin);
-		addActor(mGameOverOverlay);
+		addActor(new GameOverOverlay(mGame, mAtlas, mSkin));
 	}
 
 	private void showDoneFeedback() {
