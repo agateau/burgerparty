@@ -1,61 +1,65 @@
 package com.agateau.burgerparty.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ComposableCustomer extends Customer {
-	public static final int BODY_COUNT = 3;
-	public static final int TOP_COUNT = 5;
-	public static final int MOUTH_COUNT = 2;
-	public static final int EYES_COUNT = 3;
-	public static final int HAIR_COUNT = 3;
+	static final int FACE_OFFSET = 69;
 
-	static final int BODY_TO_HAIR_OFFSET = 23;
+	private TextureAtlas mAtlas;
+	private String mDirName;
 
-	static final int MOUTH_OFFSET = 69;
-	static final int EYES_OFFSET = 90;
-
-	static class Ids {
-		public int bodyId;
-		public int topId;
-		public int mouthId;
-		public int eyesId;
-		public int hairId;
+	static private class CustomerPart {
+		Image image;
+		float xCenter;
 	}
 
-	public ComposableCustomer(TextureAtlas atlas, Ids ids) {
-		Image body = getCustomerPartImage(atlas, "body", ids.bodyId);
-		Image top = getCustomerPartImage(atlas, "top", ids.topId);
-		Image mouth = getCustomerPartImage(atlas, "mouth", ids.mouthId);
-		Image eyes = getCustomerPartImage(atlas, "eyes", ids.eyesId);
-		Image hair = getCustomerPartImage(atlas, "hair", ids.hairId);
+	public ComposableCustomer(TextureAtlas atlas, String dirName, int bodyId, int topId, int faceId) {
+		mAtlas = atlas;
+		mDirName = dirName;
+		CustomerPart body = getCustomerPart("body", bodyId, "");
+		CustomerPart top = topId >= 0 ? getCustomerPart("top", topId, "") : null;
+		CustomerPart face = getCustomerPart("face", faceId, "happy");
 
-		addActor(body);
-		addActor(top);
-		addActor(hair);
-		addActor(mouth);
-		addActor(eyes);
+		addActor(body.image);
+		if (top != null) {
+			xCenterImage(top, body.xCenter);
+			addActor(top.image);
+		}
+		xCenterImage(face, body.xCenter);
+		addActor(face.image);
 
-		setWidth(Math.max(body.getWidth(), hair.getWidth()));
-		setHeight(body.getHeight() + BODY_TO_HAIR_OFFSET);
+		setWidth(body.image.getWidth());
 
-		xCenterImage(body);
-		xCenterImage(top);
-		xCenterImage(hair);
-		xCenterImage(mouth);
-		xCenterImage(eyes);
-
-		hair.setY(body.getTop() + BODY_TO_HAIR_OFFSET - hair.getHeight());
-		mouth.setY(MOUTH_OFFSET);
-		eyes.setY(EYES_OFFSET);
+		face.image.setY(FACE_OFFSET);
+		setHeight(body.image.getHeight());
+	}
+	
+	private CustomerPart getCustomerPart(String prefix, int id, String suffix) {
+		String name = "customers/" + mDirName + "/" + prefix + "-" + id;
+		if (!suffix.isEmpty()) {
+			name += "-" + suffix;
+		}
+		CustomerPart part = new CustomerPart();
+		part.image = new Image(mAtlas.findRegion(name));
+		part.xCenter = getPartXCenter(name, part.image.getWidth() / 2);
+		Gdx.app.log("getCustomerPart", "name=" + name + " xCenter=" + part.xCenter + " default=" + (part.image.getWidth() / 2));
+		return part;
 	}
 
-	static Image getCustomerPartImage(TextureAtlas atlas, String prefix, int id) {
-		String name = "customers/" + prefix + "-" + id;
-		return new Image(atlas.findRegion(name));
+	private void xCenterImage(CustomerPart part, float xCenter) {
+		part.image.setX(xCenter - part.xCenter);
 	}
 
-	void xCenterImage(Image image) {
-		image.setX((getWidth() - image.getWidth()) / 2);
+	private float getPartXCenter(String name, float defaultValue) {
+		// FIXME: Move custom xCenter to a configuration file
+		if (name.equals("customers/girls/body-0")) {
+			return 59;
+		} else if (name.equals("customers/girls/body-1")) {
+			return 53;
+		} else {
+			return defaultValue;
+		}
 	}
 }

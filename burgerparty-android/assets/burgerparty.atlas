@@ -300,3 +300,139 @@ customers/nose-0
   orig: 14, 6
   offset: 0, 0
   index: -1
+
+burgerparty4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+customers/boys/body-3
+  rotate: false
+  xy: 1, 60
+  size: 109, 170
+  orig: 109, 170
+  offset: 0, 0
+  index: -1
+customers/boys/body-0
+  rotate: false
+  xy: 112, 61
+  size: 109, 169
+  orig: 109, 169
+  offset: 0, 0
+  index: -1
+customers/boys/body-1
+  rotate: false
+  xy: 223, 61
+  size: 109, 169
+  orig: 109, 169
+  offset: 0, 0
+  index: -1
+customers/boys/body-2
+  rotate: false
+  xy: 334, 76
+  size: 109, 154
+  orig: 109, 154
+  offset: 0, 0
+  index: -1
+customers/boys/top-2
+  rotate: false
+  xy: 1, 1
+  size: 104, 57
+  orig: 104, 57
+  offset: 0, 0
+  index: -1
+customers/boys/top-0
+  rotate: false
+  xy: 445, 173
+  size: 101, 57
+  orig: 101, 57
+  offset: 0, 0
+  index: -1
+customers/boys/top-3
+  rotate: false
+  xy: 445, 114
+  size: 101, 57
+  orig: 101, 57
+  offset: 0, 0
+  index: -1
+customers/boys/top-1
+  rotate: false
+  xy: 548, 173
+  size: 90, 57
+  orig: 90, 57
+  offset: 0, 0
+  index: -1
+customers/boys/face-1-happy
+  rotate: false
+  xy: 548, 120
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-happy
+  rotate: false
+  xy: 640, 180
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-2-happy
+  rotate: false
+  xy: 713, 182
+  size: 73, 48
+  orig: 73, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-happy
+  rotate: false
+  xy: 788, 180
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+
+burgerparty5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+customers/girls/body-0
+  rotate: false
+  xy: 1, 60
+  size: 113, 169
+  orig: 113, 169
+  offset: 0, 0
+  index: -1
+customers/girls/body-1
+  rotate: false
+  xy: 116, 57
+  size: 109, 172
+  orig: 109, 172
+  offset: 0, 0
+  index: -1
+customers/girls/top-1
+  rotate: false
+  xy: 1, 1
+  size: 104, 57
+  orig: 104, 57
+  offset: 0, 0
+  index: -1
+customers/girls/face-1-happy
+  rotate: false
+  xy: 227, 176
+  size: 76, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-happy
+  rotate: false
+  xy: 227, 126
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/top-0
+  rotate: false
+  xy: 305, 176
+  size: 68, 53
+  orig: 68, 53
+  offset: 0, 0
+  index: -1

@@ -43,7 +43,7 @@ public class WorldView extends AnchorGroup {
 	private Actor mGameOverOverlay;
 	private Image mWorkbench;
 	private Image mBubble;
-	private SimpleCustomerFactory mCustomerFactory = new SimpleCustomerFactory();
+	private ComposableCustomerFactory mCustomerFactory;
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
 
@@ -58,6 +58,7 @@ public class WorldView extends AnchorGroup {
 		mAtlas = atlas;
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion("background");
+		mCustomerFactory = new ComposableCustomerFactory(atlas);
 
 		setupCustomers();
 		setupWorkbench();
@@ -129,7 +130,7 @@ public class WorldView extends AnchorGroup {
 
 	private void setupCustomers() {
 		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
-			Customer customer = mCustomerFactory.create(mAtlas);
+			Customer customer = mCustomerFactory.create();
 			addActor(customer);
 			customer.setX(-customer.getWidth());
 			mWaitingCustomers.add(customer);
