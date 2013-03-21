@@ -78,6 +78,14 @@ public class World {
 		generateTarget();
 	}
 
+	public void pause() {
+		mTimer.stop();
+	}
+
+	public void resume() {
+		mTimer.start();
+	}
+
 	private void generateTarget() {
 		Random random = new Random();
 		Array<String> names = new Array<String>(mLevel.inventoryItems);

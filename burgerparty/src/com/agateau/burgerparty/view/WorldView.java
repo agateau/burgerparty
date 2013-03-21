@@ -18,11 +18,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
 public class WorldView extends AnchorGroup {
@@ -38,12 +41,14 @@ public class WorldView extends AnchorGroup {
 	private BurgerStackView mDoneBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
 	private Label mTimerDisplay;
+	private TextButton mPauseButton;
 	private Label mScoreLabel;
 	private Image mWorkbench;
 	private Image mBubble;
 	private ComposableCustomerFactory mCustomerFactory;
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
+	private PauseOverlay mPauseOverlay;
 
 	private float mWidth = -1;
 	private float mHeight = -1;
@@ -84,6 +89,18 @@ public class WorldView extends AnchorGroup {
 		});
 
 		goToNextCustomer();
+	}
+
+	public void pause() {
+		mWorld.pause();
+		mPauseOverlay = new PauseOverlay(this, mGame, mAtlas, mSkin);
+		addActor(mPauseOverlay);
+	}
+
+	public void resume() {
+		removeActor(mPauseOverlay);
+		mPauseOverlay = null;
+		mWorld.resume();
 	}
 
 	public InventoryView getInventoryView() {
@@ -172,6 +189,12 @@ public class WorldView extends AnchorGroup {
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
+		mPauseButton = new TextButton("P", mSkin);
+		mPauseButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				pause();
+			}
+		});
 	}
 
 	private void setupScoreLabel() {
@@ -181,7 +204,8 @@ public class WorldView extends AnchorGroup {
 
 	private void setupAnchors() {
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
-		moveActor(mTimerDisplay, Anchor.TOP_LEFT, mScoreLabel, Anchor.BOTTOM_LEFT);
+		moveActor(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
+		moveActor(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -1, 0);
 		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
