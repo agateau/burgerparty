@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.view;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -44,7 +43,6 @@ public class ComposableCustomer extends Customer {
 		CustomerPart part = new CustomerPart();
 		part.image = new Image(mAtlas.findRegion(name));
 		part.xCenter = getPartXCenter(name, part.image.getWidth() / 2);
-		Gdx.app.log("getCustomerPart", "name=" + name + " xCenter=" + part.xCenter + " default=" + (part.image.getWidth() / 2));
 		return part;
 	}
 

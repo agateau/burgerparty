@@ -37,7 +37,6 @@ public class ComposableCustomerFactory {
 				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Should not exist!");
 				continue;
 			}
-			Gdx.app.log("category", tokens[1]);
 			String categoryName = tokens[1];
 			CustomerCategory category;
 			category = categoryMap.get(categoryName);
