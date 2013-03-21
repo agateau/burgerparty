@@ -110,6 +110,7 @@ public class World {
 			generateTarget();
 			stackFinished.emit();
 		} else {
+			mTimer.stop();
 			levelFinished.emit();
 		}
 	}
