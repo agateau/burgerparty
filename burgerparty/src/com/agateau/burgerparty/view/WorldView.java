@@ -27,6 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
 
 public class WorldView extends AnchorGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
@@ -118,6 +119,7 @@ public class WorldView extends AnchorGroup {
 		if (resized) {
 			mInventoryView.setWidth(width);
 			mWorkbench.setWidth(width);
+			mWorkbench.invalidate();
 		}
 
 		super.layout();
@@ -159,6 +161,7 @@ public class WorldView extends AnchorGroup {
 	private void setupWorkbench() {
 		TextureRegion region = mAtlas.findRegion("workbench");
 		mWorkbench = new Image(region);
+		mWorkbench.setScaling(Scaling.stretch);
 	}
 
 	private void setupTargetBurgerStackView() {
