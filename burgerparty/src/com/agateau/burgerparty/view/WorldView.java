@@ -187,9 +187,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupTimerDisplay() {
-		mTimerDisplay = new Label("", mSkin);
+		mTimerDisplay = new Label("0", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
 		mPauseButton = new TextButton("P", mSkin);
+		mPauseButton.setSize(UiUtils.BUTTON_HEIGHT, mTimerDisplay.getHeight());
 		mPauseButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				pause();
@@ -205,7 +206,7 @@ public class WorldView extends AnchorGroup {
 	private void setupAnchors() {
 		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		moveActor(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
-		moveActor(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -1, 0);
+		moveActor(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
