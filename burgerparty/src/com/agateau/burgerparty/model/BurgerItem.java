@@ -48,11 +48,8 @@ public class BurgerItem {
 		private Data mData;
 	};
 
-	public BurgerItem(String name) {
+	private BurgerItem(String name) {
 		mName = name;
-		if (sDataMap.size == 0) {
-			initMap();
-		}
 	}
 
 	public String getName() {
@@ -67,7 +64,14 @@ public class BurgerItem {
 		return sDataMap.get(mName).offset;
 	}
 
-	private void initMap() {
+	public static BurgerItem get(String name) {
+		if (sDataMap.size == 0) {
+			initMap();
+		}
+		return new BurgerItem(name);
+	}
+
+	private static void initMap() {
 		FileHandle handle = Gdx.files.internal("burgeritems.json");
 		Reader reader = new Reader();
 		reader.parse(handle);

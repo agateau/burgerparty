@@ -17,7 +17,7 @@ public class Inventory {
 	}
 
 	private void loadStoreItem(String name) {
-		mItems.add(new BurgerItem(name));
+		mItems.add(BurgerItem.get(name));
 	}
 	
 	public Array<BurgerItem> getItems() {

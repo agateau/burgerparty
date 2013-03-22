@@ -93,7 +93,7 @@ public class World {
 
 		mTargetBurgerStack.clear();
 
-		mTargetBurgerStack.addItem(new BurgerItem("bottom"));
+		mTargetBurgerStack.addItem(BurgerItem.get("bottom"));
 
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
@@ -104,10 +104,10 @@ public class World {
 				names.add(lastName);
 			}
 			lastName = name;
-			mTargetBurgerStack.addItem(new BurgerItem(name));
+			mTargetBurgerStack.addItem(BurgerItem.get(name));
 		}
 
-		mTargetBurgerStack.addItem(new BurgerItem("top"));
+		mTargetBurgerStack.addItem(BurgerItem.get("top"));
 	}
 
 	private void handleDoneStack() {
