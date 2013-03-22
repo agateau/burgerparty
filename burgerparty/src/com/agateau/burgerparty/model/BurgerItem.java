@@ -13,15 +13,15 @@ public class BurgerItem {
 
 	private static OrderedMap<String, BurgerItem> sMap = new OrderedMap<String, BurgerItem>();
 
-	static private class Reader extends JsonReader {
+	private static class Reader extends JsonReader {
 		@Override
 		protected void startObject(String name) {
 			mItem = new BurgerItem();
-			mLst.add(mItem);
 		}
 		@Override
 		protected void string(String name, String value) {
 			mItem.mName = value;
+			sMap.put(mItem.mName, mItem);
 		}
 		@Override
 		protected void number(String name, float value) {
@@ -41,7 +41,6 @@ public class BurgerItem {
 		protected void pop() {
 		}
 
-		public Array<BurgerItem> mLst = new Array<BurgerItem>();
 		private BurgerItem mItem;
 	};
 
@@ -71,9 +70,5 @@ public class BurgerItem {
 		FileHandle handle = Gdx.files.internal("burgeritems.json");
 		Reader reader = new Reader();
 		reader.parse(handle);
-		
-		for(BurgerItem item: reader.mLst) {
-			sMap.put(item.mName, item);
-		}
 	}
 }
