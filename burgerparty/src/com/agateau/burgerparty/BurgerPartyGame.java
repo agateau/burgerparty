@@ -6,9 +6,11 @@ import com.agateau.burgerparty.screens.MenuScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
 
 public class BurgerPartyGame extends Game {
 	private Skin mSkin;
@@ -28,63 +30,18 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void loadLevels() {
-		Level level;
+		Json json = new Json();
+		for (int n=1;; n++) {
+			String name = "levels/" + n + ".json";
+			FileHandle levelFile = Gdx.files.internal(name);
+			if (!levelFile.exists()) {
+				break;
+			}
+			Gdx.app.log("loadLevels", "levelFile=" + levelFile);
+			Level level = json.fromJson(Level.class, levelFile);
+			mLevels.add(level);
+		}
 
-		level = new Level();
-		level.minStackSize = 2;
-		level.maxStackSize = 3;
-		level.inventoryItems.add("steak");
-		level.inventoryItems.add("tomato");
-		level.inventoryItems.add("salad");
-		level.customerCount = 4;
-		level.duration = 120;
-		mLevels.add(level);
-
-		level = new Level();
-		level.minStackSize = 2;
-		level.maxStackSize = 3;
-		level.inventoryItems.add("steak");
-		level.inventoryItems.add("tomato");
-		level.inventoryItems.add("salad");
-		level.inventoryItems.add("onion");
-		level.customerCount = 5;
-		level.duration = 120;
-		mLevels.add(level);
-
-		level = new Level();
-		level.minStackSize = 2;
-		level.maxStackSize = 4;
-		level.inventoryItems.add("steak");
-		level.inventoryItems.add("tomato");
-		level.inventoryItems.add("salad");
-		level.inventoryItems.add("onion");
-		level.customerCount = 6;
-		level.duration = 120;
-		mLevels.add(level);
-
-		level = new Level();
-		level.minStackSize = 2;
-		level.maxStackSize = 5;
-		level.inventoryItems.add("steak");
-		level.inventoryItems.add("tomato");
-		level.inventoryItems.add("salad");
-		level.inventoryItems.add("onion");
-		level.inventoryItems.add("cheese");
-		level.customerCount = 7;
-		level.duration = 120;
-		mLevels.add(level);
-
-		level = new Level();
-		level.minStackSize = 3;
-		level.maxStackSize = 6;
-		level.inventoryItems.add("steak");
-		level.inventoryItems.add("tomato");
-		level.inventoryItems.add("salad");
-		level.inventoryItems.add("onion");
-		level.inventoryItems.add("cheese");
-		level.customerCount = 8;
-		level.duration = 120;
-		mLevels.add(level);
 	}
 
 	public int getLevelIndex() {

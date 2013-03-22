@@ -1,0 +1,7 @@
+{
+    minStackSize: 3,
+    maxStackSize: 6,
+    inventoryItems: ["steak", "tomato", "salad", "onion", "cheese"],
+    customerCount: 8,
+    duration: 120
+}
