@@ -8,30 +8,27 @@ import com.badlogic.gdx.utils.OrderedMap;
 
 public class BurgerItem {
 	private String mName;
+	private int mHeight;
+	private int mOffset;
 
-	static private class Data {
-		public String name;
-		public int height;
-		public int offset;
-	}
-	private static OrderedMap<String, Data> sDataMap = new OrderedMap<String, Data>();
+	private static OrderedMap<String, BurgerItem> sMap = new OrderedMap<String, BurgerItem>();
 
 	static private class Reader extends JsonReader {
 		@Override
 		protected void startObject(String name) {
-			mData = new Data();
-			mLst.add(mData);
+			mItem = new BurgerItem();
+			mLst.add(mItem);
 		}
 		@Override
 		protected void string(String name, String value) {
-			mData.name = value;
+			mItem.mName = value;
 		}
 		@Override
 		protected void number(String name, float value) {
 			if (name.equals("height")) {
-				mData.height = (int)value;
+				mItem.mHeight = (int)value;
 			} else {
-				mData.offset = (int)value;
+				mItem.mOffset = (int)value;
 			}
 		}
 
@@ -44,12 +41,11 @@ public class BurgerItem {
 		protected void pop() {
 		}
 
-		public Array<Data> mLst = new Array<Data>();
-		private Data mData;
+		public Array<BurgerItem> mLst = new Array<BurgerItem>();
+		private BurgerItem mItem;
 	};
 
-	private BurgerItem(String name) {
-		mName = name;
+	private BurgerItem() {
 	}
 
 	public String getName() {
@@ -57,18 +53,18 @@ public class BurgerItem {
 	}
 
 	public int getHeight() {
-		return sDataMap.get(mName).height;
+		return mHeight;
 	}
 
 	public int getOffset() {
-		return sDataMap.get(mName).offset;
+		return mOffset;
 	}
 
 	public static BurgerItem get(String name) {
-		if (sDataMap.size == 0) {
+		if (sMap.size == 0) {
 			initMap();
 		}
-		return new BurgerItem(name);
+		return sMap.get(name);
 	}
 
 	private static void initMap() {
@@ -76,8 +72,8 @@ public class BurgerItem {
 		Reader reader = new Reader();
 		reader.parse(handle);
 		
-		for(Data data: reader.mLst) {
-			sDataMap.put(data.name, data);
+		for(BurgerItem item: reader.mLst) {
+			sMap.put(item.mName, item);
 		}
 	}
 }
