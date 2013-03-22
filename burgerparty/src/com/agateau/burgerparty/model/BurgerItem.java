@@ -1,17 +1,57 @@
 package com.agateau.burgerparty.model;
 
-import java.util.HashMap;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.OrderedMap;
 
 public class BurgerItem {
 	private String mName;
 
-	private static HashMap<String, Integer> sHeightMap = new HashMap<String, Integer>();
-	private static HashMap<String, Integer> sOffsetMap = new HashMap<String, Integer>();
+	static private class Data {
+		public String name;
+		public int height;
+		public int offset;
+	}
+	private static OrderedMap<String, Data> sDataMap = new OrderedMap<String, Data>();
+
+	static private class Reader extends JsonReader {
+		@Override
+		protected void startObject(String name) {
+			mData = new Data();
+			mLst.add(mData);
+		}
+		@Override
+		protected void string(String name, String value) {
+			mData.name = value;
+		}
+		@Override
+		protected void number(String name, float value) {
+			if (name.equals("height")) {
+				mData.height = (int)value;
+			} else {
+				mData.offset = (int)value;
+			}
+		}
+
+		// Must be overridden to completely disable JsonReader behavior
+		@Override
+		protected void startArray(String name) {
+		}
+		// Must be overridden to completely disable JsonReader behavior
+		@Override
+		protected void pop() {
+		}
+
+		public Array<Data> mLst = new Array<Data>();
+		private Data mData;
+	};
 
 	public BurgerItem(String name) {
 		mName = name;
-		if (sHeightMap.isEmpty()) {
-			initMaps();
+		if (sDataMap.size == 0) {
+			initMap();
 		}
 	}
 
@@ -20,30 +60,20 @@ public class BurgerItem {
 	}
 
 	public int getHeight() {
-		return sHeightMap.get(mName);
+		return sDataMap.get(mName).height;
 	}
 
 	public int getOffset() {
-		return sOffsetMap.get(mName);
+		return sDataMap.get(mName).offset;
 	}
 
-	private void initMaps() {
-		sHeightMap.put("bottom", 24);
-		sHeightMap.put("cheese", 8);
-		sHeightMap.put("onion", 8);
-		sHeightMap.put("steak", 22);
-		sHeightMap.put("tomato", 12);
-		sHeightMap.put("salad", 8);
-		sHeightMap.put("top", 32);
-		sHeightMap.put("cucumber", 8);
-
-		sOffsetMap.put("bottom", 0);
-		sOffsetMap.put("cheese", -19);
-		sOffsetMap.put("onion", -4);
-		sOffsetMap.put("steak", 0);
-		sOffsetMap.put("tomato", -4);
-		sOffsetMap.put("salad", -4);
-		sOffsetMap.put("top", 0);
-		sOffsetMap.put("cucumber", -4);
+	private void initMap() {
+		FileHandle handle = Gdx.files.internal("burgeritems.json");
+		Reader reader = new Reader();
+		reader.parse(handle);
+		
+		for(Data data: reader.mLst) {
+			sDataMap.put(data.name, data);
+		}
 	}
 }

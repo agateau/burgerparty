@@ -1,0 +1,42 @@
+[
+{
+    name: bottom,
+    height: 24,
+    offset: 0
+},
+{
+    name: cheese,
+    height: 8,
+    offset: -19 
+},
+{
+    name: onion,
+    height: 8,
+    offset: -4
+},
+{
+    name: steak,
+    height: 22,
+    offset: 0
+},
+{
+    name: tomato,
+    height: 12,
+    offset: -4
+},
+{
+    name: salad,
+    height: 8,
+    offset: -4
+},
+{
+    name: top,
+    height: 32,
+    offset: 0
+},
+{
+    name: cucumber,
+    height: 8,
+    offset: -4
+}
+]
