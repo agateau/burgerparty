@@ -38,16 +38,23 @@ burgeritems/salad-inventory
   orig: 221, 105
   offset: 0, 0
   index: -1
+burgeritems/cucumber-inventory
+  rotate: false
+  xy: 499, 383
+  size: 204, 105
+  orig: 204, 105
+  offset: 0, 0
+  index: -1
 burgeritems/top
   rotate: false
-  xy: 499, 424
+  xy: 705, 424
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 745, 441
+  xy: 705, 375
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
@@ -61,42 +68,42 @@ burgeritems/cheese
   index: -1
 burgeritems/steak
   rotate: false
-  xy: 499, 378
+  xy: 1, 35
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
 burgeritems/tomato
   rotate: false
-  xy: 1, 47
+  xy: 1, 1
   size: 211, 32
   orig: 211, 32
   offset: 0, 0
   index: -1
 burgeritems/salad
   rotate: false
-  xy: 470, 346
+  xy: 247, 190
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
-burgeritems/tomato-inventory
-  rotate: false
-  xy: 472, 234
-  size: 192, 110
-  orig: 192, 110
-  offset: 0, 0
-  index: -1
 burgeritems/onion
   rotate: false
-  xy: 1, 1
+  xy: 223, 144
   size: 182, 44
   orig: 182, 44
   offset: 0, 0
   index: -1
+burgeritems/tomato-inventory
+  rotate: false
+  xy: 227, 32
+  size: 192, 110
+  orig: 192, 110
+  offset: 0, 0
+  index: -1
 burgeritems/cucumber
   rotate: false
-  xy: 745, 413
+  xy: 214, 4
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
