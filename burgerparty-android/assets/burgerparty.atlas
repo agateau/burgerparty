@@ -5,84 +5,91 @@ filter: Nearest,Nearest
 repeat: none
 burgeritems/bottom-inventory
   rotate: false
-  xy: 1, 118
+  xy: 1, 356
   size: 244, 136
   orig: 244, 136
   offset: 0, 0
   index: -1
-burgeritems/steak-inventory
+burgeritems/top-inventory
   rotate: false
-  xy: 247, 130
-  size: 220, 124
-  orig: 220, 124
-  offset: 0, 0
-  index: -1
-burgeritems/salad-inventory
-  rotate: false
-  xy: 469, 109
-  size: 204, 145
-  orig: 204, 145
+  xy: 1, 242
+  size: 244, 112
+  orig: 244, 112
   offset: 0, 0
   index: -1
 burgeritems/tomato-inventory
   rotate: false
-  xy: 675, 91
+  xy: 247, 329
   size: 192, 163
   orig: 192, 163
   offset: 0, 0
   index: -1
+burgeritems/salad-inventory
+  rotate: false
+  xy: 1, 95
+  size: 204, 145
+  orig: 204, 145
+  offset: 0, 0
+  index: -1
+burgeritems/steak-inventory
+  rotate: false
+  xy: 441, 368
+  size: 220, 124
+  orig: 220, 124
+  offset: 0, 0
+  index: -1
 burgeritems/top
   rotate: false
-  xy: 1, 52
+  xy: 663, 428
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 1, 3
+  xy: 663, 379
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
-burgeritems/tomato
-  rotate: false
-  xy: 247, 96
-  size: 211, 32
-  orig: 211, 32
-  offset: 0, 0
-  index: -1
 burgeritems/cheese
   rotate: false
-  xy: 247, 47
+  xy: 441, 319
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
 burgeritems/steak
   rotate: false
-  xy: 247, 1
+  xy: 666, 333
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
-burgeritems/onion
+burgeritems/tomato
   rotate: false
-  xy: 472, 63
-  size: 182, 44
-  orig: 182, 44
+  xy: 1, 61
+  size: 211, 32
+  orig: 211, 32
   offset: 0, 0
   index: -1
 burgeritems/salad
   rotate: false
-  xy: 656, 59
+  xy: 1, 29
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
+burgeritems/onion
+  rotate: false
+  xy: 247, 283
+  size: 182, 44
+  orig: 182, 44
+  offset: 0, 0
+  index: -1
 burgeritems/cucumber
   rotate: false
-  xy: 473, 35
+  xy: 1, 1
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
