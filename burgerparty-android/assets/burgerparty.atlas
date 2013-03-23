@@ -3,100 +3,100 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+burgeritems/top-inventory
+  rotate: false
+  xy: 1, 345
+  size: 244, 143
+  orig: 244, 143
+  offset: 0, 0
+  index: -1
 burgeritems/bottom-inventory
   rotate: false
-  xy: 1, 354
+  xy: 1, 207
   size: 244, 136
   orig: 244, 136
   offset: 0, 0
   index: -1
 burgeritems/cheese-inventory
   rotate: false
-  xy: 247, 380
+  xy: 247, 378
   size: 250, 110
   orig: 250, 110
   offset: 0, 0
   index: -1
-burgeritems/top-inventory
-  rotate: false
-  xy: 1, 240
-  size: 244, 112
-  orig: 244, 112
-  offset: 0, 0
-  index: -1
-burgeritems/tomato-inventory
-  rotate: false
-  xy: 1, 75
-  size: 192, 163
-  orig: 192, 163
-  offset: 0, 0
-  index: -1
 burgeritems/steak-inventory
   rotate: false
-  xy: 247, 254
+  xy: 1, 81
   size: 220, 124
   orig: 220, 124
   offset: 0, 0
   index: -1
 burgeritems/salad-inventory
   rotate: false
-  xy: 499, 345
-  size: 204, 145
-  orig: 204, 145
+  xy: 247, 271
+  size: 221, 105
+  orig: 221, 105
   offset: 0, 0
   index: -1
 burgeritems/top
   rotate: false
-  xy: 705, 426
+  xy: 499, 424
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 705, 377
+  xy: 745, 441
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
-burgeritems/steak
-  rotate: false
-  xy: 705, 331
-  size: 224, 44
-  orig: 224, 44
-  offset: 0, 0
-  index: -1
 burgeritems/cheese
   rotate: false
-  xy: 469, 296
+  xy: 247, 222
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
+burgeritems/steak
+  rotate: false
+  xy: 499, 378
+  size: 224, 44
+  orig: 224, 44
+  offset: 0, 0
+  index: -1
 burgeritems/tomato
   rotate: false
-  xy: 469, 262
+  xy: 1, 47
   size: 211, 32
   orig: 211, 32
   offset: 0, 0
   index: -1
 burgeritems/salad
   rotate: false
-  xy: 694, 299
+  xy: 470, 346
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
+burgeritems/tomato-inventory
+  rotate: false
+  xy: 472, 234
+  size: 192, 110
+  orig: 192, 110
+  offset: 0, 0
+  index: -1
 burgeritems/onion
   rotate: false
-  xy: 1, 29
+  xy: 1, 1
   size: 182, 44
   orig: 182, 44
   offset: 0, 0
   index: -1
 burgeritems/cucumber
   rotate: false
-  xy: 1, 1
+  xy: 745, 413
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
