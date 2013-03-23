@@ -70,7 +70,7 @@ public class InventoryView extends Actor {
 				float width = region.getRegionWidth() * scale;
 				float height = region.getRegionHeight() * scale;
 
-				spriteBatch.draw(region, posX + (cellWidth - width) / 2, posY + PADDING * 2, width, height);
+				spriteBatch.draw(region, posX + (cellWidth - width) / 2, posY + (cellHeight - height) / 2, width, height);
 			}
 		}
 	}
