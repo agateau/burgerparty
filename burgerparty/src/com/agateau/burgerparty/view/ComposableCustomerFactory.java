@@ -1,11 +1,8 @@
 package com.agateau.burgerparty.view;
 
-import java.util.TreeMap;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 
 public class ComposableCustomerFactory {
@@ -28,7 +25,6 @@ public class ComposableCustomerFactory {
 
 	public ComposableCustomerFactory(TextureAtlas atlas) {
 		mAtlas = atlas;
-		TreeMap<String, CustomerCategory> categoryMap = new TreeMap<String, CustomerCategory>();
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
 			String[] tokens = region.name.split("/", 3);
 			if (!tokens[0].equals("customers")) {
