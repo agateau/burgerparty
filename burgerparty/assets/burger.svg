@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0469654"
-     inkscape:cx="779.00818"
-     inkscape:cy="-162.44417"
+     inkscape:zoom="0.26174136"
+     inkscape:cx="966.21589"
+     inkscape:cy="1183.35"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -5540,7 +5540,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -13617,7 +13617,10 @@
        id="path18719"
        inkscape:connector-curvature="0" />
     <g
-       id="g5629">
+       id="g5629"
+       inkscape:export-filename="burgeritems/ketchup.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:nodetypes="zsssssssssssssssszcsssssssssssscz"
          inkscape:connector-curvature="0"
