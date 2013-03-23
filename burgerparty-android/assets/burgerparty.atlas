@@ -3,67 +3,74 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+burgeritems/tomato-inventory
+  rotate: false
+  xy: 1, 75
+  size: 192, 163
+  orig: 192, 163
+  offset: 0, 0
+  index: -1
 burgeritems/salad-inventory
   rotate: false
-  xy: 1, 109
-  size: 198, 138
-  orig: 198, 138
+  xy: 195, 93
+  size: 204, 145
+  orig: 204, 145
   offset: 0, 0
   index: -1
 burgeritems/top
   rotate: false
-  xy: 201, 183
+  xy: 401, 174
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 201, 134
+  xy: 401, 125
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
-burgeritems/steak
-  rotate: false
-  xy: 201, 88
-  size: 224, 44
-  orig: 224, 44
-  offset: 0, 0
-  index: -1
-burgeritems/onion
-  rotate: false
-  xy: 1, 63
-  size: 182, 44
-  orig: 182, 44
-  offset: 0, 0
-  index: -1
 burgeritems/cheese
   rotate: false
-  xy: 185, 39
+  xy: 647, 191
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
-burgeritems/cucumber
+burgeritems/steak
   rotate: false
-  xy: 1, 35
-  size: 181, 26
-  orig: 181, 26
-  offset: 0, 0
-  index: -1
-burgeritems/tomato
-  rotate: false
-  xy: 1, 1
-  size: 211, 32
-  orig: 211, 32
+  xy: 647, 145
+  size: 224, 44
+  orig: 224, 44
   offset: 0, 0
   index: -1
 burgeritems/salad
   rotate: false
-  xy: 214, 7
+  xy: 401, 93
   size: 211, 30
   orig: 211, 30
+  offset: 0, 0
+  index: -1
+burgeritems/tomato
+  rotate: false
+  xy: 647, 111
+  size: 211, 32
+  orig: 211, 32
+  offset: 0, 0
+  index: -1
+burgeritems/onion
+  rotate: false
+  xy: 1, 29
+  size: 182, 44
+  orig: 182, 44
+  offset: 0, 0
+  index: -1
+burgeritems/cucumber
+  rotate: false
+  xy: 1, 1
+  size: 181, 26
+  orig: 181, 26
   offset: 0, 0
   index: -1
 
