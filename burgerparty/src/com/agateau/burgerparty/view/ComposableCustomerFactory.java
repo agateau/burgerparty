@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.OrderedMap;
 
 public class ComposableCustomerFactory {
 	static class CustomerCategory {
@@ -22,7 +23,7 @@ public class ComposableCustomerFactory {
 		} 
 	}
 
-	private Array<CustomerCategory> mCategories = new Array<CustomerCategory>();
+	private OrderedMap<String, CustomerCategory> mCategories = new OrderedMap<String, CustomerCategory>();
 	private TextureAtlas mAtlas;
 
 	public ComposableCustomerFactory(TextureAtlas atlas) {
@@ -39,11 +40,10 @@ public class ComposableCustomerFactory {
 			}
 			String categoryName = tokens[1];
 			CustomerCategory category;
-			category = categoryMap.get(categoryName);
+			category = mCategories.get(categoryName);
 			if (category == null) {
 				category = new CustomerCategory(categoryName);
-				mCategories.add(category);
-				categoryMap.put(categoryName, category);
+				mCategories.put(categoryName, category);
 			}
 			String name = tokens[2];
 			if (name.startsWith("body-")) {
@@ -59,7 +59,9 @@ public class ComposableCustomerFactory {
 	}
 
 	public Customer create() {
-		CustomerCategory category = mCategories.get(MathUtils.random(mCategories.size - 1));
+		final String[] categoryNames = {"boys", "girls", "boys", "girls", "boys", "girls", "boys", "girls", "ninjas"};
+		String name = categoryNames[MathUtils.random(categoryNames.length -1)];
+		CustomerCategory category = mCategories.get(name);
 		return new ComposableCustomer(mAtlas, category.dirName,
 			MathUtils.random(category.bodyCount - 1),
 			category.topCount > 0 ? MathUtils.random(category.topCount - 1) : -1,

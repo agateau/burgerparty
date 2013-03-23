@@ -125,6 +125,25 @@ burgerparty3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+customers/ninjas/body-0
+  rotate: false
+  xy: 1, 1
+  size: 120, 143
+  orig: 120, 143
+  offset: 0, 0
+  index: -1
+customers/ninjas/face-0-happy
+  rotate: false
+  xy: 123, 27
+  size: 108, 117
+  orig: 108, 117
+  offset: 0, 0
+  index: -1
+
+burgerparty4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 customers/1
   rotate: false
   xy: 1, 333
@@ -301,7 +320,7 @@ customers/nose-0
   offset: 0, 0
   index: -1
 
-burgerparty4.png
+burgerparty5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -390,7 +409,7 @@ customers/boys/face-3-happy
   offset: 0, 0
   index: -1
 
-burgerparty5.png
+burgerparty6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

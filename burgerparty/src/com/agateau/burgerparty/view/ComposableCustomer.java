@@ -4,14 +4,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ComposableCustomer extends Customer {
-	static final int FACE_OFFSET = 69;
-
 	private TextureAtlas mAtlas;
 	private String mDirName;
 
 	static private class CustomerPart {
 		Image image;
 		float xCenter;
+		float yOffset;
 	}
 
 	public ComposableCustomer(TextureAtlas atlas, String dirName, int bodyId, int topId, int faceId) {
@@ -31,7 +30,7 @@ public class ComposableCustomer extends Customer {
 
 		setWidth(body.image.getWidth());
 
-		face.image.setY(FACE_OFFSET);
+		face.image.setY(face.yOffset);
 		setHeight(body.image.getHeight());
 	}
 	
@@ -43,6 +42,15 @@ public class ComposableCustomer extends Customer {
 		CustomerPart part = new CustomerPart();
 		part.image = new Image(mAtlas.findRegion(name));
 		part.xCenter = getPartXCenter(name, part.image.getWidth() / 2);
+		if (prefix.equals("face")) {
+			if (mDirName.equals("ninjas")) {
+				part.yOffset = 55;
+			} else {
+				part.yOffset = 69;
+			}
+		} else {
+			part.yOffset = 0;
+		}
 		return part;
 	}
 
@@ -56,6 +64,8 @@ public class ComposableCustomer extends Customer {
 			return 59;
 		} else if (name.equals("customers/girls/body-1")) {
 			return 53;
+		} else if (name.equals("customers/ninjas/body-0")) {
+			return 55;
 		} else {
 			return defaultValue;
 		}
