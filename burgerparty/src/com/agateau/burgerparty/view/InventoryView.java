@@ -57,14 +57,20 @@ public class InventoryView extends Actor {
 
 				spriteBatch.draw(mBgRegion, posX, posY, cellWidth, cellHeight);
 				if (index >= items.size) {
+					// No more item to draw, continue drawing empty cells 
 					continue;
 				}
-				TextureRegion region = mAtlas.findRegion("burgeritems/" + items.get(index).getName());
+				String baseName = "burgeritems/" + items.get(index).getName();
+				TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
+				if (region == null) {
+					region = mAtlas.findRegion(baseName);
+					assert(region != null);
+				}
 				float scale = (cellWidth - PADDING * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
 				float width = region.getRegionWidth() * scale;
 				float height = region.getRegionHeight() * scale;
 
-				spriteBatch.draw(region, posX + PADDING, posY + PADDING * 2, width, height);
+				spriteBatch.draw(region, posX + (cellWidth - width) / 2, posY + PADDING * 2, width, height);
 			}
 		}
 	}
