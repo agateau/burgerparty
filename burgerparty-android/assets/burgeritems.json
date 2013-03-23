@@ -38,5 +38,10 @@
     name: cucumber,
     height: 8,
     offset: -4
+},
+{
+    name: ketchup,
+    height: 8,
+    offset: -4
 }
 ]
