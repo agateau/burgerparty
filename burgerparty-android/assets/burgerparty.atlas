@@ -5,105 +5,112 @@ filter: Nearest,Nearest
 repeat: none
 burgeritems/top-inventory
   rotate: false
-  xy: 1, 345
+  xy: 1, 362
   size: 244, 143
   orig: 244, 143
   offset: 0, 0
   index: -1
 burgeritems/bottom-inventory
   rotate: false
-  xy: 1, 207
+  xy: 1, 224
   size: 244, 136
   orig: 244, 136
   offset: 0, 0
   index: -1
 burgeritems/cheese-inventory
   rotate: false
-  xy: 247, 378
+  xy: 247, 395
   size: 250, 110
   orig: 250, 110
   offset: 0, 0
   index: -1
 burgeritems/steak-inventory
   rotate: false
-  xy: 1, 81
+  xy: 1, 98
   size: 220, 124
   orig: 220, 124
   offset: 0, 0
   index: -1
 burgeritems/salad-inventory
   rotate: false
-  xy: 247, 271
+  xy: 247, 288
   size: 221, 105
   orig: 221, 105
   offset: 0, 0
   index: -1
 burgeritems/cucumber-inventory
   rotate: false
-  xy: 499, 383
+  xy: 499, 400
   size: 204, 105
   orig: 204, 105
   offset: 0, 0
   index: -1
+burgeritems/onion-inventory
+  rotate: false
+  xy: 1, 1
+  size: 213, 95
+  orig: 213, 95
+  offset: 0, 0
+  index: -1
 burgeritems/top
   rotate: false
-  xy: 705, 424
+  xy: 705, 441
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 burgeritems/bottom
   rotate: false
-  xy: 705, 375
+  xy: 705, 392
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
 burgeritems/cheese
   rotate: false
-  xy: 247, 222
+  xy: 247, 239
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
 burgeritems/steak
   rotate: false
-  xy: 1, 35
+  xy: 247, 193
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
+burgeritems/tomato-inventory
+  rotate: false
+  xy: 223, 81
+  size: 192, 110
+  orig: 192, 110
+  offset: 0, 0
+  index: -1
 burgeritems/tomato
   rotate: false
-  xy: 1, 1
+  xy: 216, 47
   size: 211, 32
   orig: 211, 32
   offset: 0, 0
   index: -1
 burgeritems/salad
   rotate: false
-  xy: 247, 190
+  xy: 216, 15
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
 burgeritems/onion
   rotate: false
-  xy: 223, 144
-  size: 182, 44
-  orig: 182, 44
-  offset: 0, 0
-  index: -1
-burgeritems/tomato-inventory
-  rotate: false
-  xy: 227, 32
-  size: 192, 110
-  orig: 192, 110
+  xy: 499, 367
+  size: 186, 31
+  orig: 186, 31
   offset: 0, 0
   index: -1
 burgeritems/cucumber
   rotate: false
-  xy: 214, 4
+  xy: 687, 364
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
