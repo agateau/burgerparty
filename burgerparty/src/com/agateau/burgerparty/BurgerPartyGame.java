@@ -1,6 +1,7 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
+import com.agateau.burgerparty.screen.LevelListScreen;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
 
@@ -41,7 +42,6 @@ public class BurgerPartyGame extends Game {
 			Level level = json.fromJson(Level.class, levelFile);
 			mLevels.add(level);
 		}
-
 	}
 
 	public int getLevelIndex() {
@@ -59,5 +59,9 @@ public class BurgerPartyGame extends Game {
 
 	public void showMenu() {
 		setScreen(new MenuScreen(this, mSkin));
+	}
+
+	public void selectLevel() {
+		setScreen(new LevelListScreen(this, mSkin));
 	}
 }

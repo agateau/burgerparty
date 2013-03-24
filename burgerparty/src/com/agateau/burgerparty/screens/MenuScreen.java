@@ -80,7 +80,7 @@ public class MenuScreen implements Screen {
 		TextButton startButton = new TextButton("Start", skin);
 		startButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.startLevel(0);
+				mGame.selectLevel();
 			}
 		});
 		UiUtils.setButtonSize(startButton);
