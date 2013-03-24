@@ -1,8 +1,8 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
-import com.agateau.burgerparty.screen.LevelListScreen;
 import com.agateau.burgerparty.screens.GameScreen;
+import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
 
 import com.badlogic.gdx.Game;

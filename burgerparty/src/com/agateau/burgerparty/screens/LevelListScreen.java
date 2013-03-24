@@ -1,8 +1,9 @@
-package com.agateau.burgerparty.screen;
+package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -11,9 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Array;
 
 public class LevelListScreen implements Screen {
 	private BurgerPartyGame mGame;
@@ -70,57 +69,6 @@ public class LevelListScreen implements Screen {
 
 	}
 
-	private static class GridGroup extends WidgetGroup {
-		public void setColumnCount(int colCount) {
-			if (mColCount == colCount) {
-				return;
-			}
-			assert(colCount > 0);
-			mColCount = colCount;
-			invalidate();
-		}
-
-		public void setSpacing(float spacing) {
-			if (mSpacing == spacing) {
-				return;
-			}
-			mSpacing = spacing;
-			invalidate();
-		}
-
-		public void addActor(Actor actor) {
-			super.addActor(actor);
-			mChildren.add(actor);
-			invalidate();
-		}
-
-		public void layout() {
-			float width = getWidth() + mSpacing;
-			float cellSize = width / mColCount;
-			float widgetSize = cellSize - mSpacing;
-			float posX = 0;
-			float posY = getHeight() - widgetSize;
-			int col = 0;
-			Gdx.app.log("GridGroup.layout", this.toString());
-			for (Actor actor: mChildren) {
-				actor.setBounds(posX, posY, widgetSize, widgetSize);
-				Gdx.app.log("GridGroup.layout", actor.toString());
-				col++;
-				if (col < mColCount) {
-					posX += cellSize;
-				} else {
-					col = 0;
-					posX = 0;
-					posY -= cellSize;
-				}
-			}
-		}
-
-		private int mColCount = 1;
-		private float mSpacing = 0;
-		private Array<Actor> mChildren = new Array<Actor>();
-	}
-
 	private void setupWidgets(Skin skin) {
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
@@ -129,7 +77,7 @@ public class LevelListScreen implements Screen {
 
 		TextButton backButton = new TextButton("<- Back", skin);
 		backButton.setSize(backButton.getPrefWidth(), UiUtils.BUTTON_HEIGHT);
-		group.moveActor(backButton, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT, 1, -1);
+		group.moveActor(backButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.showMenu();
@@ -139,8 +87,8 @@ public class LevelListScreen implements Screen {
 		GridGroup gridGroup = new GridGroup();
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
-		group.moveActor(gridGroup, Anchor.TOP_LEFT, backButton, Anchor.BOTTOM_LEFT);
-		gridGroup.setSize(800, 300);
+		gridGroup.setCellSize(150, 150);
+		group.moveActor(gridGroup, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
 
 		for (int idx=0; idx < mGame.getLevelCount(); idx++) {
 			Actor levelButton = createLevelButton(idx, skin);
