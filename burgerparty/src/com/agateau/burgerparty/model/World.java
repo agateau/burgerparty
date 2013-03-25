@@ -23,8 +23,8 @@ public class World {
 
 	public World(Level level) {
 		mLevel = level;
-		mCustomerCount = mLevel.customerCount;
-		mInventory = new Inventory(level.inventoryItems);
+		mCustomerCount = mLevel.definition.customerCount;
+		mInventory = new Inventory(level.definition.inventoryItems);
 		mBurgerStack = new BurgerStack();
 		mTargetBurgerStack = new BurgerStack();
 	}
@@ -63,7 +63,7 @@ public class World {
 	}
 
 	public void start() {
-		mRemainingSeconds = mLevel.duration;
+		mRemainingSeconds = mLevel.definition.duration;
 		Timer.Task task = new Timer.Task() {
 			@Override
 			public void run() {
@@ -88,8 +88,8 @@ public class World {
 
 	private void generateTarget() {
 		Random random = new Random();
-		Array<String> names = new Array<String>(mLevel.inventoryItems);
-		int count = mLevel.minStackSize + random.nextInt(mLevel.maxStackSize - mLevel.minStackSize + 1);
+		Array<String> names = new Array<String>(mLevel.definition.inventoryItems);
+		int count = mLevel.definition.minStackSize + random.nextInt(mLevel.definition.maxStackSize - mLevel.definition.minStackSize + 1);
 
 		mTargetBurgerStack.clear();
 

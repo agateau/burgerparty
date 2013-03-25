@@ -39,7 +39,8 @@ public class BurgerPartyGame extends Game {
 				break;
 			}
 			Gdx.app.log("loadLevels", "levelFile=" + levelFile);
-			Level level = json.fromJson(Level.class, levelFile);
+			Level level = new Level();
+			level.definition = json.fromJson(Level.Definition.class, levelFile);
 			mLevels.add(level);
 		}
 	}
