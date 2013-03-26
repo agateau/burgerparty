@@ -274,7 +274,7 @@ public class WorldView extends AnchorGroup {
 
 	private void onLevelFinished(int stars) {
 		mGame.onCurrentLevelFinished(stars);
-		addActor(new LevelFinishedOverlay(mGame, mWorld, mAtlas, mSkin));
+		addActor(new LevelFinishedOverlay(mGame, mAtlas, mSkin));
 	}
 
 	private void goToNextCustomer() {

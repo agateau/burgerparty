@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class LevelFinishedOverlay extends Overlay {
 	private BurgerPartyGame mGame;
-	public LevelFinishedOverlay(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
+	public LevelFinishedOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
 		AnchorGroup group = new AnchorGroup();
