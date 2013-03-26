@@ -1,0 +1,16 @@
+
+<level
+    minStackSize="2"
+    maxStackSize="5"
+    customerCount="7"
+    duration="120"
+    >
+    <items>
+        <item name="steak"/>
+        <item name="tomato"/>
+        <item name="salad"/>
+        <item name="onion"/>
+        <item name="cheese"/>
+        <item name="ketchup"/>
+    </items>
+</level>

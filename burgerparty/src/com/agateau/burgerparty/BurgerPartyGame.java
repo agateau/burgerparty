@@ -13,7 +13,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
 
 public class BurgerPartyGame extends Game {
 	private Skin mSkin;
@@ -36,16 +35,14 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void loadLevelDefinitions() {
-		Json json = new Json();
 		for (int n=1;; n++) {
-			String name = "levels/" + n + ".json";
+			String name = "levels/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);
 			if (!levelFile.exists()) {
 				break;
 			}
 			Gdx.app.log("loadLevels", "levelFile=" + levelFile);
-			Level level = new Level();
-			level.definition = json.fromJson(Level.Definition.class, levelFile);
+			Level level = Level.fromXml(levelFile);
 			mLevels.add(level);
 		}
 	}
