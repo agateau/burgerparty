@@ -1,11 +1,10 @@
 package com.agateau.burgerparty.model;
 
-import java.util.Random;
-
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
@@ -89,9 +88,8 @@ public class World {
 	}
 
 	private void generateTarget() {
-		Random random = new Random();
 		Array<String> names = new Array<String>(mLevel.definition.inventoryItems);
-		int count = mLevel.definition.minStackSize + random.nextInt(mLevel.definition.maxStackSize - mLevel.definition.minStackSize + 1);
+		int count = MathUtils.random(mLevel.definition.minStackSize, mLevel.definition.maxStackSize);
 
 		mTargetBurgerStack.clear();
 
@@ -100,7 +98,7 @@ public class World {
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
 		for (; count > 0; count--) {
-			int index = random.nextInt(names.size);
+			int index = MathUtils.random(names.size - 1);
 			String name = names.removeIndex(index);
 			if (!lastName.isEmpty()) {
 				names.add(lastName);
