@@ -12,4 +12,5 @@ public class Level {
 	}
 
 	public Definition definition;
+	public int stars = -1;
 }

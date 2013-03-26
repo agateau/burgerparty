@@ -46,14 +46,21 @@ public class LevelListScreen extends BaseScreen {
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int idx, Skin skin) {
-			super(String.valueOf(idx + 1), skin);
+		public LevelButton(int idx, int score, Skin skin) {
+			super("", skin);
+			if (score >= 0) {
+				setText(String.format("LVL %d: %d", idx + 1, score));
+			} else {
+				setText(String.format("[LVL %d]", idx + 1));
+				setDisabled(true);
+			}
 			this.idx = idx;
 		}
 		public int idx;
 	}
 	private Actor createLevelButton(int idx, Skin skin) {
-		LevelButton button = new LevelButton(idx, skin);
+		int score = getGame().getLevelStars(idx);
+		LevelButton button = new LevelButton(idx, score, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				LevelButton button = (LevelButton)actor;

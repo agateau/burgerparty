@@ -1,10 +1,12 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
+import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -19,6 +21,8 @@ public class BurgerPartyGame extends Game {
 	private Array<Level> mLevels = new Array<Level>();
 	private int mLevelIndex = 0;
 
+	private static String PROGRESS_FILE = "progress.xml";
+
 	@Override
 	public void create() {
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
@@ -27,10 +31,11 @@ public class BurgerPartyGame extends Game {
 		mSkin = new Skin(Gdx.files.internal("skin/uiskin.json"), skinAtlas);
 
 		showMenu();
-		loadLevels();
+		loadLevelDefinitions();
+		loadLevelProgress();
 	}
 
-	private void loadLevels() {
+	private void loadLevelDefinitions() {
 		Json json = new Json();
 		for (int n=1;; n++) {
 			String name = "levels/" + n + ".json";
@@ -45,12 +50,55 @@ public class BurgerPartyGame extends Game {
 		}
 	}
 
+	private void loadLevelProgress() {
+		// At least, unlock first level
+		mLevels.get(0).stars = 0;
+
+		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
+		if (!handle.exists()) {
+			return;
+		}
+		Array<Progress.Item> lst = Progress.load(handle);
+		for(Progress.Item item: lst) {
+			mLevels.get(item.level - 1).stars = item.stars;
+		}
+	}
+
+	private void saveLevelProgress() {
+		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
+		Array<Progress.Item> lst = new Array<Progress.Item>();
+		int n = 1;
+		for (Level level: mLevels) {
+			if (level.stars > -1) {
+				Progress.Item item = new Progress.Item();
+				item.level = n;
+				item.stars = level.stars;
+				lst.add(item);
+			}
+			++n;
+		}
+		Progress.save(handle, lst);
+	}
+
 	public int getLevelIndex() {
 		return mLevelIndex;
 	}
 
 	public int getLevelCount() {
 		return mLevels.size;
+	}
+
+	public int getLevelStars(int index) {
+		return mLevels.get(index).stars;
+	}
+
+	public void onCurrentLevelFinished(int stars) {
+		mLevels.get(mLevelIndex).stars = stars;
+		if (mLevelIndex < mLevels.size - 1) {
+			// Unlock next level
+			mLevels.get(mLevelIndex + 1).stars = 0;
+		}
+		saveLevelProgress();
 	}
 
 	public void startLevel(int index) {
@@ -64,5 +112,16 @@ public class BurgerPartyGame extends Game {
 
 	public void selectLevel() {
 		setScreen(new LevelListScreen(this, mSkin));
+	}
+
+	static private FileHandle getUserWritableFile(String name) {
+		FileHandle handle;
+		if (Gdx.app.getType() == ApplicationType.Desktop) {
+			handle = Gdx.files.external(".local/burgerparty/" + name);
+		} else {
+			handle = Gdx.files.local(name);
+		}
+		Gdx.app.log("BurgerPartyGame", "path for " + name + ": " + handle.path());
+		return handle;
 	}
 }

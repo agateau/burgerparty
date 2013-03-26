@@ -4,13 +4,15 @@ import java.util.Random;
 
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 stackFinished = new Signal0();
-	public Signal0 levelFinished = new Signal0();
+	// Parameter: earned stars
+	public Signal1<Integer> levelFinished = new Signal1<Integer>();
 	public Signal0 levelFailed = new Signal0();
 	private Level mLevel;
 	private Inventory mInventory;
@@ -119,7 +121,8 @@ public class World {
 			stackFinished.emit();
 		} else {
 			mTimer.stop();
-			levelFinished.emit();
+			// FIXME: Compute earned stars
+			levelFinished.emit(1);
 		}
 	}
 }

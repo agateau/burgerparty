@@ -78,9 +78,9 @@ public class WorldView extends AnchorGroup {
 				showDoneFeedback();
 			}
 		});
-		mWorld.levelFinished.connect(mHandlers, new Signal0.Handler() {
-			public void handle() {
-				showLevelFinishedOverlay();
+		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<Integer>() {
+			public void handle(Integer stars) {
+				onLevelFinished(stars);
 			}
 		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
@@ -272,7 +272,8 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
-	private void showLevelFinishedOverlay() {
+	private void onLevelFinished(int stars) {
+		mGame.onCurrentLevelFinished(stars);
 		addActor(new LevelFinishedOverlay(mGame, mWorld, mAtlas, mSkin));
 	}
 
