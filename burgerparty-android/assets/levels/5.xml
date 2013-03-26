@@ -4,6 +4,7 @@
     maxStackSize="6"
     customerCount="8"
     duration="120"
+    maxThrashed="0"
     >
     <items>
         <item name="steak"/>

@@ -1,6 +1,7 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
+import com.agateau.burgerparty.model.LevelFinishedSummary;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
@@ -89,11 +90,17 @@ public class BurgerPartyGame extends Game {
 		return mLevels.get(index).stars;
 	}
 
-	public void onCurrentLevelFinished(int stars) {
-		mLevels.get(mLevelIndex).stars = stars;
+	public void onCurrentLevelFinished(LevelFinishedSummary summary) {
+		Level currentLevel = mLevels.get(mLevelIndex);
+		if (summary.stars > currentLevel.stars) {
+			currentLevel.stars = summary.stars;
+		}
 		if (mLevelIndex < mLevels.size - 1) {
-			// Unlock next level
-			mLevels.get(mLevelIndex + 1).stars = 0;
+			// Unlock next level if necessary
+			Level next = mLevels.get(mLevelIndex + 1);
+			if (next.stars == -1) {
+				next.stars = 0;
+			}
 		}
 		saveLevelProgress();
 	}

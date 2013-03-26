@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.model.LevelFinishedSummary;
 import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.utils.Anchor;
@@ -78,9 +79,9 @@ public class WorldView extends AnchorGroup {
 				showDoneFeedback();
 			}
 		});
-		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<Integer>() {
-			public void handle(Integer stars) {
-				onLevelFinished(stars);
+		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelFinishedSummary>() {
+			public void handle(LevelFinishedSummary summary) {
+				onLevelFinished(summary);
 			}
 		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
@@ -272,9 +273,9 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
-	private void onLevelFinished(int stars) {
-		mGame.onCurrentLevelFinished(stars);
-		addActor(new LevelFinishedOverlay(mGame, mAtlas, mSkin));
+	private void onLevelFinished(LevelFinishedSummary summary) {
+		mGame.onCurrentLevelFinished(summary);
+		addActor(new LevelFinishedOverlay(mGame, summary, mAtlas, mSkin));
 	}
 
 	private void goToNextCustomer() {

@@ -10,17 +10,20 @@ import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 stackFinished = new Signal0();
-	// Parameter: earned stars
-	public Signal1<Integer> levelFinished = new Signal1<Integer>();
+	public Signal1<LevelFinishedSummary> levelFinished = new Signal1<LevelFinishedSummary>();
 	public Signal0 levelFailed = new Signal0();
+
+	private Timer mTimer = new Timer();
+
 	private Level mLevel;
 	private Inventory mInventory;
 	private BurgerStack mBurgerStack;
 	private BurgerStack mTargetBurgerStack;
+
 	private int mCustomerCount;
-	private int mScore;
-	private Timer mTimer = new Timer();
+	private int mScore = 0;
 	private int mRemainingSeconds;
+	private int mTrashedCount = 0;
 
 	public World(Level level) {
 		mLevel = level;
@@ -47,6 +50,7 @@ public class World {
 		if (status == BurgerStack.Status.DONE) {
 			handleDoneStack();
 		} else if (status == BurgerStack.Status.WRONG) {
+			mTrashedCount++;
 			mBurgerStack.trash();
 		}
 	}
@@ -119,8 +123,22 @@ public class World {
 			stackFinished.emit();
 		} else {
 			mTimer.stop();
-			// FIXME: Compute earned stars
-			levelFinished.emit(1);
+			LevelFinishedSummary summary = createLevelFinishedSummary();
+			levelFinished.emit(summary);
 		}
 	}
+
+	private LevelFinishedSummary createLevelFinishedSummary() {
+		LevelFinishedSummary summary = new LevelFinishedSummary();
+		summary.level = mLevel;
+		summary.trashedCount = mTrashedCount;
+		summary.duration = mLevel.definition.duration - mRemainingSeconds;
+
+		summary.stars = 1;
+		if (summary.trashedCount <= mLevel.definition.maxThrashed) {
+			summary.stars++;
+		}
+		return summary;
+	}
+
 }
