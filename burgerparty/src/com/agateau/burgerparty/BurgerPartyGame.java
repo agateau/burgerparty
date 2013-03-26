@@ -118,7 +118,6 @@ public class BurgerPartyGame extends Game {
 		} else {
 			handle = Gdx.files.local(name);
 		}
-		Gdx.app.log("BurgerPartyGame", "path for " + name + ": " + handle.path());
 		return handle;
 	}
 }
