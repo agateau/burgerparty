@@ -1,9 +1,11 @@
 package com.agateau.burgerparty.model;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.OrderedMap;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class BurgerItem {
 	private String mName;
@@ -11,37 +13,6 @@ public class BurgerItem {
 	private int mOffset;
 
 	private static OrderedMap<String, BurgerItem> sMap = new OrderedMap<String, BurgerItem>();
-
-	private static class Reader extends JsonReader {
-		@Override
-		protected void startObject(String name) {
-			mItem = new BurgerItem();
-		}
-		@Override
-		protected void string(String name, String value) {
-			mItem.mName = value;
-			sMap.put(mItem.mName, mItem);
-		}
-		@Override
-		protected void number(String name, float value) {
-			if (name.equals("height")) {
-				mItem.mHeight = (int)value;
-			} else {
-				mItem.mOffset = (int)value;
-			}
-		}
-
-		// Must be overridden to completely disable JsonReader behavior
-		@Override
-		protected void startArray(String name) {
-		}
-		// Must be overridden to completely disable JsonReader behavior
-		@Override
-		protected void pop() {
-		}
-
-		private BurgerItem mItem;
-	};
 
 	private BurgerItem() {
 	}
@@ -66,8 +37,23 @@ public class BurgerItem {
 	}
 
 	private static void initMap() {
-		FileHandle handle = Gdx.files.internal("burgeritems.json");
-		Reader reader = new Reader();
-		reader.parse(handle);
+		FileHandle handle = Gdx.files.internal("burgeritems.xml");
+		XmlReader.Element root = null;
+		try {
+			XmlReader reader = new XmlReader();
+			root = reader.parse(handle);
+		} catch (IOException e) {
+			Gdx.app.error("BurgerItem.initMap", "Failed to load burger items definition from " + handle.path() + ". Exception: " + e.toString());
+			return;
+		}
+
+		for(int idx = 0; idx < root.getChildCount(); ++idx) {
+			XmlReader.Element element = root.getChild(idx);
+			BurgerItem item = new BurgerItem();
+			item.mName = element.getAttribute("name");
+			item.mOffset = element.getIntAttribute("offset");
+			item.mHeight = element.getIntAttribute("height");
+			sMap.put(item.mName, item);
+		}
 	}
 }
