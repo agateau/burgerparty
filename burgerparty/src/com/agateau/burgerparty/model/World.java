@@ -67,6 +67,10 @@ public class World {
 		return mCustomerCount;
 	}
 
+	public int getTrashedCount() {
+		return mTrashedCount;
+	}
+
 	public void start() {
 		mRemainingSeconds = mLevel.definition.duration;
 		Timer.Task task = new Timer.Task() {
@@ -130,15 +134,9 @@ public class World {
 
 	private LevelResult createLevelResult() {
 		LevelResult result = new LevelResult();
-		result.level = mLevel;
-		result.trashedCount = mTrashedCount;
-		result.duration = mLevel.definition.duration - mRemainingSeconds;
-
-		result.stars = 1;
-		if (result.trashedCount <= mLevel.definition.maxTrashed) {
-			result.stars++;
+		for (Objective obj: mLevel.definition.objectives) {
+			result.addObjectiveResult(obj.computeResult(this));
 		}
 		return result;
 	}
-
 }

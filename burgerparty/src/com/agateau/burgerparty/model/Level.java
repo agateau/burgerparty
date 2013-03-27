@@ -14,7 +14,7 @@ public class Level {
 		public int maxStackSize;
 		public int duration;
 		public int customerCount;
-		public int maxTrashed;
+		public Array<Objective> objectives = new Array<Objective>();
 	}
 
 	public Definition definition = new Definition();
@@ -35,8 +35,12 @@ public class Level {
 		level.definition.minStackSize = root.getIntAttribute("minStackSize");
 		level.definition.maxStackSize = root.getIntAttribute("maxStackSize");
 		level.definition.customerCount = root.getIntAttribute("customerCount");
-		level.definition.maxTrashed = root.getIntAttribute("maxTrashed", 0);
 		level.definition.duration = root.getIntAttribute("duration");
+
+		int maxTrashed = root.getIntAttribute("maxTrashed", -1);
+		if (maxTrashed >= 0) {
+			level.definition.objectives.add(new MaxTrashedObjective(maxTrashed));
+		}
 
 		XmlReader.Element items = root.getChildByName("items");
 		assert(items != null);

@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.LevelResult;
+import com.agateau.burgerparty.model.ObjectiveResult;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -61,20 +62,20 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 	}
 
-	String createResultText(LevelResult result) {
-		String txt;
-		txt = "- Trashed burgers: " + result.trashedCount + ". Maximum allowed: " + result.level.definition.maxTrashed + ". ";
-		if (result.trashedCount <= result.level.definition.maxTrashed) {
-			txt += "OK!";
-		} else {
-			txt += "Fail";
+	String createResultText(LevelResult levelResult) {
+		String txt = "";
+		for(ObjectiveResult result: levelResult.getObjectiveResults()) {
+			txt += "- " + result.description +": ";
+			if (result.success) {
+				txt += "OK!";
+			} else {
+				txt += "Fail";
+			}
+			txt += "\n";
 		}
 		txt += "\n";
 
-		txt += "- Time spent: " + result.duration + " seconds.\n";
-		txt += "\n";
-
-		for (int idx = 0; idx < result.stars; ++idx) {
+		for (int idx = 0; idx < levelResult.computeStars(); ++idx) {
 			txt += "*";
 		}
 		return txt;

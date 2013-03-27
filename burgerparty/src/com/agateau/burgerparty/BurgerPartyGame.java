@@ -92,8 +92,9 @@ public class BurgerPartyGame extends Game {
 
 	public void onCurrentLevelFinished(LevelResult result) {
 		Level currentLevel = mLevels.get(mLevelIndex);
-		if (result.stars > currentLevel.stars) {
-			currentLevel.stars = result.stars;
+		int stars = result.computeStars();
+		if (stars > currentLevel.stars) {
+			currentLevel.stars = stars;
 		}
 		if (mLevelIndex < mLevels.size - 1) {
 			// Unlock next level if necessary
