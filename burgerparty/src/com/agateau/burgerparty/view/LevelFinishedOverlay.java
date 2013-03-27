@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.LevelFinishedSummary;
+import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class LevelFinishedOverlay extends Overlay {
 	private BurgerPartyGame mGame;
-	public LevelFinishedOverlay(BurgerPartyGame game, LevelFinishedSummary summary, TextureAtlas atlas, Skin skin) {
+	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult result, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
 		AnchorGroup group = new AnchorGroup();
@@ -24,7 +24,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Label mainLabel = new Label("", skin);
 
-		Label summaryLabel = new Label(createSummaryText(summary), skin);
+		Label resultLabel = new Label(createResultText(result), skin);
 
 		TextButton nextButton = null;
 
@@ -51,8 +51,8 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		UiUtils.adjustToPrefSize(mainLabel);
 
-		group.moveActor(summaryLabel, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 1);
-		group.moveActor(mainLabel, Anchor.BOTTOM_CENTER, summaryLabel, Anchor.TOP_CENTER, 0, 1);
+		group.moveActor(resultLabel, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 1);
+		group.moveActor(mainLabel, Anchor.BOTTOM_CENTER, resultLabel, Anchor.TOP_CENTER, 0, 1);
 		if (nextButton == null) {
 			group.moveActor(menuButton, Anchor.TOP_CENTER, this, Anchor.CENTER, 0, 0);
 		} else {
@@ -61,20 +61,20 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 	}
 
-	String createSummaryText(LevelFinishedSummary summary) {
+	String createResultText(LevelResult result) {
 		String txt;
-		txt = "- Trashed burgers: " + summary.trashedCount + ". Maximum allowed: " + summary.level.definition.maxThrashed + ". ";
-		if (summary.trashedCount <= summary.level.definition.maxThrashed) {
+		txt = "- Trashed burgers: " + result.trashedCount + ". Maximum allowed: " + result.level.definition.maxThrashed + ". ";
+		if (result.trashedCount <= result.level.definition.maxThrashed) {
 			txt += "OK!";
 		} else {
 			txt += "Fail";
 		}
 		txt += "\n";
 
-		txt += "- Time spent: " + summary.duration + " seconds.\n";
+		txt += "- Time spent: " + result.duration + " seconds.\n";
 		txt += "\n";
 
-		for (int idx = 0; idx < summary.stars; ++idx) {
+		for (int idx = 0; idx < result.stars; ++idx) {
 			txt += "*";
 		}
 		return txt;

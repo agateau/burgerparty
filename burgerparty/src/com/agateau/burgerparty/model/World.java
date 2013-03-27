@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 stackFinished = new Signal0();
-	public Signal1<LevelFinishedSummary> levelFinished = new Signal1<LevelFinishedSummary>();
+	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 
 	private Timer mTimer = new Timer();
@@ -123,22 +123,22 @@ public class World {
 			stackFinished.emit();
 		} else {
 			mTimer.stop();
-			LevelFinishedSummary summary = createLevelFinishedSummary();
-			levelFinished.emit(summary);
+			LevelResult result = createLevelResult();
+			levelFinished.emit(result);
 		}
 	}
 
-	private LevelFinishedSummary createLevelFinishedSummary() {
-		LevelFinishedSummary summary = new LevelFinishedSummary();
-		summary.level = mLevel;
-		summary.trashedCount = mTrashedCount;
-		summary.duration = mLevel.definition.duration - mRemainingSeconds;
+	private LevelResult createLevelResult() {
+		LevelResult result = new LevelResult();
+		result.level = mLevel;
+		result.trashedCount = mTrashedCount;
+		result.duration = mLevel.definition.duration - mRemainingSeconds;
 
-		summary.stars = 1;
-		if (summary.trashedCount <= mLevel.definition.maxThrashed) {
-			summary.stars++;
+		result.stars = 1;
+		if (result.trashedCount <= mLevel.definition.maxThrashed) {
+			result.stars++;
 		}
-		return summary;
+		return result;
 	}
 
 }

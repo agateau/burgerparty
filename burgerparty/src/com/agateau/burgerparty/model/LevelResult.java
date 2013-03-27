@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.model;
 
-public class LevelFinishedSummary {
+public class LevelResult {
 	public Level level;
 	public int trashedCount;
 	public int duration;
