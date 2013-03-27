@@ -63,8 +63,8 @@ public class LevelFinishedOverlay extends Overlay {
 
 	String createResultText(LevelResult result) {
 		String txt;
-		txt = "- Trashed burgers: " + result.trashedCount + ". Maximum allowed: " + result.level.definition.maxThrashed + ". ";
-		if (result.trashedCount <= result.level.definition.maxThrashed) {
+		txt = "- Trashed burgers: " + result.trashedCount + ". Maximum allowed: " + result.level.definition.maxTrashed + ". ";
+		if (result.trashedCount <= result.level.definition.maxTrashed) {
 			txt += "OK!";
 		} else {
 			txt += "Fail";

@@ -135,7 +135,7 @@ public class World {
 		result.duration = mLevel.definition.duration - mRemainingSeconds;
 
 		result.stars = 1;
-		if (result.trashedCount <= mLevel.definition.maxThrashed) {
+		if (result.trashedCount <= mLevel.definition.maxTrashed) {
 			result.stars++;
 		}
 		return result;

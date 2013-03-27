@@ -14,7 +14,7 @@ public class Level {
 		public int maxStackSize;
 		public int duration;
 		public int customerCount;
-		public int maxThrashed;
+		public int maxTrashed;
 	}
 
 	public Definition definition = new Definition();
@@ -35,7 +35,7 @@ public class Level {
 		level.definition.minStackSize = root.getIntAttribute("minStackSize");
 		level.definition.maxStackSize = root.getIntAttribute("maxStackSize");
 		level.definition.customerCount = root.getIntAttribute("customerCount");
-		level.definition.maxThrashed = root.getIntAttribute("maxThrashed", 0);
+		level.definition.maxTrashed = root.getIntAttribute("maxTrashed", 0);
 		level.definition.duration = root.getIntAttribute("duration");
 
 		XmlReader.Element items = root.getChildByName("items");
