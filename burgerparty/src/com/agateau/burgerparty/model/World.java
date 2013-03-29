@@ -21,7 +21,6 @@ public class World {
 	private BurgerStack mTargetBurgerStack;
 
 	private int mCustomerCount;
-	private int mScore = 0;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
 
@@ -57,10 +56,6 @@ public class World {
 
 	public int getRemainingSeconds() {
 		return mRemainingSeconds;
-	}
-
-	public int getScore() {
-		return mScore;
 	}
 
 	public int getCustomerCount() {
@@ -123,7 +118,6 @@ public class World {
 	}
 
 	private void handleDoneStack() {
-		mScore += 100 * mBurgerStack.getSize();
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
 			mBurgerStack = new BurgerStack();

@@ -44,7 +44,6 @@ public class WorldView extends AnchorGroup {
 	private BurgerStackView mTargetBurgerStackView;
 	private Label mTimerDisplay;
 	private TextButton mPauseButton;
-	private Label mScoreLabel;
 	private Image mWorkbench;
 	private Image mBubble;
 	private ComposableCustomerFactory mCustomerFactory;
@@ -70,7 +69,6 @@ public class WorldView extends AnchorGroup {
 		setupTargetBurgerStackView();
 		setupInventoryView();
 		setupTimerDisplay();
-		setupScoreLabel();
 		setupBurgerStackView();
 		setupAnchors();
 
@@ -138,7 +136,6 @@ public class WorldView extends AnchorGroup {
 	public void act(float delta) {
 		super.act(delta);
 		updateTimerDisplay();
-		updateScoreLabel();
 	}
 
 	@Override
@@ -202,13 +199,7 @@ public class WorldView extends AnchorGroup {
 		});
 	}
 
-	private void setupScoreLabel() {
-		mScoreLabel = new Label("", mSkin);
-		mScoreLabel.setAlignment(Align.left);
-	}
-
 	private void setupAnchors() {
-		addRule(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
@@ -222,12 +213,6 @@ public class WorldView extends AnchorGroup {
 		String txt = String.format("%d:%02d", minutes, seconds);
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);
-	}
-
-	private void updateScoreLabel() {
-		String txt = String.format("SCORE: %07d", mWorld.getScore());
-		mScoreLabel.setText(txt);
-		UiUtils.adjustToPrefSize(mScoreLabel);
 	}
 
 	private void showGameOverOverlay() {
