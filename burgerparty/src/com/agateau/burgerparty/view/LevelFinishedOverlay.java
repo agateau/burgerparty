@@ -7,17 +7,26 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
+import com.esotericsoftware.tablelayout.BaseTableLayout;
 
 public class LevelFinishedOverlay extends Overlay {
 	private BurgerPartyGame mGame;
+	private Array<TextureRegion> mStars = new Array<TextureRegion>();
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult result, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
+		mStars.add(atlas.findRegion("star-empty"));
+		mStars.add(atlas.findRegion("star"));
+
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
 		group.setFillParent(true);
@@ -25,7 +34,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Label mainLabel = new Label("", skin);
 
-		Label resultLabel = new Label(createResultText(result), skin);
+		Actor resultActor = createDetailedResultActor(result, skin);
 
 		TextButton nextButton = null;
 
@@ -52,32 +61,35 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		UiUtils.adjustToPrefSize(mainLabel);
 
-		group.moveActor(resultLabel, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 1);
-		group.moveActor(mainLabel, Anchor.BOTTOM_CENTER, resultLabel, Anchor.TOP_CENTER, 0, 1);
+		group.moveActor(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
+		group.moveActor(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
 		if (nextButton == null) {
-			group.moveActor(menuButton, Anchor.TOP_CENTER, this, Anchor.CENTER, 0, 0);
+			group.moveActor(menuButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
 		} else {
-			group.moveActor(nextButton, Anchor.TOP_CENTER, this, Anchor.CENTER, 0, 0);
+			group.moveActor(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
 			group.moveActor(menuButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
 		}
 	}
 
-	String createResultText(LevelResult levelResult) {
-		String txt = "";
-		for(ObjectiveResult result: levelResult.getObjectiveResults()) {
-			txt += "- " + result.description +": ";
-			if (result.success) {
-				txt += "OK!";
-			} else {
-				txt += "Fail";
-			}
-			txt += "\n";
-		}
-		txt += "\n";
+	private void addDetailToTable(Table table, String text, boolean on) {
+		table.add(text)
+			.align(BaseTableLayout.CENTER | BaseTableLayout.LEFT)
+			.pad(UiUtils.SPACING);
 
-		for (int idx = 0; idx < levelResult.computeStars(); ++idx) {
-			txt += "*";
+		Image image = new Image(mStars.get(on ? 1 : 0));
+		table.add(image);
+
+		table.row();
+	}
+
+	private Actor createDetailedResultActor(LevelResult levelResult, Skin skin) {
+		Table table = new Table(skin);
+
+		addDetailToTable(table, "Finished Level", true);
+		for(ObjectiveResult result: levelResult.getObjectiveResults()) {
+			addDetailToTable(table, result.description, result.success);
 		}
-		return txt;
+		table.setSize(table.getPrefWidth(), table.getPrefHeight());
+		return table;
 	}
 }

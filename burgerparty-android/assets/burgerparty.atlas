@@ -183,9 +183,23 @@ face
   orig: 67, 68
   offset: 0, 0
   index: -1
+star-empty
+  rotate: false
+  xy: 344, 249
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 803, 640
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
 overlay-bg
   rotate: false
-  xy: 344, 282
+  xy: 986, 848
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
