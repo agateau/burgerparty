@@ -23,7 +23,7 @@ public class MaxTrashedObjective implements Objective {
 	public ObjectiveResult computeResult(World world) {
 		ObjectiveResult result = new ObjectiveResult();
 		int count = world.getTrashedCount();
-		result.description = "Trashed: " + count + ". Maximum allowed: " + mCount;
+		result.description = "Trashed: " + count + ". Maximum allowed: " + mCount + ".";
 		result.success = count <= mCount;
 		return result;
 	}
