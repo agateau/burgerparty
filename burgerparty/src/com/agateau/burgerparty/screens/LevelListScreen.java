@@ -5,16 +5,25 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class LevelListScreen extends BaseScreen {
 	static private int COL_COUNT = 3;
+	private TextureRegion mStarOff;
+	private TextureRegion mStarOn;
+	private TextureRegion mLock;
 
-	public LevelListScreen(BurgerPartyGame game, Skin skin) {
+	public LevelListScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
+		mStarOff = atlas.findRegion("star-empty");
+		mStarOn = atlas.findRegion("star");
+		mLock = atlas.findRegion("lock");
 		setupWidgets(skin);
 	}
 
@@ -47,12 +56,26 @@ public class LevelListScreen extends BaseScreen {
 
 	class LevelButton extends TextButton {
 		public LevelButton(int idx, int score, Skin skin) {
-			super("", skin);
+			super(String.valueOf(idx + 1), skin);
+			AnchorGroup group = new AnchorGroup();
+			addActor(group);
+			group.setFillParent(true);
+
 			if (score >= 0) {
-				setText(String.format("LVL %d: %d", idx + 1, score));
+				Actor prev = null;
+				for (int x = 1; x <= 3; ++x) {
+					Image image = new Image(x > score ? mStarOff : mStarOn);
+					if (prev == null) {
+						group.addRule(image, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
+					} else {
+						group.addRule(image, Anchor.BOTTOM_LEFT, prev, Anchor.BOTTOM_RIGHT);
+					}
+					prev = image;
+				}
 			} else {
-				setText(String.format("[LVL %d]", idx + 1));
 				setDisabled(true);
+				Image image = new Image(mLock);
+				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT);
 			}
 			this.idx = idx;
 		}

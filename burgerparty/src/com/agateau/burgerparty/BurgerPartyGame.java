@@ -116,7 +116,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void selectLevel() {
-		setScreen(new LevelListScreen(this, mSkin));
+		setScreen(new LevelListScreen(this, mAtlas, mSkin));
 	}
 
 	static private FileHandle getUserWritableFile(String name) {
