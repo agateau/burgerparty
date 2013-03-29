@@ -26,7 +26,7 @@ public class LevelListScreen extends BaseScreen {
 
 		TextButton backButton = new TextButton("<- Back", skin);
 		backButton.setSize(backButton.getPrefWidth(), UiUtils.BUTTON_HEIGHT);
-		group.moveActor(backButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 1, 1);
+		group.addRule(backButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().showMenu();
@@ -37,7 +37,7 @@ public class LevelListScreen extends BaseScreen {
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(150, 150);
-		group.moveActor(gridGroup, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
+		group.addRule(gridGroup, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
 
 		for (int idx=0; idx < getGame().getLevelCount(); idx++) {
 			Actor levelButton = createLevelButton(idx, skin);

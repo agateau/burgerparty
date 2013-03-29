@@ -208,11 +208,11 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupAnchors() {
-		moveActor(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
-		moveActor(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
-		moveActor(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
-		moveActor(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
+		addRule(mScoreLabel, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
+		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
+		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
+		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+		addRule(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
 	private void updateTimerDisplay() {
@@ -269,7 +269,7 @@ public class WorldView extends AnchorGroup {
 
 	private void createNewBurgerStackView() {
 		setupBurgerStackView();
-		moveActor(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
+		addRule(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 		invalidate();
 	}
 

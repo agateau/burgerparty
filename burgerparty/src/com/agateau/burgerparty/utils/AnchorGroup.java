@@ -27,11 +27,11 @@ public class AnchorGroup extends WidgetGroup {
 		return mSpacing;
 	}
 
-	public void moveActor(Actor target, Anchor targetAnchor, Actor reference, Anchor referenceAnchor) {
-		moveActor(target, targetAnchor, reference, referenceAnchor, 0, 0);
+	public void addRule(Actor target, Anchor targetAnchor, Actor reference, Anchor referenceAnchor) {
+		addRule(target, targetAnchor, reference, referenceAnchor, 0, 0);
 	}
 
-	public void moveActor(Actor target, Anchor targetAnchor, Actor reference, Anchor referenceAnchor, float hSpace, float vSpace) {
+	public void addRule(Actor target, Anchor targetAnchor, Actor reference, Anchor referenceAnchor, float hSpace, float vSpace) {
 		Rule rule = new Rule();
 		rule.target = target;
 		rule.targetAnchor = targetAnchor;

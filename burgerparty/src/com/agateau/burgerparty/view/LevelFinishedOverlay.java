@@ -61,13 +61,13 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		UiUtils.adjustToPrefSize(mainLabel);
 
-		group.moveActor(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
-		group.moveActor(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
+		group.addRule(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
+		group.addRule(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
 		if (nextButton == null) {
-			group.moveActor(menuButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(menuButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
 		} else {
-			group.moveActor(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
-			group.moveActor(menuButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(menuButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
 		}
 	}
 

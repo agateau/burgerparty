@@ -52,9 +52,9 @@ public class PauseOverlay extends Overlay {
 		group.setFillParent(true);
 		group.setSpacing(UiUtils.SPACING);
 
-		group.moveActor(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
-		group.moveActor(resumeButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
-		group.moveActor(restartButton, Anchor.TOP_CENTER, resumeButton, Anchor.BOTTOM_CENTER, 0, -1);
-		group.moveActor(menuButton, Anchor.TOP_CENTER, restartButton, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
+		group.addRule(resumeButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
+		group.addRule(restartButton, Anchor.TOP_CENTER, resumeButton, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(menuButton, Anchor.TOP_CENTER, restartButton, Anchor.BOTTOM_CENTER, 0, -1);
 	}
 }

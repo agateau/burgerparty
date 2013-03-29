@@ -43,8 +43,8 @@ public class GameOverOverlay extends Overlay {
 		group.setFillParent(true);
 		group.setSpacing(UiUtils.SPACING);
 
-		group.moveActor(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
-		group.moveActor(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
-		group.moveActor(menuButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
+		group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
+		group.addRule(menuButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
 	}
 }
