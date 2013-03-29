@@ -4,6 +4,7 @@
     customerCount="4"
     duration="120"
     maxTrashed="2"
+    maxDuration="60"
     >
     <items>
         <item name="steak"/>

@@ -41,6 +41,10 @@ public class Level {
 		if (maxTrashed >= 0) {
 			level.definition.objectives.add(new MaxTrashedObjective(maxTrashed));
 		}
+		int maxDuration = root.getIntAttribute("maxDuration", -1);
+		if (maxDuration > 0) {
+			level.definition.objectives.add(new MaxDurationObjective(maxDuration));
+		}
 
 		XmlReader.Element items = root.getChildByName("items");
 		assert(items != null);

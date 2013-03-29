@@ -71,6 +71,10 @@ public class World {
 		return mTrashedCount;
 	}
 
+	public int getDuration() {
+		return mLevel.definition.duration - mRemainingSeconds;
+	}
+
 	public void start() {
 		mRemainingSeconds = mLevel.definition.duration;
 		Timer.Task task = new Timer.Task() {
