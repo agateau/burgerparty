@@ -9,15 +9,59 @@ import com.badlogic.gdx.utils.Array;
 
 public class AnchorGroup extends WidgetGroup {
 	private float mSpacing;
-	class Rule {
+
+	// A version of Actor.localToStageCoordinates which works with scaled actors
+	static private Vector2 localToStageCoordinates(Actor actor, Vector2 pos) {
+		while (actor != null) {
+			pos.x = actor.getX() + pos.x * actor.getScaleX();
+			pos.y = actor.getY() + pos.y * actor.getScaleY();
+			actor = actor.getParent();
+		}
+		return pos;
+	}
+
+	class Rule implements AnchorRule {
 		public Actor target;
 		public Anchor targetAnchor;
 		public Actor reference;
 		public Anchor referenceAnchor;
 		public float hSpace;
 		public float vSpace;
+
+		@Override
+		public Actor getTarget() {
+			return target;
+		}
+
+		@Override
+		public void apply() {
+			// Compute reference position
+			Vector2 referencePos = new Vector2(
+				reference.getWidth() * referenceAnchor.hPercent,
+				reference.getHeight() * referenceAnchor.vPercent);
+
+			Vector2 stagePos = localToStageCoordinates(reference, referencePos);
+
+			// Apply space
+			stagePos.add(hSpace * mSpacing, vSpace * mSpacing);
+
+			// Position target (use target parent because setPosition() works in parent coordinates)
+			Actor targetParent = target.getParent();
+			if (targetParent == null) {
+				return;
+			}
+			Vector2 targetPos = targetParent.stageToLocalCoordinates(stagePos);
+
+			// Apply target offset
+			targetPos.add(
+				-target.getWidth() * target.getScaleX() * targetAnchor.hPercent,
+				-target.getHeight() * target.getScaleY() * targetAnchor.vPercent);
+
+			target.setPosition(targetPos.x, targetPos.y);
+			//Gdx.app.log("applyRule", rule.target.toString());
+		}
 	}
-	private Array<Rule> mRules = new Array<Rule>();
+	private Array<AnchorRule> mRules = new Array<AnchorRule>();
 
 	public void setSpacing(float spacing) {
 		mSpacing = spacing;
@@ -43,56 +87,19 @@ public class AnchorGroup extends WidgetGroup {
 		addActor(target);
 	}
 
-	// A version of Actor.localToStageCoordinates which works with scaled actors 
-	static private Vector2 localToStageCoordinates(Actor actor, Vector2 pos) {
-		while (actor != null) {
-			pos.x = actor.getX() + pos.x * actor.getScaleX();
-			pos.y = actor.getY() + pos.y * actor.getScaleY();
-			actor = actor.getParent();
-		}
-		return pos;
-	}
-
-	private void applyRule(Rule rule) {
-		// Compute reference position
-		Vector2 referencePos = new Vector2(
-			rule.reference.getWidth() * rule.referenceAnchor.hPercent,
-			rule.reference.getHeight() * rule.referenceAnchor.vPercent);
-
-		Vector2 stagePos = localToStageCoordinates(rule.reference, referencePos);
-
-		// Apply space
-		stagePos.add(rule.hSpace * mSpacing, rule.vSpace * mSpacing);
-
-		// Position target (use target parent because setPosition() works in parent coordinates)
-		Actor targetParent = rule.target.getParent();
-		if (targetParent == null) {
-			return;
-		}
-		Vector2 targetPos = targetParent.stageToLocalCoordinates(stagePos);
-
-		// Apply target offset
-		targetPos.add(
-			-rule.target.getWidth() * rule.target.getScaleX() * rule.targetAnchor.hPercent,
-			-rule.target.getHeight() * rule.target.getScaleY() * rule.targetAnchor.vPercent);
-
-		rule.target.setPosition(targetPos.x, targetPos.y);
-		//Gdx.app.log("applyRule", rule.target.toString());
-	}
-
 	public void removeRulesForActor(Actor actor) {
-		Iterator<Rule> it = mRules.iterator();
+		Iterator<AnchorRule> it = mRules.iterator();
 		for (; it.hasNext(); ) {
-			Rule rule = it.next();
-			if (rule.target == actor) {
+			AnchorRule rule = it.next();
+			if (rule.getTarget() == actor) {
 				it.remove();
 			}
 		}
 	}
 
 	public void layout() {
-		for(Rule rule: mRules) {
-			applyRule(rule);
+		for(AnchorRule rule: mRules) {
+			rule.apply();
 		}
 	}
 }
