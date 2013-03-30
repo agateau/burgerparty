@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 
 public class UiUtils {
 	public static final int BUTTON_WIDTH = 200;
-	public static final int BUTTON_HEIGHT = 40;
+	public static final int BUTTON_HEIGHT = 48;
 	public static final int SPACING = 20;
 
 	public static void setButtonSize(Actor actor) {

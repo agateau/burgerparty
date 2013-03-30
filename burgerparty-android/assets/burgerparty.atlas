@@ -373,15 +373,38 @@ filter: Nearest,Nearest
 repeat: none
 ui/menu-bg
   rotate: false
-  xy: 1, 1
+  xy: 1, 503
   size: 500, 500
   orig: 500, 500
   offset: 0, 0
   index: -1
 ui/shattered
   rotate: false
-  xy: 503, 1
+  xy: 1, 1
   size: 500, 500
   orig: 500, 500
+  offset: 0, 0
+  index: -1
+ui/default
+  rotate: false
+  xy: 503, 926
+  size: 254, 77
+  orig: 254, 77
+  offset: 0, 0
+  index: -1
+ui/button-down
+  rotate: false
+  xy: 503, 876
+  size: 152, 48
+  split: 24, 24, 23, 23
+  orig: 152, 48
+  offset: 0, 0
+  index: -1
+ui/button
+  rotate: false
+  xy: 759, 955
+  size: 152, 48
+  split: 24, 24, 23, 23
+  orig: 152, 48
   offset: 0, 0
   index: -1

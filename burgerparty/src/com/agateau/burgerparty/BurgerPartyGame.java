@@ -12,7 +12,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
@@ -26,9 +28,18 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void create() {
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
+		TextureRegion region = mAtlas.findRegion("ui/default");
+		Gdx.app.log("BurgerPartyGame", "ui/default " + region.getRegionWidth());
 
 		TextureAtlas skinAtlas = new TextureAtlas(Gdx.files.internal("skin/uiskin.atlas"));
 		mSkin = new Skin(Gdx.files.internal("skin/uiskin.json"), skinAtlas);
+
+		mSkin.addRegions(mAtlas);
+		TextButtonStyle style = new TextButtonStyle();
+		style.font = mSkin.getFont("default-font");
+		style.up = mSkin.getDrawable("ui/button");
+		style.down = mSkin.getDrawable("ui/button-down");
+		mSkin.add("default", style, TextButtonStyle.class);
 
 		showMenu();
 		loadLevelDefinitions();
