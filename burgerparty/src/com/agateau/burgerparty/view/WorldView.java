@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -278,7 +279,7 @@ public class WorldView extends AnchorGroup {
 			customers.insert(0, mActiveCustomer);
 		}
 		float centerX = getWidth() / 2;
-		float posY = mWorkbench.getTop() - 4;
+		float posY = MathUtils.ceil(mWorkbench.getTop() - 4);
 		final float padding = 10;
 		float delay = 0;
 		for(Customer customer: customers) {
@@ -287,7 +288,7 @@ public class WorldView extends AnchorGroup {
 				Actions.sequence(
 					Actions.moveTo(customer.getX(), posY), // Force posY to avoid getting from under the workbench at startup
 					Actions.delay(delay),
-					Actions.moveTo(centerX - width / 2, posY, 0.3f, Interpolation.sineOut)
+					Actions.moveTo(MathUtils.ceil(centerX - width / 2), posY, 0.3f, Interpolation.sineOut)
 				)
 			);
 			centerX -= width + padding;
@@ -307,7 +308,7 @@ public class WorldView extends AnchorGroup {
 	private void showBubble() {
 		mBubble.setVisible(true);
 		mTargetBurgerStackView.setVisible(true);
-		mBubble.setPosition(mActiveCustomer.getRight() - 10, mActiveCustomer.getY() + 50);
+		mBubble.setPosition(MathUtils.ceil(mActiveCustomer.getRight() - 10), MathUtils.ceil(mActiveCustomer.getY() + 50));
 		float targetSize = mBubble.getWidth() - 60;
 		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
 		mTargetBurgerStackView.setPosition(mBubble.getX() + 40, mBubble.getY() + 10);

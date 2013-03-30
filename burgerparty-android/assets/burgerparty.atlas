@@ -27,8 +27,9 @@ platter
 bubble
   rotate: false
   xy: 1, 93
-  size: 235, 138
-  orig: 235, 138
+  size: 236, 138
+  split: 39, 20, 18, 54
+  orig: 236, 138
   offset: 0, 0
   index: -1
 done
@@ -394,24 +395,24 @@ ui/button
   orig: 152, 48
   offset: 0, 0
   index: -1
-ui/lock
-  rotate: false
-  xy: 657, 938
-  size: 44, 65
-  orig: 44, 65
-  offset: 0, 0
-  index: -1
 ui/star-off
   rotate: false
-  xy: 503, 863
+  xy: 657, 963
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 703, 963
+  xy: 503, 863
   size: 40, 40
   orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/lock
+  rotate: false
+  xy: 657, 917
+  size: 30, 44
+  orig: 30, 44
   offset: 0, 0
   index: -1
