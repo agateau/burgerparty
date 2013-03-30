@@ -5,91 +5,70 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 1, 413
+  xy: 1, 384
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 workbench
   rotate: false
-  xy: 1, 329
+  xy: 1, 300
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 262
+  xy: 1, 233
   size: 341, 65
   orig: 341, 65
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 1, 122
+  xy: 1, 93
   size: 235, 138
   orig: 235, 138
   offset: 0, 0
   index: -1
 done
   rotate: false
-  xy: 803, 720
+  xy: 803, 691
   size: 181, 173
   orig: 181, 173
   offset: 0, 0
   index: -1
 normal-font
   rotate: false
-  xy: 344, 250
+  xy: 344, 221
   size: 254, 77
   orig: 254, 77
   offset: 0, 0
   index: -1
 shelf
   rotate: false
-  xy: 1, 30
+  xy: 1, 1
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 face
   rotate: false
-  xy: 803, 650
+  xy: 803, 621
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
-star-empty
-  rotate: false
-  xy: 600, 278
-  size: 49, 49
-  orig: 49, 49
-  offset: 0, 0
-  index: -1
-star
-  rotate: false
-  xy: 238, 211
-  size: 49, 49
-  orig: 49, 49
-  offset: 0, 0
-  index: -1
-lock
-  rotate: false
-  xy: 986, 851
-  size: 31, 42
-  orig: 31, 42
-  offset: 0, 0
-  index: -1
 pause
   rotate: false
-  xy: 1, 1
+  xy: 986, 837
   size: 27, 27
   orig: 27, 27
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 103, 104
+  xy: 600, 282
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -413,5 +392,26 @@ ui/button
   size: 152, 48
   split: 24, 24, 23, 23
   orig: 152, 48
+  offset: 0, 0
+  index: -1
+ui/lock
+  rotate: false
+  xy: 657, 938
+  size: 44, 65
+  orig: 44, 65
+  offset: 0, 0
+  index: -1
+ui/star-off
+  rotate: false
+  xy: 503, 863
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/star-on
+  rotate: false
+  xy: 703, 963
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1

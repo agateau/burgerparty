@@ -24,8 +24,8 @@ public class LevelFinishedOverlay extends Overlay {
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult result, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		mStars.add(atlas.findRegion("star-empty"));
-		mStars.add(atlas.findRegion("star"));
+		mStars.add(atlas.findRegion("ui/star-off"));
+		mStars.add(atlas.findRegion("ui/star-on"));
 
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);

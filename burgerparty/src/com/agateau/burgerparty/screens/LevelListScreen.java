@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -25,9 +26,9 @@ public class LevelListScreen extends BaseScreen {
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 
-		mStarOff = atlas.findRegion("star-empty");
-		mStarOn = atlas.findRegion("star");
-		mLock = atlas.findRegion("lock");
+		mStarOff = atlas.findRegion("ui/star-off");
+		mStarOn = atlas.findRegion("ui/star-on");
+		mLock = atlas.findRegion("ui/lock");
 		setupWidgets(skin);
 	}
 
@@ -64,22 +65,20 @@ public class LevelListScreen extends BaseScreen {
 			AnchorGroup group = new AnchorGroup();
 			addActor(group);
 			group.setFillParent(true);
+			group.setSpacing(6);
 
 			if (score >= 0) {
-				Actor prev = null;
+				Table table = new Table();
 				for (int x = 1; x <= 3; ++x) {
 					Image image = new Image(x > score ? mStarOff : mStarOn);
-					if (prev == null) {
-						group.addRule(image, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-					} else {
-						group.addRule(image, Anchor.BOTTOM_LEFT, prev, Anchor.BOTTOM_RIGHT);
-					}
-					prev = image;
+					table.add(image);
 				}
+				group.addRule(table, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -1, 1);
+				table.setSize(mStarOff.getRegionWidth() * 3, mStarOff.getRegionHeight());
 			} else {
 				setDisabled(true);
 				Image image = new Image(mLock);
-				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT);
+				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -1, 1);
 			}
 			this.idx = idx;
 		}
