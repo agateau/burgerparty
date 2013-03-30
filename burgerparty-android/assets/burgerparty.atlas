@@ -38,6 +38,13 @@ done
   orig: 181, 173
   offset: 0, 0
   index: -1
+normal-font
+  rotate: false
+  xy: 344, 250
+  size: 254, 77
+  orig: 254, 77
+  offset: 0, 0
+  index: -1
 shelf
   rotate: false
   xy: 1, 30
@@ -47,21 +54,21 @@ shelf
   index: -1
 face
   rotate: false
-  xy: 238, 192
+  xy: 803, 650
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 star-empty
   rotate: false
-  xy: 344, 278
+  xy: 600, 278
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 803, 669
+  xy: 238, 211
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
@@ -392,16 +399,9 @@ ui/shattered
   orig: 500, 500
   offset: 0, 0
   index: -1
-ui/default
-  rotate: false
-  xy: 503, 926
-  size: 254, 77
-  orig: 254, 77
-  offset: 0, 0
-  index: -1
 ui/button-down
   rotate: false
-  xy: 503, 876
+  xy: 503, 955
   size: 152, 48
   split: 24, 24, 23, 23
   orig: 152, 48
@@ -409,7 +409,7 @@ ui/button-down
   index: -1
 ui/button
   rotate: false
-  xy: 759, 955
+  xy: 503, 905
   size: 152, 48
   split: 24, 24, 23, 23
   orig: 152, 48
