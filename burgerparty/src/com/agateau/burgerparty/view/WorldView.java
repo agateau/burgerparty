@@ -163,7 +163,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupTargetBurgerStackView() {
-		mBubble = new Image(mAtlas.findRegion("bubble"));
+		mBubble = new Image(mAtlas.createPatch("bubble"));
 		addActor(mBubble);
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
 		addActor(mTargetBurgerStackView);
