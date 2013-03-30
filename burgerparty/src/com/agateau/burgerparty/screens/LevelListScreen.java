@@ -4,6 +4,7 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
+import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,6 +22,9 @@ public class LevelListScreen extends BaseScreen {
 
 	public LevelListScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
+		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
+		setBackgroundActor(bgImage);
+
 		mStarOff = atlas.findRegion("star-empty");
 		mStarOn = atlas.findRegion("star");
 		mLock = atlas.findRegion("lock");

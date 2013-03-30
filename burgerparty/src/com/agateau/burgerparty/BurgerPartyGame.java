@@ -112,7 +112,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void showMenu() {
-		setScreen(new MenuScreen(this, mSkin));
+		setScreen(new MenuScreen(this, mAtlas, mSkin));
 	}
 
 	public void selectLevel() {

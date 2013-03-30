@@ -366,3 +366,22 @@ customers/girls/top-0
   orig: 68, 53
   offset: 0, 0
   index: -1
+
+burgerparty6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ui/menu-bg
+  rotate: false
+  xy: 1, 1
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+ui/shattered
+  rotate: false
+  xy: 503, 1
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
