@@ -3,6 +3,7 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class StageScreen implements Screen {
 	private Stage mStage = new Stage(0, 0, true);
 	private Skin mSkin;
+	private Actor mBgActor = null;
 
 	public StageScreen(Skin skin) {
 		mSkin = skin;
@@ -26,6 +28,14 @@ public class StageScreen implements Screen {
 		return mStage;
 	}
 
+	public void setBackgroundActor(Actor actor) {
+		mBgActor = actor;
+		if (mBgActor != null) {
+			mStage.addActor(mBgActor);
+			resizeBackgroundActor();
+		}
+	}
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -37,6 +47,7 @@ public class StageScreen implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		mStage.setViewport(width, height, true);
+		resizeBackgroundActor();
 	}
 
 	@Override
@@ -69,4 +80,9 @@ public class StageScreen implements Screen {
 
 	}
 
+	private void resizeBackgroundActor() {
+		if (mBgActor != null) {
+			mBgActor.setBounds(0, 0, mStage.getWidth(), mStage.getHeight());
+		}
+	}
 }
