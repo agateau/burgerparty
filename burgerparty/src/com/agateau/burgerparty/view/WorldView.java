@@ -19,14 +19,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 
@@ -43,7 +43,7 @@ public class WorldView extends AnchorGroup {
 	private BurgerStackView mDoneBurgerStackView;
 	private BurgerStackView mTargetBurgerStackView;
 	private Label mTimerDisplay;
-	private TextButton mPauseButton;
+	private Image mPauseButton;
 	private Image mWorkbench;
 	private Image mBubble;
 	private ComposableCustomerFactory mCustomerFactory;
@@ -190,10 +190,10 @@ public class WorldView extends AnchorGroup {
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("0", mSkin);
 		mTimerDisplay.setAlignment(Align.center);
-		mPauseButton = new TextButton("P", mSkin);
-		mPauseButton.setSize(UiUtils.BUTTON_HEIGHT, mTimerDisplay.getHeight());
-		mPauseButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+		mPauseButton = new Image(mAtlas.findRegion("pause"));
+		mPauseButton.setTouchable(Touchable.enabled);
+		mPauseButton.addListener(new ClickListener() {
+			public void clicked(InputEvent event, float x, float y) {
 				pause();
 			}
 		});
