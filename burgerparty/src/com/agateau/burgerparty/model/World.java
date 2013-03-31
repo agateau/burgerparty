@@ -119,6 +119,11 @@ public class World {
 	}
 
 	private void generateTarget() {
+		generateTargetBurger();
+		generateTargetMealExtra();
+	}
+
+	private void generateTargetBurger() {
 		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
@@ -139,6 +144,21 @@ public class World {
 		}
 
 		mTargetBurger.addItem(BurgerItem.get("top"));
+	}
+
+	private void generateTargetMealExtra() {
+		Array<String> names = new Array<String>(mLevel.definition.extraItems);
+		mTargetMealExtra.clear();
+		if (names.size == 0) {
+			return;
+		}
+		int count = MathUtils.random(mLevel.definition.extraItems.size - 1);
+
+		for (; count > 0; count--) {
+			int index = MathUtils.random(names.size - 1);
+			String name = names.removeIndex(index);
+			mTargetMealExtra.addItem(MealItem.get(name));
+		}
 	}
 
 	private void onBurgerFinished() {
