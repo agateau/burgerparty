@@ -4,6 +4,7 @@ import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
@@ -17,8 +18,12 @@ public class World {
 
 	private Level mLevel;
 	private Inventory mInventory;
-	private Burger mBurger;
-	private Burger mTargetBurger;
+
+	private Burger mBurger = new Burger();
+	private MealExtra mMealExtra = new MealExtra();
+
+	private Burger mTargetBurger = new Burger();
+	private MealExtra mTargetMealExtra = new MealExtra();
 
 	private int mCustomerCount;
 	private int mRemainingSeconds;
@@ -28,8 +33,6 @@ public class World {
 		mLevel = level;
 		mCustomerCount = mLevel.definition.customerCount;
 		mInventory = new Inventory(level.definition.burgerItems);
-		mBurger = new Burger();
-		mTargetBurger = new Burger();
 	}
 	
 	public Inventory getInventory() {
@@ -45,14 +48,33 @@ public class World {
 	}
 
 	public void addItem(MealItem item) {
-		assert(item.getType() == MealItem.Type.BURGER);
-		mBurger.addItem((BurgerItem)item);
+		if (item.getType() == MealItem.Type.BURGER) {
+			addBurgerItem((BurgerItem)item);
+		} else {
+			addExtraItem(item);
+		}
+	}
+
+	private void addBurgerItem(BurgerItem item) {
+		mBurger.addItem(item);
 		Burger.Status status = mBurger.checkStatus(mTargetBurger);
 		if (status == Burger.Status.DONE) {
 			onBurgerFinished();
 		} else if (status == Burger.Status.WRONG) {
 			mTrashedCount++;
 			mBurger.trash();
+		}
+	}
+
+	private void addExtraItem(MealItem item) {
+		if (!mMealExtra.isMissing(mTargetMealExtra, item)) {
+			Gdx.app.log("World", "Wrong extra item " + item.getName());
+			return;
+		}
+		mMealExtra.addItem(item);
+		Gdx.app.log("World", "MealExtra added " + item.getName());
+		if (mMealExtra.equals(mTargetMealExtra)) {
+			Gdx.app.log("World", "MealExtra finished");
 		}
 	}
 

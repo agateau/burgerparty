@@ -28,8 +28,25 @@ public class MealItem {
 		return mName;
 	}
 
+	public boolean equals(MealItem other) {
+		return mName.equals(other.mName);
+	}
+
+	public int hashCode() {
+		return mName.hashCode();
+	}
+
 	protected MealItem(XmlReader.Element element) {
 		mName = element.getAttribute("name");
+	}
+
+	public static void addTestItem(String name) {
+		MealItem item = new MealItem();
+		item.mName = name;
+		sMap.put(item.mName, item);
+	}
+
+	private MealItem() {
 	}
 
 	private static void initMap() {
