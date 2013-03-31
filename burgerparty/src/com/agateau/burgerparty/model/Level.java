@@ -10,8 +10,8 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static class Definition {
 		public Array<String> inventoryItems = new Array<String>();
-		public int minStackSize;
-		public int maxStackSize;
+		public int minBurgerSize;
+		public int maxBurgerSize;
 		public int duration;
 		public int customerCount;
 		public Array<Objective> objectives = new Array<Objective>();
@@ -32,8 +32,8 @@ public class Level {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
 		Level level = new Level();
-		level.definition.minStackSize = root.getIntAttribute("minStackSize");
-		level.definition.maxStackSize = root.getIntAttribute("maxStackSize");
+		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
+		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
 		level.definition.customerCount = root.getIntAttribute("customerCount");
 		level.definition.duration = root.getIntAttribute("duration");
 

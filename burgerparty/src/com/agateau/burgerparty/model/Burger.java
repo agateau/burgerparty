@@ -6,7 +6,7 @@ import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.utils.Array;
 
-public class BurgerStack {
+public class Burger {
 	private Array<BurgerItem> mItems;
 
 	public Signal1<BurgerItem> burgerItemAdded;
@@ -19,7 +19,7 @@ public class BurgerStack {
 		WRONG,
 	}
 
-	public BurgerStack() {
+	public Burger() {
 		burgerItemAdded = new Signal1<BurgerItem>();
 		cleared = new Signal0();
 		trashed = new Signal0();
@@ -49,7 +49,7 @@ public class BurgerStack {
 		return mItems.size;
 	}
 
-	public Status checkStatus(BurgerStack reference) {
+	public Status checkStatus(Burger reference) {
 		if (mItems.size > reference.mItems.size) {
 			// Should not happen
 			return Status.WRONG;

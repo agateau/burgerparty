@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
-	public Signal0 stackFinished = new Signal0();
+	public Signal0 burgerFinished = new Signal0();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 
@@ -17,8 +17,8 @@ public class World {
 
 	private Level mLevel;
 	private Inventory mInventory;
-	private BurgerStack mBurgerStack;
-	private BurgerStack mTargetBurgerStack;
+	private Burger mBurger;
+	private Burger mTargetBurger;
 
 	private int mCustomerCount;
 	private int mRemainingSeconds;
@@ -28,30 +28,30 @@ public class World {
 		mLevel = level;
 		mCustomerCount = mLevel.definition.customerCount;
 		mInventory = new Inventory(level.definition.inventoryItems);
-		mBurgerStack = new BurgerStack();
-		mTargetBurgerStack = new BurgerStack();
+		mBurger = new Burger();
+		mTargetBurger = new Burger();
 	}
 	
 	public Inventory getInventory() {
 		return mInventory;
 	}
 
-	public BurgerStack getBurgerStack() {
-		return mBurgerStack;
+	public Burger getBurger() {
+		return mBurger;
 	}
 	
-	public BurgerStack getTargetBurgerStack() {
-		return mTargetBurgerStack;
+	public Burger getTargetBurger() {
+		return mTargetBurger;
 	}
 
 	public void addItem(BurgerItem item) {
-		mBurgerStack.addItem(item);
-		BurgerStack.Status status = mBurgerStack.checkStatus(mTargetBurgerStack);
-		if (status == BurgerStack.Status.DONE) {
-			onBurgerStackFinished();
-		} else if (status == BurgerStack.Status.WRONG) {
+		mBurger.addItem(item);
+		Burger.Status status = mBurger.checkStatus(mTargetBurger);
+		if (status == Burger.Status.DONE) {
+			onBurgerFinished();
+		} else if (status == Burger.Status.WRONG) {
 			mTrashedCount++;
-			mBurgerStack.trash();
+			mBurger.trash();
 		}
 	}
 
@@ -97,11 +97,11 @@ public class World {
 
 	private void generateTarget() {
 		Array<String> names = new Array<String>(mLevel.definition.inventoryItems);
-		int count = MathUtils.random(mLevel.definition.minStackSize, mLevel.definition.maxStackSize);
+		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
-		mTargetBurgerStack.clear();
+		mTargetBurger.clear();
 
-		mTargetBurgerStack.addItem(BurgerItem.get("bottom"));
+		mTargetBurger.addItem(BurgerItem.get("bottom"));
 
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
@@ -112,18 +112,18 @@ public class World {
 				names.add(lastName);
 			}
 			lastName = name;
-			mTargetBurgerStack.addItem(BurgerItem.get(name));
+			mTargetBurger.addItem(BurgerItem.get(name));
 		}
 
-		mTargetBurgerStack.addItem(BurgerItem.get("top"));
+		mTargetBurger.addItem(BurgerItem.get("top"));
 	}
 
-	private void onBurgerStackFinished() {
+	private void onBurgerFinished() {
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
-			mBurgerStack = new BurgerStack();
+			mBurger = new Burger();
 			generateTarget();
-			stackFinished.emit();
+			burgerFinished.emit();
 		} else {
 			mTimer.stop();
 			LevelResult result = createLevelResult();

@@ -1,7 +1,7 @@
 
 <level
-    minStackSize="2"
-    maxStackSize="4"
+    minBurgerSize="2"
+    maxBurgerSize="4"
     customerCount="6"
     duration="90"
     maxTrashed="1"

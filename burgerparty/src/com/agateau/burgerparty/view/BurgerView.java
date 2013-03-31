@@ -2,7 +2,7 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.model.BurgerStack;
+import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
@@ -15,9 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class BurgerStackView extends Group {
+public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private BurgerStack mStack;
+	private Burger mBurger;
 	private TextureAtlas mAtlas;
 	private float mNextY;
 
@@ -27,28 +27,28 @@ public class BurgerStackView extends Group {
 	
 	private static final float TRASH_ACTION_DURATION = 0.5f;
 
-	public BurgerStackView(BurgerStack stack, TextureAtlas atlas) {
-		mStack = stack;
+	public BurgerView(Burger burger, TextureAtlas atlas) {
+		mBurger = burger;
 		mAtlas = atlas;
 		float maxWidth = mAtlas.findRegion("burgeritems/bottom").getRegionWidth();
 		setWidth(maxWidth);
 
 		mNextY = 0;
 
-		mStack.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+		mBurger.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
 			public void handle(BurgerItem item) {
 				addItem(item);
 			}
 		});
 
-		mStack.cleared.connect(mHandlers, new Signal0.Handler() {
+		mBurger.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				mNextY = 0;
 				setHeight(0);
 				clear();
 			}
 		});
-		mStack.trashed.connect(mHandlers, new Signal0.Handler() {
+		mBurger.trashed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				trash();
 			}

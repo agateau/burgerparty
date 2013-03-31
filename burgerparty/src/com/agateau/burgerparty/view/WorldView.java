@@ -40,9 +40,9 @@ public class WorldView extends AnchorGroup {
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
 	private InventoryView mInventoryView;
-	private BurgerStackView mBurgerStackView;
-	private BurgerStackView mDoneBurgerStackView;
-	private BurgerStackView mTargetBurgerStackView;
+	private BurgerView mBurgerView;
+	private BurgerView mDoneBurgerView;
+	private BurgerView mTargetBurgerView;
 	private Label mTimerDisplay;
 	private Image mPauseButton;
 	private Image mWorkbench;
@@ -68,15 +68,15 @@ public class WorldView extends AnchorGroup {
 
 		setupCustomers();
 		setupWorkbench();
-		setupTargetBurgerStackView();
+		setupTargetBurgerView();
 		setupInventoryView();
 		setupTimerDisplay();
-		setupBurgerStackView();
+		setupBurgerView();
 		setupAnchors();
 
-		mWorld.stackFinished.connect(mHandlers, new Signal0.Handler() {
+		mWorld.burgerFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
-				onStackFinished();
+				onBurgerFinished();
 			}
 		});
 		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
@@ -164,12 +164,12 @@ public class WorldView extends AnchorGroup {
 		mWorkbench.setScaling(Scaling.stretch);
 	}
 
-	private void setupTargetBurgerStackView() {
+	private void setupTargetBurgerView() {
 		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
-		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
-		mTargetBurgerStackView.setScale(0.8f, 0.8f);
-		mBubble.setChild(mTargetBurgerStackView);
+		mTargetBurgerView = new BurgerView(mWorld.getTargetBurger(), mAtlas);
+		mTargetBurgerView.setScale(0.8f, 0.8f);
+		mBubble.setChild(mTargetBurgerView);
 		mBubble.setVisible(false);
 	}
 
@@ -184,8 +184,8 @@ public class WorldView extends AnchorGroup {
 		});
 	}
 
-	private void setupBurgerStackView() {
-		mBurgerStackView = new BurgerStackView(mWorld.getBurgerStack(), mAtlas);
+	private void setupBurgerView() {
+		mBurgerView = new BurgerView(mWorld.getBurger(), mAtlas);
 	}
 
 	private void setupTimerDisplay() {
@@ -204,7 +204,7 @@ public class WorldView extends AnchorGroup {
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		addRule(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
+		addRule(mBurgerView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
 	private void updateTimerDisplay() {
@@ -220,20 +220,20 @@ public class WorldView extends AnchorGroup {
 		addActor(new GameOverOverlay(mGame, mAtlas, mSkin));
 	}
 
-	private void slideDoneBurgerStackView(Runnable toDoAfter) {
-		mDoneBurgerStackView = mBurgerStackView;
-		removeRulesForActor(mDoneBurgerStackView);
-		mDoneBurgerStackView.addAction(
+	private void slideDoneBurgerView(Runnable toDoAfter) {
+		mDoneBurgerView = mBurgerView;
+		removeRulesForActor(mDoneBurgerView);
+		mDoneBurgerView.addAction(
 			Actions.sequence(
-				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
-				Actions.moveTo(getWidth(), mDoneBurgerStackView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.delay(BurgerView.ADD_ACTION_DURATION),
+				Actions.moveTo(getWidth(), mDoneBurgerView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.removeActor()
 			)
 		);
 		mBubble.setVisible(false);
 		mActiveCustomer.addAction(
 			Actions.sequence(
-				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
+				Actions.delay(BurgerView.ADD_ACTION_DURATION),
 				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
 				Actions.run(toDoAfter),
 				Actions.removeActor()
@@ -242,17 +242,17 @@ public class WorldView extends AnchorGroup {
 		mActiveCustomer = null;
 	}
 
-	private void createNewBurgerStackView() {
-		setupBurgerStackView();
-		addRule(mBurgerStackView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
+	private void createNewBurgerView() {
+		setupBurgerView();
+		addRule(mBurgerView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 		invalidate();
 	}
 
-	private void onStackFinished() {
-		slideDoneBurgerStackView(new Runnable() {
+	private void onBurgerFinished() {
+		slideDoneBurgerView(new Runnable() {
 			@Override
 			public void run() {
-				createNewBurgerStackView();
+				createNewBurgerView();
 				goToNextCustomer();
 			}
 		});
@@ -261,7 +261,7 @@ public class WorldView extends AnchorGroup {
 	private void onLevelFinished(LevelResult result) {
 		mResult = result;
 		mGame.onCurrentLevelFinished(result);
-		slideDoneBurgerStackView(new Runnable() {
+		slideDoneBurgerView(new Runnable() {
 			@Override
 			public void run() {
 				addActor(new LevelFinishedOverlay(mGame, mResult, mAtlas, mSkin));
