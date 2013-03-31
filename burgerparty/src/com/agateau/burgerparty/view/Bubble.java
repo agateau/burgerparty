@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 public class Bubble extends WidgetGroup {
 	public Bubble(TextureAtlas atlas) {
 		mBgImage = new Image(atlas.createPatch("bubble"));
+		mBgImage.setFillParent(true);
 		addActor(mBgImage);
 	}
 
@@ -26,10 +27,9 @@ public class Bubble extends WidgetGroup {
 		final float padding = 20;
 		final float leftPadding = 40;
 		mChild.setPosition(leftPadding, padding);
-		mBgImage.setSize(
+		setSize(
 			leftPadding + mChild.getWidth() * mChild.getScaleX() + padding,
 			padding + mChild.getHeight() * mChild.getScaleY() + padding);
-		setSize(mBgImage.getWidth(), mBgImage.getHeight());
 	}
 
 	private Image mBgImage;
