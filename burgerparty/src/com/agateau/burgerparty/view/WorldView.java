@@ -71,7 +71,6 @@ public class WorldView extends AnchorGroup {
 		setupTargetMealView();
 		setupInventoryView();
 		setupTimerDisplay();
-		setupMealView();
 		setupAnchors();
 
 		mWorld.burgerFinished.connect(mHandlers, new Signal0.Handler() {
@@ -191,6 +190,10 @@ public class WorldView extends AnchorGroup {
 
 	private void setupMealView() {
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas);
+		// We add an anchor rule in this setup method because it is called
+		// for each customer
+		addRule(mMealView, Anchor.BOTTOM_LEFT, mWorkbench, Anchor.BOTTOM_CENTER, -6, 1);
+		invalidate();
 	}
 
 	private void setupTimerDisplay() {
@@ -209,7 +212,6 @@ public class WorldView extends AnchorGroup {
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		addRule(mMealView, Anchor.BOTTOM_LEFT, mWorkbench, Anchor.BOTTOM_CENTER, -6, 1);
 	}
 
 	private void updateTimerDisplay() {
@@ -247,12 +249,6 @@ public class WorldView extends AnchorGroup {
 		mActiveCustomer = null;
 	}
 
-	private void createNewMealView() {
-		setupMealView();
-		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
-		invalidate();
-	}
-
 	private void onBurgerFinished() {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
 	}
@@ -261,7 +257,6 @@ public class WorldView extends AnchorGroup {
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
-				createNewMealView();
 				goToNextCustomer();
 			}
 		});
@@ -279,6 +274,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void goToNextCustomer() {
+		setupMealView();
 		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		mActiveCustomer = mWaitingCustomers.removeIndex(0);
 		updateCustomerPositions();
