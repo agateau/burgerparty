@@ -17,7 +17,9 @@ public class World {
 	private Timer mTimer = new Timer();
 
 	private Level mLevel;
-	private Inventory mInventory;
+
+	private Inventory mBurgerInventory;
+	private Inventory mMealExtraInventory;
 
 	private Burger mBurger = new Burger();
 	private MealExtra mMealExtra = new MealExtra();
@@ -32,11 +34,16 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mCustomerCount = mLevel.definition.customerCount;
-		mInventory = new Inventory(level.definition.burgerItems);
+		mBurgerInventory = new Inventory(level.definition.burgerItems);
+		mMealExtraInventory = new Inventory(level.definition.extraItems);
 	}
 	
-	public Inventory getInventory() {
-		return mInventory;
+	public Inventory getBurgerInventory() {
+		return mBurgerInventory;
+	}
+
+	public Inventory getMealExtraInventory() {
+		return mMealExtraInventory;
 	}
 
 	public Burger getBurger() {
@@ -160,7 +167,7 @@ public class World {
 		if (names.size == 0) {
 			return;
 		}
-		int count = MathUtils.random(mLevel.definition.extraItems.size - 1);
+		int count = MathUtils.random(1, mLevel.definition.extraItems.size - 1);
 
 		for (; count > 0; count--) {
 			int index = MathUtils.random(names.size - 1);

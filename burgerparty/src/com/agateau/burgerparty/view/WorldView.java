@@ -174,7 +174,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
+		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mAtlas);
 		addActor(mInventoryView);
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
