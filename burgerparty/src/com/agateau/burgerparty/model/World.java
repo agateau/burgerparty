@@ -1,5 +1,7 @@
 package com.agateau.burgerparty.model;
 
+import java.util.Iterator;
+
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
@@ -7,6 +9,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
@@ -173,12 +176,21 @@ public class World {
 		if (names.size == 0) {
 			return;
 		}
-		int count = MathUtils.random(1, mLevel.definition.extraItems.size - 1);
-
-		for (; count > 0; count--) {
-			int index = MathUtils.random(names.size - 1);
-			String name = names.removeIndex(index);
-			mTargetMealExtra.addItem(MealItem.get(name));
+		ObjectMap<MealItem.Type, Array<MealItem>> itemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
+		for(String name: names) {
+			MealItem item = MealItem.get(name);
+			Array<MealItem> lst = itemsForType.get(item.getType(), null);
+			if (lst == null) {
+				lst = new Array<MealItem>();
+				itemsForType.put(item.getType(), lst);
+			}
+			lst.add(item);
+		}
+		// Pick one item per type
+		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
+			Array<MealItem> lst = it.next();
+			int index = MathUtils.random(lst.size - 1);
+			mTargetMealExtra.addItem(lst.get(index));
 		}
 	}
 
