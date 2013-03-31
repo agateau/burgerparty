@@ -11,17 +11,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
-public class BurgerView extends Group {
+public class BurgerView extends WidgetGroup {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
 	private float mNextY;
-
-	public static final float ADD_ACTION_DURATION = 0.2f;
 
 	private static final float ADD_ACTION_HEIGHT = 100;
 	
@@ -68,13 +66,14 @@ public class BurgerView extends Group {
 
 		image.addAction(Actions.alpha(0));
 		image.addAction(Actions.parallel(
-			Actions.moveBy(0, -ADD_ACTION_HEIGHT, ADD_ACTION_DURATION, Interpolation.pow2In),
-			Actions.fadeIn(ADD_ACTION_DURATION)
+			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
+			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
 			));
 
 		mNextY += item.getHeight();
 		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
 		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
+		invalidateHierarchy();
 	}
 
 	private void trash() {

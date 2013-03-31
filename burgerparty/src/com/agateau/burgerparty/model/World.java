@@ -47,6 +47,14 @@ public class World {
 		return mTargetBurger;
 	}
 
+	public MealExtra getMealExtra() {
+		return mMealExtra;
+	}
+
+	public MealExtra getTargetMealExtra() {
+		return mTargetMealExtra;
+	}
+
 	public void addItem(MealItem item) {
 		if (item.getType() == MealItem.Type.BURGER) {
 			addBurgerItem((BurgerItem)item);
