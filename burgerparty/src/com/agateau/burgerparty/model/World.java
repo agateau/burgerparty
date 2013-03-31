@@ -48,7 +48,7 @@ public class World {
 		mBurgerStack.addItem(item);
 		BurgerStack.Status status = mBurgerStack.checkStatus(mTargetBurgerStack);
 		if (status == BurgerStack.Status.DONE) {
-			handleDoneStack();
+			onBurgerStackFinished();
 		} else if (status == BurgerStack.Status.WRONG) {
 			mTrashedCount++;
 			mBurgerStack.trash();
@@ -118,7 +118,7 @@ public class World {
 		mTargetBurgerStack.addItem(BurgerItem.get("top"));
 	}
 
-	private void handleDoneStack() {
+	private void onBurgerStackFinished() {
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
 			mBurgerStack = new BurgerStack();
