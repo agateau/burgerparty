@@ -11,12 +11,16 @@ public class MealView extends WidgetGroup {
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas) {
 		mBurgerView = new BurgerView(burger, atlas);
 		addActor(mBurgerView);
+		mMealExtraView = new MealExtraView(mealExtra, atlas);
+		addActor(mMealExtraView);
 	}
 
 	public void layout() {
 		super.layout();
-		setSize(mBurgerView.getWidth(), mBurgerView.getHeight());
+		mMealExtraView.setPosition(mBurgerView.getWidth(), 0);
+		setSize(mMealExtraView.getRight(), Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight()));
 	}
 
 	private BurgerView mBurgerView;
+	private MealExtraView mMealExtraView;
 }

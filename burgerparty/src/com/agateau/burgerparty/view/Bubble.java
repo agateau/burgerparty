@@ -23,6 +23,11 @@ public class Bubble extends WidgetGroup {
 		}
 	}
 
+	public void layout() {
+		super.layout();
+		updateGeometry();
+	}
+
 	public void updateGeometry() {
 		final float padding = 20;
 		final float leftPadding = 40;
