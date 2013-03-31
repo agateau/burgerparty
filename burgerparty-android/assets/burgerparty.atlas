@@ -198,11 +198,39 @@ burgeritems/cucumber
   orig: 181, 26
   offset: 0, 0
   index: -1
+burgeritems/big-fries
+  rotate: false
+  xy: 475, 186
+  size: 134, 151
+  orig: 134, 151
+  offset: 0, 0
+  index: -1
 burgeritems/ketchup-inventory
   rotate: false
-  xy: 475, 143
+  xy: 611, 143
   size: 75, 194
   orig: 75, 194
+  offset: 0, 0
+  index: -1
+burgeritems/small-fries
+  rotate: false
+  xy: 688, 207
+  size: 134, 151
+  orig: 134, 151
+  offset: 0, 0
+  index: -1
+burgeritems/juice
+  rotate: false
+  xy: 824, 226
+  size: 91, 132
+  orig: 91, 132
+  offset: 0, 0
+  index: -1
+burgeritems/soda
+  rotate: false
+  xy: 688, 73
+  size: 91, 132
+  orig: 91, 132
   offset: 0, 0
   index: -1
 

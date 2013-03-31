@@ -1,0 +1,16 @@
+<items>
+    <item name="bottom"   type="burger" height="24" offset="0"/>
+    <item name="cheese"   type="burger" height="8"  offset="-19"/>
+    <item name="onion"    type="burger" height="8"  offset="-4"/>
+    <item name="steak"    type="burger" height="22" offset="0"/>
+    <item name="tomato"   type="burger" height="12" offset="-4"/>
+    <item name="salad"    type="burger" height="8"  offset="-4"/>
+    <item name="top"      type="burger" height="32" offset="0"/>
+    <item name="cucumber" type="burger" height="8"  offset="-4"/>
+    <item name="ketchup"  type="burger" height="8"  offset="-4"/>
+
+    <item name="small-fries" type="side-order"/>
+    <item name="big-fries"   type="side-order"/>
+    <item name="soda"        type="drink"/>
+    <item name="juice"       type="drink"/>
+</items>

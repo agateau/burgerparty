@@ -3,7 +3,7 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.World;
 
@@ -176,9 +176,9 @@ public class WorldView extends AnchorGroup {
 	private void setupInventoryView() {
 		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
 		addActor(mInventoryView);
-		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
-			public void handle(BurgerItem item) {
+			public void handle(MealItem item) {
 				mWorld.addItem(item);
 			}
 		});

@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.view;
 
-import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal1;
 
@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class InventoryView extends Actor {
-	public Signal1<BurgerItem> itemSelected = new Signal1<BurgerItem>();
+	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
 	private TextureRegion mBgRegion;
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
@@ -32,7 +32,7 @@ public class InventoryView extends Actor {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				int index = getIndexAt(x, y);
-				BurgerItem item = mInventory.get(index);
+				MealItem item = mInventory.get(index);
 				if (item == null) {
 					return;
 				}
@@ -49,7 +49,7 @@ public class InventoryView extends Actor {
 		float cellHeight = mBgRegion.getRegionHeight();
 
 		int index = 0;
-		Array<BurgerItem> items = mInventory.getItems();
+		Array<MealItem> items = mInventory.getItems();
 		for (int row = 0; row < ROW_COUNT; ++row) {
 			for (int col = 0; col < COLUMN_COUNT; ++col, ++index) {
 				float posX = getX() + col * cellWidth;

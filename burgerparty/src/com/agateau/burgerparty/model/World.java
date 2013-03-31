@@ -27,7 +27,7 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mCustomerCount = mLevel.definition.customerCount;
-		mInventory = new Inventory(level.definition.inventoryItems);
+		mInventory = new Inventory(level.definition.burgerItems);
 		mBurger = new Burger();
 		mTargetBurger = new Burger();
 	}
@@ -44,8 +44,9 @@ public class World {
 		return mTargetBurger;
 	}
 
-	public void addItem(BurgerItem item) {
-		mBurger.addItem(item);
+	public void addItem(MealItem item) {
+		assert(item.getType() == MealItem.Type.BURGER);
+		mBurger.addItem((BurgerItem)item);
 		Burger.Status status = mBurger.checkStatus(mTargetBurger);
 		if (status == Burger.Status.DONE) {
 			onBurgerFinished();
@@ -96,7 +97,7 @@ public class World {
 	}
 
 	private void generateTarget() {
-		Array<String> names = new Array<String>(mLevel.definition.inventoryItems);
+		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
 		mTargetBurger.clear();
