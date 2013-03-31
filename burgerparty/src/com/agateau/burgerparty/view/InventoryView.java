@@ -31,14 +31,13 @@ public class InventoryView extends Actor {
 		addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				int index = getIndexAt(x, y);
-				MealItem item = mInventory.get(index);
-				if (item == null) {
-					return;
-				}
-				itemSelected.emit(item);
+				onClicked(x, y);
 			}
 		});
+	}
+
+	public void setInventory(Inventory inventory) {
+		mInventory = inventory;
 	}
 
 	@Override
@@ -80,5 +79,14 @@ public class InventoryView extends Actor {
 		int x = (int)posX;
 		int y = (int)posY;
 		return (y / cellSize) * COLUMN_COUNT + x / cellSize;
+	}
+
+	private void onClicked(float x, float y) {
+		int index = getIndexAt(x, y);
+		MealItem item = mInventory.get(index);
+		if (item == null) {
+			return;
+		}
+		itemSelected.emit(item);
 	}
 }

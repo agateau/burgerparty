@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 burgerFinished = new Signal0();
+	public Signal0 mealFinished = new Signal0();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 
@@ -74,7 +75,11 @@ public class World {
 		mBurger.addItem(item);
 		Burger.Status status = mBurger.checkStatus(mTargetBurger);
 		if (status == Burger.Status.DONE) {
-			onBurgerFinished();
+			if (mTargetMealExtra.isEmpty()) {
+				onMealFinished();
+			} else {
+				onBurgerFinished();
+			}
 		} else if (status == Burger.Status.WRONG) {
 			mTrashedCount++;
 			mBurger.trash();
@@ -83,13 +88,12 @@ public class World {
 
 	private void addExtraItem(MealItem item) {
 		if (!mMealExtra.isMissing(mTargetMealExtra, item)) {
-			Gdx.app.log("World", "Wrong extra item " + item.getName());
+			Gdx.app.log("World.addExtraItem", "Wrong extra item " + item.getName());
 			return;
 		}
 		mMealExtra.addItem(item);
-		Gdx.app.log("World", "MealExtra added " + item.getName());
 		if (mMealExtra.equals(mTargetMealExtra)) {
-			Gdx.app.log("World", "MealExtra finished");
+			onMealFinished();
 		}
 	}
 
@@ -179,11 +183,16 @@ public class World {
 	}
 
 	private void onBurgerFinished() {
+		burgerFinished.emit();
+	}
+
+	private void onMealFinished() {
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
 			mBurger = new Burger();
+			mMealExtra = new MealExtra();
 			generateTarget();
-			burgerFinished.emit();
+			mealFinished.emit();
 		} else {
 			mTimer.stop();
 			LevelResult result = createLevelResult();

@@ -19,6 +19,10 @@ public class MealExtra {
 		cleared.emit();
 	}
 
+	public boolean isEmpty() {
+		return mItems.isEmpty();
+	}
+
 	public void addItem(MealItem item) {
 		assert(item.getType() == MealItem.Type.DRINK || item.getType() == MealItem.Type.SIDE_ORDER);
 		mItems.add(item);
