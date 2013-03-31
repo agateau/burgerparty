@@ -100,7 +100,7 @@ public class BurgerView extends Group {
 	private void onCleared() {
 		mNextY = 0;
 		setHeight(0);
-		UiUtils.notifyResizeToFitParent(this);
 		clear();
+		UiUtils.notifyResizeToFitParent(this);
 	}
 }
