@@ -140,6 +140,8 @@ public class World {
 
 	private void generateTargetBurger() {
 		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
+		names.removeValue("top", false);
+		names.removeValue("bottom", false);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
 		mTargetBurger.clear();
