@@ -9,8 +9,6 @@ public class Inventory {
 
 	public Inventory(Array<String> itemNames) {
 		mItems = new Array<MealItem>();
-		loadStoreItem("top");
-		loadStoreItem("bottom");
 		for (String name: itemNames) {
 			loadStoreItem(name);
 		}

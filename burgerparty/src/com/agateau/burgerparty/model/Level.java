@@ -47,6 +47,9 @@ public class Level {
 			level.definition.objectives.add(new MaxDurationObjective(maxDuration));
 		}
 
+		level.definition.burgerItems.add("top");
+		level.definition.burgerItems.add("bottom");
+
 		XmlReader.Element items = root.getChildByName("items");
 		assert(items != null);
 		for(int idx = 0; idx < items.getChildCount(); ++idx) {
