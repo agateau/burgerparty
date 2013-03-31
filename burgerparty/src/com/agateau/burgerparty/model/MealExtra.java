@@ -29,5 +29,24 @@ public class MealExtra {
 		return other.mItems.contains(item) && !mItems.contains(item);
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		return mItems.equals(((MealExtra)other).mItems);
+	}
+
+	@Override
+	public int hashCode() {
+		return mItems.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		String txt = new String();
+		for(MealItem item: mItems) {
+			txt += item.getName() + ", ";
+		}
+		return txt;
+	}
+
 	private Set<MealItem> mItems = new HashSet<MealItem>();
 }
