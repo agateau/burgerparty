@@ -3,7 +3,7 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.World;
 
@@ -40,9 +40,9 @@ public class WorldView extends AnchorGroup {
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
 	private InventoryView mInventoryView;
-	private BurgerView mBurgerView;
-	private BurgerView mDoneBurgerView;
-	private BurgerView mTargetBurgerView;
+	private MealView mMealView;
+	private MealView mDoneMealView;
+	private MealView mTargetMealView;
 	private Label mTimerDisplay;
 	private Image mPauseButton;
 	private Image mWorkbench;
@@ -68,15 +68,19 @@ public class WorldView extends AnchorGroup {
 
 		setupCustomers();
 		setupWorkbench();
-		setupTargetBurgerView();
+		setupTargetMealView();
 		setupInventoryView();
 		setupTimerDisplay();
-		setupBurgerView();
 		setupAnchors();
 
 		mWorld.burgerFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				onBurgerFinished();
+			}
+		});
+		mWorld.mealFinished.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				onMealFinished();
 			}
 		});
 		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
@@ -164,28 +168,32 @@ public class WorldView extends AnchorGroup {
 		mWorkbench.setScaling(Scaling.stretch);
 	}
 
-	private void setupTargetBurgerView() {
+	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
-		mTargetBurgerView = new BurgerView(mWorld.getTargetBurger(), mAtlas);
-		mTargetBurgerView.setScale(0.8f, 0.8f);
-		mBubble.setChild(mTargetBurgerView);
+		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas);
+		mTargetMealView.setScale(0.6f, 0.6f);
+		mBubble.setChild(mTargetMealView);
 		mBubble.setVisible(false);
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
+		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mAtlas);
 		addActor(mInventoryView);
-		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
-			public void handle(BurgerItem item) {
+			public void handle(MealItem item) {
 				mWorld.addItem(item);
 			}
 		});
 	}
 
-	private void setupBurgerView() {
-		mBurgerView = new BurgerView(mWorld.getBurger(), mAtlas);
+	private void setupMealView() {
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas);
+		// We add an anchor rule in this setup method because it is called
+		// for each customer
+		addRule(mMealView, Anchor.BOTTOM_LEFT, mWorkbench, Anchor.BOTTOM_CENTER, -6, 1);
+		invalidate();
 	}
 
 	private void setupTimerDisplay() {
@@ -204,7 +212,6 @@ public class WorldView extends AnchorGroup {
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		addRule(mBurgerView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
 	}
 
 	private void updateTimerDisplay() {
@@ -220,20 +227,20 @@ public class WorldView extends AnchorGroup {
 		addActor(new GameOverOverlay(mGame, mAtlas, mSkin));
 	}
 
-	private void slideDoneBurgerView(Runnable toDoAfter) {
-		mDoneBurgerView = mBurgerView;
-		removeRulesForActor(mDoneBurgerView);
-		mDoneBurgerView.addAction(
+	private void slideDoneMealView(Runnable toDoAfter) {
+		mDoneMealView = mMealView;
+		removeRulesForActor(mDoneMealView);
+		mDoneMealView.addAction(
 			Actions.sequence(
-				Actions.delay(BurgerView.ADD_ACTION_DURATION),
-				Actions.moveTo(getWidth(), mDoneBurgerView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.delay(MealView.ADD_ACTION_DURATION),
+				Actions.moveTo(getWidth(), mDoneMealView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.removeActor()
 			)
 		);
 		mBubble.setVisible(false);
 		mActiveCustomer.addAction(
 			Actions.sequence(
-				Actions.delay(BurgerView.ADD_ACTION_DURATION),
+				Actions.delay(MealView.ADD_ACTION_DURATION),
 				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
 				Actions.run(toDoAfter),
 				Actions.removeActor()
@@ -242,17 +249,14 @@ public class WorldView extends AnchorGroup {
 		mActiveCustomer = null;
 	}
 
-	private void createNewBurgerView() {
-		setupBurgerView();
-		addRule(mBurgerView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
-		invalidate();
+	private void onBurgerFinished() {
+		mInventoryView.setInventory(mWorld.getMealExtraInventory());
 	}
 
-	private void onBurgerFinished() {
-		slideDoneBurgerView(new Runnable() {
+	private void onMealFinished() {
+		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
-				createNewBurgerView();
 				goToNextCustomer();
 			}
 		});
@@ -261,7 +265,7 @@ public class WorldView extends AnchorGroup {
 	private void onLevelFinished(LevelResult result) {
 		mResult = result;
 		mGame.onCurrentLevelFinished(result);
-		slideDoneBurgerView(new Runnable() {
+		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
 				addActor(new LevelFinishedOverlay(mGame, mResult, mAtlas, mSkin));
@@ -270,6 +274,8 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void goToNextCustomer() {
+		setupMealView();
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		mActiveCustomer = mWaitingCustomers.removeIndex(0);
 		updateCustomerPositions();
 	}

@@ -1,24 +1,35 @@
 package com.agateau.burgerparty.model;
 
+import java.util.Iterator;
+
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
 	public Signal0 burgerFinished = new Signal0();
+	public Signal0 mealFinished = new Signal0();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 
 	private Timer mTimer = new Timer();
 
 	private Level mLevel;
-	private Inventory mInventory;
-	private Burger mBurger;
-	private Burger mTargetBurger;
+
+	private Inventory mBurgerInventory;
+	private Inventory mMealExtraInventory;
+
+	private Burger mBurger = new Burger();
+	private MealExtra mMealExtra = new MealExtra();
+
+	private Burger mTargetBurger = new Burger();
+	private MealExtra mTargetMealExtra = new MealExtra();
 
 	private int mCustomerCount;
 	private int mRemainingSeconds;
@@ -27,13 +38,16 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mCustomerCount = mLevel.definition.customerCount;
-		mInventory = new Inventory(level.definition.inventoryItems);
-		mBurger = new Burger();
-		mTargetBurger = new Burger();
+		mBurgerInventory = new Inventory(level.definition.burgerItems);
+		mMealExtraInventory = new Inventory(level.definition.extraItems);
 	}
 	
-	public Inventory getInventory() {
-		return mInventory;
+	public Inventory getBurgerInventory() {
+		return mBurgerInventory;
+	}
+
+	public Inventory getMealExtraInventory() {
+		return mMealExtraInventory;
 	}
 
 	public Burger getBurger() {
@@ -44,14 +58,45 @@ public class World {
 		return mTargetBurger;
 	}
 
-	public void addItem(BurgerItem item) {
+	public MealExtra getMealExtra() {
+		return mMealExtra;
+	}
+
+	public MealExtra getTargetMealExtra() {
+		return mTargetMealExtra;
+	}
+
+	public void addItem(MealItem item) {
+		if (item.getType() == MealItem.Type.BURGER) {
+			addBurgerItem((BurgerItem)item);
+		} else {
+			addExtraItem(item);
+		}
+	}
+
+	private void addBurgerItem(BurgerItem item) {
 		mBurger.addItem(item);
 		Burger.Status status = mBurger.checkStatus(mTargetBurger);
 		if (status == Burger.Status.DONE) {
-			onBurgerFinished();
+			if (mTargetMealExtra.isEmpty()) {
+				onMealFinished();
+			} else {
+				onBurgerFinished();
+			}
 		} else if (status == Burger.Status.WRONG) {
 			mTrashedCount++;
 			mBurger.trash();
+		}
+	}
+
+	private void addExtraItem(MealItem item) {
+		if (!mMealExtra.isMissing(mTargetMealExtra, item)) {
+			Gdx.app.log("World.addExtraItem", "Wrong extra item " + item.getName());
+			return;
+		}
+		mMealExtra.addItem(item);
+		if (mMealExtra.equals(mTargetMealExtra)) {
+			onMealFinished();
 		}
 	}
 
@@ -96,7 +141,14 @@ public class World {
 	}
 
 	private void generateTarget() {
-		Array<String> names = new Array<String>(mLevel.definition.inventoryItems);
+		generateTargetBurger();
+		generateTargetMealExtra();
+	}
+
+	private void generateTargetBurger() {
+		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
+		names.removeValue("top", false);
+		names.removeValue("bottom", false);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
 		mTargetBurger.clear();
@@ -118,12 +170,41 @@ public class World {
 		mTargetBurger.addItem(BurgerItem.get("top"));
 	}
 
+	private void generateTargetMealExtra() {
+		Array<String> names = new Array<String>(mLevel.definition.extraItems);
+		mTargetMealExtra.clear();
+		if (names.size == 0) {
+			return;
+		}
+		ObjectMap<MealItem.Type, Array<MealItem>> itemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
+		for(String name: names) {
+			MealItem item = MealItem.get(name);
+			Array<MealItem> lst = itemsForType.get(item.getType(), null);
+			if (lst == null) {
+				lst = new Array<MealItem>();
+				itemsForType.put(item.getType(), lst);
+			}
+			lst.add(item);
+		}
+		// Pick one item per type
+		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
+			Array<MealItem> lst = it.next();
+			int index = MathUtils.random(lst.size - 1);
+			mTargetMealExtra.addItem(lst.get(index));
+		}
+	}
+
 	private void onBurgerFinished() {
+		burgerFinished.emit();
+	}
+
+	private void onMealFinished() {
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
 			mBurger = new Burger();
+			mMealExtra = new MealExtra();
 			generateTarget();
-			burgerFinished.emit();
+			mealFinished.emit();
 		} else {
 			mTimer.stop();
 			LevelResult result = createLevelResult();

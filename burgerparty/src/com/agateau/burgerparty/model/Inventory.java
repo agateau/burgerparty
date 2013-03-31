@@ -1,30 +1,28 @@
 package com.agateau.burgerparty.model;
 
-import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.model.MealItem;
 
 import com.badlogic.gdx.utils.Array;
 
 public class Inventory {
-	private Array<BurgerItem> mItems;
+	private Array<MealItem> mItems;
 
 	public Inventory(Array<String> itemNames) {
-		mItems = new Array<BurgerItem>();
-		loadStoreItem("top");
-		loadStoreItem("bottom");
+		mItems = new Array<MealItem>();
 		for (String name: itemNames) {
 			loadStoreItem(name);
 		}
 	}
 
 	private void loadStoreItem(String name) {
-		mItems.add(BurgerItem.get(name));
+		mItems.add(MealItem.get(name));
 	}
 	
-	public Array<BurgerItem> getItems() {
+	public Array<MealItem> getItems() {
 		return mItems;
 	}
 	
-	public BurgerItem get(int index) {
+	public MealItem get(int index) {
 		if (index >=0 && index < mItems.size) {
 			return mItems.get(index);
 		} else {

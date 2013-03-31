@@ -6,6 +6,7 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
+import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,8 +21,6 @@ public class BurgerView extends Group {
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
 	private float mNextY;
-
-	public static final float ADD_ACTION_DURATION = 0.2f;
 
 	private static final float ADD_ACTION_HEIGHT = 100;
 	
@@ -43,9 +42,7 @@ public class BurgerView extends Group {
 
 		mBurger.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
-				mNextY = 0;
-				setHeight(0);
-				clear();
+				onCleared();
 			}
 		});
 		mBurger.trashed.connect(mHandlers, new Signal0.Handler() {
@@ -68,18 +65,20 @@ public class BurgerView extends Group {
 
 		image.addAction(Actions.alpha(0));
 		image.addAction(Actions.parallel(
-			Actions.moveBy(0, -ADD_ACTION_HEIGHT, ADD_ACTION_DURATION, Interpolation.pow2In),
-			Actions.fadeIn(ADD_ACTION_DURATION)
+			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
+			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
 			));
 
 		mNextY += item.getHeight();
 		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
 		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
+		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private void trash() {
 		mNextY = 0;
 		setHeight(0);
+		UiUtils.notifyResizeToFitParent(this);
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;
@@ -96,5 +95,12 @@ public class BurgerView extends Group {
 				)
 			);
 		}
+	}
+
+	private void onCleared() {
+		mNextY = 0;
+		setHeight(0);
+		clear();
+		UiUtils.notifyResizeToFitParent(this);
 	}
 }

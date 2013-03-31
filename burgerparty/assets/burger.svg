@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4379023"
-     inkscape:cx="3586.0337"
-     inkscape:cy="671.04302"
+     inkscape:zoom="1.0167504"
+     inkscape:cx="711.5012"
+     inkscape:cy="-503.55263"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -14026,6 +14026,169 @@
          x="1604.1954"
          y="576.35547"
          ry="5.0745655e-17" />
+    </g>
+    <g
+       id="g11694"
+       inkscape:export-filename="burgeritems/big-fries.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         sodipodi:nodetypes="cscccc"
+         inkscape:connector-curvature="0"
+         id="path11656"
+         d="m 280,692.36218 c 0,11.0457 -40.29437,20 -90,20 -49.70563,0 -90,-8.9543 -90,-20 l -14.70304,-430.89642 209.40607,0 z"
+         style="fill:#b3b3b3;fill-opacity:1;stroke:none"
+         transform="matrix(0.63990505,0,0,0.27957274,-347.38657,1702.2635)" />
+      <path
+         transform="matrix(0.73513587,0,0,0.32957275,-365.48043,1547.3466)"
+         sodipodi:type="arc"
+         style="fill:#808080;fill-opacity:1;stroke:none"
+         id="path11652"
+         sodipodi:cx="190"
+         sodipodi:cy="692.36218"
+         sodipodi:rx="91.139618"
+         sodipodi:ry="20"
+         d="m 281.13962,692.36218 a 91.139618,20 0 1 1 -182.279238,0 91.139618,20 0 1 1 182.279238,0 z" />
+      <rect
+         ry="3.3923481e-17"
+         y="1750.3622"
+         x="-280.8046"
+         height="24"
+         width="16"
+         id="rect11663"
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none" />
+      <rect
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none"
+         id="rect11665"
+         width="16"
+         height="24"
+         x="-256.8046"
+         y="1750.3622"
+         ry="3.3923481e-17" />
+      <rect
+         ry="3.3923481e-17"
+         y="1750.3622"
+         x="-208.8046"
+         height="24"
+         width="16"
+         id="rect11667"
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none" />
+      <rect
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none"
+         id="rect11669"
+         width="16"
+         height="24"
+         x="-184.8046"
+         y="1750.3622"
+         ry="3.3923481e-17" />
+      <rect
+         ry="3.3923481e-17"
+         y="1750.3622"
+         x="-232.8046"
+         height="24"
+         width="16"
+         id="rect11671"
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       id="g11703"
+       inkscape:export-filename="burgeritems/small-fries.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="fill:#b3b3b3;fill-opacity:1;stroke:none"
+         d="m -168.21316,2065.8291 c 0,3.0881 -25.78457,5.5914 -57.59145,5.5914 -31.80688,0 -57.59146,-2.5033 -57.59146,-5.5914 l -9.40854,-120.4669 134,0 z"
+         id="path11659"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cscccc" />
+      <path
+         d="m 281.13962,692.36218 a 91.139618,20 0 1 1 -182.279238,0 91.139618,20 0 1 1 182.279238,0 z"
+         sodipodi:ry="20"
+         sodipodi:rx="91.139618"
+         sodipodi:cy="692.36218"
+         sodipodi:cx="190"
+         id="path11661"
+         style="fill:#808080;fill-opacity:1;stroke:none"
+         sodipodi:type="arc"
+         transform="matrix(0.73513587,0,0,0.32957275,-365.48043,1717.3466)" />
+      <rect
+         ry="3.3923481e-17"
+         y="1920.3622"
+         x="-256.8046"
+         height="24"
+         width="16"
+         id="rect11677"
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none" />
+      <rect
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none"
+         id="rect11679"
+         width="16"
+         height="24"
+         x="-208.8046"
+         y="1920.3622"
+         ry="3.3923481e-17" />
+      <rect
+         style="opacity:0.98999999;fill:#ffff00;fill-opacity:1;stroke:none"
+         id="rect11681"
+         width="16"
+         height="24"
+         x="-232.8046"
+         y="1920.3622"
+         ry="3.3923481e-17" />
+    </g>
+    <g
+       id="g11710"
+       inkscape:export-filename="burgeritems/soda.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         sodipodi:nodetypes="cscccc"
+         inkscape:connector-curvature="0"
+         id="path11673"
+         d="m 83.806001,2065.7667 c 0,3.0867 -17.510416,5.5888 -39.110611,5.5888 -21.600194,0 -39.1106183,-2.5021 -39.1106183,-5.5888 l -6.3893817,-120.4112 91,0 z"
+         style="fill:#ff0000;fill-opacity:1;stroke:none" />
+      <path
+         transform="matrix(0.49923404,0,0,0.32957275,-50.159078,1717.3466)"
+         sodipodi:type="arc"
+         style="fill:#808080;fill-opacity:1;stroke:none"
+         id="path11675"
+         sodipodi:cx="190"
+         sodipodi:cy="692.36218"
+         sodipodi:rx="91.139618"
+         sodipodi:ry="20"
+         d="m 281.13962,692.36218 a 91.139618,20 0 1 1 -182.279238,0 91.139618,20 0 1 1 182.279238,0 z" />
+      <path
+         id="path11683"
+         transform="translate(-760.80461,525.24)"
+         d="M 805.5 1419.6875 C 787.84628 1419.6875 772.57505 1421.1525 765.03125 1423.2812 C 772.57267 1425.411 787.84101 1426.875 805.5 1426.875 C 823.15899 1426.875 838.42733 1425.411 845.96875 1423.2812 C 838.42495 1421.1525 823.15372 1419.6875 805.5 1419.6875 z "
+         style="fill:#280b0b;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       id="g11715"
+       inkscape:export-filename="burgeritems/juice.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="fill:#ffb380;fill-opacity:1;stroke:none"
+         d="m 223.806,2065.7667 c 0,3.0867 -17.51041,5.5888 -39.11061,5.5888 -21.60019,0 -39.11062,-2.5021 -39.11062,-5.5888 l -6.38938,-120.4112 91,0 z"
+         id="path11688"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cscccc" />
+      <path
+         d="m 281.13962,692.36218 a 91.139618,20 0 1 1 -182.279238,0 91.139618,20 0 1 1 182.279238,0 z"
+         sodipodi:ry="20"
+         sodipodi:rx="91.139618"
+         sodipodi:cy="692.36218"
+         sodipodi:cx="190"
+         id="path11690"
+         style="fill:#808080;fill-opacity:1;stroke:none"
+         sodipodi:type="arc"
+         transform="matrix(0.49923404,0,0,0.32957275,89.840922,1717.3466)" />
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:#ff6600;fill-opacity:1;stroke:none"
+         d="m 184.69539,1944.9275 c -17.65372,0 -32.92495,1.465 -40.46875,3.5937 7.54142,2.1298 22.80976,3.5938 40.46875,3.5938 17.65899,0 32.92733,-1.464 40.46875,-3.5938 -7.5438,-2.1287 -22.81503,-3.5937 -40.46875,-3.5937 z"
+         id="path11692" />
     </g>
   </g>
 </svg>

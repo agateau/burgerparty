@@ -1,0 +1,24 @@
+
+<level
+    minBurgerSize="2"
+    maxBurgerSize="6"
+    customerCount="8"
+    duration="120"
+    maxTrashed="0"
+    maxDuration="30"
+    >
+    <items>
+        <item name="steak"/>
+        <item name="tomato"/>
+        <item name="salad"/>
+        <item name="onion"/>
+        <item name="cheese"/>
+        <item name="ketchup"/>
+        <item name="cucumber"/>
+        <!-- extra -->
+        <item name="small-fries"/>
+        <item name="big-fries"/>
+        <item name="juice"/>
+        <item name="soda"/>
+    </items>
+</level>
