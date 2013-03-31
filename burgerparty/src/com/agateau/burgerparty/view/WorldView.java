@@ -46,7 +46,7 @@ public class WorldView extends AnchorGroup {
 	private Label mTimerDisplay;
 	private Image mPauseButton;
 	private Image mWorkbench;
-	private Image mBubble;
+	private Bubble mBubble;
 	private ComposableCustomerFactory mCustomerFactory;
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
@@ -164,12 +164,12 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupTargetBurgerStackView() {
-		mBubble = new Image(mAtlas.createPatch("bubble"));
+		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
 		mTargetBurgerStackView = new BurgerStackView(mWorld.getTargetBurgerStack(), mAtlas);
-		addActor(mTargetBurgerStackView);
+		mTargetBurgerStackView.setScale(0.8f, 0.8f);
+		mBubble.setChild(mTargetBurgerStackView);
 		mBubble.setVisible(false);
-		mTargetBurgerStackView.setVisible(false);
 	}
 
 	private void setupInventoryView() {
@@ -236,7 +236,6 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		mBubble.setVisible(false);
-		mTargetBurgerStackView.setVisible(false);
 		mActiveCustomer.addAction(
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
@@ -307,10 +306,7 @@ public class WorldView extends AnchorGroup {
 
 	private void showBubble() {
 		mBubble.setVisible(true);
-		mTargetBurgerStackView.setVisible(true);
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomer.getRight() - 10), MathUtils.ceil(mActiveCustomer.getY() + 50));
-		float targetSize = mBubble.getWidth() - 60;
-		mTargetBurgerStackView.setScale(Math.min(targetSize / mTargetBurgerStackView.getWidth(), 1));
-		mTargetBurgerStackView.setPosition(mBubble.getX() + 40, mBubble.getY() + 10);
+		mBubble.updateGeometry();
 	}
 }
