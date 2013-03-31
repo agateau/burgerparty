@@ -73,7 +73,8 @@ public class BurgerStackView extends Group {
 			));
 
 		mNextY += item.getHeight();
-		setHeight(image.getTop());
+		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
+		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
 	}
 
 	private void trash() {
