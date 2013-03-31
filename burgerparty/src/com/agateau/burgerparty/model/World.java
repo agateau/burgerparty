@@ -44,7 +44,8 @@ public class World {
 		return mTargetBurgerStack;
 	}
 
-	public void checkStackStatus() {
+	public void addItem(BurgerItem item) {
+		mBurgerStack.addItem(item);
 		BurgerStack.Status status = mBurgerStack.checkStatus(mTargetBurgerStack);
 		if (status == BurgerStack.Status.DONE) {
 			handleDoneStack();

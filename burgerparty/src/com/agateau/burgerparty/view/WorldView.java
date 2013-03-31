@@ -176,11 +176,10 @@ public class WorldView extends AnchorGroup {
 	private void setupInventoryView() {
 		mInventoryView = new InventoryView(mWorld.getInventory(), mAtlas);
 		addActor(mInventoryView);
-		mInventoryView.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
 			@Override
 			public void handle(BurgerItem item) {
-				mWorld.getBurgerStack().addItem(item);
-				mWorld.checkStackStatus();
+				mWorld.addItem(item);
 			}
 		});
 	}

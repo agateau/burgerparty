@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class InventoryView extends Actor {
-	public Signal1<BurgerItem> burgerItemAdded = new Signal1<BurgerItem>();
+	public Signal1<BurgerItem> itemSelected = new Signal1<BurgerItem>();
 	private TextureRegion mBgRegion;
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
@@ -36,7 +36,7 @@ public class InventoryView extends Actor {
 				if (item == null) {
 					return;
 				}
-				burgerItemAdded.emit(item);
+				itemSelected.emit(item);
 			}
 		});
 	}
