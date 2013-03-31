@@ -51,6 +51,7 @@ public class WorldView extends AnchorGroup {
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
 	private PauseOverlay mPauseOverlay;
+	private LevelResult mResult = null;
 
 	private float mWidth = -1;
 	private float mHeight = -1;
@@ -75,12 +76,12 @@ public class WorldView extends AnchorGroup {
 
 		mWorld.stackFinished.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
-				showDoneFeedback();
+				onStackFinished();
 			}
 		});
 		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
-			public void handle(LevelResult summary) {
-				onLevelFinished(summary);
+			public void handle(LevelResult result) {
+				onLevelFinished(result);
 			}
 		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
@@ -220,12 +221,7 @@ public class WorldView extends AnchorGroup {
 		addActor(new GameOverOverlay(mGame, mAtlas, mSkin));
 	}
 
-	private void showDoneFeedback() {
-		slideDoneBurgerStackView();
-		createNewBurgerStackView();
-	}
-
-	private void slideDoneBurgerStackView() {
+	private void slideDoneBurgerStackView(Runnable toDoAfter) {
 		mDoneBurgerStackView = mBurgerStackView;
 		removeRulesForActor(mDoneBurgerStackView);
 		mDoneBurgerStackView.addAction(
@@ -240,12 +236,7 @@ public class WorldView extends AnchorGroup {
 			Actions.sequence(
 				Actions.delay(BurgerStackView.ADD_ACTION_DURATION),
 				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
-				Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						goToNextCustomer();
-					}
-				}),
+				Actions.run(toDoAfter),
 				Actions.removeActor()
 			)
 		);
@@ -258,9 +249,25 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
+	private void onStackFinished() {
+		slideDoneBurgerStackView(new Runnable() {
+			@Override
+			public void run() {
+				createNewBurgerStackView();
+				goToNextCustomer();
+			}
+		});
+	}
+
 	private void onLevelFinished(LevelResult result) {
+		mResult = result;
 		mGame.onCurrentLevelFinished(result);
-		addActor(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
+		slideDoneBurgerStackView(new Runnable() {
+			@Override
+			public void run() {
+				addActor(new LevelFinishedOverlay(mGame, mResult, mAtlas, mSkin));
+			}
+		});
 	}
 
 	private void goToNextCustomer() {
