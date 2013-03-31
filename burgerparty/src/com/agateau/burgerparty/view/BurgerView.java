@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
@@ -11,11 +12,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
-public class BurgerView extends WidgetGroup {
+public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
@@ -43,6 +44,7 @@ public class BurgerView extends WidgetGroup {
 			public void handle() {
 				mNextY = 0;
 				setHeight(0);
+				notifyParent();
 				clear();
 			}
 		});
@@ -73,12 +75,13 @@ public class BurgerView extends WidgetGroup {
 		mNextY += item.getHeight();
 		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
 		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
-		invalidateHierarchy();
+		notifyParent();
 	}
 
 	private void trash() {
 		mNextY = 0;
 		setHeight(0);
+		notifyParent();
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;
@@ -94,6 +97,13 @@ public class BurgerView extends WidgetGroup {
 					Actions.removeActor()
 				)
 			);
+		}
+	}
+
+	private void notifyParent() {
+		Actor parent = getParent();
+		if (parent instanceof ResizeToFitChildren) {
+			((ResizeToFitChildren)parent).onChildSizeChanged();
 		}
 	}
 }

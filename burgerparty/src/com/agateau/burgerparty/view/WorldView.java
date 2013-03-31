@@ -173,7 +173,7 @@ public class WorldView extends AnchorGroup {
 		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas);
-		mTargetMealView.setScale(0.8f, 0.8f);
+		mTargetMealView.setScale(0.5f, 0.5f);
 		mBubble.setChild(mTargetMealView);
 		mBubble.setVisible(false);
 	}
@@ -209,7 +209,7 @@ public class WorldView extends AnchorGroup {
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
-		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 1);
+		addRule(mMealView, Anchor.BOTTOM_LEFT, mWorkbench, Anchor.BOTTOM_CENTER, -6, 1);
 	}
 
 	private void updateTimerDisplay() {
