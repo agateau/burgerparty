@@ -4,12 +4,11 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
-import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
@@ -48,7 +47,7 @@ public class MealExtraView extends Group {
 	private void updateGeometry() {
 		if (mImages.size == 0) {
 			setSize(0, 0);
-			notifyParent();
+			UiUtils.notifyResizeToFitParent(this);
 			return;
 		}
 		float x = 0;
@@ -59,14 +58,7 @@ public class MealExtraView extends Group {
 			height = Math.max(image.getHeight(), height);
 		}
 		setSize(x, height);
-		notifyParent();
-	}
-
-	private void notifyParent() {
-		Actor parent = getParent();
-		if (parent instanceof ResizeToFitChildren) {
-			((ResizeToFitChildren)parent).onChildSizeChanged();
-		}
+		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private MealExtra mMealExtra;

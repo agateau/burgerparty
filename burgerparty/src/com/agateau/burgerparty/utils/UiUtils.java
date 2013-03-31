@@ -15,4 +15,17 @@ public class UiUtils {
 	public static void adjustToPrefSize(Widget widget) {
 		widget.setSize(widget.getPrefWidth(), widget.getPrefHeight());
 	}
+
+	/**
+	 * If the parent of @p actor implements the ResizeToFitChildren interface,
+	 * notify it of size changes.
+	 *
+	 * @param actor
+	 */
+	public static void notifyResizeToFitParent(Actor actor) {
+		Actor parent = actor.getParent();
+		if (parent instanceof ResizeToFitChildren) {
+			((ResizeToFitChildren)parent).onChildSizeChanged();
+		}
+	}
 }

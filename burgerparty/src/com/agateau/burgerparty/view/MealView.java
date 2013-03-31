@@ -3,8 +3,8 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 public class MealView extends Group implements ResizeToFitChildren {
@@ -23,10 +23,7 @@ public class MealView extends Group implements ResizeToFitChildren {
 			mBurgerView.getWidth() + mMealExtraView.getWidth(),
 			Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
 			);
-		Actor parent = getParent();
-		if (parent instanceof ResizeToFitChildren) {
-			((ResizeToFitChildren)parent).onChildSizeChanged();
-		}
+		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	@Override
