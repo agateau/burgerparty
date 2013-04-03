@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
@@ -32,7 +33,11 @@ public class MealExtraView extends Group {
 	}
 
 	private void addItem(MealItem item) {
-		TextureRegion region = mAtlas.findRegion("burgeritems/" + item.getName());
+		TextureRegion region;
+		region = mAtlas.findRegion("burgeritems-flat/" + item.getName());
+		if (region == null) {
+			region = mAtlas.findRegion("burgeritems/" + item.getName());
+		}
 		Image image = new Image(region);
 		mImages.add(image);
 		addActor(image);
@@ -53,7 +58,7 @@ public class MealExtraView extends Group {
 		float x = 0;
 		float height = 0;
 		for(Image image: mImages) {
-			image.setPosition(x, 0);
+			image.setPosition(MathUtils.ceil(x), 0);
 			x += image.getWidth();
 			height = Math.max(image.getHeight(), height);
 		}

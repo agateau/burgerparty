@@ -7,6 +7,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -59,17 +60,26 @@ public class InventoryView extends Actor {
 					// No more item to draw, continue drawing empty cells 
 					continue;
 				}
-				String baseName = "burgeritems/" + items.get(index).getName();
+				String baseName = "burgeritems-flat/" + items.get(index).getName();
 				TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
 				if (region == null) {
 					region = mAtlas.findRegion(baseName);
-					assert(region != null);
 				}
-				float scale = (cellWidth - PADDING * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
+				if (region == null) {
+					baseName = "burgeritems/" + items.get(index).getName();
+					region = mAtlas.findRegion(baseName + "-inventory");
+				}
+				if (region == null) {
+					region = mAtlas.findRegion(baseName);
+				}
+				assert(region != null);
+				float scale = 1; //(cellWidth - PADDING * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
 				float width = region.getRegionWidth() * scale;
 				float height = region.getRegionHeight() * scale;
 
-				spriteBatch.draw(region, posX + (cellWidth - width) / 2, posY + (cellHeight - height) / 2, width, height);
+				spriteBatch.draw(region,
+					MathUtils.ceil(posX + (cellWidth - width) / 2),
+					MathUtils.ceil(posY + (cellHeight - height) / 2));
 			}
 		}
 	}

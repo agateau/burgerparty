@@ -53,7 +53,11 @@ public class BurgerView extends Group {
 	}
 
 	private void addItem(BurgerItem item) {
-		TextureRegion region = mAtlas.findRegion("burgeritems/" + item.getName());
+		TextureRegion region;
+		region = mAtlas.findRegion("burgeritems-flat/" + item.getName());
+		if (region == null) {
+			region = mAtlas.findRegion("burgeritems/" + item.getName());
+		}
 		Image image = new Image(region);
 		float regionW = region.getRegionWidth();
 		float regionH = region.getRegionHeight();

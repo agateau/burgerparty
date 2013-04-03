@@ -5,71 +5,64 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 1, 384
+  xy: 1, 362
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 workbench
   rotate: false
-  xy: 1, 300
+  xy: 1, 278
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 233
+  xy: 1, 211
   size: 341, 65
   orig: 341, 65
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 1, 93
+  xy: 1, 71
   size: 236, 138
   split: 39, 20, 18, 54
   orig: 236, 138
   offset: 0, 0
   index: -1
-done
-  rotate: false
-  xy: 803, 691
-  size: 181, 173
-  orig: 181, 173
-  offset: 0, 0
-  index: -1
 normal-font
   rotate: false
-  xy: 344, 221
+  xy: 344, 199
   size: 254, 77
   orig: 254, 77
   offset: 0, 0
   index: -1
 shelf
   rotate: false
-  xy: 1, 1
+  xy: 803, 752
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 face
   rotate: false
-  xy: 803, 621
+  xy: 1, 1
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 986, 837
+  xy: 600, 249
   size: 27, 27
   orig: 27, 27
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 600, 282
+  xy: 239, 193
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -81,160 +74,347 @@ filter: Nearest,Nearest
 repeat: none
 burgeritems/top-inventory
   rotate: false
-  xy: 1, 362
+  xy: 1, 350
   size: 244, 143
   orig: 244, 143
   offset: 0, 0
   index: -1
 burgeritems/bottom-inventory
   rotate: false
-  xy: 1, 224
+  xy: 1, 212
   size: 244, 136
   orig: 244, 136
   offset: 0, 0
   index: -1
 burgeritems/cheese-inventory
   rotate: false
-  xy: 247, 395
+  xy: 247, 383
   size: 250, 110
   orig: 250, 110
   offset: 0, 0
   index: -1
+burgeritems/big-fries
+  rotate: false
+  xy: 1, 1
+  size: 149, 209
+  orig: 149, 209
+  offset: 0, 0
+  index: -1
 burgeritems/steak-inventory
   rotate: false
-  xy: 1, 98
+  xy: 247, 257
   size: 220, 124
   orig: 220, 124
   offset: 0, 0
   index: -1
 burgeritems/salad-inventory
   rotate: false
-  xy: 247, 288
+  xy: 499, 388
   size: 221, 105
   orig: 221, 105
   offset: 0, 0
   index: -1
 burgeritems/cucumber-inventory
   rotate: false
-  xy: 499, 400
+  xy: 722, 388
   size: 204, 105
   orig: 204, 105
   offset: 0, 0
   index: -1
-burgeritems/onion-inventory
+burgeritems/small-fries
   rotate: false
-  xy: 1, 1
-  size: 213, 95
-  orig: 213, 95
-  offset: 0, 0
-  index: -1
-burgeritems/top
-  rotate: false
-  xy: 705, 441
-  size: 244, 64
-  orig: 244, 64
-  offset: 0, 0
-  index: -1
-burgeritems/bottom
-  rotate: false
-  xy: 705, 392
-  size: 244, 47
-  orig: 244, 47
-  offset: 0, 0
-  index: -1
-burgeritems/cheese
-  rotate: false
-  xy: 247, 239
-  size: 223, 47
-  orig: 223, 47
+  xy: 152, 26
+  size: 141, 184
+  orig: 141, 184
   offset: 0, 0
   index: -1
 burgeritems/ketchup
   rotate: false
-  xy: 247, 205
+  xy: 247, 223
   size: 226, 32
   orig: 226, 32
   offset: 0, 0
   index: -1
 burgeritems/tomato-inventory
   rotate: false
-  xy: 223, 93
+  xy: 295, 111
   size: 192, 110
   orig: 192, 110
   offset: 0, 0
   index: -1
+burgeritems/onion-inventory
+  rotate: false
+  xy: 295, 14
+  size: 213, 95
+  orig: 213, 95
+  offset: 0, 0
+  index: -1
+burgeritems/bottom
+  rotate: false
+  xy: 499, 339
+  size: 244, 47
+  orig: 244, 47
+  offset: 0, 0
+  index: -1
+burgeritems/top
+  rotate: false
+  xy: 469, 273
+  size: 244, 64
+  orig: 244, 64
+  offset: 0, 0
+  index: -1
+burgeritems/cheese
+  rotate: false
+  xy: 475, 224
+  size: 223, 47
+  orig: 223, 47
+  offset: 0, 0
+  index: -1
 burgeritems/steak
   rotate: false
-  xy: 216, 47
+  xy: 489, 178
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
 burgeritems/tomato
   rotate: false
-  xy: 216, 13
+  xy: 489, 144
   size: 211, 32
   orig: 211, 32
   offset: 0, 0
   index: -1
+burgeritems/salad
+  rotate: false
+  xy: 489, 111
+  size: 210, 31
+  orig: 210, 31
+  offset: 0, 0
+  index: -1
 burgeritems/onion
   rotate: false
-  xy: 499, 367
+  xy: 510, 78
   size: 186, 31
   orig: 186, 31
   offset: 0, 0
   index: -1
-burgeritems/salad
-  rotate: false
-  xy: 687, 360
-  size: 211, 30
-  orig: 211, 30
-  offset: 0, 0
-  index: -1
 burgeritems/cucumber
   rotate: false
-  xy: 470, 339
+  xy: 745, 360
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
   index: -1
-burgeritems/big-fries
-  rotate: false
-  xy: 475, 186
-  size: 134, 151
-  orig: 134, 151
-  offset: 0, 0
-  index: -1
 burgeritems/ketchup-inventory
   rotate: false
-  xy: 611, 143
+  xy: 928, 299
   size: 75, 194
   orig: 75, 194
   offset: 0, 0
   index: -1
-burgeritems/small-fries
-  rotate: false
-  xy: 688, 207
-  size: 134, 151
-  orig: 134, 151
-  offset: 0, 0
-  index: -1
 burgeritems/juice
   rotate: false
-  xy: 824, 226
-  size: 91, 132
-  orig: 91, 132
+  xy: 715, 162
+  size: 96, 175
+  orig: 96, 175
   offset: 0, 0
   index: -1
 burgeritems/soda
   rotate: false
-  xy: 688, 73
-  size: 91, 132
-  orig: 91, 132
+  xy: 813, 183
+  size: 96, 175
+  orig: 96, 175
   offset: 0, 0
   index: -1
 
 burgerparty3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+burgeritems-flat/big-fries
+  rotate: false
+  xy: 1, 45
+  size: 148, 209
+  orig: 148, 209
+  offset: 0, 0
+  index: -1
+burgeritems-flat/small-fries
+  rotate: false
+  xy: 151, 70
+  size: 141, 184
+  orig: 141, 184
+  offset: 0, 0
+  index: -1
+burgeritems-flat/top
+  rotate: false
+  xy: 294, 190
+  size: 244, 64
+  orig: 244, 64
+  offset: 0, 0
+  index: -1
+burgeritems-flat/bottom
+  rotate: false
+  xy: 294, 141
+  size: 244, 47
+  orig: 244, 47
+  offset: 0, 0
+  index: -1
+burgeritems-flat/cheese
+  rotate: false
+  xy: 540, 207
+  size: 223, 47
+  orig: 223, 47
+  offset: 0, 0
+  index: -1
+burgeritems-flat/steak
+  rotate: false
+  xy: 294, 95
+  size: 224, 44
+  orig: 224, 44
+  offset: 0, 0
+  index: -1
+burgeritems-flat/ketchup
+  rotate: false
+  xy: 765, 221
+  size: 224, 33
+  orig: 224, 33
+  offset: 0, 0
+  index: -1
+burgeritems-flat/tomato
+  rotate: false
+  xy: 540, 172
+  size: 210, 33
+  orig: 210, 33
+  offset: 0, 0
+  index: -1
+burgeritems-flat/salad
+  rotate: false
+  xy: 540, 140
+  size: 211, 30
+  orig: 211, 30
+  offset: 0, 0
+  index: -1
+burgeritems-flat/onion
+  rotate: false
+  xy: 294, 62
+  size: 186, 31
+  orig: 186, 31
+  offset: 0, 0
+  index: -1
+burgeritems-flat/cucumber
+  rotate: false
+  xy: 765, 193
+  size: 181, 26
+  orig: 181, 26
+  offset: 0, 0
+  index: -1
+burgeritems-flat/cucumber-inventory
+  rotate: false
+  xy: 1, 1
+  size: 80, 42
+  orig: 80, 42
+  offset: 0, 0
+  index: -1
+burgeritems-flat/juice
+  rotate: false
+  xy: 753, 16
+  size: 96, 175
+  orig: 96, 175
+  offset: 0, 0
+  index: -1
+burgeritems-flat/soda
+  rotate: false
+  xy: 851, 16
+  size: 96, 175
+  orig: 96, 175
+  offset: 0, 0
+  index: -1
+burgeritems-flat/salad-inventory
+  rotate: false
+  xy: 83, 2
+  size: 80, 41
+  orig: 80, 41
+  offset: 0, 0
+  index: -1
+burgeritems-flat/steak-inventory
+  rotate: false
+  xy: 165, 19
+  size: 80, 49
+  orig: 80, 49
+  offset: 0, 0
+  index: -1
+burgeritems-flat/bottom-inventory
+  rotate: false
+  xy: 520, 92
+  size: 80, 46
+  orig: 80, 46
+  offset: 0, 0
+  index: -1
+burgeritems-flat/tomato-inventory
+  rotate: false
+  xy: 602, 91
+  size: 80, 47
+  orig: 80, 47
+  offset: 0, 0
+  index: -1
+burgeritems-flat/small-fries-inventory
+  rotate: false
+  xy: 684, 58
+  size: 61, 80
+  orig: 61, 80
+  offset: 0, 0
+  index: -1
+burgeritems-flat/big-fries-inventory
+  rotate: false
+  xy: 949, 139
+  size: 57, 80
+  orig: 57, 80
+  offset: 0, 0
+  index: -1
+burgeritems-flat/soda-inventory
+  rotate: false
+  xy: 949, 57
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+burgeritems-flat/top-inventory
+  rotate: false
+  xy: 247, 12
+  size: 80, 48
+  orig: 80, 48
+  offset: 0, 0
+  index: -1
+burgeritems-flat/cheese-inventory
+  rotate: false
+  xy: 329, 23
+  size: 80, 37
+  orig: 80, 37
+  offset: 0, 0
+  index: -1
+burgeritems-flat/onion-inventory
+  rotate: false
+  xy: 411, 24
+  size: 80, 36
+  orig: 80, 36
+  offset: 0, 0
+  index: -1
+burgeritems-flat/juice-inventory
+  rotate: false
+  xy: 493, 10
+  size: 44, 80
+  orig: 44, 80
+  offset: 0, 0
+  index: -1
+burgeritems-flat/ketchup-inventory
+  rotate: false
+  xy: 539, 10
+  size: 33, 80
+  orig: 33, 80
+  offset: 0, 0
+  index: -1
+
+burgerparty4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -253,7 +433,7 @@ customers/ninjas/face-0-happy
   offset: 0, 0
   index: -1
 
-burgerparty4.png
+burgerparty5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -342,7 +522,7 @@ customers/boys/face-3-happy
   offset: 0, 0
   index: -1
 
-burgerparty5.png
+burgerparty6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -389,7 +569,7 @@ customers/girls/top-0
   offset: 0, 0
   index: -1
 
-burgerparty6.png
+burgerparty7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
