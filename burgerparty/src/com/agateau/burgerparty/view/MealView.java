@@ -17,6 +17,10 @@ public class MealView extends Group implements ResizeToFitChildren {
 		addActor(mMealExtraView);
 	}
 
+	public BurgerView getBurgerView() {
+		return mBurgerView;
+	}
+
 	public void updateGeometry() {
 		mMealExtraView.setPosition(mBurgerView.getWidth(), 0);
 		setSize(

@@ -20,6 +20,7 @@ public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
+	private float mPadding = 0;
 	private float mNextY;
 
 	private static final float ADD_ACTION_HEIGHT = 100;
@@ -52,6 +53,10 @@ public class BurgerView extends Group {
 		});
 	}
 
+	public void setPadding(float value) {
+		mPadding = value;
+	}
+
 	private void addItem(BurgerItem item) {
 		TextureRegion region;
 		region = mAtlas.findRegion("burgeritems-flat/" + item.getName());
@@ -73,7 +78,7 @@ public class BurgerView extends Group {
 			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
 			));
 
-		mNextY += item.getHeight();
+		mNextY += item.getHeight() + mPadding;
 		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
 		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
 		UiUtils.notifyResizeToFitParent(this);
