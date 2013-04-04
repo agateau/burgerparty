@@ -9,8 +9,10 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
@@ -40,13 +42,21 @@ public class MealExtraView extends Group {
 		}
 		Image image = new Image(region);
 		mImages.add(image);
+		image.setPosition(MathUtils.ceil(getWidth()), ADD_ACTION_HEIGHT);
 		addActor(image);
+		image.addAction(Actions.alpha(0));
+		image.addAction(Actions.parallel(
+			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
+			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
+			));
+
 		updateGeometry();
 	}
 	
 	private void clearItems() {
 		mImages.clear();
 		clear();
+		updateGeometry();
 	}
 
 	private void updateGeometry() {
@@ -55,14 +65,13 @@ public class MealExtraView extends Group {
 			UiUtils.notifyResizeToFitParent(this);
 			return;
 		}
-		float x = 0;
+		float width = 0;
 		float height = 0;
 		for(Image image: mImages) {
-			image.setPosition(MathUtils.ceil(x), 0);
-			x += image.getWidth();
+			width += image.getWidth();
 			height = Math.max(image.getHeight(), height);
 		}
-		setSize(x, height);
+		setSize(width, height);
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
@@ -70,4 +79,6 @@ public class MealExtraView extends Group {
 	private TextureAtlas mAtlas;
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Array<Image> mImages = new Array<Image>();
+
+	private static final float ADD_ACTION_HEIGHT = 100;
 }
