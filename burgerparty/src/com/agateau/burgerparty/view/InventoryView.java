@@ -21,7 +21,6 @@ public class InventoryView extends Actor {
 	
 	private static final int COLUMN_COUNT = 8;
 	private static final int ROW_COUNT = 2;
-	private static final float PADDING = 10;
 
 	public InventoryView(Inventory inventory, TextureAtlas atlas) {
 		mInventory = inventory;
@@ -73,13 +72,10 @@ public class InventoryView extends Actor {
 					region = mAtlas.findRegion(baseName);
 				}
 				assert(region != null);
-				float scale = 1; //(cellWidth - PADDING * 2) / Math.max(region.getRegionWidth(), region.getRegionHeight());
-				float width = region.getRegionWidth() * scale;
-				float height = region.getRegionHeight() * scale;
 
 				spriteBatch.draw(region,
-					MathUtils.ceil(posX + (cellWidth - width) / 2),
-					MathUtils.ceil(posY + (cellHeight - height) / 2));
+					MathUtils.ceil(posX + (cellWidth - region.getRegionWidth()) / 2),
+					MathUtils.ceil(posY + (cellHeight - region.getRegionHeight()) / 2));
 			}
 		}
 	}
