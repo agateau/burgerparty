@@ -3,12 +3,14 @@
     maxBurgerSize="3"
     customerCount="4"
     duration="120"
-    maxTrashed="2"
-    maxDuration="60"
     >
     <items>
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>
     </items>
+    <objectives>
+        <objective type="maxTrashed" value="2"/>
+        <objective type="maxDuration" value="60"/>
+    </objectives>
 </level>

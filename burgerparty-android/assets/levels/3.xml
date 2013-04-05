@@ -4,8 +4,6 @@
     maxBurgerSize="4"
     customerCount="6"
     duration="90"
-    maxTrashed="1"
-    maxDuration="50"
     >
     <items>
         <item name="steak"/>
@@ -14,4 +12,8 @@
         <item name="onion"/>
         <item name="cheese"/>
     </items>
+    <objectives>
+        <objective type="maxTrashed" value="1"/>
+        <objective type="maxDuration" value="50"/>
+    </objectives>
 </level>

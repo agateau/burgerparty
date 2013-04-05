@@ -38,14 +38,7 @@ public class Level {
 		level.definition.customerCount = root.getIntAttribute("customerCount");
 		level.definition.duration = root.getIntAttribute("duration");
 
-		int maxTrashed = root.getIntAttribute("maxTrashed", -1);
-		if (maxTrashed >= 0) {
-			level.definition.objectives.add(new MaxTrashedObjective(maxTrashed));
-		}
-		int maxDuration = root.getIntAttribute("maxDuration", -1);
-		if (maxDuration > 0) {
-			level.definition.objectives.add(new MaxDurationObjective(maxDuration));
-		}
+		readObjectives(level, root.getChildByName("objectives"));
 
 		level.definition.burgerItems.add("top");
 		level.definition.burgerItems.add("bottom");
@@ -64,5 +57,25 @@ public class Level {
 		}
 
 		return level;
+	}
+
+	private static void readObjectives(Level level, XmlReader.Element objRoot) {
+		assert(objRoot != null);
+		for(int idx = 0; idx < objRoot.getChildCount(); ++idx) {
+			XmlReader.Element element = objRoot.getChild(idx);
+			String type = element.getAttribute("type");
+			Objective objective = null;
+			if (type.equals("maxTrashed")) {
+				int value = element.getIntAttribute("value");
+				objective = new MaxTrashedObjective(value);
+			} else if (type.equals("maxDuration")) {
+				int value = element.getIntAttribute("value");
+				objective = new MaxDurationObjective(value);
+			} else {
+				throw new RuntimeException("Don't know how to read objective from " + element);
+			}
+			assert(objective != null);
+			level.definition.objectives.add(objective);
+		}
 	}
 }
