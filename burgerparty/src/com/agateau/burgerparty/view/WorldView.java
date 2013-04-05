@@ -172,7 +172,7 @@ public class WorldView extends AnchorGroup {
 		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas);
-		mTargetMealView.getBurgerView().setPadding(16);
+		mTargetMealView.getBurgerView().setPadding(8);
 		mTargetMealView.setScale(0.5f, 0.5f);
 		mBubble.setChild(mTargetMealView);
 		mBubble.setVisible(false);
