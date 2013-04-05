@@ -38,11 +38,11 @@ public class LevelFinishedOverlay extends Overlay {
 
 		TextButton nextButton = null;
 
-		TextButton menuButton = new TextButton("Return to menu", skin);
-		UiUtils.setButtonSize(menuButton);
-		menuButton.addListener(new ChangeListener() {
+		TextButton selectLevelButton = new TextButton("Return to level list", skin);
+		UiUtils.setButtonSize(selectLevelButton);
+		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showMenu();
+				mGame.selectLevel();
 			}
 		});
 
@@ -64,10 +64,10 @@ public class LevelFinishedOverlay extends Overlay {
 		group.addRule(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
 		group.addRule(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
 		if (nextButton == null) {
-			group.addRule(menuButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(selectLevelButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
 		} else {
 			group.addRule(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
-			group.addRule(menuButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(selectLevelButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
 		}
 	}
 

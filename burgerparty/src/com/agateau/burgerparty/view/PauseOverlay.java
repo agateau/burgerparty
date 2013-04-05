@@ -36,16 +36,16 @@ public class PauseOverlay extends Overlay {
 			}
 		});
 
-		TextButton menuButton = new TextButton("Menu", skin);
-		menuButton.addListener(new ChangeListener() {
+		TextButton selectLevelButton = new TextButton("Levels", skin);
+		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showMenu();
+				mGame.selectLevel();
 			}
 		});
 
 		UiUtils.setButtonSize(resumeButton);
 		UiUtils.setButtonSize(restartButton);
-		UiUtils.setButtonSize(menuButton);
+		UiUtils.setButtonSize(selectLevelButton);
 
 		AnchorGroup group = new AnchorGroup();
 		addActor(group);
@@ -55,6 +55,6 @@ public class PauseOverlay extends Overlay {
 		group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
 		group.addRule(resumeButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
 		group.addRule(restartButton, Anchor.TOP_CENTER, resumeButton, Anchor.BOTTOM_CENTER, 0, -1);
-		group.addRule(menuButton, Anchor.TOP_CENTER, restartButton, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(selectLevelButton, Anchor.TOP_CENTER, restartButton, Anchor.BOTTOM_CENTER, 0, -1);
 	}
 }

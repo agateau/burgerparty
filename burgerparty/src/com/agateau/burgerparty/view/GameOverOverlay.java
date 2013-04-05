@@ -28,15 +28,15 @@ public class GameOverOverlay extends Overlay {
 			}
 		});
 
-		TextButton menuButton = new TextButton("Menu", skin);
-		menuButton.addListener(new ChangeListener() {
+		TextButton selectLevelButton = new TextButton("Levels", skin);
+		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showMenu();
+				mGame.selectLevel();
 			}
 		});
 
 		UiUtils.setButtonSize(tryAgainButton);
-		UiUtils.setButtonSize(menuButton);
+		UiUtils.setButtonSize(selectLevelButton);
 
 		AnchorGroup group = new AnchorGroup();
 		addActor(group);
@@ -45,6 +45,6 @@ public class GameOverOverlay extends Overlay {
 
 		group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
 		group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
-		group.addRule(menuButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
 	}
 }
