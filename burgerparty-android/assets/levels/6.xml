@@ -20,7 +20,7 @@
         <item name="soda"/>
     </items>
     <objectives>
-        <objective type="maxTrashed" value="0"/>
-        <objective type="maxDuration" value="30"/>
-    </objectives>
+        <objective type="maxDuration" value="90"/>
+        <objective type="maxDuration" value="60"/>
+        </objectives>
 </level>
