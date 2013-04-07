@@ -3,20 +3,18 @@ package com.agateau.burgerparty.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 
 public class ComposableCustomerFactory {
 	static class CustomerCategory {
 		public String dirName;
-		public int bodyCount;
-		public int topCount;
-		public int faceCount;
+		public Array<String> bodies = new Array<String>();
+		public Array<String> tops = new Array<String>();
+		public Array<String> faces = new Array<String>();
 
 		public CustomerCategory(String dirName) {
 			this.dirName = dirName;
-			this.bodyCount = 0;
-			this.topCount = 0;
-			this.faceCount = 0;
 		} 
 	}
 
@@ -26,31 +24,46 @@ public class ComposableCustomerFactory {
 	public ComposableCustomerFactory(TextureAtlas atlas) {
 		mAtlas = atlas;
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
-			String[] tokens = region.name.split("/", 3);
-			if (!tokens[0].equals("customers")) {
+			String[] path = region.name.split("/", 3);
+			if (!path[0].equals("customers")) {
 				continue;
 			}
-			if (tokens.length < 3) {
+			if (path.length < 3) {
 				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Should not exist!");
 				continue;
 			}
-			String categoryName = tokens[1];
+			String categoryName = path[1];
 			CustomerCategory category;
 			category = mCategories.get(categoryName);
 			if (category == null) {
 				category = new CustomerCategory(categoryName);
 				mCategories.put(categoryName, category);
 			}
-			String name = tokens[2];
+			String name = path[2];
 			if (name.startsWith("body-")) {
-				category.bodyCount++;
+				category.bodies.add(name);
 			} else if (name.startsWith("top-")) {
-				category.topCount++;
+				category.tops.add(name);
 			} else if (name.startsWith("face-")) {
-				category.faceCount++;
+				String[] tokens = name.split("-", 3);
+				if (tokens.length != 3) {
+					Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Invalid face name!");
+					continue;
+				}
+				if (tokens[2].equals("happy")) {
+					category.faces.add(tokens[0] + "-" + tokens[1]);
+				}
 			} else {
 				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Unknown customer part!");
 			}
+		}
+	}
+
+	static String getRandomString(Array<String> array) {
+		if (array.size > 0) {
+			return array.get(MathUtils.random(array.size - 1));
+		} else {
+			return "";
 		}
 	}
 
@@ -59,9 +72,8 @@ public class ComposableCustomerFactory {
 		String name = categoryNames[MathUtils.random(categoryNames.length -1)];
 		CustomerCategory category = mCategories.get(name);
 		return new ComposableCustomer(mAtlas, category.dirName,
-			MathUtils.random(category.bodyCount - 1),
-			category.topCount > 0 ? MathUtils.random(category.topCount - 1) : -1,
-			MathUtils.random(category.faceCount - 1)
-			);
+			getRandomString(category.bodies),
+			getRandomString(category.tops),
+			getRandomString(category.faces));
 	}
 }

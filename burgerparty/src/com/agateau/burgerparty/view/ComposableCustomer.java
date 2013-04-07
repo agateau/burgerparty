@@ -13,12 +13,12 @@ public class ComposableCustomer extends Customer {
 		float yOffset;
 	}
 
-	public ComposableCustomer(TextureAtlas atlas, String dirName, int bodyId, int topId, int faceId) {
+	public ComposableCustomer(TextureAtlas atlas, String dirName, String bodyName, String topName, String faceName) {
 		mAtlas = atlas;
 		mDirName = dirName;
-		CustomerPart body = getCustomerPart("body", bodyId, "");
-		CustomerPart top = topId >= 0 ? getCustomerPart("top", topId, "") : null;
-		CustomerPart face = getCustomerPart("face", faceId, "happy");
+		CustomerPart body = getCustomerPart(bodyName, "");
+		CustomerPart top = topName.isEmpty() ? null : getCustomerPart(topName, "");
+		CustomerPart face = getCustomerPart(faceName, "happy");
 
 		addActor(body.image);
 		if (top != null) {
@@ -34,15 +34,15 @@ public class ComposableCustomer extends Customer {
 		setHeight(body.image.getHeight());
 	}
 	
-	private CustomerPart getCustomerPart(String prefix, int id, String suffix) {
-		String name = "customers/" + mDirName + "/" + prefix + "-" + id;
+	private CustomerPart getCustomerPart(String name, String suffix) {
+		String fullName = "customers/" + mDirName + "/" + name;
 		if (!suffix.isEmpty()) {
-			name += "-" + suffix;
+			fullName += "-" + suffix;
 		}
 		CustomerPart part = new CustomerPart();
-		part.image = new Image(mAtlas.findRegion(name));
-		part.xCenter = getPartXCenter(name, part.image.getWidth() / 2);
-		if (prefix.equals("face")) {
+		part.image = new Image(mAtlas.findRegion(fullName));
+		part.xCenter = getPartXCenter(fullName, part.image.getWidth() / 2);
+		if (name.startsWith("face")) {
 			if (mDirName.equals("ninjas")) {
 				part.yOffset = 55;
 			} else {
@@ -54,11 +54,11 @@ public class ComposableCustomer extends Customer {
 		return part;
 	}
 
-	private void xCenterImage(CustomerPart part, float xCenter) {
+	private static void xCenterImage(CustomerPart part, float xCenter) {
 		part.image.setX(xCenter - part.xCenter);
 	}
 
-	private float getPartXCenter(String name, float defaultValue) {
+	private static float getPartXCenter(String name, float defaultValue) {
 		// FIXME: Move custom xCenter to a configuration file
 		if (name.equals("customers/girls/body-0")) {
 			return 59;
