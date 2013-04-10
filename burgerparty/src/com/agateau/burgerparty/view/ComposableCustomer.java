@@ -8,30 +8,52 @@ public class ComposableCustomer extends Customer {
 	private String mDirName;
 
 	static private class CustomerPart {
-		Image image;
-		float xCenter;
-		float yOffset;
+		String name;
+		float xCenter = 0;
+		float yOffset = 0;
+	}
+
+	static private class BodyPart extends CustomerPart {
+		float yFace = 0;
 	}
 
 	public ComposableCustomer(TextureAtlas atlas, String dirName, String bodyName, String topName, String faceName) {
 		mAtlas = atlas;
 		mDirName = dirName;
-		CustomerPart body = getCustomerPart(bodyName, "");
-		CustomerPart top = topName.isEmpty() ? null : getCustomerPart(topName, "");
-		CustomerPart face = getCustomerPart(faceName, "happy");
 
-		addActor(body.image);
-		if (top != null) {
-			xCenterImage(top, body.xCenter);
-			addActor(top.image);
+		// Body
+		BodyPart body = (BodyPart)getCustomerPart(bodyName, "");
+		Image bodyImage = getPartImage(body);
+		addActor(bodyImage);
+
+		// Top
+		if (!topName.isEmpty()) {
+			CustomerPart top = getCustomerPart(topName, "");
+			Image topImage = getPartImage(top);
+			addActor(topImage);
+			xCenterImage(topImage, top, bodyImage, body);
+			topImage.setY(top.yOffset);
 		}
-		xCenterImage(face, body.xCenter);
-		addActor(face.image);
 
-		setWidth(body.image.getWidth());
+		// Face
+		CustomerPart face = getCustomerPart(faceName, "happy");
+		Image faceImage = getPartImage(face);
+		addActor(faceImage);
+		xCenterImage(faceImage, face, bodyImage, body);
+		faceImage.setY(body.yFace + face.yOffset);
 
-		face.image.setY(face.yOffset);
-		setHeight(body.image.getHeight());
+		setWidth(bodyImage.getWidth());
+		setHeight(bodyImage.getHeight());
+	}
+
+	private Image getPartImage(CustomerPart part) {
+		return new Image(mAtlas.findRegion(part.name));
+	}
+
+	private static void xCenterImage(Image image, CustomerPart imagePart, Image ref, CustomerPart refPart) {
+		float imageCenter = imagePart.xCenter > 0 ? imagePart.xCenter : (image.getWidth() / 2);
+		float refCenter = refPart.xCenter > 0 ? refPart.xCenter : (ref.getWidth() / 2);
+		image.setX(refCenter - imageCenter);
 	}
 	
 	private CustomerPart getCustomerPart(String name, String suffix) {
@@ -39,35 +61,27 @@ public class ComposableCustomer extends Customer {
 		if (!suffix.isEmpty()) {
 			fullName += "-" + suffix;
 		}
-		CustomerPart part = new CustomerPart();
-		part.image = new Image(mAtlas.findRegion(fullName));
-		part.xCenter = getPartXCenter(fullName, part.image.getWidth() / 2);
-		if (name.startsWith("face")) {
+		CustomerPart part;
+		if (name.startsWith("body")) {
+			BodyPart bodyPart = new BodyPart();
 			if (mDirName.equals("ninjas")) {
-				part.yOffset = 55;
+				bodyPart.yFace = 55;
 			} else {
-				part.yOffset = 69;
+				bodyPart.yFace = 69;
 			}
+			part = bodyPart;
 		} else {
-			part.yOffset = 0;
+			part = new CustomerPart();
+		}
+		part.name = fullName;
+		// FIXME: Move custom xCenter to a configuration file
+		if (fullName.equals("customers/girls/body-0")) {
+			part.xCenter = 59;
+		} else if (fullName.equals("customers/girls/body-1")) {
+			part.xCenter = 53;
+		} else if (fullName.equals("customers/ninjas/body-0")) {
+			part.xCenter = 55;
 		}
 		return part;
-	}
-
-	private static void xCenterImage(CustomerPart part, float xCenter) {
-		part.image.setX(xCenter - part.xCenter);
-	}
-
-	private static float getPartXCenter(String name, float defaultValue) {
-		// FIXME: Move custom xCenter to a configuration file
-		if (name.equals("customers/girls/body-0")) {
-			return 59;
-		} else if (name.equals("customers/girls/body-1")) {
-			return 53;
-		} else if (name.equals("customers/ninjas/body-0")) {
-			return 55;
-		} else {
-			return defaultValue;
-		}
 	}
 }
