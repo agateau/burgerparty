@@ -1,37 +1,56 @@
 package com.agateau.burgerparty.view;
 
+import java.io.IOException;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.OrderedMap;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class ComposableCustomer extends Customer {
-	private TextureAtlas mAtlas;
-	private String mDirName;
-
-	static private class CustomerPart {
-		Image image;
-		float xCenter;
-		float yOffset;
-	}
-
 	public ComposableCustomer(TextureAtlas atlas, String dirName, String bodyName, String topName, String faceName) {
+		if (sMap.size == 0) {
+			initMap();
+			assert(sMap.size > 0);
+		}
 		mAtlas = atlas;
 		mDirName = dirName;
-		CustomerPart body = getCustomerPart(bodyName, "");
-		CustomerPart top = topName.isEmpty() ? null : getCustomerPart(topName, "");
-		CustomerPart face = getCustomerPart(faceName, "happy");
 
-		addActor(body.image);
-		if (top != null) {
-			xCenterImage(top, body.xCenter);
-			addActor(top.image);
+		// Body
+		BodyPart body = (BodyPart)getCustomerPart(bodyName, "");
+		Image bodyImage = getPartImage(body);
+		addActor(bodyImage);
+
+		// Top
+		if (!topName.isEmpty()) {
+			CustomerPart top = getCustomerPart(topName, "");
+			Image topImage = getPartImage(top);
+			addActor(topImage);
+			xCenterImage(topImage, top, bodyImage, body);
+			topImage.setY(top.yOffset);
 		}
-		xCenterImage(face, body.xCenter);
-		addActor(face.image);
 
-		setWidth(body.image.getWidth());
+		// Face
+		CustomerPart face = getCustomerPart(faceName, "happy");
+		Image faceImage = getPartImage(face);
+		addActor(faceImage);
+		xCenterImage(faceImage, face, bodyImage, body);
+		faceImage.setY(body.yFace + face.yOffset);
 
-		face.image.setY(face.yOffset);
-		setHeight(body.image.getHeight());
+		setWidth(bodyImage.getWidth());
+		setHeight(bodyImage.getHeight());
+	}
+
+	private Image getPartImage(CustomerPart part) {
+		return new Image(mAtlas.findRegion(part.name));
+	}
+
+	private static void xCenterImage(Image image, CustomerPart imagePart, Image ref, CustomerPart refPart) {
+		float imageCenter = imagePart.xCenter > 0 ? imagePart.xCenter : (image.getWidth() / 2);
+		float refCenter = refPart.xCenter > 0 ? refPart.xCenter : (ref.getWidth() / 2);
+		image.setX(refCenter - imageCenter);
 	}
 	
 	private CustomerPart getCustomerPart(String name, String suffix) {
@@ -39,35 +58,56 @@ public class ComposableCustomer extends Customer {
 		if (!suffix.isEmpty()) {
 			fullName += "-" + suffix;
 		}
-		CustomerPart part = new CustomerPart();
-		part.image = new Image(mAtlas.findRegion(fullName));
-		part.xCenter = getPartXCenter(fullName, part.image.getWidth() / 2);
-		if (name.startsWith("face")) {
-			if (mDirName.equals("ninjas")) {
-				part.yOffset = 55;
+		return sMap.get(fullName);
+	}
+
+	private TextureAtlas mAtlas;
+	private String mDirName;
+
+	private static class CustomerPart {
+		String name;
+		float xCenter = 0;
+		float yOffset = 0;
+
+		CustomerPart(XmlReader.Element element) {
+			name = element.getAttribute("name");
+			xCenter = element.getFloatAttribute("xCenter", 0);
+			yOffset = element.getFloatAttribute("yOffset", 0);
+		}
+	}
+
+	private static class BodyPart extends CustomerPart {
+		float yFace = 0;
+
+		BodyPart(XmlReader.Element element) {
+			super(element);
+			yFace = element.getFloatAttribute("yFace", 0);
+		}
+	}
+
+	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, ComposableCustomer.CustomerPart>();
+
+	private static void initMap() {
+		FileHandle handle = Gdx.files.internal("customerparts.xml");
+		XmlReader.Element root = null;
+		try {
+			XmlReader reader = new XmlReader();
+			root = reader.parse(handle);
+		} catch (IOException e) {
+			Gdx.app.error("ComposableCustomer.initMap", "Failed to load customer parts from " + handle.path() + ". Exception: " + e.toString());
+			return;
+		}
+
+		for(int idx = 0; idx < root.getChildCount(); ++idx) {
+			CustomerPart part;
+			XmlReader.Element element = root.getChild(idx);
+			if (element.getName().equals("body")) {
+				part = new BodyPart(element);
 			} else {
-				part.yOffset = 69;
+				part = new CustomerPart(element);
 			}
-		} else {
-			part.yOffset = 0;
-		}
-		return part;
-	}
-
-	private static void xCenterImage(CustomerPart part, float xCenter) {
-		part.image.setX(xCenter - part.xCenter);
-	}
-
-	private static float getPartXCenter(String name, float defaultValue) {
-		// FIXME: Move custom xCenter to a configuration file
-		if (name.equals("customers/girls/body-0")) {
-			return 59;
-		} else if (name.equals("customers/girls/body-1")) {
-			return 53;
-		} else if (name.equals("customers/ninjas/body-0")) {
-			return 55;
-		} else {
-			return defaultValue;
+			sMap.put(part.name, part);
 		}
 	}
+
 }
