@@ -68,10 +68,21 @@ public class ComposableCustomer extends Customer {
 		String name;
 		float xCenter = 0;
 		float yOffset = 0;
+
+		CustomerPart(XmlReader.Element element) {
+			name = element.getAttribute("name");
+			xCenter = element.getFloatAttribute("xCenter", 0);
+			yOffset = element.getFloatAttribute("yOffset", 0);
+		}
 	}
 
 	private static class BodyPart extends CustomerPart {
 		float yFace = 0;
+
+		BodyPart(XmlReader.Element element) {
+			super(element);
+			yFace = element.getFloatAttribute("yFace", 0);
+		}
 	}
 
 	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, ComposableCustomer.CustomerPart>();
@@ -91,14 +102,10 @@ public class ComposableCustomer extends Customer {
 			CustomerPart part;
 			XmlReader.Element element = root.getChild(idx);
 			if (element.getName().equals("body")) {
-				BodyPart bodyPart = new BodyPart();
-				bodyPart.yFace = element.getFloatAttribute("yFace", 0);
-				part = bodyPart;
+				part = new BodyPart(element);
 			} else {
-				part = new CustomerPart();
+				part = new CustomerPart(element);
 			}
-			part.name = element.getAttribute("name");
-			part.xCenter = element.getFloatAttribute("xCenter", 0);
 			sMap.put(part.name, part);
 		}
 	}
