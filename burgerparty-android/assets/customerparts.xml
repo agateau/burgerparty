@@ -1,0 +1,24 @@
+<parts>
+    <body name="customers/boys/body-0" yFace="69"/>
+    <body name="customers/boys/body-1" yFace="69"/>
+    <body name="customers/boys/body-2" yFace="69"/>
+    <body name="customers/boys/body-3" yFace="69"/>
+    <top name="customers/boys/top-0"/>
+    <top name="customers/boys/top-1"/>
+    <top name="customers/boys/top-2"/>
+    <top name="customers/boys/top-3"/>
+    <face name="customers/boys/face-0-happy"/>
+    <face name="customers/boys/face-1-happy"/>
+    <face name="customers/boys/face-2-happy"/>
+    <face name="customers/boys/face-3-happy"/>
+
+    <body name="customers/girls/body-0" yFace="69" xCenter="59"/>
+    <body name="customers/girls/body-1" yFace="69" xCenter="53"/>
+    <top name="customers/girls/top-0"/>
+    <top name="customers/girls/top-1"/>
+    <face name="customers/girls/face-0-happy"/>
+    <face name="customers/girls/face-1-happy"/>
+
+    <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
+    <face name="customers/ninjas/face-0-happy"/>
+</parts>
