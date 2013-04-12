@@ -1,0 +1,21 @@
+
+<level
+    minBurgerSize="2"
+    maxBurgerSize="6"
+    customerCount="8"
+    duration="120"
+    >
+    <items>
+        <item name="steak"/>
+        <item name="tomato"/>
+        <item name="salad"/>
+        <item name="onion"/>
+        <item name="cheese"/>
+        <item name="ketchup"/>
+        <item name="cucumber"/>
+    </items>
+    <objectives>
+        <objective type="maxTrashed" value="0"/>
+        <objective type="maxDuration" value="30"/>
+    </objectives>
+</level>

@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.LevelGroup;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
@@ -53,15 +54,21 @@ public class LevelListScreen extends BaseScreen {
 		gridGroup.setCellSize(150, 150);
 		group.addRule(gridGroup, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
 
-		for (int idx=0; idx < getGame().getLevelCount(); idx++) {
-			Actor levelButton = createLevelButton(idx, skin);
+		// FIXME: Support multiple levels
+		int levelGroupIndex = 0;
+		LevelGroup levelGroup = getGame().getLevelGroup(levelGroupIndex);
+		for (int idx=0; idx < levelGroup.getLevelCount(); idx++) {
+			Actor levelButton = createLevelButton(levelGroupIndex, idx, skin);
 			gridGroup.addActor(levelButton);
 		}
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int idx, int score, Skin skin) {
-			super(String.valueOf(idx + 1), skin);
+		public LevelButton(int levelGroupIndex, int levelIndex, int score, Skin skin) {
+			super(String.valueOf(levelGroupIndex + 1) + "-" + String.valueOf(levelIndex + 1), skin);
+			this.levelGroupIndex = levelGroupIndex;
+			this.levelIndex = levelIndex;
+
 			AnchorGroup group = new AnchorGroup();
 			addActor(group);
 			group.setFillParent(true);
@@ -80,17 +87,20 @@ public class LevelListScreen extends BaseScreen {
 				Image image = new Image(mLock);
 				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -1, 1);
 			}
-			this.idx = idx;
 		}
-		public int idx;
+
+		public int levelGroupIndex;
+		public int levelIndex;
 	}
-	private Actor createLevelButton(int idx, Skin skin) {
-		int score = getGame().getLevelStars(idx);
-		LevelButton button = new LevelButton(idx, score, skin);
+
+	private Actor createLevelButton(int levelGroupIndex, int levelIndex, Skin skin) {
+		LevelGroup group = getGame().getLevelGroup(levelGroupIndex);
+		int score = group.getLevel(levelIndex).stars;
+		LevelButton button = new LevelButton(levelGroupIndex, levelIndex, score, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				LevelButton button = (LevelButton)actor;
-				getGame().startLevel(button.idx);
+				getGame().startLevel(button.levelGroupIndex, button.levelIndex);
 			}
 		});
 

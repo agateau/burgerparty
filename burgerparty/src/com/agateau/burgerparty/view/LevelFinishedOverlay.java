@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.LevelGroup;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.ObjectiveResult;
 import com.agateau.burgerparty.utils.Anchor;
@@ -46,16 +47,15 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
-		int levelIndex = mGame.getLevelIndex(); 
-		if (levelIndex < mGame.getLevelCount() - 1) {
-			mainLabel.setText("Congratulations, you finished level " + (levelIndex + 1) + "!");
-			nextButton = new TextButton("Next Level", skin);
-			UiUtils.setButtonSize(nextButton);
-			nextButton.addListener(new ChangeListener() {
-				public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-					mGame.startLevel(mGame.getLevelIndex() + 1);
-				}
-			});
+		int groupIndex = mGame.getLevelGroupIndex();
+		int levelIndex = mGame.getLevelIndex();
+		LevelGroup levelGroup = mGame.getLevelGroup(groupIndex);
+		if (levelIndex < levelGroup.getLevelCount() - 1) {
+			mainLabel.setText("Congratulations, you finished level " + (groupIndex + 1) + "-" + (levelIndex + 1) + "!");
+			nextButton = createNextButton("Next Level", skin);
+		} else if (groupIndex < mGame.getLevelGroupCount() - 1) {
+			mainLabel.setText("Congratulations, you finished world " + (groupIndex + 1) + "!");
+			nextButton = createNextButton("Next World", skin);
 		} else {
 			mainLabel.setText("Congratulations, you finished the game!");
 		}
@@ -91,5 +91,29 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		table.setSize(table.getPrefWidth(), table.getPrefHeight());
 		return table;
+	}
+
+	private TextButton createNextButton(String text, Skin skin) {
+		TextButton button = new TextButton("Next Level", skin);
+		UiUtils.setButtonSize(button);
+		button.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				goToNextLevel();
+			}
+		});
+		return button;
+	}
+
+	private void goToNextLevel() {
+		int groupIndex = mGame.getLevelGroupIndex();
+		int levelIndex = mGame.getLevelIndex();
+		LevelGroup levelGroup = mGame.getLevelGroup(groupIndex);
+		if (levelIndex < levelGroup.getLevelCount() - 1) {
+			levelIndex++;
+		} else {
+			groupIndex++;
+			levelIndex = 0;
+		}
+		mGame.startLevel(groupIndex, levelIndex);
 	}
 }

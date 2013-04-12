@@ -32,7 +32,7 @@ public class PauseOverlay extends Overlay {
 		TextButton restartButton = new TextButton("Restart", skin);
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.startLevel(mGame.getLevelIndex());
+				mGame.startLevel(mGame.getLevelGroupIndex(), mGame.getLevelIndex());
 			}
 		});
 
