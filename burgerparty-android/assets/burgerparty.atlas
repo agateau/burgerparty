@@ -3,66 +3,59 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-background
-  rotate: false
-  xy: 1, 362
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
 workbench
   rotate: false
-  xy: 1, 278
+  xy: 1, 165
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 211
+  xy: 1, 98
   size: 341, 65
   orig: 341, 65
   offset: 0, 0
   index: -1
+normal-font
+  rotate: false
+  xy: 1, 19
+  size: 254, 77
+  orig: 254, 77
+  offset: 0, 0
+  index: -1
 bubble
   rotate: false
-  xy: 1, 71
+  xy: 344, 25
   size: 236, 138
   split: 39, 20, 18, 54
   orig: 236, 138
   offset: 0, 0
   index: -1
-normal-font
-  rotate: false
-  xy: 344, 199
-  size: 254, 77
-  orig: 254, 77
-  offset: 0, 0
-  index: -1
 shelf
   rotate: false
-  xy: 803, 752
+  xy: 582, 73
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 face
   rotate: false
-  xy: 1, 1
+  xy: 803, 179
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 600, 249
+  xy: 257, 69
   size: 27, 27
   orig: 27, 27
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 239, 193
+  xy: 1, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -228,6 +221,30 @@ burgeritems/soda
   index: -1
 
 burgerparty3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+levels/1/background
+  rotate: false
+  xy: 1, 1
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+
+burgerparty4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+levels/2/background
+  rotate: false
+  xy: 1, 1
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+
+burgerparty5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -414,7 +431,7 @@ burgeritems-flat/ketchup-inventory
   offset: 0, 0
   index: -1
 
-burgerparty4.png
+burgerparty6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -433,7 +450,7 @@ customers/ninjas/face-0-happy
   offset: 0, 0
   index: -1
 
-burgerparty5.png
+burgerparty7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -522,7 +539,7 @@ customers/boys/face-3-happy
   offset: 0, 0
   index: -1
 
-burgerparty6.png
+burgerparty8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -569,7 +586,7 @@ customers/girls/top-0
   offset: 0, 0
   index: -1
 
-burgerparty7.png
+burgerparty9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

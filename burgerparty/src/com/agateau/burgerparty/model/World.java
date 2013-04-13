@@ -41,7 +41,11 @@ public class World {
 		mBurgerInventory = new Inventory(level.definition.burgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 	}
-	
+
+	public String getBackgroundRegionName() {
+		return mLevel.getGroup().getDirName() + "background";
+	}
+
 	public Inventory getBurgerInventory() {
 		return mBurgerInventory;
 	}

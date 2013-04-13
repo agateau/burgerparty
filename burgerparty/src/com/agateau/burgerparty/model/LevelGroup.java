@@ -15,7 +15,7 @@ public class LevelGroup {
 				break;
 			}
 			Gdx.app.log("LevelGroup", "levelFile=" + levelFile);
-			mLevels.add(Level.fromXml(levelFile));
+			mLevels.add(Level.fromXml(this, levelFile));
 		}
 	}
 

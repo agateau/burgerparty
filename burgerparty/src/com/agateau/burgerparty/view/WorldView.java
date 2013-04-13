@@ -63,7 +63,7 @@ public class WorldView extends AnchorGroup {
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
-		mBackgroundRegion = atlas.findRegion("background");
+		mBackgroundRegion = atlas.findRegion(world.getBackgroundRegionName());
 		mCustomerFactory = new ComposableCustomerFactory(atlas);
 
 		setupCustomers();
