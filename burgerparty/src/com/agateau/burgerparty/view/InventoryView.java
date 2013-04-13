@@ -22,12 +22,12 @@ public class InventoryView extends Actor {
 	private static final int COLUMN_COUNT = 8;
 	private static final int ROW_COUNT = 2;
 
-	public InventoryView(Inventory inventory, TextureAtlas atlas) {
+	public InventoryView(Inventory inventory, String levelGroupDirName, TextureAtlas atlas) {
 		mInventory = inventory;
 		mAtlas = atlas;
-		mBgRegion = mAtlas.findRegion("shelf");
+		mBgRegion = mAtlas.findRegion(levelGroupDirName + "shelf");
 		setHeight(mBgRegion.getRegionHeight() * 2);
-	
+
 		addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
