@@ -11,11 +11,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
 
 public class InventoryView extends Actor {
 	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
-	private TextureRegion mBgRegion;
+	private TiledDrawable mBgDrawable;
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
 	
@@ -25,8 +26,9 @@ public class InventoryView extends Actor {
 	public InventoryView(Inventory inventory, String levelWorldDirName, TextureAtlas atlas) {
 		mInventory = inventory;
 		mAtlas = atlas;
-		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
-		setHeight(mBgRegion.getRegionHeight() * 2);
+		TextureRegion region = mAtlas.findRegion(levelWorldDirName + "shelf");
+		mBgDrawable = new TiledDrawable(region);
+		setHeight(region.getRegionHeight() * 2);
 
 		addListener(new ClickListener() {
 			@Override
@@ -45,20 +47,17 @@ public class InventoryView extends Actor {
 		spriteBatch.setColor(1, 1, 1, parentAlpha);
 
 		float cellWidth = getWidth() / COLUMN_COUNT;
-		float cellHeight = mBgRegion.getRegionHeight();
+		float cellHeight = mBgDrawable.getRegion().getRegionHeight();
 
 		int index = 0;
 		Array<MealItem> items = mInventory.getItems();
+		mBgDrawable.draw(spriteBatch, 0, 0, getWidth(), getHeight());
+
 		for (int row = 0; row < ROW_COUNT; ++row) {
-			for (int col = 0; col < COLUMN_COUNT; ++col, ++index) {
+			for (int col = 0; col < COLUMN_COUNT && index < items.size; ++col, ++index) {
 				float posX = getX() + col * cellWidth;
 				float posY = getY() + row * cellHeight;
 
-				spriteBatch.draw(mBgRegion, posX, posY, cellWidth, cellHeight);
-				if (index >= items.size) {
-					// No more item to draw, continue drawing empty cells 
-					continue;
-				}
 				String baseName = "mealitems/" + items.get(index).getName();
 				TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
 				if (region == null) {
