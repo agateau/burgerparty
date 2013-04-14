@@ -59,15 +59,8 @@ public class InventoryView extends Actor {
 					// No more item to draw, continue drawing empty cells 
 					continue;
 				}
-				String baseName = "burgeritems-flat/" + items.get(index).getName();
+				String baseName = "mealitems/" + items.get(index).getName();
 				TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
-				if (region == null) {
-					region = mAtlas.findRegion(baseName);
-				}
-				if (region == null) {
-					baseName = "burgeritems/" + items.get(index).getName();
-					region = mAtlas.findRegion(baseName + "-inventory");
-				}
 				if (region == null) {
 					region = mAtlas.findRegion(baseName);
 				}

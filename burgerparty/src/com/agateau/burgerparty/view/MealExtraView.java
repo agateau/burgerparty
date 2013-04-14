@@ -36,10 +36,8 @@ public class MealExtraView extends Group {
 
 	private void addItem(MealItem item) {
 		TextureRegion region;
-		region = mAtlas.findRegion("burgeritems-flat/" + item.getName());
-		if (region == null) {
-			region = mAtlas.findRegion("burgeritems/" + item.getName());
-		}
+		region = mAtlas.findRegion("mealitems/" + item.getName());
+		assert(region != null);
 		Image image = new Image(region);
 		mImages.add(image);
 		image.setPosition(MathUtils.ceil(getWidth()), ADD_ACTION_HEIGHT);

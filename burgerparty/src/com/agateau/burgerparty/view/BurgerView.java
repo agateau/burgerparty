@@ -30,7 +30,7 @@ public class BurgerView extends Group {
 	public BurgerView(Burger burger, TextureAtlas atlas) {
 		mBurger = burger;
 		mAtlas = atlas;
-		float maxWidth = mAtlas.findRegion("burgeritems/bottom").getRegionWidth();
+		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
 		setWidth(maxWidth);
 
 		mNextY = 0;
@@ -59,10 +59,8 @@ public class BurgerView extends Group {
 
 	private void addItem(BurgerItem item) {
 		TextureRegion region;
-		region = mAtlas.findRegion("burgeritems-flat/" + item.getName());
-		if (region == null) {
-			region = mAtlas.findRegion("burgeritems/" + item.getName());
-		}
+		region = mAtlas.findRegion("mealitems/" + item.getName());
+		assert(region != null);
 		Image image = new Image(region);
 		float regionW = region.getRegionWidth();
 		float regionH = region.getRegionHeight();
