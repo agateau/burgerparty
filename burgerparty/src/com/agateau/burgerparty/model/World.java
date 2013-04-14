@@ -43,7 +43,7 @@ public class World {
 	}
 
 	public String getLevelWorldDirName() {
-		return mLevel.getGroup().getDirName();
+		return mLevel.getLevelWorld().getDirName();
 	}
 
 	public Inventory getBurgerInventory() {

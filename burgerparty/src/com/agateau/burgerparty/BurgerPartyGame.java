@@ -65,9 +65,9 @@ public class BurgerPartyGame extends Game {
 		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
 		Array<Progress.Item> lst = new Array<Progress.Item>();
 		int levelWorldIndex = 0;
-		for (LevelWorld group: mLevelWorlds) {
-			for (int levelIndex = 0; levelIndex < group.getLevelCount(); ++levelIndex) {
-				Level level = group.getLevel(levelIndex);
+		for (LevelWorld world: mLevelWorlds) {
+			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+				Level level = world.getLevel(levelIndex);
 				if (level.stars > -1) {
 					Progress.Item item = new Progress.Item();
 					item.levelWorld = levelWorldIndex + 1;
@@ -117,8 +117,8 @@ public class BurgerPartyGame extends Game {
 		saveLevelProgress();
 	}
 
-	public void startLevel(int groupIndex, int levelIndex) {
-		mLevelWorldIndex = groupIndex;
+	public void startLevel(int levelWorldIndex, int levelIndex) {
+		mLevelWorldIndex = levelWorldIndex;
 		mLevelIndex = levelIndex;
 		setScreen(new GameScreen(this, mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex), mAtlas, mSkin));
 	}

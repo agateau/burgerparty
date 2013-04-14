@@ -47,14 +47,14 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
-		int groupIndex = mGame.getLevelWorldIndex();
+		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelWorld levelWorld = mGame.getLevelWorld(groupIndex);
+		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
-			mainLabel.setText("Congratulations, you finished level " + (groupIndex + 1) + "-" + (levelIndex + 1) + "!");
+			mainLabel.setText("Congratulations, you finished level " + (levelWorldIndex + 1) + "-" + (levelIndex + 1) + "!");
 			nextButton = createNextButton("Next Level", skin);
-		} else if (groupIndex < mGame.getLevelWorldCount() - 1) {
-			mainLabel.setText("Congratulations, you finished world " + (groupIndex + 1) + "!");
+		} else if (levelWorldIndex < mGame.getLevelWorldCount() - 1) {
+			mainLabel.setText("Congratulations, you finished world " + (levelWorldIndex + 1) + "!");
 			nextButton = createNextButton("Next World", skin);
 		} else {
 			mainLabel.setText("Congratulations, you finished the game!");
@@ -105,15 +105,15 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private void goToNextLevel() {
-		int groupIndex = mGame.getLevelWorldIndex();
+		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelWorld levelWorld = mGame.getLevelWorld(groupIndex);
+		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			levelIndex++;
 		} else {
-			groupIndex++;
+			levelWorldIndex++;
 			levelIndex = 0;
 		}
-		mGame.startLevel(groupIndex, levelIndex);
+		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
 }

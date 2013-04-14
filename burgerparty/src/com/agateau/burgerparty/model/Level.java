@@ -21,7 +21,7 @@ public class Level {
 	public Definition definition = new Definition();
 	public int stars = -1;
 
-	public LevelWorld getGroup() {
+	public LevelWorld getLevelWorld() {
 		return mLevelWorld;
 	}
 

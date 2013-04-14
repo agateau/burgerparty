@@ -61,8 +61,8 @@ public class LevelListScreen extends BaseScreen {
 			}
 		});
 
-		for (int groupIndex = 0; groupIndex < getGame().getLevelWorldCount(); ++ groupIndex) {
-			GridGroup gridGroup = createLevelButtonGridGroup(groupIndex, skin);
+		for (int levelWorldIndex = 0; levelWorldIndex < getGame().getLevelWorldCount(); ++levelWorldIndex) {
+			GridGroup gridGroup = createLevelButtonGridGroup(levelWorldIndex, skin);
 			gridGroup.setVisible(false);
 			mAnchorGroup.addActor(gridGroup);
 			mGridGroups.add(gridGroup);
@@ -120,8 +120,8 @@ public class LevelListScreen extends BaseScreen {
 	}
 
 	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
-		LevelWorld group = getGame().getLevelWorld(levelWorldIndex);
-		int score = group.getLevel(levelIndex).stars;
+		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
+		int score = world.getLevel(levelIndex).stars;
 		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, score, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
