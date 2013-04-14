@@ -32,7 +32,7 @@ public class Progress {
 		for(int idx = 0; idx < root.getChildCount(); ++idx) {
 			XmlReader.Element element = root.getChild(idx);
 			Item item = new Item();
-			item.levelWorld = element.getIntAttribute("levelWorld", 1);
+			item.levelWorld = element.getIntAttribute("world", 1);
 			item.level = element.getIntAttribute("level");
 			item.stars = element.getIntAttribute("stars");
 			lst.add(item);
@@ -46,7 +46,7 @@ public class Progress {
 			XmlWriter root = writer.element("progress");
 			for (Item item: lst) {
 				root.element("item")
-					.attribute("levelWorld", item.levelWorld)
+					.attribute("world", item.levelWorld)
 					.attribute("level", item.level)
 					.attribute("stars", item.stars)
 				.pop();
