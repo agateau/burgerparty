@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.XmlWriter;
 
 public class Progress {
 	public static class Item {
-		public int levelGroup;
+		public int levelWorld;
 		public int level;
 		public int stars;
 	}
@@ -32,7 +32,7 @@ public class Progress {
 		for(int idx = 0; idx < root.getChildCount(); ++idx) {
 			XmlReader.Element element = root.getChild(idx);
 			Item item = new Item();
-			item.levelGroup = element.getIntAttribute("levelGroup", 1);
+			item.levelWorld = element.getIntAttribute("levelWorld", 1);
 			item.level = element.getIntAttribute("level");
 			item.stars = element.getIntAttribute("stars");
 			lst.add(item);
@@ -46,7 +46,7 @@ public class Progress {
 			XmlWriter root = writer.element("progress");
 			for (Item item: lst) {
 				root.element("item")
-					.attribute("levelGroup", item.levelGroup)
+					.attribute("levelWorld", item.levelWorld)
 					.attribute("level", item.level)
 					.attribute("stars", item.stars)
 				.pop();

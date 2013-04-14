@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.LevelGroup;
+import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
@@ -61,8 +61,8 @@ public class LevelListScreen extends BaseScreen {
 			}
 		});
 
-		for (int groupIndex = 0; groupIndex < getGame().getLevelGroupCount(); ++ groupIndex) {
-			GridGroup gridGroup = createLevelButtonGridGroup(groupIndex, skin);
+		for (int levelWorldIndex = 0; levelWorldIndex < getGame().getLevelWorldCount(); ++levelWorldIndex) {
+			GridGroup gridGroup = createLevelButtonGridGroup(levelWorldIndex, skin);
 			gridGroup.setVisible(false);
 			mAnchorGroup.addActor(gridGroup);
 			mGridGroups.add(gridGroup);
@@ -75,24 +75,24 @@ public class LevelListScreen extends BaseScreen {
 		scrollTo(0);
 	}
 
-	private GridGroup createLevelButtonGridGroup(int levelGroupIndex, Skin skin) {
+	private GridGroup createLevelButtonGridGroup(int levelWorldIndex, Skin skin) {
 		GridGroup gridGroup = new GridGroup();
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(150, 150);
 
-		LevelGroup levelGroup = getGame().getLevelGroup(levelGroupIndex);
-		for (int idx=0; idx < levelGroup.getLevelCount(); idx++) {
-			Actor levelButton = createLevelButton(levelGroupIndex, idx, skin);
+		LevelWorld levelWorld = getGame().getLevelWorld(levelWorldIndex);
+		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
+			Actor levelButton = createLevelButton(levelWorldIndex, idx, skin);
 			gridGroup.addActor(levelButton);
 		}
 		return gridGroup;
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int levelGroupIndex, int levelIndex, int score, Skin skin) {
-			super(String.valueOf(levelGroupIndex + 1) + "-" + String.valueOf(levelIndex + 1), skin);
-			this.levelGroupIndex = levelGroupIndex;
+		public LevelButton(int levelWorldIndex, int levelIndex, int score, Skin skin) {
+			super(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1), skin);
+			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
 
 			AnchorGroup group = new AnchorGroup();
@@ -115,18 +115,18 @@ public class LevelListScreen extends BaseScreen {
 			}
 		}
 
-		public int levelGroupIndex;
+		public int levelWorldIndex;
 		public int levelIndex;
 	}
 
-	private Actor createLevelButton(int levelGroupIndex, int levelIndex, Skin skin) {
-		LevelGroup group = getGame().getLevelGroup(levelGroupIndex);
-		int score = group.getLevel(levelIndex).stars;
-		LevelButton button = new LevelButton(levelGroupIndex, levelIndex, score, skin);
+	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
+		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
+		int score = world.getLevel(levelIndex).stars;
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, score, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				LevelButton button = (LevelButton)actor;
-				getGame().startLevel(button.levelGroupIndex, button.levelIndex);
+				getGame().startLevel(button.levelWorldIndex, button.levelIndex);
 			}
 		});
 
@@ -135,7 +135,7 @@ public class LevelListScreen extends BaseScreen {
 
 	private void scrollTo(int index) {
 		assert(index >= 0);
-		assert(index < getGame().getLevelGroupCount());
+		assert(index < getGame().getLevelWorldCount());
 
 		GridGroup newGroup = mGridGroups.get(index);
 		newGroup.setVisible(true);
@@ -172,7 +172,7 @@ public class LevelListScreen extends BaseScreen {
 
 	private void updateButtons() {
 		mPreviousButton.setVisible(mGroupIndex > 0);
-		mNextButton.setVisible(mGroupIndex < getGame().getLevelGroupCount() - 1);
+		mNextButton.setVisible(mGroupIndex < getGame().getLevelWorldCount() - 1);
 	}
 
 	static private float ANIMATION_DURATION = 0.4f;

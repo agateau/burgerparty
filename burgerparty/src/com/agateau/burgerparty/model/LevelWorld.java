@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
-public class LevelGroup {
-	public LevelGroup(String dirName) {
+public class LevelWorld {
+	public LevelWorld(String dirName) {
 		mDirName = dirName;
 
 		for (int n=1;; n++) {
@@ -14,7 +14,7 @@ public class LevelGroup {
 			if (!levelFile.exists()) {
 				break;
 			}
-			Gdx.app.log("LevelGroup", "levelFile=" + levelFile);
+			Gdx.app.log("LevelWorld", "levelFile=" + levelFile);
 			mLevels.add(Level.fromXml(this, levelFile));
 		}
 	}

@@ -24,7 +24,7 @@ public class GameOverOverlay extends Overlay {
 		TextButton tryAgainButton = new TextButton("Try Again", skin);
 		tryAgainButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.startLevel(mGame.getLevelGroupIndex(), mGame.getLevelIndex());
+				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
