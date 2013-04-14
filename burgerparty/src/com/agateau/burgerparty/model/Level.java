@@ -21,11 +21,11 @@ public class Level {
 	public Definition definition = new Definition();
 	public int stars = -1;
 
-	public LevelGroup getGroup() {
-		return mLevelGroup;
+	public LevelWorld getGroup() {
+		return mLevelWorld;
 	}
 
-	public static Level fromXml(LevelGroup levelGroup, FileHandle handle) {
+	public static Level fromXml(LevelWorld levelWorld, FileHandle handle) {
 		XmlReader reader = new XmlReader();
 		XmlReader.Element root = null;
 		try {
@@ -37,7 +37,7 @@ public class Level {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
 		Level level = new Level();
-		level.mLevelGroup = levelGroup;
+		level.mLevelWorld = levelWorld;
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
 		level.definition.customerCount = root.getIntAttribute("customerCount");
@@ -84,5 +84,5 @@ public class Level {
 		}
 	}
 
-	private LevelGroup mLevelGroup;
+	private LevelWorld mLevelWorld;
 }

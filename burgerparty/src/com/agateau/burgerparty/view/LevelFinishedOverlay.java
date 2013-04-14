@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.LevelGroup;
+import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.ObjectiveResult;
 import com.agateau.burgerparty.utils.Anchor;
@@ -47,13 +47,13 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
-		int groupIndex = mGame.getLevelGroupIndex();
+		int groupIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelGroup levelGroup = mGame.getLevelGroup(groupIndex);
-		if (levelIndex < levelGroup.getLevelCount() - 1) {
+		LevelWorld levelWorld = mGame.getLevelWorld(groupIndex);
+		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			mainLabel.setText("Congratulations, you finished level " + (groupIndex + 1) + "-" + (levelIndex + 1) + "!");
 			nextButton = createNextButton("Next Level", skin);
-		} else if (groupIndex < mGame.getLevelGroupCount() - 1) {
+		} else if (groupIndex < mGame.getLevelWorldCount() - 1) {
 			mainLabel.setText("Congratulations, you finished world " + (groupIndex + 1) + "!");
 			nextButton = createNextButton("Next World", skin);
 		} else {
@@ -105,10 +105,10 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private void goToNextLevel() {
-		int groupIndex = mGame.getLevelGroupIndex();
+		int groupIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelGroup levelGroup = mGame.getLevelGroup(groupIndex);
-		if (levelIndex < levelGroup.getLevelCount() - 1) {
+		LevelWorld levelWorld = mGame.getLevelWorld(groupIndex);
+		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			levelIndex++;
 		} else {
 			groupIndex++;

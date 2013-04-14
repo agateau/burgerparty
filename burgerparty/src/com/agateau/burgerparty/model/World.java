@@ -42,7 +42,7 @@ public class World {
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 	}
 
-	public String getLevelGroupDirName() {
+	public String getLevelWorldDirName() {
 		return mLevel.getGroup().getDirName();
 	}
 

@@ -63,7 +63,7 @@ public class WorldView extends AnchorGroup {
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
-		mBackgroundRegion = atlas.findRegion(world.getLevelGroupDirName() + "background");
+		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
 		mCustomerFactory = new ComposableCustomerFactory(atlas);
 
 		setupCustomers();
@@ -163,7 +163,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupWorkbench() {
-		TextureRegion region = mAtlas.findRegion(mWorld.getLevelGroupDirName() + "workbench");
+		TextureRegion region = mAtlas.findRegion(mWorld.getLevelWorldDirName() + "workbench");
 		mWorkbench = new Image(region);
 		mWorkbench.setScaling(Scaling.stretch);
 	}
@@ -179,7 +179,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelGroupDirName(), mAtlas);
+		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelWorldDirName(), mAtlas);
 		addActor(mInventoryView);
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
