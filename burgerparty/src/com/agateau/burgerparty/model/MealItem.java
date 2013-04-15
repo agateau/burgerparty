@@ -36,8 +36,18 @@ public class MealItem {
 		return mName.hashCode();
 	}
 
+	public int getColumn() {
+		return mColumn;
+	}
+
+	public int getRow() {
+		return mRow;
+	}
+
 	protected MealItem(XmlReader.Element element) {
 		mName = element.getAttribute("name");
+		mColumn = element.getIntAttribute("column");
+		mRow = element.getIntAttribute("row");
 	}
 
 	public static void addTestItem(String name) {
@@ -81,6 +91,8 @@ public class MealItem {
 
 	private Type mType;
 	private String mName;
+	private int mColumn;
+	private int mRow;
 
 	private static OrderedMap<String, MealItem> sMap = new OrderedMap<String, MealItem>();
 }

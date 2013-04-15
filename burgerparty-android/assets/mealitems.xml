@@ -1,16 +1,16 @@
 <items>
-    <item name="bottom"   type="burger" height="24" offset="0"/>
-    <item name="cheese"   type="burger" height="8"  offset="-19"/>
-    <item name="onion"    type="burger" height="8"  offset="-4"/>
-    <item name="steak"    type="burger" height="22" offset="0"/>
-    <item name="tomato"   type="burger" height="12" offset="-4"/>
-    <item name="salad"    type="burger" height="8"  offset="-4"/>
-    <item name="top"      type="burger" height="32" offset="0"/>
-    <item name="cucumber" type="burger" height="8"  offset="-4"/>
-    <item name="ketchup"  type="burger" height="8"  offset="-4"/>
+    <item name="bottom"      row="0" column="0" type="burger" height="24" offset="0"/>
+    <item name="steak"       row="0" column="1" type="burger" height="22" offset="0"/>
+    <item name="tomato"      row="0" column="2" type="burger" height="12" offset="-4"/>
+    <item name="salad"       row="0" column="3" type="burger" height="8"  offset="-4"/>
+    <item name="onion"       row="0" column="4" type="burger" height="8"  offset="-4"/>
+    <item name="cheese"      row="0" column="5" type="burger" height="8"  offset="-19"/>
+    <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
+    <item name="top"         row="1" column="0" type="burger" height="32" offset="0"/>
+    <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4"/>
 
-    <item name="small-fries" type="side-order"/>
-    <item name="big-fries"   type="side-order"/>
-    <item name="soda"        type="drink"/>
-    <item name="juice"       type="drink"/>
+    <item name="small-fries" row="0" column="0" type="side-order"/>
+    <item name="big-fries"   row="0" column="1" type="side-order"/>
+    <item name="soda"        row="1" column="0" type="drink"/>
+    <item name="juice"       row="1" column="1" type="drink"/>
 </items>

@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.badlogic.gdx.utils.Array;
 
 public class InventoryView extends Actor {
 	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
@@ -28,7 +27,7 @@ public class InventoryView extends Actor {
 		mAtlas = atlas;
 		TextureRegion region = mAtlas.findRegion(levelWorldDirName + "shelf");
 		mBgDrawable = new TiledDrawable(region);
-		setHeight(region.getRegionHeight() * 2);
+		setHeight(region.getRegionHeight() * ROW_COUNT);
 
 		addListener(new ClickListener() {
 			@Override
@@ -45,46 +44,37 @@ public class InventoryView extends Actor {
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		spriteBatch.setColor(1, 1, 1, parentAlpha);
+		mBgDrawable.draw(spriteBatch, 0, 0, getWidth(), getHeight());
 
 		float cellWidth = getWidth() / COLUMN_COUNT;
 		float cellHeight = mBgDrawable.getRegion().getRegionHeight();
 
-		int index = 0;
-		Array<MealItem> items = mInventory.getItems();
-		mBgDrawable.draw(spriteBatch, 0, 0, getWidth(), getHeight());
+		for (MealItem item: mInventory.getItems()) {
+			float posX = getX() + item.getColumn() * cellWidth;
+			float posY = getY() + item.getRow() * cellHeight;
 
-		for (int row = 0; row < ROW_COUNT; ++row) {
-			for (int col = 0; col < COLUMN_COUNT && index < items.size; ++col, ++index) {
-				float posX = getX() + col * cellWidth;
-				float posY = getY() + row * cellHeight;
+			String baseName = "mealitems/" + item.getName();
+			TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
+			if (region == null) {
+				region = mAtlas.findRegion(baseName);
+			}
+			assert(region != null);
 
-				String baseName = "mealitems/" + items.get(index).getName();
-				TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
-				if (region == null) {
-					region = mAtlas.findRegion(baseName);
-				}
-				assert(region != null);
+			spriteBatch.draw(region,
+				MathUtils.ceil(posX + (cellWidth - region.getRegionWidth()) / 2),
+				MathUtils.ceil(posY + (cellHeight - region.getRegionHeight()) / 2));
+		}
+	}
 
-				spriteBatch.draw(region,
-					MathUtils.ceil(posX + (cellWidth - region.getRegionWidth()) / 2),
-					MathUtils.ceil(posY + (cellHeight - region.getRegionHeight()) / 2));
+	private void onClicked(float posX, float posY) {
+		float cellWidth = getWidth() / COLUMN_COUNT;
+		float cellHeight = mBgDrawable.getRegion().getRegionHeight();
+		int column = (int)(posX / cellWidth);
+		int row = (int)(posY / cellHeight);
+		for(MealItem item: mInventory.getItems()) {
+			if (item.getRow() == row && item.getColumn() == column) {
+				itemSelected.emit(item);
 			}
 		}
-	}
-
-	public int getIndexAt(float posX, float posY) {
-		int cellSize = (int)(getWidth() / COLUMN_COUNT);
-		int x = (int)posX;
-		int y = (int)posY;
-		return (y / cellSize) * COLUMN_COUNT + x / cellSize;
-	}
-
-	private void onClicked(float x, float y) {
-		int index = getIndexAt(x, y);
-		MealItem item = mInventory.get(index);
-		if (item == null) {
-			return;
-		}
-		itemSelected.emit(item);
 	}
 }
