@@ -6,9 +6,9 @@
             moveBy 0 1
             moveBy 0 -1 1
             rotateTo 0 1
-            #parallel
-            #    moveTo 0 0 1
-            #    rotateTo 0 1
+            //parallel
+            //    moveTo 0 0 1
+            //    rotateTo 0 1
             ]]>
         </anim>
     </item>
