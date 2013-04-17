@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
-import com.agateau.burgerparty.utils.Animation;
+import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -78,7 +78,7 @@ public class BurgerView extends Group {
 		if (animDefinition.isEmpty()) {
 			animDefinition = "moveBy 0 1\nmoveBy 0 -1 1";
 		}
-		Animation anim = Animation.fromString(animDefinition);
+		AnimScript anim = AnimScript.fromString(animDefinition);
 		anim.createActions(image, ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 
 		UiUtils.notifyResizeToFitParent(this);
