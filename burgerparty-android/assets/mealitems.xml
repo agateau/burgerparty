@@ -1,13 +1,41 @@
 <items>
-    <item name="bottom"      row="0" column="0" type="burger" height="24" offset="0"/>
+    <item name="bottom"      row="0" column="0" type="burger" height="24" offset="0">
+        <anim>
+            <![CDATA[
+            rotateTo 0.1
+            moveBy 0 1
+            moveBy 0 -1 1
+            rotateTo 0 1
+            #parallel
+            #    moveTo 0 0 1
+            #    rotateTo 0 1
+            ]]>
+        </anim>
+    </item>
     <item name="steak"       row="0" column="1" type="burger" height="22" offset="0"/>
     <item name="tomato"      row="0" column="2" type="burger" height="12" offset="-4"/>
     <item name="salad"       row="0" column="3" type="burger" height="8"  offset="-4"/>
     <item name="onion"       row="0" column="4" type="burger" height="8"  offset="-4"/>
     <item name="cheese"      row="0" column="5" type="burger" height="8"  offset="-19"/>
     <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
-    <item name="top"         row="1" column="0" type="burger" height="32" offset="0"/>
-    <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4"/>
+    <item name="top"         row="1" column="0" type="burger" height="32" offset="0">
+        <anim>
+            <![CDATA[
+            moveBy 0 1
+            rotateTo 0.5
+            moveBy 0 -1 1
+            rotateTo 0 1
+            ]]>
+        </anim>
+    </item>
+    <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4">
+        <anim>
+            <![CDATA[
+            scaleTo 0.2 0.2
+            scaleTo 1 1 1
+            ]]>
+        </anim>
+    </item>
 
     <item name="small-fries" row="0" column="0" type="side-order"/>
     <item name="big-fries"   row="0" column="1" type="side-order"/>

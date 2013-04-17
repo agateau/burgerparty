@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
+import com.agateau.burgerparty.utils.Animation;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -66,19 +67,20 @@ public class BurgerView extends Group {
 		float regionH = region.getRegionHeight();
 		float posX = (getWidth() - regionW) / 2;
 
-		image.setBounds(posX, mNextY + item.getOffset() + ADD_ACTION_HEIGHT, regionW, regionH);
+		image.setBounds(posX, mNextY + item.getOffset(), regionW, regionH);
 		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
 		addActor(image);
 
-		image.addAction(Actions.alpha(0));
-		image.addAction(Actions.parallel(
-			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
-			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
-			));
-
 		mNextY += item.getHeight() + mPadding;
-		// Subtract ADD_ACTION_HEIGHT because we want the final height, not the height when the item is falling on the stack
-		setHeight(image.getTop() - ADD_ACTION_HEIGHT);
+		setHeight(mNextY + regionH / 2);
+
+		String animDefinition = item.getAnim();
+		if (animDefinition.isEmpty()) {
+			animDefinition = "moveBy 0 1\nmoveBy 0 -1 1";
+		}
+		Animation anim = Animation.fromString(animDefinition);
+		anim.createActions(image, ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
+
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
