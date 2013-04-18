@@ -13,10 +13,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Array;
 
 public class AnimScript {
-	public AnimScript(Reader reader) {
-		mReader = reader;
+	public AnimScript(Reader reader) throws IOException {
+		parse(reader);
 	}
 
 	private static class Context {
@@ -182,7 +183,15 @@ public class AnimScript {
 		context.height = height;
 		context.duration = duration;
 
-		StreamTokenizer tokenizer = new StreamTokenizer(mReader);
+		for (Instruction instruction: mInstructions) {
+			Action action = instruction.run(context);
+			assert(action != null);
+			actor.addAction(action);
+		}
+	}
+
+	public void parse(Reader reader) throws IOException {
+		StreamTokenizer tokenizer = new StreamTokenizer(reader);
 		tokenizer.eolIsSignificant(true);
 		tokenizer.slashSlashComments(true);
 		tokenizer.slashStarComments(true);
@@ -198,10 +207,7 @@ public class AnimScript {
 			assert(cmd != null);
 			InstructionDefinition def = sInstructionDefinitionMap.get(cmd);
 			Instruction instruction = def.parse(tokenizer);
-			Action action = instruction.run(context);
-			assert(action != null);
-			actor.addAction(action);
-			Gdx.app.log("createAction", "done");
+			mInstructions.add(instruction);
 		} while (tokenizer.ttype != StreamTokenizer.TT_EOF);
 	}
 
@@ -210,7 +216,15 @@ public class AnimScript {
 			initMap();
 		}
 		Reader reader = new StringReader(definition);
-		AnimScript anim = new AnimScript(reader);
+		AnimScript anim;
+		try {
+			anim = new AnimScript(reader);
+		} catch (IOException e) {
+			Gdx.app.error("AnimScript", "Failed to parse `" + definition + "`");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 		return anim;
 	}
 
@@ -255,7 +269,7 @@ public class AnimScript {
 		sInstructionDefinitionMap.put(name, new InstructionDefinition(method, types));
 	}
 
-	private Reader mReader;
+	private Array<Instruction> mInstructions = new Array<Instruction>();
 
 	private static Map<String, InstructionDefinition> sInstructionDefinitionMap = new HashMap<String, InstructionDefinition>();
 }
