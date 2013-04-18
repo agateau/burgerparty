@@ -80,7 +80,7 @@ public class BurgerView extends Group {
 			animDefinition = "moveBy 0 1\nmoveBy 0 -1 1";
 		}
 		AnimScript anim = AnimScriptLoader.getInstance().load(animDefinition);
-		anim.createActions(image, ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
+		image.addAction(anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION));
 
 		UiUtils.notifyResizeToFitParent(this);
 	}
