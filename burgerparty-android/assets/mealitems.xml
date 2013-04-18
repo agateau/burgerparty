@@ -2,7 +2,7 @@
     <item name="bottom"      row="0" column="0" type="burger" height="24" offset="0">
         <anim>
             <![CDATA[
-            rotateTo 0.1
+            rotateTo 30
             moveBy 0 1
             moveBy 0 -1 1
             rotateTo 0 1
@@ -22,7 +22,7 @@
         <anim>
             <![CDATA[
             moveBy 0 1
-            rotateTo 0.5
+            rotateTo 30
             moveBy 0 -1 1
             rotateTo 0 1
             ]]>
