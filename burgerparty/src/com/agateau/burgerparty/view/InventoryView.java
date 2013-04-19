@@ -11,11 +11,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 
 public class InventoryView extends Actor {
 	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
-	private TiledDrawable mBgDrawable;
+	private TextureRegion mBgRegion;
 	private Inventory mInventory;
 	private TextureAtlas mAtlas;
 	
@@ -25,9 +24,8 @@ public class InventoryView extends Actor {
 	public InventoryView(Inventory inventory, String levelWorldDirName, TextureAtlas atlas) {
 		mInventory = inventory;
 		mAtlas = atlas;
-		TextureRegion region = mAtlas.findRegion(levelWorldDirName + "shelf");
-		mBgDrawable = new TiledDrawable(region);
-		setHeight(region.getRegionHeight() * ROW_COUNT);
+		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
+		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
 
 		addListener(new ClickListener() {
 			@Override
@@ -44,10 +42,15 @@ public class InventoryView extends Actor {
 	@Override
 	public void draw(SpriteBatch spriteBatch, float parentAlpha) {
 		spriteBatch.setColor(1, 1, 1, parentAlpha);
-		mBgDrawable.draw(spriteBatch, 0, 0, getWidth(), getHeight());
 
 		float cellWidth = getWidth() / COLUMN_COUNT;
-		float cellHeight = mBgDrawable.getRegion().getRegionHeight();
+		float cellHeight = getHeight() / ROW_COUNT;
+
+		for (int row = 0; row < ROW_COUNT; ++row) {
+			for (int col = 0; col < COLUMN_COUNT; ++col) {
+				spriteBatch.draw(mBgRegion, col * cellWidth, row * cellHeight, cellWidth, cellHeight);
+			}
+		}
 
 		for (MealItem item: mInventory.getItems()) {
 			float posX = getX() + item.getColumn() * cellWidth;
@@ -68,7 +71,7 @@ public class InventoryView extends Actor {
 
 	private void onClicked(float posX, float posY) {
 		float cellWidth = getWidth() / COLUMN_COUNT;
-		float cellHeight = mBgDrawable.getRegion().getRegionHeight();
+		float cellHeight = getHeight() / ROW_COUNT;
 		int column = (int)(posX / cellWidth);
 		int row = (int)(posY / cellHeight);
 		for(MealItem item: mInventory.getItems()) {
