@@ -102,6 +102,10 @@ public class AnimScriptLoader {
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
 		);
+		registerAction("alpha",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+		);
 		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
 	}
 

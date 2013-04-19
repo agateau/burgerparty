@@ -3,16 +3,15 @@
         <anim>
             <![CDATA[
             parallel
+                alpha 0
                 rotateTo 30
                 moveBy 0 1
             end
             parallel
+                alpha 1 1
                 moveBy 0 -1 1
                 rotateTo 0 1
             end
-            //parallel
-            //    moveTo 0 0 1
-            //    rotateTo 0 1
             ]]>
         </anim>
     </item>
@@ -26,10 +25,12 @@
         <anim>
             <![CDATA[
             parallel
+                alpha 0
                 moveBy 0 1
                 rotateTo -20
             end
             parallel
+                alpha 1 1
                 moveBy 0 -1 1
                 rotateTo 0 1
             end

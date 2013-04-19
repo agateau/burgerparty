@@ -77,7 +77,15 @@ public class BurgerView extends Group {
 
 		String animDefinition = item.getAnim();
 		if (animDefinition.isEmpty()) {
-			animDefinition = "moveBy 0 1\nmoveBy 0 -1 1";
+			animDefinition =
+				"parallel\n" +
+				"    alpha 0\n" +
+				"    moveBy 0 1\n" +
+				"end\n" +
+				"parallel\n" +
+				"    alpha 1 1\n" +
+				"    moveBy 0 -1 1\n" +
+				"end\n";
 		}
 		AnimScript anim = AnimScriptLoader.getInstance().load(animDefinition);
 		image.addAction(anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION));
