@@ -28,6 +28,10 @@ public class MealItem {
 		return mName;
 	}
 
+	public String getAnim() {
+		return mAnim;
+	}
+
 	public boolean equals(MealItem other) {
 		return mName.equals(other.mName);
 	}
@@ -48,6 +52,7 @@ public class MealItem {
 		mName = element.getAttribute("name");
 		mColumn = element.getIntAttribute("column");
 		mRow = element.getIntAttribute("row");
+		mAnim = element.get("anim", new String());
 	}
 
 	public static void addTestItem(String name) {
@@ -91,6 +96,7 @@ public class MealItem {
 
 	private Type mType;
 	private String mName;
+	private String mAnim;
 	private int mColumn;
 	private int mRow;
 
