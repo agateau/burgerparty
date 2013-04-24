@@ -11,25 +11,23 @@ class FloatArgumentDefinition extends ArgumentDefinition<Float> {
 		Scalar
 	}
 
-	public FloatArgumentDefinition.Domain domain;
-
 	FloatArgumentDefinition(FloatArgumentDefinition.Domain domain) {
 		super(Float.TYPE, null);
-		this.domain = domain;
+		this.mDomain = domain;
 	}
 
 	FloatArgumentDefinition(FloatArgumentDefinition.Domain domain, float defaultValue) {
 		super(Float.TYPE, defaultValue);
-		this.domain = domain;
+		this.mDomain = domain;
 	}
 
 	@Override
 	public Argument parse(StreamTokenizer tokenizer) {
 		try {
 			if (this.defaultValue == null) {
-				return readFloat(tokenizer, this.domain);
+				return readFloat(tokenizer, this.mDomain);
 			} else {
-				return readFloat(tokenizer, this.domain, defaultValue);
+				return readFloat(tokenizer, this.mDomain, defaultValue);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -54,4 +52,6 @@ class FloatArgumentDefinition extends ArgumentDefinition<Float> {
 		}
 		return new FloatArgument(domain, value);
 	}
+
+	private FloatArgumentDefinition.Domain mDomain;
 }

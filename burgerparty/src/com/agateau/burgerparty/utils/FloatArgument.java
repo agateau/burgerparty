@@ -3,12 +3,9 @@ package com.agateau.burgerparty.utils;
 import com.agateau.burgerparty.utils.AnimScript.Context;
 
 class FloatArgument extends Argument {
-	public FloatArgumentDefinition.Domain domain;
-	public float value;
-
 	public FloatArgument(FloatArgumentDefinition.Domain d, float v) {
-		domain = d;
-		value = v;
+		mDomain = d;
+		mValue = v;
 	}
 
 	@Override
@@ -18,15 +15,19 @@ class FloatArgument extends Argument {
 
 	@Override
 	public Object computeValue(Context context) {
-		if (domain == FloatArgumentDefinition.Domain.Width) {
-			return value * context.width;
+		if (mDomain == FloatArgumentDefinition.Domain.Width) {
+			return mValue * context.width;
 		}
-		if (domain == FloatArgumentDefinition.Domain.Height) {
-			return value * context.height;
+		if (mDomain == FloatArgumentDefinition.Domain.Height) {
+			return mValue * context.height;
 		}
-		if (domain == FloatArgumentDefinition.Domain.Duration) {
-			return value * context.duration;
+		if (mDomain == FloatArgumentDefinition.Domain.Duration) {
+			return mValue * context.duration;
 		}
-		return value;
+		return mValue;
 	}
+
+	private FloatArgumentDefinition.Domain mDomain;
+	private float mValue;
+
 }
