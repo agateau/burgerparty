@@ -13,44 +13,31 @@ class FloatArgumentDefinition extends ArgumentDefinition<Float> {
 
 	FloatArgumentDefinition(FloatArgumentDefinition.Domain domain) {
 		super(Float.TYPE, null);
-		this.mDomain = domain;
+		mDomain = domain;
 	}
 
 	FloatArgumentDefinition(FloatArgumentDefinition.Domain domain, float defaultValue) {
 		super(Float.TYPE, defaultValue);
-		this.mDomain = domain;
+		mDomain = domain;
 	}
 
 	@Override
 	public Argument parse(StreamTokenizer tokenizer) {
 		try {
-			if (this.defaultValue == null) {
-				return readFloat(tokenizer, this.mDomain);
-			} else {
-				return readFloat(tokenizer, this.mDomain, defaultValue);
-			}
+			tokenizer.nextToken();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
-	}
-
-	static FloatArgument readFloat(StreamTokenizer tokenizer, FloatArgumentDefinition.Domain domain) throws IOException {
-		tokenizer.nextToken();
-		assert(tokenizer.ttype == StreamTokenizer.TT_NUMBER);
-		return new FloatArgument(domain, (float)tokenizer.nval);
-	}
-
-	static FloatArgument readFloat(StreamTokenizer tokenizer, FloatArgumentDefinition.Domain domain, float defaultValue) throws IOException {
 		float value;
-		if (tokenizer.nextToken() == StreamTokenizer.TT_NUMBER) {
+		if (tokenizer.ttype == StreamTokenizer.TT_NUMBER) {
 			value = (float)tokenizer.nval;
 		} else {
+			assert(this.defaultValue != null);
 			tokenizer.pushBack();
-			value = defaultValue;
+			value = this.defaultValue;
 		}
-		return new FloatArgument(domain, value);
+		return new FloatArgument(mDomain, value);
 	}
 
 	private FloatArgumentDefinition.Domain mDomain;
