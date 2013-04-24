@@ -84,7 +84,7 @@ public class BurgerView extends Group {
 				"end\n" +
 				"parallel\n" +
 				"    alpha 1 1\n" +
-				"    moveBy 0 -1 1\n" +
+				"    moveBy 0 -1 1 pow2In\n" +
 				"end\n";
 		}
 		AnimScript anim = AnimScriptLoader.getInstance().load(animDefinition);

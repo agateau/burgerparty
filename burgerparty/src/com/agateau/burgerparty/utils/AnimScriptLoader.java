@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
@@ -86,25 +87,30 @@ public class AnimScriptLoader {
 		registerAction("moveTo",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		registerAction("moveBy",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		registerAction("rotateTo",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		registerAction("scaleTo",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		registerAction("alpha",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0)
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
 	}
