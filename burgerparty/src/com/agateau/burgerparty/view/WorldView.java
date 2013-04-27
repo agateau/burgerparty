@@ -171,7 +171,7 @@ public class WorldView extends AnchorGroup {
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas);
 		addActor(mBubble);
-		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas);
+		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mGame.getSoundAtlas());
 		mTargetMealView.getBurgerView().setPadding(16);
 		mTargetMealView.setScale(0.5f, 0.5f);
 		mBubble.setChild(mTargetMealView);
@@ -190,7 +190,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupMealView() {
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mGame.getSoundAtlas());
 		// We add an anchor rule in this setup method because it is called
 		// for each customer
 		addRule(mMealView, Anchor.BOTTOM_LEFT, mWorkbench, Anchor.BOTTOM_CENTER, -6, 1);
