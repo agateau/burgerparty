@@ -7,6 +7,9 @@ import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.StringArgumentDefinition;
+import com.agateau.burgerparty.view.SoundAtlas;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
@@ -17,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
+	private SoundAtlas mSoundAtlas = new SoundAtlas();
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
@@ -30,10 +34,21 @@ public class BurgerPartyGame extends Game {
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 		mSkin = new Skin(Gdx.files.internal("ui/skin.json"), mAtlas);
 
-		showMenu();
+		setupAnimScriptLoader();
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);
 		loadLevelProgress();
+		showMenu();
+	}
+
+	public SoundAtlas getSoundAtlas() {
+		return mSoundAtlas;
+	}
+
+	void setupAnimScriptLoader()
+	{
+		AnimScriptLoader loader = AnimScriptLoader.getInstance();
+		loader.registerMemberMethod("play", mSoundAtlas, "createPlayAction", new StringArgumentDefinition());
 	}
 
 	private void loadLevelWorlds() {
