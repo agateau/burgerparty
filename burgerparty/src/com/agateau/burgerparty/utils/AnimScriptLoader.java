@@ -50,29 +50,21 @@ public class AnimScriptLoader {
 				break;
 			}
 			InstructionDefinition def = mInstructionDefinitionMap.get(cmd);
+			assert(def != null);
 			Instruction instruction = def.parse(tokenizer);
 			lst.add(instruction);
 		} while (tokenizer.ttype != StreamTokenizer.TT_EOF);
 		return lst;
 	}
 
-	public void registerAction(String name, ArgumentDefinition<?>... types) {
-		Class<?> actionsClass = Actions.class;
-		Class<?> args[] = new Class<?>[types.length];
-		for (int idx = 0; idx < types.length; ++idx) {
-			args[idx] = types[idx].javaType;
-		}
-		Method method;
-		try {
-			method = actionsClass.getDeclaredMethod(name, args);
-		} catch (NoSuchMethodException e1) {
-			e1.printStackTrace();
-			throw new RuntimeException();
-		} catch (SecurityException e1) {
-			e1.printStackTrace();
-			throw new RuntimeException();
-		}
+	public void registerStaticMethod(String name, Class<?> methodClass, String methodName, ArgumentDefinition<?>... types) {
+		Method method = getMethod(methodClass, methodName, types);
 		mInstructionDefinitionMap.put(name, new BasicInstructionDefinition(method, types));
+	}
+
+	public void registerMemberMethod(String name, Object object, String methodName, ArgumentDefinition<?>... types) {
+		Method method = getMethod(object.getClass(), methodName, types);
+		mInstructionDefinitionMap.put(name, new BasicInstructionDefinition(object, method, types));
 	}
 
 	public static AnimScriptLoader getInstance() {
@@ -81,6 +73,26 @@ public class AnimScriptLoader {
 			sInstance.initMap();
 		}
 		return sInstance;
+	}
+
+	private static Method getMethod(Class<?> methodClass, String name, ArgumentDefinition<?>... types) {
+		Class<?> args[] = new Class<?>[types.length];
+		for (int idx = 0; idx < types.length; ++idx) {
+			args[idx] = types[idx].javaType;
+		}
+		try {
+			return methodClass.getDeclaredMethod(name, args);
+		} catch (NoSuchMethodException e1) {
+			e1.printStackTrace();
+			throw new RuntimeException();
+		} catch (SecurityException e1) {
+			e1.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	private void registerAction(String name, ArgumentDefinition<?>... types) {
+		registerStaticMethod(name, Actions.class, name, types);
 	}
 
 	private void initMap() {

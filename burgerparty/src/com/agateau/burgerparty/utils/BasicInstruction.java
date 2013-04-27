@@ -7,7 +7,8 @@ import com.agateau.burgerparty.utils.AnimScript.Context;
 import com.badlogic.gdx.scenes.scene2d.Action;
 
 class BasicInstruction implements Instruction {
-	public BasicInstruction(Method method, Argument[] args) {
+	public BasicInstruction(Object object, Method method, Argument[] args) {
+		mObject = object;
 		mMethod = method;
 		mArgs = args;
 	}
@@ -23,22 +24,20 @@ class BasicInstruction implements Instruction {
 			objectArgs[idx] = arg.computeValue(context);
 		}
 		try {
-			return (Action)mMethod.invoke(null, objectArgs);
+			return (Action)mMethod.invoke(mObject, objectArgs);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
 	}
 
+	Object mObject;
 	Method mMethod;
 	Argument[] mArgs;
 }
