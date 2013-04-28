@@ -63,11 +63,8 @@ public class Burger {
 		return mItems.size == reference.mItems.size ? Status.DONE : Status.WIP;
 	}
 
-	public void initialize(Array<String> names) {
-		mItems.clear();
-		for(String name: names) {
-			mItems.add(BurgerItem.get(name));
-		}
+	public void setItems(Array<BurgerItem> items) {
+		mItems = items;
 		initialized.emit();
 	}
 

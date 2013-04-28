@@ -142,8 +142,8 @@ public class World {
 		names.removeValue("bottom", false);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
-		Array<String> lst = new Array<String>();
-		lst.add("bottom");
+		Array<BurgerItem> items = new Array<BurgerItem>();
+		items.add(BurgerItem.get("bottom"));
 
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
@@ -154,10 +154,10 @@ public class World {
 				names.add(lastName);
 			}
 			lastName = name;
-			lst.add(name);
+			items.add(BurgerItem.get(name));
 		}
-		lst.add("top");
-		mTargetBurger.initialize(lst);
+		items.add(BurgerItem.get("top"));
+		mTargetBurger.setItems(items);
 	}
 
 	private void generateTargetMealExtra() {
