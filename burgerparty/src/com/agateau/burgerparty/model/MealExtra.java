@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.Signal1;
 public class MealExtra {
 	public Signal1<MealItem> itemAdded = new Signal1<MealItem>();
 	public Signal0 cleared = new Signal0();
+	public Signal0 trashed = new Signal0();
 
 	public Set<MealItem> getItems() {
 		return mItems;
@@ -17,6 +18,11 @@ public class MealExtra {
 	public void clear() {
 		mItems.clear();
 		cleared.emit();
+	}
+
+	public void trash() {
+		mItems.clear();
+		trashed.emit();
 	}
 
 	public boolean isEmpty() {

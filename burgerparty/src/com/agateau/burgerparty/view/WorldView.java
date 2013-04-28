@@ -184,7 +184,7 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
-				mWorld.addItem(item);
+				mMealView.addItem(item);
 			}
 		});
 	}
@@ -233,7 +233,6 @@ public class WorldView extends AnchorGroup {
 		removeRulesForActor(mDoneMealView);
 		mDoneMealView.addAction(
 			Actions.sequence(
-				Actions.delay(MealView.ADD_ACTION_DURATION),
 				Actions.moveTo(getWidth(), mDoneMealView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.removeActor()
 			)
@@ -241,7 +240,6 @@ public class WorldView extends AnchorGroup {
 		mBubble.setVisible(false);
 		mActiveCustomer.addAction(
 			Actions.sequence(
-				Actions.delay(MealView.ADD_ACTION_DURATION),
 				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
 				Actions.run(toDoAfter),
 				Actions.removeActor()

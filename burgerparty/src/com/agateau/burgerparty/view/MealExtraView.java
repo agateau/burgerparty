@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -32,9 +33,26 @@ public class MealExtraView extends Group {
 				clearItems();
 			}
 		});
+		mMealExtra.trashed.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				// FIXME: Add proper trash anim
+				clearItems();
+			}
+		});
 	}
 
-	private void addItem(MealItem item) {
+	private class AddItemRunnable implements Runnable {
+		public AddItemRunnable(MealItem item) {
+			mItem = item;
+		}
+		@Override
+		public void run() {
+			mMealExtra.addItem(mItem);
+		}
+		private MealItem mItem;
+	}
+
+	public void addItem(MealItem item) {
 		TextureRegion region;
 		region = mAtlas.findRegion("mealitems/" + item.getName());
 		assert(region != null);
@@ -43,10 +61,12 @@ public class MealExtraView extends Group {
 		image.setPosition(MathUtils.ceil(getWidth()), ADD_ACTION_HEIGHT);
 		addActor(image);
 		image.addAction(Actions.alpha(0));
-		image.addAction(Actions.parallel(
+		Action animAction = Actions.parallel(
 			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
 			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
-			));
+			);
+		Action addItemAction = Actions.run(new AddItemRunnable(item));
+		image.addAction(Actions.sequence(animAction, addItemAction));
 
 		updateGeometry();
 	}

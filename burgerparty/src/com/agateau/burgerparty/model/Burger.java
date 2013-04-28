@@ -10,6 +10,7 @@ public class Burger {
 	private Array<BurgerItem> mItems;
 
 	public Signal1<BurgerItem> burgerItemAdded;
+	public Signal0 initialized = new Signal0();
 	public Signal0 cleared;
 	public Signal0 trashed;
 
@@ -60,5 +61,21 @@ public class Burger {
 			}
 		}
 		return mItems.size == reference.mItems.size ? Status.DONE : Status.WIP;
+	}
+
+	public void initialize(Array<String> names) {
+		mItems.clear();
+		for(String name: names) {
+			mItems.add(BurgerItem.get(name));
+		}
+		initialized.emit();
+	}
+
+	public String toString() {
+		String out = "[";
+		for(BurgerItem item: mItems) {
+			out += item.getName() + ", ";
+		}
+		return out + "]";
 	}
 }
