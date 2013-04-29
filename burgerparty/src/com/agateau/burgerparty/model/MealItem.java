@@ -114,7 +114,7 @@ public class MealItem {
 			"parallel\n" +
 			"    alpha 1 1\n" +
 			"    moveBy 0 -1 1 pow2In\n" +
-			"    play splat.wav\n" +
+			"    play add-item.wav\n" +
 			"end\n";
 		sDefaultAnimScript = AnimScriptLoader.getInstance().load(anim);
 	}
