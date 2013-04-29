@@ -7,6 +7,11 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
 public class MealExtra {
+	public enum CompareResult {
+		SUBSET,
+		SAME,
+		DIFFERENT,
+	}
 	public Signal1<MealItem> itemAdded = new Signal1<MealItem>();
 	public Signal0 initialized = new Signal0();
 	public Signal0 cleared = new Signal0();
@@ -62,6 +67,16 @@ public class MealExtra {
 	public void setItems(Set<MealItem> items) {
 		mItems = items;
 		initialized.emit();
+	}
+
+	public CompareResult compareTo(MealExtra reference) {
+		if (mItems.equals(reference.mItems)) {
+			return CompareResult.SAME;
+		}
+		if (reference.mItems.containsAll(mItems)) {
+			return CompareResult.SUBSET;
+		}
+		return CompareResult.DIFFERENT;
 	}
 
 	private Set<MealItem> mItems = new HashSet<MealItem>();

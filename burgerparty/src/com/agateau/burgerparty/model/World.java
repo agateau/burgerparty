@@ -202,13 +202,13 @@ public class World {
 	}
 
 	private void onMealItemAdded(MealItem item) {
-		if (!mMealExtra.isMissing(mTargetMealExtra, item)) {
+		MealExtra.CompareResult result = mMealExtra.compareTo(mTargetMealExtra);
+		if (result == MealExtra.CompareResult.SAME) {
+			onMealFinished();
+		} else if (result == MealExtra.CompareResult.DIFFERENT) {
 			mTrashedCount++;
 			mBurger.trash();
 			mMealExtra.trash();
-		}
-		if (mMealExtra.equals(mTargetMealExtra)) {
-			onMealFinished();
 		}
 	}
 
