@@ -188,14 +188,14 @@ public class World {
 	}
 
 	private void onBurgerItemAdded() {
-		Burger.Status status = mBurger.checkStatus(mTargetBurger);
-		if (status == Burger.Status.DONE) {
+		Burger.CompareResult compareResult = mBurger.compareTo(mTargetBurger);
+		if (compareResult == Burger.CompareResult.SAME) {
 			if (mTargetMealExtra.isEmpty()) {
 				onMealFinished();
 			} else {
 				onBurgerFinished();
 			}
-		} else if (status == Burger.Status.WRONG) {
+		} else if (compareResult == Burger.CompareResult.DIFFERENT) {
 			mTrashedCount++;
 			mBurger.trash();
 		}

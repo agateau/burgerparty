@@ -14,10 +14,10 @@ public class Burger {
 	public Signal0 cleared;
 	public Signal0 trashed;
 
-	public enum Status {
-		WIP,
-		DONE,
-		WRONG,
+	public enum CompareResult {
+		SUBSET,
+		SAME,
+		DIFFERENT,
 	}
 
 	public Burger() {
@@ -50,17 +50,17 @@ public class Burger {
 		return mItems.size;
 	}
 
-	public Status checkStatus(Burger reference) {
+	public CompareResult compareTo(Burger reference) {
 		if (mItems.size > reference.mItems.size) {
 			// Should not happen
-			return Status.WRONG;
+			return CompareResult.DIFFERENT;
 		}
 		for (int idx = 0; idx < mItems.size; ++idx) {
 			if (mItems.get(idx).getName() != reference.mItems.get(idx).getName()) {
-				return Status.WRONG;
+				return CompareResult.DIFFERENT;
 			}
 		}
-		return mItems.size == reference.mItems.size ? Status.DONE : Status.WIP;
+		return mItems.size == reference.mItems.size ? CompareResult.SAME : CompareResult.SUBSET;
 	}
 
 	public void setItems(Array<BurgerItem> items) {
