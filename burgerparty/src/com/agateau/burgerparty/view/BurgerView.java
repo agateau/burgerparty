@@ -5,7 +5,6 @@ import java.util.HashSet;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
-import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 
@@ -73,20 +72,7 @@ public class BurgerView extends Group {
 
 	public void addItem(BurgerItem item) {
 		Image image = addItemInternal(item);
-		String animDefinition = item.getAnim();
-		if (animDefinition.isEmpty()) {
-			animDefinition =
-				"parallel\n" +
-				"    alpha 0\n" +
-				"    moveBy 0 1\n" +
-				"end\n" +
-				"parallel\n" +
-				"    alpha 1 1\n" +
-				"    moveBy 0 -1 1 pow2In\n" +
-				"    play splat.wav\n" +
-				"end\n";
-		}
-		AnimScript anim = AnimScriptLoader.getInstance().load(animDefinition);
+		AnimScript anim = item.getAnimScript();
 		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
 		image.addAction(Actions.sequence(animAction, addItemAction));

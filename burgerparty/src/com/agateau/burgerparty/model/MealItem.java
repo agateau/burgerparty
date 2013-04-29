@@ -2,6 +2,8 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.utils.AnimScript;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.OrderedMap;
@@ -16,6 +18,7 @@ public class MealItem {
 	public static MealItem get(String name) {
 		if (sMap.size == 0) {
 			initMap();
+			initDefaultAnimScript();
 		}
 		return sMap.get(name);
 	}
@@ -28,8 +31,15 @@ public class MealItem {
 		return mName;
 	}
 
-	public String getAnim() {
-		return mAnim;
+	public AnimScript getAnimScript() {
+		if (mAnimScript == null) {
+			if (mAnim.isEmpty()) {
+				mAnimScript = sDefaultAnimScript;
+			} else {
+				mAnimScript = AnimScriptLoader.getInstance().load(mAnim);
+			}
+		}
+		return mAnimScript;
 	}
 
 	public boolean equals(MealItem other) {
@@ -95,11 +105,27 @@ public class MealItem {
 		}
 	}
 
+	private static void initDefaultAnimScript() {
+		String anim =
+			"parallel\n" +
+			"    alpha 0\n" +
+			"    moveBy 0 1\n" +
+			"end\n" +
+			"parallel\n" +
+			"    alpha 1 1\n" +
+			"    moveBy 0 -1 1 pow2In\n" +
+			"    play splat.wav\n" +
+			"end\n";
+		sDefaultAnimScript = AnimScriptLoader.getInstance().load(anim);
+	}
+
 	private Type mType;
 	private String mName;
 	private String mAnim;
+	private AnimScript mAnimScript;
 	private int mColumn;
 	private int mRow;
 
 	private static OrderedMap<String, MealItem> sMap = new OrderedMap<String, MealItem>();
+	private static AnimScript sDefaultAnimScript;
 }
