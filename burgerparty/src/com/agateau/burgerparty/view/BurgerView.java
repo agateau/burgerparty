@@ -6,6 +6,7 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

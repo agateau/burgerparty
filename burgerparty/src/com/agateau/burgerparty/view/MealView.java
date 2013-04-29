@@ -5,6 +5,7 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Group;
