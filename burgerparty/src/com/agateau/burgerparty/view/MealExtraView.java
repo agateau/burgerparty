@@ -5,7 +5,6 @@ import java.util.HashSet;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Signal0;
-import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,12 +20,6 @@ public class MealExtraView extends Group {
 	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas) {
 		mMealExtra = mealExtra;
 		mAtlas = atlas;
-
-		mMealExtra.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
-			public void handle(MealItem item) {
-				addItem(item);
-			}
-		});
 
 		mMealExtra.initialized.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
