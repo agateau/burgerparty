@@ -67,8 +67,11 @@ public class MealExtraView extends Group {
 	public void init() {
 		mImages.clear();
 		clear();
+		float posX = 0;
 		for(MealItem item: mMealExtra.getItems()) {
-			addItemInternal(item);
+			Image image = addItemInternal(item);
+			image.setX(posX);
+			posX += image.getWidth();
 		}
 		updateGeometry();
 	}
