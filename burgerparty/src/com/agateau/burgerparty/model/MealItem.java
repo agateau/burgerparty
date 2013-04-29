@@ -55,8 +55,9 @@ public class MealItem {
 		mAnim = element.get("anim", new String());
 	}
 
-	public static void addTestItem(String name) {
+	public static void addTestItem(Type type, String name) {
 		MealItem item = new MealItem();
+		item.mType = type;
 		item.mName = name;
 		sMap.put(item.mName, item);
 	}

@@ -10,8 +10,8 @@ import org.junit.runners.JUnit4;
 public class MealItemTest {
 	@Test
 	public void testEquals() {
-		MealItem.addTestItem("foo");
-		MealItem.addTestItem("bar");
+		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "foo");
+		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "bar");
 
 		MealItem i1 = MealItem.get("foo");
 		MealItem i2 = MealItem.get("foo");

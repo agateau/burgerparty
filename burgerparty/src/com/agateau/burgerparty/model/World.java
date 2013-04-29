@@ -1,12 +1,13 @@
 package com.agateau.burgerparty.model;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -18,6 +19,8 @@ public class World {
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+
 	private Timer mTimer = new Timer();
 
 	private Level mLevel;
@@ -25,8 +28,8 @@ public class World {
 	private Inventory mBurgerInventory;
 	private Inventory mMealExtraInventory;
 
-	private Burger mBurger = new Burger();
-	private MealExtra mMealExtra = new MealExtra();
+	private Burger mBurger;
+	private MealExtra mMealExtra;
 
 	private Burger mTargetBurger = new Burger();
 	private MealExtra mTargetMealExtra = new MealExtra();
@@ -40,6 +43,25 @@ public class World {
 		mCustomerCount = mLevel.definition.customerCount;
 		mBurgerInventory = new Inventory(level.definition.burgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
+		setupMeal();
+	}
+
+	private void setupMeal() {
+		mBurger = new Burger();
+		mBurger.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+			@Override
+			public void handle(BurgerItem item) {
+				onBurgerItemAdded();
+			}
+		});
+
+		mMealExtra = new MealExtra();
+		mMealExtra.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
+			@Override
+			public void handle(MealItem item) {
+				onMealItemAdded(item);
+			}
+		});
 	}
 
 	public String getLevelWorldDirName() {
@@ -68,40 +90,6 @@ public class World {
 
 	public MealExtra getTargetMealExtra() {
 		return mTargetMealExtra;
-	}
-
-	public void addItem(MealItem item) {
-		if (item.getType() == MealItem.Type.BURGER) {
-			addBurgerItem((BurgerItem)item);
-		} else {
-			addExtraItem(item);
-		}
-	}
-
-	private void addBurgerItem(BurgerItem item) {
-		mBurger.addItem(item);
-		Burger.Status status = mBurger.checkStatus(mTargetBurger);
-		if (status == Burger.Status.DONE) {
-			if (mTargetMealExtra.isEmpty()) {
-				onMealFinished();
-			} else {
-				onBurgerFinished();
-			}
-		} else if (status == Burger.Status.WRONG) {
-			mTrashedCount++;
-			mBurger.trash();
-		}
-	}
-
-	private void addExtraItem(MealItem item) {
-		if (!mMealExtra.isMissing(mTargetMealExtra, item)) {
-			Gdx.app.log("World.addExtraItem", "Wrong extra item " + item.getName());
-			return;
-		}
-		mMealExtra.addItem(item);
-		if (mMealExtra.equals(mTargetMealExtra)) {
-			onMealFinished();
-		}
 	}
 
 	public int getRemainingSeconds() {
@@ -155,9 +143,8 @@ public class World {
 		names.removeValue("bottom", false);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
-		mTargetBurger.clear();
-
-		mTargetBurger.addItem(BurgerItem.get("bottom"));
+		Array<BurgerItem> items = new Array<BurgerItem>();
+		items.add(BurgerItem.get("bottom"));
 
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
@@ -168,10 +155,10 @@ public class World {
 				names.add(lastName);
 			}
 			lastName = name;
-			mTargetBurger.addItem(BurgerItem.get(name));
+			items.add(BurgerItem.get(name));
 		}
-
-		mTargetBurger.addItem(BurgerItem.get("top"));
+		items.add(BurgerItem.get("top"));
+		mTargetBurger.setItems(items);
 	}
 
 	private void generateTargetMealExtra() {
@@ -191,10 +178,37 @@ public class World {
 			lst.add(item);
 		}
 		// Pick one item per type
+		Set<MealItem> items = new HashSet<MealItem>();
 		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
 			Array<MealItem> lst = it.next();
 			int index = MathUtils.random(lst.size - 1);
-			mTargetMealExtra.addItem(lst.get(index));
+			items.add(lst.get(index));
+		}
+		mTargetMealExtra.setItems(items);
+	}
+
+	private void onBurgerItemAdded() {
+		Burger.CompareResult compareResult = mBurger.compareTo(mTargetBurger);
+		if (compareResult == Burger.CompareResult.SAME) {
+			if (mTargetMealExtra.isEmpty()) {
+				onMealFinished();
+			} else {
+				onBurgerFinished();
+			}
+		} else if (compareResult == Burger.CompareResult.DIFFERENT) {
+			mTrashedCount++;
+			mBurger.trash();
+		}
+	}
+
+	private void onMealItemAdded(MealItem item) {
+		MealExtra.CompareResult result = mMealExtra.compareTo(mTargetMealExtra);
+		if (result == MealExtra.CompareResult.SAME) {
+			onMealFinished();
+		} else if (result == MealExtra.CompareResult.DIFFERENT) {
+			mTrashedCount++;
+			mBurger.trash();
+			mMealExtra.trash();
 		}
 	}
 
@@ -205,8 +219,7 @@ public class World {
 	private void onMealFinished() {
 		mCustomerCount--;
 		if (mCustomerCount > 0) {
-			mBurger = new Burger();
-			mMealExtra = new MealExtra();
+			setupMeal();
 			generateTarget();
 			mealFinished.emit();
 		} else {

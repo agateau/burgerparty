@@ -7,12 +7,12 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
-import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -39,12 +39,11 @@ public class BurgerView extends Group {
 
 		mNextY = 0;
 
-		mBurger.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
-			public void handle(BurgerItem item) {
-				addItem(item);
+		mBurger.initialized.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				init();
 			}
 		});
-
 		mBurger.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				onCleared();
@@ -61,22 +60,19 @@ public class BurgerView extends Group {
 		mPadding = value;
 	}
 
-	private void addItem(BurgerItem item) {
-		TextureRegion region;
-		region = mAtlas.findRegion("mealitems/" + item.getName());
-		assert(region != null);
-		Image image = new Image(region);
-		float regionW = region.getRegionWidth();
-		float regionH = region.getRegionHeight();
-		float posX = (getWidth() - regionW) / 2;
+	private class AddItemRunnable implements Runnable {
+		public AddItemRunnable(BurgerItem item) {
+			mItem = item;
+		}
+		@Override
+		public void run() {
+			mBurger.addItem(mItem);
+		}
+		private BurgerItem mItem;
+	}
 
-		image.setBounds(posX, mNextY + item.getOffset(), regionW, regionH);
-		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
-		addActor(image);
-
-		mNextY += item.getHeight() + mPadding;
-		setHeight(mNextY + regionH / 2);
-
+	public void addItem(BurgerItem item) {
+		Image image = addItemInternal(item);
 		String animDefinition = item.getAnim();
 		if (animDefinition.isEmpty()) {
 			animDefinition =
@@ -91,7 +87,9 @@ public class BurgerView extends Group {
 				"end\n";
 		}
 		AnimScript anim = AnimScriptLoader.getInstance().load(animDefinition);
-		image.addAction(anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION));
+		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
+		Action addItemAction = Actions.run(new AddItemRunnable(item));
+		image.addAction(Actions.sequence(animAction, addItemAction));
 
 		UiUtils.notifyResizeToFitParent(this);
 	}
@@ -124,5 +122,33 @@ public class BurgerView extends Group {
 		setHeight(0);
 		clear();
 		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	private void init() {
+		mNextY = 0;
+		setHeight(0);
+		clear();
+		for(BurgerItem item: mBurger.getItems()) {
+			addItemInternal(item);
+		}
+		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	private Image addItemInternal(BurgerItem item) {
+		TextureRegion region;
+		region = mAtlas.findRegion("mealitems/" + item.getName());
+		assert(region != null);
+		Image image = new Image(region);
+		float regionW = region.getRegionWidth();
+		float regionH = region.getRegionHeight();
+		float posX = (getWidth() - regionW) / 2;
+
+		image.setBounds(posX, mNextY + item.getOffset(), regionW, regionH);
+		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
+		addActor(image);
+
+		mNextY += item.getHeight() + mPadding;
+		setHeight(mNextY + regionH / 2);
+		return image;
 	}
 }

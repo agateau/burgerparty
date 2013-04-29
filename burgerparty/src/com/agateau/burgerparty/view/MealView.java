@@ -1,7 +1,9 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.model.Burger;
+import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.MealExtra;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,6 +21,22 @@ public class MealView extends Group implements ResizeToFitChildren {
 
 	public BurgerView getBurgerView() {
 		return mBurgerView;
+	}
+
+	public void addItem(MealItem item) {
+		if (item.getType() == MealItem.Type.BURGER) {
+			addBurgerItem((BurgerItem)item);
+		} else {
+			addExtraItem(item);
+		}
+	}
+
+	private void addBurgerItem(BurgerItem item) {
+		mBurgerView.addItem(item);
+	}
+
+	private void addExtraItem(MealItem item) {
+		mMealExtraView.addItem(item);
 	}
 
 	public void updateGeometry() {

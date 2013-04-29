@@ -5,12 +5,12 @@ import java.util.HashSet;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Signal0;
-import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -21,36 +21,61 @@ public class MealExtraView extends Group {
 		mMealExtra = mealExtra;
 		mAtlas = atlas;
 
-		mMealExtra.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
-			public void handle(MealItem item) {
-				addItem(item);
+		mMealExtra.initialized.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				init();
 			}
 		});
-
 		mMealExtra.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				clearItems();
 			}
 		});
+		mMealExtra.trashed.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				// FIXME: Add proper trash anim
+				clearItems();
+			}
+		});
 	}
 
-	private void addItem(MealItem item) {
-		TextureRegion region;
-		region = mAtlas.findRegion("mealitems/" + item.getName());
-		assert(region != null);
-		Image image = new Image(region);
-		mImages.add(image);
-		image.setPosition(MathUtils.ceil(getWidth()), ADD_ACTION_HEIGHT);
-		addActor(image);
+	private class AddItemRunnable implements Runnable {
+		public AddItemRunnable(MealItem item) {
+			mItem = item;
+		}
+		@Override
+		public void run() {
+			mMealExtra.addItem(mItem);
+		}
+		private MealItem mItem;
+	}
+
+	public void addItem(MealItem item) {
+		Image image = addItemInternal(item);
 		image.addAction(Actions.alpha(0));
-		image.addAction(Actions.parallel(
+		image.addAction(Actions.moveBy(0, ADD_ACTION_HEIGHT));
+		Action animAction = Actions.parallel(
 			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
 			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
-			));
+			);
+		Action addItemAction = Actions.run(new AddItemRunnable(item));
+		image.addAction(Actions.sequence(animAction, addItemAction));
 
 		updateGeometry();
 	}
-	
+
+	public void init() {
+		mImages.clear();
+		clear();
+		float posX = 0;
+		for(MealItem item: mMealExtra.getItems()) {
+			Image image = addItemInternal(item);
+			image.setX(posX);
+			posX += image.getWidth();
+		}
+		updateGeometry();
+	}
+
 	private void clearItems() {
 		mImages.clear();
 		clear();
@@ -71,6 +96,17 @@ public class MealExtraView extends Group {
 		}
 		setSize(width, height);
 		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	private Image addItemInternal(MealItem item) {
+		TextureRegion region;
+		region = mAtlas.findRegion("mealitems/" + item.getName());
+		assert(region != null);
+		Image image = new Image(region);
+		mImages.add(image);
+		image.setPosition(MathUtils.ceil(getWidth()), 0);
+		addActor(image);
+		return image;
 	}
 
 	private MealExtra mMealExtra;
