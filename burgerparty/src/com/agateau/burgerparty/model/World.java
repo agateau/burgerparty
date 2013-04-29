@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
@@ -177,11 +178,13 @@ public class World {
 			lst.add(item);
 		}
 		// Pick one item per type
+		Set<MealItem> items = new HashSet<MealItem>();
 		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
 			Array<MealItem> lst = it.next();
 			int index = MathUtils.random(lst.size - 1);
-			mTargetMealExtra.addItem(lst.get(index));
+			items.add(lst.get(index));
 		}
+		mTargetMealExtra.setItems(items);
 	}
 
 	private void onBurgerItemAdded() {

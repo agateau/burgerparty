@@ -8,6 +8,7 @@ import com.agateau.burgerparty.utils.Signal1;
 
 public class MealExtra {
 	public Signal1<MealItem> itemAdded = new Signal1<MealItem>();
+	public Signal0 initialized = new Signal0();
 	public Signal0 cleared = new Signal0();
 	public Signal0 trashed = new Signal0();
 
@@ -56,6 +57,11 @@ public class MealExtra {
 			txt += item.getName() + ", ";
 		}
 		return txt;
+	}
+
+	public void setItems(Set<MealItem> items) {
+		mItems = items;
+		initialized.emit();
 	}
 
 	private Set<MealItem> mItems = new HashSet<MealItem>();

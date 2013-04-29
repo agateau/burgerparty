@@ -28,6 +28,11 @@ public class MealExtraView extends Group {
 			}
 		});
 
+		mMealExtra.initialized.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				init();
+			}
+		});
 		mMealExtra.cleared.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				clearItems();
@@ -53,14 +58,9 @@ public class MealExtraView extends Group {
 	}
 
 	public void addItem(MealItem item) {
-		TextureRegion region;
-		region = mAtlas.findRegion("mealitems/" + item.getName());
-		assert(region != null);
-		Image image = new Image(region);
-		mImages.add(image);
-		image.setPosition(MathUtils.ceil(getWidth()), ADD_ACTION_HEIGHT);
-		addActor(image);
+		Image image = addItemInternal(item);
 		image.addAction(Actions.alpha(0));
+		image.addAction(Actions.moveBy(0, ADD_ACTION_HEIGHT));
 		Action animAction = Actions.parallel(
 			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
 			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
@@ -70,7 +70,16 @@ public class MealExtraView extends Group {
 
 		updateGeometry();
 	}
-	
+
+	public void init() {
+		mImages.clear();
+		clear();
+		for(MealItem item: mMealExtra.getItems()) {
+			addItemInternal(item);
+		}
+		updateGeometry();
+	}
+
 	private void clearItems() {
 		mImages.clear();
 		clear();
@@ -91,6 +100,17 @@ public class MealExtraView extends Group {
 		}
 		setSize(width, height);
 		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	private Image addItemInternal(MealItem item) {
+		TextureRegion region;
+		region = mAtlas.findRegion("mealitems/" + item.getName());
+		assert(region != null);
+		Image image = new Image(region);
+		mImages.add(image);
+		image.setPosition(MathUtils.ceil(getWidth()), 0);
+		addActor(image);
+		return image;
 	}
 
 	private MealExtra mMealExtra;
