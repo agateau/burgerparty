@@ -83,6 +83,11 @@ public class WorldView extends AnchorGroup {
 				onMealFinished();
 			}
 		});
+		mWorld.getMealExtra().trashed.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				onMealExtraTrashed();
+			}
+		});
 		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
 			public void handle(LevelResult result) {
 				onLevelFinished(result);
@@ -246,6 +251,10 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		mActiveCustomer = null;
+	}
+
+	private void onMealExtraTrashed() {
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 	}
 
 	private void onBurgerFinished() {
