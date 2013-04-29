@@ -4,11 +4,11 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
+import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -52,15 +52,10 @@ public class MealExtraView extends Group {
 
 	public void addItem(MealItem item) {
 		Image image = addItemInternal(item);
-		image.addAction(Actions.alpha(0));
-		image.addAction(Actions.moveBy(0, ADD_ACTION_HEIGHT));
-		Action animAction = Actions.parallel(
-			Actions.moveBy(0, -ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION, Interpolation.pow2In),
-			Actions.fadeIn(MealView.ADD_ACTION_DURATION)
-			);
+		AnimScript anim = item.getAnimScript();
+		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
 		image.addAction(Actions.sequence(animAction, addItemAction));
-
 		updateGeometry();
 	}
 
