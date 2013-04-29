@@ -12,12 +12,23 @@ public class BurgerItem extends MealItem {
 		mHeight = element.getIntAttribute("height");
 	}
 
+	protected BurgerItem(String name) {
+		super(Type.BURGER, name);
+	}
+
 	public int getHeight() {
 		return mHeight;
 	}
 
 	public int getOffset() {
 		return mOffset;
+	}
+
+	public static void addTestItem(String name) {
+		BurgerItem item = new BurgerItem(name);
+		item.mHeight = 18;
+		item.mOffset = 6;
+		addTestItem(item);
 	}
 
 	public static BurgerItem get(String name) {

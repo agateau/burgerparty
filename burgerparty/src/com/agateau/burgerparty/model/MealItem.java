@@ -65,14 +65,18 @@ public class MealItem {
 		mAnim = element.get("anim", new String());
 	}
 
-	public static void addTestItem(Type type, String name) {
-		MealItem item = new MealItem();
-		item.mType = type;
-		item.mName = name;
-		sMap.put(item.mName, item);
+	protected MealItem(Type type, String name) {
+		mType = type;
+		mName = name;
 	}
 
-	private MealItem() {
+	public static void addTestItem(Type type, String name) {
+		MealItem item = new MealItem(type, name);
+		addTestItem(item);
+	}
+
+	protected static void addTestItem(MealItem item) {
+		sMap.put(item.mName, item);
 	}
 
 	private static void initMap() {

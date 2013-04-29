@@ -56,7 +56,7 @@ public class Burger {
 			return CompareResult.DIFFERENT;
 		}
 		for (int idx = 0; idx < mItems.size; ++idx) {
-			if (mItems.get(idx).getName() != reference.mItems.get(idx).getName()) {
+			if (mItems.get(idx) != reference.mItems.get(idx)) {
 				return CompareResult.DIFFERENT;
 			}
 		}
