@@ -34,13 +34,13 @@ public class World {
 	private Burger mTargetBurger = new Burger();
 	private MealExtra mTargetMealExtra = new MealExtra();
 
-	private int mCustomerCount;
+	private int mRemainingCustomerCount;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
 
 	public World(Level level) {
 		mLevel = level;
-		mCustomerCount = mLevel.definition.customerCount;
+		mRemainingCustomerCount = mLevel.definition.customers.size;
 		mBurgerInventory = new Inventory(level.definition.burgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 		setupMeal();
@@ -96,8 +96,8 @@ public class World {
 		return mRemainingSeconds;
 	}
 
-	public int getCustomerCount() {
-		return mCustomerCount;
+	public Array<String> getCustomerList() {
+		return mLevel.definition.customers;
 	}
 
 	public int getTrashedCount() {
@@ -217,8 +217,8 @@ public class World {
 	}
 
 	private void onMealFinished() {
-		mCustomerCount--;
-		if (mCustomerCount > 0) {
+		mRemainingCustomerCount--;
+		if (mRemainingCustomerCount > 0) {
 			setupMeal();
 			generateTarget();
 			mealFinished.emit();

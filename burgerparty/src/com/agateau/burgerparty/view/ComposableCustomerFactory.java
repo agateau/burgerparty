@@ -67,10 +67,8 @@ public class ComposableCustomerFactory {
 		}
 	}
 
-	public Customer create() {
-		final String[] categoryNames = {"boys", "girls", "boys", "girls", "boys", "girls", "boys", "girls", "ninjas"};
-		String name = categoryNames[MathUtils.random(categoryNames.length -1)];
-		CustomerCategory category = mCategories.get(name);
+	public Customer create(String categoryName) {
+		CustomerCategory category = mCategories.get(categoryName);
 		return new ComposableCustomer(mAtlas, category.dirName,
 			getRandomString(category.bodies),
 			getRandomString(category.tops),

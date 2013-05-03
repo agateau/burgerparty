@@ -157,8 +157,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupCustomers() {
-		for (int x = 0; x < mWorld.getCustomerCount(); ++x) {
-			Customer customer = mCustomerFactory.create();
+		Array<String> lst = mWorld.getCustomerList();
+		lst.reverse();
+		for (String name: lst) {
+			Customer customer = mCustomerFactory.create(name);
 			addActor(customer);
 			customer.setX(-customer.getWidth());
 			mWaitingCustomers.add(customer);

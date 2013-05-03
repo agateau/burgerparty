@@ -1,8 +1,6 @@
-
 <level
     minBurgerSize="2"
     maxBurgerSize="6"
-    customerCount="8"
     duration="120"
     >
     <items>
@@ -18,4 +16,14 @@
         <objective type="maxTrashed" value="0"/>
         <objective type="maxDuration" value="30"/>
     </objectives>
+    <customers>
+        <customer type="girls"/>
+        <customer type="boys"/>
+        <customer type="ninjas"/>
+        <customer type="girls"/>
+        <customer type="ninjas"/>
+        <customer type="girls"/>
+        <customer type="boys"/>
+        <customer type="ninjas"/>
+    </customers>
 </level>

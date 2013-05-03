@@ -14,8 +14,8 @@ public class Level {
 		public int minBurgerSize;
 		public int maxBurgerSize;
 		public int duration;
-		public int customerCount;
 		public Array<Objective> objectives = new Array<Objective>();
+		public Array<String> customers = new Array<String>();
 	}
 
 	public Definition definition = new Definition();
@@ -40,7 +40,6 @@ public class Level {
 		level.mLevelWorld = levelWorld;
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
-		level.definition.customerCount = root.getIntAttribute("customerCount");
 		level.definition.duration = root.getIntAttribute("duration");
 
 		readObjectives(level, root.getChildByName("objectives"));
@@ -59,6 +58,14 @@ public class Level {
 			} else {
 				level.definition.extraItems.add(name);
 			}
+		}
+
+		items = root.getChildByName("customers");
+		assert(items != null);
+		for(int idx = 0; idx < items.getChildCount(); ++idx) {
+			XmlReader.Element element = items.getChild(idx);
+			String name = element.getAttribute("type");
+			level.definition.customers.add(name);
 		}
 
 		return level;
