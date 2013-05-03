@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
@@ -44,7 +45,12 @@ public class ComposableCustomer extends Customer {
 	}
 
 	private Image getPartImage(CustomerPart part) {
-		return new Image(mAtlas.findRegion(part.name));
+		assert(part != null);
+		TextureRegion region = mAtlas.findRegion(part.name);
+		if (region == null) {
+			throw new RuntimeException("No region named " + part.name);
+		}
+		return new Image(region);
 	}
 
 	private static void xCenterImage(Image image, CustomerPart imagePart, Image ref, CustomerPart refPart) {
@@ -58,7 +64,11 @@ public class ComposableCustomer extends Customer {
 		if (!suffix.isEmpty()) {
 			fullName += "-" + suffix;
 		}
-		return sMap.get(fullName);
+		CustomerPart part = sMap.get(fullName);
+		if (part == null) {
+			throw new RuntimeException("Failed to find customer part named " + fullName);
+		}
+		return part;
 	}
 
 	private TextureAtlas mAtlas;
