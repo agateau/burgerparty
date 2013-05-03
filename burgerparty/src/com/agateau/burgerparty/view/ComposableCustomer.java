@@ -13,7 +13,8 @@ import com.badlogic.gdx.utils.XmlReader;
 public class ComposableCustomer extends Customer {
 	public ComposableCustomer(TextureAtlas atlas, String dirName, String bodyName, String topName, String faceName) {
 		if (sMap.size == 0) {
-			initMap();
+			FileHandle handle = Gdx.files.internal("customerparts.xml");
+			initMap(handle);
 			assert(sMap.size > 0);
 		}
 		mAtlas = atlas;
@@ -97,8 +98,7 @@ public class ComposableCustomer extends Customer {
 
 	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, ComposableCustomer.CustomerPart>();
 
-	private static void initMap() {
-		FileHandle handle = Gdx.files.internal("customerparts.xml");
+	public static void initMap(FileHandle handle) {
 		XmlReader.Element root = null;
 		try {
 			XmlReader reader = new XmlReader();
