@@ -21,4 +21,12 @@
 
     <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
     <face name="customers/ninjas/face-0-happy"/>
+
+    <body name="customers/pirate-boys/body-brown" yFace="69"/>
+    <top name="customers/pirate-boys/top-boss"/>
+    <face name="customers/pirate-boys/face-boss-happy"/>
+
+    <body name="customers/pirate-girls/body-purple" yFace="69"/>
+    <top name="customers/pirate-girls/top-red"/>
+    <face name="customers/pirate-girls/face-greeneyes-happy"/>
 </parts>

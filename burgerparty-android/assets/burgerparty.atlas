@@ -309,6 +309,32 @@ burgerparty6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+customers/pirate-girls/body-purple
+  rotate: false
+  xy: 1, 62
+  size: 111, 171
+  orig: 111, 171
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-greeneyes-happy
+  rotate: false
+  xy: 114, 114
+  size: 158, 119
+  orig: 158, 119
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/top-red
+  rotate: false
+  xy: 1, 1
+  size: 105, 59
+  orig: 105, 59
+  offset: 0, 0
+  index: -1
+
+burgerparty7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 customers/boys/body-3
   rotate: false
   xy: 1, 60
@@ -394,7 +420,7 @@ customers/boys/face-3-happy
   offset: 0, 0
   index: -1
 
-burgerparty7.png
+burgerparty8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -441,7 +467,33 @@ customers/girls/top-0
   offset: 0, 0
   index: -1
 
-burgerparty8.png
+burgerparty9.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+customers/pirate-boys/body-brown
+  rotate: false
+  xy: 1, 67
+  size: 110, 170
+  orig: 110, 170
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/face-boss-happy
+  rotate: false
+  xy: 113, 127
+  size: 147, 110
+  orig: 147, 110
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/top-boss
+  rotate: false
+  xy: 1, 1
+  size: 108, 64
+  orig: 108, 64
+  offset: 0, 0
+  index: -1
+
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
