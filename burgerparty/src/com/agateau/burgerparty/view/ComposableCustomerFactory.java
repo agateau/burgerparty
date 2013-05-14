@@ -10,6 +10,17 @@ import com.badlogic.gdx.utils.OrderedMap;
  * Knows all available customer types. Can create customer given a customer type with create().
  */
 public class ComposableCustomerFactory {
+	public static class Elements {
+		public String dirName;
+		public Array<String> bodies = new Array<String>();
+		public Array<String> tops = new Array<String>();
+		public Array<String> faces = new Array<String>();
+
+		public Elements(String dirName) {
+			this.dirName = dirName;
+		} 
+	}
+
 	public ComposableCustomerFactory(TextureAtlas atlas) {
 		mAtlas = atlas;
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
@@ -62,23 +73,20 @@ public class ComposableCustomerFactory {
 			getRandomString(elements.faces));
 	}
 
+	public Array<String> getTypes() {
+		return mElementsForType.orderedKeys();
+	}
+
+	public Elements getElementsForType(String type) {
+		return mElementsForType.get(type);
+	}
+
 	private static String getRandomString(Array<String> array) {
 		if (array.size > 0) {
 			return array.get(MathUtils.random(array.size - 1));
 		} else {
 			return "";
 		}
-	}
-
-	private static class Elements {
-		public String dirName;
-		public Array<String> bodies = new Array<String>();
-		public Array<String> tops = new Array<String>();
-		public Array<String> faces = new Array<String>();
-
-		public Elements(String dirName) {
-			this.dirName = dirName;
-		} 
 	}
 
 	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
