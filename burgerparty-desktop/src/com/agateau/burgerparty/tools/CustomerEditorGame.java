@@ -10,12 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class CustomerEditorGame extends Game {
 	CustomerEditorGame(String partsXmlName) {
 		mPartsXmlName = partsXmlName;
-		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
-		ComposableCustomer.initMap(handle);
 	}
 
 	@Override
 	public void create() {
+		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
+		ComposableCustomer.initMap(handle);
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 		mSkin = new Skin(Gdx.files.internal("ui/skin.json"), mAtlas);
 
