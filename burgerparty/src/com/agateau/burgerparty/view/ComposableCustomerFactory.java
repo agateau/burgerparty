@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 
 /**
- * Knows all available customer categories. Can create customer given a category with create(). 
+ * Knows all available customer types. Can create customer given a customer type with create().
  */
 public class ComposableCustomerFactory {
 	public ComposableCustomerFactory(TextureAtlas atlas) {
@@ -21,18 +21,18 @@ public class ComposableCustomerFactory {
 				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Should not exist!");
 				continue;
 			}
-			String categoryName = path[1];
-			CustomerCategory category;
-			category = mCategories.get(categoryName);
-			if (category == null) {
-				category = new CustomerCategory(categoryName);
-				mCategories.put(categoryName, category);
+			String customerType = path[1];
+			Elements elements;
+			elements = mElementsForType.get(customerType);
+			if (elements == null) {
+				elements = new Elements(customerType);
+				mElementsForType.put(customerType, elements);
 			}
 			String name = path[2];
 			if (name.startsWith("body-")) {
-				category.bodies.add(name);
+				elements.bodies.add(name);
 			} else if (name.startsWith("top-")) {
-				category.tops.add(name);
+				elements.tops.add(name);
 			} else if (name.startsWith("face-")) {
 				String[] tokens = name.split("-", 3);
 				if (tokens.length != 3) {
@@ -40,7 +40,7 @@ public class ComposableCustomerFactory {
 					continue;
 				}
 				if (tokens[2].equals("happy")) {
-					category.faces.add(tokens[0] + "-" + tokens[1]);
+					elements.faces.add(tokens[0] + "-" + tokens[1]);
 				}
 			} else {
 				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Unknown customer part!");
@@ -49,17 +49,17 @@ public class ComposableCustomerFactory {
 	}
 
 	/**
-	 * Creates a customer give a category name
+	 * Creates a customer give a customer type
 	 *
-	 * @param categoryName name of the category the customer should be made from
+	 * @param customerType name of the category the customer should be made from
 	 * @return a Customer instance
 	 */
-	public Customer create(String categoryName) {
-		CustomerCategory category = mCategories.get(categoryName);
-		return new ComposableCustomer(mAtlas, category.dirName,
-			getRandomString(category.bodies),
-			getRandomString(category.tops),
-			getRandomString(category.faces));
+	public Customer create(String customerType) {
+		Elements elements = mElementsForType.get(customerType);
+		return new ComposableCustomer(mAtlas, elements.dirName,
+			getRandomString(elements.bodies),
+			getRandomString(elements.tops),
+			getRandomString(elements.faces));
 	}
 
 	private static String getRandomString(Array<String> array) {
@@ -70,18 +70,17 @@ public class ComposableCustomerFactory {
 		}
 	}
 
-	private static class CustomerCategory {
+	private static class Elements {
 		public String dirName;
 		public Array<String> bodies = new Array<String>();
 		public Array<String> tops = new Array<String>();
 		public Array<String> faces = new Array<String>();
 
-		public CustomerCategory(String dirName) {
+		public Elements(String dirName) {
 			this.dirName = dirName;
 		} 
 	}
 
-	private OrderedMap<String, CustomerCategory> mCategories = new OrderedMap<String, CustomerCategory>();
+	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
 	private TextureAtlas mAtlas;
-
 }
