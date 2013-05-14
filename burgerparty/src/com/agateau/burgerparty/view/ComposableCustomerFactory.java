@@ -6,21 +6,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 
+/**
+ * Knows all available customer categories. Can create customer given a category with create(). 
+ */
 public class ComposableCustomerFactory {
-	static class CustomerCategory {
-		public String dirName;
-		public Array<String> bodies = new Array<String>();
-		public Array<String> tops = new Array<String>();
-		public Array<String> faces = new Array<String>();
-
-		public CustomerCategory(String dirName) {
-			this.dirName = dirName;
-		} 
-	}
-
-	private OrderedMap<String, CustomerCategory> mCategories = new OrderedMap<String, CustomerCategory>();
-	private TextureAtlas mAtlas;
-
 	public ComposableCustomerFactory(TextureAtlas atlas) {
 		mAtlas = atlas;
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
@@ -59,14 +48,12 @@ public class ComposableCustomerFactory {
 		}
 	}
 
-	static String getRandomString(Array<String> array) {
-		if (array.size > 0) {
-			return array.get(MathUtils.random(array.size - 1));
-		} else {
-			return "";
-		}
-	}
-
+	/**
+	 * Creates a customer give a category name
+	 *
+	 * @param categoryName name of the category the customer should be made from
+	 * @return a Customer instance
+	 */
 	public Customer create(String categoryName) {
 		CustomerCategory category = mCategories.get(categoryName);
 		return new ComposableCustomer(mAtlas, category.dirName,
@@ -74,4 +61,27 @@ public class ComposableCustomerFactory {
 			getRandomString(category.tops),
 			getRandomString(category.faces));
 	}
+
+	private static String getRandomString(Array<String> array) {
+		if (array.size > 0) {
+			return array.get(MathUtils.random(array.size - 1));
+		} else {
+			return "";
+		}
+	}
+
+	private static class CustomerCategory {
+		public String dirName;
+		public Array<String> bodies = new Array<String>();
+		public Array<String> tops = new Array<String>();
+		public Array<String> faces = new Array<String>();
+
+		public CustomerCategory(String dirName) {
+			this.dirName = dirName;
+		} 
+	}
+
+	private OrderedMap<String, CustomerCategory> mCategories = new OrderedMap<String, CustomerCategory>();
+	private TextureAtlas mAtlas;
+
 }
