@@ -2,6 +2,7 @@ package com.agateau.burgerparty.tools;
 
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -15,12 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.SnapshotArray;
 
 public class CustomerEditorScreen extends StageScreen {
 
@@ -47,7 +44,7 @@ public class CustomerEditorScreen extends StageScreen {
 		group.addRule(mCustomerTypeList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
 		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.2f, 1));
 
-		mCustomerContainer = new HGroup();
+		mCustomerContainer = new HorizontalGroup();
 		ScrollPane pane = new ScrollPane(mCustomerContainer);
 		group.addRule(pane, Anchor.BOTTOM_LEFT, mCustomerTypeList, Anchor.BOTTOM_RIGHT, 1, 0);
 		group.addRule(new AnchorGroup.SizeRule(pane, group, 0.8f, 1));
@@ -64,80 +61,8 @@ public class CustomerEditorScreen extends StageScreen {
 	private ComposableCustomerFactory mCustomerFactory;
 
 	private List mCustomerTypeList;
-	private HGroup mCustomerContainer;
+	private HorizontalGroup mCustomerContainer;
 	
-	static class HGroup extends WidgetGroup {
-		private boolean mSizeInvalid = true;
-		private float mPrefWidth, mPrefHeight;
-		private int mAlignment = Align.top;
-
-		public void invalidate() {
-			super.invalidate();
-			mSizeInvalid = true;
-		}
-
-		private void computeSize() {
-			mSizeInvalid = false;
-			mPrefWidth = 0;
-			mPrefHeight = 0;
-			SnapshotArray<Actor> children = getChildren();
-			for (int i = 0, n = children.size; i < n; i++) {
-				Actor child = children.get(i);
-				/*if (child instanceof Layout) {
-					Layout layout = (Layout)child;
-					mPrefWidth += layout.getPrefWidth();
-					mPrefHeight = Math.max(mPrefHeight, layout.getPrefHeight());
-				} else*/ {
-					mPrefWidth += child.getWidth();
-					mPrefHeight = Math.max(mPrefHeight, child.getHeight());
-				}
-			}
-		}
-
-		public void layout() {
-			float groupHeight = getHeight();
-			float x = 0;
-			SnapshotArray<Actor> children = getChildren();
-			for (int i = 0, n = children.size; i < n; i++) {
-				Actor child = children.get(i);
-				float width, height;
-				/*if (child instanceof Layout) {
-					Layout layout = (Layout)child;
-					width = layout.getPrefWidth();
-					height = layout.getPrefHeight();
-				} else*/ {
-					width = child.getWidth();
-					height = child.getHeight();
-				}
-				Gdx.app.log("hgroup", "actor " + i + " width=" + width);
-				float y;
-				if ((mAlignment & Align.bottom) != 0) {
-					y = 0;
-				} else if ((mAlignment & Align.top) != 0) {
-					y = groupHeight - height;
-				} else {
-					y = (groupHeight - height) / 2;
-				}
-				child.setBounds(x, y, width, height);
-				x += width;
-			}
-		}
-
-		public float getPrefWidth() {
-			if (mSizeInvalid) {
-				computeSize();
-			}
-			return mPrefWidth;
-		}
-
-		public float getPrefHeight() {
-			if (mSizeInvalid) {
-				computeSize();
-			}
-			return mPrefHeight;
-		}
-	}
-
 	private void fillCustomerTable() {
 		mCustomerContainer.clear();
 		String type = mCustomerTypeList.getSelection();
