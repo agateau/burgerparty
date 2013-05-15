@@ -11,8 +11,11 @@ import com.agateau.burgerparty.view.ComposableCustomerFactory;
 import com.agateau.burgerparty.view.Customer;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -32,6 +35,7 @@ public class CustomerEditorScreen extends StageScreen {
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
+		setupInput();
 		fillCustomerContainer();
 	}
 
@@ -65,10 +69,27 @@ public class CustomerEditorScreen extends StageScreen {
 		reloadButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.loadPartsXml();
-				fillCustomerContainer();
+				reload();
 			}
 		});
+	}
+
+	private void setupInput() {
+		getStage().getRoot().addListener(new InputListener() {
+			@Override
+			public boolean keyUp(InputEvent event, int keycode) {
+				if (keycode == Input.Keys.F5) {
+					reload();
+					return true;
+				}
+				return false;
+			}
+		});
+	}
+
+	private void reload() {
+		mGame.loadPartsXml();
+		fillCustomerContainer();
 	}
 
 	private CustomerEditorGame mGame;
