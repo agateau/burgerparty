@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
@@ -28,7 +30,7 @@ public class CustomerEditorScreen extends StageScreen {
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
-		fillCustomerTable();
+		fillCustomerContainer();
 	}
 
 	private void setupWidgets(TextureAtlas atlas, Skin skin) {
@@ -42,17 +44,17 @@ public class CustomerEditorScreen extends StageScreen {
 
 		mCustomerTypeList = new List(keys.toArray(), skin);
 		group.addRule(mCustomerTypeList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.2f, 1));
+		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.1f, 1));
 
-		mCustomerContainer = new HorizontalGroup();
+		mCustomerContainer = new VerticalGroup();
 		ScrollPane pane = new ScrollPane(mCustomerContainer);
 		group.addRule(pane, Anchor.BOTTOM_LEFT, mCustomerTypeList, Anchor.BOTTOM_RIGHT, 1, 0);
-		group.addRule(new AnchorGroup.SizeRule(pane, group, 0.8f, 1));
+		group.addRule(new AnchorGroup.SizeRule(pane, group, 0.9f, 1));
 
 		mCustomerTypeList.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				fillCustomerTable();
+				fillCustomerContainer();
 			}
 		});
 	}
@@ -61,20 +63,22 @@ public class CustomerEditorScreen extends StageScreen {
 	private ComposableCustomerFactory mCustomerFactory;
 
 	private List mCustomerTypeList;
-	private HorizontalGroup mCustomerContainer;
+	private VerticalGroup mCustomerContainer;
 	
-	private void fillCustomerTable() {
+	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
 		String type = mCustomerTypeList.getSelection();
 		ComposableCustomerFactory.Elements elements = mCustomerFactory.getElementsForType(type);
 		for (String body: elements.bodies) {
+			HorizontalGroup hGroup = new HorizontalGroup();
+			mCustomerContainer.addActor(hGroup);
 			for (String face: elements.faces) {
 				if (elements.tops.size > 0) {
 					for (String top: elements.tops) {
-						addCustomer(type, body, top, face);
+						addCustomer(hGroup, type, body, top, face);
 					}
 				} else {
-					addCustomer(type, body, "", face);
+					addCustomer(hGroup, type, body, "", face);
 				}
 			}
 		}
@@ -83,8 +87,8 @@ public class CustomerEditorScreen extends StageScreen {
 		Gdx.app.log("size", "width:" + mCustomerContainer.getWidth());
 	}
 
-	private void addCustomer(String type, String body, String top, String face) {
+	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
 		Customer customer = new ComposableCustomer(mAtlas, type, body, top, face);
-		mCustomerContainer.addActor(customer);
+		parent.addActor(customer);
 	}
 }
