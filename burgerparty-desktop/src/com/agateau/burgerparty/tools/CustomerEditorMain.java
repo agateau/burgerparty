@@ -12,7 +12,6 @@ public class CustomerEditorMain {
 		cfg.height = 480;
 
 		String partsXml = args[0];
-		System.out.println("partsXml=" + partsXml);
 		new LwjglApplication(new CustomerEditorGame(partsXml), cfg);
 	}
 

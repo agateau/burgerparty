@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -25,6 +26,7 @@ public class CustomerEditorScreen extends StageScreen {
 
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		super(skin);
+		mGame = game;
 		mAtlas = atlas;
 		mCustomerFactory = new ComposableCustomerFactory(atlas);
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
@@ -57,8 +59,19 @@ public class CustomerEditorScreen extends StageScreen {
 				fillCustomerContainer();
 			}
 		});
+
+		TextButton reloadButton = new TextButton("Reload", skin);
+		group.addRule(reloadButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
+		reloadButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				mGame.loadPartsXml();
+				fillCustomerContainer();
+			}
+		});
 	}
 
+	private CustomerEditorGame mGame;
 	private TextureAtlas mAtlas;
 	private ComposableCustomerFactory mCustomerFactory;
 

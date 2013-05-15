@@ -99,6 +99,7 @@ public class ComposableCustomer extends Customer {
 	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, ComposableCustomer.CustomerPart>();
 
 	public static void initMap(FileHandle handle) {
+		sMap.clear();
 		XmlReader.Element root = null;
 		try {
 			XmlReader reader = new XmlReader();
