@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Customer;
 import com.agateau.burgerparty.view.CustomerFactory;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -113,7 +112,6 @@ public class CustomerEditorScreen extends StageScreen {
 		}
 		mCustomerContainer.setWidth(mCustomerContainer.getPrefWidth());
 		mCustomerContainer.setHeight(mCustomerContainer.getPrefHeight());
-		Gdx.app.log("size", "width:" + mCustomerContainer.getWidth());
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {

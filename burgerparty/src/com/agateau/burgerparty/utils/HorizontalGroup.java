@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -49,7 +48,6 @@ public class HorizontalGroup extends WidgetGroup {
 				width = child.getWidth();
 				height = child.getHeight();
 			}
-			Gdx.app.log("hgroup", "actor " + i + " width=" + width);
 			float y;
 			if ((mAlignment & Align.bottom) != 0) {
 				y = 0;
