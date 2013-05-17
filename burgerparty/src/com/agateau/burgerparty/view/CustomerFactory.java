@@ -46,12 +46,9 @@ public class CustomerFactory {
 		}
 	}
 
-	public CustomerFactory(TextureAtlas atlas) {
-		if (CustomerFactory.sMap.size == 0) {
-			FileHandle handle = Gdx.files.internal("customerparts.xml");
-			CustomerFactory.initMap(handle);
-			assert(CustomerFactory.sMap.size > 0);
-		}
+	public CustomerFactory(TextureAtlas atlas, FileHandle customerPartsHandle) {
+		initMap(customerPartsHandle);
+		assert(mCustomerPartForPath.size > 0);
 
 		mAtlas = atlas;
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
@@ -60,7 +57,7 @@ public class CustomerFactory {
 				continue;
 			}
 			if (path.length < 3) {
-				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Should not exist!");
+				Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Should not exist!");
 				continue;
 			}
 			String customerType = path[1];
@@ -78,14 +75,14 @@ public class CustomerFactory {
 			} else if (name.startsWith("face-")) {
 				String[] tokens = name.split("-", 3);
 				if (tokens.length != 3) {
-					Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Invalid face name!");
+					Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Invalid face name!");
 					continue;
 				}
 				if (tokens[2].equals("happy")) {
 					elements.faces.add(tokens[0] + "-" + tokens[1]);
 				}
 			} else {
-				Gdx.app.log("ComposableCustomerFactory", "Skipping " + region.name + ". Unknown customer part!");
+				Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Unknown customer part!");
 			}
 		}
 	}
@@ -117,20 +114,19 @@ public class CustomerFactory {
 	}
 
 	public CustomerPart getCustomerPart(String fullName) {
-		return sMap.get(fullName);
+		return mCustomerPartForPath.get(fullName);
 	}
 
-	public static void initMap(FileHandle handle) {
-		sMap.clear();
+	private void initMap(FileHandle handle) {
+		mCustomerPartForPath.clear();
 		XmlReader.Element root = null;
 		try {
 			XmlReader reader = new XmlReader();
 			root = reader.parse(handle);
 		} catch (IOException e) {
-			Gdx.app.error("Customer.initMap", "Failed to load customer parts from " + handle.path() + ". Exception: " + e.toString());
+			Gdx.app.error("CustomerFactory.initMap", "Failed to load customer parts from " + handle.path() + ". Exception: " + e.toString());
 			return;
 		}
-	
 		for(int idx = 0; idx < root.getChildCount(); ++idx) {
 			CustomerPart part;
 			XmlReader.Element element = root.getChild(idx);
@@ -139,7 +135,7 @@ public class CustomerFactory {
 			} else {
 				part = new CustomerPart(element);
 			}
-			sMap.put(part.name, part);
+			mCustomerPartForPath.put(part.name, part);
 		}
 	}
 
@@ -151,7 +147,7 @@ public class CustomerFactory {
 		}
 	}
 
-	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
 	private TextureAtlas mAtlas;
-	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, CustomerPart>();
+	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
+	private OrderedMap<String, CustomerPart> mCustomerPartForPath = new OrderedMap<String, CustomerPart>();
 }

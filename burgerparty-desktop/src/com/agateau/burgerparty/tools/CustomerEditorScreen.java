@@ -29,7 +29,6 @@ public class CustomerEditorScreen extends StageScreen {
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		super(skin);
 		mGame = game;
-		mCustomerFactory = new CustomerFactory(atlas);
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
@@ -43,7 +42,7 @@ public class CustomerEditorScreen extends StageScreen {
 		getStage().addActor(group);
 		group.setFillParent(true);
 
-		Array<String> keys = mCustomerFactory.getTypes();
+		Array<String> keys = mGame.getCustomerFactory().getTypes();
 		keys.sort();
 
 		mCustomerTypeList = new List(keys.toArray(), skin);
@@ -91,7 +90,6 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private CustomerEditorGame mGame;
-	private CustomerFactory mCustomerFactory;
 
 	private List mCustomerTypeList;
 	private VerticalGroup mCustomerContainer;
@@ -99,7 +97,7 @@ public class CustomerEditorScreen extends StageScreen {
 	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
 		String type = mCustomerTypeList.getSelection();
-		CustomerFactory.Elements elements = mCustomerFactory.getElementsForType(type);
+		CustomerFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
 		for (String body: elements.bodies) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);
@@ -119,7 +117,7 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
-		Customer customer = new Customer(mCustomerFactory, type, body, top, face);
+		Customer customer = new Customer(mGame.getCustomerFactory(), type, body, top, face);
 		parent.addActor(customer);
 	}
 }

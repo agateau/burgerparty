@@ -14,10 +14,9 @@ public class CustomerEditorGame extends Game {
 
 	@Override
 	public void create() {
-		loadPartsXml();
 		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 		mSkin = new Skin(Gdx.files.internal("ui/skin.json"), mAtlas);
-
+		loadPartsXml();
 		showCustomerEditorScreen();
 	}
 
@@ -25,13 +24,18 @@ public class CustomerEditorGame extends Game {
 		setScreen(new CustomerEditorScreen(this, mAtlas, mSkin));
 	}
 
+	public CustomerFactory getCustomerFactory() {
+		return mCustomerFactory;
+	}
+
 	public void loadPartsXml() {
 		System.out.println("Loading " + mPartsXmlName);
 		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
-		CustomerFactory.initMap(handle);
+		mCustomerFactory = new CustomerFactory(mAtlas, handle);
 	}
 
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private String mPartsXmlName;
+	private CustomerFactory mCustomerFactory;
 }
