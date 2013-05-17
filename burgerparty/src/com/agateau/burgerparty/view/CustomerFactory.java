@@ -98,10 +98,14 @@ public class CustomerFactory {
 	 */
 	public Customer create(String customerType) {
 		Elements elements = mElementsForType.get(customerType);
-		return new Customer(mAtlas, elements.dirName,
+		return new Customer(this, elements.dirName,
 			getRandomString(elements.bodies),
 			getRandomString(elements.tops),
 			getRandomString(elements.faces));
+	}
+
+	public TextureAtlas getAtlas() {
+		return mAtlas;
 	}
 
 	public Array<String> getTypes() {
@@ -110,6 +114,10 @@ public class CustomerFactory {
 
 	public Elements getElementsForType(String type) {
 		return mElementsForType.get(type);
+	}
+
+	public CustomerPart getCustomerPart(String fullName) {
+		return sMap.get(fullName);
 	}
 
 	public static void initMap(FileHandle handle) {
@@ -145,5 +153,5 @@ public class CustomerFactory {
 
 	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
 	private TextureAtlas mAtlas;
-	public static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, CustomerPart>();
+	private static OrderedMap<String, CustomerPart> sMap = new OrderedMap<String, CustomerPart>();
 }

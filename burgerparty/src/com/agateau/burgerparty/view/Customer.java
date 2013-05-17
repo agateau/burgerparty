@@ -1,13 +1,12 @@
 package com.agateau.burgerparty.view;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 public class Customer extends WidgetGroup {
-	public Customer(TextureAtlas atlas, String dirName, String bodyName, String topName, String faceName) {
-		mAtlas = atlas;
+	public Customer(CustomerFactory factory, String dirName, String bodyName, String topName, String faceName) {
+		mFactory = factory;
 		mDirName = dirName;
 
 		// Body
@@ -37,7 +36,7 @@ public class Customer extends WidgetGroup {
 
 	private Image getPartImage(CustomerFactory.CustomerPart part) {
 		assert(part != null);
-		TextureRegion region = mAtlas.findRegion(part.name);
+		TextureRegion region = mFactory.getAtlas().findRegion(part.name);
 		if (region == null) {
 			throw new RuntimeException("No region named " + part.name);
 		}
@@ -55,13 +54,13 @@ public class Customer extends WidgetGroup {
 		if (!suffix.isEmpty()) {
 			fullName += "-" + suffix;
 		}
-		CustomerFactory.CustomerPart part = CustomerFactory.sMap.get(fullName);
+		CustomerFactory.CustomerPart part = mFactory.getCustomerPart(fullName);
 		if (part == null) {
 			throw new RuntimeException("Failed to find customer part named " + fullName);
 		}
 		return part;
 	}
 
-	private TextureAtlas mAtlas;
+	private CustomerFactory mFactory;
 	private String mDirName;
 }

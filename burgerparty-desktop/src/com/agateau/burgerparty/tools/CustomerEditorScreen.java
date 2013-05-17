@@ -29,7 +29,6 @@ public class CustomerEditorScreen extends StageScreen {
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		super(skin);
 		mGame = game;
-		mAtlas = atlas;
 		mCustomerFactory = new CustomerFactory(atlas);
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
@@ -92,7 +91,6 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private CustomerEditorGame mGame;
-	private TextureAtlas mAtlas;
 	private CustomerFactory mCustomerFactory;
 
 	private List mCustomerTypeList;
@@ -121,7 +119,7 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
-		Customer customer = new Customer(mAtlas, type, body, top, face);
+		Customer customer = new Customer(mCustomerFactory, type, body, top, face);
 		parent.addActor(customer);
 	}
 }
