@@ -10,13 +10,13 @@ public class Customer extends WidgetGroup {
 		mDirName = dirName;
 
 		// Body
-		CustomerFactory.BodyPart body = (CustomerFactory.BodyPart)getCustomerPart(bodyName, "");
+		CustomerFactory.BodyPart body = (CustomerFactory.BodyPart)mFactory.getCustomerPart(mDirName, bodyName, "");
 		Image bodyImage = getPartImage(body);
 		addActor(bodyImage);
 
 		// Top
 		if (!topName.isEmpty()) {
-			CustomerFactory.CustomerPart top = getCustomerPart(topName, "");
+			CustomerFactory.CustomerPart top = mFactory.getCustomerPart(mDirName, topName, "");
 			Image topImage = getPartImage(top);
 			addActor(topImage);
 			xCenterImage(topImage, top, bodyImage, body);
@@ -24,7 +24,7 @@ public class Customer extends WidgetGroup {
 		}
 
 		// Face
-		CustomerFactory.CustomerPart face = getCustomerPart(faceName, "happy");
+		CustomerFactory.CustomerPart face = mFactory.getCustomerPart(mDirName, faceName, "happy");
 		Image faceImage = getPartImage(face);
 		addActor(faceImage);
 		xCenterImage(faceImage, face, bodyImage, body);
@@ -49,18 +49,6 @@ public class Customer extends WidgetGroup {
 		image.setX(refCenter - imageCenter);
 	}
 	
-	private CustomerFactory.CustomerPart getCustomerPart(String name, String suffix) {
-		String fullName = "customers/" + mDirName + "/" + name;
-		if (!suffix.isEmpty()) {
-			fullName += "-" + suffix;
-		}
-		CustomerFactory.CustomerPart part = mFactory.getCustomerPart(fullName);
-		if (part == null) {
-			throw new RuntimeException("Failed to find customer part named " + fullName);
-		}
-		return part;
-	}
-
 	private CustomerFactory mFactory;
 	private String mDirName;
 }

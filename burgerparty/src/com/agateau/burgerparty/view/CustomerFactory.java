@@ -113,8 +113,16 @@ public class CustomerFactory {
 		return mElementsForType.get(type);
 	}
 
-	public CustomerPart getCustomerPart(String fullName) {
-		return mCustomerPartForPath.get(fullName);
+	public CustomerPart getCustomerPart(String dirName, String name, String suffix) {
+		String fullName = "customers/" + dirName + "/" + name;
+		if (!suffix.isEmpty()) {
+			fullName += "-" + suffix;
+		}
+		CustomerFactory.CustomerPart part = mCustomerPartForPath.get(fullName);
+		if (part == null) {
+			throw new RuntimeException("Failed to find customer part named " + fullName);
+		}
+		return part;
 	}
 
 	private void initMap(FileHandle handle) {
