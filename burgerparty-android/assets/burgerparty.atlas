@@ -312,15 +312,22 @@ repeat: none
 customers/pirate-girls/body-purple
   rotate: false
   xy: 1, 62
-  size: 111, 171
-  orig: 111, 171
+  size: 111, 166
+  orig: 111, 166
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-greeneyes-happy
   rotate: false
-  xy: 114, 114
+  xy: 114, 109
   size: 158, 119
   orig: 158, 119
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-cap-happy
+  rotate: false
+  xy: 274, 124
+  size: 126, 104
+  orig: 126, 104
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-red
