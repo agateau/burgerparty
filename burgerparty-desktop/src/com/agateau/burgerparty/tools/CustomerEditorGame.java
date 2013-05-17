@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.tools;
 
-import com.agateau.burgerparty.view.ComposableCustomer;
+import com.agateau.burgerparty.view.Customer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -28,7 +28,7 @@ public class CustomerEditorGame extends Game {
 	public void loadPartsXml() {
 		System.out.println("Loading " + mPartsXmlName);
 		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
-		ComposableCustomer.initMap(handle);
+		Customer.initMap(handle);
 	}
 
 	private Skin mSkin;

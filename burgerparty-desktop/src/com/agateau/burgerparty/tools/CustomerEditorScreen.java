@@ -6,9 +6,8 @@ import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.agateau.burgerparty.view.ComposableCustomer;
-import com.agateau.burgerparty.view.ComposableCustomerFactory;
 import com.agateau.burgerparty.view.Customer;
+import com.agateau.burgerparty.view.ComposableCustomerFactory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -122,7 +121,7 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
-		Customer customer = new ComposableCustomer(mAtlas, type, body, top, face);
+		Customer customer = new Customer(mAtlas, type, body, top, face);
 		parent.addActor(customer);
 	}
 }

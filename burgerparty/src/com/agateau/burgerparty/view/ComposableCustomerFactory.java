@@ -67,7 +67,7 @@ public class ComposableCustomerFactory {
 	 */
 	public Customer create(String customerType) {
 		Elements elements = mElementsForType.get(customerType);
-		return new ComposableCustomer(mAtlas, elements.dirName,
+		return new Customer(mAtlas, elements.dirName,
 			getRandomString(elements.bodies),
 			getRandomString(elements.tops),
 			getRandomString(elements.faces));
