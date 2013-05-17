@@ -14,6 +14,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -64,7 +65,7 @@ public class WorldView extends AnchorGroup {
 		mAtlas = atlas;
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
-		mCustomerFactory = new CustomerFactory(atlas);
+		mCustomerFactory = new CustomerFactory(atlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
 		setupWorkbench();
