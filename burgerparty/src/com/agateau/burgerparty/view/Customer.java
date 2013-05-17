@@ -31,7 +31,7 @@ public class Customer extends WidgetGroup {
 		faceImage.setY(body.yFace + face.yOffset);
 
 		setWidth(bodyImage.getWidth());
-		setHeight(bodyImage.getHeight());
+		setHeight(Math.max(bodyImage.getHeight(), faceImage.getTop()));
 	}
 
 	private Image getPartImage(CustomerFactory.CustomerPart part) {
