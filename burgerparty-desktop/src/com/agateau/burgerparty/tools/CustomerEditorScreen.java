@@ -118,6 +118,11 @@ public class CustomerEditorScreen extends StageScreen {
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
 		Customer customer = new Customer(mGame.getCustomerFactory(), type, body, top, face);
+		float width = 0;
+		for(Actor child: customer.getChildren()) {
+			width = Math.max(child.getRight(), width);
+		}
+		customer.setWidth(width);
 		parent.addActor(customer);
 	}
 }
