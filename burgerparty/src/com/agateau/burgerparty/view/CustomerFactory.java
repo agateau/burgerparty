@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 /**
  * Knows all available customer types. Can create customer given a customer type with create().
  */
-public class ComposableCustomerFactory {
+public class CustomerFactory {
 	public static class Elements {
 		public String dirName;
 		public Array<String> bodies = new Array<String>();
@@ -21,7 +21,7 @@ public class ComposableCustomerFactory {
 		} 
 	}
 
-	public ComposableCustomerFactory(TextureAtlas atlas) {
+	public CustomerFactory(TextureAtlas atlas) {
 		mAtlas = atlas;
 		for(TextureAtlas.AtlasRegion region: mAtlas.getRegions()) {
 			String[] path = region.name.split("/", 3);

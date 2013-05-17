@@ -7,7 +7,7 @@ import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Customer;
-import com.agateau.burgerparty.view.ComposableCustomerFactory;
+import com.agateau.burgerparty.view.CustomerFactory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -30,7 +30,7 @@ public class CustomerEditorScreen extends StageScreen {
 		super(skin);
 		mGame = game;
 		mAtlas = atlas;
-		mCustomerFactory = new ComposableCustomerFactory(atlas);
+		mCustomerFactory = new CustomerFactory(atlas);
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
@@ -93,7 +93,7 @@ public class CustomerEditorScreen extends StageScreen {
 
 	private CustomerEditorGame mGame;
 	private TextureAtlas mAtlas;
-	private ComposableCustomerFactory mCustomerFactory;
+	private CustomerFactory mCustomerFactory;
 
 	private List mCustomerTypeList;
 	private VerticalGroup mCustomerContainer;
@@ -101,7 +101,7 @@ public class CustomerEditorScreen extends StageScreen {
 	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
 		String type = mCustomerTypeList.getSelection();
-		ComposableCustomerFactory.Elements elements = mCustomerFactory.getElementsForType(type);
+		CustomerFactory.Elements elements = mCustomerFactory.getElementsForType(type);
 		for (String body: elements.bodies) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);

@@ -47,7 +47,7 @@ public class WorldView extends AnchorGroup {
 	private Image mPauseButton;
 	private Image mWorkbench;
 	private Bubble mBubble;
-	private ComposableCustomerFactory mCustomerFactory;
+	private CustomerFactory mCustomerFactory;
 	private Array<Customer> mWaitingCustomers = new Array<Customer>();
 	private Customer mActiveCustomer;
 	private PauseOverlay mPauseOverlay;
@@ -64,7 +64,7 @@ public class WorldView extends AnchorGroup {
 		mAtlas = atlas;
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
-		mCustomerFactory = new ComposableCustomerFactory(atlas);
+		mCustomerFactory = new CustomerFactory(atlas);
 
 		setupCustomers();
 		setupWorkbench();
