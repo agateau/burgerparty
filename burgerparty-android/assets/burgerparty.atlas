@@ -311,35 +311,42 @@ filter: Nearest,Nearest
 repeat: none
 customers/pirate-girls/body-green
   rotate: false
-  xy: 1, 60
+  xy: 1, 62
   size: 111, 166
   orig: 111, 166
   offset: 0, 0
   index: -1
 customers/pirate-girls/body-purple
   rotate: false
-  xy: 114, 60
+  xy: 114, 62
   size: 111, 166
   orig: 111, 166
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-greeneyes-happy
   rotate: false
-  xy: 227, 107
+  xy: 227, 109
   size: 158, 119
   orig: 158, 119
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-cap-happy
   rotate: false
-  xy: 227, 1
+  xy: 227, 3
   size: 126, 104
   orig: 126, 104
   offset: 0, 0
   index: -1
-customers/pirate-girls/top-red
+customers/pirate-girls/top-blue
   rotate: false
   xy: 387, 167
+  size: 109, 61
+  orig: 109, 61
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/top-red
+  rotate: false
+  xy: 1, 1
   size: 105, 59
   orig: 105, 59
   offset: 0, 0

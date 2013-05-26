@@ -29,6 +29,7 @@
     <body name="customers/pirate-girls/body-purple" yFace="69"/>
     <body name="customers/pirate-girls/body-green" yFace="69"/>
     <top name="customers/pirate-girls/top-red"/>
+    <top name="customers/pirate-girls/top-blue"/>
     <face name="customers/pirate-girls/face-greeneyes-happy"/>
     <face name="customers/pirate-girls/face-cap-happy" xCenter="54"/>
 </parts>
