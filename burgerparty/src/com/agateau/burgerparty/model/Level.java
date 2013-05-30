@@ -47,10 +47,10 @@ public class Level {
 		level.definition.burgerItems.add("top");
 		level.definition.burgerItems.add("bottom");
 
-		XmlReader.Element items = root.getChildByName("items");
-		assert(items != null);
-		for(int idx = 0; idx < items.getChildCount(); ++idx) {
-			XmlReader.Element element = items.getChild(idx);
+		XmlReader.Element elements = root.getChildByName("items");
+		assert(elements != null);
+		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
+			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("name");
 			MealItem item = MealItem.get(name);
 			if (item.getType() == MealItem.Type.BURGER) {
@@ -60,10 +60,10 @@ public class Level {
 			}
 		}
 
-		items = root.getChildByName("customers");
-		assert(items != null);
-		for(int idx = 0; idx < items.getChildCount(); ++idx) {
-			XmlReader.Element element = items.getChild(idx);
+		elements = root.getChildByName("customers");
+		assert(elements != null);
+		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
+			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("type");
 			level.definition.customers.add(name);
 		}
