@@ -53,7 +53,18 @@ public class Level {
 			String name = element.getAttribute("name");
 			MealItem item = MealItem.get(name);
 			if (item.getType() == MealItem.Type.BURGER) {
-				level.definition.burgerItems.add(name);
+				BurgerItem bItem = (BurgerItem)item;
+				switch (bItem.getSubType()) {
+				case MIDDLE:
+					level.definition.burgerItems.add(name);
+					break;
+				case TOP:
+					level.definition.topBurgerItem = name;
+					break;
+				case BOTTOM:
+					level.definition.bottomBurgerItem = name;
+					break;
+				}
 			} else {
 				level.definition.extraItems.add(name);
 			}
