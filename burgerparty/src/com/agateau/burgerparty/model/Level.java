@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static class Definition {
 		public Array<String> burgerItems = new Array<String>();
+		public String topBurgerItem = "top";
+		public String bottomBurgerItem = "bottom";
 		public Array<String> extraItems = new Array<String>();
 		public int minBurgerSize;
 		public int maxBurgerSize;
@@ -43,9 +45,6 @@ public class Level {
 		level.definition.duration = root.getIntAttribute("duration");
 
 		readObjectives(level, root.getChildByName("objectives"));
-
-		level.definition.burgerItems.add("top");
-		level.definition.burgerItems.add("bottom");
 
 		XmlReader.Element elements = root.getChildByName("items");
 		assert(elements != null);
