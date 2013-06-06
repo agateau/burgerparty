@@ -43,7 +43,9 @@ public class World {
 		mRemainingCustomerCount = mLevel.definition.customers.size;
 		Array<String> allBurgerItems = new Array<String>(level.definition.burgerItems);
 		allBurgerItems.add(level.definition.topBurgerItem);
-		allBurgerItems.add(level.definition.bottomBurgerItem);
+		if (level.definition.topBurgerItem != level.definition.bottomBurgerItem) {
+			allBurgerItems.add(level.definition.bottomBurgerItem);
+		}
 		mBurgerInventory = new Inventory(allBurgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 		setupMeal();

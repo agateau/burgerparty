@@ -52,6 +52,7 @@ public class Level {
 			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("name");
 			MealItem item = MealItem.get(name);
+			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
 				BurgerItem bItem = (BurgerItem)item;
 				switch (bItem.getSubType()) {
@@ -62,6 +63,10 @@ public class Level {
 					level.definition.topBurgerItem = name;
 					break;
 				case BOTTOM:
+					level.definition.bottomBurgerItem = name;
+					break;
+				case TOP_BOTTOM:
+					level.definition.topBurgerItem = name;
 					level.definition.bottomBurgerItem = name;
 					break;
 				}

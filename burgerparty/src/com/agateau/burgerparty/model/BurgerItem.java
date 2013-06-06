@@ -7,6 +7,7 @@ public class BurgerItem extends MealItem {
 		MIDDLE,
 		TOP,
 		BOTTOM,
+		TOP_BOTTOM,
 	}
 
 	protected BurgerItem(XmlReader.Element element) {
@@ -20,6 +21,8 @@ public class BurgerItem extends MealItem {
 			mSubType = SubType.TOP;
 		} else if (subType.equals("bottom")) {
 			mSubType = SubType.BOTTOM;
+		} else if (subType.equals("top-bottom")) {
+			mSubType = SubType.TOP_BOTTOM;
 		} else {
 			throw new RuntimeException("Invalid BurgerItem subType: " + subType);
 		}
