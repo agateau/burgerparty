@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static class Definition {
 		public Array<String> burgerItems = new Array<String>();
+		public String topBurgerItem = "top";
+		public String bottomBurgerItem = "bottom";
 		public Array<String> extraItems = new Array<String>();
 		public int minBurgerSize;
 		public int maxBurgerSize;
@@ -44,26 +46,39 @@ public class Level {
 
 		readObjectives(level, root.getChildByName("objectives"));
 
-		level.definition.burgerItems.add("top");
-		level.definition.burgerItems.add("bottom");
-
-		XmlReader.Element items = root.getChildByName("items");
-		assert(items != null);
-		for(int idx = 0; idx < items.getChildCount(); ++idx) {
-			XmlReader.Element element = items.getChild(idx);
+		XmlReader.Element elements = root.getChildByName("items");
+		assert(elements != null);
+		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
+			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("name");
 			MealItem item = MealItem.get(name);
+			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
-				level.definition.burgerItems.add(name);
+				BurgerItem bItem = (BurgerItem)item;
+				switch (bItem.getSubType()) {
+				case MIDDLE:
+					level.definition.burgerItems.add(name);
+					break;
+				case TOP:
+					level.definition.topBurgerItem = name;
+					break;
+				case BOTTOM:
+					level.definition.bottomBurgerItem = name;
+					break;
+				case TOP_BOTTOM:
+					level.definition.topBurgerItem = name;
+					level.definition.bottomBurgerItem = name;
+					break;
+				}
 			} else {
 				level.definition.extraItems.add(name);
 			}
 		}
 
-		items = root.getChildByName("customers");
-		assert(items != null);
-		for(int idx = 0; idx < items.getChildCount(); ++idx) {
-			XmlReader.Element element = items.getChild(idx);
+		elements = root.getChildByName("customers");
+		assert(elements != null);
+		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
+			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("type");
 			level.definition.customers.add(name);
 		}

@@ -41,7 +41,12 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mRemainingCustomerCount = mLevel.definition.customers.size;
-		mBurgerInventory = new Inventory(level.definition.burgerItems);
+		Array<String> allBurgerItems = new Array<String>(level.definition.burgerItems);
+		allBurgerItems.add(level.definition.topBurgerItem);
+		if (level.definition.topBurgerItem != level.definition.bottomBurgerItem) {
+			allBurgerItems.add(level.definition.bottomBurgerItem);
+		}
+		mBurgerInventory = new Inventory(allBurgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 		setupMeal();
 	}
@@ -139,12 +144,10 @@ public class World {
 
 	private void generateTargetBurger() {
 		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
-		names.removeValue("top", false);
-		names.removeValue("bottom", false);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
 		Array<BurgerItem> items = new Array<BurgerItem>();
-		items.add(BurgerItem.get("bottom"));
+		items.add(BurgerItem.get(mLevel.definition.bottomBurgerItem));
 
 		// Generate content, make sure items cannot appear two times consecutively
 		String lastName = new String();
@@ -157,7 +160,7 @@ public class World {
 			lastName = name;
 			items.add(BurgerItem.get(name));
 		}
-		items.add(BurgerItem.get("top"));
+		items.add(BurgerItem.get(mLevel.definition.topBurgerItem));
 		mTargetBurger.setItems(items);
 	}
 

@@ -1,5 +1,5 @@
 <items>
-    <item name="bottom"      row="0" column="0" type="burger" height="24" offset="0">
+    <item name="bottom"      row="0" column="0" type="burger" subType="bottom" height="24" offset="0">
         <anim>
             <![CDATA[
             parallel
@@ -22,7 +22,7 @@
     <item name="onion"       row="0" column="4" type="burger" height="8"  offset="-4"/>
     <item name="cheese"      row="0" column="5" type="burger" height="8"  offset="-19"/>
     <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
-    <item name="top"         row="1" column="0" type="burger" height="32" offset="0">
+    <item name="top"         row="1" column="0" type="burger" subType="top" height="32" offset="0">
         <anim>
             <![CDATA[
             parallel
@@ -53,4 +53,37 @@
     <item name="big-fries"   row="0" column="1" type="side-order"/>
     <item name="soda"        row="1" column="0" type="drink"/>
     <item name="juice"       row="1" column="1" type="drink"/>
+
+    <item name="coconut"       row="1" column="2" type="drink">
+        <anim>
+            <![CDATA[
+            parallel
+                alpha 0
+                moveBy 0 1
+            end
+            parallel
+                alpha 1 1
+                moveBy 0 -1 1.5 bounceOut
+            end
+            ]]>
+        </anim>
+    </item>
+
+    <item name="toast"       row="0" column="0" type="burger" subType="top-bottom" height="24" offset="0">
+        <anim>
+            <![CDATA[
+            parallel
+                alpha 0
+                rotateTo 30
+                moveBy 0 1
+            end
+            parallel
+                alpha 1 1
+                moveBy 0 -1 1 pow2In
+                rotateTo 0 1
+                play add-item.wav
+            end
+            ]]>
+        </anim>
+    </item>
 </items>

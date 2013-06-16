@@ -3,13 +3,29 @@ package com.agateau.burgerparty.model;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class BurgerItem extends MealItem {
-	private int mHeight;
-	private int mOffset;
+	public static enum SubType {
+		MIDDLE,
+		TOP,
+		BOTTOM,
+		TOP_BOTTOM,
+	}
 
 	protected BurgerItem(XmlReader.Element element) {
 		super(element);
 		mOffset = element.getIntAttribute("offset");
 		mHeight = element.getIntAttribute("height");
+		String subType = element.getAttribute("subType", "middle");
+		if (subType.equals("middle")) {
+			mSubType = SubType.MIDDLE;
+		} else if (subType.equals("top")) {
+			mSubType = SubType.TOP;
+		} else if (subType.equals("bottom")) {
+			mSubType = SubType.BOTTOM;
+		} else if (subType.equals("top-bottom")) {
+			mSubType = SubType.TOP_BOTTOM;
+		} else {
+			throw new RuntimeException("Invalid BurgerItem subType: " + subType);
+		}
 	}
 
 	protected BurgerItem(String name) {
@@ -24,10 +40,15 @@ public class BurgerItem extends MealItem {
 		return mOffset;
 	}
 
+	public SubType getSubType() {
+		return mSubType;
+	}
+
 	public static void addTestItem(String name) {
 		BurgerItem item = new BurgerItem(name);
 		item.mHeight = 18;
 		item.mOffset = 6;
+		item.mSubType = SubType.MIDDLE;
 		addTestItem(item);
 	}
 
@@ -36,4 +57,8 @@ public class BurgerItem extends MealItem {
 		assert(item.getType() == MealItem.Type.BURGER);
 		return (BurgerItem)item;
 	}
+
+	private int mHeight;
+	private int mOffset;
+	private SubType mSubType;
 }

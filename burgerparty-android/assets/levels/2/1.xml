@@ -4,9 +4,11 @@
     duration="120"
     >
     <items>
+        <item name="toast"/>
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>
+        <item name="coconut"/>
     </items>
     <objectives>
         <objective type="maxTrashed" value="2"/>
