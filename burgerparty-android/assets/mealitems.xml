@@ -53,4 +53,22 @@
     <item name="big-fries"   row="0" column="1" type="side-order"/>
     <item name="soda"        row="1" column="0" type="drink"/>
     <item name="juice"       row="1" column="1" type="drink"/>
+
+    <item name="toast"       row="0" column="0" type="burger" subType="top-bottom" height="24" offset="0">
+        <anim>
+            <![CDATA[
+            parallel
+                alpha 0
+                rotateTo 30
+                moveBy 0 1
+            end
+            parallel
+                alpha 1 1
+                moveBy 0 -1 1 pow2In
+                rotateTo 0 1
+                play add-item.wav
+            end
+            ]]>
+        </anim>
+    </item>
 </items>
