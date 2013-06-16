@@ -53,196 +53,210 @@ filter: Nearest,Nearest
 repeat: none
 mealitems/big-fries
   rotate: false
-  xy: 1, 272
+  xy: 1, 269
   size: 148, 209
   orig: 148, 209
   offset: 0, 0
   index: -1
 mealitems/small-fries
   rotate: false
-  xy: 1, 86
+  xy: 1, 83
   size: 141, 184
   orig: 141, 184
   offset: 0, 0
   index: -1
 mealitems/top
   rotate: false
-  xy: 151, 417
+  xy: 151, 414
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 mealitems/bottom
   rotate: false
-  xy: 151, 368
+  xy: 151, 365
   size: 244, 47
   orig: 244, 47
   offset: 0, 0
   index: -1
 mealitems/toast
   rotate: false
-  xy: 397, 432
+  xy: 397, 429
   size: 228, 49
   orig: 228, 49
   offset: 0, 0
   index: -1
 mealitems/cheese
   rotate: false
-  xy: 151, 319
+  xy: 151, 316
   size: 223, 47
   orig: 223, 47
   offset: 0, 0
   index: -1
 mealitems/steak
   rotate: false
-  xy: 397, 386
+  xy: 397, 383
   size: 224, 44
   orig: 224, 44
   offset: 0, 0
   index: -1
 mealitems/ketchup
   rotate: false
-  xy: 627, 448
+  xy: 627, 445
   size: 224, 33
   orig: 224, 33
   offset: 0, 0
   index: -1
 mealitems/tomato
   rotate: false
-  xy: 151, 284
+  xy: 151, 281
   size: 210, 33
   orig: 210, 33
   offset: 0, 0
   index: -1
 mealitems/salad
   rotate: false
-  xy: 397, 354
+  xy: 397, 351
   size: 211, 30
   orig: 211, 30
   offset: 0, 0
   index: -1
 mealitems/onion
   rotate: false
-  xy: 627, 415
+  xy: 627, 412
   size: 186, 31
   orig: 186, 31
   offset: 0, 0
   index: -1
 mealitems/cucumber
   rotate: false
-  xy: 623, 387
+  xy: 623, 384
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
   index: -1
+mealitems/coconut
+  rotate: false
+  xy: 853, 325
+  size: 148, 153
+  orig: 148, 153
+  offset: 0, 0
+  index: -1
 mealitems/juice
   rotate: false
-  xy: 144, 95
+  xy: 144, 92
   size: 96, 175
   orig: 96, 175
   offset: 0, 0
   index: -1
 mealitems/soda
   rotate: false
-  xy: 242, 107
+  xy: 242, 104
   size: 96, 175
   orig: 96, 175
   offset: 0, 0
   index: -1
 mealitems/small-fries-inventory
   rotate: false
-  xy: 1, 4
+  xy: 1, 1
   size: 61, 80
   orig: 61, 80
   offset: 0, 0
   index: -1
 mealitems/big-fries-inventory
   rotate: false
-  xy: 64, 4
+  xy: 64, 1
   size: 57, 80
   orig: 57, 80
   offset: 0, 0
   index: -1
+mealitems/soda-inventory
+  rotate: false
+  xy: 806, 330
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+mealitems/juice-inventory
+  rotate: false
+  xy: 340, 199
+  size: 44, 80
+  orig: 44, 80
+  offset: 0, 0
+  index: -1
+mealitems/ketchup-inventory
+  rotate: false
+  xy: 340, 117
+  size: 33, 80
+  orig: 33, 80
+  offset: 0, 0
+  index: -1
 mealitems/bottom-inventory
   rotate: false
-  xy: 853, 435
+  xy: 376, 303
   size: 80, 46
   orig: 80, 46
   offset: 0, 0
   index: -1
 mealitems/steak-inventory
   rotate: false
-  xy: 935, 432
+  xy: 458, 300
   size: 80, 49
   orig: 80, 49
   offset: 0, 0
   index: -1
-mealitems/juice-inventory
-  rotate: false
-  xy: 340, 202
-  size: 44, 80
-  orig: 44, 80
-  offset: 0, 0
-  index: -1
-mealitems/soda-inventory
-  rotate: false
-  xy: 340, 120
-  size: 45, 80
-  orig: 45, 80
-  offset: 0, 0
-  index: -1
-mealitems/ketchup-inventory
-  rotate: false
-  xy: 123, 4
-  size: 33, 80
-  orig: 33, 80
-  offset: 0, 0
-  index: -1
 mealitems/top-inventory
   rotate: false
-  xy: 158, 45
+  xy: 540, 301
   size: 80, 48
   orig: 80, 48
   offset: 0, 0
   index: -1
-mealitems/cucumber-inventory
+mealitems/coconut-inventory
   rotate: false
-  xy: 158, 1
-  size: 80, 42
-  orig: 80, 42
-  offset: 0, 0
-  index: -1
-mealitems/cheese-inventory
-  rotate: false
-  xy: 376, 315
-  size: 80, 37
-  orig: 80, 37
-  offset: 0, 0
-  index: -1
-mealitems/salad-inventory
-  rotate: false
-  xy: 458, 311
-  size: 80, 41
-  orig: 80, 41
+  xy: 386, 234
+  size: 65, 67
+  orig: 65, 67
   offset: 0, 0
   index: -1
 mealitems/tomato-inventory
   rotate: false
-  xy: 540, 305
+  xy: 453, 251
   size: 80, 47
   orig: 80, 47
   offset: 0, 0
   index: -1
+mealitems/cheese-inventory
+  rotate: false
+  xy: 386, 195
+  size: 80, 37
+  orig: 80, 37
+  offset: 0, 0
+  index: -1
+mealitems/cucumber-inventory
+  rotate: false
+  xy: 375, 151
+  size: 80, 42
+  orig: 80, 42
+  offset: 0, 0
+  index: -1
 mealitems/onion-inventory
   rotate: false
-  xy: 242, 69
+  xy: 375, 113
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
+mealitems/salad-inventory
+  rotate: false
+  xy: 242, 61
+  size: 80, 41
+  orig: 80, 41
+  offset: 0, 0
+  index: -1
 mealitems/toast-inventory
   rotate: false
-  xy: 240, 31
+  xy: 468, 213
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
