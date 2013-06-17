@@ -548,28 +548,21 @@ filter: Nearest,Nearest
 repeat: none
 ui/star-off
   rotate: false
-  xy: 1, 815
+  xy: 1, 855
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 43, 815
+  xy: 43, 855
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/lock
-  rotate: false
-  xy: 85, 811
-  size: 30, 44
-  orig: 30, 44
-  offset: 0, 0
-  index: -1
 ui/button-down
   rotate: false
-  xy: 117, 807
+  xy: 85, 847
   size: 152, 48
   split: 24, 24, 23, 23
   orig: 152, 48
@@ -577,10 +570,17 @@ ui/button-down
   index: -1
 ui/button
   rotate: false
-  xy: 271, 807
+  xy: 239, 847
   size: 152, 48
   split: 24, 24, 23, 23
   orig: 152, 48
+  offset: 0, 0
+  index: -1
+ui/lock
+  rotate: false
+  xy: 393, 807
+  size: 60, 88
+  orig: 60, 88
   offset: 0, 0
   index: -1
 ui/title
