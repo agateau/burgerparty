@@ -91,7 +91,7 @@ public class LevelListScreen extends BaseScreen {
 
 	class LevelButton extends TextButton {
 		public LevelButton(int levelWorldIndex, int levelIndex, int score, Skin skin) {
-			super(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1), skin);
+			super("", skin);
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
 
@@ -101,17 +101,19 @@ public class LevelListScreen extends BaseScreen {
 			group.setSpacing(6);
 
 			if (score >= 0) {
+				setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
 				Table table = new Table();
 				for (int x = 1; x <= 3; ++x) {
 					Image image = new Image(x > score ? mStarOff : mStarOn);
 					table.add(image);
 				}
-				group.addRule(table, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -1, 1);
+				group.addRule(table, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 2);
 				table.setSize(mStarOff.getRegionWidth() * 3, mStarOff.getRegionHeight());
 			} else {
 				setDisabled(true);
+				setColor(1f, 1f, 1f, 0.5f);
 				Image image = new Image(mLock);
-				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -1, 1);
+				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
 			}
 		}
 
