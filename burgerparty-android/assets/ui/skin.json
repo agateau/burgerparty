@@ -1,7 +1,10 @@
 {
     com.badlogic.gdx.graphics.g2d.BitmapFont: {
         default-font: {
-            file: ui/normal-font.fnt
+            file: ui/main-font.fnt
+        },
+        lcd-font: {
+            file: ui/lcd-font.fnt
         }
     },
     com.badlogic.gdx.graphics.Color: {
@@ -16,6 +19,9 @@
         },
         black: {
             a: 1, b: 0, g: 0, r: 0
+        },
+        lcd-color: {
+            a: 1, b: 1, g: 1, r: 1
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {

@@ -1,0 +1,20 @@
+font.name=WalrusGumbo
+font.size=36
+font.bold=false
+font.italic=false
+
+pad.top=0
+pad.right=1
+pad.bottom=0
+pad.left=1
+pad.advance.x=0
+pad.advance.y=0
+
+glyph.native.rendering=false
+glyph.page.width=512
+glyph.page.height=512
+glyph.text=00:59 01:36\n01:12\n01 12\n0123456789
+
+effect.class=com.badlogic.gdx.tools.hiero.unicodefont.effects.ColorEffect
+effect.Color=ffffff
+

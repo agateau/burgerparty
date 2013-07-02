@@ -206,7 +206,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupTimerDisplay() {
-		mTimerDisplay = new Label("0", mSkin);
+		mTimerDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
 		mTimerDisplay.setAlignment(Align.center);
 		mPauseButton = new Image(mAtlas.findRegion("pause"));
 		mPauseButton.setTouchable(Touchable.enabled);

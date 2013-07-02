@@ -3,51 +3,63 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+lcd-font
+  rotate: false
+  xy: 1, 138
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
 platter
   rotate: false
-  xy: 1, 150
+  xy: 1, 71
   size: 341, 65
   orig: 341, 65
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 1, 10
+  xy: 515, 512
   size: 236, 138
   split: 39, 20, 18, 54
   orig: 236, 138
   offset: 0, 0
   index: -1
-normal-font
-  rotate: false
-  xy: 239, 71
-  size: 254, 77
-  orig: 254, 77
-  offset: 0, 0
-  index: -1
 face
   rotate: false
-  xy: 239, 1
+  xy: 1, 1
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 344, 188
+  xy: 344, 109
   size: 27, 27
   orig: 27, 27
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 495, 199
+  xy: 515, 494
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 
 burgerparty2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+main-font
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+burgerparty3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -262,7 +274,7 @@ mealitems/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty3.png
+burgerparty4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -288,7 +300,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty4.png
+burgerparty5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -314,7 +326,7 @@ levels/2/shelf
   offset: 0, 0
   index: -1
 
-burgerparty5.png
+burgerparty6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -333,7 +345,7 @@ customers/ninjas/face-0-happy
   offset: 0, 0
   index: -1
 
-burgerparty6.png
+burgerparty7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -380,7 +392,7 @@ customers/pirate-girls/top-red
   offset: 0, 0
   index: -1
 
-burgerparty7.png
+burgerparty8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -469,7 +481,7 @@ customers/boys/face-3-happy
   offset: 0, 0
   index: -1
 
-burgerparty8.png
+burgerparty9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -516,7 +528,7 @@ customers/girls/top-0
   offset: 0, 0
   index: -1
 
-burgerparty9.png
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -542,7 +554,7 @@ customers/pirate-boys/top-boss
   offset: 0, 0
   index: -1
 
-burgerparty10.png
+burgerparty11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

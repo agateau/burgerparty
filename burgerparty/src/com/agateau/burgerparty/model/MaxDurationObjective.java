@@ -14,7 +14,7 @@ public class MaxDurationObjective implements Objective {
 	public ObjectiveResult computeResult(World world) {
 		ObjectiveResult result = new ObjectiveResult();
 		int duration = world.getDuration();
-		result.description = "Level finished in: " + duration + " seconds. Maximum allowed: " + mDuration + " seconds.";
+		result.description = "Finished in: " + duration + "s. Allowed: " + mDuration + "s.";
 		result.success = duration <= mDuration;
 		return result;
 	}

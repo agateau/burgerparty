@@ -39,7 +39,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		TextButton nextButton = null;
 
-		TextButton selectLevelButton = new TextButton("Return to level list", skin);
+		TextButton selectLevelButton = new TextButton("Level List", skin);
 		UiUtils.setButtonSize(selectLevelButton);
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
