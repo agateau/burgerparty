@@ -15,6 +15,7 @@ import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -228,6 +229,15 @@ public class WorldView extends AnchorGroup {
 		int minutes = total / 60;
 		int seconds = total % 60;
 		String txt = String.format("%d:%02d", minutes, seconds);
+		if (txt.contentEquals(mTimerDisplay.getText())) {
+			return;
+		}
+		if (total >= 20) {
+			mTimerDisplay.setColor(Color.WHITE);
+		} else {
+			mTimerDisplay.setColor(Color.RED);
+			mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
+		}
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);
 	}
