@@ -6,6 +6,7 @@ import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.ObjectiveResult;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.tablelayout.BaseTableLayout;
@@ -37,10 +37,9 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Actor resultActor = createDetailedResultActor(result, skin);
 
-		TextButton nextButton = null;
+		RoundButton nextButton = null;
 
-		TextButton selectLevelButton = new TextButton("Level List", skin);
-		UiUtils.setButtonSize(selectLevelButton);
+		RoundButton selectLevelButton = new RoundButton(skin, "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel();
@@ -52,10 +51,10 @@ public class LevelFinishedOverlay extends Overlay {
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			mainLabel.setText("Congratulations, you finished level " + (levelWorldIndex + 1) + "-" + (levelIndex + 1) + "!");
-			nextButton = createNextButton("Next Level", skin);
+			nextButton = createNextButton(skin, "ui/icon-right");
 		} else if (levelWorldIndex < mGame.getLevelWorldCount() - 1) {
 			mainLabel.setText("Congratulations, you finished world " + (levelWorldIndex + 1) + "!");
-			nextButton = createNextButton("Next World", skin);
+			nextButton = createNextButton(skin, "ui/icon-right");
 		} else {
 			mainLabel.setText("Congratulations, you finished the game!");
 		}
@@ -93,9 +92,8 @@ public class LevelFinishedOverlay extends Overlay {
 		return table;
 	}
 
-	private TextButton createNextButton(String text, Skin skin) {
-		TextButton button = new TextButton("Next Level", skin);
-		UiUtils.setButtonSize(button);
+	private RoundButton createNextButton(Skin skin, String name) {
+		RoundButton button = new RoundButton(skin, name);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				goToNextLevel();
