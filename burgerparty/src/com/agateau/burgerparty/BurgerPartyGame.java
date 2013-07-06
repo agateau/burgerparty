@@ -7,7 +7,6 @@ import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
-import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 
@@ -47,8 +46,7 @@ public class BurgerPartyGame extends Game {
 
 	void setupAnimScriptLoader()
 	{
-		AnimScriptLoader loader = AnimScriptLoader.getInstance();
-		loader.registerMemberMethod("play", mSoundAtlas, "createPlayAction", new StringArgumentDefinition());
+		Kernel.getAnimScriptLoader().registerMemberMethod("play", mSoundAtlas, "createPlayAction", new StringArgumentDefinition());
 	}
 
 	private void loadLevelWorlds() {

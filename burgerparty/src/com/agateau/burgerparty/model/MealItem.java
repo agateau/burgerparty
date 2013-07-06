@@ -2,8 +2,8 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.AnimScript;
-import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.OrderedMap;
@@ -36,7 +36,7 @@ public class MealItem {
 			if (mAnim.isEmpty()) {
 				mAnimScript = sDefaultAnimScript;
 			} else {
-				mAnimScript = AnimScriptLoader.getInstance().load(mAnim);
+				mAnimScript = Kernel.getAnimScriptLoader().load(mAnim);
 			}
 		}
 		return mAnimScript;
@@ -120,7 +120,7 @@ public class MealItem {
 			"    moveBy 0 -1 1 pow2In\n" +
 			"    play add-item.wav\n" +
 			"end\n";
-		sDefaultAnimScript = AnimScriptLoader.getInstance().load(anim);
+		sDefaultAnimScript = Kernel.getAnimScriptLoader().load(anim);
 	}
 
 	private Type mType;

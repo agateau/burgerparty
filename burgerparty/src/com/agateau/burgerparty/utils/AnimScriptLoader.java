@@ -14,6 +14,38 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
 public class AnimScriptLoader {
+	public AnimScriptLoader() {
+		registerAction("moveTo",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
+		registerAction("moveBy",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
+		registerAction("rotateTo",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
+		registerAction("scaleTo",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
+		registerAction("alpha",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
+		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
+	}
+
 	public AnimScript load(String definition) {
 		Reader reader = new StringReader(definition);
 		try {
@@ -67,14 +99,6 @@ public class AnimScriptLoader {
 		mInstructionDefinitionMap.put(name, new BasicInstructionDefinition(object, method, types));
 	}
 
-	public static AnimScriptLoader getInstance() {
-		if (sInstance == null) {
-			sInstance = new AnimScriptLoader();
-			sInstance.initMap();
-		}
-		return sInstance;
-	}
-
 	private static Method getMethod(Class<?> methodClass, String name, ArgumentDefinition<?>... types) {
 		Class<?> args[] = new Class<?>[types.length];
 		for (int idx = 0; idx < types.length; ++idx) {
@@ -95,39 +119,5 @@ public class AnimScriptLoader {
 		registerStaticMethod(name, Actions.class, name, types);
 	}
 
-	private void initMap() {
-		registerAction("moveTo",
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
-				new InterpolationArgumentDefinition(Interpolation.linear)
-		);
-		registerAction("moveBy",
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
-				new InterpolationArgumentDefinition(Interpolation.linear)
-		);
-		registerAction("rotateTo",
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
-				new InterpolationArgumentDefinition(Interpolation.linear)
-		);
-		registerAction("scaleTo",
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
-				new InterpolationArgumentDefinition(Interpolation.linear)
-		);
-		registerAction("alpha",
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
-				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
-				new InterpolationArgumentDefinition(Interpolation.linear)
-		);
-		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
-	}
-
 	private Map<String, InstructionDefinition> mInstructionDefinitionMap = new HashMap<String, InstructionDefinition>();
-
-	private static AnimScriptLoader sInstance = null;
 }
