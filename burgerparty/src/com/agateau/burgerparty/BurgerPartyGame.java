@@ -7,7 +7,6 @@ import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
-import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 
 import com.badlogic.gdx.Application.ApplicationType;
