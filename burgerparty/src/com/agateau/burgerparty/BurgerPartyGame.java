@@ -28,8 +28,8 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
-		mAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
-		mSkin = new Skin(Gdx.files.internal("ui/skin.json"), mAtlas);
+		mAtlas = Kernel.getTextureAtlas();
+		mSkin = Kernel.getSkin();
 
 		setupAnimScriptLoader();
 		loadLevelWorlds();
