@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
@@ -22,7 +23,6 @@ public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
-	private SoundAtlas mSoundAtlas;
 	private float mPadding = 0;
 	private float mNextY;
 
@@ -30,10 +30,9 @@ public class BurgerView extends Group {
 	
 	private static final float TRASH_ACTION_DURATION = 0.5f;
 
-	public BurgerView(Burger burger, TextureAtlas atlas, SoundAtlas soundAtlas) {
+	public BurgerView(Burger burger, TextureAtlas atlas) {
 		mBurger = burger;
 		mAtlas = atlas;
-		mSoundAtlas = soundAtlas;
 		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
 		setWidth(maxWidth);
 
@@ -85,7 +84,7 @@ public class BurgerView extends Group {
 		mNextY = 0;
 		setHeight(0);
 		UiUtils.notifyResizeToFitParent(this);
-		mSoundAtlas.findSound("error.wav").play();
+		Kernel.getSoundAtlas().findSound("error.wav").play();
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;

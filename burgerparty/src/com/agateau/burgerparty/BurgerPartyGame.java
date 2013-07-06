@@ -19,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
-	private SoundAtlas mSoundAtlas = new SoundAtlas("sounds/");
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
@@ -40,13 +39,9 @@ public class BurgerPartyGame extends Game {
 		showMenu();
 	}
 
-	public SoundAtlas getSoundAtlas() {
-		return mSoundAtlas;
-	}
-
 	void setupAnimScriptLoader()
 	{
-		Kernel.getAnimScriptLoader().registerMemberMethod("play", mSoundAtlas, "createPlayAction", new StringArgumentDefinition());
+		Kernel.getAnimScriptLoader().registerMemberMethod("play", Kernel.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
 	}
 
 	private void loadLevelWorlds() {
