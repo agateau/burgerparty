@@ -5,6 +5,7 @@ import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
+import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -36,8 +38,7 @@ public class LevelListScreen extends BaseScreen {
 		getStage().addActor(mAnchorGroup);
 		mAnchorGroup.setFillParent(true);
 
-		TextButton backButton = new TextButton("<- Back", skin);
-		backButton.setSize(backButton.getPrefWidth(), UiUtils.BUTTON_HEIGHT);
+		ImageButton backButton = new RoundButton(skin, "ui/icon-back");
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -45,16 +46,14 @@ public class LevelListScreen extends BaseScreen {
 			}
 		});
 
-		mPreviousButton = new TextButton("<", skin);
-		mPreviousButton.setSize(UiUtils.BUTTON_HEIGHT, UiUtils.BUTTON_HEIGHT);
+		mPreviousButton = new RoundButton(skin, "ui/icon-left");
 		mPreviousButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex - 1);
 			}
 		});
 
-		mNextButton = new TextButton(">", skin);
-		mNextButton.setSize(UiUtils.BUTTON_HEIGHT, UiUtils.BUTTON_HEIGHT);
+		mNextButton = new RoundButton(skin, "ui/icon-right");
 		mNextButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex + 1);
@@ -69,8 +68,8 @@ public class LevelListScreen extends BaseScreen {
 		}
 
 		// Add buttons after creating the grids so that buttons are above grids
-		mAnchorGroup.addRule(mPreviousButton, Anchor.CENTER_LEFT, mAnchorGroup, Anchor.CENTER_LEFT);
-		mAnchorGroup.addRule(mNextButton, Anchor.CENTER_RIGHT, mAnchorGroup, Anchor.CENTER_RIGHT);
+		mAnchorGroup.addRule(mPreviousButton, Anchor.CENTER_LEFT, mAnchorGroup, Anchor.CENTER_LEFT, 1, 0);
+		mAnchorGroup.addRule(mNextButton, Anchor.CENTER_RIGHT, mAnchorGroup, Anchor.CENTER_RIGHT, -1, 0);
 
 		scrollTo(0);
 	}
@@ -186,8 +185,8 @@ public class LevelListScreen extends BaseScreen {
 	private AnchorGroup mAnchorGroup = new AnchorGroup();
 	private Array<GridGroup> mGridGroups = new Array<GridGroup>();
 
-	private TextButton mPreviousButton;
-	private TextButton mNextButton;
+	private ImageButton mPreviousButton;
+	private ImageButton mNextButton;
 
 	private int mGroupIndex = -1;
 }
