@@ -28,6 +28,13 @@ public class Kernel {
 		return sSkin;
 	}
 
+	public static RoundButton createRoundButton(String name) {
+		init();
+		RoundButton button = new RoundButton(sSkin, name);
+		button.setSound(sSoundAtlas.findSound("click.wav"));
+		return button;
+	}
+
 	private static void init() {
 		if (sInited) {
 			return;

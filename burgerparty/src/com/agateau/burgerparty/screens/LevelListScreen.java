@@ -1,11 +1,11 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
-import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -38,7 +38,7 @@ public class LevelListScreen extends BaseScreen {
 		getStage().addActor(mAnchorGroup);
 		mAnchorGroup.setFillParent(true);
 
-		ImageButton backButton = new RoundButton(skin, "ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -46,14 +46,14 @@ public class LevelListScreen extends BaseScreen {
 			}
 		});
 
-		mPreviousButton = new RoundButton(skin, "ui/icon-left");
+		mPreviousButton = Kernel.createRoundButton("ui/icon-left");
 		mPreviousButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex - 1);
 			}
 		});
 
-		mNextButton = new RoundButton(skin, "ui/icon-right");
+		mNextButton = Kernel.createRoundButton("ui/icon-right");
 		mNextButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex + 1);

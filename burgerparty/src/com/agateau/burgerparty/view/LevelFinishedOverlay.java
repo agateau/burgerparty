@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.ObjectiveResult;
@@ -39,7 +40,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		RoundButton nextButton = null;
 
-		RoundButton selectLevelButton = new RoundButton(skin, "ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel();
@@ -51,10 +52,10 @@ public class LevelFinishedOverlay extends Overlay {
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			mainLabel.setText("Congratulations, you finished level " + (levelWorldIndex + 1) + "-" + (levelIndex + 1) + "!");
-			nextButton = createNextButton(skin, "ui/icon-right");
+			nextButton = createNextButton("ui/icon-right");
 		} else if (levelWorldIndex < mGame.getLevelWorldCount() - 1) {
 			mainLabel.setText("Congratulations, you finished world " + (levelWorldIndex + 1) + "!");
-			nextButton = createNextButton(skin, "ui/icon-right");
+			nextButton = createNextButton("ui/icon-right");
 		} else {
 			mainLabel.setText("Congratulations, you finished the game!");
 		}
@@ -92,8 +93,8 @@ public class LevelFinishedOverlay extends Overlay {
 		return table;
 	}
 
-	private RoundButton createNextButton(Skin skin, String name) {
-		RoundButton button = new RoundButton(skin, name);
+	private RoundButton createNextButton(String name) {
+		RoundButton button = Kernel.createRoundButton(name);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				goToNextLevel();

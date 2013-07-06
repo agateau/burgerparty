@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.RoundButton;
@@ -30,7 +31,7 @@ public class MenuScreen extends BaseScreen {
 
 		Image titleImage = new Image(atlas.findRegion("ui/title"));
 
-		RoundButton startButton = new RoundButton(skin, "ui/icon-play");
+		RoundButton startButton = Kernel.createRoundButton("ui/icon-play");
 		startButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().selectLevel();

@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.RoundButton;
@@ -22,21 +23,21 @@ public class PauseOverlay extends Overlay {
 
 		Label label = new Label("Paused", skin);
 
-		RoundButton resumeButton = new RoundButton(skin, "ui/icon-play");
+		RoundButton resumeButton = Kernel.createRoundButton("ui/icon-play");
 		resumeButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mWorldView.resume();
 			}
 		});
 
-		RoundButton restartButton = new RoundButton(skin, "ui/icon-restart");
+		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
-		RoundButton selectLevelButton = new RoundButton(skin, "ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel();
