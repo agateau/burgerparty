@@ -3,13 +3,13 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class GameOverOverlay extends Overlay {
@@ -21,22 +21,19 @@ public class GameOverOverlay extends Overlay {
 
 		Label label = new Label("Game Over", skin);
 
-		TextButton tryAgainButton = new TextButton("Try Again", skin);
+		RoundButton tryAgainButton = new RoundButton(skin, "ui/icon-restart");
 		tryAgainButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
-		TextButton selectLevelButton = new TextButton("Levels", skin);
+		RoundButton selectLevelButton = new RoundButton(skin, "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel();
 			}
 		});
-
-		UiUtils.setButtonSize(tryAgainButton);
-		UiUtils.setButtonSize(selectLevelButton);
 
 		AnchorGroup group = new AnchorGroup();
 		addActor(group);
