@@ -47,6 +47,13 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
+		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
+		restartButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
+			}
+		});
+
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
@@ -63,12 +70,11 @@ public class LevelFinishedOverlay extends Overlay {
 
 		group.addRule(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
 		group.addRule(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
-		if (nextButton == null) {
-			group.addRule(selectLevelButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
-		} else {
+		if (nextButton != null) {
 			group.addRule(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
-			group.addRule(selectLevelButton, Anchor.TOP_CENTER, nextButton, Anchor.BOTTOM_CENTER, 0, -1);
 		}
+		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
+		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 	}
 
 	private void addDetailToTable(Table table, String text, boolean on) {
