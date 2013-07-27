@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 
 public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
+	public static final float TRASH_ACTION_DURATION = 0.5f;
 
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas) {
 		mBurgerView = new BurgerView(burger, atlas);

@@ -32,6 +32,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AnchorGroup {
 	HashSet<Object> mHandlers = new HashSet<Object>();
@@ -100,9 +101,27 @@ public class WorldView extends AnchorGroup {
 				showGameOverOverlay();
 			}
 		});
+		mWorld.trashing.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				onTrashing();
+			}
+		});
 
 		goToNextCustomer();
 	}
+
+	public void onTrashing() {
+		Timer.schedule(
+			new Timer.Task() {
+				@Override
+				public void run() {
+					mWorld.markTrashingDone();
+				}
+			}, MealView.TRASH_ACTION_DURATION);
+	}
+
+
 
 	public void pause() {
 		mWorld.pause();
@@ -193,7 +212,9 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
-				mMealView.addItem(item);
+				if (!mWorld.isTrashing()) {
+					mMealView.addItem(item);
+				}
 			}
 		});
 	}

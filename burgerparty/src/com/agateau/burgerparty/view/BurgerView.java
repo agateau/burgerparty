@@ -27,8 +27,6 @@ public class BurgerView extends Group {
 
 	private static final float ADD_ACTION_HEIGHT = 100;
 	
-	private static final float TRASH_ACTION_DURATION = 0.5f;
-
 	public BurgerView(Burger burger, TextureAtlas atlas) {
 		mBurger = burger;
 		mAtlas = atlas;
@@ -90,11 +88,11 @@ public class BurgerView extends Group {
 			actor.addAction(
 				Actions.sequence(
 					Actions.parallel(
-						Actions.moveBy(xOffset, 0, TRASH_ACTION_DURATION),
-						Actions.moveBy(0, -200, TRASH_ACTION_DURATION, Interpolation.pow2In),
-						Actions.scaleTo(0.5f, 0.5f, TRASH_ACTION_DURATION),
-						Actions.rotateBy(rotation, TRASH_ACTION_DURATION),
-						Actions.fadeOut(TRASH_ACTION_DURATION, Interpolation.pow5In)
+						Actions.moveBy(xOffset, 0, MealView.TRASH_ACTION_DURATION),
+						Actions.moveBy(0, -200, MealView.TRASH_ACTION_DURATION, Interpolation.pow2In),
+						Actions.scaleTo(0.5f, 0.5f, MealView.TRASH_ACTION_DURATION),
+						Actions.rotateBy(rotation, MealView.TRASH_ACTION_DURATION),
+						Actions.fadeOut(MealView.TRASH_ACTION_DURATION, Interpolation.pow5In)
 					),
 					Actions.removeActor()
 				)

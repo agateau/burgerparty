@@ -18,6 +18,7 @@ public class World {
 	public Signal0 mealFinished = new Signal0();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
+	public Signal0 trashing = new Signal0();
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -37,6 +38,8 @@ public class World {
 	private int mRemainingCustomerCount;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
+
+	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
 	public World(Level level) {
 		mLevel = level;
@@ -111,6 +114,15 @@ public class World {
 
 	public int getDuration() {
 		return mLevel.definition.duration - mRemainingSeconds;
+	}
+
+	public boolean isTrashing() {
+		return mIsTrashing;
+	}
+
+	public void markTrashingDone() {
+		assert mIsTrashing;
+		mIsTrashing = false;
 	}
 
 	public void start() {
@@ -191,6 +203,13 @@ public class World {
 	}
 
 	private void onBurgerItemAdded() {
+		if (mIsTrashing) {
+			// We reach this point when an item i2 was added right after a bad item i1:
+			// i1 was spotted and trashing was started but i2 was already being added and
+			// has just been added to mBurger. We must therefore clear mBurger to remove i2.
+			mBurger.clear();
+			return;
+		}
 		Burger.CompareResult compareResult = mBurger.compareTo(mTargetBurger);
 		if (compareResult == Burger.CompareResult.SAME) {
 			if (mTargetMealExtra.isEmpty()) {
@@ -201,10 +220,16 @@ public class World {
 		} else if (compareResult == Burger.CompareResult.DIFFERENT) {
 			mTrashedCount++;
 			mBurger.trash();
+			mIsTrashing = true;
+			trashing.emit();
 		}
 	}
 
 	private void onMealItemAdded(MealItem item) {
+		if (mIsTrashing) {
+			mMealExtra.clear();
+			return;
+		}
 		MealExtra.CompareResult result = mMealExtra.compareTo(mTargetMealExtra);
 		if (result == MealExtra.CompareResult.SAME) {
 			onMealFinished();
@@ -212,6 +237,8 @@ public class World {
 			mTrashedCount++;
 			mBurger.trash();
 			mMealExtra.trash();
+			mIsTrashing = true;
+			trashing.emit();
 		}
 	}
 
