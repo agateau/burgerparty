@@ -1,7 +1,7 @@
 <level
-    minBurgerSize="2"
-    maxBurgerSize="6"
-    duration="120"
+    minBurgerSize="3"
+    maxBurgerSize="4"
+    duration="90"
     >
     <items>
         <item name="steak"/>
@@ -9,24 +9,15 @@
         <item name="salad"/>
         <item name="onion"/>
         <item name="cheese"/>
-        <item name="ketchup"/>
-        <item name="cucumber"/>
-        <!-- extra -->
-        <item name="small-fries"/>
-        <item name="big-fries"/>
-        <item name="juice"/>
-        <item name="soda"/>
     </items>
     <objectives>
-        <objective type="maxDuration" value="90"/>
-        <objective type="maxDuration" value="60"/>
+        <objective type="maxTrashed" value="1"/>
+        <objective type="maxDuration" value="35"/>
     </objectives>
     <customers>
-        <customer type="boys"/>
-        <customer type="ninjas"/>
-        <customer type="boys"/>
         <customer type="girls"/>
-        <customer type="girls"/>
+        <customer type="boys"/>
+        <customer type="boys"/>
         <customer type="girls"/>
         <customer type="boys"/>
         <customer type="ninjas"/>

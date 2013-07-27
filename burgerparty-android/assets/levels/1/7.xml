@@ -1,6 +1,6 @@
 <level
-    minBurgerSize="3"
-    maxBurgerSize="4"
+    minBurgerSize="2"
+    maxBurgerSize="5"
     duration="90"
     >
     <items>
@@ -9,6 +9,7 @@
         <item name="salad"/>
         <item name="onion"/>
         <item name="cheese"/>
+        <item name="ketchup"/>
     </items>
     <objectives>
         <objective type="maxTrashed" value="1"/>
@@ -18,6 +19,7 @@
         <customer type="girls"/>
         <customer type="boys"/>
         <customer type="boys"/>
+        <customer type="girls"/>
         <customer type="girls"/>
         <customer type="boys"/>
         <customer type="ninjas"/>

@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+xmlstarlet sel -T -t -m "/level/items" -f -m item -o " " -v @name -b -n *.xml | sort -n > out
+vi out
+cat out | while read name items ; do
+    cp $name $name.old
+    xmlstarlet ed --inplace --delete "/level/items/item" $name
+    for item in $items ; do
+        xmlstarlet ed --inplace \
+            --subnode "/level/items" --type elem -n "item" -v "" \
+            --insert "/level/items/item[last()]" --type attr -n "name" -v "$item" \
+            $name
+    done 
+done

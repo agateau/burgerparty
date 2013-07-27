@@ -1,7 +1,7 @@
 <level
     minBurgerSize="2"
     maxBurgerSize="3"
-    duration="120"
+    duration="90"
     >
     <items>
         <item name="steak"/>
@@ -10,7 +10,7 @@
     </items>
     <objectives>
         <objective type="maxTrashed" value="2"/>
-        <objective type="maxDuration" value="60"/>
+        <objective type="maxDuration" value="40"/>
     </objectives>
     <customers>
         <customer type="boys"/>

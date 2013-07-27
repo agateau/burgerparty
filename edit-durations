@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+xmlstarlet sel -T -t -m "/level" -f -o " " -v @duration -n *.xml > out
+vi out
+cat out | while read name duration ; do
+    xmlstarlet ed --inplace --update "/level/@duration" -v $duration $name
+done
