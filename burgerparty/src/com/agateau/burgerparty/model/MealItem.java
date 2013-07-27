@@ -23,6 +23,10 @@ public class MealItem {
 		return sMap.get(name);
 	}
 
+	public String toString() {
+		return getName();
+	}
+
 	public Type getType() {
 		return mType;
 	}
