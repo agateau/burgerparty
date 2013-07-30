@@ -62,14 +62,14 @@ public class CustomerEditorScreen extends StageScreen {
 		mCustomerTypeList.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				fillCustomerContainer();
+				reload();
 			}
 		});
 
 		mMoodList.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				updateMood();
+				reload();
 			}
 		});
 	}
@@ -97,16 +97,17 @@ public class CustomerEditorScreen extends StageScreen {
 		mCustomers.clear();
 		String type = mCustomerTypeList.getSelection();
 		CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
+		Customer.Mood mood = getSelectedMood();
 		for (String body: elements.bodies) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);
 			for (String face: elements.faces) {
 				if (elements.tops.size > 0) {
 					for (String top: elements.tops) {
-						addCustomer(hGroup, type, body, top, face);
+						addCustomer(hGroup, type, body, top, face, mood);
 					}
 				} else {
-					addCustomer(hGroup, type, body, "", face);
+					addCustomer(hGroup, type, body, "", face, mood);
 				}
 			}
 		}
@@ -114,8 +115,9 @@ public class CustomerEditorScreen extends StageScreen {
 		mCustomerContainer.setHeight(mCustomerContainer.getPrefHeight());
 	}
 
-	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
+	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face, Customer.Mood mood) {
 		Customer customer = new Customer(type);
+		customer.setMood(mood);
 		CustomerView customerView = new CustomerView(customer, mGame.getCustomerFactory(), type, body, top, face);
 		float width = 0;
 		for(Actor child: customerView.getChildren()) {
@@ -126,11 +128,8 @@ public class CustomerEditorScreen extends StageScreen {
 		mCustomers.add(customer);
 	}
 
-	private void updateMood() {
-		Customer.Mood mood = Customer.Mood.fromString(mMoodList.getSelection());
-		for (Customer customer: mCustomers) {
-			customer.setMood(mood);
-		}
+	private Customer.Mood getSelectedMood() {
+		return Customer.Mood.fromString(mMoodList.getSelection());
 	}
 
 	private static String[] getMoodStrings() {
