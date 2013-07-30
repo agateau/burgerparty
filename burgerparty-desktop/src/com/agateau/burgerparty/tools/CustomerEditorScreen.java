@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -28,15 +29,16 @@ public class CustomerEditorScreen extends StageScreen {
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		super(skin);
 		mGame = game;
+		mSkin = skin;
 
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
-		setupWidgets(atlas, skin);
+		setupWidgets();
 		setupInput();
 		fillCustomerContainer();
 	}
 
-	private void setupWidgets(TextureAtlas atlas, Skin skin) {
+	private void setupWidgets() {
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
 		getStage().addActor(group);
@@ -45,11 +47,11 @@ public class CustomerEditorScreen extends StageScreen {
 		Array<String> keys = mGame.getCustomerFactory().getTypes();
 		keys.sort();
 
-		mMoodList = new List(getMoodStrings(), skin);
+		mMoodList = new List(getMoodStrings(), mSkin);
 		group.addRule(mMoodList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
 		group.addRule(new AnchorGroup.SizeRule(mMoodList, group, 0.1f, 0.3f));
 
-		mCustomerTypeList = new List(keys.toArray(), skin);
+		mCustomerTypeList = new List(keys.toArray(), mSkin);
 		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.1f, 0.6f));
 		group.addRule(mCustomerTypeList, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT); //, 0, 1);
 
@@ -98,7 +100,10 @@ public class CustomerEditorScreen extends StageScreen {
 		String type = mCustomerTypeList.getSelection();
 		CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
 		Customer.Mood mood = getSelectedMood();
-		for (String body: elements.bodies) {
+
+		Array<String> bodies = elements.bodies;
+		bodies.sort();
+		for (String body: bodies) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);
 			for (String face: elements.faces) {
@@ -110,6 +115,9 @@ public class CustomerEditorScreen extends StageScreen {
 					addCustomer(hGroup, type, body, "", face, mood);
 				}
 			}
+
+			Label lbl = new Label(body, mSkin);
+			mCustomerContainer.addActor(lbl);
 		}
 		mCustomerContainer.setWidth(mCustomerContainer.getPrefWidth());
 		mCustomerContainer.setHeight(mCustomerContainer.getPrefHeight());
@@ -118,14 +126,17 @@ public class CustomerEditorScreen extends StageScreen {
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face, Customer.Mood mood) {
 		Customer customer = new Customer(type);
 		customer.setMood(mood);
-		CustomerView customerView = new CustomerView(customer, mGame.getCustomerFactory(), type, body, top, face);
-		float width = 0;
-		for(Actor child: customerView.getChildren()) {
-			width = Math.max(child.getRight(), width);
-		}
-		customerView.setWidth(width);
-		parent.addActor(customerView);
 		mCustomers.add(customer);
+
+		CustomerView customerView = new CustomerView(customer, mGame.getCustomerFactory(), type, body, top, face);
+
+		Label lbl = new Label(top + "\n" + face, mSkin);
+
+		VerticalGroup group = new VerticalGroup();
+		group.addActor(customerView);
+		group.addActor(lbl);
+
+		parent.addActor(group);
 	}
 
 	private Customer.Mood getSelectedMood() {
@@ -142,6 +153,7 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private CustomerEditorGame mGame;
+	private Skin mSkin;
 
 	private List mCustomerTypeList;
 	private VerticalGroup mCustomerContainer;

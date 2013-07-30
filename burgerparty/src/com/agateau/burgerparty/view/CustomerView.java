@@ -43,6 +43,14 @@ public class CustomerView extends WidgetGroup {
 		setHeight(Math.max(mBodyImage.getHeight(), mFaceImage.getTop()));
 	}
 
+	public float getPrefWidth() {
+		return getWidth();
+	}
+
+	public float getPrefHeight() {
+		return getHeight();
+	}
+
 	public Customer getCustomer() {
 		return mCustomer;
 	}
