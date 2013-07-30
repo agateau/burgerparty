@@ -53,7 +53,7 @@ public class WorldView extends AnchorGroup {
 	private Bubble mBubble;
 	private CustomerViewFactory mCustomerFactory;
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
-	private CustomerView mActiveCustomer;
+	private CustomerView mActiveCustomerView;
 	private PauseOverlay mPauseOverlay;
 	private LevelResult mResult = null;
 
@@ -159,7 +159,7 @@ public class WorldView extends AnchorGroup {
 		if (!resized) {
 			return;
 		}
-		if (mActiveCustomer != null) {
+		if (mActiveCustomerView != null) {
 			showBubble();
 		}
 		updateCustomerPositions();
@@ -278,14 +278,14 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		mBubble.setVisible(false);
-		mActiveCustomer.addAction(
+		mActiveCustomerView.addAction(
 			Actions.sequence(
-				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
+				Actions.moveTo(getWidth(), mActiveCustomerView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.run(toDoAfter),
 				Actions.removeActor()
 			)
 		);
-		mActiveCustomer = null;
+		mActiveCustomerView = null;
 	}
 
 	private void onMealExtraTrashed() {
@@ -297,6 +297,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void onMealFinished() {
+		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
@@ -319,7 +320,8 @@ public class WorldView extends AnchorGroup {
 	private void goToNextCustomer() {
 		setupMealView();
 		mInventoryView.setInventory(mWorld.getBurgerInventory());
-		mActiveCustomer = mWaitingCustomerViews.removeIndex(0);
+		mActiveCustomerView = mWaitingCustomerViews.removeIndex(0);
+		mActiveCustomerView.getCustomer().setState(Customer.State.ACTIVE);
 		updateCustomerPositions();
 	}
 
@@ -329,8 +331,8 @@ public class WorldView extends AnchorGroup {
 			return;
 		}
 		Array<CustomerView> customerViews = new Array<CustomerView>(mWaitingCustomerViews);
-		if (mActiveCustomer != null) {
-			customerViews.insert(0, mActiveCustomer);
+		if (mActiveCustomerView != null) {
+			customerViews.insert(0, mActiveCustomerView);
 		}
 		float centerX = getWidth() / 2;
 		float posY = MathUtils.ceil(mWorkbench.getTop() - 4);
@@ -348,20 +350,20 @@ public class WorldView extends AnchorGroup {
 			centerX -= width + padding;
 			delay += 0.1;
 		}
-		if (mActiveCustomer != null) {
+		if (mActiveCustomerView != null) {
 			Action doShowBubble = Actions.run(new Runnable() {
 				@Override
 				public void run() {
 					showBubble();
 				}
 			});
-			mActiveCustomer.addAction(Actions.after(doShowBubble));
+			mActiveCustomerView.addAction(Actions.after(doShowBubble));
 		}
 	}
 
 	private void showBubble() {
 		mBubble.setVisible(true);
-		mBubble.setPosition(MathUtils.ceil(mActiveCustomer.getRight() - 10), MathUtils.ceil(mActiveCustomer.getY() + 50));
+		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
 		mBubble.updateGeometry();
 	}
 }

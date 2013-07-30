@@ -5,86 +5,142 @@ filter: Nearest,Nearest
 repeat: none
 customers/boys/body-3
   rotate: false
-  xy: 1, 60
+  xy: 1, 85
   size: 109, 170
   orig: 109, 170
   offset: 0, 0
   index: -1
 customers/boys/body-0
   rotate: false
-  xy: 112, 61
+  xy: 112, 86
   size: 109, 169
   orig: 109, 169
   offset: 0, 0
   index: -1
 customers/boys/body-1
   rotate: false
-  xy: 223, 61
+  xy: 223, 86
   size: 109, 169
   orig: 109, 169
   offset: 0, 0
   index: -1
 customers/boys/body-2
   rotate: false
-  xy: 334, 76
+  xy: 334, 101
   size: 109, 154
   orig: 109, 154
   offset: 0, 0
   index: -1
 customers/boys/top-2
   rotate: false
-  xy: 1, 1
+  xy: 1, 26
   size: 104, 57
   orig: 104, 57
   offset: 0, 0
   index: -1
 customers/boys/top-0
   rotate: false
-  xy: 445, 173
+  xy: 445, 198
   size: 101, 57
   orig: 101, 57
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 445, 114
+  xy: 445, 139
   size: 101, 57
   orig: 101, 57
   offset: 0, 0
   index: -1
 customers/boys/top-1
   rotate: false
-  xy: 548, 173
+  xy: 548, 198
   size: 90, 57
   orig: 90, 57
   offset: 0, 0
   index: -1
-customers/boys/face-1-happy
+customers/boys/face-1-angry
   rotate: false
-  xy: 548, 120
+  xy: 548, 145
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
-customers/boys/face-0-happy
+customers/boys/face-1-happy
   rotate: false
-  xy: 640, 180
-  size: 71, 50
-  orig: 71, 50
+  xy: 640, 204
+  size: 71, 51
+  orig: 71, 51
   offset: 0, 0
   index: -1
-customers/boys/face-2-happy
+customers/boys/face-2-neutral
   rotate: false
-  xy: 713, 182
+  xy: 713, 206
+  size: 73, 49
+  orig: 73, 49
+  offset: 0, 0
+  index: -1
+customers/boys/face-2-angry
+  rotate: false
+  xy: 788, 207
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
-customers/boys/face-3-happy
+customers/boys/face-2-happy
   rotate: false
-  xy: 788, 180
+  xy: 863, 207
+  size: 73, 48
+  orig: 73, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-angry
+  rotate: false
+  xy: 938, 205
   size: 71, 50
   orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-happy
+  rotate: false
+  xy: 445, 87
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-neutral
+  rotate: false
+  xy: 334, 49
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-1-neutral
+  rotate: false
+  xy: 107, 1
+  size: 71, 46
+  orig: 71, 46
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-happy
+  rotate: false
+  xy: 180, 34
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-angry
+  rotate: false
+  xy: 253, 36
+  size: 71, 48
+  orig: 71, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-neutral
+  rotate: false
+  xy: 548, 98
+  size: 71, 45
+  orig: 71, 45
   offset: 0, 0
   index: -1
 
@@ -132,23 +188,51 @@ customers/girls/top-1
   orig: 104, 57
   offset: 0, 0
   index: -1
-customers/girls/face-1-happy
+customers/girls/face-1-angry
   rotate: false
   xy: 227, 176
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
-customers/girls/face-0-happy
+customers/girls/face-1-happy
   rotate: false
-  xy: 227, 126
+  xy: 227, 121
+  size: 76, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-angry
+  rotate: false
+  xy: 305, 181
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
+customers/girls/face-0-happy
+  rotate: false
+  xy: 227, 71
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-neutral
+  rotate: false
+  xy: 305, 131
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/face-1-neutral
+  rotate: false
+  xy: 383, 182
+  size: 76, 47
+  orig: 76, 47
+  offset: 0, 0
+  index: -1
 customers/girls/top-0
   rotate: false
-  xy: 305, 176
+  xy: 305, 76
   size: 68, 53
   orig: 68, 53
   offset: 0, 0

@@ -1,6 +1,9 @@
 package com.agateau.burgerparty.view;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.model.Customer;
+import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -11,29 +14,37 @@ public class CustomerView extends WidgetGroup {
 		mFactory = factory;
 		mDirName = dirName;
 
+		mCustomer.moodChanged.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				updateFace();
+			}
+		});
+
 		// Body
-		CustomerViewFactory.BodyPart body = (CustomerViewFactory.BodyPart)mFactory.getCustomerPart(mDirName, bodyName, "");
-		Image bodyImage = getPartImage(body);
-		addActor(bodyImage);
+		mBodyPart = (CustomerViewFactory.BodyPart)mFactory.getCustomerPart(mDirName, bodyName, "");
+		mBodyImage = getPartImage(mBodyPart);
+		addActor(mBodyImage);
 
 		// Top
 		if (!topName.isEmpty()) {
 			CustomerViewFactory.CustomerPart top = mFactory.getCustomerPart(mDirName, topName, "");
 			Image topImage = getPartImage(top);
 			addActor(topImage);
-			xCenterImage(topImage, top, bodyImage, body);
+			xCenterImage(topImage, top, mBodyImage, mBodyPart);
 			topImage.setY(top.yOffset);
 		}
 
 		// Face
-		CustomerViewFactory.CustomerPart face = mFactory.getCustomerPart(mDirName, faceName, "happy");
-		Image faceImage = getPartImage(face);
-		addActor(faceImage);
-		xCenterImage(faceImage, face, bodyImage, body);
-		faceImage.setY(body.yFace + face.yOffset);
+		mFaceName = faceName;
+		updateFace();
 
-		setWidth(bodyImage.getWidth());
-		setHeight(Math.max(bodyImage.getHeight(), faceImage.getTop()));
+		setWidth(mBodyImage.getWidth());
+		setHeight(Math.max(mBodyImage.getHeight(), mFaceImage.getTop()));
+	}
+
+	public Customer getCustomer() {
+		return mCustomer;
 	}
 
 	private Image getPartImage(CustomerViewFactory.CustomerPart part) {
@@ -45,6 +56,17 @@ public class CustomerView extends WidgetGroup {
 		return new Image(region);
 	}
 
+	private void updateFace() {
+		if (mFaceImage != null) {
+			mFaceImage.remove();
+		}
+		CustomerViewFactory.CustomerPart facePart = mFactory.getCustomerPart(mDirName, mFaceName, mCustomer.getMood().toString());
+		mFaceImage = getPartImage(facePart);
+		addActor(mFaceImage);
+		xCenterImage(mFaceImage, facePart, mBodyImage, mBodyPart);
+		mFaceImage.setY(mBodyPart.yFace + facePart.yOffset);
+	}
+
 	private static void xCenterImage(Image image, CustomerViewFactory.CustomerPart imagePart, Image ref, CustomerViewFactory.CustomerPart refPart) {
 		float imageCenter = imagePart.xCenter > 0 ? imagePart.xCenter : (image.getWidth() / 2);
 		float refCenter = refPart.xCenter > 0 ? refPart.xCenter : (ref.getWidth() / 2);
@@ -54,4 +76,10 @@ public class CustomerView extends WidgetGroup {
 	private CustomerViewFactory mFactory;
 	private String mDirName;
 	private Customer mCustomer;
+	private String mFaceName;
+	private CustomerViewFactory.BodyPart mBodyPart = null;
+	private Image mBodyImage = null;
+	private Image mFaceImage = null;
+
+	HashSet<Object> mHandlers = new HashSet<Object>();
 }
