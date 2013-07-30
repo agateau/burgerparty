@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.model.Customer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,7 +19,7 @@ public class CustomerViewFactory {
 		public String dirName;
 		public Array<String> bodies = new Array<String>();
 		public Array<String> tops = new Array<String>();
-		public Array<String> faces = new Array<String>();
+		public Array<String> faces = new Array<String>(); // Does not include the "-$mood" suffix
 
 		public Elements(String dirName) {
 			this.dirName = dirName;
@@ -93,9 +94,9 @@ public class CustomerViewFactory {
 	 * @param customerType name of the category the customer should be made from
 	 * @return a Customer instance
 	 */
-	public CustomerView create(String customerType) {
-		Elements elements = mElementsForType.get(customerType);
-		return new CustomerView(this, elements.dirName,
+	public CustomerView create(Customer customer) {
+		Elements elements = mElementsForType.get(customer.getType());
+		return new CustomerView(customer, this, elements.dirName,
 			getRandomString(elements.bodies),
 			getRandomString(elements.tops),
 			getRandomString(elements.faces));

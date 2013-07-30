@@ -1,11 +1,13 @@
 package com.agateau.burgerparty.view;
 
+import com.agateau.burgerparty.model.Customer;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 public class CustomerView extends WidgetGroup {
-	public CustomerView(CustomerViewFactory factory, String dirName, String bodyName, String topName, String faceName) {
+	public CustomerView(Customer customer, CustomerViewFactory factory, String dirName, String bodyName, String topName, String faceName) {
+		mCustomer = customer;
 		mFactory = factory;
 		mDirName = dirName;
 
@@ -51,4 +53,5 @@ public class CustomerView extends WidgetGroup {
 	
 	private CustomerViewFactory mFactory;
 	private String mDirName;
+	private Customer mCustomer;
 }

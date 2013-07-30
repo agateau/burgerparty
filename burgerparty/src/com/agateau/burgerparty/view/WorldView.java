@@ -182,7 +182,7 @@ public class WorldView extends AnchorGroup {
 		Array<Customer> lst = mWorld.getCustomers();
 		lst.reverse();
 		for (Customer customer: lst) {
-			CustomerView customerView = mCustomerFactory.create(customer.getName());
+			CustomerView customerView = mCustomerFactory.create(customer);
 			addActor(customerView);
 			customerView.setX(-customerView.getWidth());
 			mWaitingCustomerViews.add(customerView);

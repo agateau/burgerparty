@@ -1,13 +1,13 @@
 package com.agateau.burgerparty.model;
 
 public class Customer {
-	public Customer(String name) {
-		mName = name;
+	public Customer(String type) {
+		mType = type;
 	}
 
-	public String getName() {
-		return mName;
+	public String getType() {
+		return mType;
 	}
 
-	private String mName;
+	private String mType;
 }

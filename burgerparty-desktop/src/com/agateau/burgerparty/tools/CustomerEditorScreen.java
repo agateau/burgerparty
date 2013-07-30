@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.tools;
 
+import com.agateau.burgerparty.model.Customer;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
@@ -115,7 +116,8 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
-		CustomerView customerView = new CustomerView(mGame.getCustomerFactory(), type, body, top, face);
+		Customer customer = new Customer(type);
+		CustomerView customerView = new CustomerView(customer, mGame.getCustomerFactory(), type, body, top, face);
 		float width = 0;
 		for(Actor child: customerView.getChildren()) {
 			width = Math.max(child.getRight(), width);
