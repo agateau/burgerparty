@@ -93,7 +93,12 @@ public class CustomerEditorScreen extends StageScreen {
 		mGame.loadPartsXml();
 		fillCustomerContainer();
 	}
-	
+
+	private static Array<String> sortedArray(Array<String> array) {
+		array.sort();
+		return array;
+	}
+
 	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
 		mCustomers.clear();
@@ -101,14 +106,12 @@ public class CustomerEditorScreen extends StageScreen {
 		CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
 		Customer.Mood mood = getSelectedMood();
 
-		Array<String> bodies = elements.bodies;
-		bodies.sort();
-		for (String body: bodies) {
+		for (String body: sortedArray(elements.bodies)) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);
-			for (String face: elements.faces) {
+			for (String face: sortedArray(elements.faces)) {
 				if (elements.tops.size > 0) {
-					for (String top: elements.tops) {
+					for (String top: sortedArray(elements.tops)) {
 						addCustomer(hGroup, type, body, top, face, mood);
 					}
 				} else {
