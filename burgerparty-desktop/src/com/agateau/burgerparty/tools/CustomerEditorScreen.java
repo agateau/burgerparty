@@ -6,8 +6,8 @@ import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.agateau.burgerparty.view.Customer;
-import com.agateau.burgerparty.view.CustomerFactory;
+import com.agateau.burgerparty.view.CustomerView;
+import com.agateau.burgerparty.view.CustomerViewFactory;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -96,7 +96,7 @@ public class CustomerEditorScreen extends StageScreen {
 	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
 		String type = mCustomerTypeList.getSelection();
-		CustomerFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
+		CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
 		for (String body: elements.bodies) {
 			HorizontalGroup hGroup = new HorizontalGroup();
 			mCustomerContainer.addActor(hGroup);
@@ -115,12 +115,12 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face) {
-		Customer customer = new Customer(mGame.getCustomerFactory(), type, body, top, face);
+		CustomerView customerView = new CustomerView(mGame.getCustomerFactory(), type, body, top, face);
 		float width = 0;
-		for(Actor child: customer.getChildren()) {
+		for(Actor child: customerView.getChildren()) {
 			width = Math.max(child.getRight(), width);
 		}
-		customer.setWidth(width);
-		parent.addActor(customer);
+		customerView.setWidth(width);
+		parent.addActor(customerView);
 	}
 }

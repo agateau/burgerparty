@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.tools;
 
-import com.agateau.burgerparty.view.CustomerFactory;
+import com.agateau.burgerparty.view.CustomerViewFactory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -24,18 +24,18 @@ public class CustomerEditorGame extends Game {
 		setScreen(new CustomerEditorScreen(this, mAtlas, mSkin));
 	}
 
-	public CustomerFactory getCustomerFactory() {
+	public CustomerViewFactory getCustomerFactory() {
 		return mCustomerFactory;
 	}
 
 	public void loadPartsXml() {
 		System.out.println("Loading " + mPartsXmlName);
 		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
-		mCustomerFactory = new CustomerFactory(mAtlas, handle);
+		mCustomerFactory = new CustomerViewFactory(mAtlas, handle);
 	}
 
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private String mPartsXmlName;
-	private CustomerFactory mCustomerFactory;
+	private CustomerViewFactory mCustomerFactory;
 }

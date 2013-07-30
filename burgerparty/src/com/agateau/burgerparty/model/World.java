@@ -35,7 +35,8 @@ public class World {
 	private Burger mTargetBurger = new Burger();
 	private MealExtra mTargetMealExtra = new MealExtra();
 
-	private int mRemainingCustomerCount;
+	private Array<Customer> mCustomers = new Array<Customer>();
+	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
 
@@ -43,7 +44,9 @@ public class World {
 
 	public World(Level level) {
 		mLevel = level;
-		mRemainingCustomerCount = mLevel.definition.customers.size;
+		for (String name: mLevel.definition.customers) {
+			mCustomers.add(new Customer(name));
+		}
 		Array<String> allBurgerItems = new Array<String>(level.definition.burgerItems);
 		allBurgerItems.add(level.definition.topBurgerItem);
 		if (level.definition.topBurgerItem != level.definition.bottomBurgerItem) {
@@ -104,8 +107,8 @@ public class World {
 		return mRemainingSeconds;
 	}
 
-	public Array<String> getCustomerList() {
-		return mLevel.definition.customers;
+	public Array<Customer> getCustomers() {
+		return mCustomers;
 	}
 
 	public int getTrashedCount() {
@@ -247,8 +250,8 @@ public class World {
 	}
 
 	private void onMealFinished() {
-		mRemainingCustomerCount--;
-		if (mRemainingCustomerCount > 0) {
+		mActiveCustomerIndex++;
+		if (mActiveCustomerIndex < mCustomers.size) {
 			setupMeal();
 			generateTarget();
 			mealFinished.emit();
