@@ -20,16 +20,16 @@
     <face name="customers/boys/face-2-angry"/>
     <face name="customers/boys/face-3-angry"/>
 
-    <body name="customers/girls/body-0" yFace="69" xCenter="59"/>
-    <body name="customers/girls/body-1" yFace="69" xCenter="53"/>
+    <body name="customers/girls/body-0" yFace="71" xCenter="59"/>
+    <body name="customers/girls/body-1" yFace="69" xCenter="54"/>
     <top name="customers/girls/top-0"/>
     <top name="customers/girls/top-1"/>
     <face name="customers/girls/face-0-happy"/>
-    <face name="customers/girls/face-1-happy"/>
+    <face name="customers/girls/face-1-happy" yOffset="-4"/>
     <face name="customers/girls/face-0-neutral"/>
-    <face name="customers/girls/face-1-neutral"/>
+    <face name="customers/girls/face-1-neutral" yOffset="+1"/>
     <face name="customers/girls/face-0-angry"/>
-    <face name="customers/girls/face-1-angry"/>
+    <face name="customers/girls/face-1-angry" yOffset="-7"/>
 
     <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
     <face name="customers/ninjas/face-0-happy"/>
