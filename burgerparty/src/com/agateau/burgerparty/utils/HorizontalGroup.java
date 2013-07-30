@@ -3,6 +3,7 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public class HorizontalGroup extends WidgetGroup {
@@ -22,11 +23,11 @@ public class HorizontalGroup extends WidgetGroup {
 		SnapshotArray<Actor> children = getChildren();
 		for (int i = 0, n = children.size; i < n; i++) {
 			Actor child = children.get(i);
-			/*if (child instanceof Layout) {
+			if (child instanceof Layout) {
 				Layout layout = (Layout)child;
 				mPrefWidth += layout.getPrefWidth();
 				mPrefHeight = Math.max(mPrefHeight, layout.getPrefHeight());
-			} else*/ {
+			} else {
 				mPrefWidth += child.getWidth();
 				mPrefHeight = Math.max(mPrefHeight, child.getHeight());
 			}
@@ -40,11 +41,11 @@ public class HorizontalGroup extends WidgetGroup {
 		for (int i = 0, n = children.size; i < n; i++) {
 			Actor child = children.get(i);
 			float width, height;
-			/*if (child instanceof Layout) {
+			if (child instanceof Layout) {
 				Layout layout = (Layout)child;
 				width = layout.getPrefWidth();
 				height = layout.getPrefHeight();
-			} else*/ {
+			} else {
 				width = child.getWidth();
 				height = child.getHeight();
 			}
