@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -29,6 +28,7 @@ public class CustomerEditorScreen extends StageScreen {
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		super(skin);
 		mGame = game;
+
 		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
@@ -45,15 +45,20 @@ public class CustomerEditorScreen extends StageScreen {
 		Array<String> keys = mGame.getCustomerFactory().getTypes();
 		keys.sort();
 
+		mMoodList = new List(getMoodStrings(), skin);
+		group.addRule(mMoodList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
+		group.addRule(new AnchorGroup.SizeRule(mMoodList, group, 0.1f, 0.3f));
+
 		mCustomerTypeList = new List(keys.toArray(), skin);
-		group.addRule(mCustomerTypeList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.1f, 1));
+		group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.1f, 0.6f));
+		group.addRule(mCustomerTypeList, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT); //, 0, 1);
 
 		mCustomerContainer = new VerticalGroup();
 		ScrollPane pane = new ScrollPane(mCustomerContainer);
-		group.addRule(pane, Anchor.BOTTOM_LEFT, mCustomerTypeList, Anchor.BOTTOM_RIGHT, 1, 0);
 		group.addRule(new AnchorGroup.SizeRule(pane, group, 0.9f, 1));
+		group.addRule(pane, Anchor.TOP_LEFT, mCustomerTypeList, Anchor.TOP_RIGHT, 1, 0);
 
+		// Connections
 		mCustomerTypeList.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -61,12 +66,10 @@ public class CustomerEditorScreen extends StageScreen {
 			}
 		});
 
-		TextButton reloadButton = new TextButton("Reload", skin);
-		group.addRule(reloadButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-		reloadButton.addListener(new ChangeListener() {
+		mMoodList.addListener(new ChangeListener() {
 			@Override
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				reload();
+			public void changed(ChangeEvent event, Actor actor) {
+				updateMood();
 			}
 		});
 	}
@@ -88,14 +91,10 @@ public class CustomerEditorScreen extends StageScreen {
 		mGame.loadPartsXml();
 		fillCustomerContainer();
 	}
-
-	private CustomerEditorGame mGame;
-
-	private List mCustomerTypeList;
-	private VerticalGroup mCustomerContainer;
 	
 	private void fillCustomerContainer() {
 		mCustomerContainer.clear();
+		mCustomers.clear();
 		String type = mCustomerTypeList.getSelection();
 		CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
 		for (String body: elements.bodies) {
@@ -124,5 +123,29 @@ public class CustomerEditorScreen extends StageScreen {
 		}
 		customerView.setWidth(width);
 		parent.addActor(customerView);
+		mCustomers.add(customer);
 	}
+
+	private void updateMood() {
+		Customer.Mood mood = Customer.Mood.fromString(mMoodList.getSelection());
+		for (Customer customer: mCustomers) {
+			customer.setMood(mood);
+		}
+	}
+
+	private static String[] getMoodStrings() {
+		Customer.Mood[] moods = Customer.Mood.moods;
+		String[] moodStrings = new String[moods.length];
+		for (int i=0; i < moods.length; ++i) {
+			moodStrings[i] = moods[i].toString();
+		}
+		return moodStrings;
+	}
+
+	private CustomerEditorGame mGame;
+
+	private List mCustomerTypeList;
+	private VerticalGroup mCustomerContainer;
+	private List mMoodList;
+	private Array<Customer> mCustomers = new Array<Customer>();
 }

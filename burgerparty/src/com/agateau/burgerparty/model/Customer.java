@@ -20,6 +20,17 @@ public class Customer {
 		}
 
 		private final String mText;
+
+		public static final Mood[] moods = {HAPPY, NEUTRAL, ANGRY};
+
+		public static Mood fromString(String str) {
+			for (Mood mood: moods) {
+				if (mood.mText.equals(str)) {
+					return mood;
+				}
+			}
+			throw new RuntimeException("Unknown mood: " + str);
+		}
 	};
 
 	public enum State {
@@ -38,6 +49,17 @@ public class Customer {
 
 	public Mood getMood() {
 		return mMood;
+	}
+
+	/*
+	 * Only useful for tools
+	 */
+	public void setMood(Mood mood) {
+		if (mMood == mood) {
+			return;
+		}
+		mMood = mood;
+		moodChanged.emit();
 	}
 
 	public State getState() {
