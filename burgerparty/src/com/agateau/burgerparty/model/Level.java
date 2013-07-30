@@ -98,6 +98,9 @@ public class Level {
 			} else if (type.equals("maxDuration")) {
 				int value = element.getIntAttribute("value");
 				objective = new MaxDurationObjective(value);
+			} else if (type.equals("minHappy")) {
+				int value = element.getIntAttribute("value");
+				objective = new MinHappyObjective(value);
 			} else {
 				throw new RuntimeException("Don't know how to read objective from " + element);
 			}
