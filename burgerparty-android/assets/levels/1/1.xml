@@ -9,7 +9,8 @@
         <item name="salad"/>
     </items>
     <objectives>
-        <objective type="maxTrashed" value="2"/>
+        <!--objective type="maxTrashed" value="2"/-->
+        <objective type="minHappy" value="2"/>
         <objective type="maxDuration" value="40"/>
     </objectives>
     <customers>

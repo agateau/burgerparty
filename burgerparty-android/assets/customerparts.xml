@@ -12,9 +12,9 @@
     <face name="customers/boys/face-2-happy"/>
     <face name="customers/boys/face-3-happy"/>
     <face name="customers/boys/face-0-neutral"/>
-    <face name="customers/boys/face-1-neutral"/>
-    <face name="customers/boys/face-2-neutral"/>
-    <face name="customers/boys/face-3-neutral"/>
+    <face name="customers/boys/face-1-neutral" yOffset="5"/>
+    <face name="customers/boys/face-2-neutral" yOffset="-1"/>
+    <face name="customers/boys/face-3-neutral" yOffset="4"/>
     <face name="customers/boys/face-0-angry"/>
     <face name="customers/boys/face-1-angry"/>
     <face name="customers/boys/face-2-angry"/>
@@ -26,9 +26,9 @@
     <top name="customers/girls/top-1"/>
     <face name="customers/girls/face-0-happy"/>
     <face name="customers/girls/face-1-happy" yOffset="-4"/>
-    <face name="customers/girls/face-0-neutral"/>
-    <face name="customers/girls/face-1-neutral" yOffset="+1"/>
-    <face name="customers/girls/face-0-angry"/>
+    <face name="customers/girls/face-0-neutral" yOffset="-1"/>
+    <face name="customers/girls/face-1-neutral" yOffset="1"/>
+    <face name="customers/girls/face-0-angry" yOffset="-2"/>
     <face name="customers/girls/face-1-angry" yOffset="-7"/>
 
     <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
