@@ -31,8 +31,10 @@
     <face name="customers/girls/face-0-angry" yOffset="-2"/>
     <face name="customers/girls/face-1-angry" yOffset="-7"/>
 
-    <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
+    <body name="customers/ninjas/body-0" yFace="55" xCenter="54"/>
     <face name="customers/ninjas/face-0-happy"/>
+    <face name="customers/ninjas/face-0-neutral"/>
+    <face name="customers/ninjas/face-0-angry"/>
 
     <body name="customers/pirate-boys/body-brown" yFace="69"/>
     <top name="customers/pirate-boys/top-boss"/>

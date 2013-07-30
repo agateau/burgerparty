@@ -151,13 +151,27 @@ repeat: none
 customers/ninjas/body-0
   rotate: false
   xy: 1, 1
-  size: 120, 143
-  orig: 120, 143
+  size: 119, 143
+  orig: 119, 143
+  offset: 0, 0
+  index: -1
+customers/ninjas/face-0-angry
+  rotate: false
+  xy: 122, 27
+  size: 108, 117
+  orig: 108, 117
   offset: 0, 0
   index: -1
 customers/ninjas/face-0-happy
   rotate: false
-  xy: 123, 27
+  xy: 232, 27
+  size: 108, 117
+  orig: 108, 117
+  offset: 0, 0
+  index: -1
+customers/ninjas/face-0-neutral
+  rotate: false
+  xy: 342, 27
   size: 108, 117
   orig: 108, 117
   offset: 0, 0
@@ -285,127 +299,6 @@ customers/pirate-girls/top-red
   offset: 0, 0
   index: -1
 
-burgerparty9.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-ui/icon-levels
-  rotate: false
-  xy: 1, 855
-  size: 28, 28
-  orig: 28, 28
-  offset: 0, 0
-  index: -1
-ui/icon-back
-  rotate: false
-  xy: 31, 851
-  size: 34, 32
-  orig: 34, 32
-  offset: 0, 0
-  index: -1
-ui/icon-left
-  rotate: false
-  xy: 67, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-play
-  rotate: false
-  xy: 95, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-right
-  rotate: false
-  xy: 123, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-restart
-  rotate: false
-  xy: 151, 848
-  size: 34, 35
-  orig: 34, 35
-  offset: 0, 0
-  index: -1
-ui/star-off
-  rotate: false
-  xy: 187, 843
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
-ui/star-on
-  rotate: false
-  xy: 229, 843
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
-ui/button-down
-  rotate: false
-  xy: 271, 835
-  size: 152, 48
-  split: 24, 24, 23, 23
-  pad: -1, -1, 4, 4
-  orig: 152, 48
-  offset: 0, 0
-  index: -1
-ui/button
-  rotate: false
-  xy: 425, 835
-  size: 152, 48
-  split: 24, 24, 23, 23
-  pad: -1, -1, 4, 4
-  orig: 152, 48
-  offset: 0, 0
-  index: -1
-ui/imagebutton-down
-  rotate: false
-  xy: 579, 807
-  size: 76, 76
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
-ui/imagebutton
-  rotate: false
-  xy: 657, 807
-  size: 76, 76
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
-ui/lock
-  rotate: false
-  xy: 735, 795
-  size: 60, 88
-  orig: 60, 88
-  offset: 0, 0
-  index: -1
-ui/title
-  rotate: false
-  xy: 1, 503
-  size: 634, 302
-  orig: 634, 302
-  offset: 0, 0
-  index: -1
-ui/menu-bg
-  rotate: false
-  xy: 1, 1
-  size: 500, 500
-  orig: 500, 500
-  offset: 0, 0
-  index: -1
-ui/shattered
-  rotate: false
-  xy: 503, 1
-  size: 500, 500
-  orig: 500, 500
-  offset: 0, 0
-  index: -1
-
 burgerparty5.png
 format: RGBA8888
 filter: Nearest,Nearest
@@ -433,58 +326,6 @@ customers/pirate-boys/top-boss
   index: -1
 
 burgerparty6.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-levels/1/background
-  rotate: false
-  xy: 1, 85
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
-levels/1/workbench
-  rotate: false
-  xy: 1, 1
-  size: 800, 82
-  orig: 800, 82
-  offset: 0, 0
-  index: -1
-levels/1/shelf
-  rotate: false
-  xy: 803, 475
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-
-burgerparty9.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-levels/2/background
-  rotate: false
-  xy: 1, 85
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
-levels/2/workbench
-  rotate: false
-  xy: 1, 1
-  size: 800, 82
-  orig: 800, 82
-  offset: 0, 0
-  index: -1
-levels/2/shelf
-  rotate: false
-  xy: 803, 475
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-
-burgerparty7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -532,7 +373,7 @@ overlay-bg
   offset: 0, 0
   index: -1
 
-burgerparty8.png
+burgerparty7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -544,7 +385,7 @@ main-font
   offset: 0, 0
   index: -1
 
-burgerparty10.png
+burgerparty8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -759,7 +600,7 @@ mealitems/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty11.png
+burgerparty9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -880,7 +721,7 @@ ui/shattered
   offset: 0, 0
   index: -1
 
-burgerparty12.png
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -906,7 +747,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty13.png
+burgerparty11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

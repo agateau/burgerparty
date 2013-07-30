@@ -10,6 +10,7 @@ import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.CustomerView;
 import com.agateau.burgerparty.view.CustomerViewFactory;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
