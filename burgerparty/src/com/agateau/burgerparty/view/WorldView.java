@@ -114,7 +114,7 @@ public class WorldView extends AnchorGroup {
 		mWorld.scored.connect(mHandlers, new Signal3.Handler<World.ScoreType, Integer, Integer>() {
 			@Override
 			public void handle(World.ScoreType scoreType, Integer oldScore, Integer newScore) {
-				updateScoreDisplay();
+				onScored(scoreType, oldScore, newScore);
 			}
 		});
 
@@ -130,8 +130,6 @@ public class WorldView extends AnchorGroup {
 				}
 			}, MealView.TRASH_ACTION_DURATION);
 	}
-
-
 
 	public void pause() {
 		mWorld.pause();
@@ -337,6 +335,12 @@ public class WorldView extends AnchorGroup {
 				addActor(new LevelFinishedOverlay(mGame, mWorld.getScore(), mAtlas, mSkin));
 			}
 		});
+	}
+
+	private void onScored(World.ScoreType scoreType, int oldScore, int newScore) {
+		int delta = newScore - oldScore;
+		new ScoreFeedbackActor(this, scoreType, delta);
+		updateScoreDisplay();
 	}
 
 	private void goToNextCustomer() {
