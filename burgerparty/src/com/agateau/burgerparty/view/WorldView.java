@@ -3,6 +3,7 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.Customer;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.World;
@@ -50,9 +51,9 @@ public class WorldView extends AnchorGroup {
 	private Image mPauseButton;
 	private Image mWorkbench;
 	private Bubble mBubble;
-	private CustomerFactory mCustomerFactory;
-	private Array<Customer> mWaitingCustomers = new Array<Customer>();
-	private Customer mActiveCustomer;
+	private CustomerViewFactory mCustomerFactory;
+	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
+	private CustomerView mActiveCustomerView;
 	private PauseOverlay mPauseOverlay;
 	private LevelResult mResult = null;
 
@@ -67,7 +68,7 @@ public class WorldView extends AnchorGroup {
 		mAtlas = atlas;
 		mSkin = skin;
 		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
-		mCustomerFactory = new CustomerFactory(atlas, Gdx.files.internal("customerparts.xml"));
+		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
 		setupWorkbench();
@@ -158,7 +159,7 @@ public class WorldView extends AnchorGroup {
 		if (!resized) {
 			return;
 		}
-		if (mActiveCustomer != null) {
+		if (mActiveCustomerView != null) {
 			showBubble();
 		}
 		updateCustomerPositions();
@@ -178,16 +179,16 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupCustomers() {
-		Array<String> lst = mWorld.getCustomerList();
+		Array<Customer> lst = mWorld.getCustomers();
 		lst.reverse();
-		for (String name: lst) {
-			Customer customer = mCustomerFactory.create(name);
-			addActor(customer);
-			customer.setX(-customer.getWidth());
-			mWaitingCustomers.add(customer);
+		for (Customer customer: lst) {
+			CustomerView customerView = mCustomerFactory.create(customer);
+			addActor(customerView);
+			customerView.setX(-customerView.getWidth());
+			mWaitingCustomerViews.add(customerView);
 		}
 		// Reverse array so that customer with highest Z index is first
-		mWaitingCustomers.reverse();
+		mWaitingCustomerViews.reverse();
 	}
 
 	private void setupWorkbench() {
@@ -277,14 +278,14 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		mBubble.setVisible(false);
-		mActiveCustomer.addAction(
+		mActiveCustomerView.addAction(
 			Actions.sequence(
-				Actions.moveTo(getWidth(), mActiveCustomer.getY(), 0.4f, Interpolation.pow2In),
+				Actions.moveTo(getWidth(), mActiveCustomerView.getY(), 0.4f, Interpolation.pow2In),
 				Actions.run(toDoAfter),
 				Actions.removeActor()
 			)
 		);
-		mActiveCustomer = null;
+		mActiveCustomerView = null;
 	}
 
 	private void onMealExtraTrashed() {
@@ -296,6 +297,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void onMealFinished() {
+		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
@@ -318,7 +320,8 @@ public class WorldView extends AnchorGroup {
 	private void goToNextCustomer() {
 		setupMealView();
 		mInventoryView.setInventory(mWorld.getBurgerInventory());
-		mActiveCustomer = mWaitingCustomers.removeIndex(0);
+		mActiveCustomerView = mWaitingCustomerViews.removeIndex(0);
+		mActiveCustomerView.getCustomer().setState(Customer.State.ACTIVE);
 		updateCustomerPositions();
 	}
 
@@ -327,19 +330,19 @@ public class WorldView extends AnchorGroup {
 			// Wait until we have been resized to correct sizes
 			return;
 		}
-		Array<Customer> customers = new Array<Customer>(mWaitingCustomers);
-		if (mActiveCustomer != null) {
-			customers.insert(0, mActiveCustomer);
+		Array<CustomerView> customerViews = new Array<CustomerView>(mWaitingCustomerViews);
+		if (mActiveCustomerView != null) {
+			customerViews.insert(0, mActiveCustomerView);
 		}
 		float centerX = getWidth() / 2;
 		float posY = MathUtils.ceil(mWorkbench.getTop() - 4);
 		final float padding = 10;
 		float delay = 0;
-		for(Customer customer: customers) {
-			float width = customer.getWidth();
-			customer.addAction(
+		for(CustomerView customerView: customerViews) {
+			float width = customerView.getWidth();
+			customerView.addAction(
 				Actions.sequence(
-					Actions.moveTo(customer.getX(), posY), // Force posY to avoid getting from under the workbench at startup
+					Actions.moveTo(customerView.getX(), posY), // Force posY to avoid getting from under the workbench at startup
 					Actions.delay(delay),
 					Actions.moveTo(MathUtils.ceil(centerX - width / 2), posY, 0.3f, Interpolation.sineOut)
 				)
@@ -347,20 +350,20 @@ public class WorldView extends AnchorGroup {
 			centerX -= width + padding;
 			delay += 0.1;
 		}
-		if (mActiveCustomer != null) {
+		if (mActiveCustomerView != null) {
 			Action doShowBubble = Actions.run(new Runnable() {
 				@Override
 				public void run() {
 					showBubble();
 				}
 			});
-			mActiveCustomer.addAction(Actions.after(doShowBubble));
+			mActiveCustomerView.addAction(Actions.after(doShowBubble));
 		}
 	}
 
 	private void showBubble() {
 		mBubble.setVisible(true);
-		mBubble.setPosition(MathUtils.ceil(mActiveCustomer.getRight() - 10), MathUtils.ceil(mActiveCustomer.getY() + 50));
+		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
 		mBubble.updateGeometry();
 	}
 }

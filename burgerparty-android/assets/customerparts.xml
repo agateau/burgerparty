@@ -11,25 +11,45 @@
     <face name="customers/boys/face-1-happy"/>
     <face name="customers/boys/face-2-happy"/>
     <face name="customers/boys/face-3-happy"/>
+    <face name="customers/boys/face-0-neutral"/>
+    <face name="customers/boys/face-1-neutral" yOffset="5"/>
+    <face name="customers/boys/face-2-neutral" yOffset="-1"/>
+    <face name="customers/boys/face-3-neutral" yOffset="4"/>
+    <face name="customers/boys/face-0-angry"/>
+    <face name="customers/boys/face-1-angry"/>
+    <face name="customers/boys/face-2-angry"/>
+    <face name="customers/boys/face-3-angry"/>
 
-    <body name="customers/girls/body-0" yFace="69" xCenter="59"/>
-    <body name="customers/girls/body-1" yFace="69" xCenter="53"/>
+    <body name="customers/girls/body-0" yFace="71" xCenter="59"/>
+    <body name="customers/girls/body-1" yFace="69" xCenter="54"/>
     <top name="customers/girls/top-0"/>
     <top name="customers/girls/top-1"/>
     <face name="customers/girls/face-0-happy"/>
-    <face name="customers/girls/face-1-happy"/>
+    <face name="customers/girls/face-1-happy" yOffset="-4"/>
+    <face name="customers/girls/face-0-neutral" yOffset="-1"/>
+    <face name="customers/girls/face-1-neutral" yOffset="1"/>
+    <face name="customers/girls/face-0-angry" yOffset="-2"/>
+    <face name="customers/girls/face-1-angry" yOffset="-7"/>
 
-    <body name="customers/ninjas/body-0" yFace="55" xCenter="55"/>
+    <body name="customers/ninjas/body-0" yFace="55" xCenter="54"/>
     <face name="customers/ninjas/face-0-happy"/>
+    <face name="customers/ninjas/face-0-neutral"/>
+    <face name="customers/ninjas/face-0-angry"/>
 
     <body name="customers/pirate-boys/body-brown" yFace="69"/>
     <top name="customers/pirate-boys/top-boss"/>
-    <face name="customers/pirate-boys/face-boss-happy"/>
+    <face name="customers/pirate-boys/face-boss-happy" yOffset="3"/>
+    <face name="customers/pirate-boys/face-boss-neutral" yOffset="3"/>
+    <face name="customers/pirate-boys/face-boss-angry" yOffset="3"/>
 
     <body name="customers/pirate-girls/body-purple" yFace="69"/>
     <body name="customers/pirate-girls/body-green" yFace="69"/>
     <top name="customers/pirate-girls/top-red"/>
     <top name="customers/pirate-girls/top-blue"/>
-    <face name="customers/pirate-girls/face-greeneyes-happy"/>
-    <face name="customers/pirate-girls/face-cap-happy" xCenter="54"/>
+    <face name="customers/pirate-girls/face-greeneyes-happy"   xCenter="81"/>
+    <face name="customers/pirate-girls/face-greeneyes-neutral" xCenter="81" yOffset="2"/>
+    <face name="customers/pirate-girls/face-greeneyes-angry"   xCenter="81"/>
+    <face name="customers/pirate-girls/face-cap-happy"   xCenter="54"/>
+    <face name="customers/pirate-girls/face-cap-neutral" xCenter="54" yOffset="6"/>
+    <face name="customers/pirate-girls/face-cap-angry"   xCenter="54" yOffset="4"/>
 </parts>

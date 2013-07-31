@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.model.Customer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,14 +12,14 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
 /**
- * Knows all available customer types. Can create customer given a customer type with create().
+ * Knows all available customer types. Can create a CustomerView given a customer type with create().
  */
-public class CustomerFactory {
+public class CustomerViewFactory {
 	public static class Elements {
 		public String dirName;
 		public Array<String> bodies = new Array<String>();
 		public Array<String> tops = new Array<String>();
-		public Array<String> faces = new Array<String>();
+		public Array<String> faces = new Array<String>(); // Does not include the "-$mood" suffix
 
 		public Elements(String dirName) {
 			this.dirName = dirName;
@@ -46,7 +47,7 @@ public class CustomerFactory {
 		}
 	}
 
-	public CustomerFactory(TextureAtlas atlas, FileHandle customerPartsHandle) {
+	public CustomerViewFactory(TextureAtlas atlas, FileHandle customerPartsHandle) {
 		initMap(customerPartsHandle);
 		assert(mCustomerPartForPath.size > 0);
 
@@ -93,9 +94,9 @@ public class CustomerFactory {
 	 * @param customerType name of the category the customer should be made from
 	 * @return a Customer instance
 	 */
-	public Customer create(String customerType) {
-		Elements elements = mElementsForType.get(customerType);
-		return new Customer(this, elements.dirName,
+	public CustomerView create(Customer customer) {
+		Elements elements = mElementsForType.get(customer.getType());
+		return new CustomerView(customer, this, elements.dirName,
 			getRandomString(elements.bodies),
 			getRandomString(elements.tops),
 			getRandomString(elements.faces));
@@ -118,7 +119,7 @@ public class CustomerFactory {
 		if (!suffix.isEmpty()) {
 			fullName += "-" + suffix;
 		}
-		CustomerFactory.CustomerPart part = mCustomerPartForPath.get(fullName);
+		CustomerViewFactory.CustomerPart part = mCustomerPartForPath.get(fullName);
 		if (part == null) {
 			throw new RuntimeException("Failed to find customer part named " + fullName);
 		}
