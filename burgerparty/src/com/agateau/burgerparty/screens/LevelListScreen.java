@@ -78,7 +78,7 @@ public class LevelListScreen extends BaseScreen {
 		GridGroup gridGroup = new GridGroup();
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
-		gridGroup.setCellSize(150, 150);
+		gridGroup.setCellSize(130, 130);
 
 		LevelWorld levelWorld = getGame().getLevelWorld(levelWorldIndex);
 		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
@@ -177,7 +177,7 @@ public class LevelListScreen extends BaseScreen {
 	}
 
 	static private float ANIMATION_DURATION = 0.4f;
-	static private int COL_COUNT = 3;
+	static private int COL_COUNT = 4;
 	private TextureRegion mStarOff;
 	private TextureRegion mStarOn;
 	private TextureRegion mLock;
