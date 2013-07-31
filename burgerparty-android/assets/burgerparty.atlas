@@ -310,9 +310,23 @@ customers/pirate-boys/body-brown
   orig: 110, 170
   offset: 0, 0
   index: -1
-customers/pirate-boys/face-boss-happy
+customers/pirate-boys/face-boss-angry
   rotate: false
   xy: 113, 127
+  size: 147, 110
+  orig: 147, 110
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/face-boss-happy
+  rotate: false
+  xy: 262, 127
+  size: 147, 110
+  orig: 147, 110
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/face-boss-neutral
+  rotate: false
+  xy: 113, 15
   size: 147, 110
   orig: 147, 110
   offset: 0, 0

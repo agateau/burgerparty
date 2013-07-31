@@ -38,7 +38,9 @@
 
     <body name="customers/pirate-boys/body-brown" yFace="69"/>
     <top name="customers/pirate-boys/top-boss"/>
-    <face name="customers/pirate-boys/face-boss-happy"/>
+    <face name="customers/pirate-boys/face-boss-happy" yOffset="3"/>
+    <face name="customers/pirate-boys/face-boss-neutral" yOffset="3"/>
+    <face name="customers/pirate-boys/face-boss-angry" yOffset="3"/>
 
     <body name="customers/pirate-girls/body-purple" yFace="69"/>
     <body name="customers/pirate-girls/body-green" yFace="69"/>
