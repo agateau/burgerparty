@@ -46,6 +46,10 @@
     <body name="customers/pirate-girls/body-green" yFace="69"/>
     <top name="customers/pirate-girls/top-red"/>
     <top name="customers/pirate-girls/top-blue"/>
-    <face name="customers/pirate-girls/face-greeneyes-happy"/>
-    <face name="customers/pirate-girls/face-cap-happy" xCenter="54"/>
+    <face name="customers/pirate-girls/face-greeneyes-happy"   xCenter="81"/>
+    <face name="customers/pirate-girls/face-greeneyes-neutral" xCenter="81" yOffset="2"/>
+    <face name="customers/pirate-girls/face-greeneyes-angry"   xCenter="81"/>
+    <face name="customers/pirate-girls/face-cap-happy"   xCenter="54"/>
+    <face name="customers/pirate-girls/face-cap-neutral" xCenter="54" yOffset="6"/>
+    <face name="customers/pirate-girls/face-cap-angry"   xCenter="54" yOffset="4"/>
 </parts>

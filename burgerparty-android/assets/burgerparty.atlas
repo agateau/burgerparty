@@ -258,42 +258,70 @@ filter: Nearest,Nearest
 repeat: none
 customers/pirate-girls/body-green
   rotate: false
-  xy: 1, 62
+  xy: 1, 64
   size: 111, 166
   orig: 111, 166
   offset: 0, 0
   index: -1
 customers/pirate-girls/body-purple
   rotate: false
-  xy: 114, 62
+  xy: 114, 64
   size: 111, 166
   orig: 111, 166
   offset: 0, 0
   index: -1
-customers/pirate-girls/face-greeneyes-happy
+customers/pirate-girls/face-greeneyes-angry
   rotate: false
-  xy: 227, 109
+  xy: 227, 111
   size: 158, 119
   orig: 158, 119
   offset: 0, 0
   index: -1
+customers/pirate-girls/face-greeneyes-happy
+  rotate: false
+  xy: 387, 111
+  size: 158, 119
+  orig: 158, 119
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-greeneyes-neutral
+  rotate: false
+  xy: 547, 113
+  size: 158, 117
+  orig: 158, 117
+  offset: 0, 0
+  index: -1
 customers/pirate-girls/face-cap-happy
   rotate: false
-  xy: 227, 3
+  xy: 707, 126
   size: 126, 104
   orig: 126, 104
   offset: 0, 0
   index: -1
+customers/pirate-girls/face-cap-angry
+  rotate: false
+  xy: 835, 130
+  size: 126, 100
+  orig: 126, 100
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-cap-neutral
+  rotate: false
+  xy: 227, 11
+  size: 126, 98
+  orig: 126, 98
+  offset: 0, 0
+  index: -1
 customers/pirate-girls/top-blue
   rotate: false
-  xy: 387, 167
+  xy: 1, 1
   size: 109, 61
   orig: 109, 61
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-red
   rotate: false
-  xy: 1, 1
+  xy: 355, 50
   size: 105, 59
   orig: 105, 59
   offset: 0, 0
