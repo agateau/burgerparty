@@ -334,7 +334,7 @@ public class WorldView extends AnchorGroup {
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
-				addActor(new LevelFinishedOverlay(mGame, mResult, mAtlas, mSkin));
+				addActor(new LevelFinishedOverlay(mGame, mWorld.getScore(), mAtlas, mSkin));
 			}
 		});
 	}

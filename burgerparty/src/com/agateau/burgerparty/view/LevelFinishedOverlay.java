@@ -3,10 +3,9 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.model.LevelResult;
-import com.agateau.burgerparty.model.ObjectiveResult;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,19 +14,16 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
-import com.esotericsoftware.tablelayout.BaseTableLayout;
 
 public class LevelFinishedOverlay extends Overlay {
-	private BurgerPartyGame mGame;
-	private Array<TextureRegion> mStars = new Array<TextureRegion>();
-	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult result, TextureAtlas atlas, Skin skin) {
+	public LevelFinishedOverlay(BurgerPartyGame game, int score, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		mStars.add(atlas.findRegion("ui/star-off"));
-		mStars.add(atlas.findRegion("ui/star-on"));
+		mStarTextures.add(atlas.findRegion("ui/star-off"));
+		mStarTextures.add(atlas.findRegion("ui/star-on"));
 
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
@@ -36,7 +32,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Label mainLabel = new Label("", skin);
 
-		Actor resultActor = createDetailedResultActor(result, skin);
+		Actor resultActor = createDetailedResultActor(score, skin);
 
 		RoundButton nextButton = null;
 
@@ -54,6 +50,7 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
+		// Top screen message
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
@@ -68,6 +65,7 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		UiUtils.adjustToPrefSize(mainLabel);
 
+		// Layout
 		group.addRule(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
 		group.addRule(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
 		if (nextButton != null) {
@@ -77,26 +75,34 @@ public class LevelFinishedOverlay extends Overlay {
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 	}
 
-	private void addDetailToTable(Table table, String text, boolean on) {
-		table.add(text)
-			.align(BaseTableLayout.CENTER | BaseTableLayout.LEFT)
-			.pad(UiUtils.SPACING);
+	private Actor createDetailedResultActor(int score, Skin skin) {
+		VerticalGroup group = new VerticalGroup();
 
-		Image image = new Image(mStars.get(on ? 1 : 0));
-		table.add(image);
+		Label scoreLabel = new Label(String.valueOf(score), skin, "lcd-font", "lcd-color");
 
-		table.row();
-	}
-
-	private Actor createDetailedResultActor(LevelResult levelResult, Skin skin) {
-		Table table = new Table(skin);
-
-		addDetailToTable(table, "Finished Level", true);
-		for(ObjectiveResult result: levelResult.getObjectiveResults()) {
-			addDetailToTable(table, result.description, result.success);
+		int stars;
+		if (score > 10000) { // FIXME
+			stars = 3;
+		} else if (score > 5000) {
+			stars = 2;
+		} else {
+			stars = 1;
 		}
-		table.setSize(table.getPrefWidth(), table.getPrefHeight());
-		return table;
+
+		HorizontalGroup starGroup = new HorizontalGroup();
+		for (int i = 0; i < 3; ++i) {
+			boolean on = i + 1 <= stars;
+			Image image = new Image(mStarTextures.get(on ? 1 : 0));
+			starGroup.addActor(image);
+		}
+
+		group.addActor(scoreLabel);
+		group.addActor(starGroup);
+
+		// TODO: Get rid of this once AnchorGroup is layout-friendly
+		group.setWidth(group.getPrefWidth());
+		group.setHeight(group.getPrefHeight());
+		return group;
 	}
 
 	private RoundButton createNextButton(String name) {
@@ -121,4 +127,8 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
+
+	private BurgerPartyGame mGame;
+	private Array<TextureRegion> mStarTextures = new Array<TextureRegion>();
+
 }
