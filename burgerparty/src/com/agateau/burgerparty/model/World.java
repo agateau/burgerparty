@@ -7,6 +7,7 @@ import java.util.Set;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
+import com.agateau.burgerparty.utils.Signal3;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -14,11 +15,22 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
+	public enum ScoreType {
+		COMPLETED_HAPPY,
+		COMPLETED_NEUTRAL,
+		COMPLETED_ANGRY,
+		COMBO
+	};
 	public Signal0 burgerFinished = new Signal0();
 	public Signal0 mealFinished = new Signal0();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
+	public Signal3<ScoreType, Integer, Integer> scored = new Signal3<ScoreType, Integer, Integer>();
+
+	private static final int COMPLETED_HAPPY_SCORE = 4000;
+	private static final int COMPLETED_NEUTRAL_SCORE = 2000;
+	private static final int COMPLETED_ANGRY_SCORE = 1000;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -39,6 +51,7 @@ public class World {
 	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
+	private int mScore = 0;
 
 	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
@@ -126,6 +139,16 @@ public class World {
 	public void markTrashingDone() {
 		assert mIsTrashing;
 		mIsTrashing = false;
+	}
+
+	public int getScore() {
+		return mScore;
+	}
+
+	private void increaseScore(ScoreType scoreType, int value) {
+		int old = mScore;
+		mScore += value;
+		scored.emit(scoreType, old, mScore);
 	}
 
 	public void start() {
@@ -250,6 +273,7 @@ public class World {
 	}
 
 	private void onMealFinished() {
+		adjustScore();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
 			setupMeal();
@@ -260,6 +284,23 @@ public class World {
 			LevelResult result = createLevelResult();
 			levelFinished.emit(result);
 		}
+	}
+
+	private void adjustScore() {
+		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
+		ScoreType scoreType;
+		int value;
+		if (mood == Customer.Mood.HAPPY) {
+			scoreType = ScoreType.COMPLETED_HAPPY;
+			value = COMPLETED_HAPPY_SCORE;
+		} else if (mood == Customer.Mood.NEUTRAL) {
+			scoreType = ScoreType.COMPLETED_NEUTRAL;
+			value = COMPLETED_NEUTRAL_SCORE;
+		} else {
+			scoreType = ScoreType.COMPLETED_ANGRY;
+			value = COMPLETED_ANGRY_SCORE;
+		}
+		increaseScore(scoreType, value);
 	}
 
 	private LevelResult createLevelResult() {

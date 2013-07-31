@@ -12,6 +12,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
+import com.agateau.burgerparty.utils.Signal3;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
@@ -48,6 +49,7 @@ public class WorldView extends AnchorGroup {
 	private MealView mDoneMealView;
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
+	private Label mScoreDisplay;
 	private Image mPauseButton;
 	private Image mWorkbench;
 	private Bubble mBubble;
@@ -74,6 +76,7 @@ public class WorldView extends AnchorGroup {
 		setupWorkbench();
 		setupTargetMealView();
 		setupInventoryView();
+		setupScoreDisplay();
 		setupTimerDisplay();
 		setupAnchors();
 
@@ -106,6 +109,12 @@ public class WorldView extends AnchorGroup {
 			@Override
 			public void handle() {
 				onTrashing();
+			}
+		});
+		mWorld.scored.connect(mHandlers, new Signal3.Handler<World.ScoreType, Integer, Integer>() {
+			@Override
+			public void handle(World.ScoreType scoreType, Integer oldScore, Integer newScore) {
+				updateScoreDisplay();
 			}
 		});
 
@@ -228,6 +237,12 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
+	private void setupScoreDisplay() {
+		mScoreDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
+		mScoreDisplay.setAlignment(Align.left);
+		updateScoreDisplay();
+	}
+
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
 		mTimerDisplay.setAlignment(Align.center);
@@ -241,9 +256,16 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupAnchors() {
+		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+	}
+
+	private void updateScoreDisplay() {
+		String txt = String.format("%07d", mWorld.getScore());
+		mScoreDisplay.setText(txt);
+		UiUtils.adjustToPrefSize(mScoreDisplay);
 	}
 
 	private void updateTimerDisplay() {
