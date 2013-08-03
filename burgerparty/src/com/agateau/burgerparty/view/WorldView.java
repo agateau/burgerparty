@@ -12,7 +12,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.Signal3;
+import com.agateau.burgerparty.utils.Signal2;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
@@ -57,7 +57,6 @@ public class WorldView extends AnchorGroup {
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
 	private PauseOverlay mPauseOverlay;
-	private LevelResult mResult = null;
 
 	private float mWidth = -1;
 	private float mHeight = -1;
@@ -85,9 +84,9 @@ public class WorldView extends AnchorGroup {
 				onBurgerFinished();
 			}
 		});
-		mWorld.mealFinished.connect(mHandlers, new Signal0.Handler() {
-			public void handle() {
-				onMealFinished();
+		mWorld.mealFinished.connect(mHandlers, new Signal2.Handler<World.ScoreType, Integer>() {
+			public void handle(World.ScoreType scoreType, Integer delta) {
+				onMealFinished(scoreType, delta);
 			}
 		});
 		mWorld.getMealExtra().trashed.connect(mHandlers, new Signal0.Handler() {
@@ -109,12 +108,6 @@ public class WorldView extends AnchorGroup {
 			@Override
 			public void handle() {
 				onTrashing();
-			}
-		});
-		mWorld.scored.connect(mHandlers, new Signal3.Handler<World.ScoreType, Integer, Integer>() {
-			@Override
-			public void handle(World.ScoreType scoreType, Integer oldScore, Integer newScore) {
-				onScored(scoreType, oldScore, newScore);
 			}
 		});
 
@@ -316,31 +309,26 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
 	}
 
-	private void onMealFinished() {
+	private void onMealFinished(World.ScoreType scoreType, int delta) {
 		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
+		updateScoreDisplay();
+		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
+		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
+		new ScoreFeedbackActor(this, x, y, scoreType, delta);
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
-				goToNextCustomer();
+				if (mWaitingCustomerViews.size > 0) {
+					goToNextCustomer();
+				} else {
+					addActor(new LevelFinishedOverlay(mGame, mWorld.getScore(), mAtlas, mSkin));
+				}
 			}
 		});
 	}
 
 	private void onLevelFinished(LevelResult result) {
-		mResult = result;
 		mGame.onCurrentLevelFinished(result);
-		slideDoneMealView(new Runnable() {
-			@Override
-			public void run() {
-				addActor(new LevelFinishedOverlay(mGame, mWorld.getScore(), mAtlas, mSkin));
-			}
-		});
-	}
-
-	private void onScored(World.ScoreType scoreType, int oldScore, int newScore) {
-		int delta = newScore - oldScore;
-		new ScoreFeedbackActor(this, scoreType, delta);
-		updateScoreDisplay();
 	}
 
 	private void goToNextCustomer() {

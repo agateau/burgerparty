@@ -7,7 +7,7 @@ import java.util.Set;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.Signal3;
+import com.agateau.burgerparty.utils.Signal2;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -22,11 +22,10 @@ public class World {
 		COMBO
 	};
 	public Signal0 burgerFinished = new Signal0();
-	public Signal0 mealFinished = new Signal0();
+	public Signal2<ScoreType, Integer> mealFinished = new Signal2<ScoreType, Integer>();
 	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
-	public Signal3<ScoreType, Integer, Integer> scored = new Signal3<ScoreType, Integer, Integer>();
 
 	private static final int COMPLETED_HAPPY_SCORE = 4000;
 	private static final int COMPLETED_NEUTRAL_SCORE = 2000;
@@ -143,12 +142,6 @@ public class World {
 
 	public int getScore() {
 		return mScore;
-	}
-
-	private void increaseScore(ScoreType scoreType, int value) {
-		int old = mScore;
-		mScore += value;
-		scored.emit(scoreType, old, mScore);
 	}
 
 	public void start() {
@@ -273,12 +266,11 @@ public class World {
 	}
 
 	private void onMealFinished() {
-		adjustScore();
+		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
 			setupMeal();
 			generateTarget();
-			mealFinished.emit();
 		} else {
 			mTimer.stop();
 			LevelResult result = createLevelResult();
@@ -286,7 +278,7 @@ public class World {
 		}
 	}
 
-	private void adjustScore() {
+	private void emitMealFinished() {
 		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
 		ScoreType scoreType;
 		int value;
@@ -300,7 +292,8 @@ public class World {
 			scoreType = ScoreType.COMPLETED_ANGRY;
 			value = COMPLETED_ANGRY_SCORE;
 		}
-		increaseScore(scoreType, value);
+		mScore += value;
+		mealFinished.emit(scoreType, value);
 	}
 
 	private LevelResult createLevelResult() {
