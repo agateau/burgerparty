@@ -179,16 +179,16 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupCustomers() {
-		Array<Customer> lst = mWorld.getCustomers();
-		lst.reverse();
-		for (Customer customer: lst) {
+		for (Customer customer: mWorld.getCustomers()) {
 			CustomerView customerView = mCustomerFactory.create(customer);
-			addActor(customerView);
 			customerView.setX(-customerView.getWidth());
 			mWaitingCustomerViews.add(customerView);
 		}
-		// Reverse array so that customer with highest Z index is first
-		mWaitingCustomerViews.reverse();
+		// Add actors starting from the end of the list so that the Z order is correct
+		// (mWaitingCustomerViews[0] is in front of mWaitingCustomerViews[1])
+		for (int i = mWaitingCustomerViews.size - 1; i >= 0; --i) {
+			addActor(mWaitingCustomerViews.get(i));
+		}
 	}
 
 	private void setupWorkbench() {
