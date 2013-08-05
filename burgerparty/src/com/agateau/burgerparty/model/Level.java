@@ -22,6 +22,7 @@ public class Level {
 
 	public Definition definition = new Definition();
 	public int stars = -1;
+	public int score = 0;
 
 	public LevelWorld getLevelWorld() {
 		return mLevelWorld;

@@ -1,25 +1,28 @@
 package com.agateau.burgerparty.model;
 
-import com.badlogic.gdx.utils.Array;
-
 public class LevelResult {
+	public LevelResult(Level level, int score, int remainingSeconds) {
+		mLevel = level;
+		mScore = score;
+		mRemainingSeconds = remainingSeconds;
+	}
+
 	public int computeStars() {
-		int stars = 1;
-		for(ObjectiveResult result: mObjectiveResults) {
-			if (result.success) {
-				stars++;
-			}
+		// FIXME: Get star minimum scores from mLevel
+		if (mScore > 10000) {
+			return 3;
+		} else if (mScore > 5000) {
+			return 2;
+		} else {
+			return 1;
 		}
-		return stars;
 	}
 
-	public void addObjectiveResult(ObjectiveResult result) {
-		mObjectiveResults.add(result);
+	public int getScore() {
+		return mScore;
 	}
 
-	public Array<ObjectiveResult> getObjectiveResults() {
-		return mObjectiveResults;
-	}
-
-	private Array<ObjectiveResult> mObjectiveResults = new Array<ObjectiveResult>();
+	private Level mLevel;
+	private int mScore;
+	private int mRemainingSeconds;
 }

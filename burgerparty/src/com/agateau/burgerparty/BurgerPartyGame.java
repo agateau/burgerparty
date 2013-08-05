@@ -64,7 +64,9 @@ public class BurgerPartyGame extends Game {
 		}
 		Array<Progress.Item> lst = Progress.load(handle);
 		for(Progress.Item item: lst) {
-			mLevelWorlds.get(item.levelWorld - 1).getLevel(item.level - 1).stars = item.stars;
+			Level level = mLevelWorlds.get(item.levelWorld - 1).getLevel(item.level - 1);
+			level.stars = item.stars;
+			level.score = item.score;
 		}
 	}
 
@@ -80,6 +82,7 @@ public class BurgerPartyGame extends Game {
 					item.levelWorld = levelWorldIndex + 1;
 					item.level = levelIndex + 1;
 					item.stars = level.stars;
+					item.score = level.score;
 					lst.add(item);
 				}
 			}
@@ -107,9 +110,9 @@ public class BurgerPartyGame extends Game {
 	public void onCurrentLevelFinished(LevelResult result) {
 		LevelWorld currentGroup = mLevelWorlds.get(mLevelWorldIndex);
 		Level currentLevel = currentGroup.getLevel(mLevelIndex);
-		int stars = result.computeStars();
-		if (stars > currentLevel.stars) {
-			currentLevel.stars = stars;
+		if (result.getScore() > currentLevel.score) {
+			currentLevel.score = result.getScore();
+			currentLevel.stars = result.computeStars();
 		}
 		// Unlock next level if necessary
 		Level next = null;

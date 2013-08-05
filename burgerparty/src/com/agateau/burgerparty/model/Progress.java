@@ -13,6 +13,7 @@ public class Progress {
 		public int levelWorld;
 		public int level;
 		public int stars;
+		public int score = 0;
 	}
 
 	public static Array<Item> load(FileHandle handle) {
@@ -35,6 +36,7 @@ public class Progress {
 			item.levelWorld = element.getIntAttribute("world", 1);
 			item.level = element.getIntAttribute("level");
 			item.stars = element.getIntAttribute("stars");
+			item.score = element.getIntAttribute("score", 0);
 			lst.add(item);
 		}
 		return lst;
@@ -49,6 +51,7 @@ public class Progress {
 					.attribute("world", item.levelWorld)
 					.attribute("level", item.level)
 					.attribute("stars", item.stars)
+					.attribute("score", item.score)
 				.pop();
 			}
 			writer.close();

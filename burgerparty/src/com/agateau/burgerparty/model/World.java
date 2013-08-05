@@ -273,8 +273,7 @@ public class World {
 			generateTarget();
 		} else {
 			mTimer.stop();
-			LevelResult result = createLevelResult();
-			levelFinished.emit(result);
+			levelFinished.emit(new LevelResult(mLevel, mScore, mRemainingSeconds));
 		}
 	}
 
@@ -294,13 +293,5 @@ public class World {
 		}
 		mScore += value;
 		mealFinished.emit(scoreType, value);
-	}
-
-	private LevelResult createLevelResult() {
-		LevelResult result = new LevelResult();
-		for (Objective obj: mLevel.definition.objectives) {
-			result.addObjectiveResult(obj.computeResult(this));
-		}
-		return result;
 	}
 }
