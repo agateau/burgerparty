@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
@@ -19,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
 public class LevelFinishedOverlay extends Overlay {
-	public LevelFinishedOverlay(BurgerPartyGame game, int score, TextureAtlas atlas, Skin skin) {
+	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
 		mStarTextures.add(atlas.findRegion("ui/star-off"));
@@ -32,7 +33,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Label mainLabel = new Label("", skin);
 
-		Actor resultActor = createDetailedResultActor(score, skin);
+		Actor resultActor = createDetailedResultActor(levelResult, skin);
 
 		RoundButton nextButton = null;
 
@@ -75,19 +76,11 @@ public class LevelFinishedOverlay extends Overlay {
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 	}
 
-	private Actor createDetailedResultActor(int score, Skin skin) {
+	private Actor createDetailedResultActor(LevelResult result, Skin skin) {
 		VerticalGroup group = new VerticalGroup();
 
-		Label scoreLabel = new Label(String.valueOf(score), skin, "lcd-font", "lcd-color");
-
-		int stars;
-		if (score > 10000) { // FIXME
-			stars = 3;
-		} else if (score > 5000) {
-			stars = 2;
-		} else {
-			stars = 1;
-		}
+		Label scoreLabel = new Label(String.valueOf(result.getScore()), skin, "lcd-font", "lcd-color");
+		int stars = result.computeStars();
 
 		HorizontalGroup starGroup = new HorizontalGroup();
 		for (int i = 0; i < 3; ++i) {

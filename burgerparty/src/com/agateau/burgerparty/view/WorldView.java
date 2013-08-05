@@ -94,11 +94,6 @@ public class WorldView extends AnchorGroup {
 				onMealExtraTrashed();
 			}
 		});
-		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
-			public void handle(LevelResult result) {
-				onLevelFinished(result);
-			}
-		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				showGameOverOverlay();
@@ -321,14 +316,16 @@ public class WorldView extends AnchorGroup {
 				if (mWaitingCustomerViews.size > 0) {
 					goToNextCustomer();
 				} else {
-					addActor(new LevelFinishedOverlay(mGame, mWorld.getScore(), mAtlas, mSkin));
+					showLevelFinishedOverlay();
 				}
 			}
 		});
 	}
 
-	private void onLevelFinished(LevelResult result) {
+	private void showLevelFinishedOverlay() {
+		LevelResult result = mWorld.getLevelResult();
 		mGame.onCurrentLevelFinished(result);
+		addActor(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
 	}
 
 	private void goToNextCustomer() {
