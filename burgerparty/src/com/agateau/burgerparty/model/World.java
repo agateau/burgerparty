@@ -7,7 +7,6 @@ import java.util.Set;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.Signal2;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -15,20 +14,26 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
-	public enum ScoreType {
-		COMPLETED_HAPPY,
-		COMPLETED_NEUTRAL,
-		COMPLETED_ANGRY,
-		COMBO
-	};
+	public static class Score {
+		public enum Type {
+			ANGRY,
+			NEUTRAL,
+			HAPPY,
+			COMBO
+		};
+		public Type type;
+		public String message = new String();
+		public int delta;
+	}
 	public Signal0 burgerFinished = new Signal0();
-	public Signal2<ScoreType, Integer> mealFinished = new Signal2<ScoreType, Integer>();
+	public Signal1<Score> mealFinished = new Signal1<Score>();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
 
-	private static final int COMPLETED_HAPPY_SCORE = 4000;
-	private static final int COMPLETED_NEUTRAL_SCORE = 2000;
-	private static final int COMPLETED_ANGRY_SCORE = 1000;
+	private static final int COMBO_SCORE = 1000;
+	private static final int HAPPY_SCORE = 4000;
+	private static final int NEUTRAL_SCORE = 2000;
+	private static final int ANGRY_SCORE = 1000;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -281,19 +286,33 @@ public class World {
 
 	private void emitMealFinished() {
 		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
-		ScoreType scoreType;
-		int value;
+		Score score = new Score();
 		if (mood == Customer.Mood.HAPPY) {
-			scoreType = ScoreType.COMPLETED_HAPPY;
-			value = COMPLETED_HAPPY_SCORE;
+			int count = 0;
+			for (int i = mActiveCustomerIndex; i >= 0; --i) {
+				if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
+					count++;
+				} else {
+					break;
+				}
+			}
+			if (count > 1) {
+				score.type = Score.Type.COMBO;
+				score.delta = HAPPY_SCORE + COMBO_SCORE * count;
+				score.message = count + "x combo!";
+			} else {
+				score.type = Score.Type.HAPPY;
+				score.delta = HAPPY_SCORE;
+				score.message = "Happy customer!";
+			}
 		} else if (mood == Customer.Mood.NEUTRAL) {
-			scoreType = ScoreType.COMPLETED_NEUTRAL;
-			value = COMPLETED_NEUTRAL_SCORE;
+			score.type = Score.Type.NEUTRAL;
+			score.delta = NEUTRAL_SCORE;
 		} else {
-			scoreType = ScoreType.COMPLETED_ANGRY;
-			value = COMPLETED_ANGRY_SCORE;
+			score.type = Score.Type.ANGRY;
+			score.delta = ANGRY_SCORE;
 		}
-		mScore += value;
-		mealFinished.emit(scoreType, value);
+		mScore += score.delta;
+		mealFinished.emit(score);
 	}
 }

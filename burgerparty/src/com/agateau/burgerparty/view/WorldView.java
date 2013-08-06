@@ -12,7 +12,6 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.Signal2;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
@@ -84,9 +83,9 @@ public class WorldView extends AnchorGroup {
 				onBurgerFinished();
 			}
 		});
-		mWorld.mealFinished.connect(mHandlers, new Signal2.Handler<World.ScoreType, Integer>() {
-			public void handle(World.ScoreType scoreType, Integer delta) {
-				onMealFinished(scoreType, delta);
+		mWorld.mealFinished.connect(mHandlers, new Signal1.Handler<World.Score>() {
+			public void handle(World.Score score) {
+				onMealFinished(score);
 			}
 		});
 		mWorld.getMealExtra().trashed.connect(mHandlers, new Signal0.Handler() {
@@ -304,12 +303,12 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
 	}
 
-	private void onMealFinished(World.ScoreType scoreType, int delta) {
+	private void onMealFinished(World.Score score) {
 		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-		new ScoreFeedbackActor(this, x, y, scoreType, delta);
+		new ScoreFeedbackActor(this, x, y, score);
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {

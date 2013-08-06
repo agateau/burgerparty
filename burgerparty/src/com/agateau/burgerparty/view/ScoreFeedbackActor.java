@@ -3,7 +3,6 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.utils.AnimScript;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -11,9 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class ScoreFeedbackActor extends Label {
 	private static final float FEEDBACK_ACTION_DURATION = 1.5f;
-	public ScoreFeedbackActor(Actor parent, float mealXCenter, float mealY, World.ScoreType scoreType, int delta) {
+	public ScoreFeedbackActor(Actor parent, float mealXCenter, float mealY, World.Score score) {
 		super("", Kernel.getSkin(), "score-feedback");
-		setText("+" + delta + "!");
+		String text = score.message;
+		if (!text.isEmpty()) {
+			text += "\n";
+		}
+		text += "+" + score.delta;
+		setText(text);
 		initAnim();
 		parent.getStage().addActor(this);
 		Action act = sAnimScript.createAction(parent.getWidth(), parent.getHeight(), FEEDBACK_ACTION_DURATION);
