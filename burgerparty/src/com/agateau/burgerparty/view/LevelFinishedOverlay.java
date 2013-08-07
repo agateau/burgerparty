@@ -29,9 +29,21 @@ public class LevelFinishedOverlay extends Overlay {
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
+		mLevel = levelResult.getLevel();
+		mScore = levelResult.getScore();
+		mRemainingSeconds = levelResult.getRemainingSeconds();
+
+		// Store final score *now*
+		mGame.onCurrentLevelFinished(mScore + EXTRA_TIME_SCORE * mRemainingSeconds);
+
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off")));
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));
+		setupWidgets(skin);
 
+		consumeRemainingSeconds();
+	}
+
+	private void setupWidgets(Skin skin) {
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
 		group.setFillParent(true);
@@ -39,7 +51,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		Label mainLabel = new Label("", skin);
 
-		Actor resultActor = createDetailedResultActor(levelResult, skin);
+		Actor resultActor = createDetailedResultActor(skin);
 
 		RoundButton nextButton = null;
 
@@ -80,45 +92,12 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
-
-		mLevel = levelResult.getLevel();
-		mScore = levelResult.getScore();
-		mRemainingSeconds = levelResult.getRemainingSeconds();
-
-		// Store final score *now*
-		mGame.onCurrentLevelFinished(mScore + EXTRA_TIME_SCORE * mRemainingSeconds);
-
-		consumeRemainingSeconds();
 	}
 
-	private void consumeRemainingSeconds() {
-		if (mRemainingSeconds == 0) {
-			lightUpStars();
-			return;
-		}
-		mScore += EXTRA_TIME_SCORE;
-		mScoreLabel.setText(String.valueOf(mScore));
-		--mRemainingSeconds;
-		Timer.schedule(new Timer.Task() {
-			@Override
-			public void run() {
-				consumeRemainingSeconds();
-			}
-		}, EXTRA_TIME_UPDATE_INTERVAL);
-	}
-
-	private void lightUpStars() {
-		int stars = mLevel.getStarsFor(mScore);
-		Drawable texture = mStarTextures.get(1);
-		for (int i = 0; i < stars; ++i) {
-			mStarImages.get(i).setDrawable(texture);
-		}
-	}
-
-	private Actor createDetailedResultActor(LevelResult result, Skin skin) {
+	private Actor createDetailedResultActor(Skin skin) {
 		VerticalGroup group = new VerticalGroup();
 
-		mScoreLabel = new Label(String.valueOf(result.getScore()), skin, "lcd-font", "lcd-color");
+		mScoreLabel = new Label(String.valueOf(mScore), skin, "lcd-font", "lcd-color");
 		HorizontalGroup starGroup = new HorizontalGroup();
 
 		Drawable texture = mStarTextures.get(0);
@@ -145,6 +124,30 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 		return button;
+	}
+
+	private void consumeRemainingSeconds() {
+		if (mRemainingSeconds == 0) {
+			lightUpStars();
+			return;
+		}
+		mScore += EXTRA_TIME_SCORE;
+		mScoreLabel.setText(String.valueOf(mScore));
+		--mRemainingSeconds;
+		Timer.schedule(new Timer.Task() {
+			@Override
+			public void run() {
+				consumeRemainingSeconds();
+			}
+		}, EXTRA_TIME_UPDATE_INTERVAL);
+	}
+
+	private void lightUpStars() {
+		int stars = mLevel.getStarsFor(mScore);
+		Drawable texture = mStarTextures.get(1);
+		for (int i = 0; i < stars; ++i) {
+			mStarImages.get(i).setDrawable(texture);
+		}
 	}
 
 	private void goToNextLevel() {
