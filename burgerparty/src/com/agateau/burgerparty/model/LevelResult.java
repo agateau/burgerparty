@@ -15,6 +15,10 @@ public class LevelResult {
 		return mScore;
 	}
 
+	public int getRemainingSeconds() {
+		return mRemainingSeconds;
+	}
+
 	private Level mLevel;
 	private int mScore;
 	private int mRemainingSeconds;

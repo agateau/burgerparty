@@ -20,8 +20,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 
 public class LevelFinishedOverlay extends Overlay {
+	private static final int EXTRA_TIME_SCORE = 100;
+	private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
+
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
@@ -77,22 +81,41 @@ public class LevelFinishedOverlay extends Overlay {
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 
-		// FIXME: UGLY
-		Level level = levelResult.getLevel();
-		level.score = levelResult.getScore();
-		int stars = level.getStars();
+		mLevel = levelResult.getLevel();
+		mScore = levelResult.getScore();
+		mRemainingSeconds = levelResult.getRemainingSeconds();
+		consumeRemainingSeconds();
+	}
+
+	private void consumeRemainingSeconds() {
+		if (mRemainingSeconds == 0) {
+			lightUpStars();
+			mGame.onCurrentLevelFinished(mScore);
+			return;
+		}
+		mScore += EXTRA_TIME_SCORE;
+		mScoreLabel.setText(String.valueOf(mScore));
+		--mRemainingSeconds;
+		Timer.schedule(new Timer.Task() {
+			@Override
+			public void run() {
+				consumeRemainingSeconds();
+			}
+		}, EXTRA_TIME_UPDATE_INTERVAL);
+	}
+
+	private void lightUpStars() {
+		int stars = mLevel.getStarsFor(mScore);
 		Drawable texture = mStarTextures.get(1);
 		for (int i = 0; i < stars; ++i) {
 			mStarImages.get(i).setDrawable(texture);
 		}
-
-		mGame.onCurrentLevelFinished(level.score);
 	}
 
 	private Actor createDetailedResultActor(LevelResult result, Skin skin) {
 		VerticalGroup group = new VerticalGroup();
 
-		Label scoreLabel = new Label(String.valueOf(result.getScore()), skin, "lcd-font", "lcd-color");
+		mScoreLabel = new Label(String.valueOf(result.getScore()), skin, "lcd-font", "lcd-color");
 		HorizontalGroup starGroup = new HorizontalGroup();
 
 		Drawable texture = mStarTextures.get(0);
@@ -102,7 +125,7 @@ public class LevelFinishedOverlay extends Overlay {
 			starGroup.addActor(image);
 		}
 
-		group.addActor(scoreLabel);
+		group.addActor(mScoreLabel);
 		group.addActor(starGroup);
 
 		// TODO: Get rid of this once AnchorGroup is layout-friendly
@@ -122,6 +145,23 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private void goToNextLevel() {
+		if (mRemainingSeconds > 0) {
+			mScore += mRemainingSeconds * EXTRA_TIME_SCORE;
+			mRemainingSeconds = 0;
+			mScoreLabel.setText(String.valueOf(mScore));
+			consumeRemainingSeconds();
+			Timer.schedule(new Timer.Task() {
+				@Override
+				public void run() {
+					doGoToNextLevel();
+				}
+			}, 0.5f);
+		} else {
+			doGoToNextLevel();
+		}
+	}
+
+	private void doGoToNextLevel() {
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
@@ -135,6 +175,10 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private BurgerPartyGame mGame;
+	private Level mLevel;
+	private int mScore;
+	private int mRemainingSeconds;
 	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
+	private Label mScoreLabel;
 	private Array<Image> mStarImages = new Array<Image>();
 }
