@@ -84,13 +84,16 @@ public class LevelFinishedOverlay extends Overlay {
 		mLevel = levelResult.getLevel();
 		mScore = levelResult.getScore();
 		mRemainingSeconds = levelResult.getRemainingSeconds();
+
+		// Store final score *now*
+		mGame.onCurrentLevelFinished(mScore + EXTRA_TIME_SCORE * mRemainingSeconds);
+
 		consumeRemainingSeconds();
 	}
 
 	private void consumeRemainingSeconds() {
 		if (mRemainingSeconds == 0) {
 			lightUpStars();
-			mGame.onCurrentLevelFinished(mScore);
 			return;
 		}
 		mScore += EXTRA_TIME_SCORE;
