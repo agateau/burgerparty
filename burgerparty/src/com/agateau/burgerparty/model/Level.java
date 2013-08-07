@@ -23,13 +23,21 @@ public class Level {
 	public int score = -1;
 
 	public int getStars() {
+		return getStarsFor(score);
+	}
+
+	public int getStarsFor(int value) {
 		// FIXME: Get star minimum scores from definition
-		if (score > 30000) {
+		if (value >= 30000) {
 			return 3;
-		} else if (score > 15000) {
+		} else if (value >= 15000) {
 			return 2;
-		} else {
+		} else if (value > 0) {
 			return 1;
+		} else if (value == 0) {
+			return 0;
+		} else {
+			return -1;
 		}
 	}
 
