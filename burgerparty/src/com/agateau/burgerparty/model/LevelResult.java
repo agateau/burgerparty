@@ -7,15 +7,8 @@ public class LevelResult {
 		mRemainingSeconds = remainingSeconds;
 	}
 
-	public int computeStars() {
-		// FIXME: Get star minimum scores from mLevel
-		if (mScore > 10000) {
-			return 3;
-		} else if (mScore > 5000) {
-			return 2;
-		} else {
-			return 1;
-		}
+	public Level getLevel() {
+		return mLevel;
 	}
 
 	public int getScore() {

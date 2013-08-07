@@ -20,8 +20,18 @@ public class Level {
 	}
 
 	public Definition definition = new Definition();
-	public int stars = -1;
-	public int score = 0;
+	public int score = -1;
+
+	public int getStars() {
+		// FIXME: Get star minimum scores from definition
+		if (score > 30000) {
+			return 3;
+		} else if (score > 15000) {
+			return 2;
+		} else {
+			return 1;
+		}
+	}
 
 	public LevelWorld getLevelWorld() {
 		return mLevelWorld;

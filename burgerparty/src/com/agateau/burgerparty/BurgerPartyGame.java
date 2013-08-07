@@ -2,7 +2,6 @@ package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
@@ -56,7 +55,7 @@ public class BurgerPartyGame extends Game {
 
 	private void loadLevelProgress() {
 		// At least, unlock first level
-		mLevelWorlds.get(0).getLevel(0).stars = 0;
+		mLevelWorlds.get(0).getLevel(0).score = 0;
 
 		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
 		if (!handle.exists()) {
@@ -65,7 +64,6 @@ public class BurgerPartyGame extends Game {
 		Array<Progress.Item> lst = Progress.load(handle);
 		for(Progress.Item item: lst) {
 			Level level = mLevelWorlds.get(item.levelWorld - 1).getLevel(item.level - 1);
-			level.stars = item.stars;
 			level.score = item.score;
 		}
 	}
@@ -77,11 +75,10 @@ public class BurgerPartyGame extends Game {
 		for (LevelWorld world: mLevelWorlds) {
 			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 				Level level = world.getLevel(levelIndex);
-				if (level.stars > -1) {
+				if (level.score > -1) {
 					Progress.Item item = new Progress.Item();
 					item.levelWorld = levelWorldIndex + 1;
 					item.level = levelIndex + 1;
-					item.stars = level.stars;
 					item.score = level.score;
 					lst.add(item);
 				}
@@ -107,12 +104,11 @@ public class BurgerPartyGame extends Game {
 		return mLevelWorlds.get(index);
 	}
 
-	public void onCurrentLevelFinished(LevelResult result) {
+	public void onCurrentLevelFinished(int score) {
 		LevelWorld currentGroup = mLevelWorlds.get(mLevelWorldIndex);
 		Level currentLevel = currentGroup.getLevel(mLevelIndex);
-		if (result.getScore() > currentLevel.score) {
-			currentLevel.score = result.getScore();
-			currentLevel.stars = result.computeStars();
+		if (score > currentLevel.score) {
+			currentLevel.score = score;
 		}
 		// Unlock next level if necessary
 		Level next = null;
@@ -121,8 +117,8 @@ public class BurgerPartyGame extends Game {
 		} else if (mLevelWorldIndex < mLevelWorlds.size - 1){
 			next = mLevelWorlds.get(mLevelWorldIndex + 1).getLevel(0);
 		}
-		if (next != null && next.stars == -1) {
-			next.stars = 0;
+		if (next != null && next.score == -1) {
+			next.score = 0;
 		}
 		saveLevelProgress();
 	}

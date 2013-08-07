@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
@@ -10,21 +11,22 @@ import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 
 public class LevelFinishedOverlay extends Overlay {
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		mStarTextures.add(atlas.findRegion("ui/star-off"));
-		mStarTextures.add(atlas.findRegion("ui/star-on"));
+		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off")));
+		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));
 
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(UiUtils.SPACING);
@@ -74,18 +76,29 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
+
+		// FIXME: UGLY
+		Level level = levelResult.getLevel();
+		level.score = levelResult.getScore();
+		int stars = level.getStars();
+		Drawable texture = mStarTextures.get(1);
+		for (int i = 0; i < stars; ++i) {
+			mStarImages.get(i).setDrawable(texture);
+		}
+
+		mGame.onCurrentLevelFinished(level.score);
 	}
 
 	private Actor createDetailedResultActor(LevelResult result, Skin skin) {
 		VerticalGroup group = new VerticalGroup();
 
 		Label scoreLabel = new Label(String.valueOf(result.getScore()), skin, "lcd-font", "lcd-color");
-		int stars = result.computeStars();
-
 		HorizontalGroup starGroup = new HorizontalGroup();
+
+		Drawable texture = mStarTextures.get(0);
 		for (int i = 0; i < 3; ++i) {
-			boolean on = i + 1 <= stars;
-			Image image = new Image(mStarTextures.get(on ? 1 : 0));
+			Image image = new Image(texture);
+			mStarImages.add(image);
 			starGroup.addActor(image);
 		}
 
@@ -122,6 +135,6 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private BurgerPartyGame mGame;
-	private Array<TextureRegion> mStarTextures = new Array<TextureRegion>();
-
+	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
+	private Array<Image> mStarImages = new Array<Image>();
 }

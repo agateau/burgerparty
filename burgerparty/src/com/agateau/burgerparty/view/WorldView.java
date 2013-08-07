@@ -323,7 +323,6 @@ public class WorldView extends AnchorGroup {
 
 	private void showLevelFinishedOverlay() {
 		LevelResult result = mWorld.getLevelResult();
-		mGame.onCurrentLevelFinished(result);
 		addActor(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
 	}
 
