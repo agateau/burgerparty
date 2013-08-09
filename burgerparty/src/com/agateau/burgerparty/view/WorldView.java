@@ -48,6 +48,7 @@ public class WorldView extends AnchorGroup {
 	private MealView mDoneMealView;
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
+	private Label mScoreDisplay;
 	private Image mPauseButton;
 	private Image mWorkbench;
 	private Bubble mBubble;
@@ -55,7 +56,6 @@ public class WorldView extends AnchorGroup {
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
 	private PauseOverlay mPauseOverlay;
-	private LevelResult mResult = null;
 
 	private float mWidth = -1;
 	private float mHeight = -1;
@@ -74,6 +74,7 @@ public class WorldView extends AnchorGroup {
 		setupWorkbench();
 		setupTargetMealView();
 		setupInventoryView();
+		setupScoreDisplay();
 		setupTimerDisplay();
 		setupAnchors();
 
@@ -82,19 +83,14 @@ public class WorldView extends AnchorGroup {
 				onBurgerFinished();
 			}
 		});
-		mWorld.mealFinished.connect(mHandlers, new Signal0.Handler() {
-			public void handle() {
-				onMealFinished();
+		mWorld.mealFinished.connect(mHandlers, new Signal1.Handler<World.Score>() {
+			public void handle(World.Score score) {
+				onMealFinished(score);
 			}
 		});
 		mWorld.getMealExtra().trashed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				onMealExtraTrashed();
-			}
-		});
-		mWorld.levelFinished.connect(mHandlers, new Signal1.Handler<LevelResult>() {
-			public void handle(LevelResult result) {
-				onLevelFinished(result);
 			}
 		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
@@ -121,8 +117,6 @@ public class WorldView extends AnchorGroup {
 				}
 			}, MealView.TRASH_ACTION_DURATION);
 	}
-
-
 
 	public void pause() {
 		mWorld.pause();
@@ -179,16 +173,16 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupCustomers() {
-		Array<Customer> lst = mWorld.getCustomers();
-		lst.reverse();
-		for (Customer customer: lst) {
+		for (Customer customer: mWorld.getCustomers()) {
 			CustomerView customerView = mCustomerFactory.create(customer);
-			addActor(customerView);
 			customerView.setX(-customerView.getWidth());
 			mWaitingCustomerViews.add(customerView);
 		}
-		// Reverse array so that customer with highest Z index is first
-		mWaitingCustomerViews.reverse();
+		// Add actors starting from the end of the list so that the Z order is correct
+		// (mWaitingCustomerViews[0] is in front of mWaitingCustomerViews[1])
+		for (int i = mWaitingCustomerViews.size - 1; i >= 0; --i) {
+			addActor(mWaitingCustomerViews.get(i));
+		}
 	}
 
 	private void setupWorkbench() {
@@ -228,6 +222,12 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
+	private void setupScoreDisplay() {
+		mScoreDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
+		mScoreDisplay.setAlignment(Align.left);
+		updateScoreDisplay();
+	}
+
 	private void setupTimerDisplay() {
 		mTimerDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
 		mTimerDisplay.setAlignment(Align.center);
@@ -241,9 +241,16 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupAnchors() {
+		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
 		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+	}
+
+	private void updateScoreDisplay() {
+		String txt = String.format("%07d", mWorld.getScore());
+		mScoreDisplay.setText(txt);
+		UiUtils.adjustToPrefSize(mScoreDisplay);
 	}
 
 	private void updateTimerDisplay() {
@@ -296,25 +303,27 @@ public class WorldView extends AnchorGroup {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
 	}
 
-	private void onMealFinished() {
+	private void onMealFinished(World.Score score) {
 		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
+		updateScoreDisplay();
+		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
+		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
+		new ScoreFeedbackActor(this, x, y, score);
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {
-				goToNextCustomer();
+				if (mWaitingCustomerViews.size > 0) {
+					goToNextCustomer();
+				} else {
+					showLevelFinishedOverlay();
+				}
 			}
 		});
 	}
 
-	private void onLevelFinished(LevelResult result) {
-		mResult = result;
-		mGame.onCurrentLevelFinished(result);
-		slideDoneMealView(new Runnable() {
-			@Override
-			public void run() {
-				addActor(new LevelFinishedOverlay(mGame, mResult, mAtlas, mSkin));
-			}
-		});
+	private void showLevelFinishedOverlay() {
+		LevelResult result = mWorld.getLevelResult();
+		addActor(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
 	}
 
 	private void goToNextCustomer() {

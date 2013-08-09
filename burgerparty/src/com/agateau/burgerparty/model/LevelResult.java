@@ -1,25 +1,25 @@
 package com.agateau.burgerparty.model;
 
-import com.badlogic.gdx.utils.Array;
-
 public class LevelResult {
-	public int computeStars() {
-		int stars = 1;
-		for(ObjectiveResult result: mObjectiveResults) {
-			if (result.success) {
-				stars++;
-			}
-		}
-		return stars;
+	public LevelResult(Level level, int score, int remainingSeconds) {
+		mLevel = level;
+		mScore = score;
+		mRemainingSeconds = remainingSeconds;
 	}
 
-	public void addObjectiveResult(ObjectiveResult result) {
-		mObjectiveResults.add(result);
+	public Level getLevel() {
+		return mLevel;
 	}
 
-	public Array<ObjectiveResult> getObjectiveResults() {
-		return mObjectiveResults;
+	public int getScore() {
+		return mScore;
 	}
 
-	private Array<ObjectiveResult> mObjectiveResults = new Array<ObjectiveResult>();
+	public int getRemainingSeconds() {
+		return mRemainingSeconds;
+	}
+
+	private Level mLevel;
+	private int mScore;
+	private int mRemainingSeconds;
 }

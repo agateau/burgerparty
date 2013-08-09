@@ -89,7 +89,7 @@ public class LevelListScreen extends BaseScreen {
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int levelWorldIndex, int levelIndex, int score, Skin skin) {
+		public LevelButton(int levelWorldIndex, int levelIndex, int stars, Skin skin) {
 			super("", skin);
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
@@ -99,11 +99,11 @@ public class LevelListScreen extends BaseScreen {
 			group.setFillParent(true);
 			group.setSpacing(6);
 
-			if (score >= 0) {
+			if (stars >= 0) {
 				setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
 				Table table = new Table();
 				for (int x = 1; x <= 3; ++x) {
-					Image image = new Image(x > score ? mStarOff : mStarOn);
+					Image image = new Image(x > stars ? mStarOff : mStarOn);
 					table.add(image);
 				}
 				group.addRule(table, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 2);
@@ -122,8 +122,8 @@ public class LevelListScreen extends BaseScreen {
 
 	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
 		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
-		int score = world.getLevel(levelIndex).stars;
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, score, skin);
+		int stars = world.getLevel(levelIndex).getStars();
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				LevelButton button = (LevelButton)actor;

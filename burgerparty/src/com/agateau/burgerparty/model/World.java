@@ -14,11 +14,26 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
+	public static class Score {
+		public enum Type {
+			ANGRY,
+			NEUTRAL,
+			HAPPY,
+			COMBO
+		};
+		public Type type;
+		public String message = new String();
+		public int delta;
+	}
 	public Signal0 burgerFinished = new Signal0();
-	public Signal0 mealFinished = new Signal0();
-	public Signal1<LevelResult> levelFinished = new Signal1<LevelResult>();
+	public Signal1<Score> mealFinished = new Signal1<Score>();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
+
+	private static final int COMBO_SCORE = 1000;
+	private static final int HAPPY_SCORE = 4000;
+	private static final int NEUTRAL_SCORE = 2000;
+	private static final int ANGRY_SCORE = 1000;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -39,6 +54,7 @@ public class World {
 	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
 	private int mTrashedCount = 0;
+	private int mScore = 0;
 
 	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
@@ -126,6 +142,14 @@ public class World {
 	public void markTrashingDone() {
 		assert mIsTrashing;
 		mIsTrashing = false;
+	}
+
+	public int getScore() {
+		return mScore;
+	}
+
+	public LevelResult getLevelResult() {
+		return new LevelResult(mLevel, mScore, mRemainingSeconds);
 	}
 
 	public void start() {
@@ -250,23 +274,45 @@ public class World {
 	}
 
 	private void onMealFinished() {
+		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
 			setupMeal();
 			generateTarget();
-			mealFinished.emit();
 		} else {
 			mTimer.stop();
-			LevelResult result = createLevelResult();
-			levelFinished.emit(result);
 		}
 	}
 
-	private LevelResult createLevelResult() {
-		LevelResult result = new LevelResult();
-		for (Objective obj: mLevel.definition.objectives) {
-			result.addObjectiveResult(obj.computeResult(this));
+	private void emitMealFinished() {
+		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
+		Score score = new Score();
+		if (mood == Customer.Mood.HAPPY) {
+			int count = 0;
+			for (int i = mActiveCustomerIndex; i >= 0; --i) {
+				if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
+					count++;
+				} else {
+					break;
+				}
+			}
+			if (count > 1) {
+				score.type = Score.Type.COMBO;
+				score.delta = HAPPY_SCORE + COMBO_SCORE * count;
+				score.message = count + "x combo!";
+			} else {
+				score.type = Score.Type.HAPPY;
+				score.delta = HAPPY_SCORE;
+				score.message = "Happy customer!";
+			}
+		} else if (mood == Customer.Mood.NEUTRAL) {
+			score.type = Score.Type.NEUTRAL;
+			score.delta = NEUTRAL_SCORE;
+		} else {
+			score.type = Score.Type.ANGRY;
+			score.delta = ANGRY_SCORE;
 		}
-		return result;
+		mScore += score.delta;
+		mealFinished.emit(score);
 	}
 }

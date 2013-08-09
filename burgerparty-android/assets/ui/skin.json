@@ -39,6 +39,12 @@
         default: {
             font: default-font,
             fontColor: white
+        },
+        score-feedback: {
+            font: default-font,
+            fontColor: {
+                a: 1, b: 0, g: 0.5, r: 0
+            }
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {

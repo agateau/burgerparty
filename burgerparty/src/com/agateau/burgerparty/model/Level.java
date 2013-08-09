@@ -16,12 +16,30 @@ public class Level {
 		public int minBurgerSize;
 		public int maxBurgerSize;
 		public int duration;
-		public Array<Objective> objectives = new Array<Objective>();
 		public Array<String> customers = new Array<String>();
 	}
 
 	public Definition definition = new Definition();
-	public int stars = -1;
+	public int score = -1;
+
+	public int getStars() {
+		return getStarsFor(score);
+	}
+
+	public int getStarsFor(int value) {
+		// FIXME: Get star minimum scores from definition
+		if (value >= 30000) {
+			return 3;
+		} else if (value >= 15000) {
+			return 2;
+		} else if (value > 0) {
+			return 1;
+		} else if (value == 0) {
+			return 0;
+		} else {
+			return -1;
+		}
+	}
 
 	public LevelWorld getLevelWorld() {
 		return mLevelWorld;
@@ -43,8 +61,6 @@ public class Level {
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
 		level.definition.duration = root.getIntAttribute("duration");
-
-		readObjectives(level, root.getChildByName("objectives"));
 
 		XmlReader.Element elements = root.getChildByName("items");
 		assert(elements != null);
@@ -84,29 +100,6 @@ public class Level {
 		}
 
 		return level;
-	}
-
-	private static void readObjectives(Level level, XmlReader.Element objRoot) {
-		assert(objRoot != null);
-		for(int idx = 0; idx < objRoot.getChildCount(); ++idx) {
-			XmlReader.Element element = objRoot.getChild(idx);
-			String type = element.getAttribute("type");
-			Objective objective = null;
-			if (type.equals("maxTrashed")) {
-				int value = element.getIntAttribute("value");
-				objective = new MaxTrashedObjective(value);
-			} else if (type.equals("maxDuration")) {
-				int value = element.getIntAttribute("value");
-				objective = new MaxDurationObjective(value);
-			} else if (type.equals("minHappy")) {
-				int value = element.getIntAttribute("value");
-				objective = new MinHappyObjective(value);
-			} else {
-				throw new RuntimeException("Don't know how to read objective from " + element);
-			}
-			assert(objective != null);
-			level.definition.objectives.add(objective);
-		}
 	}
 
 	private LevelWorld mLevelWorld;
