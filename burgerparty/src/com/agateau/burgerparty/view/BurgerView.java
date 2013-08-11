@@ -88,7 +88,8 @@ public class BurgerView extends Group {
 	public void setArrowIndex(int index) {
 		initArrowActor();
 		Image item = mItemActors.get(index);
-		mArrowActor.setY(item.getY());
+		float deltaY = item.getY() - mArrowActor.getY();
+		mArrowActor.addAction(Actions.moveBy(0, deltaY, 0.3f, Interpolation.pow3Out));
 	}
 
 	private void trash() {
@@ -161,7 +162,13 @@ public class BurgerView extends Group {
 		TextureRegion region;
 		region = mAtlas.findRegion("ui/icon-play");
 		mArrowActor = new Image(region);
-		mArrowActor.setX(-mArrowActor.getWidth() - 4);
+		mArrowActor.setX(-mArrowActor.getWidth() - 9);
+		mArrowActor.addAction(Actions.forever(
+			Actions.sequence(
+				Actions.moveBy(15, 0, .3f, Interpolation.pow2In),
+				Actions.moveBy(-15, 0, .3f, Interpolation.pow2Out)
+			)
+		));
 		addActor(mArrowActor);
 	}
 
