@@ -201,6 +201,7 @@ public class World {
 		}
 		items.add(BurgerItem.get(mLevel.definition.topBurgerItem));
 		mTargetBurger.setItems(items);
+		mTargetBurger.resetArrow();
 	}
 
 	private void generateTargetMealExtra() {
@@ -249,6 +250,9 @@ public class World {
 			mBurger.trash();
 			mIsTrashing = true;
 			trashing.emit();
+			mTargetBurger.resetArrow();
+		} else {
+			mTargetBurger.moveUpArrow();
 		}
 	}
 

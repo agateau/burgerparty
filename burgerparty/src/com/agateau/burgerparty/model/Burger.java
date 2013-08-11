@@ -13,6 +13,7 @@ public class Burger {
 	public Signal0 initialized = new Signal0();
 	public Signal0 cleared;
 	public Signal0 trashed;
+	public Signal1<Integer> upArrowChanged = new Signal1<Integer>();
 
 	public enum CompareResult {
 		SUBSET,
@@ -75,4 +76,20 @@ public class Burger {
 		}
 		return out + "]";
 	}
+
+	public int getArrowIndex() {
+		return mArrowIndex;
+	}
+
+	public void moveUpArrow() {
+		mArrowIndex++;
+		upArrowChanged.emit(mArrowIndex);
+	}
+
+	public void resetArrow() {
+		mArrowIndex = 0;
+		upArrowChanged.emit(mArrowIndex);
+	}
+
+	private int mArrowIndex = -1;
 }

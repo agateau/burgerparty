@@ -7,6 +7,7 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Array;
 
 public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
@@ -50,6 +52,12 @@ public class BurgerView extends Group {
 				trash();
 			}
 		});
+		mBurger.upArrowChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
+			@Override
+			public void handle(Integer index) {
+				setArrowIndex(index);
+			}
+		});
 	}
 
 	public void setPadding(float value) {
@@ -75,6 +83,12 @@ public class BurgerView extends Group {
 		image.addAction(Actions.sequence(animAction, addItemAction));
 
 		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	public void setArrowIndex(int index) {
+		initArrowActor();
+		Image item = mItemActors.get(index);
+		mArrowActor.setY(item.getY());
 	}
 
 	private void trash() {
@@ -110,7 +124,10 @@ public class BurgerView extends Group {
 	private void init() {
 		mNextY = 0;
 		setHeight(0);
-		clear();
+		for (Image image: mItemActors) {
+			image.remove();
+		}
+		mItemActors.clear();
 		for(BurgerItem item: mBurger.getItems()) {
 			addItemInternal(item);
 		}
@@ -132,6 +149,22 @@ public class BurgerView extends Group {
 
 		mNextY += item.getHeight() + mPadding;
 		setHeight(mNextY + regionH / 2);
+
+		mItemActors.add(image);
 		return image;
 	}
+
+	private void initArrowActor() {
+		if (mArrowActor != null) {
+			return;
+		}
+		TextureRegion region;
+		region = mAtlas.findRegion("ui/icon-play");
+		mArrowActor = new Image(region);
+		mArrowActor.setX(-mArrowActor.getWidth() - 4);
+		addActor(mArrowActor);
+	}
+
+	private Array<Image> mItemActors = new Array<Image>();
+	private Image mArrowActor = null;
 }
