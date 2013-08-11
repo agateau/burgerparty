@@ -5,6 +5,9 @@
         },
         lcd-font: {
             file: ui/lcd-font.fnt
+        },
+        scored-font: {
+            file: ui/scored-font.fnt
         }
     },
     com.badlogic.gdx.graphics.Color: {
@@ -41,10 +44,8 @@
             fontColor: white
         },
         score-feedback: {
-            font: default-font,
-            fontColor: {
-                a: 1, b: 0, g: 0.5, r: 0
-            }
+            font: scored-font,
+            fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {

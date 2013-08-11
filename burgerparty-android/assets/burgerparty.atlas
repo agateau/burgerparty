@@ -431,6 +431,18 @@ burgerparty8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+scored-font
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+burgerparty9.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 mealitems/big-fries
   rotate: false
   xy: 1, 269
@@ -642,7 +654,7 @@ mealitems/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty9.png
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -763,7 +775,7 @@ ui/shattered
   offset: 0, 0
   index: -1
 
-burgerparty10.png
+burgerparty11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -789,7 +801,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty11.png
+burgerparty12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

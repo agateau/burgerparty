@@ -41,12 +41,12 @@ public class ScoreFeedbackActor extends Label {
 			+ "    play meal-done.wav\n"
 			+ "end\n"
 			+ "parallel\n"
-			+ "    alpha 1 0.1\n"
-			+ "    moveBy 0 0.1 0.1\n"
+			+ "    alpha 1 0.05 pow2Out\n"
+			+ "    moveBy 0 0.01 0.1\n"
 			+ "end\n"
 			+ "parallel\n"
 			+ "    alpha 0 0.9\n"
-			+ "    moveBy 0 0.4 0.9\n"
+			+ "    moveBy 0 0.3 0.9\n"
 			+ "end\n"
 		);
 	}
