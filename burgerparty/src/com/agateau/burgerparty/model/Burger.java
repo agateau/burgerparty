@@ -91,5 +91,10 @@ public class Burger {
 		upArrowChanged.emit(mArrowIndex);
 	}
 
+	public void hideArrow() {
+		mArrowIndex = -1;
+		upArrowChanged.emit(mArrowIndex);
+	}
+
 	private int mArrowIndex = -1;
 }

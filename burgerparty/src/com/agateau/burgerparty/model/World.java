@@ -274,6 +274,7 @@ public class World {
 	}
 
 	private void onBurgerFinished() {
+		mTargetBurger.hideArrow();
 		burgerFinished.emit();
 	}
 

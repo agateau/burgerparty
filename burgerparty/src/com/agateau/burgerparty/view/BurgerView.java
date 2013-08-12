@@ -88,6 +88,11 @@ public class BurgerView extends Group {
 
 	public void setArrowIndex(int index) {
 		initArrowActor();
+		if (index == -1) {
+			mArrowActor.setVisible(false);
+			return;
+		}
+		mArrowActor.setVisible(true);
 		Image item = mItemActors.get(index);
 		float deltaY = item.getY() - mArrowActor.getY();
 		mArrowActor.addAction(Actions.moveBy(0, deltaY, 0.3f, Interpolation.pow3Out));
