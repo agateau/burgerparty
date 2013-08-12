@@ -88,6 +88,11 @@ public class BurgerPartyGame extends Game {
 		Progress.save(handle, lst);
 	}
 
+	public int getHighScore(int world, int level) {
+		int value = mLevelWorlds.get(world).getLevel(level).score;
+		return Math.max(value, 0);
+	}
+
 	public int getLevelWorldIndex() {
 		return mLevelWorldIndex;
 	}

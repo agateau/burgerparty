@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class PauseOverlay extends Overlay {
@@ -21,7 +22,17 @@ public class PauseOverlay extends Overlay {
 		mWorldView = worldView;
 		mGame = game;
 
-		Label label = new Label("Paused", skin);
+		String txt = "Level: " + (game.getLevelWorldIndex() + 1) + "-" + (game.getLevelIndex() + 1) + "\n";
+		int highScore = game.getHighScore(game.getLevelWorldIndex(), game.getLevelIndex());
+		if (highScore > 0) {
+			txt += "High score: " + highScore;
+		} else {
+			txt += "No high score yet";
+		}
+		Label levelLabel = new Label(txt, skin);
+		levelLabel.setAlignment(Align.center, Align.center);
+
+		Label pausedLabel = new Label("Paused", skin);
 
 		RoundButton resumeButton = Kernel.createRoundButton("ui/icon-play");
 		resumeButton.addListener(new ChangeListener() {
@@ -49,8 +60,9 @@ public class PauseOverlay extends Overlay {
 		group.setFillParent(true);
 		group.setSpacing(UiUtils.SPACING);
 
+		group.addRule(levelLabel, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER);
 		group.addRule(resumeButton, Anchor.CENTER, this, Anchor.CENTER);
-		group.addRule(label, Anchor.BOTTOM_CENTER, resumeButton, Anchor.TOP_CENTER, 0, 2);
+		group.addRule(pausedLabel, Anchor.BOTTOM_CENTER, resumeButton, Anchor.TOP_CENTER, 0, 1);
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 	}
