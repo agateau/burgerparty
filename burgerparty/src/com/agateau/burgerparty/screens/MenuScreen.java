@@ -5,7 +5,6 @@ import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.RoundButton;
-import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,7 +17,7 @@ public class MenuScreen extends BaseScreen {
 
 	public MenuScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
-		TiledImage bgImage = new TiledImage(atlas.findRegion("ui/menu-bg"));
+		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets(atlas, skin);
 	}

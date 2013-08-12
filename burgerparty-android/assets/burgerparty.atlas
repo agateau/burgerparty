@@ -658,65 +658,23 @@ burgerparty10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ui/icon-levels
+ui/menu-bg
   rotate: false
-  xy: 1, 855
-  size: 28, 28
-  orig: 28, 28
+  xy: 1, 540
+  size: 800, 480
+  orig: 800, 480
   offset: 0, 0
   index: -1
-ui/icon-back
+ui/shattered
   rotate: false
-  xy: 31, 851
-  size: 34, 32
-  orig: 34, 32
-  offset: 0, 0
-  index: -1
-ui/icon-left
-  rotate: false
-  xy: 67, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-play
-  rotate: false
-  xy: 95, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-right
-  rotate: false
-  xy: 123, 849
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-restart
-  rotate: false
-  xy: 151, 848
-  size: 34, 35
-  orig: 34, 35
-  offset: 0, 0
-  index: -1
-ui/star-off
-  rotate: false
-  xy: 187, 843
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
-ui/star-on
-  rotate: false
-  xy: 229, 843
-  size: 40, 40
-  orig: 40, 40
+  xy: 1, 38
+  size: 500, 500
+  orig: 500, 500
   offset: 0, 0
   index: -1
 ui/button-down
   rotate: false
-  xy: 271, 835
+  xy: 803, 972
   size: 152, 48
   split: 24, 24, 23, 23
   pad: -1, -1, 4, 4
@@ -725,7 +683,7 @@ ui/button-down
   index: -1
 ui/button
   rotate: false
-  xy: 425, 835
+  xy: 503, 490
   size: 152, 48
   split: 24, 24, 23, 23
   pad: -1, -1, 4, 4
@@ -734,48 +692,95 @@ ui/button
   index: -1
 ui/imagebutton-down
   rotate: false
-  xy: 579, 807
+  xy: 803, 894
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/imagebutton
   rotate: false
-  xy: 657, 807
+  xy: 503, 412
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/lock
   rotate: false
-  xy: 735, 795
+  xy: 803, 804
   size: 60, 88
   orig: 60, 88
   offset: 0, 0
   index: -1
-ui/title
+ui/star-off
   rotate: false
-  xy: 1, 503
-  size: 634, 302
-  orig: 634, 302
+  xy: 957, 980
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
-ui/menu-bg
+ui/star-on
+  rotate: false
+  xy: 657, 498
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/icon-restart
   rotate: false
   xy: 1, 1
-  size: 500, 500
-  orig: 500, 500
+  size: 34, 35
+  orig: 34, 35
   offset: 0, 0
   index: -1
-ui/shattered
+ui/icon-back
   rotate: false
-  xy: 503, 1
-  size: 500, 500
-  orig: 500, 500
+  xy: 881, 938
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+ui/icon-left
+  rotate: false
+  xy: 503, 376
+  size: 26, 34
+  orig: 26, 34
+  offset: 0, 0
+  index: -1
+ui/icon-play
+  rotate: false
+  xy: 581, 454
+  size: 26, 34
+  orig: 26, 34
+  offset: 0, 0
+  index: -1
+ui/icon-right
+  rotate: false
+  xy: 803, 768
+  size: 26, 34
+  orig: 26, 34
+  offset: 0, 0
+  index: -1
+ui/icon-levels
+  rotate: false
+  xy: 699, 510
+  size: 28, 28
+  orig: 28, 28
   offset: 0, 0
   index: -1
 
 burgerparty11.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ui/title
+  rotate: false
+  xy: 1, 1
+  size: 634, 302
+  orig: 634, 302
+  offset: 0, 0
+  index: -1
+
+burgerparty12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -801,7 +806,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty12.png
+burgerparty13.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
