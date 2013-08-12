@@ -39,7 +39,7 @@ public class MenuScreen extends BaseScreen {
 		});
 		//UiUtils.setButtonSize(startButton);
 
-		group.addRule(titleImage, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
+		group.addRule(titleImage, Anchor.CENTER, group, Anchor.CENTER, 0, 2);
 		group.addRule(startButton, Anchor.TOP_CENTER, titleImage, Anchor.BOTTOM_CENTER);
 	}
 }
