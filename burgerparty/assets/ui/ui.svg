@@ -24,14 +24,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4"
-     inkscape:cx="107.49311"
-     inkscape:cy="760.02271"
+     inkscape:cx="243.73435"
+     inkscape:cy="807.23954"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:window-width="1600"
-     inkscape:window-height="833"
-     inkscape:window-x="-2"
+     inkscape:window-width="1562"
+     inkscape:window-height="880"
+     inkscape:window-x="30"
      inkscape:window-y="-3"
      inkscape:window-maximized="1">
     <inkscape:grid
@@ -10851,7 +10851,10 @@
        width="800"
        height="480"
        x="764"
-       y="690" />
+       y="690"
+       inkscape:export-filename="menu-bg.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <use
        x="0"
        y="0"
@@ -10942,5 +10945,14 @@
        inkscape:export-filename="icon-left.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="icon-next-item.png"
+       sodipodi:nodetypes="cccccccc"
+       inkscape:connector-curvature="0"
+       id="path5403"
+       d="m 208,351 0,14 17,-1 0,9 15,-15 -15,-15 0,9 z"
+       style="fill:#90cf00;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
 </svg>

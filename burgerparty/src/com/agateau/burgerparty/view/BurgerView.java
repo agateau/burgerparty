@@ -28,12 +28,13 @@ public class BurgerView extends Group {
 	private float mNextY;
 
 	private static final float ADD_ACTION_HEIGHT = 100;
-	
+	private static final float HPADDING = 15;
+
 	public BurgerView(Burger burger, TextureAtlas atlas) {
 		mBurger = burger;
 		mAtlas = atlas;
 		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
-		setWidth(maxWidth);
+		setWidth(maxWidth + HPADDING * 2);
 
 		mNextY = 0;
 
@@ -160,13 +161,13 @@ public class BurgerView extends Group {
 			return;
 		}
 		TextureRegion region;
-		region = mAtlas.findRegion("ui/icon-play");
+		region = mAtlas.findRegion("ui/icon-next-item");
 		mArrowActor = new Image(region);
-		mArrowActor.setX(-mArrowActor.getWidth() - 9);
+		mArrowActor.setX(HPADDING - mArrowActor.getWidth() - 2);
 		mArrowActor.addAction(Actions.forever(
 			Actions.sequence(
-				Actions.moveBy(15, 0, .3f, Interpolation.pow2In),
-				Actions.moveBy(-15, 0, .3f, Interpolation.pow2Out)
+				Actions.moveBy(-HPADDING * 0.6f, 0, .3f, Interpolation.pow2Out),
+				Actions.moveBy(HPADDING * 0.6f, 0, .3f, Interpolation.pow2In)
 			)
 		));
 		addActor(mArrowActor);

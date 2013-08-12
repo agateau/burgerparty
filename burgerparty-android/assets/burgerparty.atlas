@@ -739,30 +739,37 @@ ui/icon-back
   orig: 34, 32
   offset: 0, 0
   index: -1
-ui/icon-left
+ui/icon-next-item
   rotate: false
-  xy: 503, 376
-  size: 26, 34
-  orig: 26, 34
+  xy: 503, 378
+  size: 34, 32
+  orig: 34, 32
   offset: 0, 0
   index: -1
-ui/icon-play
+ui/icon-left
   rotate: false
   xy: 581, 454
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
-ui/icon-right
+ui/icon-play
   rotate: false
   xy: 803, 768
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
+ui/icon-right
+  rotate: false
+  xy: 699, 504
+  size: 26, 34
+  orig: 26, 34
+  offset: 0, 0
+  index: -1
 ui/icon-levels
   rotate: false
-  xy: 699, 510
+  xy: 37, 8
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
