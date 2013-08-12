@@ -170,10 +170,12 @@ public class World {
 
 	public void pause() {
 		mTimer.stop();
+		mCustomers.get(mActiveCustomerIndex).pause();
 	}
 
 	public void resume() {
 		mTimer.start();
+		mCustomers.get(mActiveCustomerIndex).resume();
 	}
 
 	private void generateTarget() {

@@ -82,6 +82,21 @@ public class Customer {
 		}
 	}
 
+	public void pause() {
+		mMoodTimer.stop();
+	}
+
+	public void resume() {
+		if (mState == State.ACTIVE && mMood != Mood.ANGRY) {
+			// HACK: The content of the `if` block should be mMoodTimer.start()
+			// but stopping a timer does not suspend its time :/ Recreating the
+			// timer is a workaround, but it could be used to cheat since it
+			// essentially resets the mood timer.
+			mMoodTimer = new Timer();
+			scheduleMoodChange();
+		}
+	}
+
 	private void scheduleMoodChange() {
 		mMoodTimer.scheduleTask(new Timer.Task() {
 			@Override
