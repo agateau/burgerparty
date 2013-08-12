@@ -53,7 +53,7 @@ public class BurgerView extends Group {
 				trash();
 			}
 		});
-		mBurger.upArrowChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
+		mBurger.arrowIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
 			@Override
 			public void handle(Integer index) {
 				setArrowIndex(index);
