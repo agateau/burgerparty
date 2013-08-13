@@ -1,8 +1,9 @@
 package com.agateau.burgerparty.view;
 
+import java.util.LinkedList;
+
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
@@ -26,15 +27,53 @@ public class LevelFinishedOverlay extends Overlay {
 	private static final int EXTRA_TIME_SCORE = 100;
 	private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
 
+	private static class RunQueue {
+		public static class Task extends Timer.Task {
+			void setQueue(RunQueue queue) {
+				mQueue = queue;
+			}
+			public void done() {
+				mQueue.processNext();
+			}
+
+			@Override
+			public void run() {
+				done();
+			}
+
+			private RunQueue mQueue;
+		}
+
+		public void add(Task task) {
+			task.setQueue(this);
+			mList.add(task);
+		}
+
+		public void start() {
+			processNext();
+		}
+
+		void processNext() {
+			if (mList.isEmpty()) {
+				return;
+			}
+			Task task = mList.remove();
+			Timer.post(task);
+		}
+
+		private LinkedList<Task> mList = new LinkedList<Task>();
+	}
+
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		mLevel = levelResult.getLevel();
+		mPreviousScore = levelResult.getLevel().score;
 		mScore = levelResult.getScore();
 		mRemainingSeconds = levelResult.getRemainingSeconds();
-
+		int finalScore = mScore + EXTRA_TIME_SCORE * mRemainingSeconds;
+		mStarCount = levelResult.getLevel().getStarsFor(finalScore);
 		// Store final score *now*
-		mGame.onCurrentLevelFinished(mScore + EXTRA_TIME_SCORE * mRemainingSeconds);
+		mGame.onCurrentLevelFinished(finalScore);
 
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off")));
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));
@@ -143,11 +182,39 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private void lightUpStars() {
-		int stars = mLevel.getStarsFor(mScore);
-		Drawable texture = mStarTextures.get(1);
-		for (int i = 0; i < stars; ++i) {
-			mStarImages.get(i).setDrawable(texture);
+		class LightUpStarTask extends RunQueue.Task {
+			public LightUpStarTask(int index) {
+				mImage = mStarImages.get(index);
+			}
+			@Override
+			public void run() {
+				Drawable texture = mStarTextures.get(1);
+				mImage.setDrawable(texture);
+				done();
+			}
+			Image mImage;
 		}
+		class HighScoreTask extends RunQueue.Task {
+			public HighScoreTask(Overlay parent) {
+				mLabel = new Label("New High Score!", Kernel.getSkin());
+				parent.addActor(mLabel);
+				mLabel.setVisible(false);
+			}
+			@Override
+			public void run() {
+				mLabel.setVisible(true);
+				mLabel.setPosition(200.f, 200.f);
+				done();
+			}
+			Label mLabel;
+		}
+		for (int i = 0; i < mStarCount; ++i) {
+			mRunQueue.add(new LightUpStarTask(i));
+		}
+		if (mScore > mPreviousScore) {
+			mRunQueue.add(new HighScoreTask(this));
+		}
+		mRunQueue.start();
 	}
 
 	private void goToNextLevel() {
@@ -180,8 +247,10 @@ public class LevelFinishedOverlay extends Overlay {
 		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
 
+	private RunQueue mRunQueue = new RunQueue();
 	private BurgerPartyGame mGame;
-	private Level mLevel;
+	private int mStarCount;
+	private int mPreviousScore;
 	private int mScore;
 	private int mRemainingSeconds;
 	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
