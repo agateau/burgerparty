@@ -12,11 +12,12 @@ import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -69,14 +70,23 @@ public class LevelFinishedOverlay extends Overlay {
 
 	class HighScoreTask extends RunQueue.Task {
 		public HighScoreTask(Overlay parent) {
-			mLabel = new Label("New High Score!", Kernel.getSkin());
+			mLabel = new Label("New High Score!", Kernel.getSkin(), "score-feedback");
 			parent.addActor(mLabel);
 			mLabel.setVisible(false);
 		}
 		@Override
 		public void run() {
 			mLabel.setVisible(true);
-			mLabel.setPosition(200.f, 200.f);
+			float screenWidth = mLabel.getParent().getWidth();
+			float finalX = mScoreLabel.getRight() + UiUtils.SPACING;
+			float finalY = mScoreLabel.getY() - 2;
+			mLabel.setPosition(screenWidth, finalY);
+			mLabel.addAction(
+				Actions.sequence(
+					Actions.moveTo(finalX, finalY, 1, Interpolation.bounceOut),
+					Actions.run(createDoneRunnable())
+				)
+			);
 			done();
 		}
 		Label mLabel;
@@ -115,12 +125,13 @@ public class LevelFinishedOverlay extends Overlay {
 		group.setFillParent(true);
 		addActor(group);
 
-		Label mainLabel = new Label("", skin);
+		// Score label
+		mScoreLabel = new Label(String.valueOf(mScore), skin);
 
-		Actor resultActor = createDetailedResultActor(skin);
+		// Stars
+		Actor starsActor = createStarsActor(skin);
 
-		RoundButton nextButton = null;
-
+		// Select level button
 		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -128,6 +139,7 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
+		// Restart button
 		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -135,7 +147,9 @@ public class LevelFinishedOverlay extends Overlay {
 			}
 		});
 
-		// Top screen message
+		// Main label and next button
+		Label mainLabel = new Label("", skin);
+		RoundButton nextButton = null;
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
@@ -151,19 +165,17 @@ public class LevelFinishedOverlay extends Overlay {
 		UiUtils.adjustToPrefSize(mainLabel);
 
 		// Layout
-		group.addRule(resultActor, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 0);
-		group.addRule(mainLabel, Anchor.BOTTOM_CENTER, resultActor, Anchor.TOP_CENTER, 0, 1);
+		group.addRule(mainLabel, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER, 0, -1);
+		group.addRule(mScoreLabel, Anchor.TOP_CENTER, mainLabel, Anchor.BOTTOM_CENTER, 0, -1);
+		group.addRule(starsActor, Anchor.TOP_CENTER, mScoreLabel, Anchor.BOTTOM_CENTER, 0, -1);
 		if (nextButton != null) {
-			group.addRule(nextButton, Anchor.TOP_CENTER, resultActor, Anchor.BOTTOM_CENTER, 0, -1);
+			group.addRule(nextButton, Anchor.TOP_CENTER, starsActor, Anchor.BOTTOM_CENTER, 0, -2);
 		}
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 	}
 
-	private Actor createDetailedResultActor(Skin skin) {
-		VerticalGroup group = new VerticalGroup();
-
-		mScoreLabel = new Label(String.valueOf(mScore), skin, "lcd-font", "lcd-color");
+	private Actor createStarsActor(Skin skin) {
 		HorizontalGroup starGroup = new HorizontalGroup();
 
 		Drawable texture = mStarTextures.get(0);
@@ -172,14 +184,10 @@ public class LevelFinishedOverlay extends Overlay {
 			mStarImages.add(image);
 			starGroup.addActor(image);
 		}
+		starGroup.setWidth(starGroup.getPrefWidth());
+		starGroup.setHeight(starGroup.getPrefHeight());
 
-		group.addActor(mScoreLabel);
-		group.addActor(starGroup);
-
-		// TODO: Get rid of this once AnchorGroup is layout-friendly
-		group.setWidth(group.getPrefWidth());
-		group.setHeight(group.getPrefHeight());
-		return group;
+		return starGroup;
 	}
 
 	private RoundButton createNextButton(String name) {
