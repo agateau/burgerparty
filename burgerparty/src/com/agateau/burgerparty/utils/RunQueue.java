@@ -9,13 +9,25 @@ public class RunQueue {
 		public void done() {
 			mQueue.processNext();
 		}
+
 		@Override
 		public void run() {
 			done();
 		}
+
+		public Runnable createDoneRunnable() {
+			return new Runnable() {
+				@Override
+				public void run() {
+					done();
+				}
+			};
+		}
+
 		void setQueue(RunQueue queue) {
 			mQueue = queue;
 		}
+
 		private RunQueue mQueue;
 	}
 
