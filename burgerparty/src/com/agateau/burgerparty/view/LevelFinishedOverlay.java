@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.view;
 
-import java.util.LinkedList;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
@@ -10,6 +9,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RoundButton;
+import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -26,41 +26,6 @@ import com.badlogic.gdx.utils.Timer;
 public class LevelFinishedOverlay extends Overlay {
 	private static final int EXTRA_TIME_SCORE = 100;
 	private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
-
-	private static class RunQueue {
-		public static class Task extends Timer.Task {
-			void setQueue(RunQueue queue) {
-				mQueue = queue;
-			}
-			public void done() {
-				mQueue.processNext();
-			}
-			@Override
-			public void run() {
-				done();
-			}
-			private RunQueue mQueue;
-		}
-
-		public void add(Task task) {
-			task.setQueue(this);
-			mList.add(task);
-		}
-
-		public void start() {
-			processNext();
-		}
-
-		void processNext() {
-			if (mList.isEmpty()) {
-				return;
-			}
-			Task task = mList.remove();
-			Timer.post(task);
-		}
-
-		private LinkedList<Task> mList = new LinkedList<Task>();
-	}
 
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
