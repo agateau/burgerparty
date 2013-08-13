@@ -35,12 +35,10 @@ public class LevelFinishedOverlay extends Overlay {
 			public void done() {
 				mQueue.processNext();
 			}
-
 			@Override
 			public void run() {
 				done();
 			}
-
 			private RunQueue mQueue;
 		}
 
@@ -64,14 +62,69 @@ public class LevelFinishedOverlay extends Overlay {
 		private LinkedList<Task> mList = new LinkedList<Task>();
 	}
 
+	class ConsumeSecondsTask extends RunQueue.Task {
+		public ConsumeSecondsTask(int secs) {
+			mRemainingSeconds = secs;
+		}
+		@Override
+		public void run() {
+			consumeRemainingSeconds();
+		}
+		public void finishNow() {
+			mScore += mRemainingSeconds * EXTRA_TIME_SCORE;
+			mRemainingSeconds = 0;
+			mScoreLabel.setText(String.valueOf(mScore));
+			done();
+		}
+		private void consumeRemainingSeconds() {
+			if (mRemainingSeconds == 0) {
+				done();
+				return;
+			}
+			mScore += EXTRA_TIME_SCORE;
+			mScoreLabel.setText(String.valueOf(mScore));
+			--mRemainingSeconds;
+			Timer.schedule(this, EXTRA_TIME_UPDATE_INTERVAL);
+		}
+		int mRemainingSeconds;
+	}
+
+	class LightUpStarTask extends RunQueue.Task {
+		public LightUpStarTask(int index) {
+			mImage = mStarImages.get(index);
+		}
+		@Override
+		public void run() {
+			Drawable texture = mStarTextures.get(1);
+			mImage.setDrawable(texture);
+			done();
+		}
+		Image mImage;
+	}
+
+	class HighScoreTask extends RunQueue.Task {
+		public HighScoreTask(Overlay parent) {
+			mLabel = new Label("New High Score!", Kernel.getSkin());
+			parent.addActor(mLabel);
+			mLabel.setVisible(false);
+		}
+		@Override
+		public void run() {
+			mLabel.setVisible(true);
+			mLabel.setPosition(200.f, 200.f);
+			done();
+		}
+		Label mLabel;
+	}
+
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		mPreviousScore = levelResult.getLevel().score;
+		int previousScore = levelResult.getLevel().score;
 		mScore = levelResult.getScore();
-		mRemainingSeconds = levelResult.getRemainingSeconds();
-		int finalScore = mScore + EXTRA_TIME_SCORE * mRemainingSeconds;
-		mStarCount = levelResult.getLevel().getStarsFor(finalScore);
+		int remainingSeconds = levelResult.getRemainingSeconds();
+		int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;
+
 		// Store final score *now*
 		mGame.onCurrentLevelFinished(finalScore);
 
@@ -79,7 +132,16 @@ public class LevelFinishedOverlay extends Overlay {
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));
 		setupWidgets(skin);
 
-		consumeRemainingSeconds();
+		mConsumeSecondsTask = new ConsumeSecondsTask(remainingSeconds);
+		mRunQueue.add(mConsumeSecondsTask);
+		int starCount = levelResult.getLevel().getStarsFor(finalScore);
+		for (int i = 0; i < starCount; ++i) {
+			mRunQueue.add(new LightUpStarTask(i));
+		}
+		if (finalScore > previousScore) {
+			mRunQueue.add(new HighScoreTask(this));
+		}
+		mRunQueue.start();
 	}
 
 	private void setupWidgets(Skin skin) {
@@ -165,64 +227,9 @@ public class LevelFinishedOverlay extends Overlay {
 		return button;
 	}
 
-	private void consumeRemainingSeconds() {
-		if (mRemainingSeconds == 0) {
-			lightUpStars();
-			return;
-		}
-		mScore += EXTRA_TIME_SCORE;
-		mScoreLabel.setText(String.valueOf(mScore));
-		--mRemainingSeconds;
-		Timer.schedule(new Timer.Task() {
-			@Override
-			public void run() {
-				consumeRemainingSeconds();
-			}
-		}, EXTRA_TIME_UPDATE_INTERVAL);
-	}
-
-	private void lightUpStars() {
-		class LightUpStarTask extends RunQueue.Task {
-			public LightUpStarTask(int index) {
-				mImage = mStarImages.get(index);
-			}
-			@Override
-			public void run() {
-				Drawable texture = mStarTextures.get(1);
-				mImage.setDrawable(texture);
-				done();
-			}
-			Image mImage;
-		}
-		class HighScoreTask extends RunQueue.Task {
-			public HighScoreTask(Overlay parent) {
-				mLabel = new Label("New High Score!", Kernel.getSkin());
-				parent.addActor(mLabel);
-				mLabel.setVisible(false);
-			}
-			@Override
-			public void run() {
-				mLabel.setVisible(true);
-				mLabel.setPosition(200.f, 200.f);
-				done();
-			}
-			Label mLabel;
-		}
-		for (int i = 0; i < mStarCount; ++i) {
-			mRunQueue.add(new LightUpStarTask(i));
-		}
-		if (mScore > mPreviousScore) {
-			mRunQueue.add(new HighScoreTask(this));
-		}
-		mRunQueue.start();
-	}
-
 	private void goToNextLevel() {
-		if (mRemainingSeconds > 0) {
-			mScore += mRemainingSeconds * EXTRA_TIME_SCORE;
-			mRemainingSeconds = 0;
-			mScoreLabel.setText(String.valueOf(mScore));
-			consumeRemainingSeconds();
+		if (mConsumeSecondsTask.mRemainingSeconds > 0) {
+			mConsumeSecondsTask.finishNow();
 			Timer.schedule(new Timer.Task() {
 				@Override
 				public void run() {
@@ -247,12 +254,10 @@ public class LevelFinishedOverlay extends Overlay {
 		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
 
+	private ConsumeSecondsTask mConsumeSecondsTask;
 	private RunQueue mRunQueue = new RunQueue();
 	private BurgerPartyGame mGame;
-	private int mStarCount;
-	private int mPreviousScore;
 	private int mScore;
-	private int mRemainingSeconds;
 	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
 	private Label mScoreLabel;
 	private Array<Image> mStarImages = new Array<Image>();
