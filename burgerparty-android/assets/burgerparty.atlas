@@ -1,7 +1,7 @@
 
 burgerparty.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 customers/boys/body-3
   rotate: false
@@ -146,7 +146,7 @@ customers/boys/face-3-neutral
 
 burgerparty2.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 customers/ninjas/body-0
   rotate: false
@@ -179,7 +179,7 @@ customers/ninjas/face-0-neutral
 
 burgerparty3.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 customers/girls/body-0
   rotate: false
@@ -254,7 +254,7 @@ customers/girls/top-0
 
 burgerparty4.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 customers/pirate-girls/body-green
   rotate: false
@@ -329,7 +329,7 @@ customers/pirate-girls/top-red
 
 burgerparty5.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 customers/pirate-boys/body-brown
   rotate: false
@@ -369,25 +369,25 @@ customers/pirate-boys/top-boss
 
 burgerparty6.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 lcd-font
   rotate: false
-  xy: 1, 138
+  xy: 1, 275
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 71
-  size: 341, 65
-  orig: 341, 65
+  xy: 1, 170
+  size: 538, 103
+  orig: 538, 103
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 515, 512
+  xy: 1, 30
   size: 236, 138
   split: 39, 20, 18, 54
   orig: 236, 138
@@ -395,21 +395,21 @@ bubble
   index: -1
 face
   rotate: false
-  xy: 1, 1
+  xy: 515, 719
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 344, 109
+  xy: 1, 1
   size: 27, 27
   orig: 27, 27
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 515, 494
+  xy: 239, 152
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -417,7 +417,7 @@ overlay-bg
 
 burgerparty7.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 main-font
   rotate: false
@@ -429,7 +429,7 @@ main-font
 
 burgerparty8.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 scored-font
   rotate: false
@@ -441,7 +441,7 @@ scored-font
 
 burgerparty9.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 mealitems/big-fries
   rotate: false
@@ -656,7 +656,7 @@ mealitems/toast-inventory
 
 burgerparty10.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 ui/menu-bg
   rotate: false
@@ -777,7 +777,7 @@ ui/icon-levels
 
 burgerparty11.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 ui/title
   rotate: false
@@ -789,7 +789,7 @@ ui/title
 
 burgerparty12.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 levels/1/background
   rotate: false
@@ -815,7 +815,7 @@ levels/1/shelf
 
 burgerparty13.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest,Linear
 repeat: none
 levels/2/background
   rotate: false

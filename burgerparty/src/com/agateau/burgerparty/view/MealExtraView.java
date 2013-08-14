@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -17,6 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public class MealExtraView extends Group {
+	private static final float ADD_ACTION_HEIGHT = 100;
+
+	private static final float ITEM0_X = 0;
+	private static final float ITEM0_Y = 0;
+	private static final float ITEM1_X = -30;
+	private static final float ITEM1_Y = 20;
+
 	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas) {
 		mMealExtra = mealExtra;
 		mAtlas = atlas;
@@ -52,6 +58,12 @@ public class MealExtraView extends Group {
 
 	public void addItem(MealItem item) {
 		Image image = addItemInternal(item);
+		if (mImages.size == 1) {
+			image.setPosition(ITEM0_X, ITEM0_Y);
+		} else {
+			image.setPosition(ITEM1_X, ITEM1_Y);
+			image.setZIndex(0);
+		}
 		AnimScript anim = item.getAnimScript();
 		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
@@ -65,7 +77,7 @@ public class MealExtraView extends Group {
 		float posX = 0;
 		for(MealItem item: mMealExtra.getItems()) {
 			Image image = addItemInternal(item);
-			image.setX(posX);
+			image.setPosition(posX, 0);
 			posX += image.getWidth();
 		}
 		updateGeometry();
@@ -99,7 +111,6 @@ public class MealExtraView extends Group {
 		assert(region != null);
 		Image image = new Image(region);
 		mImages.add(image);
-		image.setPosition(MathUtils.ceil(getWidth()), 0);
 		addActor(image);
 		return image;
 	}
@@ -108,6 +119,4 @@ public class MealExtraView extends Group {
 	private TextureAtlas mAtlas;
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Array<Image> mImages = new Array<Image>();
-
-	private static final float ADD_ACTION_HEIGHT = 100;
 }

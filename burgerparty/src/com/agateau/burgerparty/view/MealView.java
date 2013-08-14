@@ -8,16 +8,25 @@ import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
 	public static final float TRASH_ACTION_DURATION = 0.5f;
 
-	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas) {
-		mBurgerView = new BurgerView(burger, atlas);
-		addActor(mBurgerView);
+	private static final float PLATTER_X = -40f;
+	private static final float PLATTER_Y = -30f;
+
+	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
+		if (withPlatter) {
+			Image platter = new Image(atlas.findRegion("platter"));
+			platter.setPosition(PLATTER_X, PLATTER_Y);
+			addActor(platter);
+		}
 		mMealExtraView = new MealExtraView(mealExtra, atlas);
 		addActor(mMealExtraView);
+		mBurgerView = new BurgerView(burger, atlas);
+		addActor(mBurgerView);
 	}
 
 	public BurgerView getBurgerView() {
