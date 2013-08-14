@@ -11,7 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Widget;
  * A Screen with a stage filling its surface and a reference to a skin
  */
 public class StageScreen implements Screen {
-	private Stage mStage = new Stage(0, 0, true);
+	// FIXME: Ugly hard-coded sizes
+	private Stage mStage = new Stage(800, 480, true);
 	private Skin mSkin;
 	private Widget mBgActor = null;
 
@@ -46,7 +47,6 @@ public class StageScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		mStage.setViewport(width, height, true);
 		resizeBackgroundActor();
 	}
 
