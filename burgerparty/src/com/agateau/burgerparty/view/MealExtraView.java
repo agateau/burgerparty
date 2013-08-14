@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -39,8 +40,7 @@ public class MealExtraView extends Group {
 		});
 		mMealExtra.trashed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
-				// FIXME: Add proper trash anim
-				clearItems();
+				trash();
 			}
 		});
 	}
@@ -81,6 +81,26 @@ public class MealExtraView extends Group {
 			posX += image.getWidth();
 		}
 		updateGeometry();
+	}
+
+	private void trash() {
+		for(Image image: mImages) {
+			float xOffset = (float)(Math.random() * 200 - 100);
+			float rotation = xOffset;
+			image.addAction(
+				Actions.sequence(
+					Actions.parallel(
+						Actions.moveBy(xOffset, 0, MealView.TRASH_ACTION_DURATION),
+						Actions.moveBy(0, -200, MealView.TRASH_ACTION_DURATION, Interpolation.pow2In),
+						Actions.scaleTo(0.5f, 0.5f, MealView.TRASH_ACTION_DURATION),
+						Actions.rotateBy(rotation, MealView.TRASH_ACTION_DURATION),
+						Actions.fadeOut(MealView.TRASH_ACTION_DURATION, Interpolation.pow5In)
+					),
+					Actions.removeActor()
+				)
+			);
+		}
+		mImages.clear();
 	}
 
 	private void clearItems() {
