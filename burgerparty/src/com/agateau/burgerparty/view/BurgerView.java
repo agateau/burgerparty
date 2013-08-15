@@ -104,20 +104,7 @@ public class BurgerView extends Group {
 		UiUtils.notifyResizeToFitParent(this);
 		Kernel.getSoundAtlas().findSound("error").play();
 		for (Actor actor: getChildren()) {
-			float xOffset = (float)(Math.random() * 200 - 100);
-			float rotation = xOffset;
-			actor.addAction(
-				Actions.sequence(
-					Actions.parallel(
-						Actions.moveBy(xOffset, 0, MealView.TRASH_ACTION_DURATION),
-						Actions.moveBy(0, -200, MealView.TRASH_ACTION_DURATION, Interpolation.pow2In),
-						Actions.scaleTo(0.5f, 0.5f, MealView.TRASH_ACTION_DURATION),
-						Actions.rotateBy(rotation, MealView.TRASH_ACTION_DURATION),
-						Actions.fadeOut(MealView.TRASH_ACTION_DURATION, Interpolation.pow5In)
-					),
-					Actions.removeActor()
-				)
-			);
+			MealView.addTrashActions(actor);
 		}
 	}
 

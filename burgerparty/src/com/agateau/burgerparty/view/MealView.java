@@ -7,7 +7,10 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MealView extends Group implements ResizeToFitChildren {
@@ -61,6 +64,23 @@ public class MealView extends Group implements ResizeToFitChildren {
 	@Override
 	public void onChildSizeChanged() {
 		updateGeometry();
+	}
+
+	public static void addTrashActions(Actor actor) {
+		float xOffset = (float)(Math.random() * 200 - 100);
+		float rotation = xOffset;
+		actor.addAction(
+			Actions.sequence(
+				Actions.parallel(
+					Actions.moveBy(xOffset, 0, TRASH_ACTION_DURATION),
+					Actions.moveBy(0, -200, TRASH_ACTION_DURATION, Interpolation.pow2In),
+					Actions.scaleTo(0.5f, 0.5f, TRASH_ACTION_DURATION),
+					Actions.rotateBy(rotation, TRASH_ACTION_DURATION),
+					Actions.fadeOut(TRASH_ACTION_DURATION, Interpolation.pow5In)
+				),
+				Actions.removeActor()
+			)
+		);
 	}
 
 	private BurgerView mBurgerView;
