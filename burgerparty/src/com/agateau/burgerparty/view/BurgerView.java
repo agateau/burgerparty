@@ -102,7 +102,7 @@ public class BurgerView extends Group {
 		mNextY = 0;
 		setHeight(0);
 		UiUtils.notifyResizeToFitParent(this);
-		Kernel.getSoundAtlas().findSound("error.wav").play();
+		Kernel.getSoundAtlas().findSound("error").play();
 		for (Actor actor: getChildren()) {
 			float xOffset = (float)(Math.random() * 200 - 100);
 			float rotation = xOffset;

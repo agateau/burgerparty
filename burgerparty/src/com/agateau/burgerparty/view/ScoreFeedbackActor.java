@@ -38,7 +38,7 @@ public class ScoreFeedbackActor extends Label {
 		sAnimScript = Kernel.getAnimScriptLoader().load(
 			  "parallel\n"
 			+ "    alpha 0\n"
-			+ "    play meal-done.wav\n"
+			+ "    play meal-done\n"
 			+ "end\n"
 			+ "parallel\n"
 			+ "    alpha 1 0.05 pow2Out\n"

@@ -18,10 +18,12 @@ public class SoundAtlas {
 
 	public void load(String[] names) {
 		for (int i=0, n=names.length; i < n; ++i) {
-			String name = names[i];
-			Gdx.app.log("SoundAtlas", "Loading " + name);
-			Sound sound = Gdx.audio.newSound(Gdx.files.internal(mDir + name));
+			String filename = mDir + names[i];
+			String name = names[i].replaceFirst("\\.[a-z]+$", "");
+			Gdx.app.log("SoundAtlas", "Loading '" + filename + "' as '" + name + "'");
+			Sound sound = Gdx.audio.newSound(Gdx.files.internal(filename));
 			assert(sound != null);
+			
 			mSoundMap.put(name, sound);
 		}
 	}

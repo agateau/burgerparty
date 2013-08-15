@@ -31,7 +31,7 @@ public class Kernel {
 	public static RoundButton createRoundButton(String name) {
 		init();
 		RoundButton button = new RoundButton(sSkin, name);
-		button.setSound(sSoundAtlas.findSound("click.wav"));
+		button.setSound(sSoundAtlas.findSound("click"));
 		return button;
 	}
 

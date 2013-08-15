@@ -11,7 +11,7 @@
                 alpha 1 1
                 moveBy 0 -1 1 pow2In
                 rotateTo 0 1
-                play add-item.wav
+                play add-item
             end
             ]]>
         </anim>
@@ -34,7 +34,7 @@
                 alpha 1 1
                 moveBy 0 -1 1 pow2In
                 rotateTo 0 1
-                play add-item.wav
+                play add-item
             end
             ]]>
         </anim>
@@ -44,7 +44,7 @@
             <![CDATA[
             scaleTo 0.2 0.2
             scaleTo 1 1 1
-            play splat.wav
+            play splat
             ]]>
         </anim>
     </item>
@@ -81,7 +81,7 @@
                 alpha 1 1
                 moveBy 0 -1 1 pow2In
                 rotateTo 0 1
-                play add-item.wav
+                play add-item
             end
             ]]>
         </anim>

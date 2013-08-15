@@ -122,7 +122,7 @@ public class MealItem {
 			"parallel\n" +
 			"    alpha 1 1\n" +
 			"    moveBy 0 -1 1 pow2In\n" +
-			"    play add-item.wav\n" +
+			"    play add-item\n" +
 			"end\n";
 		sDefaultAnimScript = Kernel.getAnimScriptLoader().load(anim);
 	}
