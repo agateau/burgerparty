@@ -138,8 +138,8 @@ public class BurgerPartyGame extends Game {
 		setScreen(new MenuScreen(this, mAtlas, mSkin));
 	}
 
-	public void selectLevel() {
-		setScreen(new LevelListScreen(this, mAtlas, mSkin));
+	public void selectLevel(int worldIndex) {
+		setScreen(new LevelListScreen(this, worldIndex, mAtlas, mSkin));
 	}
 
 	static private FileHandle getUserWritableFile(String name) {

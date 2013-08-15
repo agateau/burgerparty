@@ -33,7 +33,7 @@ public class MenuScreen extends BaseScreen {
 		RoundButton startButton = Kernel.createRoundButton("ui/icon-play");
 		startButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().selectLevel();
+				getGame().selectLevel(0);
 			}
 		});
 		//UiUtils.setButtonSize(startButton);

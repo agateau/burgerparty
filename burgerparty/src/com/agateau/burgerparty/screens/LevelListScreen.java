@@ -24,7 +24,7 @@ public class LevelListScreen extends BaseScreen {
 	private static final float ANIMATION_DURATION = 0.4f;
 	private static final int COL_COUNT = 4;
 
-	public LevelListScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
+	public LevelListScreen(BurgerPartyGame game, int worldIndex, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
@@ -33,6 +33,8 @@ public class LevelListScreen extends BaseScreen {
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock");
 		setupWidgets(skin);
+
+		scrollTo(worldIndex);
 	}
 
 	private void setupWidgets(Skin skin) {
@@ -72,8 +74,6 @@ public class LevelListScreen extends BaseScreen {
 		// Add buttons after creating the grids so that buttons are above grids
 		mAnchorGroup.addRule(mPreviousButton, Anchor.CENTER_LEFT, mAnchorGroup, Anchor.CENTER_LEFT, 1, 0);
 		mAnchorGroup.addRule(mNextButton, Anchor.CENTER_RIGHT, mAnchorGroup, Anchor.CENTER_RIGHT, -1, 0);
-
-		scrollTo(0);
 	}
 
 	private GridGroup createLevelButtonGridGroup(int levelWorldIndex, Skin skin) {
