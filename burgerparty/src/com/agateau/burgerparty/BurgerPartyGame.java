@@ -23,7 +23,7 @@ public class BurgerPartyGame extends Game {
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
 
-	private static String PROGRESS_FILE = "progress.xml";
+	private static final String PROGRESS_FILE = "progress.xml";
 
 	@Override
 	public void create() {

@@ -21,6 +21,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
 public class LevelListScreen extends BaseScreen {
+	private static final float ANIMATION_DURATION = 0.4f;
+	private static final int COL_COUNT = 4;
+
 	public LevelListScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
@@ -175,8 +178,6 @@ public class LevelListScreen extends BaseScreen {
 		mNextButton.setVisible(mGroupIndex < getGame().getLevelWorldCount() - 1);
 	}
 
-	static private float ANIMATION_DURATION = 0.4f;
-	static private int COL_COUNT = 4;
 	private TextureRegion mStarOff;
 	private TextureRegion mStarOn;
 	private TextureRegion mLock;

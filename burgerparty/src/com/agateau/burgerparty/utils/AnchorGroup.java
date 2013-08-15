@@ -63,7 +63,7 @@ public class AnchorGroup extends WidgetGroup {
 	}
 
 	static public class SizeRule implements AnchorRule {
-		public static float KeepRatio = -1;
+		public static final float KEEP_RATIO = -1;
 
 		public SizeRule(Actor target, Actor reference, float widthPercent, float heightPercent)
 		{
@@ -90,10 +90,10 @@ public class AnchorGroup extends WidgetGroup {
 			if (mHeightPercent > 0) {
 				mTarget.setHeight(mReference.getHeight() * mHeightPercent);
 			}
-			if (mWidthPercent == KeepRatio) {
+			if (mWidthPercent == KEEP_RATIO) {
 				mTarget.setWidth(mTarget.getHeight() / hfw);
 			}
-			if (mHeightPercent == KeepRatio) {
+			if (mHeightPercent == KEEP_RATIO) {
 				mTarget.setHeight(mTarget.getWidth() * hfw);
 			}
 		}
