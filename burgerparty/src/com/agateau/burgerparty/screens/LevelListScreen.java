@@ -128,6 +128,7 @@ public class LevelListScreen extends BaseScreen {
 		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				Kernel.getSoundAtlas().findSound("click").play();
 				LevelButton button = (LevelButton)actor;
 				getGame().startLevel(button.levelWorldIndex, button.levelIndex);
 			}
