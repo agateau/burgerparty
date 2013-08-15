@@ -42,6 +42,14 @@ public class Kernel {
 		sInited = true;
 		sTextureAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 		sSkin = new Skin(Gdx.files.internal("ui/skin.json"), sTextureAtlas);
+
+		String[] names = {"add-item.wav",
+		                  "click.wav",
+		                  "error.wav",
+		                  "meal-done.wav",
+		                  "sauce.wav",
+		                  "splat.wav"};
+		sSoundAtlas.load(names);
 	}
 
 	private static boolean sInited = false;

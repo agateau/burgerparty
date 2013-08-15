@@ -16,6 +16,16 @@ public class SoundAtlas {
 		}
 	}
 
+	public void load(String[] names) {
+		for (int i=0, n=names.length; i < n; ++i) {
+			String name = names[i];
+			Gdx.app.log("SoundAtlas", "Loading " + name);
+			Sound sound = Gdx.audio.newSound(Gdx.files.internal(mDir + name));
+			assert(sound != null);
+			mSoundMap.put(name, sound);
+		}
+	}
+
 	public Action createPlayAction(String name) {
 		Sound sound = findSound(name);
 		return Actions.run(new PlayRunnable(sound));
@@ -24,15 +34,14 @@ public class SoundAtlas {
 	public Sound findSound(String name) {
 		Sound sound = mSoundMap.get(name);
 		if (sound == null) {
-			String filename = mDir + name;
-			sound = Gdx.audio.newSound(Gdx.files.internal(filename));
-			mSoundMap.put(name, sound);
+			throw new RuntimeException("Could not find sound named '" + name + "'");
 		}
 		return sound;
 	}
 
 	private class PlayRunnable implements Runnable {
 		public PlayRunnable(Sound sound) {
+			assert(sound != null);
 			mSound = sound;
 		}
 
