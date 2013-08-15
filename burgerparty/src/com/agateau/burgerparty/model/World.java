@@ -53,7 +53,6 @@ public class World {
 	private Array<Customer> mCustomers = new Array<Customer>();
 	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
-	private int mTrashedCount = 0;
 	private int mScore = 0;
 
 	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
@@ -125,10 +124,6 @@ public class World {
 
 	public Array<Customer> getCustomers() {
 		return mCustomers;
-	}
-
-	public int getTrashedCount() {
-		return mTrashedCount;
 	}
 
 	public int getDuration() {
@@ -248,7 +243,6 @@ public class World {
 				onBurgerFinished();
 			}
 		} else if (compareResult == Burger.CompareResult.DIFFERENT) {
-			mTrashedCount++;
 			mBurger.trash();
 			mIsTrashing = true;
 			trashing.emit();
@@ -267,7 +261,6 @@ public class World {
 		if (result == MealExtra.CompareResult.SAME) {
 			onMealFinished();
 		} else if (result == MealExtra.CompareResult.DIFFERENT) {
-			mTrashedCount++;
 			mBurger.trash();
 			mMealExtra.trash();
 			mIsTrashing = true;
