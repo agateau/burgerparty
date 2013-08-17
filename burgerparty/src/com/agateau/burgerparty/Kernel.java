@@ -46,9 +46,11 @@ public class Kernel {
 		String[] names = {"add-item.wav",
 		                  "click.wav",
 		                  "error.wav",
+		                  "finished.wav",
 		                  "meal-done.wav",
 		                  "sauce.wav",
-		                  "splat.wav"};
+		                  "splat.wav",
+		                  "star.wav"};
 		sSoundAtlas.load(names);
 	}
 

@@ -29,7 +29,7 @@ public class LevelFinishedOverlay extends Overlay {
 	private static final int EXTRA_TIME_SCORE = 100;
 	private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
 
-	private static final float STAR_ANIM_DURATION = 0.2f;
+	private static final float STAR_ANIM_DURATION = 0.3f;
 
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
@@ -54,7 +54,7 @@ public class LevelFinishedOverlay extends Overlay {
 			--mRemainingSeconds;
 			Timer.schedule(this, EXTRA_TIME_UPDATE_INTERVAL);
 		}
-		int mRemainingSeconds;
+		private int mRemainingSeconds;
 	}
 
 	class LightUpStarTask extends RunQueue.Task {
@@ -71,17 +71,18 @@ public class LevelFinishedOverlay extends Overlay {
 			Vector2 pos = mReferenceImage.localToAscendantCoordinates(getParent(), new Vector2(0, 0));
 			mImage.setPosition(pos.x, pos.y);
 			mImage.setColor(1, 1, 1, 0);
-			mImage.setScale(5);
+			mImage.setScale(10);
 			mImage.setRotation(-72);
 			mImage.addAction(
 				Actions.sequence(
 					Actions.parallel(
-						Actions.moveBy(0, 10),
-						Actions.moveBy(0, -10, STAR_ANIM_DURATION),
+						Actions.moveBy(0, 30),
+						Actions.moveBy(0, -30, STAR_ANIM_DURATION),
 						Actions.scaleTo(1, 1, STAR_ANIM_DURATION, Interpolation.pow3In),
 						Actions.rotateTo(0, STAR_ANIM_DURATION),
 						Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
 					),
+					Kernel.getSoundAtlas().createPlayAction("star"),
 					Actions.run(createDoneRunnable())
 				)
 			);
@@ -140,6 +141,7 @@ public class LevelFinishedOverlay extends Overlay {
 			mRunQueue.add(new HighScoreTask(this));
 		}
 		mRunQueue.start();
+		Kernel.getSoundAtlas().findSound("finished").play();
 	}
 
 	private void setupWidgets(Skin skin) {
