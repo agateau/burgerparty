@@ -2,12 +2,17 @@ package com.agateau.burgerparty.utils;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 
 public class RunQueue {
 	public static class Task extends Timer.Task {
 		public void done() {
-			mQueue.processNext();
+			if (mQueue.mCurrentTask == this) {
+				mQueue.processNext();
+			} else {
+				Gdx.app.log("RunQueue.Task.done", "Task " + this + " is not the current task, ignoring call to done()");
+			}
 		}
 
 		@Override
@@ -44,9 +49,17 @@ public class RunQueue {
 		if (mList.isEmpty()) {
 			return;
 		}
-		RunQueue.Task task = mList.remove();
-		Timer.post(task);
+		mCurrentTask = mList.remove();
+		Timer.post(mCurrentTask);
+	}
+
+	void dumpQueue(String method) {
+		Gdx.app.log("RunQueue." + method, "mList.size()=" + mList.size());
+		for (Task task: mList) {
+			Gdx.app.log("RunQueue." + method, "- " + task);
+		}
 	}
 
 	private LinkedList<RunQueue.Task> mList = new LinkedList<RunQueue.Task>();
+	private RunQueue.Task mCurrentTask = null;
 }
