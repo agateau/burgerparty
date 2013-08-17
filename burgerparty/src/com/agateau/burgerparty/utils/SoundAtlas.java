@@ -33,6 +33,10 @@ public class SoundAtlas {
 		return Actions.run(new PlayRunnable(sound));
 	}
 
+	public boolean contains(String name) {
+		return mSoundMap.containsKey(name);
+	}
+
 	public Sound findSound(String name) {
 		Sound sound = mSoundMap.get(name);
 		if (sound == null) {

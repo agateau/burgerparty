@@ -2,10 +2,12 @@ package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -39,7 +41,9 @@ public class BurgerPartyGame extends Game {
 
 	void setupAnimScriptLoader()
 	{
-		Kernel.getAnimScriptLoader().registerMemberMethod("play", Kernel.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
+		AnimScriptLoader loader = Kernel.getAnimScriptLoader();
+		loader.registerMemberMethod("play", Kernel.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
+		loader.registerStaticMethod("playMealItem", MealItem.class, "createPlayMealItemAction", new StringArgumentDefinition());
 	}
 
 	private void loadLevelWorlds() {

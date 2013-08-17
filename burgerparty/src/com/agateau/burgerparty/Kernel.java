@@ -43,14 +43,20 @@ public class Kernel {
 		sTextureAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
 		sSkin = new Skin(Gdx.files.internal("ui/skin.json"), sTextureAtlas);
 
-		String[] names = {"add-item.wav",
-		                  "click.wav",
-		                  "error.wav",
-		                  "finished.wav",
-		                  "meal-done.wav",
-		                  "sauce.wav",
-		                  "splat.wav",
-		                  "star.wav"};
+		String[] names = {
+			"add-item.wav",
+			"add-item-cheese.wav",
+			"add-item-salad.wav",
+			"add-item-steak.wav",
+			"add-item-tomato.wav",
+			"click.wav",
+			"error.wav",
+			"finished.wav",
+			"meal-done.wav",
+			"sauce.wav",
+			"splat.wav",
+			"star.wav"
+		};
 		sSoundAtlas.load(names);
 	}
 

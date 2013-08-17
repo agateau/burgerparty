@@ -4,12 +4,25 @@ import java.io.IOException;
 
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.AnimScript;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class MealItem {
+	private static final String DEFAULT_ANIM =
+		"parallel\n" +
+		"    alpha 0\n" +
+		"    moveBy 0 1\n" +
+		"end\n" +
+		"parallel\n" +
+		"    alpha 1 1\n" +
+		"    moveBy 0 -1 1 pow2In\n" +
+		"    playMealItem @itemName@\n" +
+		"end\n";
+
 	public enum Type {
 		SIDE_ORDER,
 		DRINK,
@@ -18,7 +31,6 @@ public class MealItem {
 	public static MealItem get(String name) {
 		if (sMap.size == 0) {
 			initMap();
-			initDefaultAnimScript();
 		}
 		return sMap.get(name);
 	}
@@ -37,11 +49,8 @@ public class MealItem {
 
 	public AnimScript getAnimScript() {
 		if (mAnimScript == null) {
-			if (mAnim.isEmpty()) {
-				mAnimScript = sDefaultAnimScript;
-			} else {
-				mAnimScript = Kernel.getAnimScriptLoader().load(mAnim);
-			}
+			assert(!mAnim.isEmpty());
+			mAnimScript = Kernel.getAnimScriptLoader().load(mAnim);
 		}
 		return mAnimScript;
 	}
@@ -62,11 +71,21 @@ public class MealItem {
 		return mRow;
 	}
 
+	public static Action createPlayMealItemAction(String name) {
+		SoundAtlas atlas = Kernel.getSoundAtlas();
+		if (atlas.contains("add-item-" + name)) {
+			return atlas.createPlayAction("add-item-" + name);
+		} else {
+			return atlas.createPlayAction("add-item");
+		}
+	}
+
 	protected MealItem(XmlReader.Element element) {
 		mName = element.getAttribute("name");
 		mColumn = element.getIntAttribute("column");
 		mRow = element.getIntAttribute("row");
-		mAnim = element.get("anim", new String());
+		mAnim = element.get("anim", DEFAULT_ANIM)
+			.replace("@itemName@", mName);
 	}
 
 	protected MealItem(Type type, String name) {
@@ -113,20 +132,6 @@ public class MealItem {
 		}
 	}
 
-	private static void initDefaultAnimScript() {
-		String anim =
-			"parallel\n" +
-			"    alpha 0\n" +
-			"    moveBy 0 1\n" +
-			"end\n" +
-			"parallel\n" +
-			"    alpha 1 1\n" +
-			"    moveBy 0 -1 1 pow2In\n" +
-			"    play add-item\n" +
-			"end\n";
-		sDefaultAnimScript = Kernel.getAnimScriptLoader().load(anim);
-	}
-
 	private Type mType;
 	private String mName;
 	private String mAnim;
@@ -135,5 +140,4 @@ public class MealItem {
 	private int mRow;
 
 	private static OrderedMap<String, MealItem> sMap = new OrderedMap<String, MealItem>();
-	private static AnimScript sDefaultAnimScript;
 }
