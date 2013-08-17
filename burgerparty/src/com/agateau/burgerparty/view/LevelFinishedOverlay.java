@@ -13,6 +13,7 @@ import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -27,6 +28,8 @@ import com.badlogic.gdx.utils.Timer;
 public class LevelFinishedOverlay extends Overlay {
 	private static final int EXTRA_TIME_SCORE = 100;
 	private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
+
+	private static final float STAR_ANIM_DURATION = 0.2f;
 
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
@@ -55,16 +58,38 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	class LightUpStarTask extends RunQueue.Task {
-		public LightUpStarTask(int index) {
-			mImage = mStarImages.get(index);
+		public LightUpStarTask(Overlay parent, int index) {
+			mImage = new Image(mStarTextures.get(1));
+			mReferenceImage = mStarImages.get(index);
+			parent.addActor(mImage);
+			mImage.setVisible(false);
+			mImage.setOrigin(mImage.getWidth() / 2, mImage.getHeight() / 2);
 		}
 		@Override
 		public void run() {
+			mImage.setVisible(true);
+			Vector2 pos = mReferenceImage.localToAscendantCoordinates(getParent(), new Vector2(0, 0));
+			mImage.setPosition(pos.x, pos.y);
+			mImage.setColor(1, 1, 1, 0);
+			mImage.setScale(5);
+			mImage.setRotation(-72);
+			mImage.addAction(
+				Actions.sequence(
+					Actions.parallel(
+						Actions.moveBy(0, 10),
+						Actions.moveBy(0, -10, STAR_ANIM_DURATION),
+						Actions.scaleTo(1, 1, STAR_ANIM_DURATION, Interpolation.pow3In),
+						Actions.rotateTo(0, STAR_ANIM_DURATION),
+						Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
+					),
+					Actions.run(createDoneRunnable())
+				)
+			);
 			Drawable texture = mStarTextures.get(1);
 			mImage.setDrawable(texture);
-			done();
 		}
-		Image mImage;
+		private Image mImage;
+		private Image mReferenceImage;
 	}
 
 	class HighScoreTask extends RunQueue.Task {
@@ -109,7 +134,7 @@ public class LevelFinishedOverlay extends Overlay {
 		mRunQueue.add(new ConsumeSecondsTask(remainingSeconds));
 		int starCount = levelResult.getLevel().getStarsFor(finalScore);
 		for (int i = 0; i < starCount; ++i) {
-			mRunQueue.add(new LightUpStarTask(i));
+			mRunQueue.add(new LightUpStarTask(this, i));
 		}
 		if (finalScore > previousScore) {
 			mRunQueue.add(new HighScoreTask(this));
