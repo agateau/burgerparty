@@ -16,20 +16,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
 	public static final float TRASH_ACTION_DURATION = 0.5f;
+	private static final float PLATTER_ANIM_DURATION = 0.2f;
 
-	private static final float PLATTER_X = -40f;
-	private static final float PLATTER_Y = -30f;
+	private static final float BURGER_X = 40f;
+	private static final float MEAL_Y = 30f;
 
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
 		if (withPlatter) {
-			Image platter = new Image(atlas.findRegion("platter"));
-			platter.setPosition(PLATTER_X, PLATTER_Y);
-			addActor(platter);
+			mPlatter = new Image(atlas.findRegion("platter"));
+			addActor(mPlatter);
+			mPlatter.setPosition(-mPlatter.getWidth(), 0);
+			mPlatter.setColor(1, 1, 1, 0);
+			mPlatter.addAction(Actions.moveBy(mPlatter.getWidth(), 0, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
+			mPlatter.addAction(Actions.alpha(1, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
 		}
 		mMealExtraView = new MealExtraView(mealExtra, atlas);
 		addActor(mMealExtraView);
 		mBurgerView = new BurgerView(burger, atlas);
 		addActor(mBurgerView);
+
+		if (withPlatter) {
+			mBurgerView.setPosition(BURGER_X, MEAL_Y);
+		}
+		updateGeometry();
 	}
 
 	public BurgerView getBurgerView() {
@@ -53,9 +62,9 @@ public class MealView extends Group implements ResizeToFitChildren {
 	}
 
 	public void updateGeometry() {
-		mMealExtraView.setPosition(mBurgerView.getWidth(), 0);
+		mMealExtraView.setPosition(mBurgerView.getRight(), mBurgerView.getY());
 		setSize(
-			mBurgerView.getWidth() + mMealExtraView.getWidth(),
+			mPlatter == null ? (mBurgerView.getWidth() + mMealExtraView.getWidth()) : mPlatter.getWidth(),
 			Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
 			);
 		UiUtils.notifyResizeToFitParent(this);
@@ -83,6 +92,7 @@ public class MealView extends Group implements ResizeToFitChildren {
 		);
 	}
 
+	private Image mPlatter = null;
 	private BurgerView mBurgerView;
 	private MealExtraView mMealExtraView;
 }
