@@ -10,14 +10,19 @@ public class RunQueue {
 		public void done() {
 			if (mQueue.mCurrentTask == this) {
 				mQueue.processNext();
-			} else {
-				Gdx.app.log("RunQueue.Task.done", "Task " + this + " is not the current task, ignoring call to done()");
+				return;
+			}
+			if (!mQueue.mList.remove(this)) {
+				Gdx.app.log("RunQueue.Task.done", "Task " + this + " is not in the queue, ignoring call to done()");
 			}
 		}
 
 		@Override
 		public void run() {
 			done();
+		}
+
+		public void fastForward() {
 		}
 
 		public Runnable createDoneRunnable() {
@@ -29,7 +34,7 @@ public class RunQueue {
 			};
 		}
 
-		void setQueue(RunQueue queue) {
+		private void setQueue(RunQueue queue) {
 			mQueue = queue;
 		}
 
@@ -45,8 +50,23 @@ public class RunQueue {
 		processNext();
 	}
 
+	public boolean isEmpty() {
+		return mList.isEmpty() && mCurrentTask == null;
+	}
+
+	public void fastForward() {
+		if (mCurrentTask == null) {
+			return;
+		}
+		mCurrentTask.fastForward();
+		for (Task task: mList) {
+			task.fastForward();
+		}
+	}
+
 	void processNext() {
 		if (mList.isEmpty()) {
+			mCurrentTask = null;
 			return;
 		}
 		mCurrentTask = mList.remove();

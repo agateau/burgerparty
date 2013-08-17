@@ -36,11 +36,10 @@ public class LevelFinishedOverlay extends Overlay {
 		public void run() {
 			consumeRemainingSeconds();
 		}
-		public void finishNow() {
+		public void fastForward() {
 			mScore += mRemainingSeconds * EXTRA_TIME_SCORE;
 			mRemainingSeconds = 0;
 			mScoreLabel.setText(String.valueOf(mScore));
-			done();
 		}
 		private void consumeRemainingSeconds() {
 			if (mRemainingSeconds == 0) {
@@ -107,8 +106,7 @@ public class LevelFinishedOverlay extends Overlay {
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));
 		setupWidgets(skin);
 
-		mConsumeSecondsTask = new ConsumeSecondsTask(remainingSeconds);
-		mRunQueue.add(mConsumeSecondsTask);
+		mRunQueue.add(new ConsumeSecondsTask(remainingSeconds));
 		int starCount = levelResult.getLevel().getStarsFor(finalScore);
 		for (int i = 0; i < starCount; ++i) {
 			mRunQueue.add(new LightUpStarTask(i));
@@ -201,16 +199,17 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private void goToNextLevel() {
-		if (mConsumeSecondsTask.mRemainingSeconds > 0) {
-			mConsumeSecondsTask.finishNow();
-			Timer.schedule(new Timer.Task() {
+		if (mRunQueue.isEmpty()) {
+			doGoToNextLevel();
+		} else {
+			mRunQueue.add(new RunQueue.Task() {
 				@Override
 				public void run() {
 					doGoToNextLevel();
+					done();
 				}
-			}, 0.5f);
-		} else {
-			doGoToNextLevel();
+			});
+			mRunQueue.fastForward();
 		}
 	}
 
@@ -227,7 +226,6 @@ public class LevelFinishedOverlay extends Overlay {
 		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
 
-	private ConsumeSecondsTask mConsumeSecondsTask;
 	private RunQueue mRunQueue = new RunQueue();
 	private BurgerPartyGame mGame;
 	private int mScore;
