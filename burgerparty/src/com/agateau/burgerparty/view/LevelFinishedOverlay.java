@@ -112,7 +112,6 @@ public class LevelFinishedOverlay extends Overlay {
 					Actions.run(createDoneRunnable())
 				)
 			);
-			done();
 		}
 		Label mLabel;
 	}
