@@ -19,11 +19,8 @@
     <customers>
         <customer type="girls"/>
         <customer type="boys"/>
-        <customer type="ninjas"/>
         <customer type="girls"/>
-        <customer type="ninjas"/>
         <customer type="girls"/>
         <customer type="boys"/>
-        <customer type="ninjas"/>
     </customers>
 </level>

@@ -23,12 +23,10 @@
     </objectives>
     <customers>
         <customer type="boys"/>
-        <customer type="ninjas"/>
         <customer type="boys"/>
         <customer type="girls"/>
         <customer type="girls"/>
         <customer type="girls"/>
         <customer type="boys"/>
-        <customer type="ninjas"/>
     </customers>
 </level>
