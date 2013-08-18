@@ -17,3 +17,7 @@
 # Finished sound
 
 <http://www.freesound.org/people/jivatma07/sounds/122255/>
+
+# Onion sound
+
+<http://www.freesound.org/people/scriptique/sounds/50823/>

@@ -45,7 +45,10 @@ public class Kernel {
 
 		String[] names = {
 			"add-item.wav",
+			"add-item-bottom.wav",
 			"add-item-cheese.wav",
+			"add-item-coconut.wav",
+			"add-item-onion.wav",
 			"add-item-salad.wav",
 			"add-item-steak.wav",
 			"add-item-tomato.wav",
