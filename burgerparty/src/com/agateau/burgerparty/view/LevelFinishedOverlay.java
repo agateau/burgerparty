@@ -11,6 +11,7 @@ import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -34,6 +35,7 @@ public class LevelFinishedOverlay extends Overlay {
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
 			mRemainingSeconds = secs;
+			mSound = Kernel.getSoundAtlas().findSound("time-bonus");
 		}
 		@Override
 		public void run() {
@@ -49,12 +51,14 @@ public class LevelFinishedOverlay extends Overlay {
 				done();
 				return;
 			}
+			mSound.play(0.1f);
 			mScore += EXTRA_TIME_SCORE;
 			mScoreLabel.setText(String.valueOf(mScore));
 			--mRemainingSeconds;
 			Timer.schedule(this, EXTRA_TIME_UPDATE_INTERVAL);
 		}
 		private int mRemainingSeconds;
+		private Sound mSound;
 	}
 
 	class LightUpStarTask extends RunQueue.Task {

@@ -58,7 +58,8 @@ public class Kernel {
 			"meal-done.wav",
 			"sauce.wav",
 			"splat.wav",
-			"star.wav"
+			"star.wav",
+			"time-bonus.wav"
 		};
 		sSoundAtlas.load(names);
 	}
