@@ -17,10 +17,6 @@
         <item name="juice"/>
         <item name="soda"/>
     </items>
-    <objectives>
-        <objective type="maxDuration" value="40"/>
-        <objective type="maxDuration" value="30"/>
-    </objectives>
     <customers>
         <customer type="boys"/>
         <customer type="boys"/>

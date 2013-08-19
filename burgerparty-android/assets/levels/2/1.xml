@@ -10,10 +10,6 @@
         <item name="salad"/>
         <item name="coconut"/>
     </items>
-    <objectives>
-        <objective type="maxTrashed" value="2"/>
-        <objective type="maxDuration" value="60"/>
-    </objectives>
     <customers>
         <customer type="pirate-boys"/>
         <customer type="pirate-girls"/>

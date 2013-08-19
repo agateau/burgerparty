@@ -12,10 +12,6 @@
         <item name="ketchup"/>
         <item name="cucumber"/>
     </items>
-    <objectives>
-        <objective type="maxTrashed" value="0"/>
-        <objective type="maxDuration" value="30"/>
-    </objectives>
     <customers>
         <customer type="girls"/>
         <customer type="boys"/>

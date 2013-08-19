@@ -9,10 +9,6 @@
         <item name="salad"/>
         <item name="onion"/>
     </items>
-    <objectives>
-        <objective type="maxTrashed" value="2"/>
-        <objective type="maxDuration" value="40"/>
-    </objectives>
     <customers>
         <customer type="boys"/>
         <customer type="girls"/>

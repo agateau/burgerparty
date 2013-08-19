@@ -10,10 +10,6 @@
         <item name="onion"/>
         <item name="cheese"/>
     </items>
-    <objectives>
-        <objective type="maxTrashed" value="1"/>
-        <objective type="maxDuration" value="35"/>
-    </objectives>
     <customers>
         <customer type="girls"/>
         <customer type="boys"/>
