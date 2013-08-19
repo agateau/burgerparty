@@ -24,10 +24,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7071068"
-     inkscape:cx="2043.0365"
-     inkscape:cy="759.04454"
+     inkscape:cx="2280.4963"
+     inkscape:cy="684.63756"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="false"
      inkscape:window-width="1562"
      inkscape:window-height="880"
@@ -4384,15 +4384,6 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4150"
-       id="linearGradient6444"
-       gradientUnits="userSpaceOnUse"
-       x1="1936"
-       y1="153.12219"
-       x2="2024"
-       y2="309.12219" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4150"
        id="linearGradient3993"
        gradientUnits="userSpaceOnUse"
        x1="1936"
@@ -5780,6 +5771,15 @@
          stdDeviation="4.9882422"
          id="feGaussianBlur18554" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4150"
+       id="linearGradient20371"
+       gradientUnits="userSpaceOnUse"
+       x1="1936"
+       y1="153.12219"
+       x2="2024"
+       y2="309.12219" />
   </defs>
   <metadata
      id="metadata7">
@@ -6130,7 +6130,7 @@
        x="1711.6373"
        y="650.70306" />
     <g
-       transform="matrix(1,0,0,0.99951448,200.6878,-222.12641)"
+       transform="matrix(1,0,0,0.99951448,-151.3122,-222.12641)"
        id="use4091"
        style="display:inline">
       <path
@@ -6165,13 +6165,13 @@
        y="0"
        xlink:href="#g4086"
        id="use4093"
-       transform="translate(-352,0)"
+       transform="translate(-534,0)"
        width="1606.8046"
        height="817.12219" />
     <g
        style="display:inline"
        id="g4086"
-       transform="matrix(1,0,0,0.99951448,-151.31219,-222.12641)">
+       transform="matrix(1,0,0,0.99951448,30.68781,-222.12641)">
       <path
          sodipodi:nodetypes="cccccccccc"
          id="rect4071"
@@ -6193,7 +6193,7 @@
          inkscape:connector-curvature="0" />
       <path
          sodipodi:nodetypes="ccccc"
-         style="fill:url(#linearGradient6444);fill-opacity:1;stroke:none"
+         style="fill:url(#linearGradient20371);fill-opacity:1;stroke:none"
          d="m 1920,153.12219 40,0 88,156 -40,0 z"
          id="path4148"
          inkscape:connector-curvature="0"
@@ -6202,15 +6202,15 @@
     <rect
        style="fill:#e6e6e6;fill-opacity:1;stroke:none;display:inline"
        id="rect4599"
-       width="42"
+       width="394"
        height="202.48022"
-       x="2358"
+       x="2006"
        y="218.12218" />
     <rect
        y="218.12218"
        x="1600"
        height="202.48022"
-       width="576"
+       width="224"
        id="rect3995"
        style="fill:#e6e6e6;fill-opacity:1;stroke:none;display:inline" />
     <use
@@ -6218,7 +6218,7 @@
        y="0"
        xlink:href="#g4086"
        id="use3997"
-       transform="translate(534,0)"
+       transform="translate(352,0)"
        width="2995.5847"
        height="900.11548" />
   </g>
@@ -6227,7 +6227,7 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Main"
-     style="display:inline">
+     style="display:none">
     <rect
        y="842.35547"
        x="839.19531"
@@ -6571,7 +6571,7 @@
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="FG"
-     style="display:inline">
+     style="display:none">
     <path
        style="fill:#917c6f;fill-opacity:1;stroke:none"
        d="m 1444,249.1222 0,-32 -64,56 0,32 z"
