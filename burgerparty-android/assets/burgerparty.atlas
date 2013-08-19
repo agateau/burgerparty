@@ -373,21 +373,21 @@ filter: Nearest,Linear
 repeat: none
 lcd-font
   rotate: false
-  xy: 1, 275
+  xy: 1, 264
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 170
+  xy: 1, 159
   size: 538, 103
   orig: 538, 103
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 1, 30
+  xy: 1, 19
   size: 236, 138
   split: 39, 20, 18, 54
   orig: 236, 138
@@ -395,21 +395,14 @@ bubble
   index: -1
 face
   rotate: false
-  xy: 515, 719
+  xy: 515, 708
   size: 67, 68
   orig: 67, 68
   offset: 0, 0
   index: -1
-pause
-  rotate: false
-  xy: 1, 1
-  size: 27, 27
-  orig: 27, 27
-  offset: 0, 0
-  index: -1
 overlay-bg
   rotate: false
-  xy: 239, 152
+  xy: 1, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -711,16 +704,23 @@ ui/lock
   orig: 60, 88
   offset: 0, 0
   index: -1
-ui/star-off
+ui/pause
   rotate: false
   xy: 957, 980
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/star-on
+ui/star-off
   rotate: false
   xy: 657, 498
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/star-on
+  rotate: false
+  xy: 881, 930
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -734,42 +734,42 @@ ui/icon-restart
   index: -1
 ui/icon-back
   rotate: false
-  xy: 881, 938
+  xy: 503, 378
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 503, 378
+  xy: 581, 456
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 581, 454
+  xy: 803, 768
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 803, 768
+  xy: 699, 504
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 699, 504
+  xy: 881, 894
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 37, 8
+  xy: 865, 864
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
