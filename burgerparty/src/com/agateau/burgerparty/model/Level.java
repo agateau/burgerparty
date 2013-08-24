@@ -17,6 +17,8 @@ public class Level {
 		public int maxBurgerSize;
 		public int duration;
 		public Array<String> customers = new Array<String>();
+		public int score2;
+		public int score3;
 	}
 
 	public Definition definition = new Definition();
@@ -27,10 +29,9 @@ public class Level {
 	}
 
 	public int getStarsFor(int value) {
-		// FIXME: Get star minimum scores from definition
-		if (value >= 30000) {
+		if (value >= definition.score3) {
 			return 3;
-		} else if (value >= 15000) {
+		} else if (value >= definition.score2) {
 			return 2;
 		} else if (value > 0) {
 			return 1;
@@ -61,6 +62,8 @@ public class Level {
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
 		level.definition.duration = root.getIntAttribute("duration");
+		level.definition.score2 = root.getIntAttribute("score2", 15000);
+		level.definition.score3 = root.getIntAttribute("score3", 30000);
 
 		XmlReader.Element elements = root.getChildByName("items");
 		assert(elements != null);

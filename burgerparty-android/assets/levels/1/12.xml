@@ -2,6 +2,8 @@
     minBurgerSize="12"
     maxBurgerSize="12"
     duration="60"
+    score2="4000"
+    score3="6000"
     >
     <items>
         <item name="steak"/>
