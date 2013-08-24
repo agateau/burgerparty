@@ -113,15 +113,15 @@ public class BurgerView extends Group {
 
 	private void onCleared() {
 		setHeight(0);
+		removeItemActors();
 		mItemActors.clear();
-		clear();
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private void init() {
 		setHeight(0);
+		removeItemActors();
 		mItemActors.clear();
-		clear();
 		for(BurgerItem item: mBurger.getItems()) {
 			addItemInternal(item);
 		}
@@ -171,6 +171,14 @@ public class BurgerView extends Group {
 			value += image.getItem().getHeight() + mPadding;
 		}
 		return value;
+	}
+
+	private void removeItemActors() {
+		// This method must be used instead of Group.clear() because mArrowActor
+		// should not be removed
+		for (ItemImage image: mItemActors) {
+			image.remove();
+		}
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
