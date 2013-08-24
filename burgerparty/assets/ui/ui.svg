@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4"
-     inkscape:cx="243.73435"
-     inkscape:cy="807.23954"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="11.313708"
+     inkscape:cx="132.81706"
+     inkscape:cy="827.65515"
+     inkscape:current-layer="g20323"
      inkscape:document-units="px"
      showgrid="true"
      inkscape:window-width="1562"
@@ -10954,5 +10954,48 @@
        id="path5403"
        d="m 208,351 0,14 17,-1 0,9 15,-15 -15,-15 0,9 z"
        style="fill:#90cf00;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <g
+       id="g20323"
+       inkscape:export-filename="pause.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         id="g20318"
+         inkscape:export-filename="pause.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <rect
+           ry="3.2638393e-17"
+           y="344"
+           x="104"
+           height="40"
+           width="40"
+           id="rect19780"
+           style="fill:#90cf00;fill-opacity:0;fill-rule:nonzero;stroke:none" />
+        <rect
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="pause.png"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.99999963999999997;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect10572"
+           width="12"
+           height="32"
+           x="109"
+           y="348"
+           ry="2.9167528" />
+        <use
+           style="fill:#90cf00;fill-opacity:1;stroke:#009100;stroke-width:0.69015115;stroke-opacity:1"
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="pause.png"
+           height="900.11548"
+           width="2995.5847"
+           transform="translate(18,3.0000001e-7)"
+           id="use10574"
+           xlink:href="#rect10572"
+           y="0"
+           x="0" />
+      </g>
+    </g>
   </g>
 </svg>
