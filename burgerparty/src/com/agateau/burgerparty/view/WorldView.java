@@ -36,30 +36,6 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AnchorGroup {
-	HashSet<Object> mHandlers = new HashSet<Object>();
-
-	private TextureRegion mBackgroundRegion;
-	private BurgerPartyGame mGame;
-	private World mWorld;
-	private TextureAtlas mAtlas;
-	private Skin mSkin;
-	private InventoryView mInventoryView;
-	private MealView mMealView;
-	private MealView mDoneMealView;
-	private MealView mTargetMealView;
-	private Label mTimerDisplay;
-	private Label mScoreDisplay;
-	private Image mPauseButton;
-	private Image mWorkbench;
-	private Bubble mBubble;
-	private CustomerViewFactory mCustomerFactory;
-	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
-	private CustomerView mActiveCustomerView;
-	private PauseOverlay mPauseOverlay;
-
-	private float mWidth = -1;
-	private float mHeight = -1;
-
 	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
@@ -375,4 +351,28 @@ public class WorldView extends AnchorGroup {
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
 		mBubble.updateGeometry();
 	}
+
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+
+	private TextureRegion mBackgroundRegion;
+	private BurgerPartyGame mGame;
+	private World mWorld;
+	private TextureAtlas mAtlas;
+	private Skin mSkin;
+	private InventoryView mInventoryView;
+	private MealView mMealView;
+	private MealView mDoneMealView;
+	private MealView mTargetMealView;
+	private Label mTimerDisplay;
+	private Label mScoreDisplay;
+	private Image mPauseButton;
+	private Image mWorkbench;
+	private Bubble mBubble;
+	private CustomerViewFactory mCustomerFactory;
+	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
+	private CustomerView mActiveCustomerView;
+	private PauseOverlay mPauseOverlay;
+
+	private float mWidth = -1;
+	private float mHeight = -1;
 }
