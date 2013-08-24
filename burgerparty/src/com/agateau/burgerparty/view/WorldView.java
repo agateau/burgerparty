@@ -64,11 +64,6 @@ public class WorldView extends AnchorGroup {
 				onMealFinished(score);
 			}
 		});
-		mWorld.getMealExtra().trashed.connect(mHandlers, new Signal0.Handler() {
-			public void handle() {
-				onMealExtraTrashed();
-			}
-		});
 		mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
 				showGameOverOverlay();
@@ -85,6 +80,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	public void onTrashing() {
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		Timer.schedule(
 			new Timer.Task() {
 				@Override
@@ -269,10 +265,6 @@ public class WorldView extends AnchorGroup {
 			)
 		);
 		mActiveCustomerView = null;
-	}
-
-	private void onMealExtraTrashed() {
-		mInventoryView.setInventory(mWorld.getBurgerInventory());
 	}
 
 	private void onBurgerFinished() {
