@@ -24,13 +24,22 @@ public class BurgerView extends Group {
 	private static final float ADD_ACTION_HEIGHT = 100;
 	private static final float HPADDING = 15;
 
+	private static class ItemImage extends Image {
+		public ItemImage(BurgerItem item, TextureRegion region) {
+			super(region);
+			mItem = item;
+		}
+		public BurgerItem getItem() {
+			return mItem;
+		}
+		private BurgerItem mItem;
+	}
+
 	public BurgerView(Burger burger, TextureAtlas atlas) {
 		mBurger = burger;
 		mAtlas = atlas;
 		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
 		setWidth(maxWidth + HPADDING * 2);
-
-		mNextY = 0;
 
 		mBurger.initialized.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
@@ -93,29 +102,26 @@ public class BurgerView extends Group {
 	}
 
 	private void trash() {
-		mNextY = 0;
-		setHeight(0);
-		UiUtils.notifyResizeToFitParent(this);
 		Kernel.getSoundAtlas().findSound("error").play();
-		for (Actor actor: getChildren()) {
+		for (Actor actor: mItemActors) {
 			MealView.addTrashActions(actor);
 		}
+		setHeight(0);
+		mItemActors.clear();
+		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private void onCleared() {
-		mNextY = 0;
 		setHeight(0);
+		mItemActors.clear();
 		clear();
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private void init() {
-		mNextY = 0;
 		setHeight(0);
-		for (Image image: mItemActors) {
-			image.remove();
-		}
 		mItemActors.clear();
+		clear();
 		for(BurgerItem item: mBurger.getItems()) {
 			addItemInternal(item);
 		}
@@ -126,17 +132,17 @@ public class BurgerView extends Group {
 		TextureRegion region;
 		region = mAtlas.findRegion("mealitems/" + item.getName());
 		assert(region != null);
-		Image image = new Image(region);
+		ItemImage image = new ItemImage(item, region);
 		float regionW = region.getRegionWidth();
 		float regionH = region.getRegionHeight();
 		float posX = (getWidth() - regionW) / 2;
 
-		image.setBounds(posX, mNextY + item.getOffset(), regionW, regionH);
+		float nextY = getNextY();
+		image.setBounds(posX, nextY + item.getOffset(), regionW, regionH);
 		image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
 		addActor(image);
 
-		mNextY += item.getHeight() + mPadding;
-		setHeight(mNextY + regionH / 2);
+		setHeight(image.getTop());
 
 		mItemActors.add(image);
 		return image;
@@ -159,11 +165,18 @@ public class BurgerView extends Group {
 		addActor(mArrowActor);
 	}
 
+	private float getNextY() {
+		float value = 0;
+		for (ItemImage image: mItemActors) {
+			value += image.getItem().getHeight() + mPadding;
+		}
+		return value;
+	}
+
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
 	private float mPadding = 0;
-	private float mNextY;
-	private Array<Image> mItemActors = new Array<Image>();
+	private Array<ItemImage> mItemActors = new Array<ItemImage>();
 	private Image mArrowActor = null;
 }
