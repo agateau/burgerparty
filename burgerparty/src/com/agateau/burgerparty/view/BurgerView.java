@@ -21,12 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerView extends Group {
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private Burger mBurger;
-	private TextureAtlas mAtlas;
-	private float mPadding = 0;
-	private float mNextY;
-
 	private static final float ADD_ACTION_HEIGHT = 100;
 	private static final float HPADDING = 15;
 
@@ -165,6 +159,11 @@ public class BurgerView extends Group {
 		addActor(mArrowActor);
 	}
 
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+	private Burger mBurger;
+	private TextureAtlas mAtlas;
+	private float mPadding = 0;
+	private float mNextY;
 	private Array<Image> mItemActors = new Array<Image>();
 	private Image mArrowActor = null;
 }
