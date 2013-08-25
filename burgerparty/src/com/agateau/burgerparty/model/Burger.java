@@ -1,56 +1,29 @@
 package com.agateau.burgerparty.model;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.Signal1;
 
-import com.badlogic.gdx.utils.Array;
-
-public class Burger extends MealItemCollection {
+public class Burger extends MealItemCollection<BurgerItem> {
 	public Signal1<Integer> arrowIndexChanged = new Signal1<Integer>();
-
-	public void addItem(BurgerItem item) {
-		mItems.add(item);
-		itemAdded.emit(item);
-	}
-
-	public void clear() {
-		mItems.clear();
-		cleared.emit();
-	}
-
-	public void trash() {
-		mItems.clear();
-		trashed.emit();
-	}
 	
-	public Array<BurgerItem> getItems() {
+	public Collection<BurgerItem> getItems() {
 		return mItems;
 	}
 
 	public CompareResult compareTo(Burger reference) {
-		if (mItems.size > reference.mItems.size) {
+		if (mItems.size() > reference.mItems.size()) {
 			// Should not happen
 			return CompareResult.DIFFERENT;
 		}
-		for (int idx = 0; idx < mItems.size; ++idx) {
+		for (int idx = 0, n = mItems.size(); idx < n; ++idx) {
 			if (mItems.get(idx) != reference.mItems.get(idx)) {
 				return CompareResult.DIFFERENT;
 			}
 		}
-		return mItems.size == reference.mItems.size ? CompareResult.SAME : CompareResult.SUBSET;
-	}
-
-	public void setItems(Array<BurgerItem> items) {
-		mItems = items;
-		initialized.emit();
-	}
-
-	public String toString() {
-		String out = "[";
-		for(BurgerItem item: mItems) {
-			out += item.getName() + ", ";
-		}
-		return out + "]";
+		return mItems.size() == reference.mItems.size() ? CompareResult.SAME : CompareResult.SUBSET;
 	}
 
 	public int getArrowIndex() {
@@ -73,5 +46,5 @@ public class Burger extends MealItemCollection {
 	}
 
 	private int mArrowIndex = -1;
-	private Array<BurgerItem> mItems = new Array<BurgerItem>();
+	private LinkedList<BurgerItem> mItems = new LinkedList<BurgerItem>();
 }
