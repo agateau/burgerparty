@@ -7,12 +7,10 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.utils.Array;
 
 public class Burger {
-	private Array<BurgerItem> mItems;
-
-	public Signal1<BurgerItem> burgerItemAdded;
+	public Signal1<MealItem> itemAdded = new Signal1<MealItem>();
 	public Signal0 initialized = new Signal0();
-	public Signal0 cleared;
-	public Signal0 trashed;
+	public Signal0 cleared = new Signal0();
+	public Signal0 trashed = new Signal0();
 	public Signal1<Integer> arrowIndexChanged = new Signal1<Integer>();
 
 	public enum CompareResult {
@@ -22,15 +20,12 @@ public class Burger {
 	}
 
 	public Burger() {
-		burgerItemAdded = new Signal1<BurgerItem>();
-		cleared = new Signal0();
-		trashed = new Signal0();
 		mItems = new Array<BurgerItem>();
 	}
 
 	public void addItem(BurgerItem item) {
 		mItems.add(item);
-		burgerItemAdded.emit(item);
+		itemAdded.emit(item);
 	}
 
 	public void clear() {
@@ -97,4 +92,5 @@ public class Burger {
 	}
 
 	private int mArrowIndex = -1;
+	private Array<BurgerItem> mItems = new Array<BurgerItem>();
 }

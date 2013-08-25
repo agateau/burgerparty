@@ -74,9 +74,9 @@ public class World {
 
 	private void setupMeal() {
 		mBurger = new Burger();
-		mBurger.burgerItemAdded.connect(mHandlers, new Signal1.Handler<BurgerItem>() {
+		mBurger.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
-			public void handle(BurgerItem item) {
+			public void handle(MealItem item) {
 				onBurgerItemAdded();
 			}
 		});
