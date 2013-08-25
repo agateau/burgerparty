@@ -15,7 +15,17 @@ public abstract class MealItemCollection<T extends MealItem> {
 	public enum CompareResult {
 		SUBSET,
 		SAME,
-		DIFFERENT,
+		DIFFERENT;
+
+		public String toString() {
+			if (this == SUBSET) {
+				return "SUBSET";
+			} else if (this == SAME) {
+				return "SAME";
+			} else {
+				return "DIFFERENT";
+			}
+		}
 	}
 
 	public boolean isEmpty() {
