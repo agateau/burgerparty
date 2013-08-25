@@ -1,27 +1,12 @@
 package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.model.BurgerItem;
-import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.utils.Array;
 
-public class Burger {
-	public Signal1<MealItem> itemAdded = new Signal1<MealItem>();
-	public Signal0 initialized = new Signal0();
-	public Signal0 cleared = new Signal0();
-	public Signal0 trashed = new Signal0();
+public class Burger extends MealItemCollection {
 	public Signal1<Integer> arrowIndexChanged = new Signal1<Integer>();
-
-	public enum CompareResult {
-		SUBSET,
-		SAME,
-		DIFFERENT,
-	}
-
-	public Burger() {
-		mItems = new Array<BurgerItem>();
-	}
 
 	public void addItem(BurgerItem item) {
 		mItems.add(item);
@@ -40,10 +25,6 @@ public class Burger {
 	
 	public Array<BurgerItem> getItems() {
 		return mItems;
-	}
-
-	public int getSize() {
-		return mItems.size;
 	}
 
 	public CompareResult compareTo(Burger reference) {
