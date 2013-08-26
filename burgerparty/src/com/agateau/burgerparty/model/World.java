@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
@@ -182,7 +183,7 @@ public class World {
 		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
 
-		Array<BurgerItem> items = new Array<BurgerItem>();
+		LinkedList<BurgerItem> items = new LinkedList<BurgerItem>();
 		items.add(BurgerItem.get(mLevel.definition.bottomBurgerItem));
 
 		// Generate content, make sure items cannot appear two times consecutively
