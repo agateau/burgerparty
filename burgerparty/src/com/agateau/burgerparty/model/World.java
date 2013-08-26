@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
+import com.agateau.burgerparty.utils.ConnectionManager;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
@@ -34,8 +35,6 @@ public class World {
 	private static final int HAPPY_SCORE = 4000;
 	private static final int NEUTRAL_SCORE = 2000;
 	private static final int ANGRY_SCORE = 1000;
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Timer mTimer = new Timer();
 
@@ -73,8 +72,9 @@ public class World {
 	}
 
 	private void setupMeal() {
+		mMealConnections.disconnectAll();
 		mBurger = new Burger();
-		mBurger.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
+		mBurger.itemAdded.connect(mMealConnections, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
 				onBurgerItemAdded();
@@ -82,7 +82,7 @@ public class World {
 		});
 
 		mMealExtra = new MealExtra();
-		mMealExtra.itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
+		mMealExtra.itemAdded.connect(mMealConnections, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
 				onMealItemAdded(item);
@@ -315,4 +315,6 @@ public class World {
 		mScore += score.delta;
 		mealFinished.emit(score);
 	}
+
+	private ConnectionManager mMealConnections = new ConnectionManager();
 }
