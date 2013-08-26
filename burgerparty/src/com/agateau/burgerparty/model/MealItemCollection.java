@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.model;
 
 import java.util.Collection;
-import java.util.LinkedList;
 
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
