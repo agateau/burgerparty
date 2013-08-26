@@ -2,7 +2,7 @@
 package com.agateau.burgerparty.utils;
 
 public class Signal$n<$typeList> extends AbstractSignal<Signal$n.Handler<$typeList>> {
-	public interface Handler<$typeList> {
+	public interface Handler<$typeList> extends Signal.Handler {
 		void handle($typeArgList);
 	}
 

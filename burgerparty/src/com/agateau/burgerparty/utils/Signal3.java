@@ -2,7 +2,7 @@
 package com.agateau.burgerparty.utils;
 
 public class Signal3<T1, T2, T3> extends AbstractSignal<Signal3.Handler<T1, T2, T3>> {
-	public interface Handler<T1, T2, T3> {
+	public interface Handler<T1, T2, T3> extends Signal.Handler {
 		void handle(T1 a1, T2 a2, T3 a3);
 	}
 
