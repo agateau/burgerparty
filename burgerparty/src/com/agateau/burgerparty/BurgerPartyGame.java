@@ -40,6 +40,20 @@ public class BurgerPartyGame extends Game {
 		showMenu();
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+		Gdx.app.log("BurgerPartyGame", "dispose");
+	}
+
+	@Override
+	public void resume() {
+		super.resume();
+		Array<TextureAtlas.AtlasRegion> regions = mAtlas.getRegions();
+		Gdx.app.log("BurgerPartyGame", "resume: atlas regions: " + regions.size);
+		Gdx.app.log("BurgerPartyGame", "resume: size of 1st region: " + regions.get(0).originalWidth + "x" + regions.get(0).originalHeight);
+	}
+
 	void setupAnimScriptLoader()
 	{
 		AnimScriptLoader loader = Kernel.getAnimScriptLoader();
