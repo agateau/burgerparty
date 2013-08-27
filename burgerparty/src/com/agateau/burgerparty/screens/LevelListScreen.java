@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 public class LevelListScreen extends BaseScreen {
 	private static final float ANIMATION_DURATION = 0.4f;
 	private static final int COL_COUNT = 4;
+	private static final float CELL_SIZE = 130;
 
 	public LevelListScreen(BurgerPartyGame game, int worldIndex, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
@@ -80,7 +81,7 @@ public class LevelListScreen extends BaseScreen {
 		GridGroup gridGroup = new GridGroup();
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
-		gridGroup.setCellSize(130, 130);
+		gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
 
 		LevelWorld levelWorld = getGame().getLevelWorld(levelWorldIndex);
 		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
