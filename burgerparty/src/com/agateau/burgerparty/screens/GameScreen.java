@@ -8,7 +8,7 @@ import com.agateau.burgerparty.view.WorldView;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class GameScreen extends BaseScreen {
+public class GameScreen extends BurgerPartyScreen {
 	private World mWorld;
 	private WorldView mWorldView;
 

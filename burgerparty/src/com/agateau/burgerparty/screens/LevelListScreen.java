@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
-public class LevelListScreen extends BaseScreen {
+public class LevelListScreen extends BurgerPartyScreen {
 	private static final float ANIMATION_DURATION = 0.4f;
 	private static final int COL_COUNT = 4;
 	private static final float CELL_SIZE = 130;
