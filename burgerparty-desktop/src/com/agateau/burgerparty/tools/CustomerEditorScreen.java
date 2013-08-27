@@ -76,6 +76,9 @@ public class CustomerEditorScreen extends StageScreen {
 		});
 	}
 
+	public void onBackPressed() {
+	}
+
 	private void setupInput() {
 		getStage().getRoot().addListener(new InputListener() {
 			@Override

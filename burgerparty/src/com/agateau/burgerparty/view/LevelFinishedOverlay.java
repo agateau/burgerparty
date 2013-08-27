@@ -8,6 +8,7 @@ import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
+import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -254,6 +255,11 @@ public class LevelFinishedOverlay extends Overlay {
 			levelIndex = 0;
 		}
 		mGame.startLevel(levelWorldIndex, levelIndex);
+	}
+
+	@Override
+	public void onBackPressed() {
+		mGame.selectLevel(mGame.getLevelWorldIndex());
 	}
 
 	private RunQueue mRunQueue = new RunQueue();

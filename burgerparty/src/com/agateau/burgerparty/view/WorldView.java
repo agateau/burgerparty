@@ -8,6 +8,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.World;
 
+import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
@@ -36,9 +37,10 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AnchorGroup {
-	public WorldView(BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
+	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
+		mGameScreen = screen;
 		mGame = game;
 		mWorld = world;
 		mAtlas = atlas;
@@ -90,15 +92,17 @@ public class WorldView extends AnchorGroup {
 			}, MealView.TRASH_ACTION_DURATION);
 	}
 
+	public void onBackPressed() {
+		pause();
+	}
+
 	public void pause() {
 		mWorld.pause();
-		mPauseOverlay = new PauseOverlay(this, mGame, mAtlas, mSkin);
-		addActor(mPauseOverlay);
+		mGameScreen.setOverlay(new PauseOverlay(this, mGame, mAtlas, mSkin));
 	}
 
 	public void resume() {
-		removeActor(mPauseOverlay);
-		mPauseOverlay = null;
+		mGameScreen.setOverlay(null);
 		mWorld.resume();
 	}
 
@@ -244,7 +248,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void showGameOverOverlay() {
-		addActor(new GameOverOverlay(mGame, mAtlas, mSkin));
+		mGameScreen.setOverlay(new GameOverOverlay(mGame, mAtlas, mSkin));
 	}
 
 	private void slideDoneMealView(Runnable toDoAfter) {
@@ -291,7 +295,7 @@ public class WorldView extends AnchorGroup {
 
 	private void showLevelFinishedOverlay() {
 		LevelResult result = mWorld.getLevelResult();
-		addActor(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
+		mGameScreen.setOverlay(new LevelFinishedOverlay(mGame, result, mAtlas, mSkin));
 	}
 
 	private void goToNextCustomer() {
@@ -347,6 +351,7 @@ public class WorldView extends AnchorGroup {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private TextureRegion mBackgroundRegion;
+	private GameScreen mGameScreen;
 	private BurgerPartyGame mGame;
 	private World mWorld;
 	private TextureAtlas mAtlas;
@@ -363,7 +368,6 @@ public class WorldView extends AnchorGroup {
 	private CustomerViewFactory mCustomerFactory;
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
-	private PauseOverlay mPauseOverlay;
 
 	private float mWidth = -1;
 	private float mHeight = -1;

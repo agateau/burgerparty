@@ -4,8 +4,10 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -65,5 +67,11 @@ public class PauseOverlay extends Overlay {
 		group.addRule(pausedLabel, Anchor.BOTTOM_CENTER, resumeButton, Anchor.TOP_CENTER, 0, 1);
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
+	}
+
+	@Override
+	public void onBackPressed() {
+		Gdx.app.log("PauseOverlay", "onBackPressed");
+		mWorldView.resume();
 	}
 }

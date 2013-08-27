@@ -137,6 +137,11 @@ public class LevelListScreen extends BaseScreen {
 		return button;
 	}
 
+	@Override
+	public void onBackPressed() {
+		getGame().showMenu();
+	}
+
 	private void scrollTo(int index) {
 		assert(index >= 0);
 		assert(index < getGame().getLevelWorldCount());

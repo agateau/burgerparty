@@ -7,6 +7,7 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -40,5 +41,10 @@ public class MenuScreen extends BaseScreen {
 
 		group.addRule(titleImage, Anchor.CENTER, group, Anchor.CENTER, 0, 2);
 		group.addRule(startButton, Anchor.TOP_CENTER, titleImage, Anchor.BOTTOM_CENTER);
+	}
+
+	@Override
+	public void onBackPressed() {
+		Gdx.app.exit();
 	}
 }

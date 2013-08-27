@@ -29,6 +29,7 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
+		Gdx.input.setCatchBackKey(true);
 		mAtlas = Kernel.getTextureAtlas();
 		mSkin = Kernel.getSkin();
 

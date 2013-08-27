@@ -1,4 +1,4 @@
-package com.agateau.burgerparty.view;
+package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
-public class Overlay extends WidgetGroup {
+public abstract class Overlay extends WidgetGroup {
 	private TextureRegion mBackgroundRegion;
 	public Overlay(TextureAtlas atlas) {
 		mBackgroundRegion = atlas.findRegion("overlay-bg");
@@ -30,4 +30,9 @@ public class Overlay extends WidgetGroup {
 		batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
 		super.draw(batch, parentAlpha);
 	}
+
+	/**
+	 * Must be reimplemented to handle pressing the "back" button
+	 */
+	public abstract void onBackPressed();
 }

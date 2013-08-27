@@ -1,8 +1,11 @@
 package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
@@ -10,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 /**
  * A Screen with a stage filling its surface and a reference to a skin
  */
-public class StageScreen implements Screen {
+public abstract class StageScreen implements Screen {
 	// FIXME: Ugly hard-coded sizes
 	private Stage mStage = new Stage(800, 480, true);
 	private Skin mSkin;
@@ -18,7 +21,20 @@ public class StageScreen implements Screen {
 
 	public StageScreen(Skin skin) {
 		mSkin = skin;
-		Gdx.input.setInputProcessor(mStage);
+		mStage.getRoot().addListener(new InputListener() {
+			@Override
+			public boolean keyDown(InputEvent event, int keycode) {
+				if (keycode == Input.Keys.BACK || keycode == Input.Keys.BACKSPACE) {
+					if (mOverlay == null) {
+						onBackPressed();
+					} else {
+						mOverlay.onBackPressed();
+					}
+					return true;
+				}
+				return false;
+			}
+		});
 	}
 
 	public Skin getSkin() {
@@ -37,6 +53,22 @@ public class StageScreen implements Screen {
 		}
 	}
 
+	public void setOverlay(Overlay overlay) {
+		if (mOverlay != null) {
+			mOverlay.remove();
+			mOverlay = null;
+		}
+		if (overlay != null) {
+			mOverlay = overlay;
+			mStage.getRoot().addActor(mOverlay);
+		}
+	}
+
+	/**
+	 * Must be reimplemented to handle pressing the "back" button
+	 */
+	public abstract void onBackPressed();
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -52,8 +84,7 @@ public class StageScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-
+		Gdx.input.setInputProcessor(mStage);
 	}
 
 	@Override
@@ -86,4 +117,6 @@ public class StageScreen implements Screen {
 			mBgActor.layout();
 		}
 	}
+
+	private Overlay mOverlay = null;
 }

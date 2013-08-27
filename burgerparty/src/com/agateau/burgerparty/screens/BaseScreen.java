@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 /**
  * Extends StageScreen to add a reference to BurgerPartyGame
  */
-public class BaseScreen extends StageScreen {
+public abstract class BaseScreen extends StageScreen {
 	private BurgerPartyGame mGame;
 
 	public BaseScreen(BurgerPartyGame game, Skin skin) {

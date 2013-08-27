@@ -15,12 +15,18 @@ public class GameScreen extends BaseScreen {
 	public GameScreen(BurgerPartyGame game, Level level, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
 		mWorld = new World(level);
-		mWorldView = new WorldView(game, mWorld, atlas, skin);
+		mWorldView = new WorldView(this, game, mWorld, atlas, skin);
 		getStage().addActor(mWorldView);
 	}
 
 	@Override
 	public void show() {
+		super.show();
 		mWorld.start();
+	}
+
+	@Override
+	public void onBackPressed() {
+		mWorldView.onBackPressed();
 	}
 }
