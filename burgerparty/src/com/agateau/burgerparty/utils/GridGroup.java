@@ -15,6 +15,10 @@ public class GridGroup extends WidgetGroup {
 		invalidate();
 	}
 
+	public float getSpacing() {
+		return mSpacing;
+	}
+
 	public void setSpacing(float spacing) {
 		if (mSpacing == spacing) {
 			return;
@@ -63,6 +67,16 @@ public class GridGroup extends WidgetGroup {
 		setSize(
 			(mCellWidth + mSpacing) * mColCount - mSpacing,
 			(mCellHeight + mSpacing) * rowCount - mSpacing);
+	}
+
+	@Override
+	public float getPrefWidth() {
+		return getWidth();
+	}
+
+	@Override
+	public float getPrefHeight() {
+		return getHeight();
 	}
 
 	private int mColCount = 1;

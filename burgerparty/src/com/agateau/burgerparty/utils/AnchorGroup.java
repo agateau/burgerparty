@@ -149,4 +149,12 @@ public class AnchorGroup extends WidgetGroup {
 			rule.apply();
 		}
 	}
+
+	public float getPrefWidth() {
+		return getWidth();
+	}
+
+	public float getPrefHeight() {
+		return getHeight();
+	}
 }
