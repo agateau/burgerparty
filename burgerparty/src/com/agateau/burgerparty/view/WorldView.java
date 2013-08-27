@@ -97,6 +97,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	public void pause() {
+		if (mGameScreen.getOverlay() != null) {
+			// This can happen when called from GameScreen.pause()
+			return;
+		}
 		mWorld.pause();
 		mGameScreen.setOverlay(new PauseOverlay(this, mGame, mAtlas, mSkin));
 	}

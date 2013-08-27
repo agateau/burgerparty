@@ -26,6 +26,11 @@ public class GameScreen extends BaseScreen {
 	}
 
 	@Override
+	public void pause() {
+		mWorldView.pause();
+	}
+
+	@Override
 	public void onBackPressed() {
 		mWorldView.onBackPressed();
 	}

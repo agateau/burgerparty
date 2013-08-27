@@ -53,6 +53,10 @@ public abstract class StageScreen implements Screen {
 		}
 	}
 
+	public Overlay getOverlay() {
+		return mOverlay;
+	}
+
 	public void setOverlay(Overlay overlay) {
 		if (mOverlay != null) {
 			mOverlay.remove();
