@@ -12,7 +12,9 @@ public class MainActivity extends AndroidApplication {
         
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useGL20 = true;
-        
+        cfg.useCompass = false;
+        cfg.useAccelerometer = false;
+        cfg.hideStatusBar = true;
         initialize(new BurgerPartyGame(), cfg);
     }
 }
