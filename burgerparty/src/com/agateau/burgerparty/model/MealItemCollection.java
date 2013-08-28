@@ -42,7 +42,7 @@ public abstract class MealItemCollection<T extends MealItem> {
 	}
 
 	public void addItem(T item) {
-		getItems().add(item);
+		addItemInternal(item);
 		itemAdded.emit(item);
 	}
 
@@ -63,4 +63,6 @@ public abstract class MealItemCollection<T extends MealItem> {
 	}
 
 	public abstract Collection<T> getItems();
+
+	protected abstract void addItemInternal(T item);
 }

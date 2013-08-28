@@ -45,6 +45,11 @@ public class Burger extends MealItemCollection<BurgerItem> {
 		arrowIndexChanged.emit(mArrowIndex);
 	}
 
+	@Override
+	protected void addItemInternal(BurgerItem item) {
+		mItems.add(item);
+	}
+
 	private int mArrowIndex = -1;
 	private LinkedList<BurgerItem> mItems = new LinkedList<BurgerItem>();
 }
