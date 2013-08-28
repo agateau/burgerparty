@@ -7,29 +7,60 @@ import com.badlogic.gdx.utils.Array;
 
 class BurgerGenerator {
 	public BurgerGenerator(Array<String> names, int count) {
-		mItemNames = new Array<String>(names);
 		mCount = count;
+		for (String name: names) {
+			BurgerItem item = BurgerItem.get(name);
+			switch (item.getSubType()) {
+			case MIDDLE:
+				mMiddleItems.add(item);
+				break;
+			case BOTTOM:
+				// Skip, assume there are matching tops
+				break;
+			case TOP:
+				BurgerItem bottomItem = BurgerItem.get(item.getBottomName());
+				mTopBottomItems.add(new TopBottom(item, bottomItem));
+				break;
+			case TOP_BOTTOM:
+				mTopBottomItems.add(new TopBottom(item, item));
+				break;
+			}
+		}
 	}
 
-	public LinkedList<BurgerItem> run(String bottom, String top) {
-		LinkedList<BurgerItem> items = new LinkedList<BurgerItem>();
-		items.add(BurgerItem.get(bottom));
+	public LinkedList<BurgerItem> run() {
+		LinkedList<BurgerItem> lst = new LinkedList<BurgerItem>();
+
+		TopBottom topBottom = mTopBottomItems.get(MathUtils.random(mTopBottomItems.size - 1));
+		lst.add(topBottom.bottom);
 
 		// Generate content, make sure items cannot appear two times consecutively
-		String lastName = new String();
-		for (; mCount > 0; mCount--) {
-			int index = MathUtils.random(mItemNames.size - 1);
-			String name = mItemNames.removeIndex(index);
-			if (!lastName.isEmpty()) {
-				mItemNames.add(lastName);
+		Array<BurgerItem> items = new Array<BurgerItem>(mMiddleItems);
+		BurgerItem lastItem = null;
+		for (int x = mCount - 1; x >= 0; x--) {
+			int index = MathUtils.random(items.size - 1);
+			BurgerItem item = items.removeIndex(index);
+			if (lastItem != null) {
+				items.add(lastItem);
 			}
-			lastName = name;
-			items.add(BurgerItem.get(name));
+			lastItem = item;
+			lst.add(item);
 		}
-		items.add(BurgerItem.get(top));
-		return items;
+
+		lst.add(topBottom.top);
+		return lst;
 	}
 
-	private Array<String> mItemNames;
+	private static class TopBottom {
+		public BurgerItem top;
+		public BurgerItem bottom;
+		public TopBottom(BurgerItem t, BurgerItem b) {
+			top = t;
+			bottom = b;
+		}
+	}
+
+	private Array<TopBottom> mTopBottomItems = new Array<TopBottom>();
+	private Array<BurgerItem> mMiddleItems = new Array<BurgerItem>();
 	private int mCount;
 }

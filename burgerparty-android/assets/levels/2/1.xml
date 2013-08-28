@@ -5,6 +5,8 @@
     >
     <items>
         <item name="toast"/>
+        <item name="top"/>
+        <item name="bottom"/>
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>

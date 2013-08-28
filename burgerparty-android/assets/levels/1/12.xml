@@ -6,6 +6,8 @@
     score3="6000"
     >
     <items>
+        <item name="top"/>
+        <item name="bottom"/>
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>

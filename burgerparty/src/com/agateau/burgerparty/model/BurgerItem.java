@@ -19,6 +19,7 @@ public class BurgerItem extends MealItem {
 			mSubType = SubType.MIDDLE;
 		} else if (subType.equals("top")) {
 			mSubType = SubType.TOP;
+			mBottomName = element.getAttribute("bottom");
 		} else if (subType.equals("bottom")) {
 			mSubType = SubType.BOTTOM;
 		} else if (subType.equals("top-bottom")) {
@@ -44,6 +45,10 @@ public class BurgerItem extends MealItem {
 		return mSubType;
 	}
 
+	public String getBottomName() {
+		return mBottomName;
+	}
+
 	public static void addTestItem(String name) {
 		BurgerItem item = new BurgerItem(name);
 		item.mHeight = 18;
@@ -61,4 +66,5 @@ public class BurgerItem extends MealItem {
 	private int mHeight;
 	private int mOffset;
 	private SubType mSubType;
+	private String mBottomName;
 }

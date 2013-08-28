@@ -10,8 +10,6 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static class Definition {
 		public Array<String> burgerItems = new Array<String>();
-		public String topBurgerItem = "top";
-		public String bottomBurgerItem = "bottom";
 		public Array<String> extraItems = new Array<String>();
 		public int minBurgerSize;
 		public int maxBurgerSize;
@@ -73,22 +71,7 @@ public class Level {
 			MealItem item = MealItem.get(name);
 			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
-				BurgerItem bItem = (BurgerItem)item;
-				switch (bItem.getSubType()) {
-				case MIDDLE:
-					level.definition.burgerItems.add(name);
-					break;
-				case TOP:
-					level.definition.topBurgerItem = name;
-					break;
-				case BOTTOM:
-					level.definition.bottomBurgerItem = name;
-					break;
-				case TOP_BOTTOM:
-					level.definition.topBurgerItem = name;
-					level.definition.bottomBurgerItem = name;
-					break;
-				}
+				level.definition.burgerItems.add(name);
 			} else {
 				level.definition.extraItems.add(name);
 			}
