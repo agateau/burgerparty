@@ -93,9 +93,10 @@ public class MealItem {
 		mName = name;
 	}
 
-	public static void addTestItem(Type type, String name) {
+	public static MealItem addTestItem(Type type, String name) {
 		MealItem item = new MealItem(type, name);
 		addTestItem(item);
+		return item;
 	}
 
 	protected static void addTestItem(MealItem item) {
