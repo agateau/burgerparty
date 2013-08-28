@@ -246,6 +246,7 @@ public class World {
 			mMealExtra.trash();
 			mIsTrashing = true;
 			trashing.emit();
+			mTargetBurger.resetArrow();
 		}
 	}
 
