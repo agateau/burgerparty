@@ -7,21 +7,6 @@ import java.util.LinkedList;
  * so that a call to getItems() returns all side orders, then all drinks
  */
 public class MealExtra extends MealItemCollection<MealItem> {
-
-	public boolean isMissing(MealExtra other, MealItem item) {
-		return other.mItems.contains(item) && !mItems.contains(item);
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		return mItems.equals(((MealExtra)other).mItems);
-	}
-
-	@Override
-	public int hashCode() {
-		return mItems.hashCode();
-	}
-
 	public CompareResult compareTo(MealExtra reference) {
 		LinkedList<MealItem> us = new LinkedList<MealItem>(mItems);
 		LinkedList<MealItem> ref = new LinkedList<MealItem>(reference.mItems);

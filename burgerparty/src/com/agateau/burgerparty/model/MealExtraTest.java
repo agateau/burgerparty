@@ -1,7 +1,5 @@
 package com.agateau.burgerparty.model;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
 
@@ -31,47 +29,6 @@ public class MealExtraTest {
 
 		extra.addItem(potatoes);
 		assertArrayEquals(new MealItem[]{fries, fries, potatoes, juice}, arrayFromMealExtra(extra));
-	}
-
-	@Test
-	public void testIsMissing() {
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "foo");
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "bar");
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "unused");
-
-		MealExtra extra1 = new MealExtra();
-		MealExtra extra2 = new MealExtra();
-		
-		extra1.addItem(MealItem.get("foo"));
-
-		extra2.addItem(MealItem.get("foo"));
-		extra2.addItem(MealItem.get("bar"));
-
-		assertFalse(extra1.isMissing(extra2, MealItem.get("unused")));
-		assertFalse(extra1.isMissing(extra2, MealItem.get("foo")));
-		assertTrue(extra1.isMissing(extra2, MealItem.get("bar")));
-	}
-
-	@Test
-	public void testEquals() {
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "foo");
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "bar");
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "unused");
-
-		MealExtra extra1 = new MealExtra();
-		MealExtra extra2 = new MealExtra();
-
-		assertTrue(extra1.equals(extra2));
-
-		extra1.addItem(MealItem.get("foo"));
-		assertFalse(extra1.equals(extra2));
-
-		extra2.addItem(MealItem.get("bar"));
-		assertFalse(extra1.equals(extra2));
-
-		extra1.addItem(MealItem.get("bar"));
-		extra2.addItem(MealItem.get("foo"));
-		assertTrue(extra1.equals(extra2));
 	}
 
 	@Test
