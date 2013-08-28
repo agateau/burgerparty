@@ -180,24 +180,9 @@ public class World {
 	}
 
 	private void generateTargetBurger() {
-		Array<String> names = new Array<String>(mLevel.definition.burgerItems);
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
-
-		LinkedList<BurgerItem> items = new LinkedList<BurgerItem>();
-		items.add(BurgerItem.get(mLevel.definition.bottomBurgerItem));
-
-		// Generate content, make sure items cannot appear two times consecutively
-		String lastName = new String();
-		for (; count > 0; count--) {
-			int index = MathUtils.random(names.size - 1);
-			String name = names.removeIndex(index);
-			if (!lastName.isEmpty()) {
-				names.add(lastName);
-			}
-			lastName = name;
-			items.add(BurgerItem.get(name));
-		}
-		items.add(BurgerItem.get(mLevel.definition.topBurgerItem));
+		BurgerGenerator generator = new BurgerGenerator(mLevel.definition.burgerItems, count);
+		LinkedList<BurgerItem> items = generator.run(mLevel.definition.bottomBurgerItem, mLevel.definition.topBurgerItem);
 		mTargetBurger.setItems(items);
 		mTargetBurger.resetArrow();
 	}
