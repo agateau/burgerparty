@@ -14,6 +14,11 @@
         <item name="cheese"/>
         <item name="ketchup"/>
         <item name="cucumber"/>
+        <item name="small-fries"/>
+        <item name="big-fries"/>
+        <item name="juice"/>
+        <item name="soda"/>
+        <item name="coconut"/>
     </items>
     <customers>
         <customer type="girls"/>

@@ -10,6 +10,10 @@
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>
+        <item name="small-fries"/>
+        <item name="big-fries"/>
+        <item name="juice"/>
+        <item name="soda"/>
         <item name="coconut"/>
     </items>
     <customers>

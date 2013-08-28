@@ -19,6 +19,7 @@
         <item name="big-fries"/>
         <item name="juice"/>
         <item name="soda"/>
+        <item name="coconut"/>
     </items>
     <customers>
         <customer type="boys"/>
