@@ -62,6 +62,7 @@ public class World {
 		for (String name: mLevel.definition.customers) {
 			mCustomers.add(new Customer(name));
 		}
+		mBurgerGenerator = new BurgerGenerator(mLevel.definition.burgerItems);
 		mBurgerInventory = new Inventory(level.definition.burgerItems);
 		mMealExtraInventory = new Inventory(level.definition.extraItems);
 		setupMeal();
@@ -176,8 +177,7 @@ public class World {
 
 	private void generateTargetBurger() {
 		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
-		BurgerGenerator generator = new BurgerGenerator(mLevel.definition.burgerItems, count);
-		LinkedList<BurgerItem> items = generator.run();
+		LinkedList<BurgerItem> items = mBurgerGenerator.run(count);
 		mTargetBurger.setItems(items);
 		mTargetBurger.resetArrow();
 	}
@@ -298,4 +298,5 @@ public class World {
 	}
 
 	private ConnectionManager mMealConnections = new ConnectionManager();
+	private BurgerGenerator mBurgerGenerator;
 }
