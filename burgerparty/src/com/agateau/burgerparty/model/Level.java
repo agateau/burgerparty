@@ -29,6 +29,10 @@ public class Level {
 		return getStarsFor(score);
 	}
 
+	public boolean hasBrandNewItem() {
+		return score <= 0 && !definition.newItem.isEmpty();
+	}
+
 	public int getStarsFor(int value) {
 		if (value >= definition.score3) {
 			return 3;

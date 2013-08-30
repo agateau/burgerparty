@@ -774,6 +774,13 @@ ui/icon-levels
   orig: 28, 28
   offset: 0, 0
   index: -1
+ui/surprise
+  rotate: false
+  xy: 999, 998
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
 
 burgerparty11.png
 format: RGBA8888

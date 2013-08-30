@@ -3,6 +3,7 @@ package com.agateau.burgerparty.screens;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
+import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
@@ -33,6 +34,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mStarOff = atlas.findRegion("ui/star-off");
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock");
+		mSurpriseRegion = atlas.findRegion("ui/surprise");
 		setupWidgets(skin);
 
 		scrollTo(worldIndex);
@@ -92,7 +94,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int levelWorldIndex, int levelIndex, int stars, Skin skin) {
+		public LevelButton(int levelWorldIndex, int levelIndex, int stars, boolean surprise, Skin skin) {
 			super("", skin);
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
@@ -113,9 +115,13 @@ public class LevelListScreen extends BurgerPartyScreen {
 				table.setSize(mStarOff.getRegionWidth() * 3, mStarOff.getRegionHeight());
 			} else {
 				setDisabled(true);
-				setColor(1f, 1f, 1f, 0.5f);
 				Image image = new Image(mLock);
 				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
+			}
+
+			if (surprise) {
+				Image image = new Image(mSurpriseRegion);
+				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT);
 			}
 		}
 
@@ -125,8 +131,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
 		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
-		int stars = world.getLevel(levelIndex).getStars();
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, skin);
+		Level level = world.getLevel(levelIndex);
+		int stars = level.getStars();
+		boolean surprise = level.hasBrandNewItem();
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, surprise, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				Kernel.getSoundAtlas().findSound("click").play();
@@ -188,6 +196,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private TextureRegion mStarOff;
 	private TextureRegion mStarOn;
 	private TextureRegion mLock;
+	private TextureRegion mSurpriseRegion;
 
 	private AnchorGroup mAnchorGroup = new AnchorGroup();
 	private Array<GridGroup> mGridGroups = new Array<GridGroup>();
