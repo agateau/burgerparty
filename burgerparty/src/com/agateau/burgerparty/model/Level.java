@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class Level {
+	public static final int LOCKED_SCORE = -1;
 	public static class Definition {
 		public Array<String> burgerItems = new Array<String>();
 		public Array<String> extraItems = new Array<String>();
@@ -17,10 +18,11 @@ public class Level {
 		public Array<String> customers = new Array<String>();
 		public int score2;
 		public int score3;
+		public String newItem = new String();
 	}
 
 	public Definition definition = new Definition();
-	public int score = -1;
+	public int score = LOCKED_SCORE;
 
 	public int getStars() {
 		return getStarsFor(score);
@@ -74,6 +76,9 @@ public class Level {
 				level.definition.burgerItems.add(name);
 			} else {
 				level.definition.extraItems.add(name);
+			}
+			if (element.getBooleanAttribute("new", false)) {
+				level.definition.newItem = name;
 			}
 		}
 

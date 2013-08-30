@@ -9,7 +9,7 @@
         <item name="steak"/>
         <item name="tomato"/>
         <item name="salad"/>
-        <item name="onion"/>
+        <item name="onion" new="true"/>
     </items>
     <customers>
         <customer type="boys"/>

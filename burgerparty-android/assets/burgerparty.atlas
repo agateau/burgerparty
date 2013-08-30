@@ -793,6 +793,32 @@ filter: Nearest,Linear
 repeat: none
 levels/1/background
   rotate: false
+  xy: 1, 483
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+levels/1/newitem-bg
+  rotate: false
+  xy: 1, 1
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+levels/1/shelf
+  rotate: false
+  xy: 803, 873
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+
+burgerparty13.png
+format: RGBA8888
+filter: Nearest,Linear
+repeat: none
+levels/1/newitem-fg
+  rotate: false
   xy: 1, 85
   size: 800, 480
   orig: 800, 480
@@ -805,15 +831,8 @@ levels/1/workbench
   orig: 800, 82
   offset: 0, 0
   index: -1
-levels/1/shelf
-  rotate: false
-  xy: 803, 475
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
 
-burgerparty13.png
+burgerparty14.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none

@@ -1,5 +1,7 @@
 package com.agateau.burgerparty;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
@@ -7,7 +9,9 @@ import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
+import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -19,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
@@ -141,7 +147,7 @@ public class BurgerPartyGame extends Game {
 		} else if (mLevelWorldIndex < mLevelWorlds.size - 1){
 			next = mLevelWorlds.get(mLevelWorldIndex + 1).getLevel(0);
 		}
-		if (next != null && next.score == -1) {
+		if (next != null && next.score == Level.LOCKED_SCORE) {
 			next.score = 0;
 		}
 		saveLevelProgress();
@@ -150,7 +156,19 @@ public class BurgerPartyGame extends Game {
 	public void startLevel(int levelWorldIndex, int levelIndex) {
 		mLevelWorldIndex = levelWorldIndex;
 		mLevelIndex = levelIndex;
-		setScreen(new GameScreen(this, mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex), mAtlas, mSkin));
+		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
+		if (level.score == 0 && !level.definition.newItem.isEmpty()) {
+			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.newItem);
+			screen.done.connect(mHandlers, new Signal0.Handler() {
+				@Override
+				public void handle() {
+					doStartLevel();
+				}
+			});
+			setScreen(screen);
+		} else {
+			doStartLevel();
+		}
 	}
 
 	public void showMenu() {
@@ -159,6 +177,11 @@ public class BurgerPartyGame extends Game {
 
 	public void selectLevel(int worldIndex) {
 		setScreen(new LevelListScreen(this, worldIndex, mAtlas, mSkin));
+	}
+	
+	private void doStartLevel() {
+		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
+		setScreen(new GameScreen(this, level, mAtlas, mSkin));
 	}
 
 	static private FileHandle getUserWritableFile(String name) {
