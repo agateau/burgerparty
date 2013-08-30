@@ -1,27 +1,22 @@
-<level
-    minBurgerSize="12"
-    maxBurgerSize="12"
-    duration="60"
-    score2="4000"
-    score3="6000"
-    >
-    <items>
-        <item name="top"/>
-        <item name="bottom"/>
-        <item name="steak"/>
-        <item name="tomato"/>
-        <item name="salad"/>
-        <item name="onion"/>
-        <item name="cheese"/>
-        <item name="ketchup"/>
-        <item name="cucumber"/>
-        <!-- extra -->
-        <item name="small-fries"/>
-        <item name="big-fries"/>
-        <item name="juice"/>
-        <item name="soda"/>
-    </items>
-    <customers>
-        <customer type="ninjas"/>
-    </customers>
+<?xml version="1.0"?>
+<level minBurgerSize="12" maxBurgerSize="12" duration="60" score2="4000" score3="6000">
+  <items>
+    <!-- extra -->
+    <item name="top"/>
+    <item name="bottom"/>
+    <item name="steak"/>
+    <item name="tomato"/>
+    <item name="salad"/>
+    <item name="onion"/>
+    <item name="cheese"/>
+    <item name="ketchup"/>
+    <item name="cucumber"/>
+    <item name="juice"/>
+    <item name="soda"/>
+    <item name="small-fries"/>
+    <item name="big-fries"/>
+  </items>
+  <customers>
+    <customer type="ninjas"/>
+  </customers>
 </level>

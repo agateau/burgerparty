@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 import java.util.MissingResourceException;
+import java.util.Set;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -58,6 +59,7 @@ public class Level {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
 		Level level = new Level();
+		level.mFileName = handle.path();
 		level.mLevelWorld = levelWorld;
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
@@ -77,9 +79,6 @@ public class Level {
 			} else {
 				level.definition.extraItems.add(name);
 			}
-			if (element.getBooleanAttribute("new", false)) {
-				level.definition.newItem = name;
-			}
 		}
 
 		elements = root.getChildByName("customers");
@@ -93,5 +92,25 @@ public class Level {
 		return level;
 	}
 
+	public void checkNewItems(Set<String> knownItems) {
+		checkNewItemsInternal(knownItems, definition.burgerItems);
+		checkNewItemsInternal(knownItems, definition.extraItems);
+	}
+
+	private void checkNewItemsInternal(Set<String> knownItems, Array<String> list) {
+		for(String name: list) {
+			if (knownItems.contains(name)) {
+				continue;
+			}
+			if (definition.newItem.isEmpty()) {
+				definition.newItem = name;
+				knownItems.add(name);
+			} else {
+				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.newItem + "'");
+			}
+		}
+	}
+
 	private LevelWorld mLevelWorld;
+	private String mFileName;
 }

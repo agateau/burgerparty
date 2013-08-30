@@ -1,34 +1,31 @@
-<level
-    minBurgerSize="2"
-    maxBurgerSize="6"
-    duration="120"
-    >
-    <items>
-        <item name="toast"/>
-        <item name="top"/>
-        <item name="bottom"/>
-        <item name="steak"/>
-        <item name="tomato"/>
-        <item name="salad"/>
-        <item name="onion"/>
-        <item name="cheese"/>
-        <item name="ketchup"/>
-        <item name="cucumber"/>
-        <!-- extra -->
-        <item name="small-fries"/>
-        <item name="big-fries"/>
-        <item name="juice"/>
-        <item name="soda"/>
-        <item name="coconut"/>
-    </items>
-    <customers>
-        <customer type="boys"/>
-        <customer type="ninjas"/>
-        <customer type="boys"/>
-        <customer type="girls"/>
-        <customer type="girls"/>
-        <customer type="girls"/>
-        <customer type="boys"/>
-        <customer type="ninjas"/>
-    </customers>
+<?xml version="1.0"?>
+<level minBurgerSize="2" maxBurgerSize="6" duration="120">
+  <items>
+    <!-- extra -->
+    <item name="top"/>
+    <item name="bottom"/>
+    <item name="steak"/>
+    <item name="tomato"/>
+    <item name="salad"/>
+    <item name="onion"/>
+    <item name="cheese"/>
+    <item name="ketchup"/>
+    <item name="cucumber"/>
+    <item name="small-fries"/>
+    <item name="big-fries"/>
+    <item name="juice"/>
+    <item name="soda"/>
+    <item name="coconut"/>
+    <item name="toast"/>
+  </items>
+  <customers>
+    <customer type="boys"/>
+    <customer type="ninjas"/>
+    <customer type="boys"/>
+    <customer type="girls"/>
+    <customer type="girls"/>
+    <customer type="girls"/>
+    <customer type="boys"/>
+    <customer type="ninjas"/>
+  </customers>
 </level>

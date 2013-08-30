@@ -1,22 +1,20 @@
-<level
-    minBurgerSize="3"
-    maxBurgerSize="4"
-    duration="90"
-    >
-    <items>
-        <item name="top"/>
-        <item name="bottom"/>
-        <item name="steak"/>
-        <item name="tomato"/>
-        <item name="salad"/>
-        <item name="onion"/>
-        <item name="cheese"/>
-    </items>
-    <customers>
-        <customer type="girls"/>
-        <customer type="boys"/>
-        <customer type="boys"/>
-        <customer type="girls"/>
-        <customer type="boys"/>
-    </customers>
+<?xml version="1.0"?>
+<level minBurgerSize="3" maxBurgerSize="4" duration="90">
+  <items>
+    <item name="top"/>
+    <item name="bottom"/>
+    <item name="steak"/>
+    <item name="tomato"/>
+    <item name="salad"/>
+    <item name="onion"/>
+    <item name="cheese"/>
+    <item name="ketchup"/>
+  </items>
+  <customers>
+    <customer type="girls"/>
+    <customer type="boys"/>
+    <customer type="boys"/>
+    <customer type="girls"/>
+    <customer type="boys"/>
+  </customers>
 </level>

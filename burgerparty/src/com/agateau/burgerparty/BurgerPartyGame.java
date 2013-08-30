@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
+import com.agateau.burgerparty.model.LevelWorldLoader;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
@@ -68,14 +69,8 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void loadLevelWorlds() {
-		for (int n=1;; n++) {
-			String dirName = "levels/" + n + "/";
-			if (!Gdx.files.internal(dirName + "1.xml").exists()) {
-				break;
-			}
-			Gdx.app.log("loadLevelWorlds", "dir=" + dirName);
-			mLevelWorlds.add(new LevelWorld(dirName));
-		}
+		LevelWorldLoader loader = new LevelWorldLoader();
+		mLevelWorlds = loader.run();
 	}
 
 	private void loadLevelProgress() {
