@@ -11,6 +11,7 @@ import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -25,6 +26,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private static final float ANIMATION_DURATION = 0.4f;
 	private static final int COL_COUNT = 4;
 	private static final float CELL_SIZE = 130;
+
+	private static final float SURPRISE_ROTATE_ANGLE = 5f;
+	private static final float SURPRISE_ROTATE_DURATION = 0.8f;
 
 	public LevelListScreen(BurgerPartyGame game, int worldIndex, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
@@ -120,9 +124,25 @@ public class LevelListScreen extends BurgerPartyScreen {
 			}
 
 			if (surprise) {
-				Image image = new Image(mSurpriseRegion);
-				group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT);
+				createSurpriseImage(group);
 			}
+		}
+
+		private void createSurpriseImage(AnchorGroup group) {
+			Image image = new Image(mSurpriseRegion);
+			image.setOrigin(mSurpriseRegion.getRegionWidth() / 2, mSurpriseRegion.getRegionHeight() / 2);
+			group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -2f, 2f);
+			float variation = MathUtils.random(0.9f, 1.1f);
+			image.addAction(
+				Actions.forever(
+					Actions.sequence(
+						Actions.delay(MathUtils.random(1f, 5f)),
+						Actions.rotateTo(SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine),
+						Actions.rotateTo(-SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation, Interpolation.sine),
+						Actions.rotateTo(0, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine)
+					)
+				)
+			);
 		}
 
 		public int levelWorldIndex;
