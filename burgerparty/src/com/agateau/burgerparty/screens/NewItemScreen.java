@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 public class NewItemScreen extends BurgerPartyScreen {
 	private static final int ITEM_X = 400;
-	private static final int ITEM_Y = 20;
+	private static final int ITEM_Y = 10;
 	private static final float DISPLAY_DURATION = 3;
 	private static final float FADE_IN_DURATION = 1;
 	private static final float FADE_OUT_DURATION = 1;
@@ -28,7 +28,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mFgGroup = new WidgetGroup();
 		mFgImage = new Image(Kernel.getTextureAtlas().findRegion(fgName));
 
-		mItemImage = new Image(Kernel.getTextureAtlas().findRegion("mealitems/" + newItemName));
+		mItemImage = new Image(Kernel.getTextureAtlas().findRegion("mealitems/" + newItemName + "-inventory"));
 
 		getStage().addActor(mBgImage);
 		getStage().addActor(mFgGroup);
