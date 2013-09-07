@@ -44,6 +44,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mFgGroup.addActor(mBubble);
 
 		mFgGroup.setPosition(800, 0);
+		mFgGroup.setColor(1, 1, 1, 0);
 	}
 
 	private void setupBubble(String levelDir, String newItemName) {
@@ -109,6 +110,11 @@ public class NewItemScreen extends BurgerPartyScreen {
 				Actions.alpha(0),
 				Actions.alpha(1, FADE_IN_DURATION)
 			)
+		);
+
+		tl.addAction(
+			mFgGroup,
+			Actions.alpha(1)
 		);
 
 		tl.addAction(
