@@ -872,17 +872,17 @@ burgerparty15.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-levels/2/newitem-fg
-  rotate: false
-  xy: 1, 85
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
 levels/2/workbench
   rotate: false
-  xy: 1, 1
+  xy: 1, 483
   size: 800, 82
   orig: 800, 82
+  offset: 0, 0
+  index: -1
+levels/2/newitem-fg
+  rotate: false
+  xy: 1, 1
+  size: 352, 480
+  orig: 352, 480
   offset: 0, 0
   index: -1
