@@ -47,7 +47,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 	}
 
 	private void setupBubble(String levelDir, String newItemName) {
-		mBubble = new Bubble(Kernel.getTextureAtlas().createPatch(levelDir + "/newitem-bubble"));
+		mBubble = new Bubble(Kernel.getTextureAtlas().createPatch("ui/bubble-callout-right"));
 		mBubble.setColor(1, 1, 1, 0);
 
 		mBubbleContent = new AnchorGroup();
