@@ -373,36 +373,30 @@ filter: Nearest,Linear
 repeat: none
 lcd-font
   rotate: false
-  xy: 1, 264
+  xy: 1, 246
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 159
+  xy: 1, 141
   size: 538, 103
   orig: 538, 103
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 1, 19
+  xy: 1, 1
   size: 236, 138
   split: 39, 20, 18, 54
+  pad: 35, 16, 14, 15
   orig: 236, 138
-  offset: 0, 0
-  index: -1
-face
-  rotate: false
-  xy: 515, 708
-  size: 67, 68
-  orig: 67, 68
   offset: 0, 0
   index: -1
 overlay-bg
   rotate: false
-  xy: 1, 1
+  xy: 515, 742
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -725,6 +719,13 @@ ui/star-on
   orig: 40, 40
   offset: 0, 0
   index: -1
+ui/surprise
+  rotate: false
+  xy: 503, 369
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
 ui/icon-restart
   rotate: false
   xy: 1, 1
@@ -734,51 +735,44 @@ ui/icon-restart
   index: -1
 ui/icon-back
   rotate: false
-  xy: 503, 378
+  xy: 581, 456
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 581, 456
+  xy: 803, 770
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 803, 768
+  xy: 699, 504
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 699, 504
+  xy: 881, 894
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 881, 894
+  xy: 865, 858
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 865, 864
+  xy: 923, 942
   size: 28, 28
   orig: 28, 28
-  offset: 0, 0
-  index: -1
-ui/surprise
-  rotate: false
-  xy: 999, 998
-  size: 22, 22
-  orig: 22, 22
   offset: 0, 0
   index: -1
 
@@ -824,18 +818,27 @@ burgerparty13.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-levels/1/newitem-fg
-  rotate: false
-  xy: 1, 85
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
 levels/1/workbench
   rotate: false
-  xy: 1, 1
+  xy: 1, 603
   size: 800, 82
   orig: 800, 82
+  offset: 0, 0
+  index: -1
+levels/1/newitem-fg
+  rotate: false
+  xy: 1, 121
+  size: 323, 480
+  orig: 323, 480
+  offset: 0, 0
+  index: -1
+levels/1/newitem-bubble
+  rotate: false
+  xy: 1, 1
+  size: 286, 118
+  split: 32, 54, 28, 71
+  pad: 24, 46, 24, 22
+  orig: 286, 118
   offset: 0, 0
   index: -1
 
