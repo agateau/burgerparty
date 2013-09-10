@@ -24,13 +24,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -52,8 +52,7 @@ public class WorldView extends AnchorGroup {
 		setupWorkbench();
 		setupTargetMealView();
 		setupInventoryView();
-		setupScoreDisplay();
-		setupTimerDisplay();
+		setupHud();
 		setupAnchors();
 
 		mWorld.burgerFinished.connect(mHandlers, new Signal0.Handler() {
@@ -202,28 +201,29 @@ public class WorldView extends AnchorGroup {
 		invalidate();
 	}
 
-	private void setupScoreDisplay() {
-		mScoreDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
-		mScoreDisplay.setAlignment(Align.left);
+	private void setupHud() {
+		mHudImage = new Image(mAtlas.findRegion("ui/hud-bg"));
+		mScoreDisplay = new Label("0", mSkin, "score");
 		updateScoreDisplay();
-	}
-
-	private void setupTimerDisplay() {
-		mTimerDisplay = new Label("0", mSkin, "lcd-font", "lcd-color");
-		mTimerDisplay.setAlignment(Align.center);
+		mTimerDisplay = new Label("0", mSkin, "timer");
 		mPauseButton = new Image(mAtlas.findRegion("ui/pause"));
-		mPauseButton.setTouchable(Touchable.enabled);
-		mPauseButton.addListener(new ClickListener() {
+
+		ClickListener listener = new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
 				pause();
 			}
-		});
+		};
+		for (Actor actor: new Actor[]{mHudImage, mTimerDisplay, mScoreDisplay, mPauseButton}) {
+			actor.setTouchable(Touchable.enabled);
+			actor.addListener(listener);
+		}
 	}
 
 	private void setupAnchors() {
-		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
-		addRule(mPauseButton, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT);
-		addRule(mTimerDisplay, Anchor.TOP_RIGHT, mPauseButton, Anchor.TOP_LEFT, -0.5f, 0);
+		addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
+		addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
+		addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
+		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
 
@@ -366,6 +366,7 @@ public class WorldView extends AnchorGroup {
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
 	private Label mScoreDisplay;
+	private Image mHudImage;
 	private Image mPauseButton;
 	private Image mWorkbench;
 	private Bubble mBubble;

@@ -397,7 +397,7 @@ burgerparty7.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-main-font
+main-font-small
   rotate: false
   xy: 1, 1
   size: 512, 512
@@ -409,7 +409,7 @@ burgerparty8.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-scored-font
+main-font
   rotate: false
   xy: 1, 1
   size: 512, 512
@@ -418,6 +418,18 @@ scored-font
   index: -1
 
 burgerparty9.png
+format: RGBA8888
+filter: Nearest,Linear
+repeat: none
+scored-font
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -632,7 +644,7 @@ mealitems/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty10.png
+burgerparty11.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -668,16 +680,14 @@ ui/bubble-callout-right
   orig: 286, 118
   offset: 0, 0
   index: -1
-ui/button-down
+ui/hud-bg
   rotate: false
-  xy: 803, 972
-  size: 152, 48
-  split: 24, 24, 23, 23
-  pad: -1, -1, 4, 4
-  orig: 152, 48
+  xy: 803, 956
+  size: 144, 64
+  orig: 144, 64
   offset: 0, 0
   index: -1
-ui/button
+ui/button-down
   rotate: false
   xy: 503, 250
   size: 152, 48
@@ -686,51 +696,53 @@ ui/button
   orig: 152, 48
   offset: 0, 0
   index: -1
+ui/button
+  rotate: false
+  xy: 503, 200
+  size: 152, 48
+  split: 24, 24, 23, 23
+  pad: -1, -1, 4, 4
+  orig: 152, 48
+  offset: 0, 0
+  index: -1
 ui/imagebutton-down
   rotate: false
-  xy: 803, 894
+  xy: 803, 878
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/imagebutton
   rotate: false
-  xy: 503, 172
+  xy: 657, 222
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/lock
   rotate: false
-  xy: 803, 804
+  xy: 503, 110
   size: 60, 88
   orig: 60, 88
   offset: 0, 0
   index: -1
-ui/pause
-  rotate: false
-  xy: 957, 980
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
 ui/star-off
   rotate: false
-  xy: 657, 258
+  xy: 949, 980
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 881, 930
+  xy: 803, 836
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 503, 129
+  xy: 881, 913
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
@@ -744,48 +756,55 @@ ui/icon-restart
   index: -1
 ui/icon-back
   rotate: false
-  xy: 581, 216
+  xy: 735, 266
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 803, 770
+  xy: 503, 76
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 699, 264
+  xy: 565, 164
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 881, 894
+  xy: 991, 986
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 865, 858
+  xy: 803, 800
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 923, 942
+  xy: 845, 848
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
+ui/pause
+  rotate: false
+  xy: 657, 204
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
 
-burgerparty11.png
+burgerparty12.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -797,7 +816,7 @@ ui/title
   offset: 0, 0
   index: -1
 
-burgerparty12.png
+burgerparty13.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -823,7 +842,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty13.png
+burgerparty14.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -842,7 +861,7 @@ levels/1/newitem-fg
   offset: 0, 0
   index: -1
 
-burgerparty14.png
+burgerparty15.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -868,7 +887,7 @@ levels/2/shelf
   offset: 0, 0
   index: -1
 
-burgerparty15.png
+burgerparty16.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none

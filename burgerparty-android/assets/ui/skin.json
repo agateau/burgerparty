@@ -3,6 +3,12 @@
         default-font: {
             file: ui/main-font.fnt
         },
+        main-font: {
+            file: ui/main-font.fnt
+        },
+        main-font-small: {
+            file: ui/main-font-small.fnt
+        },
         lcd-font: {
             file: ui/lcd-font.fnt
         },
@@ -50,6 +56,14 @@
         bubble-text: {
             font: default-font,
             fontColor: black
+        },
+        timer: {
+            font: main-font,
+            fontColor: white
+        },
+        score: {
+            font: main-font-small,
+            fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
