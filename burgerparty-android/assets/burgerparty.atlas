@@ -183,72 +183,72 @@ filter: Nearest,Linear
 repeat: none
 customers/girls/body-0
   rotate: false
-  xy: 1, 60
-  size: 113, 169
-  orig: 113, 169
+  xy: 1, 59
+  size: 115, 172
+  orig: 115, 172
   offset: 0, 0
   index: -1
 customers/girls/body-1
   rotate: false
-  xy: 116, 57
-  size: 109, 172
-  orig: 109, 172
+  xy: 118, 58
+  size: 111, 173
+  orig: 111, 173
   offset: 0, 0
   index: -1
 customers/girls/top-1
   rotate: false
   xy: 1, 1
-  size: 104, 57
-  orig: 104, 57
+  size: 106, 56
+  orig: 106, 56
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 227, 176
+  xy: 231, 178
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 227, 121
+  xy: 231, 123
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
+customers/girls/top-0
+  rotate: false
+  xy: 309, 176
+  size: 70, 55
+  orig: 70, 55
+  offset: 0, 0
+  index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 305, 181
+  xy: 231, 73
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 227, 71
+  xy: 381, 183
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 305, 131
+  xy: 309, 126
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 383, 182
+  xy: 309, 77
   size: 76, 47
   orig: 76, 47
-  offset: 0, 0
-  index: -1
-customers/girls/top-0
-  rotate: false
-  xy: 305, 76
-  size: 68, 53
-  orig: 68, 53
   offset: 0, 0
   index: -1
 
