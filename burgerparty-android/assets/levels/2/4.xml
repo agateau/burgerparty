@@ -17,12 +17,12 @@
     <item name="coconut"/>
   </items>
   <customers>
-    <customer type="girls"/>
-    <customer type="boys"/>
-    <customer type="boys"/>
-    <customer type="girls"/>
-    <customer type="girls"/>
-    <customer type="boys"/>
-    <customer type="ninjas"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-girls"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-girls"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-girls"/>
   </customers>
 </level>
