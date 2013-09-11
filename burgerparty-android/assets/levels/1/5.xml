@@ -6,8 +6,9 @@
     <item name="steak"/>
     <item name="tomato"/>
     <item name="salad"/>
-    <item name="onion"/>
     <item name="cheese"/>
+    <item name="onion"/>
+    <item name="ketchup"/>
   </items>
   <customers>
     <customer type="girls"/>

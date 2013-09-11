@@ -19,8 +19,8 @@
     <item name="steak"       row="0" column="1" type="burger" height="22" offset="0"/>
     <item name="tomato"      row="0" column="2" type="burger" height="12" offset="-4"/>
     <item name="salad"       row="0" column="3" type="burger" height="8"  offset="-4"/>
-    <item name="onion"       row="0" column="4" type="burger" height="8"  offset="-4"/>
-    <item name="cheese"      row="0" column="5" type="burger" height="8"  offset="-19"/>
+    <item name="cheese"      row="0" column="4" type="burger" height="8"  offset="-19"/>
+    <item name="onion"       row="0" column="5" type="burger" height="8"  offset="-4"/>
     <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
     <item name="top"         row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
         <anim>
