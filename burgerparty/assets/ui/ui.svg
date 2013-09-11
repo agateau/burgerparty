@@ -25,7 +25,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="11.313708"
      inkscape:cx="403.86349"
-     inkscape:cy="946.52381"
+     inkscape:cy="959.91465"
      inkscape:current-layer="g20323"
      inkscape:document-units="px"
      showgrid="true"
@@ -11169,29 +11169,29 @@
         <rect
            style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
            id="rect5230"
-           width="5"
-           height="16"
-           x="1614"
-           y="89.115479"
-           ry="1.0067199" />
-        <rect
-           ry="1.0067199"
-           y="89.115479"
-           x="1621"
-           height="16"
-           width="5"
-           id="use5232"
-           style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+           width="6"
+           height="18"
+           x="1612"
+           y="89.51741"
+           ry="1.1325601" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#rect5230"
+           id="use4207"
+           transform="translate(9,0)"
+           width="1600"
+           height="1200" />
       </g>
       <text
          xml:space="preserve"
          style="font-size:21px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
-         x="365"
+         x="363"
          y="273.6048"
          id="text5234"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
-           x="365"
+           x="363"
            y="273.6048"
            id="tspan5236">0000000</tspan></text>
       <text
