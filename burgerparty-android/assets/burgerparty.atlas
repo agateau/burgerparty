@@ -256,7 +256,7 @@ burgerparty4.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-customers/pirate-girls/body-green
+customers/pirate-girls/body-mixed
   rotate: false
   xy: 1, 64
   size: 111, 166
