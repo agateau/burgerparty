@@ -202,8 +202,10 @@ public class World {
 		Set<MealItem> items = new HashSet<MealItem>();
 		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
 			Array<MealItem> lst = it.next();
-			int index = MathUtils.random(lst.size - 1);
-			items.add(lst.get(index));
+			if (MathUtils.randomBoolean()) {
+				int index = MathUtils.random(lst.size - 1);
+				items.add(lst.get(index));
+			}
 		}
 		mTargetMealExtra.setItems(items);
 	}
