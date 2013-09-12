@@ -3,144 +3,144 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-customers/boys/body-3
+customers/boys/body-1
   rotate: false
-  xy: 1, 85
-  size: 109, 170
-  orig: 109, 170
+  xy: 1, 84
+  size: 111, 171
+  orig: 111, 171
   offset: 0, 0
   index: -1
 customers/boys/body-0
   rotate: false
-  xy: 112, 86
-  size: 109, 169
-  orig: 109, 169
+  xy: 114, 85
+  size: 111, 170
+  orig: 111, 170
   offset: 0, 0
   index: -1
-customers/boys/body-1
+customers/boys/body-3
   rotate: false
-  xy: 223, 86
-  size: 109, 169
-  orig: 109, 169
+  xy: 227, 85
+  size: 109, 170
+  orig: 109, 170
   offset: 0, 0
   index: -1
 customers/boys/body-2
   rotate: false
-  xy: 334, 101
-  size: 109, 154
-  orig: 109, 154
+  xy: 338, 100
+  size: 111, 155
+  orig: 111, 155
   offset: 0, 0
   index: -1
 customers/boys/top-2
   rotate: false
-  xy: 1, 26
+  xy: 1, 25
   size: 104, 57
   orig: 104, 57
   offset: 0, 0
   index: -1
 customers/boys/top-0
   rotate: false
-  xy: 445, 198
+  xy: 451, 198
   size: 101, 57
   orig: 101, 57
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 445, 139
+  xy: 451, 139
   size: 101, 57
   orig: 101, 57
   offset: 0, 0
   index: -1
 customers/boys/top-1
   rotate: false
-  xy: 548, 198
+  xy: 554, 198
   size: 90, 57
   orig: 90, 57
   offset: 0, 0
   index: -1
 customers/boys/face-1-angry
   rotate: false
-  xy: 548, 145
+  xy: 554, 145
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-happy
   rotate: false
-  xy: 640, 204
+  xy: 646, 204
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 713, 206
+  xy: 719, 206
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 788, 207
+  xy: 794, 207
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 863, 207
+  xy: 869, 207
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-0-angry
   rotate: false
-  xy: 938, 205
+  xy: 944, 205
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-happy
   rotate: false
-  xy: 445, 87
+  xy: 451, 87
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-neutral
   rotate: false
-  xy: 334, 49
+  xy: 338, 48
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
-customers/boys/face-1-neutral
+customers/boys/face-3-neutral
   rotate: false
   xy: 107, 1
-  size: 71, 46
-  orig: 71, 46
+  size: 71, 45
+  orig: 71, 45
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 180, 34
+  xy: 180, 33
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 253, 36
+  xy: 253, 35
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
-customers/boys/face-3-neutral
+customers/boys/face-1-neutral
   rotate: false
-  xy: 548, 98
-  size: 71, 45
-  orig: 71, 45
+  xy: 554, 97
+  size: 71, 46
+  orig: 71, 46
   offset: 0, 0
   index: -1
 
@@ -183,14 +183,14 @@ filter: Nearest,Linear
 repeat: none
 customers/girls/body-0
   rotate: false
-  xy: 1, 59
+  xy: 1, 58
   size: 115, 172
   orig: 115, 172
   offset: 0, 0
   index: -1
 customers/girls/body-1
   rotate: false
-  xy: 118, 58
+  xy: 118, 57
   size: 111, 173
   orig: 111, 173
   offset: 0, 0
@@ -198,55 +198,55 @@ customers/girls/body-1
 customers/girls/top-1
   rotate: false
   xy: 1, 1
-  size: 106, 56
-  orig: 106, 56
+  size: 108, 55
+  orig: 108, 55
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 231, 178
+  xy: 231, 177
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 231, 123
+  xy: 231, 122
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/top-0
   rotate: false
-  xy: 309, 176
+  xy: 309, 175
   size: 70, 55
   orig: 70, 55
   offset: 0, 0
   index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 231, 73
+  xy: 231, 72
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 381, 183
+  xy: 381, 182
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 309, 126
+  xy: 309, 125
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 309, 77
+  xy: 309, 76
   size: 76, 47
   orig: 76, 47
   offset: 0, 0

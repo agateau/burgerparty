@@ -21,7 +21,7 @@
     <face name="customers/boys/face-3-angry"/>
 
     <body name="customers/girls/body-0" yFace="71" xCenter="59"/>
-    <body name="customers/girls/body-1" yFace="69" xCenter="54"/>
+    <body name="customers/girls/body-1" yFace="69" xCenter="55"/>
     <top name="customers/girls/top-0"/>
     <top name="customers/girls/top-1"/>
     <face name="customers/girls/face-0-happy"/>
