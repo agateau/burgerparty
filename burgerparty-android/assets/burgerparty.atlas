@@ -31,84 +31,70 @@ customers/boys/body-2
   orig: 111, 155
   offset: 0, 0
   index: -1
-customers/boys/top-2
+customers/boys/top-1
   rotate: false
-  xy: 1, 25
-  size: 104, 57
-  orig: 104, 57
+  xy: 1, 22
+  size: 108, 60
+  orig: 108, 60
   offset: 0, 0
   index: -1
 customers/boys/top-0
   rotate: false
-  xy: 451, 198
-  size: 101, 57
-  orig: 101, 57
+  xy: 451, 196
+  size: 103, 59
+  orig: 103, 59
+  offset: 0, 0
+  index: -1
+customers/boys/top-2
+  rotate: false
+  xy: 556, 198
+  size: 104, 57
+  orig: 104, 57
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 451, 139
+  xy: 451, 137
   size: 101, 57
   orig: 101, 57
   offset: 0, 0
   index: -1
-customers/boys/top-1
-  rotate: false
-  xy: 554, 198
-  size: 90, 57
-  orig: 90, 57
-  offset: 0, 0
-  index: -1
 customers/boys/face-1-angry
   rotate: false
-  xy: 554, 145
+  xy: 662, 204
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-happy
   rotate: false
-  xy: 646, 204
+  xy: 735, 204
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 719, 206
+  xy: 808, 206
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 794, 207
+  xy: 883, 207
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 869, 207
+  xy: 451, 87
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-0-angry
-  rotate: false
-  xy: 944, 205
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-0-happy
-  rotate: false
-  xy: 451, 87
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-0-neutral
   rotate: false
   xy: 338, 48
   size: 71, 50
@@ -117,30 +103,44 @@ customers/boys/face-0-neutral
   index: -1
 customers/boys/face-3-neutral
   rotate: false
-  xy: 107, 1
+  xy: 111, 1
   size: 71, 45
   orig: 71, 45
   offset: 0, 0
   index: -1
-customers/boys/face-3-happy
+customers/boys/face-0-happy
   rotate: false
-  xy: 180, 33
+  xy: 184, 33
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
-customers/boys/face-3-angry
+customers/boys/face-0-neutral
   rotate: false
-  xy: 253, 35
-  size: 71, 48
-  orig: 71, 48
+  xy: 257, 33
+  size: 71, 50
+  orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 554, 97
+  xy: 662, 156
   size: 71, 46
   orig: 71, 46
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-angry
+  rotate: false
+  xy: 735, 154
+  size: 71, 48
+  orig: 71, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-happy
+  rotate: false
+  xy: 808, 154
+  size: 71, 50
+  orig: 71, 50
   offset: 0, 0
   index: -1
 
