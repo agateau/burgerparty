@@ -13,6 +13,8 @@ Push
 
 Generate .apk
 
+Take a screenshot
+
 Upload .apk to TestFlight
 
 Notify testers
