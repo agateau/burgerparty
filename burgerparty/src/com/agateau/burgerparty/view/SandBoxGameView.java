@@ -10,7 +10,9 @@ import com.agateau.burgerparty.model.SandBoxWorld;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -43,8 +45,16 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
+		ImageButton deliverButton = Kernel.createRoundButton("ui/icon-right");
+		deliverButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				deliver();
+			}
+		});
+
 		addRule(backButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(switchInventoriesButton, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT);
+		addRule(deliverButton, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT);
 	}
 
 	private void setupInventory() {
@@ -68,6 +78,8 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupMealView() {
+		mWorld.getBurger().clear();
+		mWorld.getMealExtra().clear();
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
 
 		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
@@ -79,6 +91,23 @@ public class SandBoxGameView extends AbstractWorldView {
 		} else {
 			mInventoryView.setInventory(mWorld.getBurgerInventory());
 		}
+	}
+
+	private void deliver() {
+		removeRulesForActor(mMealView);
+		mMealView.addAction(
+			Actions.sequence(
+				Actions.moveTo(getWidth(), mMealView.getY(), 0.4f, Interpolation.pow2In),
+				Actions.run(new Runnable() {
+					@Override
+					public void run() {
+						setupMealView();
+					}
+				}),
+				Actions.removeActor()
+			)
+		);
+
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
