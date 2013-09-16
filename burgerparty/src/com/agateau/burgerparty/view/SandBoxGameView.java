@@ -15,7 +15,6 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Array;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game, LevelWorld world) {
@@ -51,14 +50,14 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupInventory() {
-		Array<String> list = new Array<String>();
-		// FIXME
-		list.addAll(new String[]{"bottom", "steak", "tomato", "salad", "cheese", "top"});
-		mBurgerInventory = new Inventory(list);
-
-		list.clear();
-		list.addAll(new String[]{"soda" ,"juice", "big-fries", "small-fries"});
-		mMealExtraInventory = new Inventory(list);
+		for (String name: mGame.getKnownItems()) {
+			MealItem item = MealItem.get(name);
+			if (item.getType() == MealItem.Type.BURGER) {
+				mBurgerInventory.addItem(name);
+			} else {
+				mMealExtraInventory.addItem(name);
+			}
+		}
 
 		mInventoryView.setInventory(mBurgerInventory);
 
@@ -88,8 +87,8 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private Inventory mBurgerInventory;
-	private Inventory mMealExtraInventory;
+	private Inventory mBurgerInventory = new Inventory();
+	private Inventory mMealExtraInventory = new Inventory();
 	private Burger mBurger;
 	private MealExtra mMealExtra;
 	private MealView mMealView;

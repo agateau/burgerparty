@@ -41,8 +41,8 @@ public class World {
 
 	private Level mLevel;
 
-	private Inventory mBurgerInventory;
-	private Inventory mMealExtraInventory;
+	private Inventory mBurgerInventory = new Inventory();
+	private Inventory mMealExtraInventory = new Inventory();
 
 	private Burger mBurger;
 	private MealExtra mMealExtra;
@@ -63,8 +63,8 @@ public class World {
 			mCustomers.add(new Customer(name));
 		}
 		mBurgerGenerator = new BurgerGenerator(mLevel.definition.burgerItems);
-		mBurgerInventory = new Inventory(level.definition.burgerItems);
-		mMealExtraInventory = new Inventory(level.definition.extraItems);
+		mBurgerInventory.addItems(level.definition.burgerItems);
+		mMealExtraInventory.addItems(level.definition.extraItems);
 		setupMeal();
 	}
 

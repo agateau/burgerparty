@@ -1,6 +1,7 @@
 package com.agateau.burgerparty;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
@@ -128,6 +129,19 @@ public class BurgerPartyGame extends Game {
 
 	public LevelWorld getLevelWorld(int index) {
 		return mLevelWorlds.get(index);
+	}
+
+	public Set<String> getKnownItems() {
+		Set<String> set = new HashSet<String>();
+		for (LevelWorld world: mLevelWorlds) {
+			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+				Level level = world.getLevel(levelIndex);
+				if (level.score > -1) {
+					set.addAll(level.getKnownItems());
+				}
+			}
+		}
+		return set;
 	}
 
 	public void onCurrentLevelFinished(int score) {
