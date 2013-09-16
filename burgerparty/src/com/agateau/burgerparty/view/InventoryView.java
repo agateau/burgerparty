@@ -34,6 +34,10 @@ public class InventoryView extends Actor {
 		});
 	}
 
+	public Inventory getInventory() {
+		return mInventory;
+	}
+
 	public void setInventory(Inventory inventory) {
 		mInventory = inventory;
 	}
