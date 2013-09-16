@@ -1,13 +1,17 @@
 package com.agateau.burgerparty.view;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealExtra;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -42,6 +46,13 @@ public class SandBoxGameView extends AbstractWorldView {
 		list.addAll(new String[]{"bottom", "steak", "tomato", "salad", "cheese", "top"});
 		mInventory = new Inventory(list);
 		mInventoryView.setInventory(mInventory);
+
+		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
+			@Override
+			public void handle(MealItem item) {
+				mMealView.addItem(item);
+			}
+		});
 	}
 
 
@@ -52,6 +63,8 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
 	}
+
+	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Inventory mInventory;
 	private Burger mBurger;
