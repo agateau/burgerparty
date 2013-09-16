@@ -2,8 +2,10 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
+import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -17,12 +19,8 @@ public class SandBoxGameView extends AbstractWorldView {
 		mGame = game;
 
 		setupWidgets();
-
-		Array<String> list = new Array<String>();
-		// FIXME
-		list.addAll(new String[]{"bottom", "steak", "tomato", "salad", "cheese", "top"});
-		mInventory = new Inventory(list);
-		mInventoryView.setInventory(mInventory);
+		setupInventory();
+		setupMealView();
 	}
 
 	public void onBackPressed() {
@@ -38,6 +36,26 @@ public class SandBoxGameView extends AbstractWorldView {
 		});
 	}
 
+	private void setupInventory() {
+		Array<String> list = new Array<String>();
+		// FIXME
+		list.addAll(new String[]{"bottom", "steak", "tomato", "salad", "cheese", "top"});
+		mInventory = new Inventory(list);
+		mInventoryView.setInventory(mInventory);
+	}
+
+
+	private void setupMealView() {
+		mBurger = new Burger();
+		mMealExtra = new MealExtra();
+		mMealView = new MealView(mBurger, mMealExtra, Kernel.getTextureAtlas(), true);
+
+		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
+	}
+
 	private Inventory mInventory;
+	private Burger mBurger;
+	private MealExtra mMealExtra;
+	private MealView mMealView;
 	private final BurgerPartyGame mGame;
 }
