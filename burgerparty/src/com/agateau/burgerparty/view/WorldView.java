@@ -18,7 +18,6 @@ import com.agateau.burgerparty.view.InventoryView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -31,7 +30,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AbstractWorldView {
@@ -47,7 +45,6 @@ public class WorldView extends AbstractWorldView {
 		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
-		setupWorkbench();
 		setupTargetMealView();
 		setupInventoryView();
 		setupHud();
@@ -111,27 +108,9 @@ public class WorldView extends AbstractWorldView {
 		return mInventoryView;
 	}
 
-	@Override
-	public void layout() {
-		float width = getWidth();
-		float height = getHeight();
-		boolean resized = width != mWidth || height != mHeight;
-		mWidth = width;
-		mHeight = height;
-
-		if (resized) {
-			mInventoryView.setWidth(width);
-			mWorkbench.setWidth(width);
-			mWorkbench.invalidate();
-		}
-
-		super.layout();
-
-		if (!resized) {
-			return;
-		}
+	protected void onResized() {
 		if (mActiveCustomerView != null) {
-			showBubble();
+			updateBubbleGeometry();
 		}
 		updateCustomerPositions();
 	}
@@ -155,12 +134,6 @@ public class WorldView extends AbstractWorldView {
 		}
 	}
 
-	private void setupWorkbench() {
-		TextureRegion region = mAtlas.findRegion(mWorld.getLevelWorld().getDirName() + "workbench");
-		mWorkbench = new Image(region);
-		mWorkbench.setScaling(Scaling.stretch);
-	}
-
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		addActor(mBubble);
@@ -172,8 +145,7 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelWorld().getDirName(), mAtlas);
-		addActor(mInventoryView);
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
@@ -215,7 +187,6 @@ public class WorldView extends AbstractWorldView {
 		addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
 		addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
 		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
-		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
 
 	private void updateScoreDisplay() {
@@ -339,6 +310,10 @@ public class WorldView extends AbstractWorldView {
 
 	private void showBubble() {
 		mBubble.setVisible(true);
+		updateBubbleGeometry();
+	}
+
+	private void updateBubbleGeometry() {
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
 		mBubble.updateGeometry();
 	}
@@ -350,7 +325,6 @@ public class WorldView extends AbstractWorldView {
 	private World mWorld;
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
-	private InventoryView mInventoryView;
 	private MealView mMealView;
 	private MealView mDoneMealView;
 	private MealView mTargetMealView;
@@ -358,12 +332,8 @@ public class WorldView extends AbstractWorldView {
 	private Label mScoreDisplay;
 	private Image mHudImage;
 	private Image mPauseButton;
-	private Image mWorkbench;
 	private Bubble mBubble;
 	private CustomerViewFactory mCustomerFactory;
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
-
-	private float mWidth = -1;
-	private float mHeight = -1;
 }

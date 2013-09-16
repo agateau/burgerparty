@@ -15,14 +15,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class InventoryView extends Actor {
 	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
 	private TextureRegion mBgRegion;
-	private Inventory mInventory;
+	private Inventory mInventory = null;
 	private TextureAtlas mAtlas;
 	
 	private static final int COLUMN_COUNT = 8;
 	private static final int ROW_COUNT = 2;
 
-	public InventoryView(Inventory inventory, String levelWorldDirName, TextureAtlas atlas) {
-		mInventory = inventory;
+	public InventoryView(String levelWorldDirName, TextureAtlas atlas) {
 		mAtlas = atlas;
 		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
 		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
