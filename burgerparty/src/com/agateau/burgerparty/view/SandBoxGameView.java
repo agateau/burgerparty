@@ -4,11 +4,9 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.model.Burger;
-import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
+import com.agateau.burgerparty.model.SandBoxWorld;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
@@ -53,13 +51,13 @@ public class SandBoxGameView extends AbstractWorldView {
 		for (String name: mGame.getKnownItems()) {
 			MealItem item = MealItem.get(name);
 			if (item.getType() == MealItem.Type.BURGER) {
-				mBurgerInventory.addItem(name);
+				mWorld.getBurgerInventory().addItem(name);
 			} else {
-				mMealExtraInventory.addItem(name);
+				mWorld.getMealExtraInventory().addItem(name);
 			}
 		}
 
-		mInventoryView.setInventory(mBurgerInventory);
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
@@ -70,27 +68,22 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupMealView() {
-		mBurger = new Burger();
-		mMealExtra = new MealExtra();
-		mMealView = new MealView(mBurger, mMealExtra, Kernel.getTextureAtlas(), true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
 
 		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
 	}
 
 	private void switchInventories() {
-		if (mInventoryView.getInventory() == mBurgerInventory) {
-			mInventoryView.setInventory(mMealExtraInventory);
+		if (mInventoryView.getInventory() == mWorld.getBurgerInventory()) {
+			mInventoryView.setInventory(mWorld.getMealExtraInventory());
 		} else {
-			mInventoryView.setInventory(mBurgerInventory);
+			mInventoryView.setInventory(mWorld.getBurgerInventory());
 		}
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private Inventory mBurgerInventory = new Inventory();
-	private Inventory mMealExtraInventory = new Inventory();
-	private Burger mBurger;
-	private MealExtra mMealExtra;
+	private SandBoxWorld mWorld = new SandBoxWorld();
 	private MealView mMealView;
 	private final BurgerPartyGame mGame;
 }
