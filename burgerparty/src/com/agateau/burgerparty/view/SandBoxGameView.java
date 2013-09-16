@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
@@ -52,8 +53,16 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
+		ImageButton undoButton = Kernel.createRoundButton("ui/icon-right");
+		undoButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				undo();
+			}
+		});
+
 		addRule(backButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(switchInventoriesButton, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT);
+		addRule(undoButton, Anchor.BOTTOM_LEFT, switchInventoriesButton, Anchor.TOP_LEFT, 0, 1);
 		addRule(deliverButton, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT);
 	}
 
@@ -73,6 +82,7 @@ public class SandBoxGameView extends AbstractWorldView {
 			@Override
 			public void handle(MealItem item) {
 				mMealView.addItem(item);
+				mUndoStack.push(item);
 			}
 		});
 	}
@@ -80,6 +90,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	private void setupMealView() {
 		mWorld.getBurger().clear();
 		mWorld.getMealExtra().clear();
+		mUndoStack.clear();
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
 
 		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
@@ -107,12 +118,20 @@ public class SandBoxGameView extends AbstractWorldView {
 				Actions.removeActor()
 			)
 		);
+	}
 
+	private void undo() {
+		if (mUndoStack.isEmpty()) {
+			return;
+		}
+		MealItem item = mUndoStack.pop();
+		mMealView.pop(item.getType());
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private SandBoxWorld mWorld = new SandBoxWorld();
+	private Stack<MealItem> mUndoStack = new Stack<MealItem>();
 	private MealView mMealView;
 	private final BurgerPartyGame mGame;
 }

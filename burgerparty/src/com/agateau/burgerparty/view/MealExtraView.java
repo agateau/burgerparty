@@ -70,6 +70,13 @@ public class MealExtraView extends Group {
 		updateGeometry();
 	}
 
+	public void pop() {
+		assert(mImages.size > 0);
+		mMealExtra.pop();
+		Image image = mImages.removeIndex(mImages.size - 1);
+		image.remove();
+	}
+
 	public void init() {
 		mImages.clear();
 		clear();

@@ -2,10 +2,6 @@ package com.agateau.burgerparty.model;
 
 import java.util.LinkedList;
 
-/**
- * MealItems in this class are stored in a LinkedList, but are kept in order,
- * so that a call to getItems() returns all side orders, then all drinks
- */
 public class MealExtra extends MealItemCollection<MealItem> {
 	public CompareResult compareTo(MealExtra reference) {
 		LinkedList<MealItem> us = new LinkedList<MealItem>(mItems);
@@ -20,16 +16,14 @@ public class MealExtra extends MealItemCollection<MealItem> {
 		return ref.isEmpty() ? CompareResult.SAME : CompareResult.SUBSET;
 	}
 
+	public void pop() {
+		assert(!mItems.isEmpty());
+		mItems.removeLast();
+	}
+
 	@Override
 	protected void addItemInternal(MealItem item) {
-		String key = keyForItem(item);
-		int idx, n = mItems.size();
-		for (idx = 0; idx < n; ++idx) {
-			if (keyForItem(mItems.get(idx)).compareTo(key) > 0) {
-				break;
-			}
-		}
-		mItems.add(idx, item);
+		mItems.add(item);
 	}
 
 	@Override
@@ -38,22 +32,4 @@ public class MealExtra extends MealItemCollection<MealItem> {
 	}
 
 	private LinkedList<MealItem> mItems = new LinkedList<MealItem>();
-
-	private static String keyForItem(MealItem item) {
-		String key = new String();
-		switch (item.getType()) {
-		case BURGER:
-			// Should not happen
-			assert(false);
-			break;
-		case SIDE_ORDER:
-			key = "0";
-			break;
-		case DRINK:
-			key = "1";
-			break;
-		}
-		key = key.concat(item.getName());
-		return key;
-	}
 }

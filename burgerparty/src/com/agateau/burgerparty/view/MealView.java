@@ -61,6 +61,14 @@ public class MealView extends Group implements ResizeToFitChildren {
 		mMealExtraView.addItem(item);
 	}
 
+	public void pop(MealItem.Type itemType) {
+		if (itemType == MealItem.Type.BURGER) {
+			mBurgerView.pop();
+		} else {
+			mMealExtraView.pop();
+		}
+	}
+
 	public void updateGeometry() {
 		mMealExtraView.setPosition(mBurgerView.getRight(), mBurgerView.getY());
 		setSize(

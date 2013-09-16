@@ -89,6 +89,14 @@ public class BurgerView extends Group {
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
+	public void pop() {
+		assert(mItemActors.size > 0);
+		mBurger.pop();
+		ItemImage image = mItemActors.removeIndex(mItemActors.size - 1);
+		image.remove();
+		UiUtils.notifyResizeToFitParent(this);
+	}
+
 	public void setArrowIndex(int index) {
 		initArrowActor();
 		if (index == -1) {
