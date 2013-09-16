@@ -28,6 +28,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	public void onBackPressed() {
+		mGame.showMenu();
 	}
 
 	private void setupWidgets() {
