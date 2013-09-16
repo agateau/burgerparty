@@ -31,16 +31,23 @@ public class MenuScreen extends BurgerPartyScreen {
 
 		Image titleImage = new Image(atlas.findRegion("ui/title"));
 
-		RoundButton startButton = Kernel.createRoundButton("ui/icon-play");
-		startButton.addListener(new ChangeListener() {
+		RoundButton normalStartButton = Kernel.createRoundButton("ui/icon-play");
+		normalStartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().selectLevel(0);
 			}
 		});
-		//UiUtils.setButtonSize(startButton);
+
+		RoundButton sandBoxStartButton = Kernel.createRoundButton("ui/icon-play");
+		sandBoxStartButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				getGame().startSandBox();
+			}
+		});
 
 		group.addRule(titleImage, Anchor.CENTER, group, Anchor.CENTER, 0, 2);
-		group.addRule(startButton, Anchor.TOP_CENTER, titleImage, Anchor.BOTTOM_CENTER);
+		group.addRule(normalStartButton, Anchor.TOP_CENTER, titleImage, Anchor.BOTTOM_CENTER, -2, 0);
+		group.addRule(sandBoxStartButton, Anchor.TOP_CENTER, titleImage, Anchor.BOTTOM_CENTER, 2, 0);
 	}
 
 	@Override

@@ -166,6 +166,9 @@ public class BurgerPartyGame extends Game {
 		}
 	}
 
+	public void startSandBox() {
+	}
+
 	public void showMenu() {
 		setScreen(new MenuScreen(this, mAtlas, mSkin));
 	}
