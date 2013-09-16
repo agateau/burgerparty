@@ -10,7 +10,6 @@ import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.utils.Anchor;
-import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -18,7 +17,6 @@ import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -36,8 +34,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 
-public class WorldView extends AnchorGroup {
+public class WorldView extends AbstractWorldView {
 	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
+		super(world.getLevelWorld());
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		mGameScreen = screen;
@@ -45,7 +44,6 @@ public class WorldView extends AnchorGroup {
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
-		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
 		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
@@ -144,13 +142,6 @@ public class WorldView extends AnchorGroup {
 		updateTimerDisplay();
 	}
 
-	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		batch.setColor(1, 1, 1, parentAlpha);
-		batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
-		super.draw(batch, parentAlpha);
-	}
-
 	private void setupCustomers() {
 		for (Customer customer: mWorld.getCustomers()) {
 			CustomerView customerView = mCustomerFactory.create(customer);
@@ -165,7 +156,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupWorkbench() {
-		TextureRegion region = mAtlas.findRegion(mWorld.getLevelWorldDirName() + "workbench");
+		TextureRegion region = mAtlas.findRegion(mWorld.getLevelWorld().getDirName() + "workbench");
 		mWorkbench = new Image(region);
 		mWorkbench.setScaling(Scaling.stretch);
 	}
@@ -181,7 +172,7 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelWorldDirName(), mAtlas);
+		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelWorld().getDirName(), mAtlas);
 		addActor(mInventoryView);
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
@@ -354,7 +345,6 @@ public class WorldView extends AnchorGroup {
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private TextureRegion mBackgroundRegion;
 	private GameScreen mGameScreen;
 	private BurgerPartyGame mGame;
 	private World mWorld;

@@ -11,6 +11,7 @@ import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.MenuScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
+import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
@@ -167,6 +168,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void startSandBox() {
+		setScreen(new SandBoxGameScreen(this, mLevelWorlds.get(0)));
 	}
 
 	public void showMenu() {

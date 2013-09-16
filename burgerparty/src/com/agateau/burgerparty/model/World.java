@@ -87,8 +87,8 @@ public class World {
 		});
 	}
 
-	public String getLevelWorldDirName() {
-		return mLevel.getLevelWorld().getDirName();
+	public LevelWorld getLevelWorld() {
+		return mLevel.getLevelWorld();
 	}
 
 	public Inventory getBurgerInventory() {
