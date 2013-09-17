@@ -68,6 +68,10 @@ public class AbstractWorldView extends AnchorGroup {
 		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
 
+	protected void createMealViewAnchorRule(MealView mealView) {
+		addRule(mealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0.48f);
+	}
+
 	protected InventoryView mInventoryView;
 	protected Image mWorkbench;
 	protected float mWidth = -1;

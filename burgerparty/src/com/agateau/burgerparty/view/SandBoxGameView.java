@@ -93,7 +93,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		mUndoStack.clear();
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
 
-		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
+		createMealViewAnchorRule(mMealView);
 	}
 
 	private void switchInventories() {

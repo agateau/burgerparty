@@ -158,10 +158,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupMealView() {
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
-		// We add an anchor rule in this setup method because it is called
-		// for each customer
-		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
-		invalidate();
+		createMealViewAnchorRule(mMealView);
 	}
 
 	private void setupHud() {

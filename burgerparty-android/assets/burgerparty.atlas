@@ -373,7 +373,7 @@ filter: Nearest,Linear
 repeat: none
 lcd-font
   rotate: false
-  xy: 1, 124
+  xy: 1, 77
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
@@ -381,8 +381,8 @@ lcd-font
 platter
   rotate: false
   xy: 1, 19
-  size: 538, 103
-  orig: 538, 103
+  size: 538, 56
+  orig: 538, 56
   offset: 0, 0
   index: -1
 overlay-bg

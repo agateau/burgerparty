@@ -21,7 +21,7 @@ public class MealExtraView extends Group {
 	private static final float ITEM0_X = 0;
 	private static final float ITEM0_Y = 0;
 	private static final float ITEM1_X = -30;
-	private static final float ITEM1_Y = 20;
+	private static final float ITEM1_Y = 10;
 
 	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas) {
 		mMealExtra = mealExtra;

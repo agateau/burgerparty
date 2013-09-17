@@ -19,7 +19,7 @@ public class MealView extends Group implements ResizeToFitChildren {
 	private static final float PLATTER_ANIM_DURATION = 0.2f;
 
 	private static final float BURGER_X = 40f;
-	private static final float MEAL_Y = 30f;
+	private static final float MEAL_Y = 15f;
 
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
 		if (withPlatter) {
