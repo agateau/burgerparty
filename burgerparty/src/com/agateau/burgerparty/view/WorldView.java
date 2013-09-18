@@ -72,7 +72,12 @@ public class WorldView extends AbstractWorldView {
 			}
 		});
 
-		goToNextCustomer();
+		Gdx.app.postRunnable(new Runnable() {
+			@Override
+			public void run() {
+				goToNextCustomer();
+			}
+		});
 	}
 
 	public void onTrashing() {
@@ -270,10 +275,6 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void updateCustomerPositions() {
-		if (mWidth == -1) {
-			// Wait until we have been resized to correct sizes
-			return;
-		}
 		Array<CustomerView> customerViews = new Array<CustomerView>(mWaitingCustomerViews);
 		if (mActiveCustomerView != null) {
 			customerViews.insert(0, mActiveCustomerView);
