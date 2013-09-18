@@ -11,6 +11,7 @@ import com.agateau.burgerparty.model.SandBoxWorld;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -24,7 +25,12 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		setupWidgets();
 		setupInventory();
-		setupMealView();
+		Gdx.app.postRunnable(new Runnable() {
+			@Override
+			public void run() {
+				setupMealView();
+			}
+		});
 	}
 
 	public void onBackPressed() {
