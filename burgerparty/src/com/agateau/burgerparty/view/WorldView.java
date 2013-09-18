@@ -135,13 +135,13 @@ public class WorldView extends AbstractWorldView {
 		// Add actors starting from the end of the list so that the Z order is correct
 		// (mWaitingCustomerViews[0] is in front of mWaitingCustomerViews[1])
 		for (int i = mWaitingCustomerViews.size - 1; i >= 0; --i) {
-			addActor(mWaitingCustomerViews.get(i));
+			mCustomersLayer.addActor(mWaitingCustomerViews.get(i));
 		}
 	}
 
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
-		addActor(mBubble);
+		mCustomersLayer.addActor(mBubble);
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
 		mTargetMealView.getBurgerView().setPadding(8);
 		mTargetMealView.setScale(0.5f, 0.5f);
@@ -163,7 +163,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupMealView() {
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
-		createMealViewAnchorRule(mMealView);
+		slideInMealView(mMealView);
 	}
 
 	private void setupHud() {
@@ -185,10 +185,10 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void setupAnchors() {
-		addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
-		addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
-		addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
-		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
+		mHudLayer.addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
+		mHudLayer.addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
+		mHudLayer.addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
+		mHudLayer.addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
 	}
 
 	private void updateScoreDisplay() {
@@ -221,7 +221,6 @@ public class WorldView extends AbstractWorldView {
 
 	private void slideDoneMealView(Runnable toDoAfter) {
 		mDoneMealView = mMealView;
-		removeRulesForActor(mDoneMealView);
 		mDoneMealView.addAction(
 			Actions.sequence(
 				Actions.moveTo(getWidth(), mDoneMealView.getY(), 0.4f, Interpolation.pow2In),

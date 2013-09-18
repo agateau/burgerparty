@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
 	public static final float TRASH_ACTION_DURATION = 0.5f;
-	private static final float PLATTER_ANIM_DURATION = 0.2f;
 
 	private static final float BURGER_X = 40f;
 	private static final float MEAL_Y = 15f;
@@ -25,10 +24,6 @@ public class MealView extends Group implements ResizeToFitChildren {
 		if (withPlatter) {
 			mPlatter = new Image(atlas.findRegion("platter"));
 			addActor(mPlatter);
-			mPlatter.setPosition(-mPlatter.getWidth(), 0);
-			mPlatter.setColor(1, 1, 1, 0);
-			mPlatter.addAction(Actions.moveBy(mPlatter.getWidth(), 0, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
-			mPlatter.addAction(Actions.alpha(1, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
 		}
 		mMealExtraView = new MealExtraView(mealExtra, atlas);
 		addActor(mMealExtraView);
