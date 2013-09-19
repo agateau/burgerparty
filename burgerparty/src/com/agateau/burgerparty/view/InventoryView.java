@@ -21,17 +21,19 @@ public class InventoryView extends Actor {
 	private static final int COLUMN_COUNT = 8;
 	private static final int ROW_COUNT = 2;
 
-	public InventoryView(String levelWorldDirName, TextureAtlas atlas) {
+	public InventoryView(TextureAtlas atlas) {
 		mAtlas = atlas;
-		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
-		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
-
 		addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				onClicked(x, y);
 			}
 		});
+	}
+
+	public void setWorldDirName(String levelWorldDirName) {
+		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
+		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
 	}
 
 	public Inventory getInventory() {

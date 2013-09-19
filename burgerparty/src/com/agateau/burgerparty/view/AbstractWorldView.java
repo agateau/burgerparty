@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 
 public class AbstractWorldView extends AnchorGroup {
@@ -20,8 +21,21 @@ public class AbstractWorldView extends AnchorGroup {
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		setupLayers();
-		setupDecor(worldDirName);
-		setupAnchors();
+		setupDecor();
+		setWorldDirName(worldDirName);
+	}
+
+	public void setWorldDirName(String worldDirName) {
+		TextureAtlas atlas = Kernel.getTextureAtlas();
+
+		mBackgroundRegion = atlas.findRegion(worldDirName + "background");
+
+		TextureRegion region = atlas.findRegion(worldDirName + "workbench");
+		mWorkbench.setDrawable(new TextureRegionDrawable(region));
+		mWorkbench.setHeight(region.getRegionHeight());
+		mWorkbench.invalidate();
+
+		mInventoryView.setWorldDirName(worldDirName);
 	}
 
 	@Override
@@ -71,20 +85,13 @@ public class AbstractWorldView extends AnchorGroup {
 		mHudLayer = createLayer();
 	}
 
-	private void setupDecor(String worldDirName) {
-		TextureAtlas atlas = Kernel.getTextureAtlas();
-
-		mBackgroundRegion = atlas.findRegion(worldDirName + "background");
-
-		TextureRegion region = atlas.findRegion(worldDirName + "workbench");
-		mWorkbench = new Image(region);
+	private void setupDecor() {
+		mWorkbench = new Image();
 		mWorkbench.setScaling(Scaling.stretch);
 
-		mInventoryView = new InventoryView(worldDirName, atlas);
+		mInventoryView = new InventoryView(Kernel.getTextureAtlas());
 		mInventoryLayer.addActor(mInventoryView);
-	}
 
-	private void setupAnchors() {
 		mCounterLayer.addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
 
