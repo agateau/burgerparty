@@ -19,8 +19,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class SandBoxGameView extends AbstractWorldView {
-	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game, LevelWorld levelWorld) {
-		super(levelWorld.getDirName());
+	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game) {
+		super(game.getLevelWorld(0).getDirName());
+		mLevelWorldIndex = 0;
 		mGame = game;
 
 		setupWidgets();
@@ -52,6 +53,13 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
+		ImageButton worldButton = Kernel.createRoundButton("ui/icon-levels");
+		worldButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				switchWorld();
+			}
+		});
+
 		ImageButton deliverButton = Kernel.createRoundButton("ui/icon-right");
 		deliverButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -67,6 +75,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		});
 
 		addRule(backButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
+		addRule(worldButton, Anchor.CENTER_LEFT, backButton, Anchor.CENTER_RIGHT, 1, 0);
 		addRule(switchInventoriesButton, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT);
 		addRule(undoButton, Anchor.BOTTOM_LEFT, switchInventoriesButton, Anchor.TOP_LEFT, 0, 1);
 		addRule(deliverButton, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT);
@@ -132,8 +141,19 @@ public class SandBoxGameView extends AbstractWorldView {
 		mMealView.pop(item.getType());
 	}
 
+	private void switchWorld() {
+		if (mLevelWorldIndex == 0) {
+			mLevelWorldIndex = 1;
+		} else {
+			mLevelWorldIndex = 0;
+		}
+		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
+		setWorldDirName(levelWorld.getDirName());
+	}
+
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
+	private int mLevelWorldIndex;
 	private SandBoxWorld mWorld = new SandBoxWorld();
 	private Stack<MealItem> mUndoStack = new Stack<MealItem>();
 	private MealView mMealView;

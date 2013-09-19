@@ -182,7 +182,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void startSandBox() {
-		setScreen(new SandBoxGameScreen(this, mLevelWorlds.get(0)));
+		setScreen(new SandBoxGameScreen(this));
 	}
 
 	public void showMenu() {
