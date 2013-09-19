@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -17,11 +16,11 @@ import com.badlogic.gdx.utils.Scaling;
 public class AbstractWorldView extends AnchorGroup {
 	private static final float SLIDE_IN_ANIM_DURATION = 0.2f;
 
-	public AbstractWorldView(LevelWorld world) {
+	public AbstractWorldView(String worldDirName) {
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		setupLayers();
-		setupDecor(world);
+		setupDecor(worldDirName);
 		setupAnchors();
 	}
 
@@ -72,17 +71,16 @@ public class AbstractWorldView extends AnchorGroup {
 		mHudLayer = createLayer();
 	}
 
-	private void setupDecor(LevelWorld world) {
+	private void setupDecor(String worldDirName) {
 		TextureAtlas atlas = Kernel.getTextureAtlas();
-		String dirName = world.getDirName();
 
-		mBackgroundRegion = atlas.findRegion(dirName + "background");
+		mBackgroundRegion = atlas.findRegion(worldDirName + "background");
 
-		TextureRegion region = atlas.findRegion(dirName + "workbench");
+		TextureRegion region = atlas.findRegion(worldDirName + "workbench");
 		mWorkbench = new Image(region);
 		mWorkbench.setScaling(Scaling.stretch);
 
-		mInventoryView = new InventoryView(dirName, atlas);
+		mInventoryView = new InventoryView(worldDirName, atlas);
 		mInventoryLayer.addActor(mInventoryView);
 	}
 

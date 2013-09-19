@@ -34,7 +34,7 @@ import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AbstractWorldView {
 	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
-		super(world.getLevelWorld());
+		super(world.getLevelWorld().getDirName());
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		mGameScreen = screen;

@@ -19,8 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class SandBoxGameView extends AbstractWorldView {
-	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game, LevelWorld world) {
-		super(world);
+	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game, LevelWorld levelWorld) {
+		super(levelWorld.getDirName());
 		mGame = game;
 
 		setupWidgets();
