@@ -8,7 +8,7 @@ import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.SandBoxWorld;
-import com.agateau.burgerparty.screens.SandBoxGameScreen;
+import com.agateau.burgerparty.screens.BurgerPartyScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
@@ -17,10 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
 
 public class SandBoxGameView extends AbstractWorldView {
-	public SandBoxGameView(SandBoxGameScreen sandBoxGameScreen, BurgerPartyGame game) {
+	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
 		super(game.getLevelWorld(0).getDirName());
+		mScreen = screen;
 		mLevelWorldIndex = 0;
 		mGame = game;
 
@@ -142,12 +144,20 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void switchWorld() {
-		if (mLevelWorldIndex == 0) {
-			mLevelWorldIndex = 1;
-		} else {
-			mLevelWorldIndex = 0;
-		}
-		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
+		Array<LevelWorld> worlds = mGame.getLevelWorlds();
+		WorldListOverlay overlay = new WorldListOverlay(mScreen, worlds, mLevelWorldIndex);
+		overlay.currentIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
+			@Override
+			public void handle(Integer index) {
+				setLevelWorldIndex(index);
+			}
+		});
+		mScreen.setOverlay(overlay);
+	}
+
+	private void setLevelWorldIndex(int index) {
+		mLevelWorldIndex = index;
+		LevelWorld levelWorld = mGame.getLevelWorld(index);
 		setWorldDirName(levelWorld.getDirName());
 	}
 
@@ -158,4 +168,5 @@ public class SandBoxGameView extends AbstractWorldView {
 	private Stack<MealItem> mUndoStack = new Stack<MealItem>();
 	private MealView mMealView;
 	private final BurgerPartyGame mGame;
+	private final BurgerPartyScreen mScreen;
 }

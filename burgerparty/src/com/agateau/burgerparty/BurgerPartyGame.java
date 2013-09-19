@@ -131,6 +131,10 @@ public class BurgerPartyGame extends Game {
 		return mLevelWorlds.get(index);
 	}
 
+	public Array<LevelWorld> getLevelWorlds() {
+		return mLevelWorlds;
+	}
+
 	public Set<String> getKnownItems() {
 		Set<String> set = new HashSet<String>();
 		for (LevelWorld world: mLevelWorlds) {
