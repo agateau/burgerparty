@@ -98,8 +98,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
-				mMealView.addItem(item);
-				mUndoStack.push(item);
+				onAddItem(item);
 			}
 		});
 	}
@@ -161,6 +160,13 @@ public class SandBoxGameView extends AbstractWorldView {
 		setWorldDirName(levelWorld.getDirName());
 	}
 
+	private void onAddItem(MealItem item) {
+		if (!mWorld.canAddItem(item)) {
+			return;
+		}
+		mMealView.addItem(item);
+		mUndoStack.push(item);
+	}
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private int mLevelWorldIndex;

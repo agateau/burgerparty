@@ -31,6 +31,10 @@ public class Burger extends MealItemCollection<BurgerItem> {
 		mItems.removeLast();
 	}
 
+	public BurgerItem getTopItem() {
+		return mItems.getLast();
+	}
+
 	public int getArrowIndex() {
 		return mArrowIndex;
 	}
