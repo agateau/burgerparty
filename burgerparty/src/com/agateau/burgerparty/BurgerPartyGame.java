@@ -10,7 +10,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
-import com.agateau.burgerparty.screens.MenuScreen;
+import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
@@ -190,7 +190,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void showMenu() {
-		setScreen(new MenuScreen(this, mAtlas, mSkin));
+		setScreen(new StartScreen(this, mAtlas, mSkin));
 	}
 
 	public void selectLevel(int worldIndex) {

@@ -14,9 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class MenuScreen extends BurgerPartyScreen {
+public class StartScreen extends BurgerPartyScreen {
 
-	public MenuScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
+	public StartScreen(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
