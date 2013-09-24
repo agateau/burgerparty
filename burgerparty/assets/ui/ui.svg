@@ -23,17 +23,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="403.86349"
-     inkscape:cy="959.91465"
-     inkscape:current-layer="g20323"
+     inkscape:zoom="0.99999996"
+     inkscape:cx="453.86753"
+     inkscape:cy="990.02368"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:window-width="1562"
-     inkscape:window-height="880"
-     inkscape:window-x="30"
-     inkscape:window-y="-3"
-     inkscape:window-maximized="1">
+     inkscape:window-width="765"
+     inkscape:window-height="869"
+     inkscape:window-x="819"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0">
     <inkscape:grid
        empopacity="0.25098039"
        empcolor="#000000"
@@ -4685,15 +4685,6 @@
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient5103"
-       id="linearGradient5386"
-       gradientUnits="userSpaceOnUse"
-       x1="352"
-       y1="426"
-       x2="352"
-       y2="442" />
-    <linearGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient5216"
        id="linearGradient5281"
        gradientUnits="userSpaceOnUse"
@@ -4734,6 +4725,15 @@
        y1="33.1222"
        x2="1704.1805"
        y2="52.122196" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5103"
+       id="linearGradient5001"
+       gradientUnits="userSpaceOnUse"
+       x1="352"
+       y1="426"
+       x2="352"
+       y2="442" />
   </defs>
   <metadata
      id="metadata6977">
@@ -4891,7 +4891,7 @@
     <g
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="button.9.png"
+       inkscape:export-filename="level-button.9.png"
        transform="translate(168,0)"
        id="g8406">
       <rect
@@ -5009,7 +5009,7 @@
     <g
        id="g8562"
        transform="translate(168,60)"
-       inkscape:export-filename="button-down.9.png"
+       inkscape:export-filename="level-button-down.9.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -10778,73 +10778,147 @@
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="sscscss" />
       <g
-         id="g5388"
-         inkscape:export-filename="imagebutton-down.png"
+         id="g5003"
+         inkscape:export-filename="text-button.9.png"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90">
-        <path
-           transform="matrix(1.1507275,0,0,1.1507275,36.943952,-67.525881)"
-           sodipodi:type="arc"
-           style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.73803139;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           id="path5366"
-           sodipodi:cx="352"
-           sodipodi:cy="448"
-           sodipodi:rx="32"
-           sodipodi:ry="32"
-           d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z" />
-        <path
-           d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
-           sodipodi:ry="32"
-           sodipodi:rx="32"
-           sodipodi:cy="448"
-           sodipodi:cx="352"
-           id="path5368"
-           style="fill:#7eb500;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:2.06451631000000013;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           sodipodi:type="arc"
-           transform="matrix(0.96875,0,0,0.96875,101,14)" />
-        <path
-           style="fill:#009100;fill-opacity:0.64102568;fill-rule:nonzero;stroke:none"
-           d="m 442,418 c -16.56854,0 -30,13.43146 -30,30 0,0.33821 0.0201,0.66449 0.0312,1 0.53295,-16.10067 13.73842,-28 29.96875,-28 16.23033,0 29.4358,11.89933 29.96875,28 0.0111,-0.33551 0.0312,-0.66179 0.0312,-1 0,-16.56854 -13.43146,-30 -30,-30 z"
-           id="path5416"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="sscscss" />
+        <g
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="icon-button.png"
+           id="g5378">
+          <path
+             transform="matrix(1.1507275,0,0,1.1507275,-53.056048,-67.525881)"
+             sodipodi:type="arc"
+             style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.73803139;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             id="path5364"
+             sodipodi:cx="352"
+             sodipodi:cy="448"
+             sodipodi:rx="32"
+             sodipodi:ry="32"
+             d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z" />
+          <path
+             d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
+             sodipodi:ry="32"
+             sodipodi:rx="32"
+             sodipodi:cy="448"
+             sodipodi:cx="352"
+             id="path4123"
+             style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:2.06451631;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             sodipodi:type="arc"
+             transform="matrix(0.96875,0,0,0.96875,11,14)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5101"
+             d="m 352,420.25 c -14.13231,0 -25.79476,10.55813 -27.53125,24.21875 8.03267,-4.86633 17.45384,-7.6875 27.53125,-7.6875 10.07741,0 19.49858,2.82117 27.53125,7.6875 C 377.79476,430.80813 366.13231,420.25 352,420.25 z"
+             style="fill:url(#linearGradient5001);fill-opacity:1;fill-rule:nonzero;stroke:none" />
+          <path
+             style="fill:#009100;fill-opacity:0.64102568;fill-rule:nonzero;stroke:none"
+             d="m 352,479 c -16.56854,0 -30,-13.43146 -30,-30 0,-0.33821 0.0201,-0.66449 0.0312,-1 0.53295,16.10067 13.73842,28 29.96875,28 16.23033,0 29.4358,-11.89933 29.96875,-28 0.0111,0.33551 0.0312,0.66179 0.0312,1 0,16.56854 -13.43146,30 -30,30 z"
+             id="path5530"
+             inkscape:connector-curvature="0"
+             sodipodi:nodetypes="sscscss" />
+        </g>
+        <rect
+           y="409"
+           x="351"
+           height="1"
+           width="2"
+           id="rect4207"
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <rect
+           transform="matrix(0,-1,1,0,0,0)"
+           y="313"
+           x="-449"
+           height="1"
+           width="2"
+           id="rect4207-5"
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <rect
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect4995"
+           width="48"
+           height="1"
+           x="-471"
+           y="390"
+           transform="matrix(0,-1,1,0,0,0)" />
+        <rect
+           transform="scale(-1,-1)"
+           y="-487"
+           x="-354"
+           height="1"
+           width="4"
+           id="rect4997"
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
       </g>
       <g
-         id="g5378"
-         inkscape:export-filename="imagebutton.png"
+         id="g5041"
+         inkscape:export-filename="text-button-down.9.png"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90">
-        <path
-           d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
-           sodipodi:ry="32"
-           sodipodi:rx="32"
-           sodipodi:cy="448"
-           sodipodi:cx="352"
-           id="path5364"
-           style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.73803139;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           sodipodi:type="arc"
-           transform="matrix(1.1507275,0,0,1.1507275,-53.056048,-67.525881)" />
-        <path
-           transform="matrix(0.96875,0,0,0.96875,11,14)"
-           sodipodi:type="arc"
-           style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:2.06451631;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-           id="path4123"
-           sodipodi:cx="352"
-           sodipodi:cy="448"
-           sodipodi:rx="32"
-           sodipodi:ry="32"
-           d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z" />
-        <path
-           style="fill:url(#linearGradient5386);fill-opacity:1;fill-rule:nonzero;stroke:none"
-           d="m 352,420.25 c -14.13231,0 -25.79476,10.55813 -27.53125,24.21875 8.03267,-4.86633 17.45384,-7.6875 27.53125,-7.6875 10.07741,0 19.49858,2.82117 27.53125,7.6875 C 377.79476,430.80813 366.13231,420.25 352,420.25 z"
-           id="path5101"
-           inkscape:connector-curvature="0" />
-        <path
-           sodipodi:nodetypes="sscscss"
-           inkscape:connector-curvature="0"
-           id="path5530"
-           d="m 352,479 c -16.56854,0 -30,-13.43146 -30,-30 0,-0.33821 0.0201,-0.66449 0.0312,-1 0.53295,16.10067 13.73842,28 29.96875,28 16.23033,0 29.4358,-11.89933 29.96875,-28 0.0111,0.33551 0.0312,0.66179 0.0312,1 0,16.56854 -13.43146,30 -30,30 z"
-           style="fill:#009100;fill-opacity:0.64102568;fill-rule:nonzero;stroke:none" />
+        <g
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="icon-button-down.png"
+           id="g5388">
+          <path
+             d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
+             sodipodi:ry="32"
+             sodipodi:rx="32"
+             sodipodi:cy="448"
+             sodipodi:cx="352"
+             id="path5366"
+             style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.73803139;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             sodipodi:type="arc"
+             transform="matrix(1.1507275,0,0,1.1507275,36.943952,-67.525881)" />
+          <path
+             transform="matrix(0.96875,0,0,0.96875,101,14)"
+             sodipodi:type="arc"
+             style="fill:#7eb500;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:2.06451631;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             id="path5368"
+             sodipodi:cx="352"
+             sodipodi:cy="448"
+             sodipodi:rx="32"
+             sodipodi:ry="32"
+             d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z" />
+          <path
+             sodipodi:nodetypes="sscscss"
+             inkscape:connector-curvature="0"
+             id="path5416"
+             d="m 442,418 c -16.56854,0 -30,13.43146 -30,30 0,0.33821 0.0201,0.66449 0.0312,1 0.53295,-16.10067 13.73842,-28 29.96875,-28 16.23033,0 29.4358,11.89933 29.96875,28 0.0111,-0.33551 0.0312,-0.66179 0.0312,-1 0,-16.56854 -13.43146,-30 -30,-30 z"
+             style="fill:#009100;fill-opacity:0.64102568;fill-rule:nonzero;stroke:none" />
+        </g>
+        <rect
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect4207-3"
+           width="2"
+           height="1"
+           x="441"
+           y="409" />
+        <rect
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect4207-5-8"
+           width="2"
+           height="1"
+           x="-449"
+           y="403"
+           transform="matrix(0,-1,1,0,0,0)" />
+        <rect
+           transform="matrix(0,-1,1,0,0,0)"
+           y="480"
+           x="-471"
+           height="1"
+           width="48"
+           id="rect4995-5"
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <rect
+           style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect4997-5"
+           width="4"
+           height="1"
+           x="-444"
+           y="-487"
+           transform="scale(-1,-1)" />
       </g>
     </g>
     <use
