@@ -687,7 +687,7 @@ ui/hud-bg
   orig: 144, 64
   offset: 0, 0
   index: -1
-ui/button-down
+ui/level-button-down
   rotate: false
   xy: 503, 250
   size: 152, 48
@@ -696,32 +696,50 @@ ui/button-down
   orig: 152, 48
   offset: 0, 0
   index: -1
-ui/button
+ui/level-button
   rotate: false
   xy: 503, 200
   size: 152, 48
   split: 24, 24, 23, 23
-  pad: -1, -1, 4, 4
+  pad: 4, 4, 4, 4
   orig: 152, 48
   offset: 0, 0
   index: -1
-ui/imagebutton-down
+ui/icon-button-down
   rotate: false
   xy: 803, 878
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
-ui/imagebutton
+ui/icon-button
   rotate: false
   xy: 657, 222
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
+ui/text-button-down
+  rotate: false
+  xy: 503, 122
+  size: 76, 76
+  split: 37, 37, 37, 37
+  pad: 36, 36, 13, 15
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/text-button
+  rotate: false
+  xy: 803, 800
+  size: 76, 76
+  split: 37, 37, 37, 37
+  pad: 36, 36, 13, 15
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
 ui/lock
   rotate: false
-  xy: 503, 110
+  xy: 881, 866
   size: 60, 88
   orig: 60, 88
   offset: 0, 0
@@ -735,14 +753,14 @@ ui/star-off
   index: -1
 ui/star-on
   rotate: false
-  xy: 803, 836
+  xy: 735, 258
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 881, 913
+  xy: 503, 79
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
@@ -756,21 +774,21 @@ ui/icon-restart
   index: -1
 ui/icon-back
   rotate: false
-  xy: 735, 266
+  xy: 581, 166
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 503, 76
+  xy: 803, 766
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 565, 164
+  xy: 881, 830
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
@@ -784,14 +802,14 @@ ui/icon-play
   index: -1
 ui/icon-right
   rotate: false
-  xy: 803, 800
+  xy: 735, 222
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 845, 848
+  xy: 503, 49
   size: 28, 28
   orig: 28, 28
   offset: 0, 0

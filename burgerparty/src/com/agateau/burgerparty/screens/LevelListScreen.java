@@ -99,7 +99,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 	class LevelButton extends TextButton {
 		public LevelButton(int levelWorldIndex, int levelIndex, int stars, boolean surprise, Skin skin) {
-			super("", skin);
+			super("", skin, "level-button");
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
 

@@ -5,7 +5,10 @@ import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class Kernel {
 	public static AnimScriptLoader getAnimScriptLoader() {
@@ -32,6 +35,19 @@ public class Kernel {
 		init();
 		RoundButton button = new RoundButton(sSkin, name);
 		button.setSound(sSoundAtlas.findSound("click"));
+		return button;
+	}
+
+	public static ImageTextButton createTextButton(String text, String iconName) {
+		init();
+		ImageTextButton button = new ImageTextButton(text, sSkin, "image-text-button");
+		button.getImage().setDrawable(Kernel.getSkin().getDrawable(iconName));
+		button.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				sSoundAtlas.findSound("click").play();
+			}
+		});
+
 		return button;
 	}
 
