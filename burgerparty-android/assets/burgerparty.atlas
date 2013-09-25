@@ -814,6 +814,13 @@ ui/icon-levels
   orig: 28, 28
   offset: 0, 0
   index: -1
+ui/undo
+  rotate: false
+  xy: 541, 94
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
 ui/pause
   rotate: false
   xy: 657, 202

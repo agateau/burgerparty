@@ -82,7 +82,7 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
-		ImageButton undoButton = Kernel.createHudButton("ui/icon-right");
+		ImageButton undoButton = Kernel.createHudButton("ui/undo");
 		undoButton.setSize(48, 46);
 		undoButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
