@@ -859,6 +859,13 @@ levels/1/shelf
   orig: 100, 90
   offset: 0, 0
   index: -1
+levels/1/bottom-left-button-bar
+  rotate: false
+  xy: 803, 782
+  size: 64, 89
+  orig: 64, 89
+  offset: 0, 0
+  index: -1
 
 burgerparty14.png
 format: RGBA8888
@@ -902,6 +909,13 @@ levels/2/shelf
   xy: 803, 873
   size: 100, 90
   orig: 100, 90
+  offset: 0, 0
+  index: -1
+levels/2/bottom-left-button-bar
+  rotate: false
+  xy: 803, 782
+  size: 64, 89
+  orig: 64, 89
   offset: 0, 0
   index: -1
 
