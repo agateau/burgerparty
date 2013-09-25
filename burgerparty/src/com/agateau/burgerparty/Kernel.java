@@ -7,9 +7,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
 	public static AnimScriptLoader getAnimScriptLoader() {
@@ -47,6 +49,11 @@ public class Kernel {
 		return button;
 	}
 
+	public static ImageButton createHudButton(String iconName) {
+		init();
+		Drawable drawable = sSkin.getDrawable(iconName);
+		ImageButton button = new ImageButton(drawable);
+		button.addListener(sClickListener);
 		return button;
 	}
 
