@@ -42,7 +42,7 @@ public class WorldListOverlay extends Overlay {
 
 	private static class WorldButton extends TextButton {
 		public WorldButton(String text, Skin skin) {
-			super(text, skin);
+			super(text, skin, "level-button");
 		}
 		public int mIndex;
 	}
