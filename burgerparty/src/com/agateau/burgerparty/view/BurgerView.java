@@ -68,6 +68,14 @@ public class BurgerView extends Group {
 		mPadding = value;
 	}
 
+	public Array<BurgerItem> getItems() {
+		Array<BurgerItem> items = new Array<BurgerItem>(mItemActors.size);
+		for(ItemImage actor: mItemActors) {
+			items.add(actor.getItem());
+		}
+		return items;
+	}
+
 	private class AddItemRunnable implements Runnable {
 		public AddItemRunnable(BurgerItem item) {
 			mItem = item;

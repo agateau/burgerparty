@@ -40,6 +40,10 @@ public class MealView extends Group implements ResizeToFitChildren {
 		return mBurgerView;
 	}
 
+	public MealExtraView getMealExtraView() {
+		return mMealExtraView;
+	}
+
 	public void addItem(MealItem item) {
 		if (item.getType() == MealItem.Type.BURGER) {
 			addBurgerItem((BurgerItem)item);

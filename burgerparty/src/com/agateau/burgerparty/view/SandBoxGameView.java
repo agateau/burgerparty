@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
@@ -191,8 +192,16 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void onAddItem(MealItem item) {
-		if (!mWorld.canAddItem(item)) {
-			return;
+		if (item.getType() == MealItem.Type.BURGER) {
+			Array<BurgerItem> items = mMealView.getBurgerView().getItems();
+			if (!mWorld.canAddBurgerItem(items, (BurgerItem)item)) {
+				return;
+			}
+		} else {
+			Array<MealItem> items = mMealView.getMealExtraView().getItems();
+			if (!mWorld.canAddMealExtraItem(items, item)) {
+				return;
+			}
 		}
 		mMealView.addItem(item);
 		mUndoStack.push(item);
