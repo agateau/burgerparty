@@ -25,10 +25,10 @@ public class MealExtraTest {
 		assertArrayEquals(new MealItem[]{fries, juice}, arrayFromMealExtra(extra));
 
 		extra.addItem(fries);
-		assertArrayEquals(new MealItem[]{fries, fries, juice}, arrayFromMealExtra(extra));
+		assertArrayEquals(new MealItem[]{fries, juice, fries}, arrayFromMealExtra(extra));
 
 		extra.addItem(potatoes);
-		assertArrayEquals(new MealItem[]{fries, fries, potatoes, juice}, arrayFromMealExtra(extra));
+		assertArrayEquals(new MealItem[]{fries, juice, fries, potatoes}, arrayFromMealExtra(extra));
 	}
 
 	@Test
