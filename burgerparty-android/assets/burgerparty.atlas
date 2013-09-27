@@ -772,51 +772,65 @@ ui/icon-restart
   orig: 34, 35
   offset: 0, 0
   index: -1
+ui/inventory-burger
+  rotate: false
+  xy: 581, 163
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+ui/inventory-extra
+  rotate: false
+  xy: 803, 763
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
 ui/icon-back
   rotate: false
-  xy: 581, 166
+  xy: 881, 832
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 803, 766
+  xy: 735, 224
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 881, 830
+  xy: 991, 986
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 991, 986
+  xy: 503, 43
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 735, 222
+  xy: 541, 86
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 503, 49
+  xy: 37, 8
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 ui/undo
   rotate: false
-  xy: 541, 94
+  xy: 581, 135
   size: 29, 26
   orig: 29, 26
   offset: 0, 0

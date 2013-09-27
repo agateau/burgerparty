@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.SandBoxWorld;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 
@@ -74,9 +76,9 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupBottomLeftBar() {
-		ImageButton switchInventoriesButton = Kernel.createHudButton("ui/icon-back");
-		switchInventoriesButton.setSize(48, 46);
-		switchInventoriesButton.addListener(new ChangeListener() {
+		mSwitchInventoriesButton = Kernel.createHudButton("ui/inventory-burger");
+		mSwitchInventoriesButton.setSize(48, 46);
+		mSwitchInventoriesButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchInventories();
 			}
@@ -93,8 +95,8 @@ public class SandBoxGameView extends AbstractWorldView {
 		mBottomLeftBgImage.setFillParent(true);
 		mBottomLeftBar.addActor(mBottomLeftBgImage);
 
-		mBottomLeftBar.addRule(switchInventoriesButton, Anchor.BOTTOM_LEFT, mBottomLeftBar, Anchor.BOTTOM_LEFT, 1, 1);
-		mBottomLeftBar.addRule(undoButton, Anchor.BOTTOM_LEFT, switchInventoriesButton, Anchor.TOP_LEFT, 1, 3);
+		mBottomLeftBar.addRule(mSwitchInventoriesButton, Anchor.BOTTOM_LEFT, mBottomLeftBar, Anchor.BOTTOM_LEFT, 1, 1);
+		mBottomLeftBar.addRule(undoButton, Anchor.BOTTOM_LEFT, mSwitchInventoriesButton, Anchor.TOP_LEFT, 1, 3);
 
 		addRule(mBottomLeftBar, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
@@ -128,11 +130,18 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void switchInventories() {
+		Inventory inventory;
+		String iconName;
 		if (mInventoryView.getInventory() == mWorld.getBurgerInventory()) {
-			mInventoryView.setInventory(mWorld.getMealExtraInventory());
+			inventory = mWorld.getMealExtraInventory();
+			iconName = "ui/inventory-extra";
 		} else {
-			mInventoryView.setInventory(mWorld.getBurgerInventory());
+			inventory = mWorld.getBurgerInventory();
+			iconName = "ui/inventory-burger";
 		}
+		mInventoryView.setInventory(inventory);
+		Drawable drawable = Kernel.getSkin().getDrawable(iconName);
+		mSwitchInventoriesButton.getStyle().imageUp = drawable;
 	}
 
 	private void deliver() {
@@ -199,4 +208,5 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	Image mBottomLeftBgImage = new Image();
 	AnchorGroup mBottomLeftBar = new AnchorGroup();
+	ImageButton mSwitchInventoriesButton;
 }
