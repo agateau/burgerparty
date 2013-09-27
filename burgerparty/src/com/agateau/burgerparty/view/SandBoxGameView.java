@@ -17,6 +17,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -136,9 +137,11 @@ public class SandBoxGameView extends AbstractWorldView {
 		if (mInventoryView.getInventory() == mWorld.getBurgerInventory()) {
 			inventory = mWorld.getMealExtraInventory();
 			iconName = "ui/inventory-extra";
+			scrollTo(0);
 		} else {
 			inventory = mWorld.getBurgerInventory();
 			iconName = "ui/inventory-burger";
+			scrollToBurgerTop();
 		}
 		mInventoryView.setInventory(inventory);
 		Drawable drawable = Kernel.getSkin().getDrawable(iconName);
@@ -166,6 +169,9 @@ public class SandBoxGameView extends AbstractWorldView {
 		}
 		MealItem item = mUndoStack.pop();
 		mMealView.pop(item.getType());
+		if (item.getType() == MealItem.Type.BURGER) {
+			scrollToBurgerTop();
+		}
 	}
 
 	private void switchWorld() {
@@ -204,8 +210,22 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		}
 		mMealView.addItem(item);
+		if (item.getType() == MealItem.Type.BURGER) {
+			scrollToBurgerTop();
+		} else {
+			scrollTo(0);
+		}
 		mUndoStack.push(item);
 	}
+
+	private void scrollToBurgerTop() {
+		float height = getHeight();
+		BurgerView view = mMealView.getBurgerView();
+		Vector2 coords = view.localToAscendantCoordinates(this, new Vector2(0, view.getHeight()));
+		float offset = Math.max(0, getScrollOffset() + coords.y - height);
+		scrollTo(offset);
+	}
+
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private int mLevelWorldIndex;

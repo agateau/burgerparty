@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 
 public class AbstractWorldView extends AnchorGroup {
@@ -54,8 +54,11 @@ public class AbstractWorldView extends AnchorGroup {
 		mHeight = height;
 
 		if (resized) {
+			for (AnchorGroup layer: mLayers) {
+				layer.setSize(width, height);
+			}
 			mInventoryView.setWidth(width);
-			mWorkbench.setWidth(width);
+			mWorkbench.setBounds(0, mInventoryView.getHeight(), width, mWorkbench.getHeight());
 			mWorkbench.invalidate();
 		}
 
@@ -66,15 +69,29 @@ public class AbstractWorldView extends AnchorGroup {
 		}
 	}
 
+	protected float getScrollOffset() {
+		return mScrollOffset;
+	}
+
+	protected void scrollTo(float offset) {
+		if (mScrollOffset == offset) {
+			return;
+		}
+		mScrollOffset = offset;
+		mCustomersLayer.addAction(Actions.moveTo(0, -mScrollOffset, 0.2f));
+		mCounterLayer.addAction(Actions.moveTo(0, -mScrollOffset, 0.2f));
+		layout();
+	}
+
 	protected void onResized() {
 	}
 
 	private AnchorGroup createLayer() {
 		AnchorGroup layer = new AnchorGroup();
-		layer.setFillParent(true);
 		layer.setSpacing(UiUtils.SPACING);
 		layer.setTouchable(Touchable.childrenOnly);
 		addActor(layer);
+		mLayers.add(layer);
 		return layer;
 	}
 
@@ -88,11 +105,10 @@ public class AbstractWorldView extends AnchorGroup {
 	private void setupDecor() {
 		mWorkbench = new Image();
 		mWorkbench.setScaling(Scaling.stretch);
+		mCounterLayer.addActor(mWorkbench);
 
 		mInventoryView = new InventoryView(Kernel.getTextureAtlas());
 		mInventoryLayer.addActor(mInventoryView);
-
-		mCounterLayer.addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
 
 	protected void slideInMealView(MealView view) {
@@ -101,6 +117,7 @@ public class AbstractWorldView extends AnchorGroup {
 		mCounterLayer.addActor(view);
 	}
 
+	private Array<AnchorGroup> mLayers = new Array<AnchorGroup>();
 	protected AnchorGroup mCustomersLayer;
 	protected AnchorGroup mCounterLayer;
 	protected AnchorGroup mInventoryLayer;
@@ -112,4 +129,5 @@ public class AbstractWorldView extends AnchorGroup {
 	protected float mHeight = -1;
 
 	private TextureRegion mBackgroundRegion;
+	private float mScrollOffset = 0;
 }

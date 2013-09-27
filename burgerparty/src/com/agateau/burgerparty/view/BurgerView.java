@@ -102,6 +102,11 @@ public class BurgerView extends Group {
 		mBurger.pop();
 		ItemImage image = mItemActors.removeIndex(mItemActors.size - 1);
 		image.remove();
+		if (mItemActors.size > 0) {
+			setHeight(mItemActors.get(mItemActors.size - 1).getTop());
+		} else {
+			setHeight(0);
+		}
 		UiUtils.notifyResizeToFitParent(this);
 	}
 

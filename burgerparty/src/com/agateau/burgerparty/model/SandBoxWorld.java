@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class SandBoxWorld {
 	private static int MAX_MEAL_EXTRA = 2;
-	private static int MAX_BURGER_ITEMS = 18;
+	private static int MAX_BURGER_ITEMS = 200;
 
 	/**
 	 * For testing purposes
