@@ -17,7 +17,6 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -219,10 +218,8 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void scrollToBurgerTop() {
-		float height = getHeight();
-		BurgerView view = mMealView.getBurgerView();
-		Vector2 coords = view.localToAscendantCoordinates(this, new Vector2(0, view.getHeight()));
-		float offset = Math.max(0, getScrollOffset() + coords.y - height);
+		float viewTop = getActorTop(mMealView.getBurgerView());
+		float offset = Math.max(0, getScrollOffset() + viewTop - getHeight());
 		scrollTo(offset);
 	}
 

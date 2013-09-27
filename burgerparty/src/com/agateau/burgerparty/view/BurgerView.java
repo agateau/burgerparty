@@ -68,6 +68,10 @@ public class BurgerView extends Group {
 		mPadding = value;
 	}
 
+	public Actor getItemAtArrow() {
+		return mArrowIndex > -1 ? mItemActors.get(mArrowIndex) : null;
+	}
+
 	public Array<BurgerItem> getItems() {
 		Array<BurgerItem> items = new Array<BurgerItem>(mItemActors.size);
 		for(ItemImage actor: mItemActors) {
@@ -112,6 +116,7 @@ public class BurgerView extends Group {
 
 	public void setArrowIndex(int index) {
 		initArrowActor();
+		mArrowIndex = index;
 		if (index == -1) {
 			mArrowActor.setVisible(false);
 			return;
@@ -207,5 +212,6 @@ public class BurgerView extends Group {
 	private TextureAtlas mAtlas;
 	private float mPadding = 0;
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
+	private int mArrowIndex = -1;
 	private Image mArrowActor = null;
 }

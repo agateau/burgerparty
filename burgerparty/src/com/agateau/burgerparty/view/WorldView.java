@@ -33,6 +33,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AbstractWorldView {
+	private static final float TARGET_BURGER_PADDING = 24;
+	private static final float SCROLL_PADDING = 24;
+
 	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
 		super(world.getLevelWorld().getDirName());
 		setFillParent(true);
@@ -71,6 +74,12 @@ public class WorldView extends AbstractWorldView {
 				onTrashing();
 			}
 		});
+		mWorld.getBurger().itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
+			@Override
+			public void handle(MealItem item) {
+				onBurgerItemAdded();
+			}
+		});
 
 		Gdx.app.postRunnable(new Runnable() {
 			@Override
@@ -87,8 +96,20 @@ public class WorldView extends AbstractWorldView {
 				@Override
 				public void run() {
 					mWorld.markTrashingDone();
+					scrollTo(0);
 				}
 			}, MealView.TRASH_ACTION_DURATION);
+	}
+
+	public void onBurgerItemAdded() {
+		float top = getActorTop(mMealView.getBurgerView()) + SCROLL_PADDING;
+		Actor itemAtArrow = mTargetMealView.getBurgerView().getItemAtArrow();
+		if (itemAtArrow != null) {
+			float arrowTop = getActorTop(itemAtArrow) + SCROLL_PADDING;
+			top = Math.max(arrowTop, top);
+		}
+		float offset = Math.max(0, getScrollOffset() + top - getHeight());
+		scrollTo(offset);
 	}
 
 	public void onBackPressed() {
@@ -143,7 +164,7 @@ public class WorldView extends AbstractWorldView {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
-		mTargetMealView.getBurgerView().setPadding(8);
+		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 		mTargetMealView.setScale(0.5f, 0.5f);
 		mBubble.setChild(mTargetMealView);
 		mBubble.setVisible(false);
@@ -240,9 +261,11 @@ public class WorldView extends AbstractWorldView {
 
 	private void onBurgerFinished() {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
+		scrollTo(0);
 	}
 
 	private void onMealFinished(World.Score score) {
+		scrollTo(0);
 		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
