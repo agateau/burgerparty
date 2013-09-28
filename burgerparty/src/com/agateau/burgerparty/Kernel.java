@@ -75,13 +75,13 @@ public class Kernel {
 			"add-item-steak.wav",
 			"add-item-tomato.wav",
 			"click.wav",
-			"error.wav",
 			"finished.wav",
 			"meal-done.wav",
 			"sauce.wav",
 			"splat.wav",
 			"star.wav",
-			"time-bonus.wav"
+			"time-bonus.wav",
+			"trash.wav"
 		};
 		sSoundAtlas.load(names);
 

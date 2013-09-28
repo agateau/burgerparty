@@ -128,7 +128,7 @@ public class BurgerView extends Group {
 	}
 
 	private void trash() {
-		Kernel.getSoundAtlas().findSound("error").play();
+		Kernel.getSoundAtlas().findSound("trash").play();
 		for (Actor actor: mItemActors) {
 			MealView.addTrashActions(actor);
 		}
