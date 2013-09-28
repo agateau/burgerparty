@@ -200,11 +200,13 @@ public class SandBoxGameView extends AbstractWorldView {
 		if (item.getType() == MealItem.Type.BURGER) {
 			Array<BurgerItem> items = mMealView.getBurgerView().getItems();
 			if (!mWorld.canAddBurgerItem(items, (BurgerItem)item)) {
+				playError();
 				return;
 			}
 		} else {
 			Array<MealItem> items = mMealView.getMealExtraView().getItems();
 			if (!mWorld.canAddMealExtraItem(items, item)) {
+				playError();
 				return;
 			}
 		}
@@ -221,6 +223,10 @@ public class SandBoxGameView extends AbstractWorldView {
 		float viewTop = getActorTop(mMealView.getBurgerView());
 		float offset = Math.max(0, getScrollOffset() + viewTop - getHeight());
 		scrollTo(offset);
+	}
+
+	private void playError() {
+		Kernel.getSoundAtlas().findSound("error").play();
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();

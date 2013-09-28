@@ -75,6 +75,7 @@ public class Kernel {
 			"add-item-steak.wav",
 			"add-item-tomato.wav",
 			"click.wav",
+			"error.wav",
 			"finished.wav",
 			"meal-done.wav",
 			"sauce.wav",

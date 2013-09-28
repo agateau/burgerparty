@@ -25,3 +25,7 @@
 # Bottom sound
 
 <http://www.freesound.org/people/AlienXXX/sounds/174929/>
+
+# error.wav
+
+<http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/>
