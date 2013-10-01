@@ -3,4 +3,7 @@
         <undoButton x="4" y="50"/>
         <switchInventoriesButton x="4" y="5"/>
     </bottomLeftBar>
+    <bottomRightButtonBar x="2" y="0">
+        <deliverButton x="4" y="10"/>
+    </bottomRightButtonBar>
 </config>

@@ -18,6 +18,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -36,6 +37,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		setupWidgets();
 		setupBottomLeftBar();
+		setupBottomRightBar();
 		setupInventory();
 		setLevelWorldIndex(0);
 		Gdx.app.postRunnable(new Runnable() {
@@ -65,21 +67,12 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
-		ImageButton deliverButton = Kernel.createRoundButton("ui/icon-right");
-		deliverButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				deliver();
-			}
-		});
-
 		addRule(backButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT);
 		addRule(worldButton, Anchor.CENTER_LEFT, backButton, Anchor.CENTER_RIGHT, 1, 0);
-		addRule(deliverButton, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT);
 	}
 
 	private void setupBottomLeftBar() {
 		mSwitchInventoriesButton = Kernel.createHudButton("ui/inventory-burger");
-		mSwitchInventoriesButton.setSize(80, 80);
 		mSwitchInventoriesButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchInventories();
@@ -87,7 +80,6 @@ public class SandBoxGameView extends AbstractWorldView {
 		});
 
 		mUndoButton = Kernel.createHudButton("ui/undo");
-		mUndoButton.setSize(80, 80);
 		mUndoButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				undo();
@@ -99,6 +91,20 @@ public class SandBoxGameView extends AbstractWorldView {
 		mBottomLeftBar.addActor(mUndoButton);
 
 		addRule(mBottomLeftBar, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+	}
+
+	private void setupBottomRightBar() {
+		mDeliverButton = Kernel.createRoundButton("ui/done");
+		mDeliverButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				deliver();
+			}
+		});
+
+		mBottomRightBar.addActor(mBottomRightBgImage);
+		mBottomRightBar.addActor(mDeliverButton);
+
+		addRule(mBottomRightBar, Anchor.BOTTOM_RIGHT, mInventoryView, Anchor.TOP_RIGHT);
 	}
 
 	private void setupInventory() {
@@ -205,6 +211,19 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		initButton(mUndoButton, dirName, blConfig.getChildByName("undoButton"));
 		initButton(mSwitchInventoriesButton, dirName, blConfig.getChildByName("switchInventoriesButton"));
+
+		// Bottom right button bar
+		XmlReader.Element brConfig = config.getChildByName("bottomRightButtonBar");
+		assert(brConfig != null);
+
+		region = Kernel.getTextureAtlas().findRegion(dirName + "bottom-right-button-bar");
+		mBottomRightBgImage.setDrawable(new TextureRegionDrawable(region));
+		mBottomRightBgImage.setBounds(
+			brConfig.getFloatAttribute("x", 0),
+			brConfig.getFloatAttribute("y", 0),
+			region.getRegionWidth(), region.getRegionHeight());
+		mBottomRightBar.setSize(region.getRegionWidth(), region.getRegionHeight());
+		initButton(mDeliverButton, dirName, brConfig.getChildByName("deliverButton"));
 	}
 
 	private void initButton(ImageButton button, String dirName, XmlReader.Element config) {
@@ -212,7 +231,10 @@ public class SandBoxGameView extends AbstractWorldView {
 		ImageButton.ImageButtonStyle style = button.getStyle();
 		style.up = Kernel.getSkin().getDrawable(dirName + "button");
 		style.down = Kernel.getSkin().getDrawable(dirName + "button-down");
-		button.setPosition(config.getFloatAttribute("x"), config.getFloatAttribute("y"));
+		button.setBounds(
+			config.getFloatAttribute("x"),
+			config.getFloatAttribute("y"),
+			80, 80);
 	}
 
 	private void onAddItem(MealItem item) {
@@ -257,8 +279,12 @@ public class SandBoxGameView extends AbstractWorldView {
 	private final BurgerPartyGame mGame;
 	private final BurgerPartyScreen mScreen;
 
-	Image mBottomLeftBgImage = new Image();
 	AnchorGroup mBottomLeftBar = new AnchorGroup();
+	Image mBottomLeftBgImage = new Image();
 	ImageButton mSwitchInventoriesButton;
 	ImageButton mUndoButton;
+
+	Group mBottomRightBar = new Group();
+	Image mBottomRightBgImage = new Image();
+	ImageButton mDeliverButton;
 }

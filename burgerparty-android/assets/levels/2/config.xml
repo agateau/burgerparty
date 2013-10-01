@@ -1,6 +1,9 @@
 <config>
     <bottomLeftButtonBar x="-2" y="0">
-        <undoButton x="4" y="95"/>
-        <switchInventoriesButton x="4" y="10"/>
+        <undoButton x="7" y="95"/>
+        <switchInventoriesButton x="7" y="10"/>
     </bottomLeftBar>
+    <bottomRightButtonBar x="4" y="1">
+        <deliverButton x="20" y="10"/>
+    </bottomRightButtonBar>
 </config>
