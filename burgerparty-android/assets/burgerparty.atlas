@@ -744,23 +744,37 @@ ui/lock
   orig: 60, 88
   offset: 0, 0
   index: -1
+ui/done
+  rotate: false
+  xy: 949, 976
+  size: 56, 44
+  orig: 56, 44
+  offset: 0, 0
+  index: -1
+ui/undo
+  rotate: false
+  xy: 735, 255
+  size: 48, 43
+  orig: 48, 43
+  offset: 0, 0
+  index: -1
 ui/star-off
   rotate: false
-  xy: 949, 980
+  xy: 503, 80
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 735, 258
+  xy: 581, 158
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 503, 79
+  xy: 803, 757
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
@@ -774,65 +788,58 @@ ui/icon-restart
   index: -1
 ui/inventory-burger
   rotate: false
-  xy: 581, 163
+  xy: 881, 829
   size: 34, 35
   orig: 34, 35
   offset: 0, 0
   index: -1
 ui/inventory-extra
   rotate: false
-  xy: 803, 763
+  xy: 503, 43
   size: 34, 35
   orig: 34, 35
   offset: 0, 0
   index: -1
 ui/icon-back
   rotate: false
-  xy: 881, 832
+  xy: 545, 88
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 735, 224
+  xy: 581, 124
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 991, 986
+  xy: 623, 164
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 503, 43
+  xy: 803, 721
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 541, 86
+  xy: 841, 764
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 37, 8
+  xy: 735, 225
   size: 28, 28
   orig: 28, 28
-  offset: 0, 0
-  index: -1
-ui/undo
-  rotate: false
-  xy: 581, 135
-  size: 29, 26
-  orig: 29, 26
   offset: 0, 0
   index: -1
 ui/pause
@@ -880,9 +887,23 @@ levels/1/shelf
   orig: 100, 90
   offset: 0, 0
   index: -1
+levels/1/button-down
+  rotate: false
+  xy: 803, 791
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/1/button
+  rotate: false
+  xy: 905, 883
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
 levels/1/bottom-left-button-bar
   rotate: false
-  xy: 803, 782
+  xy: 803, 700
   size: 64, 89
   orig: 64, 89
   offset: 0, 0
@@ -925,18 +946,39 @@ levels/2/newitem-bg
   orig: 800, 480
   offset: 0, 0
   index: -1
+levels/2/bottom-left-button-bar
+  rotate: false
+  xy: 803, 776
+  size: 107, 187
+  orig: 107, 187
+  offset: 0, 0
+  index: -1
+levels/2/bottom-right-button-bar
+  rotate: false
+  xy: 803, 672
+  size: 106, 102
+  orig: 106, 102
+  offset: 0, 0
+  index: -1
 levels/2/shelf
   rotate: false
-  xy: 803, 873
+  xy: 912, 873
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
-levels/2/bottom-left-button-bar
+levels/2/button-down
   rotate: false
-  xy: 803, 782
-  size: 64, 89
-  orig: 64, 89
+  xy: 803, 590
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/2/button
+  rotate: false
+  xy: 912, 791
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
 

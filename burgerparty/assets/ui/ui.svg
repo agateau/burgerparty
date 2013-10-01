@@ -23,16 +23,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="177.57124"
-     inkscape:cy="643.36442"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="195.78093"
+     inkscape:cy="949.89266"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
-     showgrid="false"
+     showgrid="true"
      inkscape:window-width="1562"
      inkscape:window-height="880"
-     inkscape:window-x="30"
-     inkscape:window-y="-3"
+     inkscape:window-x="38"
+     inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
        empopacity="0.25098039"
@@ -11281,20 +11281,36 @@
            sodipodi:role="line">1:34</tspan></text>
     </g>
     <rect
-       style="color:#000000;fill:#999999;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="rect4217"
-       width="40"
-       height="40"
-       x="268"
-       y="236" />
+       y="224"
+       x="112"
+       height="80"
+       width="80"
+       id="rect7276"
+       style="color:#000000;fill:#999999;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <path
        style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 283,241 -10,9 10,9 0,-6 9,0 c 2,0 4,2 4,4 0,2 -2,4 -4,4 l -14,0 0,6 14,0 c 5,0 10,-5 10,-10 0,-5 -5,-10 -10,-10 l -9,0 z"
-       id="rect4237"
+       d="m 124,266 12,20 44,-44 -44,32 z"
+       id="use7255"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccczcccszccc"
-       inkscape:export-filename="undo.png"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="done.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <rect
+       style="color:#000000;fill:#999999;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7303"
+       width="80"
+       height="80"
+       x="200"
+       y="224" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="undo.png"
+       sodipodi:nodetypes="ccccczcccszccc"
+       inkscape:connector-curvature="0"
+       id="rect4237-5"
+       d="m 232.99365,242.21759 -16.5517,14.89656 16.5517,14.89654 0,-9.93103 14.8965,0 c 3.3104,0 6.6207,3.31035 6.6207,6.62069 0,3.31034 -3.3103,6.62069 -6.6207,6.62069 l -23.1724,0 0,9.93104 23.1724,0 c 8.2759,0 16.5518,-8.27587 16.5518,-16.55173 0,-8.27585 -8.2759,-16.55172 -16.5518,-16.55172 l -14.8965,0 z"
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
 </svg>

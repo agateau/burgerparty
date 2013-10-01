@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
@@ -78,26 +79,24 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	private void setupBottomLeftBar() {
 		mSwitchInventoriesButton = Kernel.createHudButton("ui/inventory-burger");
-		mSwitchInventoriesButton.setSize(48, 46);
+		mSwitchInventoriesButton.setSize(80, 80);
 		mSwitchInventoriesButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchInventories();
 			}
 		});
 
-		ImageButton undoButton = Kernel.createHudButton("ui/undo");
-		undoButton.setSize(48, 46);
-		undoButton.addListener(new ChangeListener() {
+		mUndoButton = Kernel.createHudButton("ui/undo");
+		mUndoButton.setSize(80, 80);
+		mUndoButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				undo();
 			}
 		});
 
-		mBottomLeftBgImage.setFillParent(true);
 		mBottomLeftBar.addActor(mBottomLeftBgImage);
-
-		mBottomLeftBar.addRule(mSwitchInventoriesButton, Anchor.BOTTOM_LEFT, mBottomLeftBar, Anchor.BOTTOM_LEFT, 1, 1);
-		mBottomLeftBar.addRule(undoButton, Anchor.BOTTOM_LEFT, mSwitchInventoriesButton, Anchor.TOP_LEFT, 1, 3);
+		mBottomLeftBar.addActor(mSwitchInventoriesButton);
+		mBottomLeftBar.addActor(mUndoButton);
 
 		addRule(mBottomLeftBar, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 	}
@@ -188,12 +187,32 @@ public class SandBoxGameView extends AbstractWorldView {
 	private void setLevelWorldIndex(int index) {
 		mLevelWorldIndex = index;
 		LevelWorld levelWorld = mGame.getLevelWorld(index);
+		XmlReader.Element config = levelWorld.getConfig();
 		String dirName = levelWorld.getDirName();
 		setWorldDirName(dirName);
 
+		// Bottom left button bar
+		XmlReader.Element blConfig = config.getChildByName("bottomLeftButtonBar");
+		assert(blConfig != null);
+
 		TextureRegion region = Kernel.getTextureAtlas().findRegion(dirName + "bottom-left-button-bar");
 		mBottomLeftBgImage.setDrawable(new TextureRegionDrawable(region));
+		mBottomLeftBgImage.setBounds(
+			blConfig.getFloatAttribute("x", 0),
+			blConfig.getFloatAttribute("y", 0),
+			region.getRegionWidth(), region.getRegionHeight());
 		mBottomLeftBar.setSize(region.getRegionWidth(), region.getRegionHeight());
+
+		initButton(mUndoButton, dirName, blConfig.getChildByName("undoButton"));
+		initButton(mSwitchInventoriesButton, dirName, blConfig.getChildByName("switchInventoriesButton"));
+	}
+
+	private void initButton(ImageButton button, String dirName, XmlReader.Element config) {
+		assert(config != null);
+		ImageButton.ImageButtonStyle style = button.getStyle();
+		style.up = Kernel.getSkin().getDrawable(dirName + "button");
+		style.down = Kernel.getSkin().getDrawable(dirName + "button-down");
+		button.setPosition(config.getFloatAttribute("x"), config.getFloatAttribute("y"));
 	}
 
 	private void onAddItem(MealItem item) {
@@ -241,4 +260,5 @@ public class SandBoxGameView extends AbstractWorldView {
 	Image mBottomLeftBgImage = new Image();
 	AnchorGroup mBottomLeftBar = new AnchorGroup();
 	ImageButton mSwitchInventoriesButton;
+	ImageButton mUndoButton;
 }

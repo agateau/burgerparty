@@ -1,15 +1,19 @@
 package com.agateau.burgerparty.model;
 
+import java.io.IOException;
+import java.util.MissingResourceException;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class LevelWorld {
 	public LevelWorld(String dirName) {
 		mDirName = dirName;
 
+		loadConfig();
 		for (int n=1;; n++) {
 			String name = dirName + "/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);
@@ -39,6 +43,27 @@ public class LevelWorld {
 		return mLevels.size;
 	}
 
+	public XmlReader.Element getConfig() {
+		return mConfig;
+	}
+
+	private void loadConfig() {
+		FileHandle handle = Gdx.files.internal(mDirName + "/config.xml");
+		XmlReader reader = new XmlReader();
+		XmlReader.Element root = null;
+		try {
+			root = reader.parse(handle);
+		} catch (IOException e) {
+			throw new MissingResourceException("Failed to load world config from " + handle.path() + ". Exception: " + e.toString() + ".", "LevelWorld", handle.path());
+		}
+		if (root == null) {
+			throw new MissingResourceException("Failed to load world config from " + handle.path() + ". No root element.", "LevelWorld", handle.path());
+		}
+
+		mConfig = root;
+	}
+
 	private String mDirName;
 	private Array<Level> mLevels = new Array<Level>();
+	private XmlReader.Element mConfig;
 }

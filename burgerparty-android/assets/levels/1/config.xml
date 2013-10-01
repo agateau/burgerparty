@@ -1,0 +1,6 @@
+<config>
+    <bottomLeftButtonBar x="-2" y="0">
+        <undoButton x="4" y="50"/>
+        <switchInventoriesButton x="4" y="5"/>
+    </bottomLeftBar>
+</config>
