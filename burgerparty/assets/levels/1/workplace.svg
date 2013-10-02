@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="1751.0101"
-     inkscape:cy="618.1039"
+     inkscape:zoom="7.9999999"
+     inkscape:cx="1630.7871"
+     inkscape:cy="678.08661"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -6572,7 +6572,8 @@
        id="g4407"
        inkscape:export-filename="bottom-left-button-bar.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       inkscape:export-ydpi="90"
+       transform="translate(-100,-10)">
       <path
          sodipodi:nodetypes="cccccc"
          inkscape:connector-curvature="0"
@@ -6615,12 +6616,125 @@
          id="rect7109"
          style="color:#000000;fill:#928278;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.949;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <g
+       id="g6434"
+       inkscape:export-filename="bottom-left-button-bar.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="5.0299563"
+         y="660.85547"
+         x="839.69537"
+         height="168"
+         width="87"
+         id="rect4385"
+         style="opacity:0.98999999;color:#000000;fill:#b8aba2;fill-opacity:1;fill-rule:nonzero;stroke:#8f8076;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         ry="2.8027172"
+         y="663.35553"
+         x="842.19537"
+         height="163"
+         width="82"
+         id="rect4387"
+         style="opacity:0.98999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    </g>
+    <rect
+       ry="1.5067297"
+       y="664.85547"
+       x="843.69537"
+       height="79"
+       width="79"
+       id="rect4393"
+       style="opacity:0.98999999;color:#000000;fill:#febd54;fill-opacity:1;fill-rule:nonzero;stroke:#b97301;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="button.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:#b97301;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 855.19537,706.35547 12,20 44,-44 -44,32 z"
+       id="use7255"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="done.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g6430"
+       inkscape:export-filename="button-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="1.5067297"
+         y="745.85547"
+         x="843.69537"
+         height="79"
+         width="79"
+         id="use4395"
+         style="opacity:0.98999999;color:#000000;fill:#d29635;fill-opacity:1;fill-rule:nonzero;stroke:#b97301;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         inkscape:connector-curvature="0"
+         id="rect6424"
+         d="m 845.19539,745.365 c -1,0 -2,1 -2,2 l 0,2 0,74 c 0,1 1,2 2,2 l 2,0 c -1,0 -2,-1 -2,-2 l 0,-76 76,0 c 1,0 2,1 2,2 l 0,-2 c 0,-1 -1,-2 -2,-2 l -74,0 -2,0 z"
+         style="opacity:0.98999999;color:#000000;fill:#775112;fill-opacity:0.86857138;fill-rule:nonzero;stroke:none;stroke-width:0.99999994;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    </g>
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="undo.png"
+       sodipodi:nodetypes="ccccczcccszccc"
+       inkscape:connector-curvature="0"
+       id="rect4237-5"
+       d="m 875.74707,763.83822 -16.5517,14.89656 16.5517,14.89654 0,-9.93103 14.8965,0 c 3.3104,0 6.6207,3.31035 6.6207,6.62069 0,3.31034 -3.3103,6.62069 -6.6207,6.62069 l -23.1724,0 0,9.93104 23.1724,0 c 8.2759,0 16.5518,-8.27587 16.5518,-16.55173 0,-8.27585 -8.2759,-16.55172 -16.5518,-16.55172 l -14.8965,0 z"
+       style="color:#000000;fill:#b97301;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <g
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="bottom-right-button-bar.png"
+       id="g6438"
+       transform="translate(710,0)">
+      <rect
+         style="opacity:0.98999999;color:#000000;fill:#b8aba2;fill-opacity:1;fill-rule:nonzero;stroke:#8f8076;stroke-width:0.99999988;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect6440"
+         width="87"
+         height="87"
+         x="839.69537"
+         y="741.85547"
+         ry="5.0594249" />
+      <rect
+         style="opacity:0.98999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect6442"
+         width="81.999985"
+         height="81.993332"
+         x="842.19537"
+         y="744.36218"
+         ry="2.8027172" />
+    </g>
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="button.png"
+       style="opacity:0.98999999;color:#000000;fill:#febd54;fill-opacity:1;fill-rule:nonzero;stroke:#b97301;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect6444"
+       width="79"
+       height="79"
+       x="1553.6953"
+       y="745.85547"
+       ry="1.5067297" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="done.png"
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path6446"
+       d="m 1565.1954,787.35547 12,20 44,-44 -44,32 z"
+       style="color:#000000;fill:#b97301;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="Projection lines"
-     style="display:inline">
+     style="display:none">
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        d="m 1650,317.1222 348,-108"

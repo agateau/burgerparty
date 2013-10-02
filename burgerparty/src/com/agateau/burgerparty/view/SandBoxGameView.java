@@ -17,6 +17,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -190,6 +191,13 @@ public class SandBoxGameView extends AbstractWorldView {
 		mScreen.setOverlay(overlay);
 	}
 
+	private static Vector2 getCoordFromXml(XmlReader.Element element) {
+		Vector2 v = new Vector2();
+		v.x = element.getFloatAttribute("x");
+		v.y = element.getFloatAttribute("y");
+		return v;
+	}
+
 	private void setLevelWorldIndex(int index) {
 		mLevelWorldIndex = index;
 		LevelWorld levelWorld = mGame.getLevelWorld(index);
@@ -203,14 +211,15 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		TextureRegion region = Kernel.getTextureAtlas().findRegion(dirName + "bottom-left-button-bar");
 		mBottomLeftBgImage.setDrawable(new TextureRegionDrawable(region));
+		Vector2 blCoord = getCoordFromXml(blConfig);
 		mBottomLeftBgImage.setBounds(
-			blConfig.getFloatAttribute("x", 0),
-			blConfig.getFloatAttribute("y", 0),
+			blCoord.x,
+			blCoord.y,
 			region.getRegionWidth(), region.getRegionHeight());
 		mBottomLeftBar.setSize(region.getRegionWidth(), region.getRegionHeight());
 
-		initButton(mUndoButton, dirName, blConfig.getChildByName("undoButton"));
-		initButton(mSwitchInventoriesButton, dirName, blConfig.getChildByName("switchInventoriesButton"));
+		initButton(mUndoButton, dirName, blCoord, getCoordFromXml(blConfig.getChildByName("undoButton")));
+		initButton(mSwitchInventoriesButton, dirName, blCoord, getCoordFromXml(blConfig.getChildByName("switchInventoriesButton")));
 
 		// Bottom right button bar
 		XmlReader.Element brConfig = config.getChildByName("bottomRightButtonBar");
@@ -218,22 +227,21 @@ public class SandBoxGameView extends AbstractWorldView {
 
 		region = Kernel.getTextureAtlas().findRegion(dirName + "bottom-right-button-bar");
 		mBottomRightBgImage.setDrawable(new TextureRegionDrawable(region));
+		Vector2 brCoord = getCoordFromXml(brConfig);
 		mBottomRightBgImage.setBounds(
-			brConfig.getFloatAttribute("x", 0),
-			brConfig.getFloatAttribute("y", 0),
+			brCoord.x,
+			brCoord.y,
 			region.getRegionWidth(), region.getRegionHeight());
 		mBottomRightBar.setSize(region.getRegionWidth(), region.getRegionHeight());
-		initButton(mDeliverButton, dirName, brConfig.getChildByName("deliverButton"));
+		initButton(mDeliverButton, dirName, brCoord, getCoordFromXml(brConfig.getChildByName("deliverButton")));
 	}
 
-	private void initButton(ImageButton button, String dirName, XmlReader.Element config) {
-		assert(config != null);
+	private void initButton(ImageButton button, String dirName, Vector2 baseCoord, Vector2 coord) {
 		ImageButton.ImageButtonStyle style = button.getStyle();
 		style.up = Kernel.getSkin().getDrawable(dirName + "button");
 		style.down = Kernel.getSkin().getDrawable(dirName + "button-down");
 		button.setBounds(
-			config.getFloatAttribute("x"),
-			config.getFloatAttribute("y"),
+			baseCoord.x + coord.x, baseCoord.y + coord.y,
 			80, 80);
 	}
 

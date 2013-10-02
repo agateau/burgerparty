@@ -880,39 +880,39 @@ levels/1/newitem-bg
   orig: 800, 480
   offset: 0, 0
   index: -1
-levels/1/bottom-right-button-bar
+levels/1/bottom-left-button-bar
   rotate: false
-  xy: 803, 861
-  size: 106, 102
-  orig: 106, 102
+  xy: 803, 794
+  size: 88, 169
+  orig: 88, 169
   offset: 0, 0
   index: -1
 levels/1/shelf
   rotate: false
-  xy: 803, 769
+  xy: 893, 873
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
+levels/1/bottom-right-button-bar
+  rotate: false
+  xy: 803, 704
+  size: 88, 88
+  orig: 88, 88
+  offset: 0, 0
+  index: -1
 levels/1/button-down
   rotate: false
-  xy: 911, 883
+  xy: 893, 791
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/1/button
   rotate: false
-  xy: 803, 687
+  xy: 803, 622
   size: 80, 80
   orig: 80, 80
-  offset: 0, 0
-  index: -1
-levels/1/bottom-left-button-bar
-  rotate: false
-  xy: 803, 596
-  size: 64, 89
-  orig: 64, 89
   offset: 0, 0
   index: -1
 
