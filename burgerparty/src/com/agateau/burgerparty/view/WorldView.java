@@ -81,10 +81,20 @@ public class WorldView extends AbstractWorldView {
 			}
 		});
 
+		scheduleGoToNextCustomer();
+	}
+
+	private void scheduleGoToNextCustomer() {
 		Gdx.app.postRunnable(new Runnable() {
 			@Override
 			public void run() {
-				goToNextCustomer();
+				if (getWidth() == 0) {
+					// This happens for some reason when NewItemScreen is shown before level starts
+					Gdx.app.log("WorldView.scheduleGoToNextCustomer runnable", "Not ready yet, rescheduling");
+					scheduleGoToNextCustomer();
+				} else {
+					goToNextCustomer();
+				}
 			}
 		});
 	}
