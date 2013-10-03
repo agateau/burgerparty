@@ -62,7 +62,7 @@ public class World {
 		for (String name: mLevel.definition.customers) {
 			mCustomers.add(new Customer(name));
 		}
-		mBurgerGenerator = new BurgerGenerator(mLevel.definition.burgerItems);
+		mBurgerGenerator = new BurgerGenerator(mLevel.definition.getBurgerItems());
 		mBurgerInventory.addItems(level.definition.burgerItems);
 		mMealExtraInventory.addItems(level.definition.extraItems);
 		setupMeal();

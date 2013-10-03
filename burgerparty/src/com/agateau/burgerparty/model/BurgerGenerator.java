@@ -6,9 +6,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 class BurgerGenerator {
-	public BurgerGenerator(Array<String> names) {
-		for (String name: names) {
-			BurgerItem item = BurgerItem.get(name);
+	public BurgerGenerator(Array<BurgerItem> items) {
+		for (BurgerItem item: items) {
 			switch (item.getSubType()) {
 			case MIDDLE:
 				mMiddleItems.add(item);
