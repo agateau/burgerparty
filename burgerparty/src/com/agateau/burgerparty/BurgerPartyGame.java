@@ -1,6 +1,7 @@
 package com.agateau.burgerparty;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
@@ -9,8 +10,9 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
-import com.agateau.burgerparty.screens.MenuScreen;
+import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
+import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
@@ -129,6 +131,23 @@ public class BurgerPartyGame extends Game {
 		return mLevelWorlds.get(index);
 	}
 
+	public Array<LevelWorld> getLevelWorlds() {
+		return mLevelWorlds;
+	}
+
+	public Set<String> getKnownItems() {
+		Set<String> set = new HashSet<String>();
+		for (LevelWorld world: mLevelWorlds) {
+			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+				Level level = world.getLevel(levelIndex);
+				if (level.score > -1) {
+					set.addAll(level.getKnownItems());
+				}
+			}
+		}
+		return set;
+	}
+
 	public void onCurrentLevelFinished(int score) {
 		LevelWorld currentGroup = mLevelWorlds.get(mLevelWorldIndex);
 		Level currentLevel = currentGroup.getLevel(mLevelIndex);
@@ -166,8 +185,12 @@ public class BurgerPartyGame extends Game {
 		}
 	}
 
+	public void startSandBox() {
+		setScreen(new SandBoxGameScreen(this));
+	}
+
 	public void showMenu() {
-		setScreen(new MenuScreen(this, mAtlas, mSkin));
+		setScreen(new StartScreen(this, mAtlas, mSkin));
 	}
 
 	public void selectLevel(int worldIndex) {

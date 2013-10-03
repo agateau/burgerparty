@@ -21,7 +21,18 @@ public class MealExtraView extends Group {
 	private static final float ITEM0_X = 0;
 	private static final float ITEM0_Y = 0;
 	private static final float ITEM1_X = -30;
-	private static final float ITEM1_Y = 20;
+	private static final float ITEM1_Y = 10;
+
+	private static class ItemImage extends Image {
+		public ItemImage(MealItem item, TextureRegion region) {
+			super(region);
+			mItem = item;
+		}
+		public MealItem getItem() {
+			return mItem;
+		}
+		private MealItem mItem;
+	}
 
 	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas) {
 		mMealExtra = mealExtra;
@@ -44,6 +55,14 @@ public class MealExtraView extends Group {
 		});
 	}
 
+	public Array<MealItem> getItems() {
+		Array<MealItem> items = new Array<MealItem>(mItemActors.size);
+		for(ItemImage actor: mItemActors) {
+			items.add(actor.getItem());
+		}
+		return items;
+	}
+
 	private class AddItemRunnable implements Runnable {
 		public AddItemRunnable(MealItem item) {
 			mItem = item;
@@ -57,7 +76,7 @@ public class MealExtraView extends Group {
 
 	public void addItem(MealItem item) {
 		Image image = addItemInternal(item);
-		if (mImages.size == 1) {
+		if (mItemActors.size == 1) {
 			image.setPosition(ITEM0_X, ITEM0_Y);
 		} else {
 			image.setPosition(ITEM1_X, ITEM1_Y);
@@ -70,8 +89,15 @@ public class MealExtraView extends Group {
 		updateGeometry();
 	}
 
+	public void pop() {
+		assert(mItemActors.size > 0);
+		mMealExtra.pop();
+		Image image = mItemActors.removeIndex(mItemActors.size - 1);
+		image.remove();
+	}
+
 	public void init() {
-		mImages.clear();
+		mItemActors.clear();
 		clear();
 		float posX = 0;
 		for(MealItem item: mMealExtra.getItems()) {
@@ -83,27 +109,27 @@ public class MealExtraView extends Group {
 	}
 
 	private void trash() {
-		for(Image image: mImages) {
+		for(Image image: mItemActors) {
 			MealView.addTrashActions(image);
 		}
-		mImages.clear();
+		mItemActors.clear();
 	}
 
 	private void clearItems() {
-		mImages.clear();
+		mItemActors.clear();
 		clear();
 		updateGeometry();
 	}
 
 	private void updateGeometry() {
-		if (mImages.size == 0) {
+		if (mItemActors.size == 0) {
 			setSize(0, 0);
 			UiUtils.notifyResizeToFitParent(this);
 			return;
 		}
 		float width = 0;
 		float height = 0;
-		for(Image image: mImages) {
+		for(Image image: mItemActors) {
 			width += image.getWidth();
 			height = Math.max(image.getHeight(), height);
 		}
@@ -115,8 +141,8 @@ public class MealExtraView extends Group {
 		TextureRegion region;
 		region = mAtlas.findRegion("mealitems/" + item.getName());
 		assert(region != null);
-		Image image = new Image(region);
-		mImages.add(image);
+		ItemImage image = new ItemImage(item, region);
+		mItemActors.add(image);
 		addActor(image);
 		return image;
 	}
@@ -124,5 +150,5 @@ public class MealExtraView extends Group {
 	private MealExtra mMealExtra;
 	private TextureAtlas mAtlas;
 	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private Array<Image> mImages = new Array<Image>();
+	private Array<ItemImage> mItemActors = new Array<ItemImage>();
 }

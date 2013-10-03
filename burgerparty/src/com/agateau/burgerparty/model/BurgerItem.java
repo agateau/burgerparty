@@ -49,12 +49,17 @@ public class BurgerItem extends MealItem {
 		return mBottomName;
 	}
 
-	public static void addTestItem(String name) {
+	public static BurgerItem addTestItem(String name) {
+		return addTestItem(name, SubType.MIDDLE);
+	}
+
+	public static BurgerItem addTestItem(String name, SubType subType) {
 		BurgerItem item = new BurgerItem(name);
 		item.mHeight = 18;
 		item.mOffset = 6;
-		item.mSubType = SubType.MIDDLE;
+		item.mSubType = subType;
 		addTestItem(item);
+		return item;
 	}
 
 	public static BurgerItem get(String name) {

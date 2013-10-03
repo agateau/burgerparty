@@ -16,19 +16,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
 	public static final float TRASH_ACTION_DURATION = 0.5f;
-	private static final float PLATTER_ANIM_DURATION = 0.2f;
 
 	private static final float BURGER_X = 40f;
-	private static final float MEAL_Y = 30f;
+	private static final float MEAL_Y = 15f;
 
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
 		if (withPlatter) {
 			mPlatter = new Image(atlas.findRegion("platter"));
 			addActor(mPlatter);
-			mPlatter.setPosition(-mPlatter.getWidth(), 0);
-			mPlatter.setColor(1, 1, 1, 0);
-			mPlatter.addAction(Actions.moveBy(mPlatter.getWidth(), 0, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
-			mPlatter.addAction(Actions.alpha(1, PLATTER_ANIM_DURATION, Interpolation.pow2Out));
 		}
 		mMealExtraView = new MealExtraView(mealExtra, atlas);
 		addActor(mMealExtraView);
@@ -45,6 +40,10 @@ public class MealView extends Group implements ResizeToFitChildren {
 		return mBurgerView;
 	}
 
+	public MealExtraView getMealExtraView() {
+		return mMealExtraView;
+	}
+
 	public void addItem(MealItem item) {
 		if (item.getType() == MealItem.Type.BURGER) {
 			addBurgerItem((BurgerItem)item);
@@ -59,6 +58,14 @@ public class MealView extends Group implements ResizeToFitChildren {
 
 	private void addExtraItem(MealItem item) {
 		mMealExtraView.addItem(item);
+	}
+
+	public void pop(MealItem.Type itemType) {
+		if (itemType == MealItem.Type.BURGER) {
+			mBurgerView.pop();
+		} else {
+			mMealExtraView.pop();
+		}
 	}
 
 	public void updateGeometry() {

@@ -68,6 +68,18 @@ public class BurgerView extends Group {
 		mPadding = value;
 	}
 
+	public Actor getItemAtArrow() {
+		return mArrowIndex > -1 ? mItemActors.get(mArrowIndex) : null;
+	}
+
+	public Array<BurgerItem> getItems() {
+		Array<BurgerItem> items = new Array<BurgerItem>(mItemActors.size);
+		for(ItemImage actor: mItemActors) {
+			items.add(actor.getItem());
+		}
+		return items;
+	}
+
 	private class AddItemRunnable implements Runnable {
 		public AddItemRunnable(BurgerItem item) {
 			mItem = item;
@@ -89,8 +101,22 @@ public class BurgerView extends Group {
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
+	public void pop() {
+		assert(mItemActors.size > 0);
+		mBurger.pop();
+		ItemImage image = mItemActors.removeIndex(mItemActors.size - 1);
+		image.remove();
+		if (mItemActors.size > 0) {
+			setHeight(mItemActors.get(mItemActors.size - 1).getTop());
+		} else {
+			setHeight(0);
+		}
+		UiUtils.notifyResizeToFitParent(this);
+	}
+
 	public void setArrowIndex(int index) {
 		initArrowActor();
+		mArrowIndex = index;
 		if (index == -1) {
 			mArrowActor.setVisible(false);
 			return;
@@ -102,7 +128,7 @@ public class BurgerView extends Group {
 	}
 
 	private void trash() {
-		Kernel.getSoundAtlas().findSound("error").play();
+		Kernel.getSoundAtlas().findSound("trash").play();
 		for (Actor actor: mItemActors) {
 			MealView.addTrashActions(actor);
 		}
@@ -186,5 +212,6 @@ public class BurgerView extends Group {
 	private TextureAtlas mAtlas;
 	private float mPadding = 0;
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
+	private int mArrowIndex = -1;
 	private Image mArrowActor = null;
 }

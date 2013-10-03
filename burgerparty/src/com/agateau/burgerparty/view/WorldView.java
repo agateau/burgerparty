@@ -10,7 +10,6 @@ import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.utils.Anchor;
-import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -18,9 +17,7 @@ import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -33,11 +30,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 
-public class WorldView extends AnchorGroup {
+public class WorldView extends AbstractWorldView {
+	private static final float TARGET_BURGER_PADDING = 24;
+	private static final float SCROLL_PADDING = 24;
+
 	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
+		super(world.getLevelWorld().getDirName());
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		mGameScreen = screen;
@@ -45,11 +45,9 @@ public class WorldView extends AnchorGroup {
 		mWorld = world;
 		mAtlas = atlas;
 		mSkin = skin;
-		mBackgroundRegion = atlas.findRegion(world.getLevelWorldDirName() + "background");
 		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
-		setupWorkbench();
 		setupTargetMealView();
 		setupInventoryView();
 		setupHud();
@@ -76,8 +74,29 @@ public class WorldView extends AnchorGroup {
 				onTrashing();
 			}
 		});
+		mWorld.getBurger().itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>() {
+			@Override
+			public void handle(MealItem item) {
+				onBurgerItemAdded();
+			}
+		});
 
-		goToNextCustomer();
+		scheduleGoToNextCustomer();
+	}
+
+	private void scheduleGoToNextCustomer() {
+		Gdx.app.postRunnable(new Runnable() {
+			@Override
+			public void run() {
+				if (getWidth() == 0) {
+					// This happens for some reason when NewItemScreen is shown before level starts
+					Gdx.app.log("WorldView.scheduleGoToNextCustomer runnable", "Not ready yet, rescheduling");
+					scheduleGoToNextCustomer();
+				} else {
+					goToNextCustomer();
+				}
+			}
+		});
 	}
 
 	public void onTrashing() {
@@ -87,8 +106,20 @@ public class WorldView extends AnchorGroup {
 				@Override
 				public void run() {
 					mWorld.markTrashingDone();
+					scrollTo(0);
 				}
 			}, MealView.TRASH_ACTION_DURATION);
+	}
+
+	public void onBurgerItemAdded() {
+		float top = getActorTop(mMealView.getBurgerView()) + SCROLL_PADDING;
+		Actor itemAtArrow = mTargetMealView.getBurgerView().getItemAtArrow();
+		if (itemAtArrow != null) {
+			float arrowTop = getActorTop(itemAtArrow) + SCROLL_PADDING;
+			top = Math.max(arrowTop, top);
+		}
+		float offset = Math.max(0, getScrollOffset() + top - getHeight());
+		scrollTo(offset);
 	}
 
 	public void onBackPressed() {
@@ -113,27 +144,9 @@ public class WorldView extends AnchorGroup {
 		return mInventoryView;
 	}
 
-	@Override
-	public void layout() {
-		float width = getWidth();
-		float height = getHeight();
-		boolean resized = width != mWidth || height != mHeight;
-		mWidth = width;
-		mHeight = height;
-
-		if (resized) {
-			mInventoryView.setWidth(width);
-			mWorkbench.setWidth(width);
-			mWorkbench.invalidate();
-		}
-
-		super.layout();
-
-		if (!resized) {
-			return;
-		}
+	protected void onResized() {
 		if (mActiveCustomerView != null) {
-			showBubble();
+			updateBubbleGeometry();
 		}
 		updateCustomerPositions();
 	}
@@ -142,13 +155,6 @@ public class WorldView extends AnchorGroup {
 	public void act(float delta) {
 		super.act(delta);
 		updateTimerDisplay();
-	}
-
-	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		batch.setColor(1, 1, 1, parentAlpha);
-		batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
-		super.draw(batch, parentAlpha);
 	}
 
 	private void setupCustomers() {
@@ -160,29 +166,22 @@ public class WorldView extends AnchorGroup {
 		// Add actors starting from the end of the list so that the Z order is correct
 		// (mWaitingCustomerViews[0] is in front of mWaitingCustomerViews[1])
 		for (int i = mWaitingCustomerViews.size - 1; i >= 0; --i) {
-			addActor(mWaitingCustomerViews.get(i));
+			mCustomersLayer.addActor(mWaitingCustomerViews.get(i));
 		}
-	}
-
-	private void setupWorkbench() {
-		TextureRegion region = mAtlas.findRegion(mWorld.getLevelWorldDirName() + "workbench");
-		mWorkbench = new Image(region);
-		mWorkbench.setScaling(Scaling.stretch);
 	}
 
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
-		addActor(mBubble);
+		mCustomersLayer.addActor(mBubble);
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
-		mTargetMealView.getBurgerView().setPadding(8);
+		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 		mTargetMealView.setScale(0.5f, 0.5f);
 		mBubble.setChild(mTargetMealView);
 		mBubble.setVisible(false);
 	}
 
 	private void setupInventoryView() {
-		mInventoryView = new InventoryView(mWorld.getBurgerInventory(), mWorld.getLevelWorldDirName(), mAtlas);
-		addActor(mInventoryView);
+		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
 			@Override
 			public void handle(MealItem item) {
@@ -195,10 +194,7 @@ public class WorldView extends AnchorGroup {
 
 	private void setupMealView() {
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
-		// We add an anchor rule in this setup method because it is called
-		// for each customer
-		addRule(mMealView, Anchor.BOTTOM_CENTER, mWorkbench, Anchor.BOTTOM_CENTER, 0, 0);
-		invalidate();
+		slideInMealView(mMealView);
 	}
 
 	private void setupHud() {
@@ -220,11 +216,10 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void setupAnchors() {
-		addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
-		addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
-		addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
-		addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
-		addRule(mWorkbench, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
+		mHudLayer.addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
+		mHudLayer.addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
+		mHudLayer.addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
+		mHudLayer.addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
 	}
 
 	private void updateScoreDisplay() {
@@ -257,7 +252,6 @@ public class WorldView extends AnchorGroup {
 
 	private void slideDoneMealView(Runnable toDoAfter) {
 		mDoneMealView = mMealView;
-		removeRulesForActor(mDoneMealView);
 		mDoneMealView.addAction(
 			Actions.sequence(
 				Actions.moveTo(getWidth(), mDoneMealView.getY(), 0.4f, Interpolation.pow2In),
@@ -277,9 +271,11 @@ public class WorldView extends AnchorGroup {
 
 	private void onBurgerFinished() {
 		mInventoryView.setInventory(mWorld.getMealExtraInventory());
+		scrollTo(0);
 	}
 
 	private void onMealFinished(World.Score score) {
+		scrollTo(0);
 		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
@@ -311,10 +307,6 @@ public class WorldView extends AnchorGroup {
 	}
 
 	private void updateCustomerPositions() {
-		if (mWidth == -1) {
-			// Wait until we have been resized to correct sizes
-			return;
-		}
 		Array<CustomerView> customerViews = new Array<CustomerView>(mWaitingCustomerViews);
 		if (mActiveCustomerView != null) {
 			customerViews.insert(0, mActiveCustomerView);
@@ -348,19 +340,21 @@ public class WorldView extends AnchorGroup {
 
 	private void showBubble() {
 		mBubble.setVisible(true);
+		updateBubbleGeometry();
+	}
+
+	private void updateBubbleGeometry() {
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
 		mBubble.updateGeometry();
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private TextureRegion mBackgroundRegion;
 	private GameScreen mGameScreen;
 	private BurgerPartyGame mGame;
 	private World mWorld;
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
-	private InventoryView mInventoryView;
 	private MealView mMealView;
 	private MealView mDoneMealView;
 	private MealView mTargetMealView;
@@ -368,12 +362,8 @@ public class WorldView extends AnchorGroup {
 	private Label mScoreDisplay;
 	private Image mHudImage;
 	private Image mPauseButton;
-	private Image mWorkbench;
 	private Bubble mBubble;
 	private CustomerViewFactory mCustomerFactory;
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
-
-	private float mWidth = -1;
-	private float mHeight = -1;
 }

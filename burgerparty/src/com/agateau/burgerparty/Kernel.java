@@ -4,8 +4,14 @@ import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
 	public static AnimScriptLoader getAnimScriptLoader() {
@@ -31,7 +37,23 @@ public class Kernel {
 	public static RoundButton createRoundButton(String name) {
 		init();
 		RoundButton button = new RoundButton(sSkin, name);
-		button.setSound(sSoundAtlas.findSound("click"));
+		button.setSound(sClickSound);
+		return button;
+	}
+
+	public static ImageTextButton createTextButton(String text, String iconName) {
+		init();
+		ImageTextButton button = new ImageTextButton(text, sSkin, "image-text-button");
+		button.getImage().setDrawable(sSkin.getDrawable(iconName));
+		button.addListener(sClickListener);
+		return button;
+	}
+
+	public static ImageButton createHudButton(String iconName) {
+		init();
+		Drawable drawable = sSkin.getDrawable(iconName);
+		ImageButton button = new ImageButton(drawable);
+		button.addListener(sClickListener);
 		return button;
 	}
 
@@ -59,9 +81,17 @@ public class Kernel {
 			"sauce.wav",
 			"splat.wav",
 			"star.wav",
-			"time-bonus.wav"
+			"time-bonus.wav",
+			"trash.wav"
 		};
 		sSoundAtlas.load(names);
+
+		sClickSound = sSoundAtlas.findSound("click");
+		sClickListener = new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				sClickSound.play();
+			}
+		};
 	}
 
 	private static boolean sInited = false;
@@ -69,4 +99,6 @@ public class Kernel {
 	private static SoundAtlas sSoundAtlas = new SoundAtlas("sounds/");
 	private static TextureAtlas sTextureAtlas;
 	private static Skin sSkin;
+	private static Sound sClickSound;
+	private static ChangeListener sClickListener;
 }

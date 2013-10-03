@@ -15,24 +15,29 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class InventoryView extends Actor {
 	public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
 	private TextureRegion mBgRegion;
-	private Inventory mInventory;
+	private Inventory mInventory = null;
 	private TextureAtlas mAtlas;
 	
 	private static final int COLUMN_COUNT = 8;
 	private static final int ROW_COUNT = 2;
 
-	public InventoryView(Inventory inventory, String levelWorldDirName, TextureAtlas atlas) {
-		mInventory = inventory;
+	public InventoryView(TextureAtlas atlas) {
 		mAtlas = atlas;
-		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
-		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
-
 		addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				onClicked(x, y);
 			}
 		});
+	}
+
+	public void setWorldDirName(String levelWorldDirName) {
+		mBgRegion = mAtlas.findRegion(levelWorldDirName + "shelf");
+		setHeight(mBgRegion.getRegionHeight() * ROW_COUNT);
+	}
+
+	public Inventory getInventory() {
+		return mInventory;
 	}
 
 	public void setInventory(Inventory inventory) {

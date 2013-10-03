@@ -26,6 +26,15 @@ public class Burger extends MealItemCollection<BurgerItem> {
 		return mItems.size() == reference.mItems.size() ? CompareResult.SAME : CompareResult.SUBSET;
 	}
 
+	public void pop() {
+		assert(!mItems.isEmpty());
+		mItems.removeLast();
+	}
+
+	public BurgerItem getTopItem() {
+		return mItems.getLast();
+	}
+
 	public int getArrowIndex() {
 		return mArrowIndex;
 	}

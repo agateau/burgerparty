@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.model;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.MissingResourceException;
 import java.util.Set;
 
@@ -94,6 +95,17 @@ public class Level {
 		}
 
 		return level;
+	}
+
+	public Set<String> getKnownItems() {
+		Set<String> set = new HashSet<String>();
+		for (String name: definition.burgerItems) {
+			set.add(name);
+		}
+		for (String name: definition.extraItems) {
+			set.add(name);
+		}
+		return set;
 	}
 
 	public void checkNewItems(Set<String> knownItems) {

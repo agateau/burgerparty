@@ -33,17 +33,6 @@
             a: 1, b: 1, g: 1, r: 1
         }
     },
-    com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
-        default: {
-            down: ui/button-down,
-            up: ui/button
-        },
-        toggle: {
-            down: ui/button-down,
-            checked: ui/button-down,
-            up: ui/button
-        }
-    },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
         default: {
             font: default-font,
@@ -71,22 +60,31 @@
             font: default-font,
             fontColorSelected: white,
             fontColorUnselected: black,
-            selection: ui/button
+            selection: ui/level-button
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-        default: {
-            down: ui/button-down,
-            up: ui/button,
+        level-button: {
+            down: ui/level-button-down,
+            up: ui/level-button,
             font: default-font,
             fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
         round-button: {
-            down: ui/imagebutton-down,
-            up: ui/imagebutton,
+            down: ui/icon-button-down,
+            up: ui/icon-button,
             pressedOffsetY: -2
+        }
+    },
+    com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+        image-text-button: {
+            down: ui/text-button-down,
+            up: ui/text-button,
+            pressedOffsetY: -2,
+            font: default-font,
+            fontColor: white
         }
     }
 }
