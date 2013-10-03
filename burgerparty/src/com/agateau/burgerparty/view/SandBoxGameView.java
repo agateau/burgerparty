@@ -15,6 +15,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -218,8 +219,8 @@ public class SandBoxGameView extends AbstractWorldView {
 			region.getRegionWidth(), region.getRegionHeight());
 		mBottomLeftBar.setSize(region.getRegionWidth(), region.getRegionHeight());
 
-		initButton(mUndoButton, dirName, blCoord, getCoordFromXml(blConfig.getChildByName("undoButton")));
-		initButton(mSwitchInventoriesButton, dirName, blCoord, getCoordFromXml(blConfig.getChildByName("switchInventoriesButton")));
+		initButton(mUndoButton, dirName, blCoord, blConfig.getChildByName("undoButton"));
+		initButton(mSwitchInventoriesButton, dirName, blCoord, blConfig.getChildByName("switchInventoriesButton"));
 
 		// Bottom right button bar
 		XmlReader.Element brConfig = config.getChildByName("bottomRightButtonBar");
@@ -233,13 +234,17 @@ public class SandBoxGameView extends AbstractWorldView {
 			brCoord.y,
 			region.getRegionWidth(), region.getRegionHeight());
 		mBottomRightBar.setSize(region.getRegionWidth(), region.getRegionHeight());
-		initButton(mDeliverButton, dirName, brCoord, getCoordFromXml(brConfig.getChildByName("deliverButton")));
+		initButton(mDeliverButton, dirName, brCoord, brConfig.getChildByName("deliverButton"));
 	}
 
-	private void initButton(ImageButton button, String dirName, Vector2 baseCoord, Vector2 coord) {
+	private void initButton(ImageButton button, String dirName, Vector2 baseCoord, XmlReader.Element config) {
+		assert(config != null);
+		Vector2 coord = getCoordFromXml(config);
+		Color color = Color.valueOf(config.getAttribute("color", "ffffffff"));
 		ImageButton.ImageButtonStyle style = button.getStyle();
 		style.up = Kernel.getSkin().getDrawable(dirName + "button");
 		style.down = Kernel.getSkin().getDrawable(dirName + "button-down");
+		button.getImage().setColor(color);
 		button.setBounds(
 			baseCoord.x + coord.x, baseCoord.y + coord.y,
 			80, 80);
