@@ -110,13 +110,13 @@ public class Level {
 		return level;
 	}
 
-	public Set<String> getKnownItems() {
-		Set<String> set = new HashSet<String>();
-		for (String name: definition.burgerItems) {
-			set.add(name);
+	public Set<MealItem> getKnownItems() {
+		Set<MealItem> set = new HashSet<MealItem>();
+		for (BurgerItem item: definition.mBurgerItems) {
+			set.add(item);
 		}
-		for (String name: definition.extraItems) {
-			set.add(name);
+		for (MealItem item: definition.mExtraItems) {
+			set.add(item);
 		}
 		return set;
 	}
