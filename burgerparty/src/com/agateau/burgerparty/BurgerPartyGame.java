@@ -172,7 +172,7 @@ public class BurgerPartyGame extends Game {
 		mLevelIndex = levelIndex;
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		if (level.hasBrandNewItem()) {
-			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.newItem);
+			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem().getName());
 			screen.done.connect(mHandlers, new Signal0.Handler() {
 				@Override
 				public void handle() {

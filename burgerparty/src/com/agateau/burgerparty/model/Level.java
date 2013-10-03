@@ -20,7 +20,6 @@ public class Level {
 		public Array<String> customers = new Array<String>();
 		public int score2;
 		public int score3;
-		public String newItem = new String();
 
 		public Array<BurgerItem> getBurgerItems() {
 			return mBurgerItems;
@@ -30,8 +29,13 @@ public class Level {
 			return mExtraItems;
 		}
 
+		public MealItem getNewItem() {
+			return mNewItem;
+		}
+
 		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
 		private Array<MealItem> mExtraItems = new Array<MealItem>();
+		private MealItem mNewItem = null;
 	}
 
 	public Definition definition = new Definition();
@@ -42,7 +46,7 @@ public class Level {
 	}
 
 	public boolean hasBrandNewItem() {
-		return score <= 0 && !definition.newItem.isEmpty();
+		return score <= 0 && definition.mNewItem != null;
 	}
 
 	public int getStarsFor(int value) {
@@ -132,11 +136,11 @@ public class Level {
 			if (knownItems.contains(item)) {
 				continue;
 			}
-			if (definition.newItem.isEmpty()) {
-				definition.newItem = name;
+			if (definition.mNewItem == null) {
+				definition.mNewItem = item;
 				knownItems.add(item);
 			} else {
-				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.newItem + "'");
+				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.mNewItem + "'");
 			}
 		}
 	}
