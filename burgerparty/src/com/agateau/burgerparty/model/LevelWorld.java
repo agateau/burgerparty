@@ -25,7 +25,7 @@ public class LevelWorld {
 		}
 	}
 
-	public void checkNewItems(Set<String> knownItems) {
+	public void checkNewItems(Set<MealItem> knownItems) {
 		for(Level level: mLevels) {
 			level.checkNewItems(knownItems);
 		}

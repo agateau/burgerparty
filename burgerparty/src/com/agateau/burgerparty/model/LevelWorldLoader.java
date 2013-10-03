@@ -23,13 +23,13 @@ public class LevelWorldLoader {
 
 	private void checkNewItems(Array<LevelWorld> worlds) {
 		assert(worlds.size > 0);
-		HashSet<String> knownItems = new HashSet<String>();
+		HashSet<MealItem> knownItems = new HashSet<MealItem>();
 		Level level1 = worlds.get(0).getLevel(0);
-		for (String name: level1.definition.burgerItems) {
-			knownItems.add(name);
+		for (MealItem item: level1.definition.getBurgerItems()) {
+			knownItems.add(item);
 		}
-		for (String name: level1.definition.extraItems) {
-			knownItems.add(name);
+		for (MealItem item: level1.definition.getExtraItems()) {
+			knownItems.add(item);
 		}
 		for (LevelWorld world: worlds) {
 			world.checkNewItems(knownItems);

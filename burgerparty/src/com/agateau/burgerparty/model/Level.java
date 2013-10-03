@@ -121,19 +121,20 @@ public class Level {
 		return set;
 	}
 
-	public void checkNewItems(Set<String> knownItems) {
-		checkNewItemsInternal(knownItems, definition.burgerItems);
-		checkNewItemsInternal(knownItems, definition.extraItems);
+	public void checkNewItems(Set<MealItem> knownItems) {
+		checkNewItemsInternal(knownItems, definition.mBurgerItems);
+		checkNewItemsInternal(knownItems, definition.mExtraItems);
 	}
 
-	private void checkNewItemsInternal(Set<String> knownItems, Array<String> list) {
-		for(String name: list) {
-			if (knownItems.contains(name)) {
+	private void checkNewItemsInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
+		for(MealItem item: list) {
+			String name = item.getName();
+			if (knownItems.contains(item)) {
 				continue;
 			}
 			if (definition.newItem.isEmpty()) {
 				definition.newItem = name;
-				knownItems.add(name);
+				knownItems.add(item);
 			} else {
 				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.newItem + "'");
 			}
