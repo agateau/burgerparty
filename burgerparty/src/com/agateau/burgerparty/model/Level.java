@@ -21,6 +21,13 @@ public class Level {
 		public int score2;
 		public int score3;
 		public String newItem = new String();
+
+		public Array<BurgerItem> getBurgerItems() {
+			return mBurgerItems;
+		}
+
+		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
+		private Array<MealItem> mMealItems = new Array<MealItem>();
 	}
 
 	public Definition definition = new Definition();
@@ -81,8 +88,10 @@ public class Level {
 			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
 				level.definition.burgerItems.add(name);
+				level.definition.mBurgerItems.add((BurgerItem)item);
 			} else {
 				level.definition.extraItems.add(name);
+				level.definition.mMealItems.add(item);
 			}
 		}
 
