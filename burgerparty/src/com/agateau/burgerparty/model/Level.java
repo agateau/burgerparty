@@ -128,7 +128,6 @@ public class Level {
 
 	private void checkNewItemsInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
 		for(MealItem item: list) {
-			String name = item.getName();
 			if (knownItems.contains(item)) {
 				continue;
 			}
@@ -136,7 +135,7 @@ public class Level {
 				definition.mNewItem = item;
 				knownItems.add(item);
 			} else {
-				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.mNewItem + "'");
+				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + item + "', but there is already a new item: '" + definition.mNewItem + "'");
 			}
 		}
 	}
