@@ -3,6 +3,7 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Customer;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
@@ -241,6 +242,7 @@ public class WorldView extends AbstractWorldView {
 		} else {
 			mTimerDisplay.setColor(Color.RED);
 			mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
+			Kernel.getSoundAtlas().findSound("tick").play();
 		}
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);

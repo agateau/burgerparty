@@ -81,6 +81,7 @@ public class Kernel {
 			"sauce.wav",
 			"splat.wav",
 			"star.wav",
+			"tick.wav",
 			"time-bonus.wav",
 			"trash.wav"
 		};

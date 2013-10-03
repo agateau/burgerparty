@@ -29,3 +29,7 @@
 # error.wav
 
 <http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/>
+
+# tick.wav
+
+<http://www.freesound.org/people/DrMinky/sounds/174721/>
