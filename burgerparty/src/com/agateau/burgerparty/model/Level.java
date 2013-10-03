@@ -12,8 +12,6 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static final int LOCKED_SCORE = -1;
 	public static class Definition {
-		public Array<String> burgerItems = new Array<String>();
-		public Array<String> extraItems = new Array<String>();
 		public int minBurgerSize;
 		public int maxBurgerSize;
 		public int duration;
@@ -95,10 +93,8 @@ public class Level {
 			MealItem item = MealItem.get(name);
 			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
-				level.definition.burgerItems.add(name);
 				level.definition.mBurgerItems.add((BurgerItem)item);
 			} else {
-				level.definition.extraItems.add(name);
 				level.definition.mExtraItems.add(item);
 			}
 		}

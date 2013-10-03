@@ -183,14 +183,13 @@ public class World {
 	}
 
 	private void generateTargetMealExtra() {
-		Array<String> names = new Array<String>(mLevel.definition.extraItems);
+		Array<MealItem> availableItems = mLevel.definition.getExtraItems();
 		mTargetMealExtra.clear();
-		if (names.size == 0) {
+		if (availableItems.size == 0) {
 			return;
 		}
 		ObjectMap<MealItem.Type, Array<MealItem>> itemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
-		for(String name: names) {
-			MealItem item = MealItem.get(name);
+		for(MealItem item: availableItems) {
 			Array<MealItem> lst = itemsForType.get(item.getType(), null);
 			if (lst == null) {
 				lst = new Array<MealItem>();
