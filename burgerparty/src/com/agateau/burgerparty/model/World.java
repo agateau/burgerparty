@@ -62,9 +62,9 @@ public class World {
 		for (String name: mLevel.definition.customers) {
 			mCustomers.add(new Customer(name));
 		}
-		mBurgerGenerator = new BurgerGenerator(mLevel.definition.burgerItems);
-		mBurgerInventory.addItems(level.definition.burgerItems);
-		mMealExtraInventory.addItems(level.definition.extraItems);
+		mBurgerGenerator = new BurgerGenerator(mLevel.definition.getBurgerItems());
+		mBurgerInventory.setItems(level.definition.getBurgerItems());
+		mMealExtraInventory.setItems(level.definition.getExtraItems());
 		setupMeal();
 	}
 
@@ -183,14 +183,13 @@ public class World {
 	}
 
 	private void generateTargetMealExtra() {
-		Array<String> names = new Array<String>(mLevel.definition.extraItems);
+		Array<MealItem> availableItems = mLevel.definition.getExtraItems();
 		mTargetMealExtra.clear();
-		if (names.size == 0) {
+		if (availableItems.size == 0) {
 			return;
 		}
 		ObjectMap<MealItem.Type, Array<MealItem>> itemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
-		for(String name: names) {
-			MealItem item = MealItem.get(name);
+		for(MealItem item: availableItems) {
 			Array<MealItem> lst = itemsForType.get(item.getType(), null);
 			if (lst == null) {
 				lst = new Array<MealItem>();

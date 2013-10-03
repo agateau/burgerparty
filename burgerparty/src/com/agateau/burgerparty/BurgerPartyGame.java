@@ -135,8 +135,8 @@ public class BurgerPartyGame extends Game {
 		return mLevelWorlds;
 	}
 
-	public Set<String> getKnownItems() {
-		Set<String> set = new HashSet<String>();
+	public Set<MealItem> getKnownItems() {
+		Set<MealItem> set = new HashSet<MealItem>();
 		for (LevelWorld world: mLevelWorlds) {
 			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 				Level level = world.getLevel(levelIndex);
@@ -172,7 +172,7 @@ public class BurgerPartyGame extends Game {
 		mLevelIndex = levelIndex;
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		if (level.hasBrandNewItem()) {
-			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.newItem);
+			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem());
 			screen.done.connect(mHandlers, new Signal0.Handler() {
 				@Override
 				public void handle() {

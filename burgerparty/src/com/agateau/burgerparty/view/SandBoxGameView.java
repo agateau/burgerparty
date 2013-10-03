@@ -110,12 +110,11 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupInventory() {
-		for (String name: mGame.getKnownItems()) {
-			MealItem item = MealItem.get(name);
+		for (MealItem item: mGame.getKnownItems()) {
 			if (item.getType() == MealItem.Type.BURGER) {
-				mWorld.getBurgerInventory().addItem(name);
+				mWorld.getBurgerInventory().addItem(item);
 			} else {
-				mWorld.getMealExtraInventory().addItem(name);
+				mWorld.getMealExtraInventory().addItem(item);
 			}
 		}
 

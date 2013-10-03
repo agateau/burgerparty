@@ -12,15 +12,28 @@ import com.badlogic.gdx.utils.XmlReader;
 public class Level {
 	public static final int LOCKED_SCORE = -1;
 	public static class Definition {
-		public Array<String> burgerItems = new Array<String>();
-		public Array<String> extraItems = new Array<String>();
 		public int minBurgerSize;
 		public int maxBurgerSize;
 		public int duration;
 		public Array<String> customers = new Array<String>();
 		public int score2;
 		public int score3;
-		public String newItem = new String();
+
+		public Array<BurgerItem> getBurgerItems() {
+			return mBurgerItems;
+		}
+
+		public Array<MealItem> getExtraItems() {
+			return mExtraItems;
+		}
+
+		public MealItem getNewItem() {
+			return mNewItem;
+		}
+
+		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
+		private Array<MealItem> mExtraItems = new Array<MealItem>();
+		private MealItem mNewItem = null;
 	}
 
 	public Definition definition = new Definition();
@@ -31,7 +44,7 @@ public class Level {
 	}
 
 	public boolean hasBrandNewItem() {
-		return score <= 0 && !definition.newItem.isEmpty();
+		return score <= 0 && definition.mNewItem != null;
 	}
 
 	public int getStarsFor(int value) {
@@ -80,9 +93,9 @@ public class Level {
 			MealItem item = MealItem.get(name);
 			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
-				level.definition.burgerItems.add(name);
+				level.definition.mBurgerItems.add((BurgerItem)item);
 			} else {
-				level.definition.extraItems.add(name);
+				level.definition.mExtraItems.add(item);
 			}
 		}
 
@@ -97,32 +110,32 @@ public class Level {
 		return level;
 	}
 
-	public Set<String> getKnownItems() {
-		Set<String> set = new HashSet<String>();
-		for (String name: definition.burgerItems) {
-			set.add(name);
+	public Set<MealItem> getKnownItems() {
+		Set<MealItem> set = new HashSet<MealItem>();
+		for (BurgerItem item: definition.mBurgerItems) {
+			set.add(item);
 		}
-		for (String name: definition.extraItems) {
-			set.add(name);
+		for (MealItem item: definition.mExtraItems) {
+			set.add(item);
 		}
 		return set;
 	}
 
-	public void checkNewItems(Set<String> knownItems) {
-		checkNewItemsInternal(knownItems, definition.burgerItems);
-		checkNewItemsInternal(knownItems, definition.extraItems);
+	public void checkNewItems(Set<MealItem> knownItems) {
+		checkNewItemsInternal(knownItems, definition.mBurgerItems);
+		checkNewItemsInternal(knownItems, definition.mExtraItems);
 	}
 
-	private void checkNewItemsInternal(Set<String> knownItems, Array<String> list) {
-		for(String name: list) {
-			if (knownItems.contains(name)) {
+	private void checkNewItemsInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
+		for(MealItem item: list) {
+			if (knownItems.contains(item)) {
 				continue;
 			}
-			if (definition.newItem.isEmpty()) {
-				definition.newItem = name;
-				knownItems.add(name);
+			if (definition.mNewItem == null) {
+				definition.mNewItem = item;
+				knownItems.add(item);
 			} else {
-				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + name + "', but there is already a new item: '" + definition.newItem + "'");
+				throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + item + "', but there is already a new item: '" + definition.mNewItem + "'");
 			}
 		}
 	}

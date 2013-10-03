@@ -5,18 +5,16 @@ import com.agateau.burgerparty.model.MealItem;
 import com.badlogic.gdx.utils.Array;
 
 public class Inventory {
-	public void addItems(Array<String> itemNames) {
-		for (String name: itemNames) {
-			addItem(name);
-		}
+	public void setItems(Array<? extends MealItem> items) {
+		mItems = new Array<MealItem>(items);
 	}
 
-	public void addItem(String name) {
-		mItems.add(MealItem.get(name));
-	}
-	
 	public Array<MealItem> getItems() {
 		return mItems;
+	}
+
+	public void addItem(MealItem item) {
+		mItems.add(item);
 	}
 	
 	public MealItem get(int index) {
