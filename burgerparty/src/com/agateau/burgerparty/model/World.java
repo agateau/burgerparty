@@ -63,8 +63,8 @@ public class World {
 			mCustomers.add(new Customer(name));
 		}
 		mBurgerGenerator = new BurgerGenerator(mLevel.definition.getBurgerItems());
-		mBurgerInventory.addItems(level.definition.burgerItems);
-		mMealExtraInventory.addItems(level.definition.extraItems);
+		mBurgerInventory.setItems(level.definition.getBurgerItems());
+		mMealExtraInventory.setItems(level.definition.getExtraItems());
 		setupMeal();
 	}
 

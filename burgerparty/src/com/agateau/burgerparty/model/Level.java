@@ -26,8 +26,12 @@ public class Level {
 			return mBurgerItems;
 		}
 
+		public Array<MealItem> getExtraItems() {
+			return mExtraItems;
+		}
+
 		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
-		private Array<MealItem> mMealItems = new Array<MealItem>();
+		private Array<MealItem> mExtraItems = new Array<MealItem>();
 	}
 
 	public Definition definition = new Definition();
@@ -91,7 +95,7 @@ public class Level {
 				level.definition.mBurgerItems.add((BurgerItem)item);
 			} else {
 				level.definition.extraItems.add(name);
-				level.definition.mMealItems.add(item);
+				level.definition.mExtraItems.add(item);
 			}
 		}
 
