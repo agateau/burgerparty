@@ -2,6 +2,7 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
@@ -23,7 +24,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 	public Signal0 done = new Signal0();
 
-	public NewItemScreen(BurgerPartyGame game, int levelWorld, String newItemName) {
+	public NewItemScreen(BurgerPartyGame game, int levelWorld, MealItem item) {
 		super(game, Kernel.getSkin());
 
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
@@ -34,7 +35,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mFgGroup = new WidgetGroup();
 		mFgImage = new Image(Kernel.getTextureAtlas().findRegion(fgName));
 
-		setupBubble(levelDir, newItemName);
+		setupBubble(levelDir, item.getName());
 
 		mBubble.setPosition(-mBubble.getWidth(), mFgImage.getHeight() / 2);
 
