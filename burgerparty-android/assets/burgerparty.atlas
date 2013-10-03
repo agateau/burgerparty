@@ -744,6 +744,20 @@ ui/lock
   orig: 60, 88
   offset: 0, 0
   index: -1
+ui/inventory-burger
+  rotate: false
+  xy: 503, 50
+  size: 68, 70
+  orig: 68, 70
+  offset: 0, 0
+  index: -1
+ui/inventory-extra
+  rotate: false
+  xy: 581, 128
+  size: 68, 70
+  orig: 68, 70
+  offset: 0, 0
+  index: -1
 ui/done
   rotate: false
   xy: 949, 976
@@ -760,21 +774,21 @@ ui/undo
   index: -1
 ui/star-off
   rotate: false
-  xy: 503, 80
+  xy: 803, 758
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 581, 158
+  xy: 881, 824
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 803, 757
+  xy: 803, 715
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
@@ -786,51 +800,37 @@ ui/icon-restart
   orig: 34, 35
   offset: 0, 0
   index: -1
-ui/inventory-burger
-  rotate: false
-  xy: 881, 829
-  size: 34, 35
-  orig: 34, 35
-  offset: 0, 0
-  index: -1
-ui/inventory-extra
-  rotate: false
-  xy: 503, 43
-  size: 34, 35
-  orig: 34, 35
-  offset: 0, 0
-  index: -1
 ui/icon-back
   rotate: false
-  xy: 545, 88
+  xy: 845, 766
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 581, 124
+  xy: 881, 790
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 623, 164
+  xy: 803, 679
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 803, 721
+  xy: 37, 2
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 841, 764
+  xy: 803, 643
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
