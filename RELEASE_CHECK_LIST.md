@@ -1,6 +1,12 @@
+# Create .apk
+
 Bump version number in AndroidManifest.xml
 
-Commit:
+Smoke test
+
+Run unit tests
+
+Commit
 
 Tag:
 
@@ -13,8 +19,20 @@ Push
 
 Generate .apk
 
-Take a screenshot
+# Upload
 
-Upload .apk to TestFlight
+Upload to TestFlight
 
-Notify testers
+Upload to Google Play
+
+# Spread
+
+Take screenshots
+
+Notify TestFlight testers
+
+Upload screenshots to:
+
+- FB
+- Google Play
+- libgdx forum
