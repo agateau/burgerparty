@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
@@ -32,6 +33,11 @@ public class Kernel {
 	public static Skin getSkin() {
 		init();
 		return sSkin;
+	}
+
+	public static ChangeListener getClickListener() {
+		init();
+		return sClickListener;
 	}
 
 	public static RoundButton createRoundButton(String name) {

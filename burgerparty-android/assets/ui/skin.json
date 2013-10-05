@@ -76,6 +76,16 @@
             down: ui/icon-button-down,
             up: ui/icon-button,
             pressedOffsetY: -2
+        },
+        level1-hud-button: {
+            down: levels/1/button-down,
+            up: levels/1/button,
+            pressedOffsetY: -1
+        },
+        level2-hud-button: {
+            down: levels/2/button-down,
+            up: levels/2/button,
+            pressedOffsetY: -1
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {

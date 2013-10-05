@@ -1,9 +1,13 @@
 <config>
-    <bottomLeftButtonBar x="-5" y="16">
-        <undoButton x="4" y="85"  color="b97301ff"/>
-        <switchInventoriesButton x="4" y="4" color="b97301ff"/>
-    </bottomLeftBar>
-    <bottomRightButtonBar x="5" y="16">
-        <deliverButton x="4" y="4" color="b97301ff"/>
-    </bottomRightButtonBar>
+    <gdxui>
+        <Group id="bottomLeftButtonBar">
+            <Image x="0" y="16" name="levels/1/bottom-left-button-bar"/>
+            <ImageButton id="undoButton" x="4" y="101" width="80" height="80" imageName="ui/undo" imageColor="b97301ff" style="level1-hud-button"/>
+            <ImageButton id="switchInventoriesButton" x="4" y="20" width="80" imageName="ui/inventory-burger" height="80" imageColor="b97301ff" style="level1-hud-button"/>
+        </Group>
+        <Group id="bottomRightButtonBar" width="80">
+            <Image x="-8" y="16" name="levels/1/bottom-right-button-bar"/>
+            <ImageButton id="deliverButton" x="-4" y="20" width="80" height="80" imageName="ui/done" imageColor="b97301ff" style="level1-hud-button"/>
+        </Group>
+    </gdxui>
 </config>
