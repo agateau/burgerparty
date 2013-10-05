@@ -20,7 +20,7 @@ public class AnchorGroup extends WidgetGroup {
 		return pos;
 	}
 
-	class Rule implements AnchorRule {
+	static public class Rule implements AnchorRule {
 		public Actor target;
 		public Anchor targetAnchor;
 		public Actor reference;
@@ -43,7 +43,7 @@ public class AnchorGroup extends WidgetGroup {
 			Vector2 stagePos = localToStageCoordinates(reference, referencePos);
 
 			// Apply space
-			stagePos.add(hSpace * mSpacing, vSpace * mSpacing);
+			stagePos.add(hSpace, vSpace);
 
 			// Position target (use target parent because setPosition() works in parent coordinates)
 			Actor targetParent = target.getParent();
@@ -124,8 +124,8 @@ public class AnchorGroup extends WidgetGroup {
 		rule.targetAnchor = targetAnchor;
 		rule.reference = reference;
 		rule.referenceAnchor = referenceAnchor;
-		rule.hSpace = hSpace;
-		rule.vSpace = vSpace;
+		rule.hSpace = hSpace * mSpacing;
+		rule.vSpace = vSpace * mSpacing;
 		addRule(rule);
 	}
 

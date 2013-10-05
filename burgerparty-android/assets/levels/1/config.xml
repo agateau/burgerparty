@@ -1,13 +1,27 @@
 <config>
     <gdxui>
-        <Group id="bottomLeftButtonBar">
-            <Image x="0" y="16" name="levels/1/bottom-left-button-bar"/>
-            <ImageButton id="undoButton" x="4" y="101" width="80" height="80" imageName="ui/undo" imageColor="b97301ff" style="level1-hud-button"/>
-            <ImageButton id="switchInventoriesButton" x="4" y="20" width="80" imageName="ui/inventory-burger" height="80" imageColor="b97301ff" style="level1-hud-button"/>
-        </Group>
-        <Group id="bottomRightButtonBar" width="80">
-            <Image x="-8" y="16" name="levels/1/bottom-right-button-bar"/>
-            <ImageButton id="deliverButton" x="-4" y="20" width="80" height="80" imageName="ui/done" imageColor="b97301ff" style="level1-hud-button"/>
-        </Group>
+        <AnchorGroup id="bottomLeftButtonBar">
+            <Image id="leftBg"
+                x="0" y="16"
+                name="levels/1/bottom-left-button-bar"/>
+            <ImageButton id="switchInventoriesButton"
+                bottomCenter="leftBg.bottomCenter 0 4"
+                width="80" height="80"
+                imageName="ui/inventory-burger" imageColor="b97301ff" style="level1-hud-button"/>
+            <ImageButton id="undoButton"
+                bottomCenter="switchInventoriesButton.topCenter 0 1"
+                width="80" height="80"
+                imageName="ui/undo" imageColor="b97301ff" style="level1-hud-button"/>
+        </AnchorGroup>
+
+        <AnchorGroup id="bottomRightButtonBar" width="80">
+            <Image id="rightBg"
+                x="-8" y="16"
+                name="levels/1/bottom-right-button-bar"/>
+            <ImageButton id="deliverButton"
+                bottomCenter="rightBg.bottomCenter 0 4"
+                width="80" height="80"
+                imageName="ui/done" imageColor="b97301ff" style="level1-hud-button"/>
+        </AnchorGroup>
     </gdxui>
 </config>
