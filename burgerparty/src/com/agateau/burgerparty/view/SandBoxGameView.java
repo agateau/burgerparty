@@ -31,9 +31,9 @@ public class SandBoxGameView extends AbstractWorldView {
 		mLevelWorldIndex = 0;
 		mGame = game;
 
+		setupInventory();
 		setupWidgets();
 		setupHud();
-		setupInventory();
 		Gdx.app.postRunnable(new Runnable() {
 			@Override
 			public void run() {
@@ -74,18 +74,22 @@ public class SandBoxGameView extends AbstractWorldView {
 		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
 		XmlReader.Element config = levelWorld.getConfig();
 		builder.build(config.getChildByName("gdxui"), this);
+
 		mSwitchInventoriesButton = (ImageButton)builder.getActor("switchInventoriesButton");
-		mUndoButton = (ImageButton)builder.getActor("undoButton");
+		updateSwitchInventoriesButton();
 		mSwitchInventoriesButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchInventories();
 			}
 		});
+
+		mUndoButton = (ImageButton)builder.getActor("undoButton");
 		mUndoButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				undo();
 			}
 		});
+
 		mBottomLeftBar = (Group)builder.getActor("bottomLeftButtonBar");
 		addRule(mBottomLeftBar, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 
@@ -129,17 +133,24 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	private void switchInventories() {
 		Inventory inventory;
-		String iconName;
 		if (mInventoryView.getInventory() == mWorld.getBurgerInventory()) {
 			inventory = mWorld.getMealExtraInventory();
-			iconName = "ui/inventory-extra";
 			scrollTo(0);
 		} else {
 			inventory = mWorld.getBurgerInventory();
-			iconName = "ui/inventory-burger";
 			scrollToBurgerTop();
 		}
 		mInventoryView.setInventory(inventory);
+		updateSwitchInventoriesButton();
+	}
+
+	private void updateSwitchInventoriesButton() {
+		String iconName;
+		if (mInventoryView.getInventory() == mWorld.getBurgerInventory()) {
+			iconName = "ui/inventory-burger";
+		} else {
+			iconName = "ui/inventory-extra";
+		}
 		Drawable drawable = Kernel.getSkin().getDrawable(iconName);
 		mSwitchInventoriesButton.getImage().setDrawable(drawable);
 	}

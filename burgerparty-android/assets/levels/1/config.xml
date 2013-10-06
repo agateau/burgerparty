@@ -7,7 +7,7 @@
             <ImageButton id="switchInventoriesButton"
                 bottomCenter="leftBg.bottomCenter 0 4"
                 width="80" height="80"
-                imageName="ui/inventory-burger" imageColor="b97301ff" style="level1-hud-button"/>
+                imageColor="b97301ff" style="level1-hud-button"/>
             <ImageButton id="undoButton"
                 bottomCenter="switchInventoriesButton.topCenter 0 1"
                 width="80" height="80"
