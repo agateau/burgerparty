@@ -194,6 +194,7 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void setupMealView() {
+		scrollTo(0);
 		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
 		slideInMealView(mMealView);
 	}

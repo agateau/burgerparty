@@ -119,6 +119,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupMealView() {
+		scrollTo(0);
 		mWorld.getBurger().clear();
 		mWorld.getMealExtra().clear();
 		mUndoStack.clear();
