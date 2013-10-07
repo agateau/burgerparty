@@ -173,7 +173,7 @@ public class WorldView extends AbstractWorldView {
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
-		mTargetMealScrollPane = new BubbleScrollPane(mTargetMealView);
+		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView);
 		mTargetMealScrollPane.setMaximumHeight(250);
 		mTargetMealScrollPane.setScale(0.5f, 0.5f);
 
@@ -360,7 +360,7 @@ public class WorldView extends AbstractWorldView {
 	private Skin mSkin;
 	private MealView mMealView;
 	private MealView mDoneMealView;
-	private BubbleScrollPane mTargetMealScrollPane;
+	private MealViewScrollPane mTargetMealScrollPane;
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
 	private Label mScoreDisplay;

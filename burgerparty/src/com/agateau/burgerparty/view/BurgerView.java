@@ -64,6 +64,10 @@ public class BurgerView extends Group {
 		});
 	}
 
+	public Burger getBurger() {
+		return mBurger;
+	}
+
 	public void setPadding(float value) {
 		mPadding = value;
 	}
