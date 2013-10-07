@@ -174,10 +174,15 @@ public class WorldView extends AbstractWorldView {
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
+
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
-		mTargetMealView.setScale(0.5f, 0.5f);
-		mBubble.setChild(mTargetMealView);
+
+		mTargetMealScrollPane = new BubbleScrollPane(mTargetMealView);
+		mTargetMealScrollPane.setMaximumHeight(250);
+		mTargetMealScrollPane.setScale(0.5f, 0.5f);
+
+		mBubble.setChild(mTargetMealScrollPane);
 		mBubble.setVisible(false);
 	}
 
@@ -360,6 +365,7 @@ public class WorldView extends AbstractWorldView {
 	private Skin mSkin;
 	private MealView mMealView;
 	private MealView mDoneMealView;
+	private BubbleScrollPane mTargetMealScrollPane;
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
 	private Label mScoreDisplay;
