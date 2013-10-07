@@ -114,11 +114,6 @@ public class WorldView extends AbstractWorldView {
 
 	public void onBurgerItemAdded() {
 		float top = getActorTop(mMealView.getBurgerView()) + SCROLL_PADDING;
-		Actor itemAtArrow = mTargetMealView.getBurgerView().getItemAtArrow();
-		if (itemAtArrow != null) {
-			float arrowTop = getActorTop(itemAtArrow) + SCROLL_PADDING;
-			top = Math.max(arrowTop, top);
-		}
 		float offset = Math.max(0, getScrollOffset() + top - getHeight());
 		scrollTo(offset);
 	}
