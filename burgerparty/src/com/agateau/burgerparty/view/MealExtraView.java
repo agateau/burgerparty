@@ -2,11 +2,13 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -145,6 +147,13 @@ public class MealExtraView extends Group {
 		mItemActors.add(image);
 		addActor(image);
 		return image;
+	}
+
+	@Override
+	public void draw(SpriteBatch batch, float parentAlpha) {
+		TextureRegion region = Kernel.getTextureAtlas().findRegion("overlay-bg");
+		batch.draw(region, getX(), getY(), getWidth(), getHeight());
+		super.draw(batch, parentAlpha);
 	}
 
 	private MealExtra mMealExtra;

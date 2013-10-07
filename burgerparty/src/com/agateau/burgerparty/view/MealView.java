@@ -1,12 +1,15 @@
 package com.agateau.burgerparty.view;
 
+import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -75,6 +78,13 @@ public class MealView extends Group implements ResizeToFitChildren {
 			Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
 			);
 		UiUtils.notifyResizeToFitParent(this);
+	}
+
+	@Override
+	public void draw(SpriteBatch batch, float parentAlpha) {
+		TextureRegion region = Kernel.getTextureAtlas().findRegion("overlay-bg");
+		batch.draw(region, getX(), getY(), getWidth(), getHeight());
+		super.draw(batch, parentAlpha);
 	}
 
 	@Override
