@@ -6,7 +6,6 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 
@@ -42,7 +41,8 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	}
 
 	private void updateScrollPosition() {
-		Actor item = mMealView.getBurgerView().getItemAtArrow();
+		int index = mMealView.getBurgerView().getBurger().getArrowIndex();
+		Actor item = mMealView.getBurgerView().getItemAt(index);
 		if (item == null) {
 			setScrollPercentY(1);
 			return;
