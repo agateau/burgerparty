@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -113,7 +114,8 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	public void onBurgerItemAdded() {
-		float top = getActorTop(mMealView.getBurgerView()) + SCROLL_PADDING;
+		BurgerView view = mMealView.getBurgerView();
+		float top = UiUtils.toAscendantCoordinates(this, view, new Vector2(0, view.getHeight())).y + SCROLL_PADDING;
 		float offset = Math.max(0, getScrollOffset() + top - getHeight());
 		scrollTo(offset);
 	}
