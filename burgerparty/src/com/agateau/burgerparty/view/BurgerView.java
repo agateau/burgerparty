@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -169,13 +168,6 @@ public class BurgerView extends Group {
 			value += image.getItem().getHeight() + mPadding;
 		}
 		return value;
-	}
-
-	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		TextureRegion region = Kernel.getTextureAtlas().findRegion("overlay-bg");
-		batch.draw(region, getX(), getY(), getWidth(), getHeight());
-		super.draw(batch, parentAlpha);
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
