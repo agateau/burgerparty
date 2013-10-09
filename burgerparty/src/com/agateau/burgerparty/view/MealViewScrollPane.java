@@ -47,7 +47,10 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 			setScrollPercentY(1);
 			return;
 		}
-		setScrollY(mMealView.getHeight() - item.getTop());
+		// Compute scrollY so that at least half of the bubble is visible above item
+		float scrollY = item.getTop() + getHeight() / 2;
+		// scrollY goes from top to bottom, so invert it
+		setScrollY(mMealView.getHeight() - scrollY);
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
