@@ -25,10 +25,15 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 
 	public void setMaximumHeight(float maximumHeight) {
 		mMaximumHeight = maximumHeight;
+		updateSize();
 	}
 
 	@Override
 	public void onChildSizeChanged() {
+		updateSize();
+	}
+
+	private void updateSize() {
 		Actor actor = getWidget();
 		float width = actor.getWidth();
 		float height = Math.min(actor.getHeight(), mMaximumHeight);

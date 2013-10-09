@@ -176,7 +176,6 @@ public class WorldView extends AbstractWorldView {
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
 		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView);
-		mTargetMealScrollPane.setMaximumHeight(250);
 		mTargetMealScrollPane.setScale(0.5f, 0.5f);
 
 		mBubble.setChild(mTargetMealScrollPane);
@@ -350,7 +349,9 @@ public class WorldView extends AbstractWorldView {
 
 	private void updateBubbleGeometry() {
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
-		mBubble.updateGeometry();
+		// Adjust scroll pane so that it does not grow outside of screen
+		Vector2 coord = UiUtils.toChildCoordinates(this, mTargetMealScrollPane, new Vector2(0, getHeight()));
+		mTargetMealScrollPane.setMaximumHeight(coord.y);
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
