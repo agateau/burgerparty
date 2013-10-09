@@ -849,6 +849,13 @@ ui/pause
   orig: 15, 18
   offset: 0, 0
   index: -1
+ui/vertical-gradient
+  rotate: false
+  xy: 791, 522
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: -1
 
 burgerparty12.png
 format: RGBA8888
