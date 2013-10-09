@@ -13,6 +13,7 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	public MealViewScrollPane(MealView child) {
 		super(child);
 		mMealView = child;
+
 		Burger burger = mMealView.getBurgerView().getBurger();
 		burger.arrowIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
 			@Override
@@ -20,7 +21,6 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 				updateScrollPosition();
 			}
 		});
-
 	}
 
 	public void setMaximumHeight(float maximumHeight) {
