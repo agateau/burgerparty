@@ -103,7 +103,7 @@ public class MealExtraView extends Group {
 		for(MealItem item: mMealExtra.getItems()) {
 			Image image = addItemInternal(item);
 			image.setPosition(posX, 0);
-			posX += image.getWidth();
+			posX += image.getWidth() + MealView.MEAL_ITEM_PADDING;
 		}
 		updateGeometry();
 	}
@@ -130,7 +130,7 @@ public class MealExtraView extends Group {
 		float width = 0;
 		float height = 0;
 		for(Image image: mItemActors) {
-			width += image.getWidth();
+			width = Math.max(image.getRight(), width);
 			height = Math.max(image.getHeight(), height);
 		}
 		setSize(width, height);

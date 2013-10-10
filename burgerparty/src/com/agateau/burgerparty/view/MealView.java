@@ -17,9 +17,9 @@ public class MealView extends Group implements ResizeToFitChildren {
 	public static final float ADD_ACTION_DURATION = 0.2f;
 	public static final float TRASH_ACTION_DURATION = 0.5f;
 
-	private static final float PLATTER_BURGER_X = 40f;
+	private static final float PLATTER_BURGER_X = 70f;
 	private static final float PLATTER_MEAL_Y = 15f;
-	private static final float BURGER_MEAL_PADDING = 15f;
+	public static final float MEAL_ITEM_PADDING = 15f;
 
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
 		if (withPlatter) {
@@ -74,7 +74,7 @@ public class MealView extends Group implements ResizeToFitChildren {
 	}
 
 	public void updateGeometry() {
-		mMealExtraView.setPosition(mBurgerView.getRight() + BURGER_MEAL_PADDING, mBurgerView.getY());
+		mMealExtraView.setPosition(mBurgerView.getRight() + MEAL_ITEM_PADDING, mBurgerView.getY());
 		setSize(
 			mPlatter == null ? mMealExtraView.getRight() : mPlatter.getWidth(),
 			Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
