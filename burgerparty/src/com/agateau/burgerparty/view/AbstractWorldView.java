@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -83,16 +81,6 @@ public class AbstractWorldView extends AnchorGroup {
 		mCustomersLayer.addAction(Actions.moveTo(0, -mScrollOffset, 0.2f));
 		mCounterLayer.addAction(Actions.moveTo(0, -mScrollOffset, 0.2f));
 		layout();
-	}
-
-	protected float getActorTop(Actor actor) {
-		Vector2 coords = new Vector2(0, actor.getHeight());
-		while (actor != this) {
-			coords.y = actor.getY() + coords.y * actor.getScaleY();
-			actor = actor.getParent();
-			assert(actor != null);
-		}
-		return coords.y;
 	}
 
 	protected void onResized() {

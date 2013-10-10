@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568542"
-     inkscape:cx="39.01359"
-     inkscape:cy="934.01127"
+     inkscape:cx="39.990202"
+     inkscape:cy="862.64515"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
@@ -48,6 +48,18 @@
   </sodipodi:namedview>
   <defs
      id="defs6974">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4261">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4263" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4265" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient5696">
@@ -4734,6 +4746,15 @@
        y1="426"
        x2="352"
        y2="442" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4261"
+       id="linearGradient5037"
+       x1="100"
+       y1="336"
+       x2="100"
+       y2="352"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <metadata
      id="metadata6977">
@@ -11422,5 +11443,22 @@
          d="m 78.095374,262.76292 c 3.898727,2.07873 -5.917479,28.10222 -7.996207,32.00095 -2.078729,3.89873 -6.924412,5.37413 -10.823139,3.2954 -3.898727,-2.07873 -5.374129,-6.92441 -3.295401,-10.82314 2.078729,-3.89873 18.21602,-26.55194 22.114747,-24.47321 z m -12.703059,23.82504 c -2.436704,-1.29921 -5.465259,-0.37708 -6.764462,2.05962 -1.299203,2.4367 -0.377079,5.46526 2.059626,6.76446 2.436704,1.29921 5.465259,0.37708 6.764462,-2.05962 1.299203,-2.4367 0.377079,-5.46526 -2.059626,-6.76446 z"
          id="path5176" />
     </g>
+    <rect
+       style="color:#000000;fill:#999999;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7303-5"
+       width="80"
+       height="80"
+       x="88"
+       y="320" />
+    <rect
+       style="opacity:0.98999999000000005;color:#000000;fill:url(#linearGradient5037);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4259"
+       width="8"
+       height="16"
+       x="96"
+       y="336"
+       inkscape:export-filename="vertical-gradient.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

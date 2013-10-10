@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -113,12 +114,8 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	public void onBurgerItemAdded() {
-		float top = getActorTop(mMealView.getBurgerView()) + SCROLL_PADDING;
-		Actor itemAtArrow = mTargetMealView.getBurgerView().getItemAtArrow();
-		if (itemAtArrow != null) {
-			float arrowTop = getActorTop(itemAtArrow) + SCROLL_PADDING;
-			top = Math.max(arrowTop, top);
-		}
+		BurgerView view = mMealView.getBurgerView();
+		float top = UiUtils.toAscendantCoordinates(this, view, new Vector2(0, view.getHeight())).y + SCROLL_PADDING;
 		float offset = Math.max(0, getScrollOffset() + top - getHeight());
 		scrollTo(offset);
 	}
@@ -174,10 +171,14 @@ public class WorldView extends AbstractWorldView {
 	private void setupTargetMealView() {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
+
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
-		mTargetMealView.setScale(0.5f, 0.5f);
-		mBubble.setChild(mTargetMealView);
+
+		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView);
+		mTargetMealScrollPane.setScale(0.5f, 0.5f);
+
+		mBubble.setChild(mTargetMealScrollPane);
 		mBubble.setVisible(false);
 	}
 
@@ -348,7 +349,9 @@ public class WorldView extends AbstractWorldView {
 
 	private void updateBubbleGeometry() {
 		mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
-		mBubble.updateGeometry();
+		// Adjust scroll pane so that it does not grow outside of screen
+		Vector2 coord = UiUtils.toChildCoordinates(this, mTargetMealScrollPane, new Vector2(0, getHeight()));
+		mTargetMealScrollPane.setMaximumHeight(coord.y);
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
@@ -360,6 +363,7 @@ public class WorldView extends AbstractWorldView {
 	private Skin mSkin;
 	private MealView mMealView;
 	private MealView mDoneMealView;
+	private MealViewScrollPane mTargetMealScrollPane;
 	private MealView mTargetMealView;
 	private Label mTimerDisplay;
 	private Label mScoreDisplay;

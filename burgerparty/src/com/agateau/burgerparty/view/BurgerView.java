@@ -7,12 +7,10 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.Signal0;
-import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -22,7 +20,6 @@ import com.badlogic.gdx.utils.Array;
 
 public class BurgerView extends Group {
 	private static final float ADD_ACTION_HEIGHT = 100;
-	private static final float HPADDING = 15;
 
 	private static class ItemImage extends Image {
 		public ItemImage(BurgerItem item, TextureRegion region) {
@@ -39,7 +36,7 @@ public class BurgerView extends Group {
 		mBurger = burger;
 		mAtlas = atlas;
 		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
-		setWidth(maxWidth + HPADDING * 2);
+		setWidth(maxWidth);
 
 		mBurger.initialized.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
@@ -56,20 +53,24 @@ public class BurgerView extends Group {
 				trash();
 			}
 		});
-		mBurger.arrowIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
-			@Override
-			public void handle(Integer index) {
-				setArrowIndex(index);
-			}
-		});
+	}
+
+	public Burger getBurger() {
+		return mBurger;
 	}
 
 	public void setPadding(float value) {
 		mPadding = value;
 	}
 
-	public Actor getItemAtArrow() {
-		return mArrowIndex > -1 ? mItemActors.get(mArrowIndex) : null;
+	public Actor getItemAt(int index) {
+		if (index < 0) {
+			return null;
+		}
+		if (index >= mItemActors.size) {
+			return null;
+		}
+		return mItemActors.get(index);
 	}
 
 	public Array<BurgerItem> getItems() {
@@ -114,19 +115,6 @@ public class BurgerView extends Group {
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
-	public void setArrowIndex(int index) {
-		initArrowActor();
-		mArrowIndex = index;
-		if (index == -1) {
-			mArrowActor.setVisible(false);
-			return;
-		}
-		mArrowActor.setVisible(true);
-		Image item = mItemActors.get(index);
-		float deltaY = item.getY() - mArrowActor.getY();
-		mArrowActor.addAction(Actions.moveBy(0, deltaY, 0.3f, Interpolation.pow3Out));
-	}
-
 	private void trash() {
 		Kernel.getSoundAtlas().findSound("trash").play();
 		for (Actor actor: mItemActors) {
@@ -139,14 +127,14 @@ public class BurgerView extends Group {
 
 	private void onCleared() {
 		setHeight(0);
-		removeItemActors();
+		clear();
 		mItemActors.clear();
 		UiUtils.notifyResizeToFitParent(this);
 	}
 
 	private void init() {
 		setHeight(0);
-		removeItemActors();
+		clear();
 		mItemActors.clear();
 		for(BurgerItem item: mBurger.getItems()) {
 			addItemInternal(item);
@@ -174,23 +162,6 @@ public class BurgerView extends Group {
 		return image;
 	}
 
-	private void initArrowActor() {
-		if (mArrowActor != null) {
-			return;
-		}
-		TextureRegion region;
-		region = mAtlas.findRegion("ui/icon-next-item");
-		mArrowActor = new Image(region);
-		mArrowActor.setX(HPADDING - mArrowActor.getWidth() - 2);
-		mArrowActor.addAction(Actions.forever(
-			Actions.sequence(
-				Actions.moveBy(-HPADDING * 0.6f, 0, .3f, Interpolation.pow2Out),
-				Actions.moveBy(HPADDING * 0.6f, 0, .3f, Interpolation.pow2In)
-			)
-		));
-		addActor(mArrowActor);
-	}
-
 	private float getNextY() {
 		float value = 0;
 		for (ItemImage image: mItemActors) {
@@ -199,19 +170,9 @@ public class BurgerView extends Group {
 		return value;
 	}
 
-	private void removeItemActors() {
-		// This method must be used instead of Group.clear() because mArrowActor
-		// should not be removed
-		for (ItemImage image: mItemActors) {
-			image.remove();
-		}
-	}
-
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
 	private float mPadding = 0;
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
-	private int mArrowIndex = -1;
-	private Image mArrowActor = null;
 }
