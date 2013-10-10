@@ -18,11 +18,18 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	public MealViewScrollPane(MealView child) {
 		super(child);
 		mMealView = child;
+		// Disable smooth scrolling for now so that the bottom of the meal is displayed
+		// first, without scrolling. Smooth scrolling is enabled when the player adds
+		// his first burger item.
+		setSmoothScrolling(false);
 
 		Burger burger = mMealView.getBurgerView().getBurger();
 		burger.arrowIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
 			@Override
 			public void handle(Integer index) {
+				if (index > 0) {
+					setSmoothScrolling(true);
+				}
 				updateScrollPosition();
 			}
 		});
