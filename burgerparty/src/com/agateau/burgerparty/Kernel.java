@@ -4,14 +4,15 @@ import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
@@ -63,14 +64,17 @@ public class Kernel {
 		return button;
 	}
 
-	private static void init() {
-		if (sInited) {
-			return;
-		}
-		sInited = true;
-		sTextureAtlas = new TextureAtlas(Gdx.files.internal("burgerparty.atlas"));
-		sSkin = new Skin(Gdx.files.internal("ui/skin.json"), sTextureAtlas);
+	public static AssetManager getAssetManager() {
+		assert(sAssetManager != null);
+		return sAssetManager;
+	}
 
+	public static void preload() {
+		sAssetManager = new AssetManager();
+		Texture.setAssetManager(sAssetManager);
+		sAssetManager.load("burgerparty.atlas", TextureAtlas.class);
+
+		sSoundAtlas = new SoundAtlas(sAssetManager, "sounds/");
 		String[] names = {
 			"add-item.wav",
 			"add-item-bottom.wav",
@@ -91,7 +95,22 @@ public class Kernel {
 			"time-bonus.wav",
 			"trash.wav"
 		};
-		sSoundAtlas.load(names);
+		sSoundAtlas.preload(names);
+	}
+
+	private static void init() {
+		if (sInited) {
+			return;
+		}
+		sInited = true;
+		assert(sAssetManager != null);
+		if (sAssetManager.getQueuedAssets() > 0) {
+			Gdx.app.error("Kernel", "Not all assets have been loaded yet, going to block (progress=" + sAssetManager.getProgress() + ")");
+		}
+		sTextureAtlas = sAssetManager.get("burgerparty.atlas");
+		sSkin = new Skin(Gdx.files.internal("ui/skin.json"), sTextureAtlas);
+
+		sSoundAtlas.finishLoad();
 
 		sClickSound = sSoundAtlas.findSound("click");
 		sClickListener = new ChangeListener() {
@@ -103,9 +122,10 @@ public class Kernel {
 
 	private static boolean sInited = false;
 	private static AnimScriptLoader sAnimScriptLoader = new AnimScriptLoader();
-	private static SoundAtlas sSoundAtlas = new SoundAtlas("sounds/");
+	private static SoundAtlas sSoundAtlas;
 	private static TextureAtlas sTextureAtlas;
 	private static Skin sSkin;
 	private static Sound sClickSound;
 	private static ChangeListener sClickListener;
+	private static AssetManager sAssetManager;
 }

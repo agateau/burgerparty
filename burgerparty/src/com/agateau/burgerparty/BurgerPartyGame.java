@@ -10,6 +10,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
+import com.agateau.burgerparty.screens.LoadingScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
@@ -20,6 +21,7 @@ import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -38,15 +40,9 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
+		Kernel.preload();
 		Gdx.input.setCatchBackKey(true);
-		mAtlas = Kernel.getTextureAtlas();
-		mSkin = Kernel.getSkin();
-
-		setupAnimScriptLoader();
-		loadLevelWorlds();
-		assert(mLevelWorlds.size > 0);
-		loadLevelProgress();
-		showMenu();
+		showLoadingScreen();
 	}
 
 	@Override
@@ -58,9 +54,18 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void resume() {
 		super.resume();
-		Array<TextureAtlas.AtlasRegion> regions = mAtlas.getRegions();
-		Gdx.app.log("BurgerPartyGame", "resume: atlas regions: " + regions.size);
-		Gdx.app.log("BurgerPartyGame", "resume: size of 1st region: " + regions.get(0).originalWidth + "x" + regions.get(0).originalHeight);
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager=" + Kernel.getAssetManager());
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager.getProgress()=" + Kernel.getAssetManager().getProgress());
+		if (Kernel.getAssetManager().getQueuedAssets() > 0) {
+			final Screen oldScreen = getScreen();
+			LoadingScreen loadingScreen = new LoadingScreen();
+			loadingScreen.ready.connect(mHandlers, new Signal0.Handler() {
+				@Override
+				public void handle() {
+					setScreen(oldScreen);
+				}
+			});
+		}
 	}
 
 	void setupAnimScriptLoader()
@@ -189,6 +194,27 @@ public class BurgerPartyGame extends Game {
 		setScreen(new SandBoxGameScreen(this));
 	}
 
+	private void showLoadingScreen() {
+		LoadingScreen screen = new LoadingScreen();
+		screen.ready.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				finishInit();
+			}
+		});
+		setScreen(screen);
+	}
+
+	private void finishInit() {
+		mAtlas = Kernel.getTextureAtlas();
+		mSkin = Kernel.getSkin();
+		setupAnimScriptLoader();
+		loadLevelWorlds();
+		assert(mLevelWorlds.size > 0);
+		loadLevelProgress();
+		showMenu();
+	}
+	
 	public void showMenu() {
 		setScreen(new StartScreen(this, mAtlas, mSkin));
 	}
