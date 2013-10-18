@@ -171,7 +171,7 @@ public class WorldView extends AbstractWorldView {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
 
-		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), false);
+		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
 		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView, mAssets.getTextureAtlas());
@@ -195,7 +195,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupMealView() {
 		scrollTo(0);
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
 		slideInMealView(mMealView);
 	}
 
@@ -283,7 +283,7 @@ public class WorldView extends AbstractWorldView {
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-		new ScoreFeedbackActor(this, x, y, score, mGame.getAssets().getSkin());
+		new ScoreFeedbackActor(this, x, y, score, mAssets.getSkin(), mAssets.getAnimScriptLoader());
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {

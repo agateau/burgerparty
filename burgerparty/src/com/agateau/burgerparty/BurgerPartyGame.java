@@ -69,7 +69,7 @@ public class BurgerPartyGame extends Game {
 
 	void setupAnimScriptLoader()
 	{
-		AnimScriptLoader loader = Kernel.getAnimScriptLoader();
+		AnimScriptLoader loader = mAssets.getAnimScriptLoader();
 		loader.registerMemberMethod("play", mAssets.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
 		loader.registerMemberMethod("playMealItem", this, "createPlayMealItemAction", new StringArgumentDefinition());
 	}

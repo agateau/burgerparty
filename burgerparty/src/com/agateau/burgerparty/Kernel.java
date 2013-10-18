@@ -1,6 +1,5 @@
 package com.agateau.burgerparty;
 
-import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -8,11 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
-	public static AnimScriptLoader getAnimScriptLoader() {
-		init();
-		return sAssets.mAnimScriptLoader;
-	}
-
 	public static RoundButton createRoundButton(String name) {
 		init();
 		RoundButton button = new RoundButton(sAssets.mSkin, name);
