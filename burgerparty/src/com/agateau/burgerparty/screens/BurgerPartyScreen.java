@@ -2,7 +2,7 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.StageScreen;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
  * Extends StageScreen to add a reference to BurgerPartyGame
@@ -10,12 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public abstract class BurgerPartyScreen extends StageScreen {
 	private BurgerPartyGame mGame;
 
-	public BurgerPartyScreen(BurgerPartyGame game, Skin skin) {
-		super(skin);
+	public BurgerPartyScreen(BurgerPartyGame game) {
+		super(game.getAssets().getSkin());
 		mGame = game;
 	}
 
 	public BurgerPartyGame getGame() {
 		return mGame;
+	}
+
+	public TextureAtlas getTextureAtlas() {
+		return mGame.getAssets().getTextureAtlas();
 	}
 }

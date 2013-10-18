@@ -284,7 +284,7 @@ public class WorldView extends AbstractWorldView {
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-		new ScoreFeedbackActor(this, x, y, score);
+		new ScoreFeedbackActor(this, x, y, score, mGame.getAssets().getSkin());
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {

@@ -7,11 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class ScoreFeedbackActor extends Label {
 	private static final float FEEDBACK_ACTION_DURATION = 1.5f;
-	public ScoreFeedbackActor(Actor parent, float mealXCenter, float mealY, World.Score score) {
-		super("", Kernel.getSkin(), "score-feedback");
+	public ScoreFeedbackActor(Actor parent, float mealXCenter, float mealY, World.Score score, Skin skin) {
+		super("", skin, "score-feedback");
 		String text = score.message;
 		if (!text.isEmpty()) {
 			text += "\n";

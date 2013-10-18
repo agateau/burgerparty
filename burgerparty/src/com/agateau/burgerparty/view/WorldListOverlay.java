@@ -52,7 +52,7 @@ public class WorldListOverlay extends Overlay {
 		if (index == mCurrentIndex) {
 			text = "> " + text + " <";
 		}
-		WorldButton button = new WorldButton(text, Kernel.getSkin());
+		WorldButton button = new WorldButton(text, mScreen.getSkin());
 		button.mIndex = index;
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {

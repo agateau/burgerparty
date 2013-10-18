@@ -100,7 +100,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 	class HighScoreTask extends RunQueue.Task {
 		public HighScoreTask(Overlay parent) {
-			mLabel = new Label("New High Score!", Kernel.getSkin(), "score-feedback");
+			mLabel = new Label("New High Score!", mGame.getAssets().getSkin(), "score-feedback");
 			parent.addActor(mLabel);
 			mLabel.setVisible(false);
 		}

@@ -6,7 +6,6 @@ import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
@@ -19,11 +18,6 @@ public class Kernel {
 	public static SoundAtlas getSoundAtlas() {
 		init();
 		return sAssets.mSoundAtlas;
-	}
-
-	public static Skin getSkin() {
-		init();
-		return sAssets.mSkin;
 	}
 
 	public static ChangeListener getClickListener() {

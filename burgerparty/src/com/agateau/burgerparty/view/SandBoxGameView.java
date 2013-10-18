@@ -153,7 +153,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		} else {
 			iconName = "ui/inventory-extra";
 		}
-		Drawable drawable = Kernel.getSkin().getDrawable(iconName);
+		Drawable drawable = mGame.getAssets().getSkin().getDrawable(iconName);
 		mSwitchInventoriesButton.getImage().setDrawable(drawable);
 	}
 

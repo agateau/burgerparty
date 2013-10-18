@@ -23,16 +23,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Assets mAssets;
-	private Skin mSkin;
-	private TextureAtlas mAtlas;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
@@ -213,8 +209,6 @@ public class BurgerPartyGame extends Game {
 
 	private void finishLoad() {
 		mAssets.finishLoad();
-		mAtlas = mAssets.getTextureAtlas();
-		mSkin = mAssets.getSkin();
 		setupAnimScriptLoader();
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);
@@ -223,16 +217,16 @@ public class BurgerPartyGame extends Game {
 	}
 	
 	public void showMenu() {
-		setScreen(new StartScreen(this, mAtlas, mSkin));
+		setScreen(new StartScreen(this));
 	}
 
 	public void selectLevel(int worldIndex) {
-		setScreen(new LevelListScreen(this, worldIndex, mAtlas, mSkin));
+		setScreen(new LevelListScreen(this, worldIndex));
 	}
 	
 	private void doStartLevel() {
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
-		setScreen(new GameScreen(this, level, mAtlas, mSkin));
+		setScreen(new GameScreen(this, level));
 	}
 
 	static private FileHandle getUserWritableFile(String name) {

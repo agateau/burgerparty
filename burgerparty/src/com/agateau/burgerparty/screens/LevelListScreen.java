@@ -30,8 +30,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private static final float SURPRISE_ROTATE_ANGLE = 5f;
 	private static final float SURPRISE_ROTATE_DURATION = 0.8f;
 
-	public LevelListScreen(BurgerPartyGame game, int worldIndex, TextureAtlas atlas, Skin skin) {
-		super(game, skin);
+	public LevelListScreen(BurgerPartyGame game, int worldIndex) {
+		super(game);
+		TextureAtlas atlas = getTextureAtlas();
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 
@@ -39,7 +40,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock");
 		mSurpriseRegion = atlas.findRegion("ui/surprise");
-		setupWidgets(skin);
+		setupWidgets(getSkin());
 
 		scrollTo(worldIndex);
 	}
