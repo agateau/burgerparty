@@ -1,5 +1,16 @@
-# 0.3 - 2013.10.04
+# 0.4 - 2013-10-04
+
 - Added 'create your own burger' mode
 - Added tick sound when reaching end of timeout
 - Scroll up burgers when reaching the top of the screen
 - Visual improvements
+
+# 0.3 - 2013-09-14
+
+- Flatter appearance for world 1 customers
+- Meal now may or may not include drinks or fries
+- Pirate customers for all levels of world 2
+- Improved head-up-display, does not overlap with order bubble anymore
+- Added cut-scenes when unlocking meal items
+- Fixed bug causing burger arrow to sometimes disappear
+- Fixed bug which allowed adding multiple copies of the same drink or fries
