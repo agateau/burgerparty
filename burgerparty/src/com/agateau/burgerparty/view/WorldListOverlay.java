@@ -67,7 +67,7 @@ public class WorldListOverlay extends Overlay {
 	}
 
 	private void setupWidgets() {
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(mScreen.getGame().getAssets(), "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				close();

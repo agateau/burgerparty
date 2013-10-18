@@ -29,14 +29,14 @@ public class StartScreen extends BurgerPartyScreen {
 
 		Image titleImage = new Image(getTextureAtlas().findRegion("ui/title"));
 
-		ImageTextButton normalStartButton = Kernel.createTextButton("Start", "ui/icon-play");
+		ImageTextButton normalStartButton = Kernel.createTextButton(getGame().getAssets(), "Start", "ui/icon-play");
 		normalStartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().selectLevel(0);
 			}
 		});
 
-		ImageTextButton sandBoxStartButton = Kernel.createTextButton("Sand Box", "ui/icon-play");
+		ImageTextButton sandBoxStartButton = Kernel.createTextButton(getGame().getAssets(), "Sand Box", "ui/icon-play");
 		sandBoxStartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().startSandBox();

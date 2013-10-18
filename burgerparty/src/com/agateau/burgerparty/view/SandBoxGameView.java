@@ -49,14 +49,14 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupWidgets() {
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(mAssets, "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.showMenu();
 			}
 		});
 
-		ImageButton worldButton = Kernel.createRoundButton("ui/icon-levels");
+		ImageButton worldButton = Kernel.createRoundButton(mAssets, "ui/icon-levels");
 		worldButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchWorld();

@@ -50,7 +50,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		getStage().addActor(mAnchorGroup);
 		mAnchorGroup.setFillParent(true);
 
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-back");
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -58,14 +58,14 @@ public class LevelListScreen extends BurgerPartyScreen {
 			}
 		});
 
-		mPreviousButton = Kernel.createRoundButton("ui/icon-left");
+		mPreviousButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-left");
 		mPreviousButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex - 1);
 			}
 		});
 
-		mNextButton = Kernel.createRoundButton("ui/icon-right");
+		mNextButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-right");
 		mNextButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex + 1);

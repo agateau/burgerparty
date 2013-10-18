@@ -161,7 +161,7 @@ public class LevelFinishedOverlay extends Overlay {
 		Actor starsActor = createStarsActor(skin);
 
 		// Select level button
-		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel(mGame.getLevelWorldIndex());
@@ -169,7 +169,7 @@ public class LevelFinishedOverlay extends Overlay {
 		});
 
 		// Restart button
-		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
+		RoundButton restartButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
@@ -220,7 +220,7 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private RoundButton createNextButton(String name) {
-		RoundButton button = Kernel.createRoundButton(name);
+		RoundButton button = Kernel.createRoundButton(mGame.getAssets(), name);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				goToNextLevel();

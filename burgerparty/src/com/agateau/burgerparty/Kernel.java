@@ -1,31 +1,19 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.RoundButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class Kernel {
-	public static RoundButton createRoundButton(String name) {
-		init();
-		RoundButton button = new RoundButton(sAssets.mSkin, name);
-		button.setSound(sAssets.mClickSound);
+	public static RoundButton createRoundButton(Assets assets, String name) {
+		RoundButton button = new RoundButton(assets.getSkin(), name);
+		button.setSound(assets.getClickSound());
 		return button;
 	}
 
-	public static ImageTextButton createTextButton(String text, String iconName) {
-		init();
-		ImageTextButton button = new ImageTextButton(text, sAssets.mSkin, "image-text-button");
-		button.getImage().setDrawable(sAssets.mSkin.getDrawable(iconName));
-		button.addListener(sAssets.mClickListener);
-		return button;
-	}
-
-	public static ImageButton createHudButton(String iconName) {
-		init();
-		Drawable drawable = sAssets.mSkin.getDrawable(iconName);
-		ImageButton button = new ImageButton(drawable);
-		button.addListener(sAssets.mClickListener);
+	public static ImageTextButton createTextButton(Assets assets, String text, String iconName) {
+		ImageTextButton button = new ImageTextButton(text, assets.getSkin(), "image-text-button");
+		button.getImage().setDrawable(assets.getSkin().getDrawable(iconName));
+		button.addListener(assets.getClickListener());
 		return button;
 	}
 
@@ -37,10 +25,6 @@ public class Kernel {
 	public static Assets getAssets() {
 		assert(sAssets != null);
 		return sAssets;
-	}
-
-	private static void init() {
-		assert(sAssets != null);
 	}
 
 	private static Assets sAssets = null;

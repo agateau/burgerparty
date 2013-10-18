@@ -82,6 +82,10 @@ public class Assets {
 		return mAssetManager;
 	}
 
+	public Sound getClickSound() {
+		return mClickSound;
+	}
+
 	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
 	SoundAtlas mSoundAtlas;
 	TextureAtlas mTextureAtlas;
