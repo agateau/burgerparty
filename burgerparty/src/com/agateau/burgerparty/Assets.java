@@ -66,6 +66,10 @@ public class Assets {
 		return mSkin;
 	}
 
+	public SoundAtlas getSoundAtlas() {
+		return mSoundAtlas;
+	}
+
 	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
 	SoundAtlas mSoundAtlas;
 	TextureAtlas mTextureAtlas;

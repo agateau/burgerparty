@@ -2,7 +2,6 @@ package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.RoundButton;
-import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
@@ -13,11 +12,6 @@ public class Kernel {
 	public static AnimScriptLoader getAnimScriptLoader() {
 		init();
 		return sAssets.mAnimScriptLoader;
-	}
-
-	public static SoundAtlas getSoundAtlas() {
-		init();
-		return sAssets.mSoundAtlas;
 	}
 
 	public static ChangeListener getClickListener() {

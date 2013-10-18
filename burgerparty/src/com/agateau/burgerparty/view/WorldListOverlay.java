@@ -56,7 +56,7 @@ public class WorldListOverlay extends Overlay {
 		button.mIndex = index;
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				Kernel.getSoundAtlas().findSound("click").play();
+				mScreen.getGame().getAssets().getSoundAtlas().findSound("click").play();
 				WorldButton button = (WorldButton)actor;
 				currentIndexChanged.emit(button.mIndex);
 				close();

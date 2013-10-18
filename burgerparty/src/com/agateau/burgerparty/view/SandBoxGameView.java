@@ -129,7 +129,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		mWorld.getBurger().clear();
 		mWorld.getMealExtra().clear();
 		mUndoStack.clear();
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), true);
 		slideInMealView(mMealView);
 	}
 
@@ -234,7 +234,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void playError() {
-		Kernel.getSoundAtlas().findSound("error").play();
+		mGame.getAssets().getSoundAtlas().findSound("error").play();
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();

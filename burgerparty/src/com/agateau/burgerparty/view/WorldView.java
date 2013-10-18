@@ -3,7 +3,6 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Customer;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
@@ -172,7 +171,7 @@ public class WorldView extends AbstractWorldView {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
 
-		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
+		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
 		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView, mAssets.getTextureAtlas());
@@ -196,7 +195,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupMealView() {
 		scrollTo(0);
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), true);
 		slideInMealView(mMealView);
 	}
 
@@ -244,7 +243,7 @@ public class WorldView extends AbstractWorldView {
 		} else {
 			mTimerDisplay.setColor(Color.RED);
 			mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
-			Kernel.getSoundAtlas().findSound("tick").play();
+			mGame.getAssets().getSoundAtlas().findSound("tick").play();
 		}
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);

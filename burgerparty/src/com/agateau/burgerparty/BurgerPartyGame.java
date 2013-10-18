@@ -23,6 +23,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
@@ -69,8 +70,12 @@ public class BurgerPartyGame extends Game {
 	void setupAnimScriptLoader()
 	{
 		AnimScriptLoader loader = Kernel.getAnimScriptLoader();
-		loader.registerMemberMethod("play", Kernel.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
-		loader.registerStaticMethod("playMealItem", MealItem.class, "createPlayMealItemAction", new StringArgumentDefinition());
+		loader.registerMemberMethod("play", mAssets.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
+		loader.registerMemberMethod("playMealItem", this, "createPlayMealItemAction", new StringArgumentDefinition());
+	}
+
+	public Action createPlayMealItemAction(String name) {
+		return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
 	}
 
 	private void loadLevelWorlds() {

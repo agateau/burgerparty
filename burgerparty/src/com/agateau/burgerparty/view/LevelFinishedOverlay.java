@@ -36,7 +36,7 @@ public class LevelFinishedOverlay extends Overlay {
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
 			mRemainingSeconds = secs;
-			mSound = Kernel.getSoundAtlas().findSound("time-bonus");
+			mSound = mGame.getAssets().getSoundAtlas().findSound("time-bonus");
 		}
 		@Override
 		public void run() {
@@ -87,7 +87,7 @@ public class LevelFinishedOverlay extends Overlay {
 						Actions.rotateTo(0, STAR_ANIM_DURATION),
 						Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
 					),
-					Kernel.getSoundAtlas().createPlayAction("star"),
+					mGame.getAssets().getSoundAtlas().createPlayAction("star"),
 					Actions.run(createDoneRunnable())
 				)
 			);
@@ -145,7 +145,7 @@ public class LevelFinishedOverlay extends Overlay {
 			mRunQueue.add(new HighScoreTask(this));
 		}
 		mRunQueue.start();
-		Kernel.getSoundAtlas().findSound("finished").play();
+		mGame.getAssets().getSoundAtlas().findSound("finished").play();
 	}
 
 	private void setupWidgets(Skin skin) {

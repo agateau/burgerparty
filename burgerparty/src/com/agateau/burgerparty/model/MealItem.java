@@ -71,8 +71,7 @@ public class MealItem {
 		return mRow;
 	}
 
-	public static Action createPlayMealItemAction(String name) {
-		SoundAtlas atlas = Kernel.getSoundAtlas();
+	public static Action createPlayMealItemAction(SoundAtlas atlas, String name) {
 		if (atlas.contains("add-item-" + name)) {
 			return atlas.createPlayAction("add-item-" + name);
 		} else {
