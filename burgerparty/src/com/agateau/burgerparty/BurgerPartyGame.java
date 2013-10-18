@@ -22,6 +22,7 @@ import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Array;
@@ -53,11 +54,12 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void resume() {
 		super.resume();
-		Gdx.app.log("BurgerPartyGame", "resume: assetManager=" + Kernel.getAssetManager());
-		Gdx.app.log("BurgerPartyGame", "resume: assetManager.getProgress()=" + Kernel.getAssetManager().getProgress());
-		if (Kernel.getAssetManager().getQueuedAssets() > 0) {
+		AssetManager manager = mAssets.getAssetManager();
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager=" + manager);
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager.getProgress()=" + manager.getProgress());
+		if (manager.getQueuedAssets() > 0) {
 			final Screen oldScreen = getScreen();
-			LoadingScreen loadingScreen = new LoadingScreen();
+			LoadingScreen loadingScreen = new LoadingScreen(manager);
 			loadingScreen.ready.connect(mHandlers, new Signal0.Handler() {
 				@Override
 				public void handle() {
@@ -202,7 +204,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void showLoadingScreen() {
-		LoadingScreen screen = new LoadingScreen();
+		LoadingScreen screen = new LoadingScreen(mAssets.getAssetManager());
 		screen.ready.connect(mHandlers, new Signal0.Handler() {
 			@Override
 			public void handle() {

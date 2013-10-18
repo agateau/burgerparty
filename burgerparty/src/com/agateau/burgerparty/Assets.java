@@ -78,6 +78,10 @@ public class Assets {
 		return mAnimScriptLoader;
 	}
 
+	public AssetManager getAssetManager() {
+		return mAssetManager;
+	}
+
 	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
 	SoundAtlas mSoundAtlas;
 	TextureAtlas mTextureAtlas;

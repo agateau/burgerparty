@@ -1,7 +1,6 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.RoundButton;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -28,11 +27,6 @@ public class Kernel {
 		ImageButton button = new ImageButton(drawable);
 		button.addListener(sAssets.mClickListener);
 		return button;
-	}
-
-	public static AssetManager getAssetManager() {
-		assert(sAssets.mAssetManager != null);
-		return sAssets.mAssetManager;
 	}
 
 	public static void preload() {
