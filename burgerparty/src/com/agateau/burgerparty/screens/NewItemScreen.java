@@ -8,6 +8,7 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -30,10 +31,10 @@ public class NewItemScreen extends BurgerPartyScreen {
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
 		String bgName = levelDir + "/newitem-bg";
 		String fgName = levelDir + "/newitem-fg";
-		mBgImage = new Image(Kernel.getTextureAtlas().findRegion(bgName));
+		mBgImage = new Image(game.getAssets().getTextureAtlas().findRegion(bgName));
 		mBgImage.setFillParent(true);
 		mFgGroup = new WidgetGroup();
-		mFgImage = new Image(Kernel.getTextureAtlas().findRegion(fgName));
+		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
 
 		setupBubble(levelDir, item.getName());
 
@@ -49,7 +50,8 @@ public class NewItemScreen extends BurgerPartyScreen {
 	}
 
 	private void setupBubble(String levelDir, String newItemName) {
-		mBubble = new Bubble(Kernel.getTextureAtlas().createPatch("ui/bubble-callout-right"));
+		TextureAtlas atlas = getGame().getAssets().getTextureAtlas();
+		mBubble = new Bubble(atlas.createPatch("ui/bubble-callout-right"));
 		mBubble.setColor(1, 1, 1, 0);
 
 		mBubbleContent = new AnchorGroup();
@@ -57,7 +59,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		mBubbleLabel = new Label("New item unlocked!", Kernel.getSkin(), "bubble-text");
 
-		mItemImage = new Image(Kernel.getTextureAtlas().findRegion("mealitems/" + newItemName + "-inventory"));
+		mItemImage = new Image(atlas.findRegion("mealitems/" + newItemName + "-inventory"));
 
 		mBubbleContent.setSize(
 			mBubbleLabel.getWidth(),

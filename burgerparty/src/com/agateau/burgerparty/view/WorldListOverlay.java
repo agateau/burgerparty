@@ -23,7 +23,7 @@ public class WorldListOverlay extends Overlay {
 	private static final int CELL_SIZE = 150;
 
 	public WorldListOverlay(BurgerPartyScreen screen, Array<LevelWorld> worlds, int currentIndex) {
-		super(Kernel.getTextureAtlas());
+		super(screen.getGame().getAssets().getTextureAtlas());
 		mScreen = screen;
 		mWorlds = worlds;
 		mCurrentIndex = currentIndex;

@@ -15,7 +15,7 @@ public class GameScreen extends BurgerPartyScreen {
 	public GameScreen(BurgerPartyGame game, Level level, TextureAtlas atlas, Skin skin) {
 		super(game, skin);
 		mWorld = new World(level);
-		mWorldView = new WorldView(this, game, mWorld, atlas, skin);
+		mWorldView = new WorldView(this, game, mWorld);
 		getStage().addActor(mWorldView);
 	}
 

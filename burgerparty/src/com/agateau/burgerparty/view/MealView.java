@@ -35,7 +35,7 @@ public class MealView extends Group implements ResizeToFitChildren {
 			mBurgerView.setPosition(PLATTER_BURGER_X, PLATTER_MEAL_Y);
 		} else {
 			mBurgerView.setPosition(NextBurgerItemArrow.OVERALL_WIDTH, 0);
-			NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView());
+			NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView(), atlas);
 			addActor(arrow);
 		}
 		updateGeometry();

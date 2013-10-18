@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.XmlReader;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
-		super(game.getLevelWorld(0).getDirName());
+		super(game.getAssets(), game.getLevelWorld(0).getDirName());
 		mScreen = screen;
 		mLevelWorldIndex = 0;
 		mGame = game;
@@ -72,7 +72,7 @@ public class SandBoxGameView extends AbstractWorldView {
 			mBottomLeftBar.remove();
 			mBottomRightBar.remove();
 		}
-		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder();
+		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
 		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
 		XmlReader.Element config = levelWorld.getConfig();
 		builder.build(config.getChildByName("gdxui"), this);
@@ -129,7 +129,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		mWorld.getBurger().clear();
 		mWorld.getMealExtra().clear();
 		mUndoStack.clear();
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), true);
 		slideInMealView(mMealView);
 	}
 

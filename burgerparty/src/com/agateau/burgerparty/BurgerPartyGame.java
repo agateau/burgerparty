@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.Array;
 public class BurgerPartyGame extends Game {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
+	private Assets mAssets;
 	private Skin mSkin;
 	private TextureAtlas mAtlas;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
@@ -41,6 +42,7 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void create() {
 		Kernel.preload();
+		mAssets = Kernel.getAssets();
 		Gdx.input.setCatchBackKey(true);
 		showLoadingScreen();
 	}
@@ -113,6 +115,10 @@ public class BurgerPartyGame extends Game {
 			levelWorldIndex++;
 		}
 		Progress.save(handle, lst);
+	}
+
+	public Assets getAssets() {
+		return mAssets;
 	}
 
 	public int getHighScore(int world, int level) {
@@ -199,15 +205,16 @@ public class BurgerPartyGame extends Game {
 		screen.ready.connect(mHandlers, new Signal0.Handler() {
 			@Override
 			public void handle() {
-				finishInit();
+				finishLoad();
 			}
 		});
 		setScreen(screen);
 	}
 
-	private void finishInit() {
-		mAtlas = Kernel.getTextureAtlas();
-		mSkin = Kernel.getSkin();
+	private void finishLoad() {
+		mAssets.finishLoad();
+		mAtlas = mAssets.getTextureAtlas();
+		mSkin = mAssets.getSkin();
 		setupAnimScriptLoader();
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);

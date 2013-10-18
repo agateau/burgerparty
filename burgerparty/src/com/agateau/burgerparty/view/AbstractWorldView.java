@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.view;
 
-import com.agateau.burgerparty.Kernel;
+import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,7 +17,8 @@ import com.badlogic.gdx.utils.Scaling;
 public class AbstractWorldView extends AnchorGroup {
 	private static final float SLIDE_IN_ANIM_DURATION = 0.2f;
 
-	public AbstractWorldView(String worldDirName) {
+	public AbstractWorldView(Assets assets, String worldDirName) {
+		mAssets = assets;
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		setupLayers();
@@ -26,7 +27,7 @@ public class AbstractWorldView extends AnchorGroup {
 	}
 
 	public void setWorldDirName(String worldDirName) {
-		TextureAtlas atlas = Kernel.getTextureAtlas();
+		TextureAtlas atlas = mAssets.getTextureAtlas();
 
 		mBackgroundRegion = atlas.findRegion(worldDirName + "background");
 
@@ -107,7 +108,7 @@ public class AbstractWorldView extends AnchorGroup {
 		mWorkbench.setScaling(Scaling.stretch);
 		mCounterLayer.addActor(mWorkbench);
 
-		mInventoryView = new InventoryView(Kernel.getTextureAtlas());
+		mInventoryView = new InventoryView(mAssets.getTextureAtlas());
 		mInventoryLayer.addActor(mInventoryView);
 	}
 
@@ -116,6 +117,8 @@ public class AbstractWorldView extends AnchorGroup {
 		view.addAction(Actions.moveTo((getWidth() - view.getWidth()) / 2, view.getY(), SLIDE_IN_ANIM_DURATION, Interpolation.pow2Out));
 		mCounterLayer.addActor(view);
 	}
+
+	protected Assets mAssets;
 
 	private Array<AnchorGroup> mLayers = new Array<AnchorGroup>();
 	protected AnchorGroup mCustomersLayer;

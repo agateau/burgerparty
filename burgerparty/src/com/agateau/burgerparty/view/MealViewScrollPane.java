@@ -2,11 +2,11 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -15,8 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	private static final float EDGE_SIZE = 20f;
 
-	public MealViewScrollPane(MealView child) {
+	public MealViewScrollPane(MealView child, TextureAtlas atlas) {
 		super(child);
+		mTextureAtlas = atlas;
 		mMealView = child;
 		// Disable smooth scrolling for now so that the bottom of the meal is displayed
 		// first, without scrolling. Smooth scrolling is enabled when the player adds
@@ -85,7 +86,7 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	private void updateEdgeImages() {
 		if (mTopEdge == null) {
 			// This is a bit hackish, but we can't add the edge images to the pane itself: it is forbidden to call ScrollPane.addActor()
-			TextureRegion region = Kernel.getTextureAtlas().findRegion("ui/vertical-gradient");
+			TextureRegion region = mTextureAtlas.findRegion("ui/vertical-gradient");
 			mTopEdge = new Image(region);
 			TextureRegion region2 = new TextureRegion(region);
 			region2.flip(false, true);
@@ -111,6 +112,7 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
+	private TextureAtlas mTextureAtlas;
 	private float mMaximumHeight = 1000;
 	private MealView mMealView;
 	private Image mTopEdge;

@@ -3,12 +3,7 @@ package com.agateau.burgerparty;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.SoundAtlas;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -18,114 +13,65 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 public class Kernel {
 	public static AnimScriptLoader getAnimScriptLoader() {
 		init();
-		return sAnimScriptLoader;
+		return sAssets.mAnimScriptLoader;
 	}
 
 	public static SoundAtlas getSoundAtlas() {
 		init();
-		return sSoundAtlas;
-	}
-
-	public static TextureAtlas getTextureAtlas() {
-		init();
-		return sTextureAtlas;
+		return sAssets.mSoundAtlas;
 	}
 
 	public static Skin getSkin() {
 		init();
-		return sSkin;
+		return sAssets.mSkin;
 	}
 
 	public static ChangeListener getClickListener() {
 		init();
-		return sClickListener;
+		return sAssets.mClickListener;
 	}
 
 	public static RoundButton createRoundButton(String name) {
 		init();
-		RoundButton button = new RoundButton(sSkin, name);
-		button.setSound(sClickSound);
+		RoundButton button = new RoundButton(sAssets.mSkin, name);
+		button.setSound(sAssets.mClickSound);
 		return button;
 	}
 
 	public static ImageTextButton createTextButton(String text, String iconName) {
 		init();
-		ImageTextButton button = new ImageTextButton(text, sSkin, "image-text-button");
-		button.getImage().setDrawable(sSkin.getDrawable(iconName));
-		button.addListener(sClickListener);
+		ImageTextButton button = new ImageTextButton(text, sAssets.mSkin, "image-text-button");
+		button.getImage().setDrawable(sAssets.mSkin.getDrawable(iconName));
+		button.addListener(sAssets.mClickListener);
 		return button;
 	}
 
 	public static ImageButton createHudButton(String iconName) {
 		init();
-		Drawable drawable = sSkin.getDrawable(iconName);
+		Drawable drawable = sAssets.mSkin.getDrawable(iconName);
 		ImageButton button = new ImageButton(drawable);
-		button.addListener(sClickListener);
+		button.addListener(sAssets.mClickListener);
 		return button;
 	}
 
 	public static AssetManager getAssetManager() {
-		assert(sAssetManager != null);
-		return sAssetManager;
+		assert(sAssets.mAssetManager != null);
+		return sAssets.mAssetManager;
 	}
 
 	public static void preload() {
-		sAssetManager = new AssetManager();
-		Texture.setAssetManager(sAssetManager);
-		sAssetManager.load("burgerparty.atlas", TextureAtlas.class);
+		assert(sAssets == null);
+		sAssets = new Assets();
+	}
 
-		sSoundAtlas = new SoundAtlas(sAssetManager, "sounds/");
-		String[] names = {
-			"add-item.wav",
-			"add-item-bottom.wav",
-			"add-item-cheese.wav",
-			"add-item-coconut.wav",
-			"add-item-onion.wav",
-			"add-item-salad.wav",
-			"add-item-steak.wav",
-			"add-item-tomato.wav",
-			"click.wav",
-			"error.wav",
-			"finished.wav",
-			"meal-done.wav",
-			"sauce.wav",
-			"splat.wav",
-			"star.wav",
-			"tick.wav",
-			"time-bonus.wav",
-			"trash.wav"
-		};
-		sSoundAtlas.preload(names);
+	public static Assets getAssets() {
+		assert(sAssets != null);
+		return sAssets;
 	}
 
 	private static void init() {
-		if (sInited) {
-			return;
-		}
-		sInited = true;
-		assert(sAssetManager != null);
-		if (sAssetManager.getQueuedAssets() > 0) {
-			Gdx.app.error("Kernel", "Not all assets have been loaded yet, going to block (progress=" + sAssetManager.getProgress() + ")");
-		}
-		sTextureAtlas = sAssetManager.get("burgerparty.atlas");
-		sSkin = new Skin(Gdx.files.internal("ui/skin.json"), sTextureAtlas);
-
-		sSoundAtlas.finishLoad();
-
-		sClickSound = sSoundAtlas.findSound("click");
-		sClickListener = new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				sClickSound.play();
-			}
-		};
+		assert(sAssets != null);
 	}
 
-	private static boolean sInited = false;
-	private static AnimScriptLoader sAnimScriptLoader = new AnimScriptLoader();
-	private static SoundAtlas sSoundAtlas;
-	private static TextureAtlas sTextureAtlas;
-	private static Skin sSkin;
-	private static Sound sClickSound;
-	private static ChangeListener sClickListener;
-	private static AssetManager sAssetManager;
+	private static Assets sAssets = null;
 }

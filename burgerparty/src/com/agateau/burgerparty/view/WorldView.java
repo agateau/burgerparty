@@ -38,16 +38,16 @@ public class WorldView extends AbstractWorldView {
 	private static final float TARGET_BURGER_PADDING = 24;
 	private static final float SCROLL_PADDING = 24;
 
-	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
-		super(world.getLevelWorld().getDirName());
+	public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
+		super(game.getAssets(), world.getLevelWorld().getDirName());
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		mGameScreen = screen;
 		mGame = game;
 		mWorld = world;
-		mAtlas = atlas;
-		mSkin = skin;
-		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
+		mAtlas = mAssets.getTextureAtlas();
+		mSkin = mAssets.getSkin();
+		mCustomerFactory = new CustomerViewFactory(mAtlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
 		setupTargetMealView();
@@ -175,7 +175,7 @@ public class WorldView extends AbstractWorldView {
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
-		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView);
+		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView, mAssets.getTextureAtlas());
 		mTargetMealScrollPane.setScale(0.5f, 0.5f);
 
 		mBubble.setChild(mTargetMealScrollPane);
