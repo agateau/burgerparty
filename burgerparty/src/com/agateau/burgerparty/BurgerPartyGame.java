@@ -39,8 +39,7 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
-		Kernel.preload();
-		mAssets = Kernel.getAssets();
+		mAssets = new Assets();
 		Gdx.input.setCatchBackKey(true);
 		showLoadingScreen();
 	}

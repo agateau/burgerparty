@@ -16,16 +16,4 @@ public class Kernel {
 		button.addListener(assets.getClickListener());
 		return button;
 	}
-
-	public static void preload() {
-		assert(sAssets == null);
-		sAssets = new Assets();
-	}
-
-	public static Assets getAssets() {
-		assert(sAssets != null);
-		return sAssets;
-	}
-
-	private static Assets sAssets = null;
 }
