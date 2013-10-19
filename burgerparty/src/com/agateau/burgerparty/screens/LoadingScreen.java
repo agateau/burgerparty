@@ -4,6 +4,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.GL20;
 
 public class LoadingScreen implements Screen {
 	public Signal0 ready = new Signal0();
@@ -18,6 +19,9 @@ public class LoadingScreen implements Screen {
 		boolean done = mAssetManager.update();
 		float progress = mAssetManager.getProgress();
 		Gdx.app.log("LoadingScreen", "Loading progress:" + progress);
+		float p = mAssetManager.getProgress();
+		Gdx.gl.glClearColor(p, p, p, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		if (done) {
 			ready.emit();
 		}
