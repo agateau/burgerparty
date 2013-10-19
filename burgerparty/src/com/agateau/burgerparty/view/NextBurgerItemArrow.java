@@ -2,8 +2,8 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Signal1;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -12,8 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class NextBurgerItemArrow extends Image {
 	public static final float OVERALL_WIDTH = 45;
 
-	public NextBurgerItemArrow(BurgerView burgerView) {
-		super(Kernel.getTextureAtlas().findRegion("ui/icon-next-item"));
+	public NextBurgerItemArrow(BurgerView burgerView, TextureAtlas atlas) {
+		super(atlas.findRegion("ui/icon-next-item"));
 		mBurgerView = burgerView;
 		initImage();
 

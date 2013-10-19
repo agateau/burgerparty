@@ -36,7 +36,7 @@ public class LevelFinishedOverlay extends Overlay {
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
 			mRemainingSeconds = secs;
-			mSound = Kernel.getSoundAtlas().findSound("time-bonus");
+			mSound = mGame.getAssets().getSoundAtlas().findSound("time-bonus");
 		}
 		@Override
 		public void run() {
@@ -87,7 +87,7 @@ public class LevelFinishedOverlay extends Overlay {
 						Actions.rotateTo(0, STAR_ANIM_DURATION),
 						Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
 					),
-					Kernel.getSoundAtlas().createPlayAction("star"),
+					mGame.getAssets().getSoundAtlas().createPlayAction("star"),
 					Actions.run(createDoneRunnable())
 				)
 			);
@@ -100,7 +100,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 	class HighScoreTask extends RunQueue.Task {
 		public HighScoreTask(Overlay parent) {
-			mLabel = new Label("New High Score!", Kernel.getSkin(), "score-feedback");
+			mLabel = new Label("New High Score!", mGame.getAssets().getSkin(), "score-feedback");
 			parent.addActor(mLabel);
 			mLabel.setVisible(false);
 		}
@@ -145,7 +145,7 @@ public class LevelFinishedOverlay extends Overlay {
 			mRunQueue.add(new HighScoreTask(this));
 		}
 		mRunQueue.start();
-		Kernel.getSoundAtlas().findSound("finished").play();
+		mGame.getAssets().getSoundAtlas().findSound("finished").play();
 	}
 
 	private void setupWidgets(Skin skin) {
@@ -161,7 +161,7 @@ public class LevelFinishedOverlay extends Overlay {
 		Actor starsActor = createStarsActor(skin);
 
 		// Select level button
-		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel(mGame.getLevelWorldIndex());
@@ -169,7 +169,7 @@ public class LevelFinishedOverlay extends Overlay {
 		});
 
 		// Restart button
-		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
+		RoundButton restartButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
@@ -220,7 +220,7 @@ public class LevelFinishedOverlay extends Overlay {
 	}
 
 	private RoundButton createNextButton(String name) {
-		RoundButton button = Kernel.createRoundButton(name);
+		RoundButton button = Kernel.createRoundButton(mGame.getAssets(), name);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				goToNextLevel();

@@ -3,7 +3,6 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Customer;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.LevelResult;
@@ -38,16 +37,16 @@ public class WorldView extends AbstractWorldView {
 	private static final float TARGET_BURGER_PADDING = 24;
 	private static final float SCROLL_PADDING = 24;
 
-	public WorldView(GameScreen screen, BurgerPartyGame game, World world, TextureAtlas atlas, Skin skin) {
-		super(world.getLevelWorld().getDirName());
+	public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
+		super(game.getAssets(), world.getLevelWorld().getDirName());
 		setFillParent(true);
 		setSpacing(UiUtils.SPACING);
 		mGameScreen = screen;
 		mGame = game;
 		mWorld = world;
-		mAtlas = atlas;
-		mSkin = skin;
-		mCustomerFactory = new CustomerViewFactory(atlas, Gdx.files.internal("customerparts.xml"));
+		mAtlas = mAssets.getTextureAtlas();
+		mSkin = mAssets.getSkin();
+		mCustomerFactory = new CustomerViewFactory(mAtlas, Gdx.files.internal("customerparts.xml"));
 
 		setupCustomers();
 		setupTargetMealView();
@@ -172,10 +171,10 @@ public class WorldView extends AbstractWorldView {
 		mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 		mCustomersLayer.addActor(mBubble);
 
-		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, false);
+		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
 
-		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView);
+		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView, mAssets.getTextureAtlas());
 		mTargetMealScrollPane.setScale(0.5f, 0.5f);
 
 		mBubble.setChild(mTargetMealScrollPane);
@@ -196,7 +195,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupMealView() {
 		scrollTo(0);
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
 		slideInMealView(mMealView);
 	}
 
@@ -244,7 +243,7 @@ public class WorldView extends AbstractWorldView {
 		} else {
 			mTimerDisplay.setColor(Color.RED);
 			mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
-			Kernel.getSoundAtlas().findSound("tick").play();
+			mGame.getAssets().getSoundAtlas().findSound("tick").play();
 		}
 		mTimerDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mTimerDisplay);
@@ -284,7 +283,7 @@ public class WorldView extends AbstractWorldView {
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-		new ScoreFeedbackActor(this, x, y, score);
+		new ScoreFeedbackActor(this, x, y, score, mAssets.getSkin(), mAssets.getAnimScriptLoader());
 		slideDoneMealView(new Runnable() {
 			@Override
 			public void run() {

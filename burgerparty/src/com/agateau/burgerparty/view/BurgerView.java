@@ -2,11 +2,12 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.utils.AnimScript;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,9 +33,11 @@ public class BurgerView extends Group {
 		private BurgerItem mItem;
 	}
 
-	public BurgerView(Burger burger, TextureAtlas atlas) {
+	public BurgerView(Burger burger, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader) {
 		mBurger = burger;
 		mAtlas = atlas;
+		mSoundAtlas = soundAtlas;
+		mAnimScriptLoader = loader;
 		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
 		setWidth(maxWidth);
 
@@ -94,7 +97,7 @@ public class BurgerView extends Group {
 
 	public void addItem(BurgerItem item) {
 		Image image = addItemInternal(item);
-		AnimScript anim = item.getAnimScript();
+		AnimScript anim = item.getAnimScript(mAnimScriptLoader);
 		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
 		image.addAction(Actions.sequence(animAction, addItemAction));
@@ -116,7 +119,7 @@ public class BurgerView extends Group {
 	}
 
 	private void trash() {
-		Kernel.getSoundAtlas().findSound("trash").play();
+		mSoundAtlas.findSound("trash").play();
 		for (Actor actor: mItemActors) {
 			MealView.addTrashActions(actor);
 		}
@@ -173,6 +176,8 @@ public class BurgerView extends Group {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Burger mBurger;
 	private TextureAtlas mAtlas;
+	private SoundAtlas mSoundAtlas;
+	private AnimScriptLoader mAnimScriptLoader;
 	private float mPadding = 0;
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
 }

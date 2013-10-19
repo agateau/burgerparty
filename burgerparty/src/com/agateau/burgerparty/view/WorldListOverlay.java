@@ -23,7 +23,7 @@ public class WorldListOverlay extends Overlay {
 	private static final int CELL_SIZE = 150;
 
 	public WorldListOverlay(BurgerPartyScreen screen, Array<LevelWorld> worlds, int currentIndex) {
-		super(Kernel.getTextureAtlas());
+		super(screen.getGame().getAssets().getTextureAtlas());
 		mScreen = screen;
 		mWorlds = worlds;
 		mCurrentIndex = currentIndex;
@@ -52,11 +52,11 @@ public class WorldListOverlay extends Overlay {
 		if (index == mCurrentIndex) {
 			text = "> " + text + " <";
 		}
-		WorldButton button = new WorldButton(text, Kernel.getSkin());
+		WorldButton button = new WorldButton(text, mScreen.getSkin());
 		button.mIndex = index;
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				Kernel.getSoundAtlas().findSound("click").play();
+				mScreen.getGame().getAssets().getSoundAtlas().findSound("click").play();
 				WorldButton button = (WorldButton)actor;
 				currentIndexChanged.emit(button.mIndex);
 				close();
@@ -67,7 +67,7 @@ public class WorldListOverlay extends Overlay {
 	}
 
 	private void setupWidgets() {
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(mScreen.getGame().getAssets(), "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				close();

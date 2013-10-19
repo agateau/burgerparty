@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.XmlReader;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
-		super(game.getLevelWorld(0).getDirName());
+		super(game.getAssets(), game.getLevelWorld(0).getDirName());
 		mScreen = screen;
 		mLevelWorldIndex = 0;
 		mGame = game;
@@ -49,14 +49,14 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void setupWidgets() {
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(mAssets, "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.showMenu();
 			}
 		});
 
-		ImageButton worldButton = Kernel.createRoundButton("ui/icon-levels");
+		ImageButton worldButton = Kernel.createRoundButton(mAssets, "ui/icon-levels");
 		worldButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				switchWorld();
@@ -72,7 +72,7 @@ public class SandBoxGameView extends AbstractWorldView {
 			mBottomLeftBar.remove();
 			mBottomRightBar.remove();
 		}
-		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder();
+		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
 		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
 		XmlReader.Element config = levelWorld.getConfig();
 		builder.build(config.getChildByName("gdxui"), this);
@@ -129,7 +129,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		mWorld.getBurger().clear();
 		mWorld.getMealExtra().clear();
 		mUndoStack.clear();
-		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), Kernel.getTextureAtlas(), true);
+		mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
 		slideInMealView(mMealView);
 	}
 
@@ -153,7 +153,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		} else {
 			iconName = "ui/inventory-extra";
 		}
-		Drawable drawable = Kernel.getSkin().getDrawable(iconName);
+		Drawable drawable = mGame.getAssets().getSkin().getDrawable(iconName);
 		mSwitchInventoriesButton.getImage().setDrawable(drawable);
 	}
 
@@ -234,7 +234,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void playError() {
-		Kernel.getSoundAtlas().findSound("error").play();
+		mGame.getAssets().getSoundAtlas().findSound("error").play();
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();

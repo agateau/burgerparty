@@ -4,26 +4,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class SoundAtlas {
-	public SoundAtlas(String dir) {
+	public SoundAtlas(AssetManager manager, String dir) {
+		mAssetManager = manager;
 		mDir = dir;
 		if (!mDir.endsWith("/")) {
 			mDir = mDir.concat("/");
 		}
 	}
 
-	public void load(String[] names) {
+	public void preload(String[] names) {
+		mPendingNames = names;
 		for (int i=0, n=names.length; i < n; ++i) {
 			String filename = mDir + names[i];
-			String name = names[i].replaceFirst("\\.[a-z]+$", "");
-			Gdx.app.log("SoundAtlas", "Loading '" + filename + "' as '" + name + "'");
-			Sound sound = Gdx.audio.newSound(Gdx.files.internal(filename));
+			mAssetManager.load(filename, Sound.class);
+		}
+	}
+
+	public void finishLoad() {
+		for (int i=0, n=mPendingNames.length; i < n; ++i) {
+			String filename = mDir + mPendingNames[i];
+			String name = mPendingNames[i].replaceFirst("\\.[a-z]+$", "");
+			Gdx.app.log("SoundAtlas", "Getting " + filename + " as " + name);
+			Sound sound = mAssetManager.get(filename);
 			assert(sound != null);
-			
 			mSoundMap.put(name, sound);
 		}
 	}
@@ -61,5 +70,7 @@ public class SoundAtlas {
 
 	Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
 
+	private AssetManager mAssetManager;
 	private String mDir;
+	private String[] mPendingNames;
 }

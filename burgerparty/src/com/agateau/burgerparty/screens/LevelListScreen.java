@@ -30,8 +30,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private static final float SURPRISE_ROTATE_ANGLE = 5f;
 	private static final float SURPRISE_ROTATE_DURATION = 0.8f;
 
-	public LevelListScreen(BurgerPartyGame game, int worldIndex, TextureAtlas atlas, Skin skin) {
-		super(game, skin);
+	public LevelListScreen(BurgerPartyGame game, int worldIndex) {
+		super(game);
+		TextureAtlas atlas = getTextureAtlas();
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 
@@ -39,7 +40,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock");
 		mSurpriseRegion = atlas.findRegion("ui/surprise");
-		setupWidgets(skin);
+		setupWidgets(getSkin());
 
 		scrollTo(worldIndex);
 	}
@@ -49,7 +50,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		getStage().addActor(mAnchorGroup);
 		mAnchorGroup.setFillParent(true);
 
-		ImageButton backButton = Kernel.createRoundButton("ui/icon-back");
+		ImageButton backButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-back");
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -57,14 +58,14 @@ public class LevelListScreen extends BurgerPartyScreen {
 			}
 		});
 
-		mPreviousButton = Kernel.createRoundButton("ui/icon-left");
+		mPreviousButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-left");
 		mPreviousButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex - 1);
 			}
 		});
 
-		mNextButton = Kernel.createRoundButton("ui/icon-right");
+		mNextButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-right");
 		mNextButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				scrollTo(mGroupIndex + 1);
@@ -157,7 +158,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, surprise, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				Kernel.getSoundAtlas().findSound("click").play();
+				getGame().getAssets().getSoundAtlas().findSound("click").play();
 				LevelButton button = (LevelButton)actor;
 				getGame().startLevel(button.levelWorldIndex, button.levelIndex);
 			}

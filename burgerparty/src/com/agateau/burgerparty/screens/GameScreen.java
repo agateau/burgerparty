@@ -5,17 +5,14 @@ import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
 public class GameScreen extends BurgerPartyScreen {
 	private World mWorld;
 	private WorldView mWorldView;
 
-	public GameScreen(BurgerPartyGame game, Level level, TextureAtlas atlas, Skin skin) {
-		super(game, skin);
+	public GameScreen(BurgerPartyGame game, Level level) {
+		super(game);
 		mWorld = new World(level);
-		mWorldView = new WorldView(this, game, mWorld, atlas, skin);
+		mWorldView = new WorldView(this, game, mWorld);
 		getStage().addActor(mWorldView);
 	}
 

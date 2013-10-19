@@ -23,14 +23,14 @@ public class GameOverOverlay extends Overlay {
 
 		Label label = new Label("Game Over", skin);
 
-		RoundButton tryAgainButton = Kernel.createRoundButton("ui/icon-restart");
+		RoundButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
 		tryAgainButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
-		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel(mGame.getLevelWorldIndex());

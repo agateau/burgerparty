@@ -2,8 +2,8 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.AnimScript;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -47,10 +47,10 @@ public class MealItem {
 		return mName;
 	}
 
-	public AnimScript getAnimScript() {
+	public AnimScript getAnimScript(AnimScriptLoader loader) {
 		if (mAnimScript == null) {
 			assert(!mAnim.isEmpty());
-			mAnimScript = Kernel.getAnimScriptLoader().load(mAnim);
+			mAnimScript = loader.load(mAnim);
 		}
 		return mAnimScript;
 	}
@@ -71,8 +71,7 @@ public class MealItem {
 		return mRow;
 	}
 
-	public static Action createPlayMealItemAction(String name) {
-		SoundAtlas atlas = Kernel.getSoundAtlas();
+	public static Action createPlayMealItemAction(SoundAtlas atlas, String name) {
 		if (atlas.contains("add-item-" + name)) {
 			return atlas.createPlayAction("add-item-" + name);
 		} else {

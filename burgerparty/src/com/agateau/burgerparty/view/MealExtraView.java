@@ -5,6 +5,7 @@ import java.util.HashSet;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.AnimScript;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -34,9 +35,10 @@ public class MealExtraView extends Group {
 		private MealItem mItem;
 	}
 
-	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas) {
+	public MealExtraView(MealExtra mealExtra, TextureAtlas atlas, AnimScriptLoader loader) {
 		mMealExtra = mealExtra;
 		mAtlas = atlas;
+		mAnimScriptLoader = loader;
 
 		mMealExtra.initialized.connect(mHandlers, new Signal0.Handler() {
 			public void handle() {
@@ -82,7 +84,7 @@ public class MealExtraView extends Group {
 			image.setPosition(ITEM1_X, ITEM1_Y);
 			image.setZIndex(0);
 		}
-		AnimScript anim = item.getAnimScript();
+		AnimScript anim = item.getAnimScript(mAnimScriptLoader);
 		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
 		image.addAction(Actions.sequence(animAction, addItemAction));
@@ -149,6 +151,7 @@ public class MealExtraView extends Group {
 
 	private MealExtra mMealExtra;
 	private TextureAtlas mAtlas;
+	private AnimScriptLoader mAnimScriptLoader;
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
 }

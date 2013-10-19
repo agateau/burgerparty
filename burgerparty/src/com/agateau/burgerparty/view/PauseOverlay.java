@@ -36,21 +36,21 @@ public class PauseOverlay extends Overlay {
 
 		Label pausedLabel = new Label("Paused", skin);
 
-		RoundButton resumeButton = Kernel.createRoundButton("ui/icon-play");
+		RoundButton resumeButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-play");
 		resumeButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mWorldView.resume();
 			}
 		});
 
-		RoundButton restartButton = Kernel.createRoundButton("ui/icon-restart");
+		RoundButton restartButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
-		RoundButton selectLevelButton = Kernel.createRoundButton("ui/icon-levels");
+		RoundButton selectLevelButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.selectLevel(mGame.getLevelWorldIndex());

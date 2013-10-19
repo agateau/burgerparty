@@ -4,7 +4,9 @@ import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItem;
+import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.ResizeToFitChildren;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
@@ -21,21 +23,21 @@ public class MealView extends Group implements ResizeToFitChildren {
 	private static final float PLATTER_MEAL_Y = 15f;
 	public static final float MEAL_ITEM_PADDING = 15f;
 
-	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, boolean withPlatter) {
+	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, boolean withPlatter) {
 		if (withPlatter) {
 			mPlatter = new Image(atlas.findRegion("platter"));
 			addActor(mPlatter);
 		}
-		mMealExtraView = new MealExtraView(mealExtra, atlas);
+		mMealExtraView = new MealExtraView(mealExtra, atlas, loader);
 		addActor(mMealExtraView);
-		mBurgerView = new BurgerView(burger, atlas);
+		mBurgerView = new BurgerView(burger, atlas, soundAtlas, loader);
 		addActor(mBurgerView);
 
 		if (withPlatter) {
 			mBurgerView.setPosition(PLATTER_BURGER_X, PLATTER_MEAL_Y);
 		} else {
 			mBurgerView.setPosition(NextBurgerItemArrow.OVERALL_WIDTH, 0);
-			NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView());
+			NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView(), atlas);
 			addActor(arrow);
 		}
 		updateGeometry();

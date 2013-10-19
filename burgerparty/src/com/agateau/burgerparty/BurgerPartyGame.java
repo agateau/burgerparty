@@ -10,6 +10,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
+import com.agateau.burgerparty.screens.LoadingScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
@@ -20,16 +21,16 @@ import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private Skin mSkin;
-	private TextureAtlas mAtlas;
+	private Assets mAssets;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
@@ -38,15 +39,9 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
+		mAssets = new Assets();
 		Gdx.input.setCatchBackKey(true);
-		mAtlas = Kernel.getTextureAtlas();
-		mSkin = Kernel.getSkin();
-
-		setupAnimScriptLoader();
-		loadLevelWorlds();
-		assert(mLevelWorlds.size > 0);
-		loadLevelProgress();
-		showMenu();
+		showLoadingScreen();
 	}
 
 	@Override
@@ -58,16 +53,30 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void resume() {
 		super.resume();
-		Array<TextureAtlas.AtlasRegion> regions = mAtlas.getRegions();
-		Gdx.app.log("BurgerPartyGame", "resume: atlas regions: " + regions.size);
-		Gdx.app.log("BurgerPartyGame", "resume: size of 1st region: " + regions.get(0).originalWidth + "x" + regions.get(0).originalHeight);
+		AssetManager manager = mAssets.getAssetManager();
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager=" + manager);
+		Gdx.app.log("BurgerPartyGame", "resume: assetManager.getProgress()=" + manager.getProgress());
+		if (manager.getQueuedAssets() > 0) {
+			final Screen oldScreen = getScreen();
+			LoadingScreen loadingScreen = new LoadingScreen(manager);
+			loadingScreen.ready.connect(mHandlers, new Signal0.Handler() {
+				@Override
+				public void handle() {
+					setScreen(oldScreen);
+				}
+			});
+		}
 	}
 
 	void setupAnimScriptLoader()
 	{
-		AnimScriptLoader loader = Kernel.getAnimScriptLoader();
-		loader.registerMemberMethod("play", Kernel.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
-		loader.registerStaticMethod("playMealItem", MealItem.class, "createPlayMealItemAction", new StringArgumentDefinition());
+		AnimScriptLoader loader = mAssets.getAnimScriptLoader();
+		loader.registerMemberMethod("play", mAssets.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
+		loader.registerMemberMethod("playMealItem", this, "createPlayMealItemAction", new StringArgumentDefinition());
+	}
+
+	public Action createPlayMealItemAction(String name) {
+		return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
 	}
 
 	private void loadLevelWorlds() {
@@ -108,6 +117,10 @@ public class BurgerPartyGame extends Game {
 			levelWorldIndex++;
 		}
 		Progress.save(handle, lst);
+	}
+
+	public Assets getAssets() {
+		return mAssets;
 	}
 
 	public int getHighScore(int world, int level) {
@@ -189,17 +202,37 @@ public class BurgerPartyGame extends Game {
 		setScreen(new SandBoxGameScreen(this));
 	}
 
+	private void showLoadingScreen() {
+		LoadingScreen screen = new LoadingScreen(mAssets.getAssetManager());
+		screen.ready.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				finishLoad();
+			}
+		});
+		setScreen(screen);
+	}
+
+	private void finishLoad() {
+		mAssets.finishLoad();
+		setupAnimScriptLoader();
+		loadLevelWorlds();
+		assert(mLevelWorlds.size > 0);
+		loadLevelProgress();
+		showMenu();
+	}
+	
 	public void showMenu() {
-		setScreen(new StartScreen(this, mAtlas, mSkin));
+		setScreen(new StartScreen(this));
 	}
 
 	public void selectLevel(int worldIndex) {
-		setScreen(new LevelListScreen(this, worldIndex, mAtlas, mSkin));
+		setScreen(new LevelListScreen(this, worldIndex));
 	}
 	
 	private void doStartLevel() {
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
-		setScreen(new GameScreen(this, level, mAtlas, mSkin));
+		setScreen(new GameScreen(this, level));
 	}
 
 	static private FileHandle getUserWritableFile(String name) {
