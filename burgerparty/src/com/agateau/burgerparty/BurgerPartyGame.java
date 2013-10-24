@@ -15,6 +15,7 @@ import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 
@@ -32,6 +33,7 @@ public class BurgerPartyGame extends Game {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Assets mAssets;
+	private MusicController mMusicController;
 	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
@@ -182,6 +184,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void startLevel(int levelWorldIndex, int levelIndex) {
+		mMusicController.fadeOut();
 		mLevelWorldIndex = levelWorldIndex;
 		mLevelIndex = levelIndex;
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
@@ -200,6 +203,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void startSandBox() {
+		mMusicController.fadeOut();
 		setScreen(new SandBoxGameScreen(this));
 	}
 
@@ -218,7 +222,8 @@ public class BurgerPartyGame extends Game {
 		mAssets.finishLoad();
 		Music music = mAssets.getMusic();
 		music.setLooping(true);
-		music.play();
+		mMusicController = new MusicController(music);
+		mMusicController.play();
 		setupAnimScriptLoader();
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);
@@ -227,10 +232,12 @@ public class BurgerPartyGame extends Game {
 	}
 	
 	public void showMenu() {
+		mMusicController.play();
 		setScreen(new StartScreen(this));
 	}
 
 	public void selectLevel(int worldIndex) {
+		mMusicController.play();
 		setScreen(new LevelListScreen(this, worldIndex));
 	}
 	
