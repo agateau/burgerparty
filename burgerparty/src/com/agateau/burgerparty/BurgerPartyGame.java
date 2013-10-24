@@ -23,6 +23,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Array;
@@ -215,6 +216,9 @@ public class BurgerPartyGame extends Game {
 
 	private void finishLoad() {
 		mAssets.finishLoad();
+		Music music = mAssets.getMusic();
+		music.setLooping(true);
+		music.play();
 		setupAnimScriptLoader();
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);

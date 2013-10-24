@@ -4,6 +4,7 @@ import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -39,6 +40,8 @@ public class Assets {
 			"trash.wav"
 		};
 		mSoundAtlas.preload(names);
+
+		mAssetManager.load("music/music.mp3", Music.class);
 	}
 
 	public void finishLoad() {
@@ -56,6 +59,8 @@ public class Assets {
 				mClickSound.play();
 			}
 		};
+
+		mMusic = mAssetManager.get("music/music.mp3");
 	}
 
 	public TextureAtlas getTextureAtlas() {
@@ -86,11 +91,16 @@ public class Assets {
 		return mClickSound;
 	}
 
+	public Music getMusic() {
+		return mMusic;
+	}
+
 	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
 	SoundAtlas mSoundAtlas;
 	TextureAtlas mTextureAtlas;
 	Skin mSkin;
 	Sound mClickSound;
+	Music mMusic;
 	ChangeListener mClickListener;
 	AssetManager mAssetManager;
 }
