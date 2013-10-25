@@ -58,10 +58,11 @@ public class UiBuilder {
 
 	public <T extends Actor> T getActor(String id) {
 		Actor actor = mActorForId.get(id);
-		assert(actor != null);
+		if (actor == null) {
+			throw new RuntimeException("No actor with id '" + id + "'");
+		}
 		@SuppressWarnings("unchecked")
 		T obj = (T)actor;
-		assert(obj != null);
 		return obj;
 	}
 
