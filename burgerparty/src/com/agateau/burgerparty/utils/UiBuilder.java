@@ -1,10 +1,12 @@
 package com.agateau.burgerparty.utils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.agateau.burgerparty.utils.AnchorGroup.Rule;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,20 +44,8 @@ public class UiBuilder {
 	public void build(XmlReader.Element parentElement, Group parentActor) {
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
-			String name = element.getName();
 			Gdx.app.log("UiBuilder.build", "Parsing " + element);
-			Actor actor = null;
-			if (name.equals("Image")) {
-				actor = createImage(element);
-			} else if (name.equals("ImageButton")) {
-				actor = createImageButton(element);
-			} else if (name.equals("Group")) {
-				actor = createGroup(element);
-			} else if (name.equals("AnchorGroup")) {
-				actor = createAnchorGroup(element);
-			} else {
-				throw new RuntimeException("Unknown UI element type: " + name);
-			}
+			Actor actor = createActorForElement(element);
 			assert(actor != null);
 			applyActorProperties(actor, element, parentActor);
 			String id = element.getAttribute("id", null);
@@ -80,6 +70,20 @@ public class UiBuilder {
 		@SuppressWarnings("unchecked")
 		T obj = (T)actor;
 		return obj;
+	}
+
+	protected Actor createActorForElement(XmlReader.Element element) {
+		String name = element.getName();
+		if (name.equals("Image")) {
+			return createImage(element);
+		} else if (name.equals("ImageButton")) {
+			return createImageButton(element);
+		} else if (name.equals("Group")) {
+			return createGroup(element);
+		} else if (name.equals("AnchorGroup")) {
+			return createAnchorGroup(element);
+		}
+		throw new RuntimeException("Unknown UI element type: " + name);
 	}
 
 	protected Image createImage(XmlReader.Element element) {
