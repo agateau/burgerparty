@@ -228,10 +228,10 @@ public class BurgerPartyGame extends Game {
 		loadLevelWorlds();
 		assert(mLevelWorlds.size > 0);
 		loadLevelProgress();
-		showMenu();
+		showStartScreen();
 	}
 	
-	public void showMenu() {
+	public void showStartScreen() {
 		mMusicController.play();
 		setScreen(new StartScreen(this));
 	}

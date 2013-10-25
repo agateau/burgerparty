@@ -54,7 +54,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showMenu();
+				getGame().showStartScreen();
 			}
 		});
 
@@ -169,7 +169,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 	@Override
 	public void onBackPressed() {
-		getGame().showMenu();
+		getGame().showStartScreen();
 	}
 
 	private void scrollTo(int index) {

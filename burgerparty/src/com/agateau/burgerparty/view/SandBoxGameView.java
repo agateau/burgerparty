@@ -45,14 +45,14 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	public void onBackPressed() {
-		mGame.showMenu();
+		mGame.showStartScreen();
 	}
 
 	private void setupWidgets() {
 		ImageButton backButton = Kernel.createRoundButton(mAssets, "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showMenu();
+				mGame.showStartScreen();
 			}
 		});
 
