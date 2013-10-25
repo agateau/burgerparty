@@ -5,7 +5,7 @@ import com.agateau.burgerparty.utils.UiBuilder;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.utils.XmlReader;
 
-class BurgerPartyUiBuilder extends UiBuilder {
+public class BurgerPartyUiBuilder extends UiBuilder {
 	public BurgerPartyUiBuilder(Assets assets) {
 		super(assets.getTextureAtlas(), assets.getSkin());
 		mAssets = assets;
