@@ -53,6 +53,10 @@
         score: {
             font: main-font-small,
             fontColor: white
+        },
+        world-button-text: {
+            font: main-font,
+            fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
@@ -86,6 +90,9 @@
             down: levels/2/button-down,
             up: levels/2/button,
             pressedOffsetY: -1
+        },
+        world-button: {
+            up: ui/world-button
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {

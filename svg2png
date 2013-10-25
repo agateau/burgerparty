@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+svg=$1
+id=$2
+
+inkscape --export-id $id --without-gui --file $svg --export-png $id.png

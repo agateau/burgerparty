@@ -373,21 +373,28 @@ filter: Nearest,Linear
 repeat: none
 lcd-font
   rotate: false
-  xy: 1, 77
+  xy: 1, 361
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 platter
   rotate: false
-  xy: 1, 19
+  xy: 1, 303
   size: 538, 56
   orig: 538, 56
   offset: 0, 0
   index: -1
-overlay-bg
+sandbox-preview
   rotate: false
   xy: 1, 1
+  size: 128, 300
+  orig: 128, 300
+  offset: 0, 0
+  index: -1
+overlay-bg
+  rotate: false
+  xy: 515, 857
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -814,6 +821,15 @@ ui/icon-next-item
   orig: 34, 32
   offset: 0, 0
   index: -1
+ui/world-button
+  rotate: false
+  xy: 735, 223
+  size: 32, 30
+  split: 12, 12, 10, 12
+  pad: 11, 11, 9, 11
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
 ui/icon-left
   rotate: false
   xy: 803, 679
@@ -837,7 +853,7 @@ ui/icon-right
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 735, 225
+  xy: 65, 8
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
@@ -887,37 +903,44 @@ levels/1/newitem-bg
   orig: 800, 480
   offset: 0, 0
   index: -1
+levels/1/preview
+  rotate: false
+  xy: 803, 663
+  size: 128, 300
+  orig: 128, 300
+  offset: 0, 0
+  index: -1
 levels/1/bottom-left-button-bar
   rotate: false
-  xy: 803, 794
+  xy: 803, 492
   size: 88, 169
   orig: 88, 169
   offset: 0, 0
   index: -1
 levels/1/shelf
   rotate: false
-  xy: 893, 873
+  xy: 803, 400
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 levels/1/bottom-right-button-bar
   rotate: false
-  xy: 803, 704
+  xy: 933, 875
   size: 88, 88
   orig: 88, 88
   offset: 0, 0
   index: -1
 levels/1/button-down
   rotate: false
-  xy: 893, 791
+  xy: 803, 318
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/1/button
   rotate: false
-  xy: 803, 622
+  xy: 933, 793
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -960,37 +983,44 @@ levels/2/newitem-bg
   orig: 800, 480
   offset: 0, 0
   index: -1
+levels/2/preview
+  rotate: false
+  xy: 803, 663
+  size: 128, 300
+  orig: 128, 300
+  offset: 0, 0
+  index: -1
 levels/2/bottom-left-button-bar
   rotate: false
-  xy: 803, 776
+  xy: 803, 474
   size: 107, 187
   orig: 107, 187
   offset: 0, 0
   index: -1
 levels/2/bottom-right-button-bar
   rotate: false
-  xy: 803, 672
+  xy: 803, 370
   size: 106, 102
   orig: 106, 102
   offset: 0, 0
   index: -1
 levels/2/shelf
   rotate: false
-  xy: 912, 873
+  xy: 803, 278
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
 levels/2/button-down
   rotate: false
-  xy: 803, 590
+  xy: 933, 883
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/2/button
   rotate: false
-  xy: 912, 791
+  xy: 803, 196
   size: 80, 80
   orig: 80, 80
   offset: 0, 0

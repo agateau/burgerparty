@@ -2,27 +2,20 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.utils.GridGroup;
+import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
-public class WorldListView extends GridGroup {
-	private static final int COL_COUNT = 2;
-	private static final int CELL_SIZE = 150;
-
+public class WorldListView extends HorizontalGroup {
 	public Signal1<Integer> currentIndexChanged = new Signal1<Integer>();
 
 	public WorldListView(Array<LevelWorld> worlds, int currentIndex, Assets assets) {
 		mAssets = assets;
 		mCurrentIndex = currentIndex;
 		setSpacing(UiUtils.SPACING);
-		setColumnCount(COL_COUNT);
-		setCellSize(CELL_SIZE, CELL_SIZE);
 
 		int idx = 0;
 		for (LevelWorld world: worlds) {
@@ -32,9 +25,14 @@ public class WorldListView extends GridGroup {
 		}
 	}
 
-	private static class WorldButton extends TextButton {
-		public WorldButton(String text, Skin skin) {
-			super(text, skin, "level-button");
+	public void addActor(Actor actor) {
+		super.addActor(actor);
+		setWidth(getPrefWidth());
+	}
+
+	private static class WorldButton extends WorldBaseButton {
+		public WorldButton(String text, String dirName, Assets assets) {
+			super(text, dirName + "preview", assets);
 		}
 		public int mIndex;
 	}
@@ -44,7 +42,7 @@ public class WorldListView extends GridGroup {
 		if (index == mCurrentIndex) {
 			text = "> " + text + " <";
 		}
-		WorldListView.WorldButton button = new WorldButton(text, mAssets.getSkin());
+		WorldListView.WorldButton button = new WorldButton(text, world.getDirName(), mAssets);
 		button.mIndex = index;
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {

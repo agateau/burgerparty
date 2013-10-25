@@ -7,6 +7,7 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
+import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -28,6 +29,17 @@ public class WorldListScreen extends BurgerPartyScreen {
 		getGame().showStartScreen();
 	}
 
+	private class SandBoxButton extends WorldBaseButton {
+		public SandBoxButton() {
+			super("", "sandbox-preview", getGame().getAssets());
+			addListener(new ChangeListener() {
+				public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+					getGame().startSandBox();
+				}
+			});
+		}
+	}
+
 	private class Builder extends BurgerPartyUiBuilder {
 		public Builder(Assets assets) {
 			super(assets);
@@ -36,7 +48,9 @@ public class WorldListScreen extends BurgerPartyScreen {
 		@Override
 		protected Actor createActorForElement(XmlReader.Element element) {
 			if (element.getName().equals("WorldListView")) {
-				return new WorldListView(getGame().getLevelWorlds(), -1, getGame().getAssets());
+				WorldListView view = new WorldListView(getGame().getLevelWorlds(), -1, getGame().getAssets());
+				view.addActor(new SandBoxButton());
+				return view;
 			}
 			return super.createActorForElement(element);
 		}
@@ -52,12 +66,6 @@ public class WorldListScreen extends BurgerPartyScreen {
 		builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				onBackPressed();
-			}
-		});
-
-		builder.<ImageButton>getActor("sandBoxButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().startSandBox();
 			}
 		});
 

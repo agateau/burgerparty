@@ -5,11 +5,6 @@
             bottomLeft="root.bottomLeft 20 20"
             imageName="ui/icon-back"/>
 
-        <ImageButton id="sandBoxButton"
-            style="round-button"
-            bottomRight="root.bottomRight -20 20"
-            imageName="ui/icon-play"/>
-
         <WorldListView id="worldListView"
             topCenter="root.topCenter 0 -40"
             />
