@@ -56,10 +56,13 @@ public class UiBuilder {
 		}
 	}
 
-	public Actor getActor(String id) {
+	public <T extends Actor> T getActor(String id) {
 		Actor actor = mActorForId.get(id);
 		assert(actor != null);
-		return actor;
+		@SuppressWarnings("unchecked")
+		T obj = (T)actor;
+		assert(obj != null);
+		return obj;
 	}
 
 	protected Image createImage(XmlReader.Element element) {

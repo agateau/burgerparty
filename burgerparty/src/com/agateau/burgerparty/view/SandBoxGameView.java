@@ -77,7 +77,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		XmlReader.Element config = levelWorld.getConfig();
 		builder.build(config.getChildByName("gdxui"), this);
 
-		mSwitchInventoriesButton = (ImageButton)builder.getActor("switchInventoriesButton");
+		mSwitchInventoriesButton = builder.getActor("switchInventoriesButton");
 		updateSwitchInventoriesButton();
 		mSwitchInventoriesButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -85,23 +85,23 @@ public class SandBoxGameView extends AbstractWorldView {
 			}
 		});
 
-		mUndoButton = (ImageButton)builder.getActor("undoButton");
+		mUndoButton = builder.getActor("undoButton");
 		mUndoButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				undo();
 			}
 		});
 
-		mBottomLeftBar = (Group)builder.getActor("bottomLeftButtonBar");
+		mBottomLeftBar = builder.getActor("bottomLeftButtonBar");
 		addRule(mBottomLeftBar, Anchor.BOTTOM_LEFT, mInventoryView, Anchor.TOP_LEFT);
 
-		mDeliverButton = (ImageButton)builder.getActor("deliverButton");
+		mDeliverButton = builder.getActor("deliverButton");
 		mDeliverButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				deliver();
 			}
 		});
-		mBottomRightBar = (Group)builder.getActor("bottomRightButtonBar");
+		mBottomRightBar = builder.getActor("bottomRightButtonBar");
 		addRule(mBottomRightBar, Anchor.BOTTOM_RIGHT, mInventoryView, Anchor.TOP_RIGHT);
 	}
 
