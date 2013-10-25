@@ -23,6 +23,22 @@ public class UiBuilder {
 		mSkin = skin;
 	}
 
+	public void build(FileHandle handle) {
+		XmlReader reader = new XmlReader();
+		XmlReader.Element element = null;
+		try {
+			element = reader.parse(handle);
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to decode XML from " + handle.path());
+		}
+		assert(element != null);
+		build(element);
+	}
+
+	public void build(XmlReader.Element parentElement) {
+		build(parentElement, null);
+	}
+
 	public void build(XmlReader.Element parentElement, Group parentActor) {
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
@@ -107,10 +123,12 @@ public class UiBuilder {
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
-		parentActor.addActor(actor);
 		AnchorGroup anchorGroup = null;
-		if (parentActor instanceof AnchorGroup) {
-			anchorGroup = (AnchorGroup)parentActor;
+		if (parentActor != null) {
+			parentActor.addActor(actor);
+			if (parentActor instanceof AnchorGroup) {
+				anchorGroup = (AnchorGroup)parentActor;
+			}
 		}
 		String attr = element.getAttribute("x", "");
 		if (!attr.isEmpty()) {
