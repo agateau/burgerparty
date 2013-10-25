@@ -10,6 +10,7 @@ public class HorizontalGroup extends WidgetGroup {
 	private boolean mSizeInvalid = true;
 	private float mPrefWidth, mPrefHeight;
 	private int mAlignment = Align.top;
+	private float mSpacing = 0;
 
 	public void invalidate() {
 		super.invalidate();
@@ -18,9 +19,9 @@ public class HorizontalGroup extends WidgetGroup {
 
 	private void computeSize() {
 		mSizeInvalid = false;
-		mPrefWidth = 0;
-		mPrefHeight = 0;
 		SnapshotArray<Actor> children = getChildren();
+		mPrefWidth = mSpacing * Math.max(children.size - 1, 0);
+		mPrefHeight = 0;
 		for (int i = 0, n = children.size; i < n; i++) {
 			Actor child = children.get(i);
 			if (child instanceof Layout) {
@@ -58,7 +59,7 @@ public class HorizontalGroup extends WidgetGroup {
 				y = (groupHeight - height) / 2;
 			}
 			child.setBounds(x, y, width, height);
-			x += width;
+			x += width + mSpacing;
 		}
 	}
 
@@ -74,5 +75,17 @@ public class HorizontalGroup extends WidgetGroup {
 			computeSize();
 		}
 		return mPrefHeight;
+	}
+
+	public float getSpacing() {
+		return mSpacing;
+	}
+
+	public void setSpacing(float spacing) {
+		if (mSpacing == spacing) {
+			return;
+		}
+		mSpacing = spacing;
+		mSizeInvalid = true;
 	}
 }
