@@ -14,6 +14,7 @@ import com.agateau.burgerparty.screens.LoadingScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
+import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Signal0;
@@ -230,7 +231,11 @@ public class BurgerPartyGame extends Game {
 		loadLevelProgress();
 		showStartScreen();
 	}
-	
+
+	public void showWorldListScreen() {
+		setScreen(new WorldListScreen(this));
+	}
+
 	public void showStartScreen() {
 		mMusicController.play();
 		setScreen(new StartScreen(this));

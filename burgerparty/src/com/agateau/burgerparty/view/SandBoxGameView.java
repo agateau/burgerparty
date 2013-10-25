@@ -52,7 +52,7 @@ public class SandBoxGameView extends AbstractWorldView {
 		ImageButton backButton = Kernel.createRoundButton(mAssets, "ui/icon-back");
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showStartScreen();
+				mGame.showWorldListScreen();
 			}
 		});
 

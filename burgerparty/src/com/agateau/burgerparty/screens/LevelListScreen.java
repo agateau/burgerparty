@@ -20,10 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Array;
 
 public class LevelListScreen extends BurgerPartyScreen {
-	private static final float ANIMATION_DURATION = 0.4f;
 	private static final int COL_COUNT = 4;
 	private static final float CELL_SIZE = 130;
 
@@ -40,12 +38,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock");
 		mSurpriseRegion = atlas.findRegion("ui/surprise");
-		setupWidgets(getSkin());
-
-		scrollTo(worldIndex);
+		setupWidgets(getSkin(), worldIndex);
 	}
 
-	private void setupWidgets(Skin skin) {
+	private void setupWidgets(Skin skin, int worldIndex) {
 		mAnchorGroup.setSpacing(UiUtils.SPACING);
 		getStage().addActor(mAnchorGroup);
 		mAnchorGroup.setFillParent(true);
@@ -54,34 +50,12 @@ public class LevelListScreen extends BurgerPartyScreen {
 		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
 		backButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showStartScreen();
+				onBackPressed();
 			}
 		});
 
-		mPreviousButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-left");
-		mPreviousButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				scrollTo(mGroupIndex - 1);
-			}
-		});
-
-		mNextButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-right");
-		mNextButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				scrollTo(mGroupIndex + 1);
-			}
-		});
-
-		for (int levelWorldIndex = 0; levelWorldIndex < getGame().getLevelWorldCount(); ++levelWorldIndex) {
-			GridGroup gridGroup = createLevelButtonGridGroup(levelWorldIndex, skin);
-			gridGroup.setVisible(false);
-			mAnchorGroup.addActor(gridGroup);
-			mGridGroups.add(gridGroup);
-		}
-
-		// Add buttons after creating the grids so that buttons are above grids
-		mAnchorGroup.addRule(mPreviousButton, Anchor.CENTER_LEFT, mAnchorGroup, Anchor.CENTER_LEFT, 1, 0);
-		mAnchorGroup.addRule(mNextButton, Anchor.CENTER_RIGHT, mAnchorGroup, Anchor.CENTER_RIGHT, -1, 0);
+		GridGroup gridGroup = createLevelButtonGridGroup(worldIndex, skin);
+		mAnchorGroup.addRule(gridGroup, Anchor.TOP_CENTER, mAnchorGroup, Anchor.TOP_CENTER, 0, -1);
 	}
 
 	private GridGroup createLevelButtonGridGroup(int levelWorldIndex, Skin skin) {
@@ -169,49 +143,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 	@Override
 	public void onBackPressed() {
-		getGame().showStartScreen();
-	}
-
-	private void scrollTo(int index) {
-		assert(index >= 0);
-		assert(index < getGame().getLevelWorldCount());
-
-		GridGroup newGroup = mGridGroups.get(index);
-		newGroup.setVisible(true);
-		int oldIndex = mGroupIndex;
-		mGroupIndex = index;
-		if (oldIndex >= 0) {
-			float deltaX = getStage().getWidth() * (mGroupIndex < oldIndex ? 1 : -1);
-
-			GridGroup oldGroup = mGridGroups.get(oldIndex);
-			mAnchorGroup.removeRulesForActor(oldGroup);
-			oldGroup.addAction(Actions.moveBy(deltaX, 0, ANIMATION_DURATION, Interpolation.sineIn));
-
-			newGroup.setPosition(oldGroup.getX() - deltaX, oldGroup.getY());
-			newGroup.addAction(
-				Actions.sequence(
-					Actions.moveBy(deltaX, 0, ANIMATION_DURATION, Interpolation.sineIn),
-					Actions.run(new Runnable() {
-						@Override
-						public void run() {
-							setCurrentGridGroupAnchorRule();
-						}
-					})
-				)
-			);
-		} else {
-			setCurrentGridGroupAnchorRule();
-		}
-		updateButtons();
-	}
-
-	private void setCurrentGridGroupAnchorRule() {
-		mAnchorGroup.addRule(mGridGroups.get(mGroupIndex), Anchor.TOP_CENTER, mAnchorGroup, Anchor.TOP_CENTER, 0, -1);
-	}
-
-	private void updateButtons() {
-		mPreviousButton.setVisible(mGroupIndex > 0);
-		mNextButton.setVisible(mGroupIndex < getGame().getLevelWorldCount() - 1);
+		getGame().showWorldListScreen();
 	}
 
 	private TextureRegion mStarOff;
@@ -220,10 +152,4 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private TextureRegion mSurpriseRegion;
 
 	private AnchorGroup mAnchorGroup = new AnchorGroup();
-	private Array<GridGroup> mGridGroups = new Array<GridGroup>();
-
-	private ImageButton mPreviousButton;
-	private ImageButton mNextButton;
-
-	private int mGroupIndex = -1;
 }
