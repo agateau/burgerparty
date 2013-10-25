@@ -236,7 +236,7 @@ public class BurgerPartyGame extends Game {
 		setScreen(new StartScreen(this));
 	}
 
-	public void selectLevel(int worldIndex) {
+	public void showLevelListScreen(int worldIndex) {
 		mMusicController.play();
 		setScreen(new LevelListScreen(this, worldIndex));
 	}

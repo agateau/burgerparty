@@ -32,7 +32,7 @@ public class StartScreen extends BurgerPartyScreen {
 		ImageTextButton normalStartButton = Kernel.createTextButton(getGame().getAssets(), "Start", "ui/icon-play");
 		normalStartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().selectLevel(0);
+				getGame().showLevelListScreen(0);
 			}
 		});
 

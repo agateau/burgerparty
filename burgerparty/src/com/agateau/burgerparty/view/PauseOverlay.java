@@ -53,7 +53,7 @@ public class PauseOverlay extends Overlay {
 		RoundButton selectLevelButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.selectLevel(mGame.getLevelWorldIndex());
+				mGame.showLevelListScreen(mGame.getLevelWorldIndex());
 			}
 		});
 

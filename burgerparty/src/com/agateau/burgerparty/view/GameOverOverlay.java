@@ -33,7 +33,7 @@ public class GameOverOverlay extends Overlay {
 		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.selectLevel(mGame.getLevelWorldIndex());
+				mGame.showLevelListScreen(mGame.getLevelWorldIndex());
 			}
 		});
 
@@ -49,6 +49,6 @@ public class GameOverOverlay extends Overlay {
 
 	@Override
 	public void onBackPressed() {
-		mGame.selectLevel(mGame.getLevelWorldIndex());
+		mGame.showLevelListScreen(mGame.getLevelWorldIndex());
 	}
 }
