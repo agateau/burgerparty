@@ -6,6 +6,8 @@ Smoke test
 
 Run unit tests
 
+Update NEWS
+
 Commit
 
 Tag:

@@ -1,3 +1,11 @@
+# 0.5 - 2013-10-27
+
+- Reworked burger scrolling: target burgers scroll in their bubble now instead of scrolling the whole view
+- Sand box: use proper icons and world-specific buttons
+- Hopefully fixed black screen on resume
+- Added (early version of) music in menu screens
+- Reworked menu screens: only one play button, then player picks either a world or the sand box mode
+
 # 0.4 - 2013-10-04
 
 - Added 'create your own burger' mode
