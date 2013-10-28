@@ -1,5 +1,15 @@
 package com.agateau.burgerparty.utils;
 
+import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -66,5 +76,39 @@ public class UiUtils {
 		matrix.scale(actor.getScaleX(), actor.getScaleY());
 		matrix.rotate(actor.getRotation());
 		return matrix;
+	}
+
+	public static Pixmap getPixmap(int x, int y, int w, int h) {
+		Gdx.gl.glPixelStorei(GL10.GL_PACK_ALIGNMENT, 1);
+
+		final Pixmap pixmap = new Pixmap(w, h, Format.RGBA8888);
+		ByteBuffer pixels = pixmap.getPixels();
+		Gdx.gl.glReadPixels(x, y, w, h, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, pixels);
+
+		final int numBytes = w * h * 4;
+		byte[] lines = new byte[numBytes];
+
+		final int numBytesPerLine = w * 4;
+		for (int i = 0; i < h; i++) {
+			pixels.position((h - i - 1) * numBytesPerLine);
+			pixels.get(lines, i * numBytesPerLine, numBytesPerLine);
+		}
+		pixels.clear();
+		pixels.put(lines);
+
+		return pixmap;
+	}
+
+	public static String saveScreenshot() {
+		Pixmap pix = getPixmap(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd-HHmmss");
+		String name = format.format(date) + ".png";
+		FileHandle handle = Gdx.files.external(name);
+
+		PixmapIO.writePNG(handle, pix);
+		pix.dispose();
+		return handle.path();
 	}
 }
