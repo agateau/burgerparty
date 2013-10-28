@@ -11,15 +11,14 @@ import com.agateau.burgerparty.model.Progress;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.LoadingScreen;
-import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.NewItemScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
+import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
-
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
