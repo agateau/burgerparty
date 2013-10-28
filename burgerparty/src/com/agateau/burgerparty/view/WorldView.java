@@ -279,7 +279,7 @@ public class WorldView extends AbstractWorldView {
 
 	private void onMealFinished(World.Score score) {
 		scrollTo(0);
-		mActiveCustomerView.getCustomer().setState(Customer.State.SERVED);
+		mActiveCustomerView.getCustomer().markServed();
 		updateScoreDisplay();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
@@ -305,7 +305,7 @@ public class WorldView extends AbstractWorldView {
 		setupMealView();
 		mInventoryView.setInventory(mWorld.getBurgerInventory());
 		mActiveCustomerView = mWaitingCustomerViews.removeIndex(0);
-		mActiveCustomerView.getCustomer().setState(Customer.State.ACTIVE);
+		mActiveCustomerView.getCustomer().markActive(mWorld.getTargetComplexity());
 		updateCustomerPositions();
 	}
 

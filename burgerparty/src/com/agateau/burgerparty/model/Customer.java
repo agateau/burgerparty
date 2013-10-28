@@ -1,9 +1,13 @@
 package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.utils.Signal0;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 
 public class Customer {
+	private static final float MOOD_MIN_MS = 0.5f;
+	private static final float MODD_MS_PER_ITEM = 0.8f;
+
 	public Signal0 moodChanged = new Signal0();
 
 	public enum Mood {
@@ -66,20 +70,18 @@ public class Customer {
 		return mState;
 	}
 
-	public void setState(State state) {
-		assert(state != State.WAITING);
-		if (state == State.ACTIVE) {
-			assert(mState == State.WAITING);
-			mState = state;
-			scheduleMoodChange();
-			return;
-		}
-		if (state == State.SERVED) {
-			assert(mState == State.ACTIVE);
-			mState = state;
-			mMoodTimer.stop();
-			return;
-		}
+	public void markActive(int itemCount) {
+		assert(mState == State.WAITING);
+		mState = State.ACTIVE;
+		mMoodDelay = MOOD_MIN_MS + itemCount * MODD_MS_PER_ITEM;
+		Gdx.app.log("Customer.markActive", "itemCount=" + itemCount + " => delay=" + (mMoodDelay * 1000));
+		scheduleMoodChange();
+	}
+
+	public void markServed() {
+		assert(mState == State.ACTIVE);
+		mState = State.SERVED;
+		mMoodTimer.stop();
 	}
 
 	public void pause() {
@@ -103,7 +105,7 @@ public class Customer {
 			public void run() {
 				degradeMood();
 			}
-		}, MOOD_CHANGE_DELAY);
+		}, mMoodDelay);
 	}
 	
 	private void degradeMood() {
@@ -118,9 +120,8 @@ public class Customer {
 	}
 
 	private String mType;
+	private float mMoodDelay;
 	private Mood mMood = Mood.HAPPY;
 	private State mState = State.WAITING;
 	private Timer mMoodTimer = new Timer();
-
-	private static final float MOOD_CHANGE_DELAY = 5f;
 }

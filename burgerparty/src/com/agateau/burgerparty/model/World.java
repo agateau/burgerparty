@@ -7,9 +7,11 @@ import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.ConnectionManager;
+import com.agateau.burgerparty.utils.Counter;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -144,6 +146,10 @@ public class World {
 		return new LevelResult(mLevel, mScore, mRemainingSeconds);
 	}
 
+	public int getTargetComplexity() {
+		return mTargetBurger.getItems().size() + mTargetMealExtra.getItems().size();
+	}
+
 	public void start() {
 		mRemainingSeconds = mLevel.definition.duration;
 		Timer.Task task = new Timer.Task() {
@@ -171,6 +177,8 @@ public class World {
 	}
 
 	private void generateTarget() {
+		mItemAddedCounter.start();
+		mMealDoneCounter.start();
 		generateTargetBurger();
 		generateTargetMealExtra();
 	}
@@ -210,6 +218,7 @@ public class World {
 	}
 
 	private void onBurgerItemAdded() {
+		restartItemTimer();
 		if (mIsTrashing) {
 			// We reach this point when an item i2 was added right after a bad item i1:
 			// i1 was spotted and trashing was started but i2 was already being added and
@@ -235,6 +244,7 @@ public class World {
 	}
 
 	private void onMealItemAdded(MealItem item) {
+		restartItemTimer();
 		if (mIsTrashing) {
 			mMealExtra.clear();
 			return;
@@ -257,6 +267,7 @@ public class World {
 	}
 
 	private void onMealFinished() {
+		Gdx.app.log("World", "Meal done in " + mMealDoneCounter.restart() + "ms");
 		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
@@ -299,6 +310,12 @@ public class World {
 		mealFinished.emit(score);
 	}
 
+	private void restartItemTimer() {
+		Gdx.app.log("World", "Item added in " + mItemAddedCounter.restart() + "ms");
+	}
+
 	private ConnectionManager mMealConnections = new ConnectionManager();
 	private BurgerGenerator mBurgerGenerator;
+	private Counter mItemAddedCounter = new Counter();
+	private Counter mMealDoneCounter = new Counter();
 }
