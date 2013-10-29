@@ -95,31 +95,12 @@ public class BurgerPartyGame extends Game {
 		if (!handle.exists()) {
 			return;
 		}
-		Array<Progress.Item> lst = Progress.load(handle);
-		for(Progress.Item item: lst) {
-			Level level = mLevelWorlds.get(item.levelWorld - 1).getLevel(item.level - 1);
-			level.score = item.score;
-		}
+		Progress.load(handle, mLevelWorlds);
 	}
 
 	private void saveLevelProgress() {
 		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
-		Array<Progress.Item> lst = new Array<Progress.Item>();
-		int levelWorldIndex = 0;
-		for (LevelWorld world: mLevelWorlds) {
-			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
-				Level level = world.getLevel(levelIndex);
-				if (level.score > -1) {
-					Progress.Item item = new Progress.Item();
-					item.levelWorld = levelWorldIndex + 1;
-					item.level = levelIndex + 1;
-					item.score = level.score;
-					lst.add(item);
-				}
-			}
-			levelWorldIndex++;
-		}
-		Progress.save(handle, lst);
+		Progress.save(handle, mLevelWorlds);
 	}
 
 	public Assets getAssets() {

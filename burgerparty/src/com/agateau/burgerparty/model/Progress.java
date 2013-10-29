@@ -9,51 +9,58 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
 public class Progress {
-	public static class Item {
-		public int levelWorld;
-		public int level;
-		public int score = -1; // -1 == Locked
-	}
-
-	public static Array<Item> load(FileHandle handle) {
-		Array<Item> lst = new Array<Item>();
+	public static void load(FileHandle handle, Array<LevelWorld> worlds) {
 		XmlReader reader = new XmlReader();
 		XmlReader.Element root = null;
 		try {
 			root = reader.parse(handle);
 		} catch (IOException e) {
 			Gdx.app.log("Progress.load", "Failed to load progress from " + handle.path() + ". Exception: " + e.toString());
-			return lst;
+			return;
 		}
 		if (root == null) {
 			Gdx.app.log("Progress.load", "Failed to load progress from " + handle.path() + ". No root XML element found.");
-			return lst;
+			return;
 		}
-		for(int idx = 0; idx < root.getChildCount(); ++idx) {
-			XmlReader.Element element = root.getChild(idx);
-			Item item = new Item();
-			item.levelWorld = element.getIntAttribute("world", 1);
-			item.level = element.getIntAttribute("level");
-			item.score = element.getIntAttribute("score", -1);
-			lst.add(item);
-		}
-		return lst;
+		load(root, worlds);
 	}
 
-	public static void save(FileHandle handle, Array<Item> lst) {
+	public static void load(XmlReader.Element root, Array<LevelWorld> worlds) {
+		for(int idx = 0; idx < root.getChildCount(); ++idx) {
+			XmlReader.Element element = root.getChild(idx);
+			int worldIndex = element.getIntAttribute("world", 1) - 1;
+			int levelIndex = element.getIntAttribute("level") - 1;
+			int score = element.getIntAttribute("score", -1);
+			Level level = worlds.get(worldIndex).getLevel(levelIndex);
+			level.score = score;
+		}
+	}
+
+	public static void save(FileHandle handle, Array<LevelWorld> worlds) {
 		XmlWriter writer = new XmlWriter(handle.writer(false));
+		save(writer, worlds);
+	}
+
+	public static void save(XmlWriter writer, Array<LevelWorld> worlds) {
 		try {
 			XmlWriter root = writer.element("progress");
-			for (Item item: lst) {
-				root.element("item")
-					.attribute("world", item.levelWorld)
-					.attribute("level", item.level)
-					.attribute("score", item.score)
-				.pop();
+			int worldIndex = 0;
+			for (LevelWorld world: worlds) {
+				for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+					Level level = world.getLevel(levelIndex);
+					if (level.score > -1) {
+						root.element("item")
+							.attribute("world", worldIndex + 1)
+							.attribute("level", levelIndex + 1)
+							.attribute("score", level.score)
+						.pop();
+					}
+				}
+				worldIndex++;
 			}
 			writer.close();
 		} catch (IOException e) {
-			Gdx.app.log("Progress.save", "Failed to save progress to " + handle.path() + ". Exception: " + e.toString());
+			Gdx.app.log("Progress.save", "Failed to save progress. Exception: " + e.toString());
 		}
 	}
 
