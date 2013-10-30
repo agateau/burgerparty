@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.agateau.burgerparty.utils.AnchorGroup.Rule;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -26,6 +25,14 @@ public class UiBuilder {
 	}
 
 	public void build(FileHandle handle) {
+		build(handle, null);
+	}
+
+	public void build(XmlReader.Element parentElement) {
+		build(parentElement, null);
+	}
+
+	public void build(FileHandle handle, Group parentActor) {
 		XmlReader reader = new XmlReader();
 		XmlReader.Element element = null;
 		try {
@@ -34,17 +41,12 @@ public class UiBuilder {
 			throw new RuntimeException("Failed to decode XML from " + handle.path());
 		}
 		assert(element != null);
-		build(element);
-	}
-
-	public void build(XmlReader.Element parentElement) {
-		build(parentElement, null);
+		build(element, parentActor);
 	}
 
 	public void build(XmlReader.Element parentElement, Group parentActor) {
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
-			Gdx.app.log("UiBuilder.build", "Parsing " + element);
 			Actor actor = createActorForElement(element);
 			assert(actor != null);
 			applyActorProperties(actor, element, parentActor);
@@ -55,7 +57,6 @@ public class UiBuilder {
 				}
 				mActorForId.put(id, actor);
 			}
-			Gdx.app.log("UiBuilder.build", "Actor: " + actor);
 			if (actor instanceof Group) {
 				build(element, (Group)actor);
 			}
