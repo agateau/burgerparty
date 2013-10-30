@@ -36,6 +36,11 @@ public class Level {
 		private MealItem mNewItem = null;
 	}
 
+	public Level(LevelWorld world, String fileName) {
+		mLevelWorld = world;
+		mFileName = fileName;
+	}
+
 	public Definition definition = new Definition();
 	public int score = LOCKED_SCORE;
 
@@ -76,9 +81,7 @@ public class Level {
 		if (root == null) {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
-		Level level = new Level();
-		level.mFileName = handle.path();
-		level.mLevelWorld = levelWorld;
+		Level level = new Level(levelWorld, handle.path());
 		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
 		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
 		level.definition.duration = root.getIntAttribute("duration");
