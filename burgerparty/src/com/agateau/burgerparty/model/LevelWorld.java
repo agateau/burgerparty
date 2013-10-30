@@ -1,7 +1,5 @@
 package com.agateau.burgerparty.model;
 
-import java.util.Set;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -18,12 +16,6 @@ public class LevelWorld {
 			}
 			Gdx.app.log("LevelWorld", "levelFile=" + levelFile);
 			mLevels.add(Level.fromXml(this, levelFile));
-		}
-	}
-
-	public void checkNewItems(Set<MealItem> knownItems) {
-		for(Level level: mLevels) {
-			level.checkNewItems(knownItems);
 		}
 	}
 

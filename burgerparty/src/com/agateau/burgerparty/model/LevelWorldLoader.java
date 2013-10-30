@@ -32,7 +32,10 @@ public class LevelWorldLoader {
 			knownItems.add(item);
 		}
 		for (LevelWorld world: worlds) {
-			world.checkNewItems(knownItems);
+			for(int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
+				Level level = world.getLevel(idx);
+				level.checkNewItems(knownItems);
+			}
 		}
 	}
 }
