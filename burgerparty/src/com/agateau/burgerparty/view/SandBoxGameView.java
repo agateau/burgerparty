@@ -15,6 +15,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,7 +25,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.XmlReader;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
@@ -74,8 +74,8 @@ public class SandBoxGameView extends AbstractWorldView {
 		}
 		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
 		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
-		XmlReader.Element config = levelWorld.getConfig();
-		builder.build(config.getChildByName("gdxui"), this);
+		FileHandle handle = Gdx.files.internal(levelWorld.getDirName() + "/sandbox.gdxui");
+		builder.build(handle, this);
 
 		mSwitchInventoriesButton = builder.getActor("switchInventoriesButton");
 		updateSwitchInventoriesButton();

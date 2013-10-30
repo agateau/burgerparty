@@ -1,0 +1,21 @@
+<gdxui>
+    <AnchorGroup id="bottomLeftButtonBar">
+        <Image x="-5" y="8" id="bottomLeftBg" name="levels/2/bottom-left-button-bar"/>
+        <ImageButton id="switchInventoriesButton"
+            bottomLeft="bottomLeftBg.bottomLeft 9 11"
+            width="80" height="80"
+            imageColor="703002ff" style="level2-hud-button"/>
+        <ImageButton id="undoButton"
+            bottomLeft="switchInventoriesButton.topLeft 0 4"
+            width="80" height="80"
+            imageName="ui/undo" imageColor="703002ff" style="level2-hud-button"/>
+    </AnchorGroup>
+
+    <AnchorGroup id="bottomRightButtonBar" width="80">
+        <Image x="-18" y="9" id="bottomRightBg" name="levels/2/bottom-right-button-bar"/>
+        <ImageButton id="deliverButton"
+            bottomLeft="bottomRightBg.bottomLeft 14 10"
+            width="80" height="80"
+            imageName="ui/done" imageColor="703002ff" style="level2-hud-button"/>
+    </AnchorGroup>
+</gdxui>
