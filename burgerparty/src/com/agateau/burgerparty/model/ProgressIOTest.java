@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
-public class ProgressTest {
+public class ProgressIOTest {
 
 	@Test
 	public void testLoadV1() {
@@ -21,7 +21,8 @@ public class ProgressTest {
 			+ "<item world='2' level='2' score='24'/>"
 			+ "</progress>"
 			);
-		Progress.load(root, worlds);
+		ProgressIO progressIO = new ProgressIO(worlds);
+		progressIO.load(root);
 		assertEquals(worlds.get(0).getLevel(0).score, 12);
 		assertEquals(worlds.get(0).getLevel(1).score, -1);
 		assertEquals(worlds.get(1).getLevel(0).score, -1);
@@ -39,7 +40,8 @@ public class ProgressTest {
 			+ "    </levels>"
 			+ "</progress>"
 			);
-		Progress.load(root, worlds);
+		ProgressIO progressIO = new ProgressIO(worlds);
+		progressIO.load(root);
 		assertEquals(worlds.get(0).getLevel(0).score, 12);
 		assertEquals(worlds.get(0).getLevel(1).score, -1);
 		assertEquals(worlds.get(1).getLevel(0).score, -1);
@@ -54,7 +56,8 @@ public class ProgressTest {
 
 		StringWriter writer = new StringWriter();
 		XmlWriter xmlWriter = new XmlWriter(writer);
-		Progress.save(xmlWriter, worlds);
+		ProgressIO progressIO = new ProgressIO(worlds);
+		progressIO.save(xmlWriter);
 
 		XmlReader.Element root = parseXml(writer.toString());
 		assertEquals(root.getChildCount(), 1);

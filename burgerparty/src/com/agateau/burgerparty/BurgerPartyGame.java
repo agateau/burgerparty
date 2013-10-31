@@ -7,7 +7,7 @@ import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.LevelWorldLoader;
 import com.agateau.burgerparty.model.MealItem;
-import com.agateau.burgerparty.model.Progress;
+import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.LoadingScreen;
@@ -95,12 +95,14 @@ public class BurgerPartyGame extends Game {
 		if (!handle.exists()) {
 			return;
 		}
-		Progress.load(handle, mLevelWorlds);
+		ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+		progressIO.load(handle);
 	}
 
 	private void saveLevelProgress() {
 		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
-		Progress.save(handle, mLevelWorlds);
+		ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+		progressIO.save(handle);
 	}
 
 	public Assets getAssets() {
