@@ -16,10 +16,10 @@ import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -91,7 +91,7 @@ public class BurgerPartyGame extends Game {
 		// At least, unlock first level
 		mLevelWorlds.get(0).getLevel(0).score = Level.SCORE_NEW;
 
-		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
+		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		if (!handle.exists()) {
 			return;
 		}
@@ -100,7 +100,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void saveLevelProgress() {
-		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
+		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		ProgressIO progressIO = new ProgressIO(mLevelWorlds);
 		progressIO.save(handle);
 	}
@@ -233,15 +233,5 @@ public class BurgerPartyGame extends Game {
 	private void doStartLevel() {
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		setScreen(new GameScreen(this, level));
-	}
-
-	static private FileHandle getUserWritableFile(String name) {
-		FileHandle handle;
-		if (Gdx.app.getType() == ApplicationType.Desktop) {
-			handle = Gdx.files.external(".local/burgerparty/" + name);
-		} else {
-			handle = Gdx.files.local(name);
-		}
-		return handle;
 	}
 }
