@@ -60,6 +60,7 @@ public class ProgressIOTest {
 		progressIO.save(xmlWriter);
 
 		XmlReader.Element root = parseXml(writer.toString());
+		assertEquals(root.getIntAttribute("version"), 2);
 		assertEquals(root.getChildCount(), 1);
 
 		XmlReader.Element levelsElement = root.getChildByName("levels");

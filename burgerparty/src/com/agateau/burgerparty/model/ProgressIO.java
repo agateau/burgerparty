@@ -95,6 +95,7 @@ public class ProgressIO {
 	public void save(XmlWriter writer) {
 		try {
 			XmlWriter root = writer.element("progress");
+			root.attribute("version", 2);
 			XmlWriter levelsElement = root.element("levels");
 			int worldIndex = 0;
 			for (LevelWorld world: mWorlds) {
