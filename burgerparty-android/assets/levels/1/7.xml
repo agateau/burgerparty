@@ -7,9 +7,10 @@
     <item name="tomato"/>
     <item name="salad"/>
     <item name="cheese"/>
+    <item name="small-fries"/>
+    <item name="soda"/>
     <item name="onion"/>
     <item name="ketchup"/>
-    <item name="cucumber"/>
   </items>
   <customers>
     <customer type="girls"/>
