@@ -13,12 +13,30 @@ import com.badlogic.gdx.utils.XmlWriter;
 public class ProgressTest {
 
 	@Test
-	public void testLoad() {
+	public void testLoadV1() {
 		Array<LevelWorld> worlds = createTestWorlds();
 		XmlReader.Element root = parseXml(
 			"<progress>"
 			+ "<item world='1' level='1' score='12'/>"
 			+ "<item world='2' level='2' score='24'/>"
+			+ "</progress>"
+			);
+		Progress.load(root, worlds);
+		assertEquals(worlds.get(0).getLevel(0).score, 12);
+		assertEquals(worlds.get(0).getLevel(1).score, -1);
+		assertEquals(worlds.get(1).getLevel(0).score, -1);
+		assertEquals(worlds.get(1).getLevel(1).score, 24);
+	}
+
+	@Test
+	public void testLoadV2() {
+		Array<LevelWorld> worlds = createTestWorlds();
+		XmlReader.Element root = parseXml(
+			  "<progress version='2'>"
+			+ "    <levels>"
+			+ "        <level world='1' level='1' score='12'/>"
+			+ "        <level world='2' level='2' score='24'/>"
+			+ "    </levels>"
 			+ "</progress>"
 			);
 		Progress.load(root, worlds);
@@ -39,17 +57,20 @@ public class ProgressTest {
 		Progress.save(xmlWriter, worlds);
 
 		XmlReader.Element root = parseXml(writer.toString());
-		assertEquals(root.getChildCount(), 2);
+		assertEquals(root.getChildCount(), 1);
 
-		XmlReader.Element item = root.getChild(0);
-		assertEquals(item.getAttribute("world"), "1");
-		assertEquals(item.getAttribute("level"), "1");
-		assertEquals(item.getAttribute("score"), "12");
+		XmlReader.Element levelsElement = root.getChildByName("levels");
+		assertNotNull(levelsElement);
 
-		item = root.getChild(1);
-		assertEquals(item.getAttribute("world"), "2");
-		assertEquals(item.getAttribute("level"), "2");
-		assertEquals(item.getAttribute("score"), "24");
+		XmlReader.Element child = levelsElement.getChild(0);
+		assertEquals(child.getAttribute("world"), "1");
+		assertEquals(child.getAttribute("level"), "1");
+		assertEquals(child.getAttribute("score"), "12");
+
+		child = levelsElement.getChild(1);
+		assertEquals(child.getAttribute("world"), "2");
+		assertEquals(child.getAttribute("level"), "2");
+		assertEquals(child.getAttribute("score"), "24");
 	}
 
 	private static Array<LevelWorld> createTestWorlds() {
