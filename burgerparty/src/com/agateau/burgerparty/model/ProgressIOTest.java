@@ -24,8 +24,8 @@ public class ProgressIOTest {
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
 		assertEquals(worlds.get(0).getLevel(0).score, 12);
-		assertEquals(worlds.get(0).getLevel(1).score, -1);
-		assertEquals(worlds.get(1).getLevel(0).score, -1);
+		assertEquals(worlds.get(0).getLevel(1).score, Level.SCORE_LOCKED);
+		assertEquals(worlds.get(1).getLevel(0).score, Level.SCORE_LOCKED);
 		assertEquals(worlds.get(1).getLevel(1).score, 24);
 	}
 
@@ -43,8 +43,8 @@ public class ProgressIOTest {
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
 		assertEquals(worlds.get(0).getLevel(0).score, 12);
-		assertEquals(worlds.get(0).getLevel(1).score, -1);
-		assertEquals(worlds.get(1).getLevel(0).score, -1);
+		assertEquals(worlds.get(0).getLevel(1).score, Level.SCORE_LOCKED);
+		assertEquals(worlds.get(1).getLevel(0).score, Level.SCORE_LOCKED);
 		assertEquals(worlds.get(1).getLevel(1).score, 24);
 	}
 

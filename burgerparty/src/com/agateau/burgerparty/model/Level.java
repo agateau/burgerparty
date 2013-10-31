@@ -10,7 +10,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class Level {
-	public static final int LOCKED_SCORE = -1;
+	public static final int SCORE_LOCKED = -2;
+	public static final int SCORE_NEW = -1;
+	public static final int SCORE_PLAYED = 0;
 	public static class Definition {
 		public int minBurgerSize;
 		public int maxBurgerSize;
@@ -42,14 +44,14 @@ public class Level {
 	}
 
 	public Definition definition = new Definition();
-	public int score = LOCKED_SCORE;
+	public int score = SCORE_LOCKED;
 
 	public int getStars() {
 		return getStarsFor(score);
 	}
 
 	public boolean hasBrandNewItem() {
-		return score <= 0 && definition.mNewItem != null;
+		return score < SCORE_PLAYED && definition.mNewItem != null;
 	}
 
 	public int getStarsFor(int value) {
@@ -59,10 +61,8 @@ public class Level {
 			return 2;
 		} else if (value > 0) {
 			return 1;
-		} else if (value == 0) {
-			return 0;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 

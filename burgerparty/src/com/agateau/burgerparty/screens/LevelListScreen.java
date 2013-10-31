@@ -73,7 +73,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int levelWorldIndex, int levelIndex, int stars, boolean surprise, Skin skin) {
+		public LevelButton(int levelWorldIndex, int levelIndex, int stars, boolean locked, boolean surprise, Skin skin) {
 			super("", skin, "level-button");
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
@@ -83,7 +83,11 @@ public class LevelListScreen extends BurgerPartyScreen {
 			group.setFillParent(true);
 			group.setSpacing(6);
 
-			if (stars >= 0) {
+			if (locked) {
+				setDisabled(true);
+				Image image = new Image(mLock);
+				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
+			} else {
 				setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
 				Table table = new Table();
 				for (int x = 1; x <= 3; ++x) {
@@ -92,10 +96,6 @@ public class LevelListScreen extends BurgerPartyScreen {
 				}
 				group.addRule(table, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 2);
 				table.setSize(mStarOff.getRegionWidth() * 3, mStarOff.getRegionHeight());
-			} else {
-				setDisabled(true);
-				Image image = new Image(mLock);
-				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
 			}
 
 			if (surprise) {
@@ -128,8 +128,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
 		Level level = world.getLevel(levelIndex);
 		int stars = level.getStars();
+		boolean locked = level.score == Level.SCORE_LOCKED;
 		boolean surprise = level.hasBrandNewItem();
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, surprise, skin);
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, locked, surprise, skin);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().getAssets().getSoundAtlas().findSound("click").play();

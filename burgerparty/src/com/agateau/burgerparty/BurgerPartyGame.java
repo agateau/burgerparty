@@ -89,7 +89,7 @@ public class BurgerPartyGame extends Game {
 
 	private void loadLevelProgress() {
 		// At least, unlock first level
-		mLevelWorlds.get(0).getLevel(0).score = 0;
+		mLevelWorlds.get(0).getLevel(0).score = Level.SCORE_NEW;
 
 		FileHandle handle = getUserWritableFile(PROGRESS_FILE);
 		if (!handle.exists()) {
@@ -139,7 +139,7 @@ public class BurgerPartyGame extends Game {
 		for (LevelWorld world: mLevelWorlds) {
 			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 				Level level = world.getLevel(levelIndex);
-				if (level.score > -1) {
+				if (level.score >= Level.SCORE_PLAYED) {
 					set.addAll(level.getKnownItems());
 				}
 			}
@@ -160,8 +160,8 @@ public class BurgerPartyGame extends Game {
 		} else if (mLevelWorldIndex < mLevelWorlds.size - 1){
 			next = mLevelWorlds.get(mLevelWorldIndex + 1).getLevel(0);
 		}
-		if (next != null && next.score == Level.LOCKED_SCORE) {
-			next.score = 0;
+		if (next != null && next.score == Level.SCORE_LOCKED) {
+			next.score = Level.SCORE_NEW;
 		}
 		saveLevelProgress();
 	}
@@ -170,12 +170,14 @@ public class BurgerPartyGame extends Game {
 		mMusicController.fadeOut();
 		mLevelWorldIndex = levelWorldIndex;
 		mLevelIndex = levelIndex;
-		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
+		final Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		if (level.hasBrandNewItem()) {
 			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem());
 			screen.done.connect(mHandlers, new Signal0.Handler() {
 				@Override
 				public void handle() {
+					level.score = Level.SCORE_PLAYED;
+					saveLevelProgress();
 					doStartLevel();
 				}
 			});
