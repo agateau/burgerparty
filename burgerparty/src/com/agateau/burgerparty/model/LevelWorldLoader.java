@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.model;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -18,7 +18,7 @@ public class LevelWorldLoader {
 			LevelWorld world = loadWorld(dirName);
 			worlds.add(world);
 		}
-		checkNewItems(worlds);
+		initNewItemFields(worlds);
 		return worlds;
 	}
 
@@ -36,20 +36,14 @@ public class LevelWorldLoader {
 		return world;
 	}
 
-	private void checkNewItems(Array<LevelWorld> worlds) {
+	private void initNewItemFields(Array<LevelWorld> worlds) {
 		assert(worlds.size > 0);
-		HashSet<MealItem> knownItems = new HashSet<MealItem>();
 		Level level1 = worlds.get(0).getLevel(0);
-		for (MealItem item: level1.definition.getBurgerItems()) {
-			knownItems.add(item);
-		}
-		for (MealItem item: level1.definition.getExtraItems()) {
-			knownItems.add(item);
-		}
+		Set<MealItem> knownItems = level1.getKnownItems();
 		for (LevelWorld world: worlds) {
 			for(int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
 				Level level = world.getLevel(idx);
-				level.checkNewItems(knownItems);
+				level.initNewItemField(knownItems);
 			}
 		}
 	}

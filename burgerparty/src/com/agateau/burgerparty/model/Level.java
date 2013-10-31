@@ -124,12 +124,12 @@ public class Level {
 		return set;
 	}
 
-	public void checkNewItems(Set<MealItem> knownItems) {
-		checkNewItemsInternal(knownItems, definition.mBurgerItems);
-		checkNewItemsInternal(knownItems, definition.mExtraItems);
+	public void initNewItemField(Set<MealItem> knownItems) {
+		initNewItemFieldInternal(knownItems, definition.mBurgerItems);
+		initNewItemFieldInternal(knownItems, definition.mExtraItems);
 	}
 
-	private void checkNewItemsInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
+	private void initNewItemFieldInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
 		for(MealItem item: list) {
 			if (knownItems.contains(item)) {
 				continue;
