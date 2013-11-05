@@ -256,6 +256,39 @@ burgerparty4.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
+customers/wrestler/body-0
+  rotate: false
+  xy: 1, 78
+  size: 195, 172
+  orig: 195, 172
+  offset: 0, 0
+  index: -1
+customers/wrestler/face-0-angry
+  rotate: false
+  xy: 1, 1
+  size: 68, 75
+  orig: 68, 75
+  offset: 0, 0
+  index: -1
+customers/wrestler/face-0-neutral
+  rotate: false
+  xy: 71, 5
+  size: 66, 71
+  orig: 66, 71
+  offset: 0, 0
+  index: -1
+customers/wrestler/face-0-happy
+  rotate: false
+  xy: 139, 12
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: -1
+
+burgerparty5.png
+format: RGBA8888
+filter: Nearest,Linear
+repeat: none
 customers/pirate-girls/body-mixed
   rotate: false
   xy: 1, 64
@@ -327,7 +360,7 @@ customers/pirate-girls/top-red
   offset: 0, 0
   index: -1
 
-burgerparty5.png
+burgerparty6.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -367,7 +400,7 @@ customers/pirate-boys/top-boss
   offset: 0, 0
   index: -1
 
-burgerparty6.png
+burgerparty7.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -400,7 +433,7 @@ overlay-bg
   offset: 0, 0
   index: -1
 
-burgerparty7.png
+burgerparty8.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -412,7 +445,7 @@ main-font-small
   offset: 0, 0
   index: -1
 
-burgerparty8.png
+burgerparty9.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -424,7 +457,7 @@ main-font
   offset: 0, 0
   index: -1
 
-burgerparty9.png
+burgerparty10.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -436,7 +469,7 @@ scored-font
   offset: 0, 0
   index: -1
 
-burgerparty10.png
+burgerparty11.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -651,7 +684,7 @@ mealitems/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty11.png
+burgerparty12.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -873,7 +906,7 @@ ui/vertical-gradient
   offset: 0, 0
   index: -1
 
-burgerparty12.png
+burgerparty13.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -885,7 +918,7 @@ ui/title
   offset: 0, 0
   index: -1
 
-burgerparty13.png
+burgerparty14.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -946,7 +979,7 @@ levels/1/button
   offset: 0, 0
   index: -1
 
-burgerparty14.png
+burgerparty15.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -965,7 +998,7 @@ levels/1/newitem-fg
   offset: 0, 0
   index: -1
 
-burgerparty15.png
+burgerparty16.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1026,7 +1059,7 @@ levels/2/button
   offset: 0, 0
   index: -1
 
-burgerparty16.png
+burgerparty17.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none

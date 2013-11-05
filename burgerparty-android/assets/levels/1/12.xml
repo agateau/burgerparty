@@ -16,6 +16,6 @@
     <item name="juice"/>
   </items>
   <customers>
-    <customer type="ninjas"/>
+    <customer type="wrestler"/>
   </customers>
 </level>
