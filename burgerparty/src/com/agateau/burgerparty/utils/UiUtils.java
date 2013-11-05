@@ -78,23 +78,32 @@ public class UiUtils {
 		return matrix;
 	}
 
-	public static Pixmap getPixmap(int x, int y, int w, int h) {
+	public static Pixmap getPixmap(int left, int top, int width, int height) {
 		Gdx.gl.glPixelStorei(GL10.GL_PACK_ALIGNMENT, 1);
 
-		final Pixmap pixmap = new Pixmap(w, h, Format.RGBA8888);
+		final Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
 		ByteBuffer pixels = pixmap.getPixels();
-		Gdx.gl.glReadPixels(x, y, w, h, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, pixels);
+		Gdx.gl.glReadPixels(left, top, width, height, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, pixels);
 
-		final int numBytes = w * h * 4;
-		byte[] lines = new byte[numBytes];
-
-		final int numBytesPerLine = w * 4;
-		for (int i = 0; i < h; i++) {
-			pixels.position((h - i - 1) * numBytesPerLine);
-			pixels.get(lines, i * numBytesPerLine, numBytesPerLine);
+		// Swap top and bottom lines, set alpha to 255 (otherwise some areas appear transparent)
+		// Not efficient at all
+		for (int y = 0; y <= height / 2; ++y) {
+			int topIdx = y * width * 4;
+			int bottomIdx = (height - y - 1) * width * 4;
+			for (int x = 0; x < width; ++x, topIdx += 4, bottomIdx += 4) {
+				byte r = pixels.get(topIdx);
+				byte g = pixels.get(topIdx + 1);
+				byte b = pixels.get(topIdx + 2);
+				pixels.put(topIdx, pixels.get(bottomIdx));
+				pixels.put(topIdx + 1, pixels.get(bottomIdx + 1));
+				pixels.put(topIdx + 2, pixels.get(bottomIdx + 2));
+				pixels.put(topIdx + 3, (byte)255);
+				pixels.put(bottomIdx, r);
+				pixels.put(bottomIdx + 1, g);
+				pixels.put(bottomIdx + 2, b);
+				pixels.put(bottomIdx + 3, (byte)255);
+			}
 		}
-		pixels.clear();
-		pixels.put(lines);
 
 		return pixmap;
 	}
