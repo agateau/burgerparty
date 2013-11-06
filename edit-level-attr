@@ -1,0 +1,46 @@
+#!/bin/sh
+set -e
+
+usage() {
+    cat <<EOF
+Usage: $(basename $0) [<options>] <attr-name> <xml-files>
+
+Edit attribute for each level
+
+Options:
+
+-h, --help        This page
+EOF
+exit 1
+}
+
+if [ $# -lt 2 ] ; then
+    usage
+fi
+
+while [ $# -gt 0 ] ; do
+    case "$1" in
+    -h|--help)
+        usage
+        ;;
+    -s|--size)
+        shift
+        size=$1
+        ;;
+    *)
+        if [ -z "$attr" ] ; then
+            attr=$1
+        else
+            files="$files $1"
+        fi
+        ;;
+    esac
+    shift
+done
+
+xmlstarlet sel -T -t -m "/level" -f -o " " -v @$attr -n $files > out
+vi out
+cat out | while read name value ; do
+    xmlstarlet ed --inplace --update "/level/@$attr" -v $value $name
+done
+rm out
