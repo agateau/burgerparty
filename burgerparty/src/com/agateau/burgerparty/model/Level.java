@@ -17,7 +17,6 @@ public class Level {
 		public int minBurgerSize;
 		public int maxBurgerSize;
 		public int duration;
-		public Array<String> customers = new Array<String>();
 		public int score2;
 		public int score3;
 
@@ -33,6 +32,15 @@ public class Level {
 			return mNewItem;
 		}
 
+		public Array<Customer> createCustomers() {
+			Array<Customer> lst = new Array<Customer>();
+			for (String name: mCustomers) {
+				lst.add(new Customer(name));
+			}
+			return lst;
+		}
+
+		private Array<String> mCustomers = new Array<String>();
 		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
 		private Array<MealItem> mExtraItems = new Array<MealItem>();
 		private MealItem mNewItem = null;
@@ -107,7 +115,7 @@ public class Level {
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
 			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("type");
-			level.definition.customers.add(name);
+			level.definition.mCustomers.add(name);
 		}
 
 		return level;
