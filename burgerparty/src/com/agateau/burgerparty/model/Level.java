@@ -13,6 +13,12 @@ public class Level {
 	public static final int SCORE_LOCKED = -2;
 	public static final int SCORE_NEW = -1;
 	public static final int SCORE_PLAYED = 0;
+	private static class CustomerDefinition {
+		public String type;
+		public Customer create() {
+			return new Customer(type);
+		}
+	}
 	public static class Definition {
 		public int minBurgerSize;
 		public int maxBurgerSize;
@@ -34,13 +40,13 @@ public class Level {
 
 		public Array<Customer> createCustomers() {
 			Array<Customer> lst = new Array<Customer>();
-			for (String name: mCustomers) {
-				lst.add(new Customer(name));
+			for (CustomerDefinition def: mCustomerDefinitions) {
+				lst.add(def.create());
 			}
 			return lst;
 		}
 
-		private Array<String> mCustomers = new Array<String>();
+		private Array<CustomerDefinition> mCustomerDefinitions = new Array<CustomerDefinition>();
 		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
 		private Array<MealItem> mExtraItems = new Array<MealItem>();
 		private MealItem mNewItem = null;
@@ -114,8 +120,9 @@ public class Level {
 		assert(elements != null);
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
 			XmlReader.Element element = elements.getChild(idx);
-			String name = element.getAttribute("type");
-			level.definition.mCustomers.add(name);
+			CustomerDefinition def = new CustomerDefinition();
+			def.type = element.getAttribute("type");
+			level.definition.mCustomerDefinitions.add(def);
 		}
 
 		return level;
