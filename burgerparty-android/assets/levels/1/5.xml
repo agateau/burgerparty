@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level minBurgerSize="3" maxBurgerSize="4" duration="90">
+<level burgerSize="4" duration="90">
   <items>
     <item name="top"/>
     <item name="bottom"/>

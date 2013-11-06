@@ -43,8 +43,9 @@ public class Customer {
 		SERVED
 	}
 
-	public Customer(String type) {
+	public Customer(String type, int burgerSize) {
 		mType = type;
+		mBurgerSize = burgerSize;
 	}
 
 	public String getType() {
@@ -53,6 +54,10 @@ public class Customer {
 
 	public Mood getMood() {
 		return mMood;
+	}
+
+	public int getBurgerSize() {
+		return mBurgerSize;
 	}
 
 	/*
@@ -119,7 +124,8 @@ public class Customer {
 		moodChanged.emit();
 	}
 
-	private String mType;
+	private final String mType;
+	private final int mBurgerSize;
 	private float mMoodDelay;
 	private Mood mMood = Mood.HAPPY;
 	private State mState = State.WAITING;

@@ -130,7 +130,7 @@ public class CustomerEditorScreen extends StageScreen {
 	}
 
 	private void addCustomer(WidgetGroup parent, String type, String body, String top, String face, Customer.Mood mood) {
-		Customer customer = new Customer(type);
+		Customer customer = new Customer(type, 0);
 		customer.setMood(mood);
 		mCustomers.add(customer);
 

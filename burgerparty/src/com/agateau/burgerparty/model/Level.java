@@ -15,13 +15,12 @@ public class Level {
 	public static final int SCORE_PLAYED = 0;
 	private static class CustomerDefinition {
 		public String type;
+		public int burgerSize;
 		public Customer create() {
-			return new Customer(type);
+			return new Customer(type, burgerSize);
 		}
 	}
 	public static class Definition {
-		public int minBurgerSize;
-		public int maxBurgerSize;
 		public int duration;
 		public int score2;
 		public int score3;
@@ -96,8 +95,7 @@ public class Level {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
 		Level level = new Level(levelWorld, handle.path());
-		level.definition.minBurgerSize = root.getIntAttribute("minBurgerSize");
-		level.definition.maxBurgerSize = root.getIntAttribute("maxBurgerSize");
+		int burgerSize = root.getIntAttribute("burgerSize");
 		level.definition.duration = root.getIntAttribute("duration");
 		level.definition.score2 = root.getIntAttribute("score2", 15000);
 		level.definition.score3 = root.getIntAttribute("score3", 30000);
@@ -122,6 +120,7 @@ public class Level {
 			XmlReader.Element element = elements.getChild(idx);
 			CustomerDefinition def = new CustomerDefinition();
 			def.type = element.getAttribute("type");
+			def.burgerSize = element.getIntAttribute("burgerSize", burgerSize);
 			level.definition.mCustomerDefinitions.add(def);
 		}
 

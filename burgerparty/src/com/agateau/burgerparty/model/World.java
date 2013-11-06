@@ -182,7 +182,7 @@ public class World {
 	}
 
 	private void generateTargetBurger() {
-		int count = MathUtils.random(mLevel.definition.minBurgerSize, mLevel.definition.maxBurgerSize);
+		int count = mCustomers.get(mActiveCustomerIndex).getBurgerSize();
 		LinkedList<BurgerItem> items = mBurgerGenerator.run(count);
 		mTargetBurger.setItems(items);
 		mTargetBurger.resetArrow();
