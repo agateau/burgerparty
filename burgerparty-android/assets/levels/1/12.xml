@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level burgerSize="4" duration="60" score2="4000" score3="6000">
+<level burgerSize="4" duration="60" score2="7000" score3="8000">
   <items>
     <!-- extra -->
     <item name="top"/>
