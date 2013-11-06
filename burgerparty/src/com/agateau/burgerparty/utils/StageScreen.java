@@ -31,8 +31,6 @@ public abstract class StageScreen implements Screen {
 						mOverlay.onBackPressed();
 					}
 					return true;
-				} else if (keycode == Input.Keys.F12) {
-					saveScreenshot();
 				}
 				return false;
 			}
@@ -122,11 +120,6 @@ public abstract class StageScreen implements Screen {
 			mBgActor.setBounds(0, 0, mStage.getWidth(), mStage.getHeight());
 			mBgActor.layout();
 		}
-	}
-
-	private void saveScreenshot() {
-		String path = UiUtils.saveScreenshot();
-		Gdx.app.log("StageScreen", "Saved screenshot as " + path);
 	}
 
 	private Overlay mOverlay = null;
