@@ -53,7 +53,7 @@
     <face name="customers/pirate-girls/face-cap-neutral" xCenter="54" yOffset="6"/>
     <face name="customers/pirate-girls/face-cap-angry"   xCenter="54" yOffset="4"/>
 
-    <body name="customers/wrestler/body-0" xCenter="94" yFace="78"/>
+    <body name="customers/wrestler/body-0" xCenter="107" yFace="98"/>
     <face name="customers/wrestler/face-0-happy"/>
     <face name="customers/wrestler/face-0-neutral" yOffset="1"/>
     <face name="customers/wrestler/face-0-angry" yOffset="-3"/>

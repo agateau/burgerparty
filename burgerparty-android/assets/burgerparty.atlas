@@ -258,28 +258,28 @@ filter: Nearest,Linear
 repeat: none
 customers/wrestler/body-0
   rotate: false
-  xy: 1, 78
-  size: 195, 172
-  orig: 195, 172
+  xy: 1, 1
+  size: 217, 193
+  orig: 217, 193
   offset: 0, 0
   index: -1
 customers/wrestler/face-0-angry
   rotate: false
-  xy: 1, 1
+  xy: 220, 119
   size: 68, 75
   orig: 68, 75
   offset: 0, 0
   index: -1
 customers/wrestler/face-0-neutral
   rotate: false
-  xy: 71, 5
+  xy: 220, 46
   size: 66, 71
   orig: 66, 71
   offset: 0, 0
   index: -1
 customers/wrestler/face-0-happy
   rotate: false
-  xy: 139, 12
+  xy: 290, 130
   size: 66, 64
   orig: 66, 64
   offset: 0, 0
