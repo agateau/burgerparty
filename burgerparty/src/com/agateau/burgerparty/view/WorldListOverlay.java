@@ -44,7 +44,7 @@ public class WorldListOverlay extends Overlay {
 			}
 		});
 
-		WorldListView worldListView = new WorldListView(mWorlds, mCurrentIndex, mScreen.getGame().getAssets());
+		WorldListView worldListView = new WorldListView(mWorlds, mCurrentIndex, mScreen.getGame().getAssets(), WorldListView.Details.HIDE_STARS);
 		worldListView.currentIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
 			@Override
 			public void handle(Integer index) {

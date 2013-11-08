@@ -48,7 +48,7 @@ public class WorldListScreen extends BurgerPartyScreen {
 		@Override
 		protected Actor createActorForElement(XmlReader.Element element) {
 			if (element.getName().equals("WorldListView")) {
-				WorldListView view = new WorldListView(getGame().getLevelWorlds(), -1, getGame().getAssets());
+				WorldListView view = new WorldListView(getGame().getLevelWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
 				view.addActor(new SandBoxButton());
 				return view;
 			}

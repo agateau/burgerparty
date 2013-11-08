@@ -23,6 +23,18 @@ public class LevelWorld {
 		return mLevels.size;
 	}
 
+	public int getWonStarCount() {
+		int count = 0;
+		for (Level level: mLevels) {
+			count += level.getStars();
+		}
+		return count;
+	}
+
+	public int getTotalStarCount() {
+		return mLevels.size * 3;
+	}
+
 	private String mDirName;
 	private Array<Level> mLevels = new Array<Level>();
 }

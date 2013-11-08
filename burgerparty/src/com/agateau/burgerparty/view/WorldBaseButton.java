@@ -6,6 +6,7 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class WorldBaseButton extends ImageButton {
@@ -17,13 +18,19 @@ public class WorldBaseButton extends ImageButton {
 		TextureRegion region = assets.getTextureAtlas().findRegion(iconName);
 		getImage().setDrawable(new TextureRegionDrawable(region));
 
-		AnchorGroup group = new AnchorGroup();
-		addActor(group);
-		group.setFillParent(true);
+		addActor(mGroup);
+		mGroup.setFillParent(true);
 
 		Label label = new Label(text, assets.getSkin(), "world-button-text");
-		group.addRule(label, Anchor.CENTER, group, Anchor.CENTER);
+		label.setAlignment(Align.center);
+		mGroup.addRule(label, Anchor.CENTER, mGroup, Anchor.CENTER);
 
 		setSize(WIDTH, HEIGHT);
 	}
+
+	public AnchorGroup getGroup() {
+		return mGroup;
+	}
+
+	private final AnchorGroup mGroup = new AnchorGroup();
 }
