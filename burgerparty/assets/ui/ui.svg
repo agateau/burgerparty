@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="262.71125"
-     inkscape:cy="570.76046"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="16"
+     inkscape:cx="285.59472"
+     inkscape:cy="570.64822"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="true"
      inkscape:window-width="1563"
@@ -4763,18 +4763,6 @@
        gradientUnits="userSpaceOnUse" />
     <filter
        inkscape:collect="always"
-       id="filter6545"
-       x="-0.108"
-       width="1.216"
-       y="-0.108"
-       height="1.216">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="1.035"
-         id="feGaussianBlur6547" />
-    </filter>
-    <filter
-       inkscape:collect="always"
        id="filter6570"
        x="-0.132"
        width="1.264"
@@ -4784,6 +4772,31 @@
          inkscape:collect="always"
          stdDeviation="1.265"
          id="feGaussianBlur6572" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter6668"
+       x="-0.882"
+       width="2.764"
+       y="-0.2205"
+       height="1.441">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.3675"
+         id="feGaussianBlur6670" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter6668-5"
+       x="-0.88200003"
+       width="2.7639999"
+       y="-0.22050001"
+       height="1.441">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.3675"
+         id="feGaussianBlur6670-1" />
     </filter>
   </defs>
   <metadata
@@ -11544,5 +11557,36 @@
          id="rect6555"
          style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <rect
+       y="630"
+       x="300"
+       height="4"
+       width="0.99999976"
+       id="rect6686"
+       style="color:#000000;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       transform="matrix(1.3579295,0,0,1.3232313,-107.55782,-185.657)"
+       style="opacity:0.63999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6668-5);enable-background:accumulate"
+       id="rect6582-9"
+       width="1"
+       height="4"
+       x="300"
+       y="616" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Selection"
+     style="display:none">
+    <rect
+       y="628"
+       x="298"
+       height="12"
+       width="6"
+       id="rect6698"
+       style="opacity:0.63999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="vruler.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

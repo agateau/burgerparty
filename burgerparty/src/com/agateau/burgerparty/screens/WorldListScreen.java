@@ -6,6 +6,7 @@ import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal1;
+import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
@@ -49,7 +50,16 @@ public class WorldListScreen extends BurgerPartyScreen {
 		protected Actor createActorForElement(XmlReader.Element element) {
 			if (element.getName().equals("WorldListView")) {
 				WorldListView view = new WorldListView(getGame().getLevelWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
-				view.addActor(new SandBoxButton());
+
+				SandBoxButton button = new SandBoxButton();
+
+				Actor ruler = new TiledImage(getGame().getAssets().getTextureAtlas().findRegion("ui/vruler"));
+				ruler.setHeight(button.getPrefHeight());
+				ruler.setWidth(6);
+				ruler.setColor(1, 1, 1, 0.4f);
+
+				view.addActor(ruler);
+				view.addActor(button);
 				return view;
 			}
 			return super.createActorForElement(element);
