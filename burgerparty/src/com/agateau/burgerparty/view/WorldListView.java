@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
+import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
@@ -28,7 +29,8 @@ public class WorldListView extends HorizontalGroup {
 
 		int idx = 0;
 		for (LevelWorld world: worlds) {
-			Actor levelButton = createWorldButton(world, idx, details);
+			boolean locked = world.getLevel(0).score == Level.SCORE_LOCKED;
+			Actor levelButton = createWorldButton(world, idx, locked, details);
 			addActor(levelButton);
 			++idx;
 		}
@@ -46,13 +48,18 @@ public class WorldListView extends HorizontalGroup {
 		public int mIndex;
 	}
 
-	private Actor createWorldButton(LevelWorld world, int index, Details details) {
+	private Actor createWorldButton(LevelWorld world, int index, boolean locked, Details details) {
 		String text = String.valueOf(index + 1);
 		if (index == mCurrentIndex) {
 			text = "> " + text + " <";
 		}
 		WorldListView.WorldButton button = new WorldButton(text, world.getDirName(), mAssets);
-		if (details == Details.SHOW_STARS) {
+		if (locked) {
+			button.setDisabled(true);
+			Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/lock"));
+			AnchorGroup group = button.getGroup();
+			group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
+		} else if (details == Details.SHOW_STARS) {
 			createStarsActor(button.getGroup(), world);
 		}
 		button.mIndex = index;
