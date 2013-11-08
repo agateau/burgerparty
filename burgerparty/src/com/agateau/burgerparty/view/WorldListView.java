@@ -53,9 +53,7 @@ public class WorldListView extends HorizontalGroup {
 		}
 		WorldListView.WorldButton button = new WorldButton(text, world.getDirName(), mAssets);
 		if (details == Details.SHOW_STARS) {
-			Actor actor = createStarsActor(world);
-			AnchorGroup group =	button.getGroup();
-			group.addRule(actor, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 10);
+			createStarsActor(button.getGroup(), world);
 		}
 		button.mIndex = index;
 		button.addListener(new ChangeListener() {
@@ -69,20 +67,17 @@ public class WorldListView extends HorizontalGroup {
 		return button;
 	}
 
-	private Actor createStarsActor(LevelWorld world) {
+	private void createStarsActor(AnchorGroup group, LevelWorld world) {
 		int wonStarCount = world.getWonStarCount();
 		int totalStarCount = world.getTotalStarCount();
 		
-		String text = " " + wonStarCount + "/" + totalStarCount;
+		String text = wonStarCount + "/" + totalStarCount;
 		Label label = new Label(text, mAssets.getSkin(), "world-button-text");
 
 		Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/star-on"));
 
-		HorizontalGroup group = new HorizontalGroup();
-		group.addActor(image);
-		group.addActor(label);
-		group.pack();
-		return group;
+		group.addRule(label, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 8);
+		group.addRule(image, Anchor.BOTTOM_CENTER, label, Anchor.TOP_CENTER, 0, -8);
 	}
 
 	private Assets mAssets;
