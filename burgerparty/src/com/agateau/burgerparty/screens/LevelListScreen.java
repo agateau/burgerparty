@@ -7,6 +7,7 @@ import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
+import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -81,7 +81,6 @@ public class LevelListScreen extends BurgerPartyScreen {
 			AnchorGroup group = new AnchorGroup();
 			addActor(group);
 			group.setFillParent(true);
-			group.setSpacing(6);
 
 			if (locked) {
 				setDisabled(true);
@@ -89,13 +88,15 @@ public class LevelListScreen extends BurgerPartyScreen {
 				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
 			} else {
 				setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
-				Table table = new Table();
-				for (int x = 1; x <= 3; ++x) {
-					Image image = new Image(x > stars ? mStarOff : mStarOn);
-					table.add(image);
+				HorizontalGroup starGroup = new HorizontalGroup();
+				starGroup.setSpacing(4);
+				for (int n = 1; n <= 3; ++n) {
+					Image image = new Image(n > stars ? mStarOff : mStarOn);
+					starGroup.addActor(image);
 				}
-				group.addRule(table, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 2);
-				table.setSize(mStarOff.getRegionWidth() * 3, mStarOff.getRegionHeight());
+				starGroup.setScale(0.8f);
+				starGroup.pack();
+				group.addRule(starGroup, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 8);
 			}
 
 			if (surprise) {
