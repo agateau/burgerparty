@@ -54,6 +54,10 @@
         world-button-text: {
             font: main-font,
             fontColor: white
+        },
+        world-button-star-text: {
+            font: main-font-small,
+            fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {

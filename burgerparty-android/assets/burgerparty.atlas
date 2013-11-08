@@ -690,7 +690,7 @@ filter: Nearest,Linear
 repeat: none
 ui/bubble-callout-left
   rotate: false
-  xy: 503, 423
+  xy: 503, 420
   size: 286, 118
   split: 54, 32, 28, 64
   pad: 46, 24, 24, 22
@@ -699,7 +699,7 @@ ui/bubble-callout-left
   index: -1
 ui/bubble-callout-right
   rotate: false
-  xy: 503, 303
+  xy: 503, 300
   size: 286, 118
   split: 32, 54, 28, 64
   pad: 24, 46, 24, 22
@@ -708,98 +708,98 @@ ui/bubble-callout-right
   index: -1
 ui/done
   rotate: false
-  xy: 949, 979
+  xy: 949, 976
   size: 56, 44
   orig: 56, 44
   offset: 0, 0
   index: -1
 ui/hud-bg
   rotate: false
-  xy: 803, 959
+  xy: 803, 956
   size: 144, 64
   orig: 144, 64
   offset: 0, 0
   index: -1
 ui/icon-back
   rotate: false
-  xy: 845, 769
+  xy: 845, 766
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-button
   rotate: false
-  xy: 657, 225
+  xy: 657, 222
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-button-down
   rotate: false
-  xy: 803, 881
+  xy: 803, 878
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 803, 682
+  xy: 803, 679
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 65, 11
+  xy: 65, 8
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 881, 793
+  xy: 881, 790
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 37, 5
+  xy: 37, 2
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-restart
   rotate: false
-  xy: 1, 4
+  xy: 1, 1
   size: 34, 35
   orig: 34, 35
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 803, 646
+  xy: 803, 643
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/inventory-burger
   rotate: false
-  xy: 503, 53
+  xy: 503, 50
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 ui/inventory-extra
   rotate: false
-  xy: 581, 131
+  xy: 581, 128
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 ui/level-button
   rotate: false
-  xy: 503, 203
+  xy: 503, 200
   size: 152, 48
   split: 24, 24, 23, 23
   pad: 4, 4, 4, 4
@@ -808,7 +808,7 @@ ui/level-button
   index: -1
 ui/level-button-down
   rotate: false
-  xy: 503, 253
+  xy: 503, 250
   size: 152, 48
   split: 24, 24, 23, 23
   pad: -1, -1, 4, 4
@@ -817,56 +817,56 @@ ui/level-button-down
   index: -1
 ui/lock
   rotate: false
-  xy: 881, 869
+  xy: 881, 866
   size: 60, 88
   orig: 60, 88
   offset: 0, 0
   index: -1
 ui/menu-bg
   rotate: false
-  xy: 1, 543
+  xy: 1, 540
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 ui/pause
   rotate: false
-  xy: 657, 205
+  xy: 657, 202
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 ui/shattered
   rotate: false
-  xy: 1, 41
+  xy: 1, 38
   size: 500, 500
   orig: 500, 500
   offset: 0, 0
   index: -1
 ui/star-off
   rotate: false
-  xy: 803, 761
+  xy: 803, 758
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 881, 827
+  xy: 881, 824
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 803, 718
+  xy: 803, 715
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
   index: -1
 ui/text-button
   rotate: false
-  xy: 803, 803
+  xy: 803, 800
   size: 76, 76
   split: 37, 37, 37, 37
   pad: 36, 36, 13, 15
@@ -875,7 +875,7 @@ ui/text-button
   index: -1
 ui/text-button-down
   rotate: false
-  xy: 503, 125
+  xy: 503, 122
   size: 76, 76
   split: 37, 37, 37, 37
   pad: 36, 36, 13, 15
@@ -884,36 +884,28 @@ ui/text-button-down
   index: -1
 ui/undo
   rotate: false
-  xy: 735, 258
+  xy: 735, 255
   size: 48, 43
   orig: 48, 43
   offset: 0, 0
   index: -1
 ui/vertical-gradient
   rotate: false
-  xy: 791, 525
+  xy: 791, 522
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
   index: -1
 ui/vruler
   rotate: false
-  xy: 573, 111
+  xy: 573, 108
   size: 6, 12
   orig: 6, 12
   offset: 0, 0
   index: -1
-ui/vruler
-  rotate: false
-  xy: 65, 1
-  size: 5, 8
-  split: 0, 0, 0, 0
-  orig: 5, 8
-  offset: 0, 0
-  index: -1
 ui/world-button
   rotate: false
-  xy: 735, 226
+  xy: 735, 223
   size: 32, 30
   split: 12, 12, 10, 12
   pad: 11, 11, 9, 11

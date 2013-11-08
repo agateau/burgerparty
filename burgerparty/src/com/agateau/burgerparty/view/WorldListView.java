@@ -77,14 +77,15 @@ public class WorldListView extends HorizontalGroup {
 	private void createStarsActor(AnchorGroup group, LevelWorld world) {
 		int wonStarCount = world.getWonStarCount();
 		int totalStarCount = world.getTotalStarCount();
-		
-		String text = wonStarCount + "/" + totalStarCount;
-		Label label = new Label(text, mAssets.getSkin(), "world-button-text");
 
 		Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/star-on"));
+		image.setScale(0.8f);
 
-		group.addRule(label, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 8);
-		group.addRule(image, Anchor.BOTTOM_CENTER, label, Anchor.TOP_CENTER, 0, -8);
+		String text = " " + wonStarCount + "/" + totalStarCount;
+		Label label = new Label(text, mAssets.getSkin(), "world-button-star-text");
+
+		group.addRule(image, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 13, 14);
+		group.addRule(label, Anchor.BOTTOM_LEFT, image, Anchor.BOTTOM_RIGHT, 0, -6);
 	}
 
 	private Assets mAssets;
