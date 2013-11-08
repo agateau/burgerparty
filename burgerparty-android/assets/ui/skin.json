@@ -1,8 +1,5 @@
 {
     com.badlogic.gdx.graphics.g2d.BitmapFont: {
-        default-font: {
-            file: ui/main-font.fnt
-        },
         main-font: {
             file: ui/main-font.fnt
         },
@@ -35,7 +32,7 @@
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
         default: {
-            font: default-font,
+            font: main-font,
             fontColor: white
         },
         score-feedback: {
@@ -43,7 +40,7 @@
             fontColor: white
         },
         bubble-text: {
-            font: default-font,
+            font: main-font,
             fontColor: black
         },
         timer: {
@@ -61,7 +58,7 @@
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
         default: {
-            font: default-font,
+            font: main-font,
             fontColorSelected: white,
             fontColorUnselected: black,
             selection: ui/level-button
@@ -71,7 +68,7 @@
         level-button: {
             down: ui/level-button-down,
             up: ui/level-button,
-            font: default-font,
+            font: main-font,
             fontColor: white
         }
     },
@@ -100,7 +97,7 @@
             down: ui/text-button-down,
             up: ui/text-button,
             pressedOffsetY: -2,
-            font: default-font,
+            font: main-font,
             fontColor: white
         }
     }
