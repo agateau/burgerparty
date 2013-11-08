@@ -49,7 +49,7 @@ public class WorldListView extends HorizontalGroup {
 	}
 
 	private Actor createWorldButton(LevelWorld world, int index, boolean locked, Details details) {
-		String text = String.valueOf(index + 1);
+		String text = locked ? "" : String.valueOf(index + 1);
 		if (index == mCurrentIndex) {
 			text = "> " + text + " <";
 		}
