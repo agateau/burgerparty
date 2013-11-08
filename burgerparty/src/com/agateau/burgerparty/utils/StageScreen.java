@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 
 /**
  * A Screen with a stage filling its surface and a reference to a skin
@@ -17,7 +17,7 @@ public abstract class StageScreen implements Screen {
 	// FIXME: Ugly hard-coded sizes
 	private Stage mStage = new Stage(800, 480, true);
 	private Skin mSkin;
-	private Widget mBgActor = null;
+	private Actor mBgActor = null;
 
 	public StageScreen(Skin skin) {
 		mSkin = skin;
@@ -45,7 +45,7 @@ public abstract class StageScreen implements Screen {
 		return mStage;
 	}
 
-	public void setBackgroundActor(Widget actor) {
+	public void setBackgroundActor(Actor actor) {
 		mBgActor = actor;
 		if (mBgActor != null) {
 			mStage.addActor(mBgActor);
@@ -118,7 +118,6 @@ public abstract class StageScreen implements Screen {
 	private void resizeBackgroundActor() {
 		if (mBgActor != null) {
 			mBgActor.setBounds(0, 0, mStage.getWidth(), mStage.getHeight());
-			mBgActor.layout();
 		}
 	}
 
