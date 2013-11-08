@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.Array;
 
 public class AnchorGroup extends WidgetGroup {
-	private float mSpacing;
+	private float mSpacing = 1;
 
 	// A version of Actor.localToStageCoordinates which works with scaled actors
 	static private Vector2 localToStageCoordinates(Actor actor, Vector2 pos) {
