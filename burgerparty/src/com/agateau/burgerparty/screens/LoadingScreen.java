@@ -7,18 +7,10 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Timer;
 
 public class LoadingScreen implements Screen {
 	private final static float PADDING = 36;
-	private final static float ALPHA_STEP = 0.05f;
-	private final static float ALPHA_INTERVAL = 0.01f;
 	public Signal0 ready = new Signal0();
-
-	private enum State {
-		LOADING,
-		FADING_OUT
-	};
 
 	public LoadingScreen(AssetManager assetManager) {
 		super();
@@ -30,19 +22,13 @@ public class LoadingScreen implements Screen {
 		if (mLoadingTexture == null) {
 			init();
 		}
-		if (mState == State.LOADING) {
-			boolean done = mAssetManager.update();
-			mAlpha = Math.min(mAssetManager.getProgress() * 2, 1);
-			if (done) {
-				mState = State.FADING_OUT;
-				scheduleAlphaFadeout();
-			}
-		}
+		boolean done = mAssetManager.update();
+		float alpha = Math.min(mAssetManager.getProgress() * 2, 1);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		mSpriteBatch.begin();
-		mSpriteBatch.setColor(1, 1, 1, mAlpha);
+		mSpriteBatch.setColor(1, 1, 1, alpha);
 
 		float screenWidth = Gdx.graphics.getWidth();
 		float screenHeight = Gdx.graphics.getHeight();
@@ -55,6 +41,10 @@ public class LoadingScreen implements Screen {
 		}
 		mSpriteBatch.draw(mLoadingTexture, (screenWidth - width) / 2, (screenHeight - height) / 2, width, height);
 		mSpriteBatch.end();
+
+		if (done) {
+			ready.emit();
+		}
 	}
 
 	@Override
@@ -87,26 +77,7 @@ public class LoadingScreen implements Screen {
 		mLoadingTexture = new Texture(Gdx.files.internal("loading.png"));
 	}
 
-	private void scheduleAlphaFadeout() {
-		Timer.Task task = new Timer.Task() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				mAlpha -= ALPHA_STEP;
-				if (mAlpha < 0) {
-					ready.emit();
-				} else {
-					scheduleAlphaFadeout();
-				}
-			}
-		};
-		Timer.schedule(task, ALPHA_INTERVAL);
-	}
-
 	private SpriteBatch mSpriteBatch = new SpriteBatch();
 	private AssetManager mAssetManager;
 	private Texture mLoadingTexture = null;
-	private float mAlpha = 0;
-
-	State mState = State.LOADING;
 }
