@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <gdxui>
     <AnchorGroup id="bottomLeftButtonBar">
         <Image x="-5" y="8" id="bottomLeftBg" name="levels/2/bottom-left-button-bar"/>
@@ -16,6 +17,7 @@
         <ImageButton id="deliverButton"
             bottomLeft="bottomRightBg.bottomLeft 14 10"
             width="80" height="80"
-            imageName="ui/done" imageColor="703002ff" style="level2-hud-button"/>
+            imageName="ui/done" imageColor="703002ff" style="level2-hud-button"
+            sound="meal-done"/>/>
     </AnchorGroup>
 </gdxui>
