@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <gdxui>
     <AnchorGroup id="bottomLeftButtonBar">
         <Image x="-5" y="8" id="bottomLeftBg" name="levels/2/bottom-left-button-bar"/>
