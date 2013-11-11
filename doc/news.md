@@ -1,23 +1,30 @@
 # 0.6 - 2013-11-11
 
-- Adjust mood change to order size
-- Only show new item animation once
-- Add fries and soda at startup
-- Add wrestler customer
-- World screen: show star count on world buttons
-- World screen: make it impossible to select locked worlds
-- World screen: draw a separator between world and sandbox buttons
-- Sand box: make it impossible to select locked worlds
-- Nicer "meal done" sound
-- Use "meal done" sound in sandbox mode
+- When customers order a large burger, they now wait longer before getting angry
+- The animation announcing a new items is not played again when retrying the
+  level
+- Fries and soda are now available from the beginning
+- The "meal done" sound has been changed
+- World 1: boss for last level is now a wrestler
+- A few changes on the screen to select world or sandbox mode:
+    - Number of unlocked stars and total stars are now shown on world buttons
+    - One can no longer select worlds until they have been unlocked
+    - A thin separator has been added between the world buttons and the sandbox
+      button
+- Sandbox mode:
+    - Just like in the world screen, one can no longer select worlds until they
+      have been unlocked
+    - The "done" button now uses the "meal done" sound
 
 # 0.5 - 2013-10-27
 
-- Reworked burger scrolling: target burgers scroll in their bubble now instead of scrolling the whole view
-- Sand box: use proper icons and world-specific buttons
+- Reworked burger scrolling: target burgers scroll in their bubble now instead
+  of scrolling the whole view
+- Sandbox mode: use proper icons and world-specific buttons
 - Hopefully fixed black screen on resume
 - Added (early version of) music in menu screens
-- Reworked menu screens: only one play button, then player picks either a world or the sand box mode
+- Reworked menu screens: only one play button, then player picks either a world
+  or the sand box mode
 
 # 0.4 - 2013-10-04
 
