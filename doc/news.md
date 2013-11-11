@@ -1,3 +1,16 @@
+# 0.6 - 2013-11-11
+
+- Adjust mood change to order size
+- Only show new item animation once
+- Add fries and soda at startup
+- Add wrestler customer
+- World screen: show star count on world buttons
+- World screen: make it impossible to select locked worlds
+- World screen: draw a separator between world and sandbox buttons
+- Sand box: make it impossible to select locked worlds
+- Nicer "meal done" sound
+- Use "meal done" sound in sandbox mode
+
 # 0.5 - 2013-10-27
 
 - Reworked burger scrolling: target burgers scroll in their bubble now instead of scrolling the whole view

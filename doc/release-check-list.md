@@ -6,7 +6,7 @@ Smoke test
 
 Run unit tests
 
-Update NEWS
+Update news.md
 
 Commit
 
