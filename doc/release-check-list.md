@@ -21,20 +21,34 @@ Push
 
 Generate .apk
 
-# Upload
-
-Upload to TestFlight
-
-Upload to Google Play
-
 # Spread
 
 Take screenshots
 
+## Greenyetilab.com
+
+Upload
+
+Update greenyetilab.com/burgerparty
+
+Write announcement blog post
+
+## TestFlight
+
+Upload
+
 Notify TestFlight testers
 
-Upload screenshots to:
+## Google Play
 
+Upload
+
+Update Google Play
+
+Notify group
+
+## Others
+
+Post link to announcement on:
 - FB
-- Google Play
 - libgdx forum
