@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -95,6 +96,51 @@ public class Assets {
 		return mMusic;
 	}
 
+	public ShaderProgram getDisabledShader() {
+		return mDisabledShader;
+	}
+
+	private static ShaderProgram createDisabledShader() {
+		String vertexShader = "attribute vec4 "
+			+ ShaderProgram.POSITION_ATTRIBUTE + ";\n"
+			+ "attribute vec4 " + ShaderProgram.COLOR_ATTRIBUTE + ";\n"
+			+ "attribute vec2 " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n"
+			+ "uniform mat4 u_projTrans;\n"
+			+ "varying vec4 v_color;\n"
+			+ "varying vec2 v_texCoords;\n"
+			+ "\n"
+			+ "void main()\n"
+			+ "{\n"
+			+ " v_color = " + ShaderProgram.COLOR_ATTRIBUTE + ";\n"
+			+ " v_texCoords = " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n"
+			+ " gl_Position = u_projTrans * " + ShaderProgram.POSITION_ATTRIBUTE + ";\n"
+			+ "}\n";
+		String fragmentShader = "#ifdef GL_ES\n"
+			+ "#define LOWP lowp\n"
+			+ "precision mediump float;\n"
+			+ "#else\n"
+			+ "#define LOWP \n"
+			+ "#endif\n"
+			+ "varying LOWP vec4 v_color;\n"
+			+ "varying vec2 v_texCoords;\n"
+			+ "uniform sampler2D u_texture;\n"
+			+ "float pump(float v) {"
+			+ "  return pow(v, 0.4);"
+			+ "}"
+			+ "void main()\n"
+			+ "{\n"
+			+ "  vec4 c = v_color * texture2D(u_texture, v_texCoords);\n"
+			+ "  float grey = (pump(c.r) + pump(c.g) + pump(c.b)) / 3.0;\n"
+			+ "  gl_FragColor = vec4(grey, grey, grey, c.a);"
+			+ "}";
+	
+		ShaderProgram shader = new ShaderProgram(vertexShader, fragmentShader);
+		if (!shader.isCompiled()) {
+			throw new IllegalArgumentException("Error compiling shader: " + shader.getLog());
+		}
+		return shader;
+	}
+
 	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
 	SoundAtlas mSoundAtlas;
 	TextureAtlas mTextureAtlas;
@@ -103,4 +149,5 @@ public class Assets {
 	Music mMusic;
 	ChangeListener mClickListener;
 	AssetManager mAssetManager;
+	ShaderProgram mDisabledShader = createDisabledShader();
 }
