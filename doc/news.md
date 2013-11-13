@@ -5,7 +5,10 @@
   level
 - Fries and soda are now available from the beginning
 - The "meal done" sound has been changed
-- World 1: boss for last level is now a wrestler
+- Texts are now more readable, thanks to a thin border around the letters
+- US world:
+    - Boss for last level is now a wrestler
+    - New city-like background
 - A few changes on the screen to select world or sandbox mode:
     - Number of unlocked stars and total stars are now shown on world buttons
     - One can no longer select worlds until they have been unlocked

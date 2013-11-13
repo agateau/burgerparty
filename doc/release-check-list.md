@@ -27,17 +27,11 @@ Take screenshots
 
 ## Greenyetilab.com
 
-Upload
-
 Update greenyetilab.com/burgerparty
 
 Write announcement blog post
 
-## TestFlight
-
 Upload
-
-Notify TestFlight testers
 
 ## Google Play
 
