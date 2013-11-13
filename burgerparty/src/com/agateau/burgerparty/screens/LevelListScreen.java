@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -73,53 +74,44 @@ public class LevelListScreen extends BurgerPartyScreen {
 	}
 
 	class LevelButton extends TextButton {
-		public LevelButton(int levelWorldIndex, int levelIndex, int stars, boolean locked, boolean surprise, Skin skin) {
+		public LevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
 			super("", skin, "level-button");
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
 
-			AnchorGroup group = new AnchorGroup();
-			addActor(group);
-			group.setFillParent(true);
+			mGroup = new AnchorGroup();
+			addActor(mGroup);
+			mGroup.setFillParent(true);
+		}
 
-			if (locked) {
-				setDisabled(true);
-				Image image = new Image(mLock);
-				group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
+		public void createStars(int stars) {
+			setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
+			HorizontalGroup starGroup = new HorizontalGroup();
+			starGroup.setSpacing(4);
+			for (int n = 1; n <= 3; ++n) {
+				Image image = new Image(n > stars ? mStarOff : mStarOn);
+				starGroup.addActor(image);
+			}
+			starGroup.setScale(0.8f);
+			starGroup.pack();
+			mGroup.addRule(starGroup, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, 8);
+		}
+
+		@Override
+		public void draw(SpriteBatch batch, float parentAlpha) {
+			if (isDisabled()) {
+				batch.setShader(getGame().getAssets().getDisabledShader());
+				super.draw(batch, parentAlpha);
+				batch.setShader(null);
+				float posX = getX() + (getWidth() - mLock.getRegionWidth()) / 2;
+				float posY = getY() + (getHeight() - mLock.getRegionHeight()) / 2;
+				batch.draw(mLock, posX, posY);
 			} else {
-				setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
-				HorizontalGroup starGroup = new HorizontalGroup();
-				starGroup.setSpacing(4);
-				for (int n = 1; n <= 3; ++n) {
-					Image image = new Image(n > stars ? mStarOff : mStarOn);
-					starGroup.addActor(image);
-				}
-				starGroup.setScale(0.8f);
-				starGroup.pack();
-				group.addRule(starGroup, Anchor.BOTTOM_CENTER, group, Anchor.BOTTOM_CENTER, 0, 8);
-			}
-
-			if (surprise) {
-				createSurpriseImage(group);
+				super.draw(batch, parentAlpha);
 			}
 		}
 
-		private void createSurpriseImage(AnchorGroup group) {
-			Image image = new Image(mSurpriseRegion);
-			image.setOrigin(mSurpriseRegion.getRegionWidth() / 2, mSurpriseRegion.getRegionHeight() / 2);
-			group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -2f, 2f);
-			float variation = MathUtils.random(0.9f, 1.1f);
-			image.addAction(
-				Actions.forever(
-					Actions.sequence(
-						Actions.delay(MathUtils.random(1f, 5f)),
-						Actions.rotateTo(SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine),
-						Actions.rotateTo(-SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation, Interpolation.sine),
-						Actions.rotateTo(0, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine)
-					)
-				)
-			);
-		}
+		private AnchorGroup mGroup;
 
 		public int levelWorldIndex;
 		public int levelIndex;
@@ -128,10 +120,20 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
 		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
 		Level level = world.getLevel(levelIndex);
-		int stars = level.getStars();
-		boolean locked = level.score == Level.SCORE_LOCKED;
-		boolean surprise = level.hasBrandNewItem();
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, stars, locked, surprise, skin);
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, skin);
+		button.setSize(CELL_SIZE, CELL_SIZE);
+
+		AnchorGroup group = new AnchorGroup();
+		group.addRule(button, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT);
+		if (level.score == Level.SCORE_LOCKED) {
+			button.setDisabled(true);
+		} else {
+			button.createStars(level.getStars());
+		}
+		if (level.hasBrandNewItem()) {
+			createSurpriseImage(group);
+		}
+
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().getAssets().getSoundAtlas().findSound("click").play();
@@ -139,8 +141,24 @@ public class LevelListScreen extends BurgerPartyScreen {
 				getGame().startLevel(button.levelWorldIndex, button.levelIndex);
 			}
 		});
+		return group;
+	}
 
-		return button;
+	private void createSurpriseImage(AnchorGroup group) {
+		Image image = new Image(mSurpriseRegion);
+		image.setOrigin(mSurpriseRegion.getRegionWidth() / 2, mSurpriseRegion.getRegionHeight() / 2);
+		group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -2f, 2f);
+		float variation = MathUtils.random(0.9f, 1.1f);
+		image.addAction(
+			Actions.forever(
+				Actions.sequence(
+					Actions.delay(MathUtils.random(1f, 5f)),
+					Actions.rotateTo(SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine),
+					Actions.rotateTo(-SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation, Interpolation.sine),
+					Actions.rotateTo(0, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine)
+				)
+			)
+		);
 	}
 
 	@Override

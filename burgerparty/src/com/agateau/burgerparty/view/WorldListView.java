@@ -56,9 +56,6 @@ public class WorldListView extends HorizontalGroup {
 		WorldListView.WorldButton button = new WorldButton(text, world.getDirName(), mAssets);
 		if (locked) {
 			button.setDisabled(true);
-			Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/lock"));
-			AnchorGroup group = button.getGroup();
-			group.addRule(image, Anchor.CENTER, group, Anchor.CENTER);
 		} else if (details == Details.SHOW_STARS) {
 			createStarsActor(button.getGroup(), world);
 		}
