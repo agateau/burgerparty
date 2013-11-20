@@ -67,13 +67,13 @@ public class ProgressIOTest {
 		assertNotNull(levelsElement);
 
 		XmlReader.Element child = levelsElement.getChild(0);
-		assertEquals(child.getAttribute("world"), "1");
-		assertEquals(child.getAttribute("level"), "1");
-		assertEquals(child.getAttribute("score"), "12");
+		assertEquals(child.getIntAttribute("world"), 1);
+		assertEquals(child.getIntAttribute("level"), 1);
+		assertEquals(child.getIntAttribute("score"), 12);
 
 		child = levelsElement.getChild(1);
-		assertEquals(child.getAttribute("world"), "2");
-		assertEquals(child.getAttribute("level"), "2");
+		assertEquals(child.getIntAttribute("world"), 2);
+		assertEquals(child.getIntAttribute("level"), 2);
 		assertEquals(child.getIntAttribute("score"), Level.SCORE_NEW);
 	}
 
