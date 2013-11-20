@@ -101,7 +101,7 @@ public class ProgressIO {
 			for (LevelWorld world: mWorlds) {
 				for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 					Level level = world.getLevel(levelIndex);
-					if (level.score > -1) {
+					if (level.score > Level.SCORE_LOCKED) {
 						levelsElement.element("level")
 							.attribute("world", worldIndex + 1)
 							.attribute("level", levelIndex + 1)

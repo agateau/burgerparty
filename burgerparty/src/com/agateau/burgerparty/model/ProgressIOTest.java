@@ -52,7 +52,7 @@ public class ProgressIOTest {
 	public void testSave() {
 		Array<LevelWorld> worlds = createTestWorlds();
 		worlds.get(0).getLevel(0).score = 12;
-		worlds.get(1).getLevel(1).score = 24;
+		worlds.get(1).getLevel(1).score = Level.SCORE_NEW;
 
 		StringWriter writer = new StringWriter();
 		XmlWriter xmlWriter = new XmlWriter(writer);
@@ -74,7 +74,7 @@ public class ProgressIOTest {
 		child = levelsElement.getChild(1);
 		assertEquals(child.getAttribute("world"), "2");
 		assertEquals(child.getAttribute("level"), "2");
-		assertEquals(child.getAttribute("score"), "24");
+		assertEquals(child.getIntAttribute("score"), Level.SCORE_NEW);
 	}
 
 	private static Array<LevelWorld> createTestWorlds() {
