@@ -27,7 +27,7 @@
      inkscape:cx="1957.7426"
      inkscape:cy="628.27768"
      inkscape:document-units="px"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1563"
      inkscape:window-height="880"
@@ -6898,10 +6898,13 @@
      inkscape:groupmode="layer">
     <rect
        y="17.115479"
-       x="1677"
+       x="1676"
        height="300"
        width="128"
        id="rect4048"
-       style="color:#000000;fill:#aaeeff;fill-opacity:0.42616033;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;fill:#aaeeff;fill-opacity:0.42616033;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="preview.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
