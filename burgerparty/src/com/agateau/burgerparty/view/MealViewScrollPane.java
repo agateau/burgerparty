@@ -99,14 +99,17 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 		if (getWidget().getHeight() <= getHeight()) {
 			return;
 		}
+		float edgeWidth = getWidth() * getScaleX();
 		float percent = getScrollPercentY();
 		if (percent < 1) {
 			mBottomEdge.setVisible(true);
-			mBottomEdge.setBounds(getX(), getY(), getWidth() * getScaleX(), EDGE_SIZE);
+			mBottomEdge.setBounds(getX(), getY(), edgeWidth, EDGE_SIZE);
+			mBottomEdge.layout();
 		}
 		if (percent > 0) {
 			mTopEdge.setVisible(true);
-			mTopEdge.setBounds(getX(), getY() + getHeight() * getScaleY() - EDGE_SIZE, getWidth() * getScaleX(), EDGE_SIZE);
+			mTopEdge.setBounds(getX(), getY() + getHeight() * getScaleY() - EDGE_SIZE, edgeWidth, EDGE_SIZE);
+			mTopEdge.layout();
 		}
 	}
 
