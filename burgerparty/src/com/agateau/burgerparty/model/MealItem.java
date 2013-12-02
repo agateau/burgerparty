@@ -1,14 +1,10 @@
 package com.agateau.burgerparty.model;
 
-import java.io.IOException;
 
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.SoundAtlas;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class MealItem {
@@ -29,10 +25,7 @@ public class MealItem {
 		BURGER
 	}
 	public static MealItem get(String name) {
-		if (sMap.size == 0) {
-			initMap();
-		}
-		return sMap.get(name);
+		return MealItemDb.getInstance().get(0, name);
 	}
 
 	public String toString() {
@@ -79,7 +72,8 @@ public class MealItem {
 		}
 	}
 
-	protected MealItem(XmlReader.Element element) {
+	protected MealItem(Type type, XmlReader.Element element) {
+		mType = type;
 		mName = element.getAttribute("name");
 		mColumn = element.getIntAttribute("column");
 		mRow = element.getIntAttribute("row");
@@ -94,42 +88,8 @@ public class MealItem {
 
 	public static MealItem addTestItem(Type type, String name) {
 		MealItem item = new MealItem(type, name);
-		addTestItem(item);
+		MealItemDb.getInstance().addTestItem(item);
 		return item;
-	}
-
-	protected static void addTestItem(MealItem item) {
-		sMap.put(item.mName, item);
-	}
-
-	private static void initMap() {
-		FileHandle handle = Gdx.files.internal("mealitems.xml");
-		XmlReader.Element root = null;
-		try {
-			XmlReader reader = new XmlReader();
-			root = reader.parse(handle);
-		} catch (IOException e) {
-			Gdx.app.error("MealItem.initMap", "Failed to load items definition from " + handle.path() + ". Exception: " + e.toString());
-			return;
-		}
-
-		for(int idx = 0; idx < root.getChildCount(); ++idx) {
-			XmlReader.Element element = root.getChild(idx);
-			String type = element.getAttribute("type");
-			MealItem item = null;
-			if (type.equals("burger")) {
-				item = new BurgerItem(element);
-				item.mType = Type.BURGER;
-			} else if (type.equals("drink")) {
-				item = new MealItem(element);
-				item.mType = Type.DRINK;
-			} else if (type.equals("side-order")) {
-				item = new MealItem(element);
-				item.mType = Type.SIDE_ORDER;
-			}
-			assert(item != null);
-			sMap.put(item.mName, item);
-		}
 	}
 
 	private Type mType;
@@ -138,6 +98,4 @@ public class MealItem {
 	private AnimScript mAnimScript;
 	private int mColumn;
 	private int mRow;
-
-	private static OrderedMap<String, MealItem> sMap = new OrderedMap<String, MealItem>();
 }

@@ -11,7 +11,7 @@ public class BurgerItem extends MealItem {
 	}
 
 	protected BurgerItem(XmlReader.Element element) {
-		super(element);
+		super(Type.BURGER, element);
 		mOffset = element.getIntAttribute("offset");
 		mHeight = element.getIntAttribute("height");
 		String subType = element.getAttribute("subType", "middle");
@@ -58,7 +58,7 @@ public class BurgerItem extends MealItem {
 		item.mHeight = 18;
 		item.mOffset = 6;
 		item.mSubType = subType;
-		addTestItem(item);
+		MealItemDb.getInstance().addTestItem(item);
 		return item;
 	}
 

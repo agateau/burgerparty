@@ -7,6 +7,7 @@ import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.LevelWorldLoader;
 import com.agateau.burgerparty.model.MealItem;
+import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
@@ -43,6 +44,7 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void create() {
 		mAssets = new Assets();
+		MealItemDb.getInstance().initFromXml("mealitems.xml");
 		Gdx.input.setCatchBackKey(true);
 		showLoadingScreen();
 	}
