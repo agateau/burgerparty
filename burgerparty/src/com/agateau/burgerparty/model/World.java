@@ -1,7 +1,5 @@
 package com.agateau.burgerparty.model;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -12,9 +10,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
 
 public class World {
@@ -63,6 +59,7 @@ public class World {
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
 		mBurgerGenerator = new BurgerGenerator(mLevel.definition.getBurgerItems());
+		mMealExtraGenerator = new MealExtraGenerator(mLevel.definition.getExtraItems());
 		mBurgerInventory.setItems(level.definition.getBurgerItems());
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
 		setupMeal();
@@ -189,29 +186,7 @@ public class World {
 	}
 
 	private void generateTargetMealExtra() {
-		Array<MealItem> availableItems = mLevel.definition.getExtraItems();
-		mTargetMealExtra.clear();
-		if (availableItems.size == 0) {
-			return;
-		}
-		ObjectMap<MealItem.Type, Array<MealItem>> itemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
-		for(MealItem item: availableItems) {
-			Array<MealItem> lst = itemsForType.get(item.getType(), null);
-			if (lst == null) {
-				lst = new Array<MealItem>();
-				itemsForType.put(item.getType(), lst);
-			}
-			lst.add(item);
-		}
-		// Pick one item per type
-		Set<MealItem> items = new HashSet<MealItem>();
-		for(Iterator<Array<MealItem>> it = itemsForType.values(); it.hasNext(); ) {
-			Array<MealItem> lst = it.next();
-			if (MathUtils.randomBoolean()) {
-				int index = MathUtils.random(lst.size - 1);
-				items.add(lst.get(index));
-			}
-		}
+		Set<MealItem> items = mMealExtraGenerator.run();
 		mTargetMealExtra.setItems(items);
 	}
 
@@ -314,6 +289,7 @@ public class World {
 
 	private ConnectionManager mMealConnections = new ConnectionManager();
 	private BurgerGenerator mBurgerGenerator;
+	private MealExtraGenerator mMealExtraGenerator;
 	private Counter mItemAddedCounter = new Counter();
 	private Counter mMealDoneCounter = new Counter();
 }
