@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.Array;
 public class MealExtraView extends Group {
 	private static final float ADD_ACTION_HEIGHT = 100;
 
-	private static final float ITEM0_X = 0;
+	private static final float ITEM0_X = 10;
 	private static final float ITEM0_Y = 0;
 	private static final float ITEM1_X = -30;
 	private static final float ITEM1_Y = 10;
