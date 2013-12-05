@@ -4,6 +4,7 @@
     <!-- extra -->
     <item name="top"/>
     <item name="bottom"/>
+    <item name="toast"/>
     <item name="steak"/>
     <item name="tomato"/>
     <item name="salad"/>
@@ -15,8 +16,6 @@
     <item name="juice"/>
     <item name="soda"/>
     <item name="big-fries"/>
-    <item name="coconut"/>
-    <item name="toast"/>
   </items>
   <customers>
     <customer type="pirate-boys"/>

@@ -14,7 +14,6 @@
     <item name="juice"/>
     <item name="soda"/>
     <item name="big-fries"/>
-    <item name="coconut"/>
   </items>
   <customers>
     <customer type="pirate-boys"/>
