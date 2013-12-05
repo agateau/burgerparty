@@ -84,6 +84,7 @@ public class Level {
 	}
 
 	public static Level fromXml(LevelWorld levelWorld, FileHandle handle) {
+		int worldIndex = levelWorld.getIndex();
 		XmlReader reader = new XmlReader();
 		XmlReader.Element root = null;
 		try {
@@ -105,7 +106,7 @@ public class Level {
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
 			XmlReader.Element element = elements.getChild(idx);
 			String name = element.getAttribute("name");
-			MealItem item = MealItem.get(name);
+			MealItem item = MealItemDb.getInstance().get(worldIndex, name);
 			assert(item != null);
 			if (item.getType() == MealItem.Type.BURGER) {
 				level.definition.mBurgerItems.add((BurgerItem)item);

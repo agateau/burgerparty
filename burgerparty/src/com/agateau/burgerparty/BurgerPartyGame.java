@@ -44,7 +44,7 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void create() {
 		mAssets = new Assets();
-		MealItemDb.getInstance().initFromXml("mealitems.xml");
+		MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
 		Gdx.input.setCatchBackKey(true);
 		showLoadingScreen();
 	}

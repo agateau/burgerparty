@@ -173,6 +173,7 @@ public class WorldView extends AbstractWorldView {
 
 		mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), false);
 		mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
+		mTargetMealView.getMealExtraView().setOverlapping(false);
 
 		mTargetMealScrollPane = new MealViewScrollPane(mTargetMealView, mAssets.getTextureAtlas());
 		mTargetMealScrollPane.setScale(0.5f, 0.5f);

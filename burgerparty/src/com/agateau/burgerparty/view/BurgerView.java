@@ -38,7 +38,7 @@ public class BurgerView extends Group {
 		mAtlas = atlas;
 		mSoundAtlas = soundAtlas;
 		mAnimScriptLoader = loader;
-		float maxWidth = mAtlas.findRegion("mealitems/bottom").getRegionWidth();
+		float maxWidth = mAtlas.findRegion("mealitems/0/bottom").getRegionWidth();
 		setWidth(maxWidth);
 
 		mBurger.initialized.connect(mHandlers, new Signal0.Handler() {
@@ -147,7 +147,7 @@ public class BurgerView extends Group {
 
 	private Image addItemInternal(BurgerItem item) {
 		TextureRegion region;
-		region = mAtlas.findRegion("mealitems/" + item.getName());
+		region = mAtlas.findRegion("mealitems/" + item.getPath());
 		assert(region != null);
 		ItemImage image = new ItemImage(item, region);
 		float regionW = region.getRegionWidth();

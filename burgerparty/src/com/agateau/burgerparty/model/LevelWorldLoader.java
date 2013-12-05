@@ -15,15 +15,15 @@ public class LevelWorldLoader {
 				break;
 			}
 			Gdx.app.log("LevelWorldLoader", "dir=" + dirName);
-			LevelWorld world = loadWorld(dirName);
+			LevelWorld world = loadWorld(n - 1, dirName);
 			worlds.add(world);
 		}
 		initNewItemFields(worlds);
 		return worlds;
 	}
 
-	private LevelWorld loadWorld(String dirName) {
-		LevelWorld world = new LevelWorld(dirName);
+	private LevelWorld loadWorld(int index, String dirName) {
+		LevelWorld world = new LevelWorld(index, dirName);
 		for (int n=1;; n++) {
 			String name = dirName + "/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);

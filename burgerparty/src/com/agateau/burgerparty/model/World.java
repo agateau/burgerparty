@@ -58,7 +58,7 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
-		mBurgerGenerator = new BurgerGenerator(mLevel.definition.getBurgerItems());
+		mBurgerGenerator = new BurgerGenerator(level.getLevelWorld().getIndex(), mLevel.definition.getBurgerItems());
 		mMealExtraGenerator = new MealExtraGenerator(mLevel.definition.getExtraItems());
 		mBurgerInventory.setItems(level.definition.getBurgerItems());
 		mMealExtraInventory.setItems(level.definition.getExtraItems());

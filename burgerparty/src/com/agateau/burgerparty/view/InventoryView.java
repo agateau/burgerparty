@@ -61,7 +61,7 @@ public class InventoryView extends Actor {
 			float posX = getX() + item.getColumn() * cellWidth;
 			float posY = getY() + item.getRow() * cellHeight;
 
-			String baseName = "mealitems/" + item.getName();
+			String baseName = "mealitems/" + item.getPath();
 			TextureRegion region = mAtlas.findRegion(baseName + "-inventory");
 			if (region == null) {
 				region = mAtlas.findRegion(baseName);

@@ -57,6 +57,10 @@ public class MealExtraView extends Group {
 		});
 	}
 
+	public void setOverlapping(boolean overlapping) {
+		mOverlapping = overlapping;
+	}
+
 	public Array<MealItem> getItems() {
 		Array<MealItem> items = new Array<MealItem>(mItemActors.size);
 		for(ItemImage actor: mItemActors) {
@@ -78,12 +82,6 @@ public class MealExtraView extends Group {
 
 	public void addItem(MealItem item) {
 		Image image = addItemInternal(item);
-		if (mItemActors.size == 1) {
-			image.setPosition(ITEM0_X, ITEM0_Y);
-		} else {
-			image.setPosition(ITEM1_X, ITEM1_Y);
-			image.setZIndex(0);
-		}
 		AnimScript anim = item.getAnimScript(mAnimScriptLoader);
 		Action animAction = anim.createAction(ADD_ACTION_HEIGHT, ADD_ACTION_HEIGHT, MealView.ADD_ACTION_DURATION);
 		Action addItemAction = Actions.run(new AddItemRunnable(item));
@@ -101,11 +99,8 @@ public class MealExtraView extends Group {
 	public void init() {
 		mItemActors.clear();
 		clear();
-		float posX = 0;
 		for(MealItem item: mMealExtra.getItems()) {
-			Image image = addItemInternal(item);
-			image.setPosition(posX, 0);
-			posX += image.getWidth() + MealView.MEAL_ITEM_PADDING;
+			addItemInternal(item);
 		}
 		updateGeometry();
 	}
@@ -141,11 +136,25 @@ public class MealExtraView extends Group {
 
 	private Image addItemInternal(MealItem item) {
 		TextureRegion region;
-		region = mAtlas.findRegion("mealitems/" + item.getName());
+		region = mAtlas.findRegion("mealitems/" + item.getPath());
 		assert(region != null);
 		ItemImage image = new ItemImage(item, region);
-		mItemActors.add(image);
 		addActor(image);
+		if (mOverlapping) {
+			if (mItemActors.size == 0) {
+				image.setPosition(ITEM0_X, ITEM0_Y);
+			} else {
+				image.setPosition(ITEM1_X, ITEM1_Y);
+				image.setZIndex(0);
+			}
+		} else {
+			float posX = 0;
+			if (mItemActors.size > 0) {
+				posX = mItemActors.get(mItemActors.size - 1).getRight() + MealView.MEAL_ITEM_PADDING;
+			}
+			image.setPosition(posX, 0);
+		}
+		mItemActors.add(image);
 		return image;
 	}
 
@@ -154,4 +163,5 @@ public class MealExtraView extends Group {
 	private AnimScriptLoader mAnimScriptLoader;
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 	private Array<ItemImage> mItemActors = new Array<ItemImage>();
+	private boolean mOverlapping = true;
 }

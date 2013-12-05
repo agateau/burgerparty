@@ -9,6 +9,10 @@ public class Inventory {
 		mItems = new Array<MealItem>(items);
 	}
 
+	public void clear() {
+		mItems.clear();
+	}
+
 	public Array<MealItem> getItems() {
 		return mItems;
 	}

@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 class BurgerGenerator {
-	public BurgerGenerator(Array<BurgerItem> items) {
+	public BurgerGenerator(int worldIndex, Array<BurgerItem> items) {
 		for (BurgerItem item: items) {
 			switch (item.getSubType()) {
 			case MIDDLE:
@@ -16,7 +16,8 @@ class BurgerGenerator {
 				// Skip, assume there are matching tops
 				break;
 			case TOP:
-				BurgerItem bottomItem = BurgerItem.get(item.getBottomName());
+				BurgerItem bottomItem = (BurgerItem)MealItemDb.getInstance().get(worldIndex, item.getBottomName());
+				assert bottomItem != null;
 				mTopBottomItems.add(new TopBottom(item, bottomItem));
 				break;
 			case TOP_BOTTOM:

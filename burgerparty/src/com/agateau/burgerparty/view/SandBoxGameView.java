@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import com.agateau.burgerparty.BurgerPartyGame;
@@ -9,6 +10,7 @@ import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
+import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.SandBoxWorld;
 import com.agateau.burgerparty.screens.BurgerPartyScreen;
 import com.agateau.burgerparty.utils.Anchor;
@@ -33,7 +35,8 @@ public class SandBoxGameView extends AbstractWorldView {
 		mLevelWorldIndex = 0;
 		mGame = game;
 
-		setupInventory();
+		setupInventories();
+		setupInventoryView();
 		setupWidgets();
 		setupHud();
 		Gdx.app.postRunnable(new Runnable() {
@@ -105,15 +108,24 @@ public class SandBoxGameView extends AbstractWorldView {
 		addRule(mBottomRightBar, Anchor.BOTTOM_RIGHT, mInventoryView, Anchor.TOP_RIGHT);
 	}
 
-	private void setupInventory() {
+	private void setupInventories() {
+		HashSet<String> names = new HashSet<String>();
 		for (MealItem item: mGame.getKnownItems()) {
+			names.add(item.getName());
+		}
+		mWorld.getBurgerInventory().clear();
+		mWorld.getMealExtraInventory().clear();
+		for (String name: names) {
+			MealItem item = MealItemDb.getInstance().get(mLevelWorldIndex, name);
 			if (item.getType() == MealItem.Type.BURGER) {
 				mWorld.getBurgerInventory().addItem(item);
 			} else {
 				mWorld.getMealExtraInventory().addItem(item);
 			}
 		}
+	}
 
+	private void setupInventoryView() {
 		mInventoryView.setInventory(mWorld.getBurgerInventory());
 
 		mInventoryView.itemSelected.connect(mHandlers, new Signal1.Handler<MealItem>() {
@@ -200,7 +212,28 @@ public class SandBoxGameView extends AbstractWorldView {
 		LevelWorld levelWorld = mGame.getLevelWorld(index);
 		String dirName = levelWorld.getDirName();
 		setWorldDirName(dirName);
+		setupInventories();
+		switchBurger();
+		switchMealExtra();
 		setupHud();
+	}
+
+	private void switchBurger() {
+		LinkedList<BurgerItem> items = new LinkedList<BurgerItem>();
+		for (MealItem item: mWorld.getBurger().getItems()) {
+			BurgerItem newItem = (BurgerItem)MealItemDb.getInstance().get(mLevelWorldIndex, item.getName());
+			items.add(newItem);
+		}
+		mWorld.getBurger().setItems(items);
+	}
+
+	private void switchMealExtra() {
+		LinkedList<MealItem> items = new LinkedList<MealItem>();
+		for (MealItem item: mWorld.getMealExtra().getItems()) {
+			MealItem newItem = MealItemDb.getInstance().get(mLevelWorldIndex, item.getName());
+			items.add(newItem);
+		}
+		mWorld.getMealExtra().setItems(items);
 	}
 
 	private void onAddItem(MealItem item) {

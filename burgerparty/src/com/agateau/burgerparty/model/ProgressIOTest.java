@@ -80,11 +80,11 @@ public class ProgressIOTest {
 	private static Array<LevelWorld> createTestWorlds() {
 		Array<LevelWorld> worlds = new Array<LevelWorld>();
 
-		LevelWorld world1 = new LevelWorld("1");
+		LevelWorld world1 = new LevelWorld(1, "1");
 		world1.addLevel(new Level(world1, "1-1"));
 		world1.addLevel(new Level(world1, "1-2"));
 
-		LevelWorld world2 = new LevelWorld("2");
+		LevelWorld world2 = new LevelWorld(2, "2");
 		world2.addLevel(new Level(world2, "2-1"));
 		world2.addLevel(new Level(world2, "2-2"));
 

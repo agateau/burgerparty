@@ -10,10 +10,16 @@ public class BurgerItem extends MealItem {
 		TOP_BOTTOM,
 	}
 
-	protected BurgerItem(XmlReader.Element element) {
-		super(Type.BURGER, element);
-		mOffset = element.getIntAttribute("offset");
-		mHeight = element.getIntAttribute("height");
+	public BurgerItem(int worldIndex, BurgerItem item) {
+		super(worldIndex, item);
+		mHeight = item.mHeight;
+		mOffset = item.mOffset;
+		mSubType = item.mSubType;
+		mBottomName = item.mBottomName;
+	}
+
+	protected BurgerItem(int worldIndex, XmlReader.Element element) {
+		super(worldIndex, Type.BURGER, element);
 		String subType = element.getAttribute("subType", "middle");
 		if (subType.equals("middle")) {
 			mSubType = SubType.MIDDLE;
@@ -27,6 +33,14 @@ public class BurgerItem extends MealItem {
 		} else {
 			throw new RuntimeException("Invalid BurgerItem subType: " + subType);
 		}
+		initFromXml(element);
+		assert mHeight > 0;
+	}
+
+	public void initFromXml(XmlReader.Element element) {
+		super.initFromXml(element);
+		mOffset = element.getIntAttribute("offset", mOffset);
+		mHeight = element.getIntAttribute("height", mHeight);
 	}
 
 	protected BurgerItem(String name) {
@@ -68,8 +82,8 @@ public class BurgerItem extends MealItem {
 		return (BurgerItem)item;
 	}
 
-	private int mHeight;
-	private int mOffset;
+	private int mHeight = 0;
+	private int mOffset = 0;
 	private SubType mSubType;
 	private String mBottomName;
 }
