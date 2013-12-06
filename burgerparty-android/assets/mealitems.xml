@@ -1,5 +1,6 @@
 <items>
     <generic>
+        <!-- burger, row 0 -->
         <item name="bottom"      row="0" column="0" type="burger" subType="bottom" height="24" offset="0">
             <anim>
                 <![CDATA[
@@ -23,6 +24,8 @@
         <item name="cheese"      row="0" column="4" type="burger" height="8"  offset="-19"/>
         <item name="onion"       row="0" column="5" type="burger" height="8"  offset="-4"/>
         <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
+
+        <!-- burger, row 1 -->
         <item name="top"         row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
             <anim>
                 <![CDATA[
@@ -40,21 +43,6 @@
                 ]]>
             </anim>
         </item>
-        <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4">
-            <anim>
-                <![CDATA[
-                scaleTo 0.2 0.2
-                scaleTo 1 1 1
-                play splat
-                ]]>
-            </anim>
-        </item>
-
-        <item name="small-fries" row="0" column="0" type="side-order"/>
-        <item name="big-fries"   row="0" column="1" type="side-order"/>
-        <item name="soda"        row="1" column="0" type="drink"/>
-        <item name="juice"       row="1" column="1" type="drink"/>
-
         <item name="toast"       row="1" column="1" type="burger" subType="top-bottom" height="24" offset="0">
             <anim>
                 <![CDATA[
@@ -72,6 +60,22 @@
                 ]]>
             </anim>
         </item>
+        <item name="fish"        row="1" column="2" type="burger" height="24" offset="0"/>
+        <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4">
+            <anim>
+                <![CDATA[
+                scaleTo 0.2 0.2
+                scaleTo 1 1 1
+                play splat
+                ]]>
+            </anim>
+        </item>
+
+        <!-- extra -->
+        <item name="small-fries" row="0" column="0" type="side-order"/>
+        <item name="big-fries"   row="0" column="1" type="side-order"/>
+        <item name="soda"        row="1" column="0" type="drink"/>
+        <item name="juice"       row="1" column="1" type="drink"/>
     </generic>
 
     <world index="2">
