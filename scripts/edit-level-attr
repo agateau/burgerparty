@@ -23,10 +23,6 @@ while [ $# -gt 0 ] ; do
     -h|--help)
         usage
         ;;
-    -s|--size)
-        shift
-        size=$1
-        ;;
     *)
         if [ -z "$attr" ] ; then
             attr=$1
