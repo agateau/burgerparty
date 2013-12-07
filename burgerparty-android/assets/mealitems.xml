@@ -1,9 +1,9 @@
+<?xml version="1.0"?>
 <items>
-    <generic>
-        <!-- burger, row 0 -->
-        <item name="bottom"      row="0" column="0" type="burger" subType="bottom" height="24" offset="0">
-            <anim>
-                <![CDATA[
+  <generic>
+    <!-- burger, row 0 -->
+    <item name="bottom" row="0" column="0" type="burger" subType="bottom" height="24" offset="0">
+      <anim><![CDATA[
                 parallel
                     alpha 0
                     rotateTo 30
@@ -15,20 +15,17 @@
                     rotateTo 0 1
                     playMealItem @itemName@
                 end
-                ]]>
-            </anim>
-        </item>
-        <item name="steak"       row="0" column="1" type="burger" height="22" offset="0"/>
-        <item name="tomato"      row="0" column="2" type="burger" height="12" offset="-4"/>
-        <item name="salad"       row="0" column="3" type="burger" height="8"  offset="-4"/>
-        <item name="cheese"      row="0" column="4" type="burger" height="8"  offset="-19"/>
-        <item name="onion"       row="0" column="5" type="burger" height="8"  offset="-4"/>
-        <item name="cucumber"    row="0" column="6" type="burger" height="8"  offset="-4"/>
-
-        <!-- burger, row 1 -->
-        <item name="top"         row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
-            <anim>
-                <![CDATA[
+                ]]></anim>
+    </item>
+    <item name="steak" row="0" column="1" type="burger" height="22" offset="0"/>
+    <item name="tomato" row="0" column="2" type="burger" height="12" offset="-4"/>
+    <item name="salad" row="0" column="3" type="burger" height="8" offset="-4"/>
+    <item name="cheese" row="0" column="4" type="burger" height="8" offset="-19"/>
+    <item name="onion" row="0" column="5" type="burger" height="8" offset="-4" world="1" level="6"/>
+    <item name="cucumber" row="0" column="6" type="burger" height="8" offset="-4" world="1" level="9"/>
+    <!-- burger, row 1 -->
+    <item name="top" row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
+      <anim><![CDATA[
                 parallel
                     alpha 0
                     moveBy 0 1
@@ -40,12 +37,10 @@
                     rotateTo 0 1
                     playMealItem bottom
                 end
-                ]]>
-            </anim>
-        </item>
-        <item name="toast"       row="1" column="1" type="burger" subType="top-bottom" height="24" offset="0">
-            <anim>
-                <![CDATA[
+                ]]></anim>
+    </item>
+    <item name="toast" row="1" column="1" type="burger" subType="top-bottom" height="24" offset="0" world="2" level="5">
+      <anim><![CDATA[
                 parallel
                     alpha 0
                     rotateTo 30
@@ -57,31 +52,25 @@
                     rotateTo 0 1
                     play add-item
                 end
-                ]]>
-            </anim>
-        </item>
-        <item name="fish"        row="1" column="2" type="burger" height="24" offset="0"/>
-        <item name="ketchup"     row="1" column="7" type="burger" height="8"  offset="-4">
-            <anim>
-                <![CDATA[
+                ]]></anim>
+    </item>
+    <item name="fish" row="1" column="2" type="burger" height="24" offset="0" world="2" level="7"/>
+    <item name="ketchup" row="1" column="7" type="burger" height="8" offset="-4" world="1" level="3">
+      <anim><![CDATA[
                 scaleTo 0.2 0.2
                 scaleTo 1 1 1
                 play splat
-                ]]>
-            </anim>
-        </item>
-
-        <!-- extra -->
-        <item name="small-fries" row="0" column="0" type="side-order"/>
-        <item name="big-fries"   row="0" column="1" type="side-order"/>
-        <item name="soda"        row="1" column="0" type="drink"/>
-        <item name="juice"       row="1" column="1" type="drink"/>
-    </generic>
-
-    <world index="2">
-        <item name="juice">
-            <anim>
-                <![CDATA[
+                ]]></anim>
+    </item>
+    <!-- extra -->
+    <item name="small-fries" row="0" column="0" type="side-order"/>
+    <item name="big-fries" row="0" column="1" type="side-order" world="2" level="3"/>
+    <item name="soda" row="1" column="0" type="drink" world="2" level="2"/>
+    <item name="juice" row="1" column="1" type="drink" world="1" level="11"/>
+  </generic>
+  <world index="2">
+    <item name="juice">
+      <anim><![CDATA[
                 parallel
                     alpha 0
                     moveBy 0 1
@@ -91,15 +80,12 @@
                     moveBy 0 -1 1.5 bounceOut
                     playMealItem @itemName@
                 end
-                ]]>
-            </anim>
-        </item>
-    </world>
-
-    <world index="3">
-        <item name="toast" height="32" offset="0">
-            <anim>
-                <![CDATA[
+                ]]></anim>
+    </item>
+  </world>
+  <world index="3">
+    <item name="toast" height="32" offset="0">
+      <anim><![CDATA[
                 parallel
                     alpha 0
                     rotateTo 30
@@ -111,8 +97,7 @@
                     rotateTo 0 1
                     play add-item
                 end
-                ]]>
-            </anim>
-        </item>
-    </world>
+                ]]></anim>
+    </item>
+  </world>
 </items>

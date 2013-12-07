@@ -83,7 +83,7 @@ public class Level {
 		return mLevelWorld;
 	}
 
-	public static Level fromXml(LevelWorld levelWorld, FileHandle handle) {
+	public static Level fromXml(LevelWorld levelWorld, int levelIndex, FileHandle handle) {
 		int worldIndex = levelWorld.getIndex();
 		XmlReader reader = new XmlReader();
 		XmlReader.Element root = null;
@@ -101,13 +101,8 @@ public class Level {
 		level.definition.score2 = root.getIntAttribute("score2", 15000);
 		level.definition.score3 = root.getIntAttribute("score3", 30000);
 
-		XmlReader.Element elements = root.getChildByName("items");
-		assert(elements != null);
-		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
-			XmlReader.Element element = elements.getChild(idx);
-			String name = element.getAttribute("name");
-			MealItem item = MealItemDb.getInstance().get(worldIndex, name);
-			assert(item != null);
+		Array<MealItem> lst = MealItemDb.getInstance().getItemsForLevel(worldIndex, levelIndex);
+		for (MealItem item: lst) {
 			if (item.getType() == MealItem.Type.BURGER) {
 				level.definition.mBurgerItems.add((BurgerItem)item);
 			} else {
@@ -115,7 +110,7 @@ public class Level {
 			}
 		}
 
-		elements = root.getChildByName("customers");
+		XmlReader.Element elements = root.getChildByName("customers");
 		assert(elements != null);
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
 			XmlReader.Element element = elements.getChild(idx);

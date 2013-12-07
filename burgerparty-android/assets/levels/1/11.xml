@@ -1,20 +1,5 @@
 <?xml version="1.0"?>
 <level burgerSize="6" duration="90">
-  <items>
-    <!-- extra -->
-    <item name="top"/>
-    <item name="bottom"/>
-    <item name="steak"/>
-    <item name="tomato"/>
-    <item name="salad"/>
-    <item name="cheese"/>
-    <item name="small-fries"/>
-    <item name="soda"/>
-    <item name="onion"/>
-    <item name="ketchup"/>
-    <item name="cucumber"/>
-    <item name="juice"/>
-  </items>
   <customers>
     <customer type="boys"/>
     <customer type="boys"/>

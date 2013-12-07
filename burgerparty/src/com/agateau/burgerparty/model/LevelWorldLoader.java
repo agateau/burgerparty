@@ -31,7 +31,7 @@ public class LevelWorldLoader {
 				break;
 			}
 			Gdx.app.log("LevelWorldLoader", "levelFile=" + levelFile);
-			world.addLevel(Level.fromXml(world, levelFile));
+			world.addLevel(Level.fromXml(world, n - 1, levelFile));
 		}
 		return world;
 	}

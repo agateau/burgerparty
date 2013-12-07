@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.agateau.burgerparty.model.MealItem.Type;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -61,6 +62,16 @@ public class MealItemDb {
 			sInstance = new MealItemDb();
 		}
 		return sInstance;
+	}
+
+	public Array<MealItem> getItemsForLevel(int worldIndex, int levelIndex) {
+		Array<MealItem> lst = new Array<MealItem>();
+		for (MealItem item: mGenericMap.values()) {
+			if (item.isAvailableInLevel(worldIndex, levelIndex)) {
+				lst.add(item);
+			}
+		}
+		return lst;
 	}
 
 	private void loadGenericItems(XmlReader.Element root) {

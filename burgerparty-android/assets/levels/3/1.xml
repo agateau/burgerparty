@@ -1,21 +1,5 @@
 <?xml version="1.0"?>
 <level burgerSize="3" duration="120">
-  <items>
-    <item name="top"/>
-    <item name="bottom"/>
-    <item name="toast"/>
-    <item name="steak"/>
-    <item name="tomato"/>
-    <item name="salad"/>
-    <item name="cheese"/>
-    <item name="onion"/>
-    <item name="ketchup"/>
-    <item name="cucumber"/>
-    <item name="small-fries"/>
-    <item name="juice"/>
-    <item name="soda"/>
-    <item name="big-fries"/>
-  </items>
   <customers>
     <customer type="ninjas"/>
     <customer type="ninjas"/>

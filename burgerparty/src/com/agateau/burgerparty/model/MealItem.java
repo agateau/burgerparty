@@ -52,8 +52,9 @@ public class MealItem {
 	}
 
 	public void initFromXml(XmlReader.Element element) {
-		mAnim = element.get("anim", DEFAULT_ANIM)
-			.replace("@itemName@", mName);
+		mAnim = element.get("anim", DEFAULT_ANIM).replace("@itemName@", mName);
+		mMinWorldIndex = element.getIntAttribute("world", 1) - 1;
+		mMinLevelIndex = element.getIntAttribute("level", 1) - 1;
 	}
 
 	public String toString() {
@@ -100,6 +101,16 @@ public class MealItem {
 		return mRow;
 	}
 
+	public boolean isAvailableInLevel(int worldIndex, int levelIndex) {
+		if (worldIndex < mMinWorldIndex) {
+			return false;
+		}
+		if (worldIndex > mMinWorldIndex) {
+			return true;
+		}
+		return levelIndex >= mMinLevelIndex;
+	}
+
 	public static Action createPlayMealItemAction(SoundAtlas atlas, String name) {
 		if (atlas.contains("add-item-" + name)) {
 			return atlas.createPlayAction("add-item-" + name);
@@ -115,4 +126,6 @@ public class MealItem {
 	private AnimScript mAnimScript;
 	private int mColumn;
 	private int mRow;
+	private int mMinWorldIndex = 0;
+	private int mMinLevelIndex = 0;
 }
