@@ -35,7 +35,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mFgGroup = new WidgetGroup();
 		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
 
-		setupBubble(levelDir, item.getName());
+		setupBubble(item);
 
 		mBubble.setPosition(-mBubble.getWidth(), mFgImage.getHeight() / 2);
 
@@ -48,7 +48,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mFgGroup.setColor(1, 1, 1, 0);
 	}
 
-	private void setupBubble(String levelDir, String newItemName) {
+	private void setupBubble(MealItem newItem) {
 		TextureAtlas atlas = getGame().getAssets().getTextureAtlas();
 		mBubble = new Bubble(atlas.createPatch("ui/bubble-callout-right"));
 		mBubble.setColor(1, 1, 1, 0);
@@ -58,7 +58,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		mBubbleLabel = new Label("New item unlocked!", getSkin(), "bubble-text");
 
-		mItemImage = new Image(atlas.findRegion("mealitems/" + newItemName + "-inventory"));
+		mItemImage = new Image(atlas.findRegion("mealitems/" + newItem.getPath() + "-inventory"));
 
 		mBubbleContent.setSize(
 			mBubbleLabel.getWidth(),
