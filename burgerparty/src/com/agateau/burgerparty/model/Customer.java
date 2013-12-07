@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 
 public class Customer {
-	private static final float MOOD_MIN_MS = 0.5f;
-	private static final float MOOD_MS_PER_ITEM = 0.8f;
+	private static final float MOOD_MIN_SEC = 0.5f;
+	private static final float MOOD_SEC_PER_ITEM = 0.8f;
 
 	public Signal0 moodChanged = new Signal0();
 
@@ -78,7 +78,7 @@ public class Customer {
 	public void markActive(int itemCount) {
 		assert(mState == State.WAITING);
 		mState = State.ACTIVE;
-		mMoodDelay = MOOD_MIN_MS + itemCount * MOOD_MS_PER_ITEM;
+		mMoodDelay = MOOD_MIN_SEC + itemCount * MOOD_SEC_PER_ITEM;
 		Gdx.app.log("Customer.markActive", "itemCount=" + itemCount + " => delay=" + (mMoodDelay * 1000));
 		scheduleMoodChange();
 	}
