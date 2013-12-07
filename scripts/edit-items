@@ -4,12 +4,24 @@ cd $(dirname $0)/..
 
 XML_FILE=$PWD/burgerparty-android/assets/mealitems.xml
 
+show=0
+if [ "$1" = "show" ] ; then
+    show=1
+fi
+
 xmlstarlet select --text --template --match "/items/generic/item" \
     -v @world -o "." -v @level -o " " -v @name --nl \
     $XML_FILE \
     | sed 's/^\./1.1/' \
     | sort --version-sort \
     > out
+
+if [ "$show" = "1" ] ; then
+    cat out
+    rm out
+    exit 0
+fi
+
 vi out
 cp $XML_FILE $XML_FILE.old
 cat out | sed 's/\./ /' | while read world level item ; do
