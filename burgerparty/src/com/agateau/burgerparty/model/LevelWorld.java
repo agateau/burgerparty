@@ -3,6 +3,8 @@ package com.agateau.burgerparty.model;
 import com.badlogic.gdx.utils.Array;
 
 public class LevelWorld {
+	public static final int LEVEL_PER_WORLD = 9;
+
 	public LevelWorld(int index, String dirName) {
 		mIndex = index;
 		mDirName = dirName;

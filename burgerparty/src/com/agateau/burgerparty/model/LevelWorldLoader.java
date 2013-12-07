@@ -24,12 +24,10 @@ public class LevelWorldLoader {
 
 	private LevelWorld loadWorld(int index, String dirName) {
 		LevelWorld world = new LevelWorld(index, dirName);
-		for (int n=1;; n++) {
+		for (int n=1; n <= LevelWorld.LEVEL_PER_WORLD; n++) {
 			String name = dirName + "/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);
-			if (!levelFile.exists()) {
-				break;
-			}
+			assert(levelFile.exists());
 			Gdx.app.log("LevelWorldLoader", "levelFile=" + levelFile);
 			world.addLevel(Level.fromXml(world, n - 1, levelFile));
 		}

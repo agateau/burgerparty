@@ -6,10 +6,13 @@ import java.util.MissingResourceException;
 import java.util.Set;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class Level {
+	private static final float SEC_PER_ITEM = 2;
+
 	public static final int SCORE_LOCKED = -2;
 	public static final int SCORE_NEW = -1;
 	public static final int SCORE_PLAYED = 0;
@@ -97,7 +100,6 @@ public class Level {
 		}
 		Level level = new Level(levelWorld, handle.path());
 		int burgerSize = root.getIntAttribute("burgerSize");
-		level.definition.duration = root.getIntAttribute("duration");
 		level.definition.score2 = root.getIntAttribute("score2", 15000);
 		level.definition.score3 = root.getIntAttribute("score3", 30000);
 
@@ -110,6 +112,7 @@ public class Level {
 			}
 		}
 
+		int totalItemCount = 0;
 		XmlReader.Element elements = root.getChildByName("customers");
 		assert(elements != null);
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
@@ -118,7 +121,29 @@ public class Level {
 			def.type = element.getAttribute("type");
 			def.burgerSize = element.getIntAttribute("burgerSize", burgerSize);
 			level.definition.mCustomerDefinitions.add(def);
+			totalItemCount += def.burgerSize;
 		}
+		/*
+		 * normLevelIndex goes from 0 to 1 between level 1.1 and level 3.LEVEL_PER_WORLD
+		 * easiness starts at 2 and tend to 1
+		 */
+		float normLevelIndex = (levelWorld.getIndex() * LevelWorld.LEVEL_PER_WORLD + levelIndex) / (3f * LevelWorld.LEVEL_PER_WORLD);
+		if (normLevelIndex > 1) {
+			normLevelIndex = 1;
+		}
+		float easiness = 1 + 1f / (7 * normLevelIndex + 1);
+		int duration = MathUtils.ceil(totalItemCount * SEC_PER_ITEM * easiness / 10f) * 10;
+		level.definition.duration = duration;
+		/*
+		// DEBUG
+		Gdx.app.log("Level", "totalItemCount=" + totalItemCount
+				+ " world=" + (levelWorld.getIndex()+1)
+				+ " level=" + (levelIndex + 1)
+				+ " normLevelIndex=" + normLevelIndex
+				+ " easiness=" + easiness
+				+ " duration=" + level.definition.duration
+				);
+		*/
 
 		return level;
 	}
