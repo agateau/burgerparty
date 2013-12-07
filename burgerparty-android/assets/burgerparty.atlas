@@ -688,14 +688,14 @@ burgerparty12.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-mealitems/2/juice
+mealitems/2/soda
   rotate: false
   xy: 1, 70
   size: 148, 153
   orig: 148, 153
   offset: 0, 0
   index: -1
-mealitems/2/juice-inventory
+mealitems/2/soda-inventory
   rotate: false
   xy: 1, 1
   size: 65, 67

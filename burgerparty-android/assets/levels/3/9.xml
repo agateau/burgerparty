@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level burgerSize="9" duration="120">
+<level burgerSize="11" duration="120">
   <customers>
     <customer type="ninjas"/>
     <customer type="ninjas"/>

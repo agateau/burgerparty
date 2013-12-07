@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<level burgerSize="4" duration="60" score2="7000" score3="8000">
-  <customers>
-    <customer type="boys"/>
-    <customer type="wrestler" burgerSize="12"/>
-  </customers>
-</level>

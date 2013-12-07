@@ -58,7 +58,7 @@ public class ProgressIO {
 		} else if (version == 2) {
 			loadV2(root);
 		} else {
-			Gdx.app.error("Progress", "Don't know how to load progress version " + version + ". Did not load anything.");
+			Gdx.app.error("ProgressIO", "Don't know how to load progress version " + version + ". Did not load anything.");
 		}
 	}
 
@@ -82,7 +82,16 @@ public class ProgressIO {
 			int worldIndex = element.getIntAttribute("world", 1) - 1;
 			int levelIndex = element.getIntAttribute("level") - 1;
 			int score = element.getIntAttribute("score", Level.SCORE_LOCKED);
-			Level level = mWorlds.get(worldIndex).getLevel(levelIndex);
+			if (worldIndex >= mWorlds.size) {
+				Gdx.app.error("ProgressIO", "No world with index " + (worldIndex + 1));
+				continue;
+			}
+			LevelWorld world = mWorlds.get(worldIndex);
+			if (levelIndex >= world.getLevelCount()) {
+				Gdx.app.error("ProgressIO", "No level with index " + (levelIndex + 1) + " in world " + (worldIndex + 1));
+				continue;
+			}
+			Level level = world.getLevel(levelIndex);
 			level.score = score;
 		}
 	}

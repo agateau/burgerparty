@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class LevelListScreen extends BurgerPartyScreen {
-	private static final int COL_COUNT = 4;
+	private static final int COL_COUNT = 3;
 	private static final float CELL_SIZE = 130;
 
 	private static final float SURPRISE_ROTATE_ANGLE = 5f;
