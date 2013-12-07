@@ -9,10 +9,19 @@ import com.badlogic.gdx.utils.Array;
 public class SandBoxWorldTest {
 	@Test
 	public void testCanAddBurgerItem() {
-		BurgerItem top = BurgerItem.addTestItem("top", BurgerItem.SubType.TOP);
-		BurgerItem bottom = BurgerItem.addTestItem("bottom", BurgerItem.SubType.BOTTOM);
-		BurgerItem tomato = BurgerItem.addTestItem("tomato");
-		BurgerItem salad = BurgerItem.addTestItem("salad");
+		MealItemDb db = TestUtils.createMealItemDb(
+			"<items>"
+			+ "  <generic>"
+			+ "    <item row='0' column='0' name='top'    type='burger' subType='top' bottom='bottom' height='12'/>"
+			+ "    <item row='0' column='1' name='bottom' type='burger' subType='bottom' height='12'/>"
+			+ "    <item row='0' column='2' name='tomato' type='burger' height='12'/>"
+			+ "    <item row='0' column='3' name='salad'  type='burger' height='12'/>"
+			+ "  </generic>"
+			+ "</items>");
+		BurgerItem top = db.getBurgerItem("top");
+		BurgerItem bottom = db.getBurgerItem("bottom");
+		BurgerItem tomato = db.getBurgerItem("tomato");
+		BurgerItem salad = db.getBurgerItem("salad");
 
 		SandBoxWorld world = new SandBoxWorld();
 		Array<BurgerItem> burger = new Array<BurgerItem>();
@@ -30,9 +39,17 @@ public class SandBoxWorldTest {
 
 	@Test
 	public void testCanAddBurgerItem_MaxBurgerItems() {
-		BurgerItem top = BurgerItem.addTestItem("top", BurgerItem.SubType.TOP);
-		BurgerItem bottom = BurgerItem.addTestItem("bottom", BurgerItem.SubType.BOTTOM);
-		BurgerItem tomato = BurgerItem.addTestItem("tomato");
+		MealItemDb db = TestUtils.createMealItemDb(
+				"<items>"
+				+ "  <generic>"
+				+ "    <item row='0' column='0' name='top'    type='burger' subType='top' bottom='bottom' height='12'/>"
+				+ "    <item row='0' column='1' name='bottom' type='burger' subType='bottom' height='12'/>"
+				+ "    <item row='0' column='2' name='tomato' type='burger' height='12'/>"
+				+ "  </generic>"
+				+ "</items>");
+		BurgerItem top = db.getBurgerItem("top");
+		BurgerItem bottom = db.getBurgerItem("bottom");
+		BurgerItem tomato = db.getBurgerItem("tomato");
 
 		SandBoxWorld world = new SandBoxWorld();
 		world.setMaxBurgerItems(3);
@@ -55,11 +72,17 @@ public class SandBoxWorldTest {
 		assertFalse(world.canAddBurgerItem(burger, tomato));
 	}
 
-
 	@Test
 	public void testCanAddMealItem() {
-		MealItem juice = MealItem.addTestItem(MealItem.Type.DRINK, "juice");
-		MealItem fries = MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "fries");
+		MealItemDb db = TestUtils.createMealItemDb(
+				"<items>"
+				+ "  <generic>"
+				+ "    <item row='0' column='0' name='juice' type='drink'/>"
+				+ "    <item row='0' column='1' name='fries' type='side-order'/>"
+				+ "  </generic>"
+				+ "</items>");
+		MealItem juice = db.get(-1, "juice");
+		MealItem fries = db.get(-1, "fries");
 		SandBoxWorld world = new SandBoxWorld();
 		Array<MealItem> extra = new Array<MealItem>();
 

@@ -53,10 +53,6 @@ public class MealItem {
 			.replace("@itemName@", mName);
 	}
 
-	public static MealItem get(String name) {
-		return MealItemDb.getInstance().get(-1, name);
-	}
-
 	public String toString() {
 		return getName();
 	}
@@ -107,12 +103,6 @@ public class MealItem {
 		} else {
 			return atlas.createPlayAction("add-item");
 		}
-	}
-
-	public static MealItem addTestItem(Type type, String name) {
-		MealItem item = new MealItem(type, name);
-		MealItemDb.getInstance().addTestItem(item);
-		return item;
 	}
 
 	private int mWorldIndex = -2; // -2 == not set, -1 == generic, >= 0 == specific to world N-1

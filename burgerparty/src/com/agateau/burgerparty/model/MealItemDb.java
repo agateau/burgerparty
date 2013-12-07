@@ -9,8 +9,16 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class MealItemDb {
-	public void addTestItem(MealItem item) {
-		mGenericMap.put(item.getName(), item);
+	public BurgerItem getBurgerItem(String name) {
+		BurgerItem item = (BurgerItem)get(name);
+		assert(item != null);
+		return item;
+	}
+
+	public BurgerItem getBurgerItem(int worldIndex, String name) {
+		BurgerItem item = (BurgerItem)get(worldIndex, name);
+		assert(item != null);
+		return item;
 	}
 
 	public MealItem get(int worldIndex, String name) {
@@ -23,6 +31,10 @@ public class MealItemDb {
 			return mGenericMap.get(name);
 		}
 		return item;
+	}
+
+	public MealItem get(String name) {
+		return mGenericMap.get(name);
 	}
 
 	public void load(FileHandle handle) {

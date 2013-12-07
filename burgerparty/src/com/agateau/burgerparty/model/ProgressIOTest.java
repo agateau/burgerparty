@@ -15,7 +15,7 @@ public class ProgressIOTest {
 	@Test
 	public void testLoadV1() {
 		Array<LevelWorld> worlds = createTestWorlds();
-		XmlReader.Element root = parseXml(
+		XmlReader.Element root = TestUtils.parseXml(
 			"<progress>"
 			+ "<item world='1' level='1' score='12'/>"
 			+ "<item world='2' level='2' score='24'/>"
@@ -32,7 +32,7 @@ public class ProgressIOTest {
 	@Test
 	public void testLoadV2() {
 		Array<LevelWorld> worlds = createTestWorlds();
-		XmlReader.Element root = parseXml(
+		XmlReader.Element root = TestUtils.parseXml(
 			  "<progress version='2'>"
 			+ "    <levels>"
 			+ "        <level world='1' level='1' score='12'/>"
@@ -59,7 +59,7 @@ public class ProgressIOTest {
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.save(xmlWriter);
 
-		XmlReader.Element root = parseXml(writer.toString());
+		XmlReader.Element root = TestUtils.parseXml(writer.toString());
 		assertEquals(root.getIntAttribute("version"), 2);
 		assertEquals(root.getChildCount(), 1);
 
@@ -92,10 +92,5 @@ public class ProgressIOTest {
 		worlds.add(world2);
 
 		return worlds;
-	}
-
-	private static XmlReader.Element parseXml(String xml) {
-		XmlReader reader = new XmlReader();
-		return reader.parse(xml);
 	}
 }

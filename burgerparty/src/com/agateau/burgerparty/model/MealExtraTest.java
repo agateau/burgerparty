@@ -15,9 +15,17 @@ public class MealExtraTest {
 
 	@Test
 	public void testAdd() {
-		MealItem juice = MealItem.addTestItem(MealItem.Type.DRINK, "juice");
-		MealItem fries = MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "fries");
-		MealItem potatoes = MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "potatoes");
+		MealItemDb db = TestUtils.createMealItemDb(
+				"<items>"
+				+ "  <generic>"
+				+ "    <item row='0' column='0' name='juice'    type='drink'/>"
+				+ "    <item row='0' column='1' name='fries'    type='side-order'/>"
+				+ "    <item row='0' column='2' name='potatoes' type='side-order'/>"
+				+ "  </generic>"
+				+ "</items>");
+		MealItem juice = db.get("juice");
+		MealItem fries = db.get("fries");
+		MealItem potatoes = db.get("potatoes");
 
 		MealExtra extra = new MealExtra();
 		extra.addItem(fries);
@@ -33,10 +41,19 @@ public class MealExtraTest {
 
 	@Test
 	public void testCompare() {
-		MealItem juice = MealItem.addTestItem(MealItem.Type.DRINK, "juice");
-		MealItem fries = MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "fries");
-		MealItem potatoes = MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "potatoes");
-		MealItem soda = MealItem.addTestItem(MealItem.Type.DRINK, "soda");
+		MealItemDb db = TestUtils.createMealItemDb(
+				"<items>"
+				+ "  <generic>"
+				+ "    <item row='0' column='0' name='juice'    type='drink'/>"
+				+ "    <item row='0' column='1' name='fries'    type='side-order'/>"
+				+ "    <item row='0' column='2' name='potatoes' type='side-order'/>"
+				+ "    <item row='0' column='3' name='soda'     type='drink'/>"
+				+ "  </generic>"
+				+ "</items>");
+		MealItem juice = db.get("juice");
+		MealItem fries = db.get("fries");
+		MealItem potatoes = db.get("potatoes");
+		MealItem soda = db.get("soda");
 
 		MealExtra reference = new MealExtra();
 		reference.addItem(fries);

@@ -10,13 +10,16 @@ import org.junit.runners.JUnit4;
 public class MealItemTest {
 	@Test
 	public void testEquals() {
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "foo");
-		MealItem.addTestItem(MealItem.Type.SIDE_ORDER, "bar");
+		MealItemDb db = TestUtils.createMealItemDb(
+				"<items>"
+				+ "  <generic>"
+				+ "    <item row='0' column='0' name='juice' type='drink'/>"
+				+ "    <item row='0' column='1' name='fries' type='side-order'/>"
+				+ "  </generic>"
+				+ "</items>");
+		MealItem juice = db.get("juice");
 
-		MealItem i1 = MealItem.get("foo");
-		MealItem i2 = MealItem.get("foo");
-		MealItem i3 = MealItem.get("bar");
-		assertTrue(i1 == i2);
-		assertTrue(i1 != i3);
+		assertTrue(juice == db.get("juice"));
+		assertTrue(juice != db.get("side-order"));
 	}
 }

@@ -63,25 +63,6 @@ public class BurgerItem extends MealItem {
 		return mBottomName;
 	}
 
-	public static BurgerItem addTestItem(String name) {
-		return addTestItem(name, SubType.MIDDLE);
-	}
-
-	public static BurgerItem addTestItem(String name, SubType subType) {
-		BurgerItem item = new BurgerItem(name);
-		item.mHeight = 18;
-		item.mOffset = 6;
-		item.mSubType = subType;
-		MealItemDb.getInstance().addTestItem(item);
-		return item;
-	}
-
-	public static BurgerItem get(String name) {
-		MealItem item = MealItem.get(name);
-		assert(item.getType() == MealItem.Type.BURGER);
-		return (BurgerItem)item;
-	}
-
 	private int mHeight = 0;
 	private int mOffset = 0;
 	private SubType mSubType;
