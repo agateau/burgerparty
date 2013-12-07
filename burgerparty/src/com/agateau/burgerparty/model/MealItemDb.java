@@ -68,7 +68,8 @@ public class MealItemDb {
 		Array<MealItem> lst = new Array<MealItem>();
 		for (MealItem item: mGenericMap.values()) {
 			if (item.isAvailableInLevel(worldIndex, levelIndex)) {
-				lst.add(item);
+				// This is not very efficient, but is necessary to be able to return world-specific items
+				lst.add(get(worldIndex, item.getName()));
 			}
 		}
 		return lst;
