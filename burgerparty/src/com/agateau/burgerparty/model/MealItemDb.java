@@ -69,11 +69,11 @@ public class MealItemDb {
 			String type = element.getAttribute("type");
 			MealItem item = null;
 			if (type.equals("burger")) {
-				item = new BurgerItem(-1, element);
+				item = new BurgerItem(MealItem.WORLD_INDEX_GENERIC, element);
 			} else if (type.equals("drink")) {
-				item = new MealItem(-1, Type.DRINK, element);
+				item = new MealItem(MealItem.WORLD_INDEX_GENERIC, Type.DRINK, element);
 			} else if (type.equals("side-order")) {
-				item = new MealItem(-1, Type.SIDE_ORDER, element);
+				item = new MealItem(MealItem.WORLD_INDEX_GENERIC, Type.SIDE_ORDER, element);
 			}
 			assert(item != null);
 			mGenericMap.put(item.getName(), item);

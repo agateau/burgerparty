@@ -81,8 +81,8 @@ public class SandBoxWorldTest {
 				+ "    <item row='0' column='1' name='fries' type='side-order'/>"
 				+ "  </generic>"
 				+ "</items>");
-		MealItem juice = db.get(-1, "juice");
-		MealItem fries = db.get(-1, "fries");
+		MealItem juice = db.get("juice");
+		MealItem fries = db.get("fries");
 		SandBoxWorld world = new SandBoxWorld();
 		Array<MealItem> extra = new Array<MealItem>();
 

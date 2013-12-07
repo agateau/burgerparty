@@ -26,7 +26,7 @@ public class MealItemDbTest {
 
 		item = (BurgerItem)db.get(0, "foo");
 		assertEquals(item.getName(), "foo");
-		assertEquals(item.getWorldIndex(), -1); // Generic
+		assertEquals(item.getWorldIndex(), MealItem.WORLD_INDEX_GENERIC);
 		assertEquals(item.getRow(), 1);
 		assertEquals(item.getColumn(), 3);
 		assertEquals(item.getHeight(), 12);

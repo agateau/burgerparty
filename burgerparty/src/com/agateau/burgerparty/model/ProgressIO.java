@@ -81,7 +81,7 @@ public class ProgressIO {
 		for(XmlReader.Element element: levelsElement.getChildrenByName("level")) {
 			int worldIndex = element.getIntAttribute("world", 1) - 1;
 			int levelIndex = element.getIntAttribute("level") - 1;
-			int score = element.getIntAttribute("score", -1);
+			int score = element.getIntAttribute("score", Level.SCORE_LOCKED);
 			Level level = mWorlds.get(worldIndex).getLevel(levelIndex);
 			level.score = score;
 		}

@@ -19,6 +19,9 @@ public class MealItem {
 		"    playMealItem @itemName@\n" +
 		"end\n";
 
+	public static final int WORLD_INDEX_NOT_SET = -2;
+	public static final int WORLD_INDEX_GENERIC = -1;
+
 	public enum Type {
 		SIDE_ORDER,
 		DRINK,
@@ -105,7 +108,7 @@ public class MealItem {
 		}
 	}
 
-	private int mWorldIndex = -2; // -2 == not set, -1 == generic, >= 0 == specific to world N-1
+	private int mWorldIndex = WORLD_INDEX_NOT_SET;
 	private Type mType;
 	private String mName;
 	private String mAnim;
