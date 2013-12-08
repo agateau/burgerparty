@@ -219,6 +219,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void showWorldListScreen() {
+		mMusicController.play();
 		setScreen(new WorldListScreen(this));
 	}
 
