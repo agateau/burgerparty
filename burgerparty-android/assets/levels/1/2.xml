@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <level burgerSize="4">
   <customers>
-    <customer type="boys"/>
     <customer type="girls"/>
+    <customer type="boys"/>
     <customer type="boys"/>
     <customer type="girls"/>
   </customers>
