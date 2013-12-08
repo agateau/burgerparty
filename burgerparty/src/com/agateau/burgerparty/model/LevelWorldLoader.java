@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 public class LevelWorldLoader {
 	private static final float SEC_PER_ITEM = 1.3f;
 	private static final int TIME_STEP = 30;
-	private static final boolean DEBUG_DURATION = true;
+	private static final boolean DEBUG_DURATION = false;
 
 	public Array<LevelWorld> run() {
 		if (DEBUG_DURATION) {
