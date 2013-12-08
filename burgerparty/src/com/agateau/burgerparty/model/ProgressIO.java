@@ -94,6 +94,17 @@ public class ProgressIO {
 			Level level = world.getLevel(levelIndex);
 			level.score = score;
 		}
+
+		int previousScore = 1;
+		for (LevelWorld world: mWorlds) {
+			for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
+				Level level = world.getLevel(idx);
+				if (previousScore > 0 && level.score == Level.SCORE_LOCKED) {
+					level.score = Level.SCORE_NEW;
+				}
+				previousScore = level.score;
+			}
+		}
 	}
 
 	public void save(FileHandle handle) {
