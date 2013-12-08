@@ -157,7 +157,9 @@ public class WorldView extends AbstractWorldView {
 	private void setupCustomers() {
 		for (Customer customer: mWorld.getCustomers()) {
 			CustomerView customerView = mCustomerFactory.create(customer);
-			customerView.setX(-customerView.getWidth());
+			customerView.setX(300);
+			customerView.setColor(1, 1, 1, 0);
+			customerView.setScale(0.1f);
 			mWaitingCustomerViews.add(customerView);
 		}
 		// Add actors starting from the end of the list so that the Z order is correct
@@ -317,19 +319,26 @@ public class WorldView extends AbstractWorldView {
 		}
 		float centerX = getWidth() / 2;
 		float posY = MathUtils.ceil(mWorkbench.getTop() - 4);
-		final float padding = 10;
 		float delay = 0;
+		int rank = 0;
 		for(CustomerView customerView: customerViews) {
 			float width = customerView.getWidth();
+			float posX = centerX - width / 2;
+			float scale = 1f - rank / 25f;
 			customerView.addAction(
 				Actions.sequence(
 					Actions.moveTo(customerView.getX(), posY), // Force posY to avoid getting from under the workbench at startup
 					Actions.delay(delay),
-					Actions.moveTo(MathUtils.ceil(centerX - width / 2), posY, 0.3f, Interpolation.sineOut)
+					Actions.parallel(
+						Actions.moveTo(MathUtils.ceil(posX), posY, 0.3f, Interpolation.sineOut),
+						Actions.scaleTo(scale, scale, 0.3f),
+						Actions.alpha(1, 0.3f, Interpolation.exp10)
+					)
 				)
 			);
-			centerX -= width + padding;
-			delay += 0.1;
+			centerX -= width / (3 + 2 * rank);
+			delay += 0.2;
+			rank += 1;
 		}
 		if (mActiveCustomerView != null) {
 			Action doShowBubble = Actions.run(new Runnable() {
