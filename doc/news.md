@@ -1,3 +1,18 @@
+# 0.7 - 2013-12-09
+
+- New world: Japan. Still a work in progress
+- New burger item: fish
+- Adjusted game levels: each world has 9 levels now
+- Customers are now stacked behind each others like a real queue
+- Some meal items are now world-specific versions of other meal items, for
+  example the coconut-drink is the pirate version of the soda, the rice-toast
+  is the Japanese version of the toast
+- Updated music
+- Started to balance the game levels. Still some work to do
+- Do not forget levels which have been unlocked when the game is restarted
+- Fix gradients in bubble not adjusting to the bubble width
+- World and level selection screens: show disabled elements in gray-scale
+
 # 0.6 - 2013-11-11
 
 - When customers order a large burger, they now wait longer before getting angry
