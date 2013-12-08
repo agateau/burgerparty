@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level burgerSize="5">
+<level burgerSize="7">
   <customers>
     <customer type="girls"/>
     <customer type="boys"/>

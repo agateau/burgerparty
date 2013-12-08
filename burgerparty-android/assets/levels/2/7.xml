@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level burgerSize="8">
+<level burgerSize="10">
   <customers>
     <customer type="pirate-boys"/>
     <customer type="pirate-girls"/>

@@ -28,6 +28,9 @@ class BurgerGenerator {
 	}
 
 	public LinkedList<BurgerItem> run(int count) {
+		// Subtract 2 because we add top and bottom items out of the loop
+		count -= 2;
+
 		LinkedList<BurgerItem> lst = new LinkedList<BurgerItem>();
 
 		TopBottom topBottom = mTopBottomItems.get(MathUtils.random(mTopBottomItems.size - 1));
