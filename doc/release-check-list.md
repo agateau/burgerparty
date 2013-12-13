@@ -21,7 +21,7 @@ Push
 
 Generate .apk
 
-# Spread
+# Prepare spread
 
 Take screenshots
 
@@ -31,17 +31,17 @@ Update greenyetilab.com/burgerparty
 
 Write announcement blog post
 
-Upload
-
 ## Google Play
 
 Upload
 
 Update Google Play
 
-Notify group
+# Spread
 
-## Others
+Upload new content on greenyetilab.com
+
+Notify Google Group
 
 Post link to announcement on:
 - FB
