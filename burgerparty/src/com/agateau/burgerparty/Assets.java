@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class Assets {
+	private static final String MAIN_MUSIC = "music/burger-party_main-theme.mp3";
 	public Assets() {
 		mAssetManager = new AssetManager();
 		Texture.setAssetManager(mAssetManager);
@@ -42,7 +43,7 @@ public class Assets {
 		};
 		mSoundAtlas.preload(names);
 
-		mAssetManager.load("music/music.mp3", Music.class);
+		mAssetManager.load(MAIN_MUSIC, Music.class);
 	}
 
 	public void finishLoad() {
@@ -61,7 +62,7 @@ public class Assets {
 			}
 		};
 
-		mMusic = mAssetManager.get("music/music.mp3");
+		mMusic = mAssetManager.get(MAIN_MUSIC);
 	}
 
 	public TextureAtlas getTextureAtlas() {
