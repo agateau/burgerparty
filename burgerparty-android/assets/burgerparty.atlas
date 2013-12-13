@@ -220,29 +220,29 @@ repeat: none
 customers/ninjas/body-0
   rotate: false
   xy: 1, 1
-  size: 119, 143
-  orig: 119, 143
+  size: 121, 145
+  orig: 121, 145
   offset: 0, 0
   index: -1
 customers/ninjas/face-0-angry
   rotate: false
-  xy: 122, 27
-  size: 108, 117
-  orig: 108, 117
+  xy: 124, 27
+  size: 110, 119
+  orig: 110, 119
   offset: 0, 0
   index: -1
 customers/ninjas/face-0-happy
   rotate: false
-  xy: 232, 27
-  size: 108, 117
-  orig: 108, 117
+  xy: 236, 27
+  size: 110, 119
+  orig: 110, 119
   offset: 0, 0
   index: -1
 customers/ninjas/face-0-neutral
   rotate: false
-  xy: 342, 27
-  size: 108, 117
-  orig: 108, 117
+  xy: 348, 27
+  size: 110, 119
+  orig: 110, 119
   offset: 0, 0
   index: -1
 
