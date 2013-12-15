@@ -36,6 +36,11 @@
     <face name="customers/ninjas/face-0-neutral"/>
     <face name="customers/ninjas/face-0-angry"/>
 
+    <body name="customers/japan-girls/body-0" yFace="71" xCenter="69"/>
+    <face name="customers/japan-girls/face-0-happy"/>
+    <face name="customers/japan-girls/face-0-neutral"/>
+    <face name="customers/japan-girls/face-0-angry"/>
+
     <body name="customers/pirate-boys/body-brown" yFace="69"/>
     <top name="customers/pirate-boys/top-boss"/>
     <face name="customers/pirate-boys/face-boss-happy" yOffset="3"/>

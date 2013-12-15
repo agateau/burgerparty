@@ -433,6 +433,39 @@ burgerparty10.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
+customers/japan-girls/body-0
+  rotate: false
+  xy: 1, 57
+  size: 139, 186
+  orig: 139, 186
+  offset: 0, 0
+  index: -1
+customers/japan-girls/face-0-angry
+  rotate: false
+  xy: 1, 1
+  size: 76, 54
+  orig: 76, 54
+  offset: 0, 0
+  index: -1
+customers/japan-girls/face-0-happy
+  rotate: false
+  xy: 142, 139
+  size: 76, 49
+  orig: 76, 49
+  offset: 0, 0
+  index: -1
+customers/japan-girls/face-0-neutral
+  rotate: false
+  xy: 142, 190
+  size: 76, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+
+burgerparty11.png
+format: RGBA8888
+filter: Nearest,Linear
+repeat: none
 customers/pirate-boys/body-brown
   rotate: false
   xy: 1, 67
@@ -469,7 +502,7 @@ customers/pirate-boys/top-boss
   offset: 0, 0
   index: -1
 
-burgerparty11.png
+burgerparty12.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -684,7 +717,7 @@ mealitems/0/top-inventory
   offset: 0, 0
   index: -1
 
-burgerparty12.png
+burgerparty13.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -703,7 +736,7 @@ mealitems/2/soda-inventory
   offset: 0, 0
   index: -1
 
-burgerparty13.png
+burgerparty14.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -722,7 +755,7 @@ mealitems/3/toast-inventory
   offset: 0, 0
   index: -1
 
-burgerparty14.png
+burgerparty15.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -951,7 +984,7 @@ ui/world-button
   offset: 0, 0
   index: -1
 
-burgerparty15.png
+burgerparty16.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1012,7 +1045,7 @@ levels/1/shelf
   offset: 0, 0
   index: -1
 
-burgerparty16.png
+burgerparty17.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1031,7 +1064,7 @@ levels/1/workbench
   offset: 0, 0
   index: -1
 
-burgerparty17.png
+burgerparty18.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1092,7 +1125,7 @@ levels/2/shelf
   offset: 0, 0
   index: -1
 
-burgerparty18.png
+burgerparty19.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1111,7 +1144,7 @@ levels/2/workbench
   offset: 0, 0
   index: -1
 
-burgerparty19.png
+burgerparty20.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
@@ -1172,7 +1205,7 @@ levels/3/shelf
   offset: 0, 0
   index: -1
 
-burgerparty20.png
+burgerparty21.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
