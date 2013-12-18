@@ -4,9 +4,9 @@
 	<classpathentry kind="src" path="assets"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/burgerparty"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/gdx-backend-lwjgl.jar" sourcepath="libs/gdx-backend-lwjgl-sources.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-backend-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-natives.jar"/>
-	<classpathentry kind="lib" path="libs/gdx-tools.jar"/>
+	<classpathentry kind="lib" path="/libgdx/desktop/gdx-tools.jar"/>
+	<classpathentry kind="lib" path="/libgdx/desktop/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="/libgdx/desktop/gdx-backend-lwjgl.jar" sourcepath="/libgdx/desktop/gdx-backend-lwjgl-sources.jar"/>
+	<classpathentry kind="lib" path="/libgdx/desktop/gdx-backend-lwjgl-natives.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
