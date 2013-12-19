@@ -15,7 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  */
 public abstract class StageScreen implements Screen {
 	// FIXME: Ugly hard-coded sizes
-	private Stage mStage = new Stage(800, 480, true);
+	private static final float STAGE_WIDTH = 800;
+	private static final float STAGE_HEIGHT = 480;
+	private Stage mStage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
 	private Skin mSkin;
 	private Actor mBgActor = null;
 
@@ -83,6 +85,7 @@ public abstract class StageScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
+		mStage.setViewport(STAGE_WIDTH, STAGE_HEIGHT, true);
 		resizeBackgroundActor();
 	}
 
