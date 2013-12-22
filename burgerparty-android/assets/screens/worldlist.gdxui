@@ -1,12 +1,12 @@
 <gdxui>
-    <AnchorGroup id="root">
+    <AnchorGroup id="root" spacing="20">
         <ImageButton id="backButton"
             style="round-button"
-            bottomLeft="root.bottomLeft 20 20"
+            bottomLeft="root.bottomLeft 1 1"
             imageName="ui/icon-back"/>
 
         <WorldListView id="worldListView"
-            topCenter="root.topCenter 0 -40"
+            topCenter="root.topCenter 0 -2"
             />
     </AnchorGroup>
 </gdxui>
