@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+
+        <Image id="titleImage"
+            name="ui/title"
+            topCenter="root.topCenter 0 -2"/>
+
+        <ImageButton id="startButton"
+            style="round-button-big"
+            topCenter="titleImage.bottomCenter 0 -0.5"
+            imageName="ui/icon-play-big"/>
+        <ImageButton id="aboutButton"
+            style="round-button"
+            imageName="ui/icon-info"
+            bottomRight="root.bottomRight -1 1"/>
+    </AnchorGroup>
+</gdxui>

@@ -58,6 +58,14 @@
         world-button-star-text: {
             font: main-font-small,
             fontColor: white
+        },
+        about-title: {
+            font: scored-font,
+            fontColor: white
+        },
+        about-body: {
+            font: main-font,
+            fontColor: black
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
@@ -80,6 +88,11 @@
         round-button: {
             down: ui/icon-button-down,
             up: ui/icon-button,
+            pressedOffsetY: -2
+        },
+        round-button-big: {
+            down: ui/icon-button-big-down,
+            up: ui/icon-button-big,
             pressedOffsetY: -2
         },
         level1-hud-button: {

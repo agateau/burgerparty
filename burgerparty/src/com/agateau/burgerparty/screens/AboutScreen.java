@@ -10,11 +10,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class StartScreen extends BurgerPartyScreen {
+public class AboutScreen extends BurgerPartyScreen {
+	private static final float PIXEL_PER_SECOND = 48;
 
-	public StartScreen(BurgerPartyGame game) {
+	public AboutScreen(BurgerPartyGame game) {
 		super(game);
 		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
@@ -22,7 +25,7 @@ public class StartScreen extends BurgerPartyScreen {
 		new RefreshHelper(getStage()) {
 			@Override
 			protected void refresh() {
-				getGame().showStartScreen();
+				getGame().showAboutScreen();
 				dispose();
 			}
 		};
@@ -30,25 +33,43 @@ public class StartScreen extends BurgerPartyScreen {
 
 	private void setupWidgets() {
 		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
-		builder.build(FileUtils.assets("screens/start.gdxui"));
+		builder.build(FileUtils.assets("screens/about.gdxui"));
 		AnchorGroup root = builder.getActor("root");
 		getStage().addActor(root);
 		root.setFillParent(true);
 
-		builder.<ImageButton>getActor("startButton").addListener(new ChangeListener() {
+		builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showWorldListScreen();
+				onBackPressed();
 			}
 		});
-		builder.<ImageButton>getActor("aboutButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showAboutScreen();
-			}
-		});
+		
+		mScrollPane = builder.<ScrollPane>getActor("scrollPane");
+
+		String aboutText = FileUtils.assets("about.txt").readString("utf-8");
+
+		Label label = builder.<Label>getActor("bodyLabel");
+		label.setText(aboutText);
+		label.pack();
 	}
 
 	@Override
 	public void onBackPressed() {
-		Gdx.app.exit();
+		getGame().showStartScreen();
 	}
+
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		if (Gdx.input.isTouched()) {
+			return;
+		}
+		float maxY = mScrollPane.getWidget().getHeight();
+		float y = mScrollPane.getScrollY();
+		if (y < maxY) {
+			mScrollPane.setScrollY(y + PIXEL_PER_SECOND * delta);
+		}
+	}
+
+	private ScrollPane mScrollPane;
 }

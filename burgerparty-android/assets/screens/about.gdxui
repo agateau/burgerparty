@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <ScrollPane
+            id="scrollPane"
+            topLeft="root.topLeft"
+            width="800"
+            height="480"
+            >
+                <VerticalGroup>
+                    <Group height="400"/>
+                    <Label id="title" style="about-title">Burger Party</Label>
+                    <Label id="bodyLabel" style="about-body" align="center"/>
+                </VerticalGroup>
+        </ScrollPane>
+        <ImageButton id="backButton"
+            style="round-button"
+            imageName="ui/icon-back"
+            bottomLeft="root.bottomLeft 1 1"/>
+    </AnchorGroup>
+</gdxui>

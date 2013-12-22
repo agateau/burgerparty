@@ -9,6 +9,7 @@ import com.agateau.burgerparty.model.LevelWorldLoader;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
+import com.agateau.burgerparty.screens.AboutScreen;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
 import com.agateau.burgerparty.screens.LoadingScreen;
@@ -236,7 +237,12 @@ public class BurgerPartyGame extends Game {
 		mMusicController.play();
 		setScreen(new LevelListScreen(this, worldIndex));
 	}
-	
+
+	public void showAboutScreen() {
+		mMusicController.play();
+		setScreen(new AboutScreen(this));
+	}
+
 	private void doStartLevel() {
 		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		setScreen(new GameScreen(this, level));
