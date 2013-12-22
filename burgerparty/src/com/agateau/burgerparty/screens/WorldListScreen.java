@@ -5,12 +5,13 @@ import java.util.HashSet;
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -23,6 +24,13 @@ public class WorldListScreen extends BurgerPartyScreen {
 		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 		setupWidgets();
+		new RefreshHelper(getStage()) {
+			@Override
+			protected void refresh() {
+				getGame().setScreen(new WorldListScreen(getGame()));
+				dispose();
+			}
+		};
 	}
 
 	@Override
@@ -68,7 +76,7 @@ public class WorldListScreen extends BurgerPartyScreen {
 
 	private void setupWidgets() {
 		BurgerPartyUiBuilder builder = new Builder(getGame().getAssets());
-		builder.build(Gdx.files.internal("screens/worldlist.gdxui"));
+		builder.build(FileUtils.assets("screens/worldlist.gdxui"));
 		AnchorGroup root = builder.getActor("root");
 		getStage().addActor(root);
 		root.setFillParent(true);
