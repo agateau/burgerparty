@@ -146,6 +146,10 @@ public class BurgerPartyGame extends Game {
 				}
 			}
 		}
+		// This can happen when it is the first time the game is played
+		if (set.isEmpty()) {
+			set.addAll(mLevelWorlds.get(0).getLevel(0).getKnownItems());
+		}
 		return set;
 	}
 

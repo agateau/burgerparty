@@ -5,7 +5,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/burgerparty"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="lib" path="/libgdx/android/gdx-backend-android.jar" sourcepath="/libgdx/android/gdx-backend-android-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="/libgdx/generic/gdx.jar" sourcepath="/libgdx/generic/gdx-sources.jar"/>
+	<classpathentry kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

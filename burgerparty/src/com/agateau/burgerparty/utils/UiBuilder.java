@@ -124,7 +124,10 @@ public class UiBuilder {
 	}
 
 	protected AnchorGroup createAnchorGroup(XmlReader.Element element) {
-		return new AnchorGroup();
+		float spacing = element.getFloatAttribute("spacing", 1);
+		AnchorGroup group = new AnchorGroup();
+		group.setSpacing(spacing);
+		return group;
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
@@ -156,7 +159,7 @@ public class UiBuilder {
 			attr = element.getAttribute(anchorName, "");
 			if (!attr.isEmpty()) {
 				assert(anchorGroup != null);
-				Rule rule = parseRule(attr);
+				Rule rule = parseRule(attr, anchorGroup.getSpacing());
 				rule.target = actor;
 				rule.targetAnchor = ANCHORS[idx];
 				anchorGroup.addRule(rule);
@@ -169,7 +172,7 @@ public class UiBuilder {
 	 * @param txt
 	 * @return
 	 */
-	private Rule parseRule(String txt) {
+	private Rule parseRule(String txt, float spacing) {
 		Rule rule = new AnchorGroup.Rule();
 		String[] tokens = txt.split(" +");
 		assert(tokens.length == 1 || tokens.length == 3);
@@ -185,8 +188,8 @@ public class UiBuilder {
 			throw new RuntimeException("Invalid anchor name: '" + tokens[1] + "'");
 		}
 		if (tokens.length == 3) {
-			rule.hSpace = Float.parseFloat(tokens[1]);
-			rule.vSpace = Float.parseFloat(tokens[2]);
+			rule.hSpace = Float.parseFloat(tokens[1]) * spacing;
+			rule.vSpace = Float.parseFloat(tokens[2]) * spacing;
 		}
 		return rule;
 	}
