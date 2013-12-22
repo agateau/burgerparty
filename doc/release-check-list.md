@@ -1,6 +1,6 @@
 # Create .apk
 
-Bump version number in AndroidManifest.xml
+Bump version number in AndroidManifest.xml and in ../burgerparty-android/assets/about.txt
 
 Smoke test
 
