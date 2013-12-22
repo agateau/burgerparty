@@ -13,7 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.XmlReader;
@@ -24,15 +28,15 @@ public class UiBuilder {
 		mSkin = skin;
 	}
 
-	public void build(FileHandle handle) {
-		build(handle, null);
+	public Actor build(FileHandle handle) {
+		return build(handle, null);
 	}
 
-	public void build(XmlReader.Element parentElement) {
-		build(parentElement, null);
+	public Actor build(XmlReader.Element parentElement) {
+		return build(parentElement, null);
 	}
 
-	public void build(FileHandle handle, Group parentActor) {
+	public Actor build(FileHandle handle, Group parentActor) {
 		XmlReader reader = new XmlReader();
 		XmlReader.Element element = null;
 		try {
@@ -41,13 +45,17 @@ public class UiBuilder {
 			throw new RuntimeException("Failed to decode XML from " + handle.path());
 		}
 		assert(element != null);
-		build(element, parentActor);
+		return build(element, parentActor);
 	}
 
-	public void build(XmlReader.Element parentElement, Group parentActor) {
+	public Actor build(XmlReader.Element parentElement, Group parentActor) {
+		Actor firstActor = null;
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
 			Actor actor = createActorForElement(element);
+			if (idx == 0) {
+				firstActor = actor;
+			}
 			assert(actor != null);
 			applyActorProperties(actor, element, parentActor);
 			String id = element.getAttribute("id", null);
@@ -57,10 +65,11 @@ public class UiBuilder {
 				}
 				mActorForId.put(id, actor);
 			}
-			if (actor instanceof Group) {
+			if (actor instanceof Group && ! (actor instanceof ScrollPane)) {
 				build(element, (Group)actor);
 			}
 		}
+		return firstActor;
 	}
 
 	public <T extends Actor> T getActor(String id) {
@@ -83,6 +92,12 @@ public class UiBuilder {
 			return createGroup(element);
 		} else if (name.equals("AnchorGroup")) {
 			return createAnchorGroup(element);
+		} else if (name.equals("Label")) {
+			return createLabel(element);
+		} else if (name.equals("ScrollPane")) {
+			return createScrollPane(element);
+		} else if (name.equals("VerticalGroup")) {
+			return createVerticalGroup(element);
 		}
 		throw new RuntimeException("Unknown UI element type: " + name);
 	}
@@ -128,6 +143,46 @@ public class UiBuilder {
 		AnchorGroup group = new AnchorGroup();
 		group.setSpacing(spacing);
 		return group;
+	}
+
+	protected Label createLabel(XmlReader.Element element) {
+		String styleName = element.getAttribute("style", "default");
+		String text = element.getText();
+		Label label = new Label(text, mSkin, styleName);
+		String alignText = element.getAttribute("align", "");
+		if (!alignText.isEmpty()) {
+			int align = 0;
+			if (alignText.equals("left")) {
+				align = Align.left;
+			} else if (alignText.equals("center")) {
+				align = Align.center;
+			} else if (alignText.equals("right")) {
+				align = Align.right;
+			} else {
+				throw new RuntimeException("Unknown value of 'align': " + alignText);
+			}
+			label.setAlignment(align);
+		}
+		return label;
+	}
+
+	protected ScrollPane createScrollPane(XmlReader.Element element) {
+		String styleName = element.getAttribute("style", "");
+		ScrollPane pane;
+		if (styleName.isEmpty()) {
+			pane = new ScrollPane(null);
+		} else {
+			pane = new ScrollPane(null, mSkin, styleName);
+		}
+		Actor child = build(element);
+		if (child != null) {
+			pane.setWidget(child);
+		}
+		return pane;
+	}
+
+	protected VerticalGroup createVerticalGroup(XmlReader.Element element) {
+		return new VerticalGroup();
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
