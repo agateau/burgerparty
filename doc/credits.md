@@ -34,6 +34,6 @@
 
 <http://www.freesound.org/people/DrMinky/sounds/174721/>
 
-# meal-done.wab
+# meal-done.wav
 
 <http://www.soundjay.com/appliances/microwave-oven-bell-1.wav>
