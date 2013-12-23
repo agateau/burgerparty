@@ -779,7 +779,7 @@ ui/bubble-callout-right
   index: -1
 ui/done
   rotate: false
-  xy: 290, 192
+  xy: 2, 8
   size: 56, 44
   orig: 56, 44
   offset: 0, 0
@@ -793,112 +793,112 @@ ui/hud-bg
   index: -1
 ui/icon-back
   rotate: false
-  xy: 882, 714
+  xy: 569, 338
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-button
   rotate: false
-  xy: 804, 742
+  xy: 132, 56
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-button-big
   rotate: false
-  xy: 2, 30
-  size: 152, 152
-  orig: 152, 152
+  xy: 2, 54
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
 ui/icon-button-big-down
   rotate: false
-  xy: 804, 870
-  size: 152, 152
-  orig: 152, 152
+  xy: 804, 894
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
 ui/icon-button-down
   rotate: false
-  xy: 156, 106
+  xy: 934, 946
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-info
   rotate: false
-  xy: 226, 72
+  xy: 472, 270
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 ui/icon-left
   rotate: false
-  xy: 549, 336
+  xy: 695, 386
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-levels
   rotate: false
-  xy: 994, 904
+  xy: 569, 308
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 348, 204
+  xy: 60, 20
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
   index: -1
 ui/icon-play
   rotate: false
-  xy: 695, 386
+  xy: 886, 816
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/icon-play-big
   rotate: false
-  xy: 436, 240
-  size: 48, 62
-  orig: 48, 62
+  xy: 804, 812
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
 ui/icon-restart
   rotate: false
-  xy: 958, 897
+  xy: 436, 267
   size: 34, 35
   orig: 34, 35
   offset: 0, 0
   index: -1
 ui/icon-right
   rotate: false
-  xy: 234, 106
+  xy: 972, 910
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
   index: -1
 ui/inventory-burger
   rotate: false
-  xy: 156, 34
+  xy: 210, 62
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 ui/inventory-extra
   rotate: false
-  xy: 882, 748
+  xy: 499, 300
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 ui/level-button
   rotate: false
-  xy: 804, 820
+  xy: 132, 134
   size: 152, 48
   split: 24, 24, 23, 23
   pad: 4, 4, 4, 4
@@ -916,7 +916,7 @@ ui/level-button-down
   index: -1
 ui/lock
   rotate: false
-  xy: 958, 934
+  xy: 804, 566
   size: 60, 88
   orig: 60, 88
   offset: 0, 0
@@ -944,21 +944,21 @@ ui/star-off
   index: -1
 ui/star-on
   rotate: false
-  xy: 234, 142
+  xy: 886, 852
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/surprise
   rotate: false
-  xy: 804, 543
+  xy: 934, 903
   size: 36, 41
   orig: 36, 41
   offset: 0, 0
   index: -1
 ui/text-button
   rotate: false
-  xy: 804, 586
+  xy: 804, 656
   size: 76, 76
   split: 37, 37, 37, 37
   pad: 36, 36, 13, 15
@@ -967,7 +967,7 @@ ui/text-button
   index: -1
 ui/text-button-down
   rotate: false
-  xy: 804, 664
+  xy: 804, 734
   size: 76, 76
   split: 37, 37, 37, 37
   pad: 36, 36, 13, 15
@@ -983,28 +983,28 @@ ui/title
   index: -1
 ui/undo
   rotate: false
-  xy: 499, 327
+  xy: 290, 193
   size: 48, 43
   orig: 48, 43
   offset: 0, 0
   index: -1
 ui/vertical-gradient
   rotate: false
-  xy: 486, 286
+  xy: 60, 2
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
   index: -1
 ui/vruler
   rotate: false
-  xy: 499, 313
+  xy: 1012, 1010
   size: 6, 12
   orig: 6, 12
   offset: 0, 0
   index: -1
 ui/world-button
   rotate: false
-  xy: 156, 2
+  xy: 340, 206
   size: 32, 30
   split: 12, 12, 10, 12
   pad: 11, 11, 9, 11

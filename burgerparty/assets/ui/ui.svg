@@ -23,14 +23,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313709"
-     inkscape:cx="42.513431"
-     inkscape:cy="705.14401"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="2.8284273"
+     inkscape:cx="150.09218"
+     inkscape:cy="628.34049"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:window-width="1883"
-     inkscape:window-height="1060"
+     inkscape:window-width="1563"
+     inkscape:window-height="880"
      inkscape:window-x="37"
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
@@ -11569,14 +11569,6 @@
        height="4"
        x="300"
        y="616" />
-    <rect
-       ry="6.5276786e-17"
-       y="504"
-       x="88"
-       height="80"
-       width="80"
-       id="rect5687"
-       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none" />
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
@@ -11584,10 +11576,10 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path5689"
-       d="m 105,514 0,60 46,-30 z"
+       d="m 108,514 0,60 46,-30 z"
        style="fill:#ffffff;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <g
-       transform="matrix(2.0367502,0,0,2.0367502,-324.93631,-264.46399)"
+       transform="matrix(1.7108752,0,0,1.7108752,-218.22809,-110.47219)"
        id="g6497"
        inkscape:export-filename="icon-button-big.png"
        inkscape:export-xdpi="90"
@@ -11599,13 +11591,13 @@
          sodipodi:cy="448"
          sodipodi:cx="352"
          id="path6499"
-         style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:0.8533355;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.01587248;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          sodipodi:type="arc"
          transform="matrix(1.1507275,0,0,1.1507275,-53.056048,-67.525881)" />
       <path
          transform="matrix(0.96875,0,0,0.96875,11,14)"
          sodipodi:type="arc"
-         style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.01363266;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.20670199;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="path6501"
          sodipodi:cx="352"
          sodipodi:cy="448"
@@ -11614,10 +11606,10 @@
          d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z" />
       <path
          style="fill:url(#linearGradient6507);fill-opacity:1;fill-rule:nonzero;stroke:none"
-         d="m 352,418.77707 c -14.13231,0 -27.26769,12.03106 -29.00418,25.69168 8.03267,-4.86633 18.92677,-7.6875 29.00418,-7.6875 10.07741,0 20.97151,2.82117 29.00418,7.6875 C 379.26769,430.80813 366.13231,418.77707 352,418.77707 z"
+         d="m 352,418.77707 c -15.73967,0 -27.26769,12.03106 -29.00418,25.69168 8.03267,-4.86633 18.92677,-7.6875 29.00418,-7.6875 10.07741,0 20.97151,2.82117 29.00418,7.6875 C 379.26769,430.80813 367.73967,418.77707 352,418.77707 z"
          id="path6503"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="scscs" />
+         sodipodi:nodetypes="zcscz" />
       <path
          sodipodi:nodetypes="cscscssc"
          inkscape:connector-curvature="0"
@@ -11626,7 +11618,7 @@
          style="fill:#009100;fill-opacity:0.64102568;fill-rule:nonzero;stroke:none" />
     </g>
     <g
-       transform="matrix(2.0367502,0,0,2.0367502,-340.24383,-264.46399)"
+       transform="matrix(1.710941,0,0,1.710941,-212.23352,-110.50409)"
        id="g6509"
        inkscape:export-filename="icon-button-big-down.png"
        inkscape:export-xdpi="90"
@@ -11634,7 +11626,7 @@
       <path
          transform="matrix(1.1507275,0,0,1.1507275,36.943952,-67.525881)"
          sodipodi:type="arc"
-         style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:0.8533355;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#ccff42;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.0158335;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="path6511"
          sodipodi:cx="352"
          sodipodi:cy="448"
@@ -11648,7 +11640,7 @@
          sodipodi:cy="448"
          sodipodi:cx="352"
          id="path6513"
-         style="fill:#7eb500;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.01363266;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#7eb500;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:1.20665562;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          sodipodi:type="arc"
          transform="matrix(0.96875,0,0,0.96875,101,14)" />
       <path
@@ -11696,7 +11688,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Selection"
-     style="display:none">
+     style="opacity:0.40136055;display:none">
     <rect
        y="628"
        x="298"
@@ -11705,6 +11697,17 @@
        id="rect6698"
        style="opacity:0.63999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        inkscape:export-filename="vruler.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       ry="6.5276786e-17"
+       y="504"
+       x="88"
+       height="80"
+       width="80"
+       id="rect5687"
+       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       inkscape:export-filename="icon-play-big.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
