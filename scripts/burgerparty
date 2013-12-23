@@ -1,22 +1,12 @@
 #!/bin/sh
 set -e
-GDXDIR=/home/aurelien/opt/libgdx-0.9.9
-#GDXDIR=/home/aurelien/opt/libgdx-20130630
 cd $(dirname $0)/..
-BPDIR=$PWD/burgerparty/bin
-BPDESKTOPDIR=$PWD/burgerparty-desktop/bin
+BP_DIR=$PWD
 
-CLASSPATH="$BPDIR:$BPDESKTOPDIR"
-JARS="
-gdx
-gdx-natives
-gdx-backend-lwjgl
-gdx-backend-lwjgl-natives
-extensions/gdx-tools/gdx-tools
-"
-for jar in $JARS ; do
-    CLASSPATH="$CLASSPATH:$GDXDIR/$jar.jar"
+CLASSPATH="$BP_DIR/burgerparty/bin:$BP_DIR/burgerparty-desktop/bin"
+for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
+    CLASSPATH="$CLASSPATH:$jar"
 done
-echo $CLASSPATH
 
+cd burgerparty-desktop
 java -cp $CLASSPATH com.agateau.burgerparty.Main

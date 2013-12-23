@@ -1,8 +1,14 @@
 #!/bin/sh
 set -e
-GDXDIR=/home/aurelien/opt/libgdx-20130630
-CLASSPATH="$GDXDIR/gdx.jar:$GDXDIR/gdx-natives.jar:$GDXDIR/gdx-backend-lwjgl.jar:$GDXDIR/gdx-backend-lwjgl-natives.jar:$GDXDIR/extensions/gdx-tools/gdx-tools.jar"
-cd $(dirname $0)/../burgerparty-desktop
+cd $(dirname $0)/..
+BP_DIR=$PWD
+
+CLASSPATH="bin:"
+for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
+    CLASSPATH="$CLASSPATH:$jar"
+done
+
+cd burgerparty-desktop
 notify-send Packer "Start packing"
-java -cp $CLASSPATH:bin com.agateau.burgerparty.PackerMain
+java -cp $CLASSPATH com.agateau.burgerparty.PackerMain
 notify-send Packer "Done"
