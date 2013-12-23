@@ -31,10 +31,10 @@ public class AbstractWorldView extends AnchorGroup {
 
 		mBackgroundRegion = atlas.findRegion(worldDirName + "background");
 
-		TextureRegion region = atlas.findRegion(worldDirName + "workbench");
-		mWorkbench.setDrawable(new TextureRegionDrawable(region));
-		mWorkbench.setHeight(region.getRegionHeight());
-		mWorkbench.invalidate();
+		TextureRegion region = atlas.findRegion(worldDirName + "counter");
+		mCounter.setDrawable(new TextureRegionDrawable(region));
+		mCounter.setHeight(region.getRegionHeight());
+		mCounter.invalidate();
 
 		mInventoryView.setWorldDirName(worldDirName);
 	}
@@ -59,8 +59,8 @@ public class AbstractWorldView extends AnchorGroup {
 				layer.setSize(width, height);
 			}
 			mInventoryView.setWidth(width);
-			mWorkbench.setBounds(0, mInventoryView.getHeight(), width, mWorkbench.getHeight());
-			mWorkbench.invalidate();
+			mCounter.setBounds(0, mInventoryView.getHeight(), width, mCounter.getHeight());
+			mCounter.invalidate();
 		}
 
 		super.layout();
@@ -104,16 +104,16 @@ public class AbstractWorldView extends AnchorGroup {
 	}
 
 	private void setupDecor() {
-		mWorkbench = new Image();
-		mWorkbench.setScaling(Scaling.stretch);
-		mCounterLayer.addActor(mWorkbench);
+		mCounter = new Image();
+		mCounter.setScaling(Scaling.stretch);
+		mCounterLayer.addActor(mCounter);
 
 		mInventoryView = new InventoryView(mAssets.getTextureAtlas());
 		mInventoryLayer.addActor(mInventoryView);
 	}
 
 	protected void slideInMealView(MealView view) {
-		view.setPosition(-view.getWidth(), mWorkbench.getY() + 0.48f * UiUtils.SPACING);
+		view.setPosition(-view.getWidth(), mCounter.getY() + 0.48f * UiUtils.SPACING);
 		view.addAction(Actions.moveTo((getWidth() - view.getWidth()) / 2, view.getY(), SLIDE_IN_ANIM_DURATION, Interpolation.pow2Out));
 		mCounterLayer.addActor(view);
 	}
@@ -127,7 +127,7 @@ public class AbstractWorldView extends AnchorGroup {
 	protected AnchorGroup mHudLayer;
 
 	protected InventoryView mInventoryView;
-	protected Image mWorkbench;
+	protected Image mCounter;
 	protected float mWidth = -1;
 	protected float mHeight = -1;
 

@@ -6307,7 +6307,7 @@
          height="82"
          x="839.19537"
          y="760.35498"
-         inkscape:export-filename="workbench.png"
+         inkscape:export-filename="counter.png"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90" />
       <path
@@ -6563,7 +6563,7 @@
          sodipodi:role="line"
          id="tspan6522"
          x="434.91647"
-         y="674.40808">Workbench is exported</tspan><tspan
+         y="674.40808">Counter is exported</tspan><tspan
          sodipodi:role="line"
          x="434.91647"
          y="700.65808"

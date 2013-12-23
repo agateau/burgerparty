@@ -318,7 +318,7 @@ public class WorldView extends AbstractWorldView {
 			customerViews.insert(0, mActiveCustomerView);
 		}
 		float centerX = getWidth() / 2;
-		float posY = MathUtils.ceil(mWorkbench.getTop() - 4);
+		float posY = MathUtils.ceil(mCounter.getTop() - 4);
 		float delay = 0;
 		int rank = 0;
 		for(CustomerView customerView: customerViews) {
@@ -327,7 +327,7 @@ public class WorldView extends AbstractWorldView {
 			float scale = 1f - rank / 25f;
 			customerView.addAction(
 				Actions.sequence(
-					Actions.moveTo(customerView.getX(), posY), // Force posY to avoid getting from under the workbench at startup
+					Actions.moveTo(customerView.getX(), posY), // Force posY to avoid getting from under the counter at startup
 					Actions.delay(delay),
 					Actions.parallel(
 						Actions.moveTo(MathUtils.ceil(posX), posY, 0.3f, Interpolation.sineOut),

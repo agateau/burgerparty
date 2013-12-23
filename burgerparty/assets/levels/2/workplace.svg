@@ -5123,7 +5123,7 @@
       <rect
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="workbench.png"
+         inkscape:export-filename="counter.png"
          y="760.35553"
          x="839.19531"
          height="82"
@@ -5523,7 +5523,7 @@
        transform="translate(0,320)"
        width="2995.5847"
        height="900.11548"
-       inkscape:export-filename="workbench.png"
+       inkscape:export-filename="counter.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
