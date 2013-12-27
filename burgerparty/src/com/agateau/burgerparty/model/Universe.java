@@ -54,5 +54,24 @@ public class Universe {
 		return set;
 	}
 
+	public void setLevelScore(int worldIndex, int levelIndex, int score) {
+		LevelWorld currentWorld = mLevelWorlds.get(worldIndex);
+		Level currentLevel = currentWorld.getLevel(levelIndex);
+		if (score > currentLevel.getScore()) {
+			currentLevel.setScore(score);
+		}
+
+		// Unlock next level if necessary
+		Level next = null;
+		if (levelIndex < currentWorld.getLevelCount() - 1) {
+			next = currentWorld.getLevel(levelIndex + 1);
+		} else if (worldIndex < mLevelWorlds.size - 1){
+			next = mLevelWorlds.get(worldIndex + 1).getLevel(0);
+		}
+		if (next != null && next.isLocked()) {
+			next.unlock();
+		}
+	}
+
 	Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 }

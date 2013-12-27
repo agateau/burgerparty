@@ -3,7 +3,6 @@ package com.agateau.burgerparty;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Level;
-import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
 import com.agateau.burgerparty.model.MealItem;
@@ -124,21 +123,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void onCurrentLevelFinished(int score) {
-		LevelWorld currentGroup = mUniverse.get(mLevelWorldIndex);
-		Level currentLevel = currentGroup.getLevel(mLevelIndex);
-		if (score > currentLevel.getScore()) {
-			currentLevel.setScore(score);
-		}
-		// Unlock next level if necessary
-		Level next = null;
-		if (mLevelIndex < currentGroup.getLevelCount() - 1) {
-			next = currentGroup.getLevel(mLevelIndex + 1);
-		} else if (mLevelWorldIndex < mUniverse.getWorlds().size - 1){
-			next = mUniverse.get(mLevelWorldIndex + 1).getLevel(0);
-		}
-		if (next != null && next.isLocked()) {
-			next.unlock();
-		}
+		mUniverse.setLevelScore(mLevelWorldIndex, mLevelIndex, score);
 		saveLevelProgress();
 	}
 
