@@ -83,12 +83,17 @@ public class BurgerPartyGame extends Game {
 		return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
 	}
 
-	private void loadLevelWorlds() {
+	private void setupUniverse() {
+		mUniverse.saveRequested.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				saveLevelProgress();
+			}
+		});
 		UniverseLoader loader = new UniverseLoader();
 		loader.run(mUniverse);
-	}
+		assert(mUniverse.getWorlds().size > 0);
 
-	private void loadLevelProgress() {
 		// At least, unlock first level
 		mUniverse.get(0).getLevel(0).unlock();
 
@@ -120,11 +125,6 @@ public class BurgerPartyGame extends Game {
 
 	public Universe getUniverse() {
 		return mUniverse;
-	}
-
-	public void onCurrentLevelFinished(int score) {
-		mUniverse.setLevelScore(mLevelWorldIndex, mLevelIndex, score);
-		saveLevelProgress();
 	}
 
 	public void startLevel(int levelWorldIndex, int levelIndex) {
@@ -171,9 +171,7 @@ public class BurgerPartyGame extends Game {
 		mMusicController = new MusicController(music);
 		mMusicController.play();
 		setupAnimScriptLoader();
-		loadLevelWorlds();
-		assert(mUniverse.getWorlds().size > 0);
-		loadLevelProgress();
+		setupUniverse();
 		showStartScreen();
 	}
 

@@ -130,7 +130,7 @@ public class LevelFinishedOverlay extends Overlay {
 		int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;
 
 		// Store final score *now*
-		mGame.onCurrentLevelFinished(finalScore);
+		mGame.getUniverse().setLevelScore(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore);
 
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off")));
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on")));

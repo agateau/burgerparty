@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -10,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Universe {
 	public static final int SANDBOX_MIN_STAR_COUNT = 4;
+
+	public Signal0 saveRequested = new Signal0();
 
 	public void addWorld(LevelWorld world) {
 		mLevelWorlds.add(world);
@@ -71,6 +74,8 @@ public class Universe {
 		if (next != null && next.isLocked()) {
 			next.unlock();
 		}
+
+		saveRequested.emit();
 	}
 
 	Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
