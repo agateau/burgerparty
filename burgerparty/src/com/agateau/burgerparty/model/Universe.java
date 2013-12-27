@@ -6,7 +6,7 @@ import java.util.Set;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * Knows all the LevelWorld instance of the game
+ * Knows all the LevelWorld instances of the game
  */
 public class Universe {
 	public static final int SANDBOX_MIN_STAR_COUNT = 4;
