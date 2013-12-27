@@ -31,6 +31,9 @@ import com.badlogic.gdx.utils.XmlWriter;
  * </progress>
  */
 public class ProgressIO {
+	static final int SCORE_LOCKED = -2;
+	static final int SCORE_NEW = -1;
+
 	public ProgressIO(Array<LevelWorld> worlds) {
 		mWorlds = worlds;
 	}
@@ -69,7 +72,7 @@ public class ProgressIO {
 			int levelIndex = element.getIntAttribute("level") - 1;
 			int score = element.getIntAttribute("score", -1);
 			Level level = mWorlds.get(worldIndex).getLevel(levelIndex);
-			level.score = score;
+			level.setScore(score);
 		}
 	}
 
@@ -81,7 +84,7 @@ public class ProgressIO {
 		for(XmlReader.Element element: levelsElement.getChildrenByName("level")) {
 			int worldIndex = element.getIntAttribute("world", 1) - 1;
 			int levelIndex = element.getIntAttribute("level") - 1;
-			int score = element.getIntAttribute("score", Level.SCORE_LOCKED);
+			int score = element.getIntAttribute("score", SCORE_LOCKED);
 			if (worldIndex >= mWorlds.size) {
 				Gdx.app.error("ProgressIO", "No world with index " + (worldIndex + 1));
 				continue;
@@ -92,17 +95,17 @@ public class ProgressIO {
 				continue;
 			}
 			Level level = world.getLevel(levelIndex);
-			level.score = score;
+			level.setScore(score);
 		}
 
-		int previousScore = 1;
+		boolean previousWasWon = true;
 		for (LevelWorld world: mWorlds) {
 			for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
 				Level level = world.getLevel(idx);
-				if (previousScore > 0 && level.score == Level.SCORE_LOCKED) {
-					level.score = Level.SCORE_NEW;
+				if (previousWasWon && level.isLocked()) {
+					level.unlock();
 				}
-				previousScore = level.score;
+				previousWasWon = level.getScore() > 0;
 			}
 		}
 	}
@@ -121,11 +124,12 @@ public class ProgressIO {
 			for (LevelWorld world: mWorlds) {
 				for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 					Level level = world.getLevel(levelIndex);
-					if (level.score > Level.SCORE_LOCKED) {
+					if (!level.isLocked()) {
+						int score = level.isNew() ? SCORE_NEW : level.getScore();
 						levelsElement.element("level")
 							.attribute("world", worldIndex + 1)
 							.attribute("level", levelIndex + 1)
-							.attribute("score", level.score)
+							.attribute("score", score)
 						.pop();
 					}
 				}

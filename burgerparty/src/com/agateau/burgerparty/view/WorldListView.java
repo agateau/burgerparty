@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
-import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
@@ -29,7 +28,7 @@ public class WorldListView extends HorizontalGroup {
 
 		int idx = 0;
 		for (LevelWorld world: worlds) {
-			boolean locked = world.getLevel(0).score == Level.SCORE_LOCKED;
+			boolean locked = world.getLevel(0).isLocked();
 			Actor levelButton = createWorldButton(world, idx, locked, details);
 			addActor(levelButton);
 			++idx;

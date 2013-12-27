@@ -24,8 +24,7 @@ public class Universe {
 	}
 
 	public int getHighScore(int world, int level) {
-		int value = mLevelWorlds.get(world).getLevel(level).score;
-		return Math.max(value, 0);
+		return mLevelWorlds.get(world).getLevel(level).getScore();
 	}
 
 	public int getStarCount() {
@@ -43,7 +42,7 @@ public class Universe {
 		for (LevelWorld world: mLevelWorlds) {
 			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
 				Level level = world.getLevel(levelIndex);
-				if (level.score >= Level.SCORE_PLAYED) {
+				if (level.hasBeenPlayed()) {
 					set.addAll(level.getKnownItems());
 				}
 			}

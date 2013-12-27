@@ -124,7 +124,7 @@ public class LevelFinishedOverlay extends Overlay {
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
-		int previousScore = levelResult.getLevel().score;
+		int previousScore = levelResult.getLevel().getScore();
 		mScore = levelResult.getScore();
 		int remainingSeconds = levelResult.getRemainingSeconds();
 		int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;

@@ -23,10 +23,10 @@ public class ProgressIOTest {
 			);
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
-		assertEquals(worlds.get(0).getLevel(0).score, 12);
-		assertEquals(worlds.get(0).getLevel(1).score, Level.SCORE_LOCKED);
-		assertEquals(worlds.get(1).getLevel(0).score, Level.SCORE_LOCKED);
-		assertEquals(worlds.get(1).getLevel(1).score, 24);
+		assertEquals(worlds.get(0).getLevel(0).getScore(), 12);
+		assertTrue(worlds.get(0).getLevel(1).isLocked());
+		assertTrue(worlds.get(1).getLevel(0).isLocked());
+		assertEquals(worlds.get(1).getLevel(1).getScore(), 24);
 	}
 
 	@Test
@@ -42,17 +42,17 @@ public class ProgressIOTest {
 			);
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
-		assertEquals(12, worlds.get(0).getLevel(0).score);
-		assertEquals(Level.SCORE_NEW, worlds.get(0).getLevel(1).score);
-		assertEquals(Level.SCORE_LOCKED, worlds.get(1).getLevel(0).score);
-		assertEquals(24, worlds.get(1).getLevel(1).score);
+		assertEquals(12, worlds.get(0).getLevel(0).getScore());
+		assertTrue(worlds.get(0).getLevel(1).isNew());
+		assertTrue(worlds.get(1).getLevel(0).isLocked());
+		assertEquals(24, worlds.get(1).getLevel(1).getScore());
 	}
 
 	@Test
 	public void testSave() {
 		Array<LevelWorld> worlds = createTestWorlds();
-		worlds.get(0).getLevel(0).score = 12;
-		worlds.get(1).getLevel(1).score = Level.SCORE_NEW;
+		worlds.get(0).getLevel(0).setScore(12);
+		worlds.get(1).getLevel(1).unlock();
 
 		StringWriter writer = new StringWriter();
 		XmlWriter xmlWriter = new XmlWriter(writer);
@@ -74,7 +74,7 @@ public class ProgressIOTest {
 		child = levelsElement.getChild(1);
 		assertEquals(child.getIntAttribute("world"), 2);
 		assertEquals(child.getIntAttribute("level"), 2);
-		assertEquals(child.getIntAttribute("score"), Level.SCORE_NEW);
+		assertEquals(child.getIntAttribute("score"), ProgressIO.SCORE_NEW);
 	}
 
 	private static Array<LevelWorld> createTestWorlds() {

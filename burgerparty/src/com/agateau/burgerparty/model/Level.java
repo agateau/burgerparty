@@ -10,9 +10,11 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class Level {
-	public static final int SCORE_LOCKED = -2;
-	public static final int SCORE_NEW = -1;
-	public static final int SCORE_PLAYED = 0;
+	private enum Status {
+		LOCKED,
+		NEW,
+		PLAYED
+	}
 	private static class CustomerDefinition {
 		public String type;
 		public int burgerSize;
@@ -65,14 +67,13 @@ public class Level {
 	}
 
 	public Definition definition = new Definition();
-	public int score = SCORE_LOCKED;
 
 	public int getStars() {
-		return getStarsFor(score);
+		return getStarsFor(mScore);
 	}
 
 	public boolean hasBrandNewItem() {
-		return score < SCORE_PLAYED && definition.mNewItem != null;
+		return mStatus != Status.PLAYED && definition.mNewItem != null;
 	}
 
 	public int getStarsFor(int value) {
@@ -146,6 +147,31 @@ public class Level {
 		initNewItemFieldInternal(knownItems, definition.mExtraItems);
 	}
 
+	public boolean isLocked() {
+		return mStatus == Status.LOCKED;
+	}
+
+	public boolean isNew() {
+		return mStatus == Status.NEW;
+	}
+
+	public boolean hasBeenPlayed() {
+		return mStatus == Status.PLAYED;
+	}
+
+	public int getScore() {
+		return mScore;
+	}
+
+	public void unlock() {
+		mStatus = Status.NEW;
+	}
+
+	public void setScore(int value) {
+		mStatus = Status.PLAYED;
+		mScore = value;
+	}
+
 	private void initNewItemFieldInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
 		for(MealItem item: list) {
 			if (knownItems.contains(item)) {
@@ -162,4 +188,7 @@ public class Level {
 
 	private LevelWorld mLevelWorld;
 	private String mFileName;
+
+	private Status mStatus = Status.LOCKED;
+	private int mScore = 0;
 }

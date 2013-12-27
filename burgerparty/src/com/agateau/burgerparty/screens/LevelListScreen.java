@@ -125,7 +125,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 		AnchorGroup group = new AnchorGroup();
 		group.addRule(button, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT);
-		if (level.score == Level.SCORE_LOCKED) {
+		if (level.isLocked()) {
 			button.setDisabled(true);
 		} else {
 			button.createStars(level.getStars());

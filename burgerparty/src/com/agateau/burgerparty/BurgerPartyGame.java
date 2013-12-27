@@ -91,7 +91,7 @@ public class BurgerPartyGame extends Game {
 
 	private void loadLevelProgress() {
 		// At least, unlock first level
-		mUniverse.get(0).getLevel(0).score = Level.SCORE_NEW;
+		mUniverse.get(0).getLevel(0).unlock();
 
 		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		if (!handle.exists()) {
@@ -126,8 +126,8 @@ public class BurgerPartyGame extends Game {
 	public void onCurrentLevelFinished(int score) {
 		LevelWorld currentGroup = mUniverse.get(mLevelWorldIndex);
 		Level currentLevel = currentGroup.getLevel(mLevelIndex);
-		if (score > currentLevel.score) {
-			currentLevel.score = score;
+		if (score > currentLevel.getScore()) {
+			currentLevel.setScore(score);
 		}
 		// Unlock next level if necessary
 		Level next = null;
@@ -136,8 +136,8 @@ public class BurgerPartyGame extends Game {
 		} else if (mLevelWorldIndex < mUniverse.getWorlds().size - 1){
 			next = mUniverse.get(mLevelWorldIndex + 1).getLevel(0);
 		}
-		if (next != null && next.score == Level.SCORE_LOCKED) {
-			next.score = Level.SCORE_NEW;
+		if (next != null && next.isLocked()) {
+			next.unlock();
 		}
 		saveLevelProgress();
 	}
@@ -152,7 +152,7 @@ public class BurgerPartyGame extends Game {
 			screen.done.connect(mHandlers, new Signal0.Handler() {
 				@Override
 				public void handle() {
-					level.score = Level.SCORE_PLAYED;
+					level.setScore(0);
 					saveLevelProgress();
 					doStartLevel();
 				}
