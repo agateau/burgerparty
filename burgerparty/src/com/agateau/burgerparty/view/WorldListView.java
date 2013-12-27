@@ -55,7 +55,7 @@ public class WorldListView extends HorizontalGroup {
 		}
 		WorldListView.WorldButton button = new WorldButton(text, world.getDirName(), mAssets);
 		if (locked) {
-			button.setDisabled(true);
+			button.createLockOverlay();
 		} else if (details == Details.SHOW_STARS) {
 			createStarsActor(button.getGroup(), world);
 		}

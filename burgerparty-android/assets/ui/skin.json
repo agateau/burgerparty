@@ -104,7 +104,9 @@
             down: levels/2/button-down,
             up: levels/2/button,
             pressedOffsetY: -1
-        },
+        }
+    },
+    com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
         world-button: {
             up: ui/world-button
         }
