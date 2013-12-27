@@ -65,7 +65,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
 
-		LevelWorld levelWorld = getGame().getLevelWorld(levelWorldIndex);
+		LevelWorld levelWorld = getGame().getUniverse().get(levelWorldIndex);
 		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
 			Actor levelButton = createLevelButton(levelWorldIndex, idx, skin);
 			gridGroup.addActor(levelButton);
@@ -118,7 +118,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 	}
 
 	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
-		LevelWorld world = getGame().getLevelWorld(levelWorldIndex);
+		LevelWorld world = getGame().getUniverse().get(levelWorldIndex);
 		Level level = world.getLevel(levelIndex);
 		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, skin);
 		button.setSize(CELL_SIZE, CELL_SIZE);

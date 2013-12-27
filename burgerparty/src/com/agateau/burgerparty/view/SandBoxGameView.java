@@ -30,7 +30,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class SandBoxGameView extends AbstractWorldView {
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
-		super(game.getAssets(), game.getLevelWorld(0).getDirName());
+		super(game.getAssets(), game.getUniverse().get(0).getDirName());
 		mScreen = screen;
 		mLevelWorldIndex = 0;
 		mGame = game;
@@ -76,7 +76,7 @@ public class SandBoxGameView extends AbstractWorldView {
 			mBottomRightBar.remove();
 		}
 		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
-		LevelWorld levelWorld = mGame.getLevelWorld(mLevelWorldIndex);
+		LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
 		FileHandle handle = Gdx.files.internal(levelWorld.getDirName() + "/sandbox.gdxui");
 		builder.build(handle, this);
 
@@ -110,7 +110,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	private void setupInventories() {
 		HashSet<String> names = new HashSet<String>();
-		for (MealItem item: mGame.getKnownItems()) {
+		for (MealItem item: mGame.getUniverse().getKnownItems()) {
 			names.add(item.getName());
 		}
 		mWorld.getBurgerInventory().clear();
@@ -196,7 +196,7 @@ public class SandBoxGameView extends AbstractWorldView {
 	}
 
 	private void switchWorld() {
-		Array<LevelWorld> worlds = mGame.getLevelWorlds();
+		Array<LevelWorld> worlds = mGame.getUniverse().getWorlds();
 		WorldListOverlay overlay = new WorldListOverlay(mScreen, worlds, mLevelWorldIndex);
 		overlay.currentIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
 			@Override
@@ -209,7 +209,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
 	private void setLevelWorldIndex(int index) {
 		mLevelWorldIndex = index;
-		LevelWorld levelWorld = mGame.getLevelWorld(index);
+		LevelWorld levelWorld = mGame.getUniverse().get(index);
 		String dirName = levelWorld.getDirName();
 		setWorldDirName(dirName);
 		setupInventories();

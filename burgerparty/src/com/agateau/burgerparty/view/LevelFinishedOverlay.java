@@ -181,11 +181,11 @@ public class LevelFinishedOverlay extends Overlay {
 		RoundButton nextButton = null;
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
+		LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			mainLabel.setText("Congratulations, you finished level " + (levelWorldIndex + 1) + "-" + (levelIndex + 1) + "!");
 			nextButton = createNextButton("ui/icon-right");
-		} else if (levelWorldIndex < mGame.getLevelWorldCount() - 1) {
+		} else if (levelWorldIndex < mGame.getUniverse().getWorlds().size - 1) {
 			mainLabel.setText("Congratulations, you finished world " + (levelWorldIndex + 1) + "!");
 			nextButton = createNextButton("ui/icon-right");
 		} else {
@@ -247,7 +247,7 @@ public class LevelFinishedOverlay extends Overlay {
 	private void doGoToNextLevel() {
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
-		LevelWorld levelWorld = mGame.getLevelWorld(levelWorldIndex);
+		LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
 			levelIndex++;
 		} else {

@@ -9,17 +9,16 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
-public class LevelWorldLoader {
+public class UniverseLoader {
 	private static final float SEC_PER_ITEM = 1.3f;
 	private static final int TIME_STEP = 30;
 	private static final boolean DEBUG_DURATION = false;
 
-	public Array<LevelWorld> run() {
+	public void run(Universe universe) {
 		if (DEBUG_DURATION) {
 			mCsvHandle = Gdx.files.external("/tmp/duration.csv");
 			mCsvWriter = mCsvHandle.writer(false);
 		}
-		Array<LevelWorld> worlds = new Array<LevelWorld>();
 		for (int n=1;; n++) {
 			String dirName = "levels/" + n + "/";
 			if (!Gdx.files.internal(dirName + "1.xml").exists()) {
@@ -27,7 +26,7 @@ public class LevelWorldLoader {
 			}
 			Gdx.app.log("LevelWorldLoader", "dir=" + dirName);
 			LevelWorld world = loadWorld(n - 1, dirName);
-			worlds.add(world);
+			universe.addWorld(world);
 		}
 		if (DEBUG_DURATION) {
 			try {
@@ -37,8 +36,7 @@ public class LevelWorldLoader {
 				e.printStackTrace();
 			}
 		}
-		initNewItemFields(worlds);
-		return worlds;
+		initNewItemFields(universe.getWorlds());
 	}
 
 	private LevelWorld loadWorld(int index, String dirName) {

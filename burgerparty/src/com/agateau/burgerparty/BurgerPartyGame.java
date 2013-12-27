@@ -1,11 +1,11 @@
 package com.agateau.burgerparty;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.model.LevelWorldLoader;
+import com.agateau.burgerparty.model.Universe;
+import com.agateau.burgerparty.model.UniverseLoader;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
@@ -29,14 +29,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.utils.Array;
 
 public class BurgerPartyGame extends Game {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Assets mAssets;
 	private MusicController mMusicController;
-	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
+	private Universe mUniverse = new Universe();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
 
@@ -86,35 +85,30 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void loadLevelWorlds() {
-		LevelWorldLoader loader = new LevelWorldLoader();
-		mLevelWorlds = loader.run();
+		UniverseLoader loader = new UniverseLoader();
+		loader.run(mUniverse);
 	}
 
 	private void loadLevelProgress() {
 		// At least, unlock first level
-		mLevelWorlds.get(0).getLevel(0).score = Level.SCORE_NEW;
+		mUniverse.get(0).getLevel(0).score = Level.SCORE_NEW;
 
 		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		if (!handle.exists()) {
 			return;
 		}
-		ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+		ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
 		progressIO.load(handle);
 	}
 
 	private void saveLevelProgress() {
 		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
-		ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+		ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
 		progressIO.save(handle);
 	}
 
 	public Assets getAssets() {
 		return mAssets;
-	}
-
-	public int getHighScore(int world, int level) {
-		int value = mLevelWorlds.get(world).getLevel(level).score;
-		return Math.max(value, 0);
 	}
 
 	public int getLevelWorldIndex() {
@@ -125,37 +119,12 @@ public class BurgerPartyGame extends Game {
 		return mLevelIndex;
 	}
 
-	public int getLevelWorldCount() {
-		return mLevelWorlds.size;
-	}
-
-	public LevelWorld getLevelWorld(int index) {
-		return mLevelWorlds.get(index);
-	}
-
-	public Array<LevelWorld> getLevelWorlds() {
-		return mLevelWorlds;
-	}
-
-	public Set<MealItem> getKnownItems() {
-		Set<MealItem> set = new HashSet<MealItem>();
-		for (LevelWorld world: mLevelWorlds) {
-			for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
-				Level level = world.getLevel(levelIndex);
-				if (level.score >= Level.SCORE_PLAYED) {
-					set.addAll(level.getKnownItems());
-				}
-			}
-		}
-		// This can happen when it is the first time the game is played
-		if (set.isEmpty()) {
-			set.addAll(mLevelWorlds.get(0).getLevel(0).getKnownItems());
-		}
-		return set;
+	public Universe getUniverse() {
+		return mUniverse;
 	}
 
 	public void onCurrentLevelFinished(int score) {
-		LevelWorld currentGroup = mLevelWorlds.get(mLevelWorldIndex);
+		LevelWorld currentGroup = mUniverse.get(mLevelWorldIndex);
 		Level currentLevel = currentGroup.getLevel(mLevelIndex);
 		if (score > currentLevel.score) {
 			currentLevel.score = score;
@@ -164,8 +133,8 @@ public class BurgerPartyGame extends Game {
 		Level next = null;
 		if (mLevelIndex < currentGroup.getLevelCount() - 1) {
 			next = currentGroup.getLevel(mLevelIndex + 1);
-		} else if (mLevelWorldIndex < mLevelWorlds.size - 1){
-			next = mLevelWorlds.get(mLevelWorldIndex + 1).getLevel(0);
+		} else if (mLevelWorldIndex < mUniverse.getWorlds().size - 1){
+			next = mUniverse.get(mLevelWorldIndex + 1).getLevel(0);
 		}
 		if (next != null && next.score == Level.SCORE_LOCKED) {
 			next.score = Level.SCORE_NEW;
@@ -177,7 +146,7 @@ public class BurgerPartyGame extends Game {
 		mMusicController.fadeOut();
 		mLevelWorldIndex = levelWorldIndex;
 		mLevelIndex = levelIndex;
-		final Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
+		final Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		if (level.hasBrandNewItem()) {
 			NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem());
 			screen.done.connect(mHandlers, new Signal0.Handler() {
@@ -218,7 +187,7 @@ public class BurgerPartyGame extends Game {
 		mMusicController.play();
 		setupAnimScriptLoader();
 		loadLevelWorlds();
-		assert(mLevelWorlds.size > 0);
+		assert(mUniverse.getWorlds().size > 0);
 		loadLevelProgress();
 		showStartScreen();
 	}
@@ -244,7 +213,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void doStartLevel() {
-		Level level = mLevelWorlds.get(mLevelWorldIndex).getLevel(mLevelIndex);
+		Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
 		setScreen(new GameScreen(this, level));
 	}
 }
