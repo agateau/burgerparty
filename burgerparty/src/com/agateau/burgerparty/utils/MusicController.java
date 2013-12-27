@@ -27,7 +27,9 @@ public class MusicController {
 		}
 
 		private void scheduleUpdate() {
-			Timer.schedule(this, FADE_INTERVAL);
+			if (!isScheduled()) {
+				Timer.schedule(this, FADE_INTERVAL);
+			}
 		}
 
 		int mDirection = 0;
