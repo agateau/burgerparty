@@ -26,6 +26,16 @@ public class Universe {
 		return Math.max(value, 0);
 	}
 
+	public int getStarCount() {
+		int stars = 0;
+		for (LevelWorld world: mLevelWorlds) {
+			for (Level level: world.getLevels()) {
+				stars += level.getStars();
+			}
+		}
+		return stars;
+	}
+
 	public Set<MealItem> getKnownItems() {
 		Set<MealItem> set = new HashSet<MealItem>();
 		for (LevelWorld world: mLevelWorlds) {

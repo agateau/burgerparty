@@ -8,5 +8,14 @@
         <WorldListView id="worldListView"
             topCenter="root.topCenter 0 -2"
             />
+
+        <Image id="starCountImage" name="ui/star-on"
+            bottomRight="root.bottomCenter 0 2"
+            />
+
+        <Label id="starCountLabel"
+            style="world-screen-star-count"
+            bottomLeft="starCountImage.bottomRight 0.5 -0.5"
+            >15</Label>
     </AnchorGroup>
 </gdxui>

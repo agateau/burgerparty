@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
@@ -15,6 +16,7 @@ import com.agateau.burgerparty.view.WorldListView;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -22,6 +24,7 @@ public class WorldListScreen extends BurgerPartyScreen {
 	public WorldListScreen(BurgerPartyGame game) {
 		super(game);
 		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
+		mStarCount = getGame().getUniverse().getStarCount();
 		setBackgroundActor(bgImage);
 		setupWidgets();
 		new RefreshHelper(getStage()) {
@@ -93,7 +96,11 @@ public class WorldListScreen extends BurgerPartyScreen {
 				getGame().showLevelListScreen(index);
 			}
 		});
+
+		Label starCountLabel = builder.<Label>getActor("starCountLabel");
+		starCountLabel.setText(String.valueOf(mStarCount));
 	}
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
+	private int mStarCount;
 }

@@ -26,6 +26,10 @@ public class LevelWorld {
 		return mLevels.size;
 	}
 
+	public Array<Level> getLevels() {
+		return mLevels;
+	}
+
 	public int getWonStarCount() {
 		int count = 0;
 		for (Level level: mLevels) {
