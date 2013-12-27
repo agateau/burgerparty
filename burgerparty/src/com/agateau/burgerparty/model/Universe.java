@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Array;
  * Knows all the LevelWorld instance of the game
  */
 public class Universe {
+	public static final int SANDBOX_MIN_STAR_COUNT = 4;
+
 	public void addWorld(LevelWorld world) {
 		mLevelWorlds.add(world);
 	}

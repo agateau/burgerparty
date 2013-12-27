@@ -60,9 +60,13 @@ public class WorldListScreen extends BurgerPartyScreen {
 		@Override
 		protected Actor createActorForElement(XmlReader.Element element) {
 			if (element.getName().equals("WorldListView")) {
-				WorldListView view = new WorldListView(getGame().getUniverse().getWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
+				Universe universe = getGame().getUniverse();
+				WorldListView view = new WorldListView(universe.getWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
 
 				SandBoxButton button = new SandBoxButton();
+				if (mStarCount < Universe.SANDBOX_MIN_STAR_COUNT) {
+					button.createLockOverlay();
+				}
 
 				Actor ruler = new TiledImage(getGame().getAssets().getTextureAtlas().findRegion("ui/vruler"));
 				ruler.setHeight(button.getPrefHeight());
