@@ -12,6 +12,8 @@ public class PackerMain {
 	private static void packTextures() {
 		Settings settings = new Settings();
 		settings.filterMag = TextureFilter.Linear;
+		settings.pot = false;
+		settings.combineSubdirectories = true;
 		TexturePacker2.process(settings, "../burgerparty/assets", "../burgerparty-android/assets", "burgerparty");
 		System.out.println("Done");
 	}
