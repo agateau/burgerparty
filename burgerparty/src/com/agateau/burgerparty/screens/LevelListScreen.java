@@ -37,7 +37,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 		mStarOff = atlas.findRegion("ui/star-off");
 		mStarOn = atlas.findRegion("ui/star-on");
-		mLock = atlas.findRegion("ui/lock");
+		mLock = atlas.findRegion("ui/lock-key");
 		mSurpriseRegion = atlas.findRegion("ui/surprise");
 		setupWidgets(getSkin(), worldIndex);
 	}

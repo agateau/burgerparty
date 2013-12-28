@@ -60,7 +60,7 @@ public class WorldBaseButton extends Button {
 		setDisabled(true);
 		mBgImage.setShader(mAssets.getDisabledShader());
 
-		TextureRegion lockRegion = mAssets.getTextureAtlas().findRegion("ui/lock");
+		TextureRegion lockRegion = mAssets.getTextureAtlas().findRegion("ui/lock-key");
 		Image image = new Image(lockRegion);
 		mGroup.addRule(image, Anchor.CENTER, mGroup, Anchor.CENTER);
 	}
