@@ -164,7 +164,9 @@ public class Level {
 	}
 
 	public void unlock() {
-		mStatus = Status.NEW;
+		if (mStatus == Status.LOCKED) {
+			mStatus = Status.NEW;
+		}
 	}
 
 	public void setScore(int value) {
