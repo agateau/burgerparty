@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -15,7 +16,11 @@ public abstract class RefreshHelper {
 					Timer.post(new Timer.Task() {
 						@Override
 						public void run() {
-							refresh();
+							try {
+								refresh();
+							} catch (Exception exc) {
+								Gdx.app.log("RefreshHelper", exc.toString());
+							}
 						}
 					});
 					return true;
