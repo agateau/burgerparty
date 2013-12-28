@@ -105,6 +105,7 @@ public class Level {
 			throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
 		}
 		Level level = new Level(levelWorld, handle.path());
+		level.mIndex = levelIndex;
 		int burgerSize = root.getIntAttribute("burgerSize");
 		level.definition.score2 = root.getIntAttribute("score2", 15000);
 		level.definition.score3 = root.getIntAttribute("score3", 30000);
@@ -145,6 +146,10 @@ public class Level {
 	public void initNewItemField(Set<MealItem> knownItems) {
 		initNewItemFieldInternal(knownItems, definition.mBurgerItems);
 		initNewItemFieldInternal(knownItems, definition.mExtraItems);
+	}
+
+	public int getIndex() {
+		return mIndex;
 	}
 
 	public boolean isLocked() {
@@ -190,6 +195,7 @@ public class Level {
 
 	private LevelWorld mLevelWorld;
 	private String mFileName;
+	private int mIndex;
 
 	private Status mStatus = Status.LOCKED;
 	private int mScore = 0;

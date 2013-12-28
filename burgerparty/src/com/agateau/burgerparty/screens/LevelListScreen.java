@@ -39,7 +39,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 
-		mWorldIndex = worldIndex;
+		mLevelWorld = game.getUniverse().get(worldIndex);
 
 		mStarOff = atlas.findRegion("ui/star-off");
 		mStarOn = atlas.findRegion("ui/star-on");
@@ -50,7 +50,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		new RefreshHelper(getStage()) {
 			@Override
 			protected void refresh() {
-				getGame().showLevelListScreen(mWorldIndex);
+				getGame().showLevelListScreen(mLevelWorld.getIndex());
 				dispose();
 			}
 		};
@@ -91,10 +91,8 @@ public class LevelListScreen extends BurgerPartyScreen {
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
 
-		LevelWorld levelWorld = getGame().getUniverse().get(mWorldIndex);
-		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
-			Actor levelButton = createLevelButton(mWorldIndex, idx);
-			gridGroup.addActor(levelButton);
+		for (Level level: mLevelWorld.getLevels()) {
+			gridGroup.addActor(createLevelButton(level));
 		}
 		return gridGroup;
 	}
@@ -143,10 +141,8 @@ public class LevelListScreen extends BurgerPartyScreen {
 		public int levelIndex;
 	}
 
-	private Actor createLevelButton(int levelWorldIndex, int levelIndex) {
-		LevelWorld world = getGame().getUniverse().get(levelWorldIndex);
-		Level level = world.getLevel(levelIndex);
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, getGame().getAssets().getSkin());
+	private Actor createLevelButton(Level level) {
+		LevelButton button = new LevelButton(mLevelWorld.getIndex(), level.getIndex(), getGame().getAssets().getSkin());
 		button.setSize(CELL_SIZE, CELL_SIZE);
 
 		AnchorGroup group = new AnchorGroup();
@@ -192,7 +188,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		getGame().showWorldListScreen();
 	}
 
-	private int mWorldIndex;
+	private LevelWorld mLevelWorld;
 	private TextureRegion mStarOff;
 	private TextureRegion mStarOn;
 	private TextureRegion mLock;
