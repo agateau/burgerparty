@@ -1,0 +1,12 @@
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <ImageButton id="backButton"
+            style="round-button"
+            bottomLeft="root.bottomLeft 1 1"
+            imageName="ui/icon-back"/>
+
+        <LevelGrid id="levelGrid"
+            center="root.center"
+            />
+    </AnchorGroup>
+</gdxui>

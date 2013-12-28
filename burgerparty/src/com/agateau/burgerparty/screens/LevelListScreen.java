@@ -1,14 +1,17 @@
 package com.agateau.burgerparty.screens;
 
+import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
+import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class LevelListScreen extends BurgerPartyScreen {
 	private static final int COL_COUNT = 3;
@@ -35,39 +39,61 @@ public class LevelListScreen extends BurgerPartyScreen {
 		Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
 		setBackgroundActor(bgImage);
 
+		mWorldIndex = worldIndex;
+
 		mStarOff = atlas.findRegion("ui/star-off");
 		mStarOn = atlas.findRegion("ui/star-on");
 		mLock = atlas.findRegion("ui/lock-key");
 		mSurpriseRegion = atlas.findRegion("ui/surprise");
-		setupWidgets(getSkin(), worldIndex);
+		setupWidgets();
+
+		new RefreshHelper(getStage()) {
+			@Override
+			protected void refresh() {
+				getGame().showLevelListScreen(mWorldIndex);
+				dispose();
+			}
+		};
 	}
 
-	private void setupWidgets(Skin skin, int worldIndex) {
-		mAnchorGroup.setSpacing(UiUtils.SPACING);
-		getStage().addActor(mAnchorGroup);
-		mAnchorGroup.setFillParent(true);
+	private class Builder extends BurgerPartyUiBuilder {
+		public Builder(Assets assets) {
+			super(assets);
+		}
 
-		ImageButton backButton = Kernel.createRoundButton(getGame().getAssets(), "ui/icon-back");
-		mAnchorGroup.addRule(backButton, Anchor.BOTTOM_LEFT, mAnchorGroup, Anchor.BOTTOM_LEFT, 1, 1);
-		backButton.addListener(new ChangeListener() {
+		@Override
+		protected Actor createActorForElement(XmlReader.Element element) {
+			if (element.getName().equals("LevelGrid")) {
+				return createLevelButtonGridGroup();
+			} else {
+				return super.createActorForElement(element);
+			}
+		}
+	}
+
+	private void setupWidgets() {
+		BurgerPartyUiBuilder builder = new Builder(getGame().getAssets());
+		builder.build(FileUtils.assets("screens/levellist.gdxui"));
+		AnchorGroup root = builder.getActor("root");
+		getStage().addActor(root);
+		root.setFillParent(true);
+
+		builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				onBackPressed();
 			}
 		});
-
-		GridGroup gridGroup = createLevelButtonGridGroup(worldIndex, skin);
-		mAnchorGroup.addRule(gridGroup, Anchor.TOP_CENTER, mAnchorGroup, Anchor.TOP_CENTER, 0, -1);
 	}
 
-	private GridGroup createLevelButtonGridGroup(int levelWorldIndex, Skin skin) {
+	private GridGroup createLevelButtonGridGroup() {
 		GridGroup gridGroup = new GridGroup();
 		gridGroup.setSpacing(UiUtils.SPACING);
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
 
-		LevelWorld levelWorld = getGame().getUniverse().get(levelWorldIndex);
+		LevelWorld levelWorld = getGame().getUniverse().get(mWorldIndex);
 		for (int idx=0; idx < levelWorld.getLevelCount(); idx++) {
-			Actor levelButton = createLevelButton(levelWorldIndex, idx, skin);
+			Actor levelButton = createLevelButton(mWorldIndex, idx);
 			gridGroup.addActor(levelButton);
 		}
 		return gridGroup;
@@ -117,10 +143,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 		public int levelIndex;
 	}
 
-	private Actor createLevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
+	private Actor createLevelButton(int levelWorldIndex, int levelIndex) {
 		LevelWorld world = getGame().getUniverse().get(levelWorldIndex);
 		Level level = world.getLevel(levelIndex);
-		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, skin);
+		LevelButton button = new LevelButton(levelWorldIndex, levelIndex, getGame().getAssets().getSkin());
 		button.setSize(CELL_SIZE, CELL_SIZE);
 
 		AnchorGroup group = new AnchorGroup();
@@ -166,10 +192,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 		getGame().showWorldListScreen();
 	}
 
+	private int mWorldIndex;
 	private TextureRegion mStarOff;
 	private TextureRegion mStarOn;
 	private TextureRegion mLock;
 	private TextureRegion mSurpriseRegion;
-
-	private AnchorGroup mAnchorGroup = new AnchorGroup();
 }
