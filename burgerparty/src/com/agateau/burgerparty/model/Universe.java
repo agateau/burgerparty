@@ -57,7 +57,11 @@ public class Universe {
 		return set;
 	}
 
-	public void setLevelScore(int worldIndex, int levelIndex, int score) {
+	public Set<String> setLevelScore(int worldIndex, int levelIndex, int score) {
+		int oldStarCount = getStarCount();
+		// FIXME: Temporary implementation
+		Set<String> unlockedThings = new HashSet<String>();
+
 		LevelWorld currentWorld = mLevelWorlds.get(worldIndex);
 		Level currentLevel = currentWorld.getLevel(levelIndex);
 		if (score > currentLevel.getScore()) {
@@ -75,7 +79,13 @@ public class Universe {
 			next.unlock();
 		}
 
+		// Have we just unlocked the sandbox?
+		int starCount = getStarCount();
+		if (oldStarCount < SANDBOX_MIN_STAR_COUNT && SANDBOX_MIN_STAR_COUNT <= starCount) {
+			unlockedThings.add("Sandbox");
+		}
 		saveRequested.emit();
+		return unlockedThings;
 	}
 
 	Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
