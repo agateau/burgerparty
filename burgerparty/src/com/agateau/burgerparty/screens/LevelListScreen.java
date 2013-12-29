@@ -91,6 +91,12 @@ public class LevelListScreen extends BurgerPartyScreen {
 			Image lockImage = builder.<Image>getActor("miniGameLockImage");
 			lockImage.setVisible(false);
 			miniGameLockLabel.setVisible(false);
+			miniGameButton.addListener(new ChangeListener() {
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
+					getGame().startMiniGame(mLevelWorld.getIndex());
+				}
+			});
 		} else {
 			miniGameButton.setVisible(false);
 			miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
