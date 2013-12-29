@@ -65,6 +65,11 @@
             fontColor: black
         },
 
+        lock-star-text: {
+            font: main-font-small,
+            fontColor: black
+        },
+
         about-title: {
             font: scored-font,
             fontColor: white

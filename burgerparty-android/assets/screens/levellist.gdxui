@@ -6,7 +6,22 @@
             imageName="ui/icon-back"/>
 
         <LevelGrid id="levelGrid"
-            center="root.center"
+            center="root.center -3 0"
             />
+        <Image id="miniGameCabinet"
+            centerLeft="levelGrid.centerRight 1 0"
+            name="ui/arcade-cabinet"
+            />
+        <ImageButton id="miniGameButton"
+            style="round-button"
+            imageName="ui/icon-play"
+            center="miniGameCabinet.center"/>
+        <Image id="miniGameLockImage"
+            name="ui/lock-star"
+            center="miniGameCabinet.center"/>
+        <Label id="miniGameLockLabel"
+            bottomLeft="miniGameLockImage.bottomLeft 1.8 0.2"
+            style="lock-star-text"
+            >12</Label>
     </AnchorGroup>
 </gdxui>

@@ -46,6 +46,10 @@ public class LevelWorld {
 		return mIndex;
 	}
 
+	public int getMiniGameStarCount() {
+		return (mIndex + 1) * 18;
+	}
+
 	private int mIndex;
 	private String mDirName;
 	private Array<Level> mLevels = new Array<Level>();

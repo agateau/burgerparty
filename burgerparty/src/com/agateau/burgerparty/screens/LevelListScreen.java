@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -83,6 +84,17 @@ public class LevelListScreen extends BurgerPartyScreen {
 				onBackPressed();
 			}
 		});
+
+		ImageButton miniGameButton = builder.<ImageButton>getActor("miniGameButton");
+		Label miniGameLockLabel = builder.<Label>getActor("miniGameLockLabel");
+		if (getGame().getUniverse().getStarCount() > mLevelWorld.getMiniGameStarCount()) {
+			Image lockImage = builder.<Image>getActor("miniGameLockImage");
+			lockImage.setVisible(false);
+			miniGameLockLabel.setVisible(false);
+		} else {
+			miniGameButton.setVisible(false);
+			miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
+		}
 	}
 
 	private GridGroup createLevelButtonGridGroup() {
