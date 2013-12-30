@@ -15,6 +15,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
 	static final int TILE_SIZE = 32;
 	static final int ENEMY_COUNT = 4;
+	static final float PLAYER_DELTA = 2f * 60f;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
@@ -60,9 +61,9 @@ public class BurgerCopterMainScreen extends StageScreen {
 		public boolean act(float delta) {
 			float y = getActor().getY();
 			if (Gdx.input.isTouched()) {
-				y += 1;
+				y += PLAYER_DELTA * delta;
 			} else {
-				y -= 1;
+				y -= PLAYER_DELTA * delta;
 			}
 			getActor().setY(y);
 			return false;
