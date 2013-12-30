@@ -1,6 +1,9 @@
 package com.agateau.burgerparty.burgercopter;
 
+import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
+import com.agateau.burgerparty.utils.TileActor;
+import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;

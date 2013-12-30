@@ -1,4 +1,4 @@
-package com.agateau.burgerparty.burgercopter;
+package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
-class TileActor extends Actor {
+public class TileActor extends Actor {
 	public TileActor(TileMap map, float speed) {
 		mMap = map;
 		mSpeed = speed;

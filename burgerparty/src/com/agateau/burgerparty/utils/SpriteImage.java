@@ -1,4 +1,4 @@
-package com.agateau.burgerparty.burgercopter;
+package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;

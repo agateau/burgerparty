@@ -1,10 +1,10 @@
-package com.agateau.burgerparty.burgercopter;
+package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
-class TileMap {
-	TileMap(int columnCount, int rowCount, int tileSize) {
+public class TileMap {
+	public TileMap(int columnCount, int rowCount, int tileSize) {
 		mColumnCount = columnCount;
 		mRowCount = rowCount;
 		mTileSize = tileSize;
