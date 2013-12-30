@@ -1,9 +1,13 @@
 package com.agateau.burgerparty.burgervaders;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -12,15 +16,17 @@ import com.badlogic.gdx.utils.Array;
 
 public class BurgerVadersMainScreen extends StageScreen {
 	private static final int BULLET_COUNT = 6;
-	private static final int ENEMY_COUNT = 4;
+	private static final int ENEMY_COUNT = 20;
 	private static final int SCORE_ENEMY_HIT = 200;
+	private static final float MAP_ROW_PER_SECOND = 0.5f;
 	public BurgerVadersMainScreen(BurgerVadersMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		createBg();
-		createEnemies();
 		createBullets();
 		createPlayer();
+		createEnemyMap();
+		createEnemyPools();
 		createHud();
 	}
 
@@ -36,6 +42,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
+		mTime += delta;
 		Gdx.gl.glClearColor(0.8f, 0.95f, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (mGameOverDelay < 0) {
@@ -43,6 +50,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 			getStage().draw();
 			addEnemies();
 			checkBulletHits();
+			//checkWon();
 			checkGameOver();
 		} else {
 			mGameOverDelay += delta;
@@ -54,12 +62,41 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void addEnemies() {
-		for (Enemy enemy: mEnemies) {
-			if (!enemy.isVisible()) {
-				enemy.start(0);
+		int row = MathUtils.ceil(mTime * MAP_ROW_PER_SECOND) % mEnemyMap.length;
+		if (row == mRow) {
+			return;
+		}
+		Gdx.app.log("addEnemies", "row=" + row);
+		mRow = row;
+		int step = Gdx.graphics.getWidth() / 10;
+		for (int idx = 0, n = mEnemyMap[row].length; idx < n; ++idx) {
+			char ch = mEnemyMap[row][idx];
+			SpriteImagePool pool = null;
+			if (ch == ' ') {
+				continue;
+			} else if (ch == 's') {
+				pool = mEnemyPools.get(SaladEnemy.class);
+			} else if (ch == 'f') {
+				pool = mEnemyPools.get(FriesEnemy.class);
+			} else {
+				throw new RuntimeException("Unknown enemy type ch=" + ch);
+			}
+			Enemy enemy = (Enemy)pool.obtain();
+			enemy.start(step * idx);
+			addEnemy(enemy);
+		}
+	}
+
+	private void addEnemy(Enemy enemy) {
+		getStage().addActor(enemy);
+		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
+			if (mEnemies.get(idx) == null) {
+				mEnemies.set(idx, enemy);
 				return;
 			}
 		}
+		Gdx.app.log("Vaders.addEnemy", "No room, must add");
+		mEnemies.add(enemy);
 	}
 
 	private void checkBulletHits() {
@@ -67,9 +104,16 @@ public class BurgerVadersMainScreen extends StageScreen {
 			if (!bullet.isVisible()) {
 				continue;
 			}
-			for (Enemy enemy: mEnemies) {
+			for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
+				Enemy enemy = mEnemies.get(idx);
+				if (enemy == null) {
+					continue;
+				}
 				if (SpriteImage.collide(bullet, enemy)) {
-					enemy.setVisible(false);
+					enemy.remove();
+					mEnemyPools.get(enemy.getClass()).free(enemy);
+					mEnemies.set(idx, null);
+
 					bullet.setVisible(false);
 					mScore += SCORE_ENEMY_HIT;
 					updateHud();
@@ -80,7 +124,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void checkGameOver() {
 		for (Enemy enemy: mEnemies) {
-			if (!enemy.isVisible()) {
+			if (enemy == null) {
 				continue;
 			}
 			if (enemy.getY() < 0) {
@@ -111,17 +155,44 @@ public class BurgerVadersMainScreen extends StageScreen {
 		setBackgroundActor(new Image(region));
 	}
 
-	private void createEnemies() {
-		EnemyType types[] = {
-			new FriesEnemyType(mMiniGame.getAssets().getTextureAtlas()),
-			new SaladEnemyType(mMiniGame.getAssets().getTextureAtlas()),
+	private void createEnemyMap() {
+		char map[][] = {
+				{ ' ', ' ', ' ', 's', ' ', 's', ' ', 's', ' ', ' ' },
+				{ ' ', ' ', 'f', ' ', 's', ' ', ' ', ' ', 'f', ' ' },
+				{ ' ', ' ', ' ', 'f', ' ', ' ', ' ', 's', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', 'f', ' ', 'f', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', 'f', ' ', ' ', ' ', 'f', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', 'f', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ', ' ', ' ' },
 		};
-		for (int i = 0; i < ENEMY_COUNT; ++i) {
-			Enemy enemy = new Enemy(types[MathUtils.random(types.length - 1)]);
-			mEnemies.add(enemy);
-			getStage().addActor(enemy);
-			enemy.start(i * 160);
-		}
+		/*
+				"    s s s   ",
+				"   f  s  f  ",
+				"    f   s   ",
+				"       s    ",
+				"      s     ",
+				"     f f    ",
+				"    f   f   ",
+				"     f      ",
+				"        f   ",
+				"      f     ",
+		};*/
+		mEnemyMap = map;
+	}
+
+	private void createEnemyPools() {
+		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
+		mEnemyPools = new HashMap<Class<?>, SpriteImagePool>();
+		mEnemyPools.put(FriesEnemy.class,
+				new SpriteImagePool(FriesEnemy.class, atlas.findRegion("mealitems/0/big-fries-inventory"))
+				);
+		mEnemyPools.put(SaladEnemy.class,
+				new SpriteImagePool(SaladEnemy.class, atlas.findRegion("mealitems/0/salad-inventory"))
+				);
 	}
 
 	private void createBullets() {
@@ -154,8 +225,13 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private float mGameOverDelay = -1;
 	private BurgerVadersMiniGame mMiniGame;
 	private SpriteImage mCannon;
-	private Array<Enemy> mEnemies = new Array<Enemy>();
+	private Array<Enemy> mEnemies = new Array<Enemy>(ENEMY_COUNT);
 	private Array<Bullet> mBullets = new Array<Bullet>();
 	private int mScore = 0;
 	private Label mScoreLabel;
+
+	private Map<Class<?>, SpriteImagePool> mEnemyPools;
+	private char mEnemyMap[][];
+	private float mTime = 0;
+	private int mRow = 0;
 }
