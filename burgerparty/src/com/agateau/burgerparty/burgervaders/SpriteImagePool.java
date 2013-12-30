@@ -6,16 +6,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Pool;
 
-public class SpriteImagePool extends Pool<SpriteImage> {
-	public SpriteImagePool(Class<? extends SpriteImage> type, TextureRegion region) {
+public class SpriteImagePool<T extends SpriteImage> extends Pool<T> {
+	public SpriteImagePool(Class<? extends T> type, TextureRegion region) {
 		mType = type;
 		mDrawable = new TextureRegionDrawable(region);
 		mMask = new SpriteImage.CollisionMask(region);
 	}
 
 	@Override
-	public SpriteImage newObject() {
-		SpriteImage obj;
+	public T newObject() {
+		T obj;
 		try {
 			obj = mType.newInstance();
 		} catch (InstantiationException e) {
@@ -29,7 +29,7 @@ public class SpriteImagePool extends Pool<SpriteImage> {
 		return obj;
 	}
 
-	private Class<? extends SpriteImage> mType;
+	private Class<? extends T> mType;
 	private Drawable mDrawable;
 	private SpriteImage.CollisionMask mMask;
 }

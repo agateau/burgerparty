@@ -71,7 +71,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		int step = Gdx.graphics.getWidth() / 10;
 		for (int idx = 0, n = mEnemyMap[row].length; idx < n; ++idx) {
 			char ch = mEnemyMap[row][idx];
-			SpriteImagePool pool = null;
+			SpriteImagePool<Enemy> pool = null;
 			if (ch == ' ') {
 				continue;
 			} else if (ch == 's') {
@@ -81,7 +81,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 			} else {
 				throw new RuntimeException("Unknown enemy type ch=" + ch);
 			}
-			Enemy enemy = (Enemy)pool.obtain();
+			Enemy enemy = pool.obtain();
 			enemy.start(step * idx);
 			addEnemy(enemy);
 		}
@@ -186,12 +186,12 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void createEnemyPools() {
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
-		mEnemyPools = new HashMap<Class<?>, SpriteImagePool>();
+		mEnemyPools = new HashMap<Class<?>, SpriteImagePool<Enemy>>();
 		mEnemyPools.put(FriesEnemy.class,
-				new SpriteImagePool(FriesEnemy.class, atlas.findRegion("mealitems/0/big-fries-inventory"))
+				new SpriteImagePool<Enemy>(FriesEnemy.class, atlas.findRegion("mealitems/0/big-fries-inventory"))
 				);
 		mEnemyPools.put(SaladEnemy.class,
-				new SpriteImagePool(SaladEnemy.class, atlas.findRegion("mealitems/0/salad-inventory"))
+				new SpriteImagePool<Enemy>(SaladEnemy.class, atlas.findRegion("mealitems/0/salad-inventory"))
 				);
 	}
 
@@ -230,7 +230,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private int mScore = 0;
 	private Label mScoreLabel;
 
-	private Map<Class<?>, SpriteImagePool> mEnemyPools;
+	private Map<Class<?>, SpriteImagePool<Enemy>> mEnemyPools;
 	private char mEnemyMap[][];
 	private float mTime = 0;
 	private int mRow = 0;
