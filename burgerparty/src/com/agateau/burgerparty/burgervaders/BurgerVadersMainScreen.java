@@ -5,6 +5,7 @@ import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
@@ -111,11 +112,12 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void createEnemies() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/big-fries-inventory");
-		SpriteImage.CollisionMask mask = new SpriteImage.CollisionMask(region);
-		assert(region != null);
+		EnemyType types[] = {
+			new FriesEnemyType(mMiniGame.getAssets().getTextureAtlas()),
+			new SaladEnemyType(mMiniGame.getAssets().getTextureAtlas()),
+		};
 		for (int i = 0; i < ENEMY_COUNT; ++i) {
-			Enemy enemy = new Enemy(region, mask);
+			Enemy enemy = new Enemy(types[MathUtils.random(types.length - 1)]);
 			mEnemies.add(enemy);
 			getStage().addActor(enemy);
 			enemy.start(i * 160);

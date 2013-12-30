@@ -1,28 +1,41 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 
 public class Enemy extends SpriteImage {
-	private static final float PIXEL_PER_SECOND = 90;
-	public Enemy(TextureRegion region, CollisionMask mask) {
-		super(region, mask);
+	public Enemy(EnemyType type) {
+		setEnemyType(type);
 	}
 
 	public void act(float delta) {
 		if (!isVisible()) {
 			return;
 		}
-		float y = getY() - PIXEL_PER_SECOND * delta;
-		setY(y);
+		assert(mEnemyType != null);
+		mTime += delta;
+		mEnemyType.act(this, delta);
 	}
 
 	public void start(float initialY) {
 		setVisible(true);
-		float width = getWidth();
-		float x = MathUtils.random(Gdx.graphics.getWidth() - width);
-		setPosition(x, Gdx.graphics.getHeight() + initialY);
+		mTime = 0;
+		assert(mEnemyType != null);
+		mEnemyType.start(this, initialY);
 	}
+
+	public void setEnemyType(EnemyType type) {
+		mEnemyType = type;
+		mEnemyType.init(this);
+	}
+
+	public EnemyType getEnemyType() {
+		return mEnemyType;
+	}
+
+	public float getTime() {
+		return mTime;
+	}
+
+	private EnemyType mEnemyType;
+	private float mTime;
 }

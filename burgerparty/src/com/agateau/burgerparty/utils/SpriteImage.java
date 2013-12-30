@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class SpriteImage extends Image {
 	public static class CollisionMask {
@@ -75,6 +76,9 @@ public class SpriteImage extends Image {
 		private final boolean mBits[][];
 	}
 
+	public SpriteImage() {
+	}
+
 	public SpriteImage(TextureRegion region) {
 		super(region);
 		mMask = new CollisionMask(region);
@@ -83,6 +87,18 @@ public class SpriteImage extends Image {
 	public SpriteImage(TextureRegion region, CollisionMask mask) {
 		super(region);
 		mMask = mask;
+	}
+
+	public SpriteImage(Drawable drawable, CollisionMask mask) {
+		super(drawable);
+		mMask = mask;
+	}
+
+	public void init(Drawable drawable, CollisionMask mask) {
+		setDrawable(drawable);
+		mMask = mask;
+		setWidth(getPrefWidth());
+		setHeight(getPrefHeight());
 	}
 
 	public static boolean collide(SpriteImage i1, SpriteImage i2) {
