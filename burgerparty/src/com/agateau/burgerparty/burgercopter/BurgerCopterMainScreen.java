@@ -140,20 +140,33 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createGround() {
-		int columnCount = (int)(Gdx.graphics.getWidth()) / TILE_SIZE + 1;
-		int rowCount = 8;
-		mGroundActor = new TileActor(columnCount, rowCount, TILE_SIZE);
+		int columnCount = 200;
+		int rowCount = 6;
+		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
+		mGroundActor = new TileActor(map);
+		mGroundActor.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		final TextureRegion groundRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/ground");
 		final TextureRegion buildingRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/building");
+		final TextureRegion buildingTopRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/building-top");
 
 		for (int col = 0; col < columnCount; ++col) {
-			Array<TextureRegion> column = mGroundActor.getColumn(col);
-			int rows = MathUtils.random(1, rowCount);
+			Array<TextureRegion> column = map.getColumn(col);
 			column.set(0, groundRegion);
-			for (int row = 1; row < rows; ++row) {
-				column.set(row, buildingRegion);
+		}
+
+		for (int col = 0; col < columnCount;) {
+			int end = Math.min(columnCount, col + MathUtils.random(1, 6));
+			int floors = MathUtils.random(1, rowCount - 2);
+			for (; col < end; ++col) {
+				Array<TextureRegion> column = map.getColumn(col);
+				int row;
+				for (row = 1; row < 1 + floors; ++row) {
+					column.set(row, buildingRegion);
+				}
+				column.set(row, buildingTopRegion);
 			}
+			col += MathUtils.random(1, 4);
 		}
 
 		getStage().addActor(mGroundActor);

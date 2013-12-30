@@ -6,40 +6,32 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 class TileActor extends Actor {
-	public TileActor(int columnCount, int rowCount, int tileSize) {
-		mColumnCount = columnCount;
-		mRowCount = rowCount;
-		mTileSize = tileSize;
-
-		mColumns = new Array<Array <TextureRegion>>(mColumnCount);
-		for (int col = 0; col < mColumnCount; ++col) {
-			Array<TextureRegion> column = new Array<TextureRegion>(mRowCount);
-			for (int row = 0; row < mRowCount; ++row) {
-				column.add(null);
-			}
-			mColumns.add(column);
-		}
+	public TileActor(TileMap map) {
+		mMap = map;
 	}
 
 	@Override
 	public void act(float delta) {
 		mScrollOffset -= delta * BurgerCopterMainScreen.PIXEL_PER_SECOND;
-		if (mScrollOffset < -mTileSize) {
+		if (mScrollOffset < -mMap.getTileSize()) {
 			mScrollOffset = 0;
-			mStartCol = (mStartCol + 1) % mColumnCount;
+			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
 		}
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		int snapScrollOffset = (int)mScrollOffset;
-		for (int col = 0; col < mColumnCount; ++col) {
-			for (int row = 0; row < mRowCount; ++row) {
-				TextureRegion region = mColumns.get((col + mStartCol) % mColumnCount).get(row);
+		int tileSize = mMap.getTileSize();
+		int colCount = mMap.getColumnCount();
+		for (int col = mStartCol, x = snapScrollOffset; x < getWidth(); ++col, x += tileSize) {
+			Array<TextureRegion> column = mMap.getColumn(col % colCount);
+			for (int row = 0; row < mMap.getRowCount(); ++row) {
+				TextureRegion region = column.get(row);
 				if (region == null) {
 					continue;
 				}
-				batch.draw(region, col * mTileSize + snapScrollOffset, row * mTileSize);
+				batch.draw(region, getX() + x, getY() + row * tileSize);
 			}
 		}
 	}
@@ -49,12 +41,14 @@ class TileActor extends Actor {
 		int maxCol = colForX(actor.getRight());
 		int minRow = rowForY(actor.getY());
 		int maxRow = rowForY(actor.getTop());
-		if (minRow >= mRowCount) {
+		int rowCount = mMap.getRowCount();
+		int colCount = mMap.getColumnCount();
+		if (minRow >= rowCount) {
 			return false;
 		}
-		for (int row = minRow; row <= Math.min(maxRow, mRowCount - 1); ++row) {
-			for (int col = minCol ; col <= maxCol; col = (col + 1) % mColumnCount) {
-				TextureRegion region = mColumns.get(col).get(row);
+		for (int row = minRow; row <= Math.min(maxRow, rowCount - 1); ++row) {
+			for (int col = minCol ; col <= maxCol; col = (col + 1) % colCount) {
+				TextureRegion region = mMap.getColumn(col).get(row);
 				if (region != null) {
 					return true;
 				}
@@ -63,22 +57,15 @@ class TileActor extends Actor {
 		return false;
 	}
 
-	public Array<TextureRegion> getColumn(int idx) {
-		return mColumns.get(idx);
-	}
-
 	private int colForX(float x) {
-		return (((int)x) / mTileSize + mStartCol) % mColumnCount;
+		return (((int)x) / mMap.getTileSize() + mStartCol) % mMap.getColumnCount();
 	}
 
 	private int rowForY(float y) {
-		return ((int)y) / mTileSize;
+		return ((int)y) / mMap.getTileSize();
 	}
 
-	private int mTileSize;
-	private int mRowCount;
-	private int mColumnCount;
-	private Array<Array<TextureRegion>> mColumns;
+	private TileMap mMap;
 	private float mScrollOffset = 0;
 	private int mStartCol = 0;
 }
