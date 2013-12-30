@@ -150,7 +150,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		int columnCount = 200;
 		int rowCount = 6;
 		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
-		mGroundActor = new TileActor(map);
+		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
 		mGroundActor.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();

@@ -2,17 +2,19 @@ package com.agateau.burgerparty.burgercopter;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 class TileActor extends Actor {
-	public TileActor(TileMap map) {
+	public TileActor(TileMap map, float speed) {
 		mMap = map;
+		mSpeed = speed;
 	}
 
 	@Override
 	public void act(float delta) {
-		mScrollOffset -= delta * BurgerCopterMainScreen.PIXEL_PER_SECOND;
+		mScrollOffset -= mSpeed * delta;
 		if (mScrollOffset < -mMap.getTileSize()) {
 			mScrollOffset = 0;
 			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
@@ -46,9 +48,10 @@ class TileActor extends Actor {
 		if (minRow >= rowCount) {
 			return false;
 		}
-		for (int row = minRow; row <= Math.min(maxRow, rowCount - 1); ++row) {
-			for (int col = minCol ; col <= maxCol; col = (col + 1) % colCount) {
-				TextureRegion region = mMap.getColumn(col).get(row);
+		for (int col = minCol; col <= maxCol; col = (col + 1) % colCount) {
+			Array<TextureRegion> column = mMap.getColumn(col);
+			for (int row = minRow; row <= Math.min(maxRow, rowCount - 1); ++row) {
+				TextureRegion region = column.get(row);
 				if (region != null) {
 					return true;
 				}
@@ -58,14 +61,15 @@ class TileActor extends Actor {
 	}
 
 	private int colForX(float x) {
-		return (((int)x) / mMap.getTileSize() + mStartCol) % mMap.getColumnCount();
+		return (MathUtils.floor(x / mMap.getTileSize()) + mStartCol) % mMap.getColumnCount();
 	}
 
 	private int rowForY(float y) {
-		return ((int)y) / mMap.getTileSize();
+		return MathUtils.floor(y / mMap.getTileSize());
 	}
 
 	private TileMap mMap;
+	private float mSpeed;
 	private float mScrollOffset = 0;
 	private int mStartCol = 0;
 }
