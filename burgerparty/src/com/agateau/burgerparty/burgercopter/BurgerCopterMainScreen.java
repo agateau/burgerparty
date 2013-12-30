@@ -96,7 +96,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createPlayer() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/2/soda-inventory");
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/top-inventory");
 		assert(region != null);
 		SpriteImage image = new SpriteImage(region);
 		mPlayer = image;
