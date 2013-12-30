@@ -10,10 +10,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
+	static final int SCORE_PER_SECOND = 200;
 	static final int TILE_SIZE = 32;
 	static final int ENEMY_COUNT = 4;
 	static final float PLAYER_DELTA = 2f * 60f;
@@ -25,6 +27,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		createGround();
 		createEnemies();
 		createPlayer();
+		createHud();
 	}
 
 	@Override
@@ -39,6 +42,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (mGameOverDelay < 0) {
 			getStage().act(delta);
+			mScore += SCORE_PER_SECOND * delta;
+			updateHud();
 		} else {
 			mGameOverDelay += delta;
 			if (mGameOverDelay > 2) {
@@ -246,6 +251,17 @@ public class BurgerCopterMainScreen extends StageScreen {
 		}
 	}
 
+	private void createHud() {
+		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		getStage().addActor(mScoreLabel);
+		mScoreLabel.setX(0);
+		mScoreLabel.setY(Gdx.graphics.getHeight() - mScoreLabel.getPrefHeight());
+	}
+
+	private void updateHud() {
+		mScoreLabel.setText(String.valueOf((mScore / 10) * 10));
+	}
+
 	private void gameOver() {
 		mGameOverDelay = 0;
 	}
@@ -255,4 +271,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private SpriteImage mPlayer;
 	private TileActor mGroundActor;
 	private Array<SpriteImage> mEnemies = new Array<SpriteImage>();
+	private int mScore = 0;
+	private Label mScoreLabel;
 }
