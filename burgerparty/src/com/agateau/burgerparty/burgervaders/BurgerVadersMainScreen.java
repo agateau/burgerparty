@@ -182,18 +182,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 				{ ' ', ' ', ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ' },
 				{ ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ', ' ', ' ' },
 		};
-		/*
-				"    s s s   ",
-				"   f  s  f  ",
-				"    f   s   ",
-				"       s    ",
-				"      s     ",
-				"     f f    ",
-				"    f   f   ",
-				"     f      ",
-				"        f   ",
-				"      f     ",
-		};*/
 		mEnemyMap = map;
 	}
 
