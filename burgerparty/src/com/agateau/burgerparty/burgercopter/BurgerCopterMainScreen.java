@@ -4,6 +4,7 @@ import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -147,27 +148,68 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mGroundActor = new TileActor(map);
 		mGroundActor.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		final TextureRegion groundRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/ground");
-		final TextureRegion buildingRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/building");
-		final TextureRegion buildingTopRegion = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/building-top");
+		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
+		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
+		final TextureRegion groundTopRegion = atlas.findRegion("burgercopter/ground-top");
+		final TextureRegion groundUpARegion = atlas.findRegion("burgercopter/ground-up-a");
+		final TextureRegion groundUpBRegion = atlas.findRegion("burgercopter/ground-up-b");
+		final TextureRegion groundDownARegion = atlas.findRegion("burgercopter/ground-down-a");
+		final TextureRegion groundDownBRegion = atlas.findRegion("burgercopter/ground-down-b");
+		final TextureRegion buildingRegion = atlas.findRegion("burgercopter/building");
+		final TextureRegion buildingTopRegion = atlas.findRegion("burgercopter/building-top");
 
-		for (int col = 0; col < columnCount; ++col) {
-			Array<TextureRegion> column = map.getColumn(col);
-			column.set(0, groundRegion);
-		}
-
+		int groundLevel = 0;
 		for (int col = 0; col < columnCount;) {
+			// Building
 			int end = Math.min(columnCount, col + MathUtils.random(1, 6));
-			int floors = MathUtils.random(1, rowCount - 2);
 			for (; col < end; ++col) {
 				Array<TextureRegion> column = map.getColumn(col);
 				int row;
-				for (row = 1; row < 1 + floors; ++row) {
-					column.set(row, buildingRegion);
+				for (row = 0; row < groundLevel; ++row) {
+					column.set(row, groundRegion);
 				}
-				column.set(row, buildingTopRegion);
+				column.set(row++, groundTopRegion);
+				if (row < rowCount - 2) {
+					int floors = MathUtils.random(row, rowCount - 2);
+					for (; row < floors; ++row) {
+						column.set(row, buildingRegion);
+					}
+					column.set(row, buildingTopRegion);
+				}
 			}
-			col += MathUtils.random(1, 4);
+			if (col == columnCount) {
+				break;
+			}
+			// Raise or lower ground
+			int newGroundLevel = MathUtils.clamp(groundLevel + MathUtils.random(-1, 1), 0, rowCount - 2);
+			if (newGroundLevel > groundLevel) {
+				Array<TextureRegion> column = map.getColumn(col++);
+				int row;
+				for (row = 0; row < groundLevel; ++row) {
+					column.set(row, groundRegion);
+				}
+				column.set(row++, groundUpARegion);
+				column.set(row, groundUpBRegion);
+			} else if (newGroundLevel < groundLevel) {
+				Array<TextureRegion> column = map.getColumn(col++);
+				int row;
+				for (row = 0; row < newGroundLevel; ++row) {
+					column.set(row, groundRegion);
+				}
+				column.set(row++, groundDownARegion);
+				column.set(row, groundDownBRegion);
+			}
+			groundLevel = newGroundLevel;
+			// Add some space
+			end = Math.min(columnCount, col + MathUtils.random(1, 4));
+			for (; col < end; ++col) {
+				Array<TextureRegion> column = map.getColumn(col);
+				int row;
+				for (row = 0; row < groundLevel; ++row) {
+					column.set(row, groundRegion);
+				}
+				column.set(row++, groundTopRegion);
+			}
 		}
 
 		getStage().addActor(mGroundActor);

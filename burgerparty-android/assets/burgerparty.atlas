@@ -577,9 +577,30 @@ burgercopter/building-top
   orig: 32, 32
   offset: 0, 0
   index: -1
-burgercopter/ground
+burgercopter/ground-down-a
   rotate: false
   xy: 952, 37
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-down-b
+  rotate: false
+  xy: 952, 3
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-top
+  rotate: false
+  xy: 986, 37
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-up-a
+  rotate: false
+  xy: 986, 3
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -875,6 +896,20 @@ burgerparty5.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
+burgercopter/ground
+  rotate: false
+  xy: 670, 492
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-up-b
+  rotate: false
+  xy: 953, 975
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 customers/boys/face-0-angry
   rotate: false
   xy: 937, 395
