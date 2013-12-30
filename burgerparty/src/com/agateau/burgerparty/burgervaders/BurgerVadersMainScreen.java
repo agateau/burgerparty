@@ -1,8 +1,10 @@
 package com.agateau.burgerparty.burgervaders;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
+import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
@@ -82,7 +84,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				throw new RuntimeException("Unknown enemy type ch=" + ch);
 			}
 			Enemy enemy = pool.obtain();
-			enemy.start(step * idx);
+			enemy.reset(step * idx);
 			addEnemy(enemy);
 		}
 	}
@@ -98,6 +100,17 @@ public class BurgerVadersMainScreen extends StageScreen {
 		Gdx.app.log("Vaders.addEnemy", "No room, must add");
 		mEnemies.add(enemy);
 	}
+	private void removeEnemy(Enemy enemy) {
+		enemy.remove();
+		mEnemyPools.get(enemy.getClass()).free(enemy);
+		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
+			if (mEnemies.get(idx) == enemy) {
+				mEnemies.set(idx, null);
+				return;
+			}
+		}
+		Gdx.app.error("removeEnemy", "Could not find enemy " + enemy);
+	}
 
 	private void checkBulletHits() {
 		for (Bullet bullet: mBullets) {
@@ -109,11 +122,11 @@ public class BurgerVadersMainScreen extends StageScreen {
 				if (enemy == null) {
 					continue;
 				}
+				if (enemy.isDying()) {
+					continue;
+				}
 				if (SpriteImage.collide(bullet, enemy)) {
-					enemy.remove();
-					mEnemyPools.get(enemy.getClass()).free(enemy);
-					mEnemies.set(idx, null);
-
+					enemy.onHit();
 					bullet.setVisible(false);
 					mScore += SCORE_ENEMY_HIT;
 					updateHud();
@@ -193,6 +206,14 @@ public class BurgerVadersMainScreen extends StageScreen {
 		mEnemyPools.put(SaladEnemy.class,
 				new SpriteImagePool<Enemy>(SaladEnemy.class, atlas.findRegion("mealitems/0/salad-inventory"))
 				);
+		Signal1.Handler<Enemy> removalHandler = new Signal1.Handler<Enemy>() {
+			@Override
+			public void handle(Enemy enemy) {
+				removeEnemy(enemy);
+			}
+		};
+		mEnemyPools.get(FriesEnemy.class).removalRequested.connect(mHandlers, removalHandler);
+		mEnemyPools.get(SaladEnemy.class).removalRequested.connect(mHandlers, removalHandler);
 	}
 
 	private void createBullets() {
@@ -234,4 +255,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private char mEnemyMap[][];
 	private float mTime = 0;
 	private int mRow = 0;
+
+	private HashSet<Object> mHandlers = new HashSet<Object>();
 }

@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.burgervaders;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 
 public class SaladEnemy extends Enemy {
@@ -8,17 +7,15 @@ public class SaladEnemy extends Enemy {
 	private static final float WAVE_WIDTH = 200;
 
 	@Override
-	public void act(float delta) {
-		super.act(delta);
+	public void doAct(float delta) {
 		setY(getY() - PIXEL_PER_SECOND * delta);
 		setX(mStartX + MathUtils.sin(getTime()) * WAVE_WIDTH / 2);
 	}
 
 	@Override
-	public void start(float posX) {
-		super.start(posX);
+	public void reset(float posX) {
+		super.reset(posX);
 		mStartX = posX;
-		setPosition(posX, Gdx.graphics.getHeight());
 	}
 
 	private float mStartX;

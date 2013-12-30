@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class SpriteImage extends Image {
+	public Signal0 removalRequested = new Signal0();
+
 	public static class CollisionMask {
 		private static int ALPHA_THRESHOLD = 128;
 		public CollisionMask(TextureRegion region) {
