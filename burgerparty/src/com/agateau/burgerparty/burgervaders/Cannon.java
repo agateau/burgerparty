@@ -6,14 +6,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Cannon extends SpriteImage {
-	public Cannon(TextureRegion region) {
+	public Cannon(BurgerVadersMainScreen mainScreen, TextureRegion region) {
 		super(region);
+		mMainScreen = mainScreen;
 		setOriginX(getWidth() / 2);
 		setOriginY(getHeight() / 2);
 	}
 
 	public void act(float delta) {
-		if (!Gdx.input.isTouched()) {
+		if (!Gdx.input.justTouched()) {
 			return;
 		}
 		float touchX = Gdx.input.getX();
@@ -23,10 +24,10 @@ public class Cannon extends SpriteImage {
 		float srcY = getY() + getHeight() / 2;
 
 		float angle = MathUtils.atan2((touchY - srcY), (touchX - srcX));
-		float dx = MathUtils.cos(angle);
-		float dy = MathUtils.sin(angle);
 
-		//mMiniGame.fire(srcX, srcY, dx, dy);
+		mMainScreen.fire(srcX, srcY, angle);
 		setRotation((float)(180 * angle / Math.PI) - 90);
 	}
+
+	private BurgerVadersMainScreen mMainScreen;
 }
