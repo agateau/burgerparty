@@ -3,6 +3,7 @@ package com.agateau.burgerparty;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
+import com.agateau.burgerparty.burgervaders.BurgerVadersMiniGame;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.model.Universe;
@@ -207,6 +208,9 @@ public class BurgerPartyGame extends Game {
 		switch (worldIndex) {
 		case 0:
 			game = new BurgerCopterMiniGame(mAssets, this);
+			break;
+		case 1:
+			game = new BurgerVadersMiniGame(mAssets, this);
 			break;
 		default:
 			throw new RuntimeException("No minigame for world " + (worldIndex + 1));
