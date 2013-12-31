@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.SpriteImagePool;
@@ -191,7 +192,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void createBullets() {
 		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgervaders/bullet");
-		SpriteImage.CollisionMask mask = new SpriteImage.CollisionMask(region);
+		CollisionMask mask = new CollisionMask(region);
 		assert(region != null);
 		for (int i = 0; i < BULLET_COUNT; ++i) {
 			Bullet bullet = new Bullet(region, mask);

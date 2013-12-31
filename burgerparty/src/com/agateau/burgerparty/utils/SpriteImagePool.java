@@ -10,10 +10,16 @@ import com.badlogic.gdx.utils.Pool;
 public class SpriteImagePool<T extends SpriteImage> extends Pool<T> {
 	public Signal1<T> removalRequested = new Signal1<T>();
 
+	public SpriteImagePool(Class<? extends T> type) {
+		mType = type;
+		mDrawable = null;
+		mMask = null;
+	}
+
 	public SpriteImagePool(Class<? extends T> type, TextureRegion region) {
 		mType = type;
 		mDrawable = new TextureRegionDrawable(region);
-		mMask = new SpriteImage.CollisionMask(region);
+		mMask = new CollisionMask(region);
 	}
 
 	@Override
@@ -28,7 +34,9 @@ public class SpriteImagePool<T extends SpriteImage> extends Pool<T> {
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
-		obj.init(mDrawable, mMask);
+		if (mDrawable != null && mMask != null) {
+			obj.init(mDrawable, mMask);
+		}
 		obj.removalRequested.connect(mHandlers, new Signal0.Handler() {
 			@Override
 			public void handle() {
@@ -40,7 +48,7 @@ public class SpriteImagePool<T extends SpriteImage> extends Pool<T> {
 
 	private Class<? extends T> mType;
 	private Drawable mDrawable;
-	private SpriteImage.CollisionMask mMask;
+	private CollisionMask mMask;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 }

@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.burgercopter;
 
+import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.TileActor;
@@ -242,7 +243,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private void createEnemies() {
 		final TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/fish-inventory");
 		assert(region != null);
-		SpriteImage.CollisionMask mask = new SpriteImage.CollisionMask(region);
+		CollisionMask mask = new CollisionMask(region);
 		float screenWidth = getStage().getWidth();
 		for (int idx = 0; idx < ENEMY_COUNT; ++idx) {
 			float x = screenWidth * (1 + (float)idx / ENEMY_COUNT);

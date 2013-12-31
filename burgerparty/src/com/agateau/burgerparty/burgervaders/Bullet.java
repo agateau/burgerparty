@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.burgervaders;
 
+import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
