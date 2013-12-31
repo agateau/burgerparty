@@ -21,13 +21,15 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private static final int ENEMY_COUNT = 20;
 	private static final int SCORE_ENEMY_HIT = 200;
 	private static final float MAP_ROW_PER_SECOND = 0.5f;
+
+	private static final int MAX_ENEMY_PER_LINE = 4;
+	private static final int HARDEST_ROW = 40;
 	public BurgerVadersMainScreen(BurgerVadersMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		createBg();
 		createBullets();
 		createPlayer();
-		createEnemyMap();
 		createEnemyPools();
 		createHud();
 	}
@@ -52,7 +54,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 			getStage().draw();
 			addEnemies();
 			checkBulletHits();
-			//checkWon();
 			checkGameOver();
 		} else {
 			mGameOverDelay += delta;
@@ -64,27 +65,27 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void addEnemies() {
-		int row = MathUtils.ceil(mTime * MAP_ROW_PER_SECOND) % mEnemyMap.length;
+		int row = MathUtils.floor(mTime * MAP_ROW_PER_SECOND);
 		if (row == mRow) {
 			return;
 		}
-		Gdx.app.log("addEnemies", "row=" + row);
 		mRow = row;
-		int step = Gdx.graphics.getWidth() / 10;
-		for (int idx = 0, n = mEnemyMap[row].length; idx < n; ++idx) {
-			char ch = mEnemyMap[row][idx];
+		int enemyCount = MathUtils.random(0, MAX_ENEMY_PER_LINE * row / HARDEST_ROW) + 1;
+		Gdx.app.log("addEnemies", "row=" + row + " enemyCount=" + enemyCount);
+		if (enemyCount == 0) {
+			return;
+		}
+		float step = Gdx.graphics.getWidth() / enemyCount;
+		for (int idx = 0; idx < enemyCount; ++idx) {
 			SpriteImagePool<Enemy> pool = null;
-			if (ch == ' ') {
-				continue;
-			} else if (ch == 's') {
+			if (MathUtils.randomBoolean()) {
 				pool = mEnemyPools.get(SaladEnemy.class);
-			} else if (ch == 'f') {
-				pool = mEnemyPools.get(FriesEnemy.class);
 			} else {
-				throw new RuntimeException("Unknown enemy type ch=" + ch);
+				pool = mEnemyPools.get(FriesEnemy.class);
 			}
 			Enemy enemy = pool.obtain();
-			enemy.reset(step * idx);
+			float width = enemy.getWidth();
+			enemy.reset(step * idx + step / 2 + MathUtils.random(-width, width) - width / 2);
 			addEnemy(enemy);
 		}
 	}
@@ -97,7 +98,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				return;
 			}
 		}
-		Gdx.app.log("Vaders.addEnemy", "No room, must add");
+		Gdx.app.log("Vaders.addEnemy", "No room, must add. Size was " + mEnemies.size);
 		mEnemies.add(enemy);
 	}
 	private void removeEnemy(Enemy enemy) {
@@ -168,23 +169,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 		setBackgroundActor(new Image(region));
 	}
 
-	private void createEnemyMap() {
-		char map[][] = {
-				{ ' ', ' ', ' ', 's', ' ', 's', ' ', 's', ' ', ' ' },
-				{ ' ', ' ', 'f', ' ', 's', ' ', ' ', ' ', 'f', ' ' },
-				{ ' ', ' ', ' ', 'f', ' ', ' ', ' ', 's', ' ', ' ' },
-				{ ' ', ' ', ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', ' ', 's', ' ', ' ', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', 'f', ' ', 'f', ' ', ' ', ' ', ' ' },
-				{ ' ', ' ', 'f', ' ', ' ', ' ', 'f', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', 'f', ' ', ' ', ' ', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ' },
-				{ ' ', ' ', ' ', ' ', 'f', ' ', ' ', ' ', ' ', ' ' },
-		};
-		mEnemyMap = map;
-	}
-
 	private void createEnemyPools() {
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		mEnemyPools = new HashMap<Class<?>, SpriteImagePool<Enemy>>();
@@ -240,9 +224,8 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private Label mScoreLabel;
 
 	private Map<Class<?>, SpriteImagePool<Enemy>> mEnemyPools;
-	private char mEnemyMap[][];
 	private float mTime = 0;
-	private int mRow = 0;
+	private int mRow = -1;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 }
