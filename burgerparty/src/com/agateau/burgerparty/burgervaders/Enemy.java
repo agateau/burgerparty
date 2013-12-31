@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
 
 public abstract class Enemy extends SpriteImage {
 	static private final float DEATH_DURATION = 0.5f;
@@ -31,7 +30,7 @@ public abstract class Enemy extends SpriteImage {
 		setScale(1);
 		setRotation(0);
 
-		setPosition(posX, Gdx.graphics.getHeight());
+		setPosition(posX, getStage().getHeight());
 	}
 
 	public void onHit() {

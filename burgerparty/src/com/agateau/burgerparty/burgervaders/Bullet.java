@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -21,7 +20,7 @@ class Bullet extends SpriteImage {
 			mSrcX + mTime * PIXEL_PER_SECOND * mCos - getWidth() / 2,
 			mSrcY + mTime * PIXEL_PER_SECOND * mSin - getHeight() / 2
 			);
-		if (getRight() < 0 || getTop() < 0 || getX() > Gdx.graphics.getWidth() || getY() > Gdx.graphics.getHeight()) {
+		if (getRight() < 0 || getTop() < 0 || getX() > getStage().getWidth() || getY() > getStage().getHeight()) {
 			setVisible(false);
 		}
 	}

@@ -75,7 +75,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		if (enemyCount == 0) {
 			return;
 		}
-		float step = Gdx.graphics.getWidth() / enemyCount;
+		float step = getStage().getWidth() / enemyCount;
 		for (int idx = 0; idx < enemyCount; ++idx) {
 			SpriteImagePool<Enemy> pool = null;
 			if (MathUtils.randomBoolean()) {
@@ -85,13 +85,13 @@ public class BurgerVadersMainScreen extends StageScreen {
 			}
 			Enemy enemy = pool.obtain();
 			float width = enemy.getWidth();
+			getStage().addActor(enemy);
 			enemy.reset(step * idx + step / 2 + MathUtils.random(-width, width) - width / 2);
 			addEnemy(enemy);
 		}
 	}
 
 	private void addEnemy(Enemy enemy) {
-		getStage().addActor(enemy);
 		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
 			if (mEnemies.get(idx) == null) {
 				mEnemies.set(idx, enemy);
@@ -158,7 +158,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgervaders/cannon");
 		assert(region != null);
 		mCannon = new Cannon(this, region);
-		mCannon.setX((Gdx.graphics.getWidth() - region.getRegionWidth()) / 2);
+		mCannon.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
 		mCannon.setY(0);
 		getStage().addActor(mCannon);
 	}
@@ -204,7 +204,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
-		mScoreLabel.setY(Gdx.graphics.getHeight() - mScoreLabel.getPrefHeight());
+		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
 	}
 
 	private void updateHud() {
