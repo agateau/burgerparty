@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImage;
+import com.agateau.burgerparty.utils.SpriteImagePool;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;

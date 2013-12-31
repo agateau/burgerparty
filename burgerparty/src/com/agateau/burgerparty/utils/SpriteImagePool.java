@@ -1,10 +1,7 @@
-package com.agateau.burgerparty.burgervaders;
+package com.agateau.burgerparty.utils;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.utils.Signal0;
-import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.SpriteImage;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
