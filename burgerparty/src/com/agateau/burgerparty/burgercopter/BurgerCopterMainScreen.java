@@ -57,6 +57,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mLogger.log();
 	}
 
+	/*
 	private static class FollowMouseAction extends Action {
 		@Override
 		public boolean act(float delta) {
@@ -64,6 +65,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 			return false;
 		}
 	}
+	*/
 
 	private static class GravityAction extends Action {
 		@Override
@@ -91,7 +93,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 			if (x + actor.getWidth() > 0) {
 				actor.setX(x);
 			} else {
-				actor.setX(Gdx.graphics.getWidth());
+				actor.setX(actor.getStage().getWidth());
 				return onFinished();
 			}
 			return false;
@@ -110,7 +112,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		SpriteImage image = new SpriteImage(region);
 		mPlayer = image;
 		image.setX(10);
-		image.setY(Gdx.graphics.getHeight() * 3 / 4);
+		image.setY(getStage().getHeight() * 3 / 4);
 		image.addAction(new Action() {
 			@Override
 			public boolean act(float delta) {
@@ -140,7 +142,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg1");
 		assert(region != null);
 		float width = region.getRegionWidth();
-		for (float x = 0; x <= Gdx.graphics.getWidth(); x += width) {
+		for (float x = 0; x <= getStage().getWidth(); x += width) {
 			Image image = new Image(region);
 			image.setX(x);
 			image.setY(TILE_SIZE);
@@ -154,7 +156,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		int rowCount = 6;
 		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
-		mGroundActor.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		mGroundActor.setBounds(0, 0, getStage().getWidth(), getStage().getHeight());
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
@@ -230,8 +232,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 		@Override
 		public boolean onFinished() {
-			int x = Gdx.graphics.getWidth();
-			int y = MathUtils.random(240, 480);
+			float x = getActor().getStage().getWidth();
+			float y = MathUtils.random(240, 480);
 			actor.setX(x);
 			actor.setY(y);
 			return false;
@@ -241,7 +243,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		final TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/fish-inventory");
 		assert(region != null);
 		SpriteImage.CollisionMask mask = new SpriteImage.CollisionMask(region);
-		float screenWidth = Gdx.graphics.getWidth();
+		float screenWidth = getStage().getWidth();
 		for (int idx = 0; idx < ENEMY_COUNT; ++idx) {
 			float x = screenWidth * (1 + (float)idx / ENEMY_COUNT);
 			float y = MathUtils.random(240, 480);
@@ -258,7 +260,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
-		mScoreLabel.setY(Gdx.graphics.getHeight() - mScoreLabel.getPrefHeight());
+		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
 	}
 
 	private void updateHud() {
