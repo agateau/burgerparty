@@ -152,8 +152,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void findVerticalMatches() {
-		int col = 0;
-		for (Array<Piece> column: mBoard) {
+		for (int col = 0; col < BOARD_SIZE; ++col) {
+			Array<Piece> column = mBoard.get(col);
 //			Gdx.app.log("findVerticalMatches", "col=" + col);
 			int sameCount = 1;
 			int lastId = -1;
@@ -169,20 +169,19 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				} else {
 					lastId = id;
 					if (sameCount >= 3) {
-						deletePieces(column, row - sameCount, sameCount);
+						deleteVerticalPieces(column, row - sameCount, sameCount);
 					}
 					sameCount = 1;
 				}
 			}
 			if (sameCount >= 3) {
-				deletePieces(column, BOARD_SIZE - sameCount, sameCount);
+				deleteVerticalPieces(column, BOARD_SIZE - sameCount, sameCount);
 			}
-			++col;
 		}
 		//mGameOverDelay = 1;
 	}
 
-	private void deletePieces(Array<Piece> column, int from, int size) {
+	private void deleteVerticalPieces(Array<Piece> column, int from, int size) {
 		Gdx.app.log("deletePieces", "from=" + from + " size="+ size);
 		for (int row = from; row < from + size; ++row) {
 			column.get(row).destroy();
@@ -191,7 +190,40 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void findHorizontalMatches() {
-		
+		for (int row = 0; row < BOARD_SIZE; ++row) {
+//			Gdx.app.log("findVerticalMatches", "col=" + col);
+			int sameCount = 1;
+			int lastId = -1;
+			for (int col = 0; col < BOARD_SIZE; ++col) {
+				Piece piece = getPieceAt(col, row);
+				if (piece == null) {
+					return;
+				}
+				int id = piece.getId();
+//				Gdx.app.log("findVerticalMatches", "row=" + row + " id=" + id + " lastId=" + lastId + " sameCount=" + sameCount);
+				if (id == lastId) {
+					++sameCount;
+				} else {
+					lastId = id;
+					if (sameCount >= 3) {
+						deleteHorizontalPieces(row, col - sameCount, sameCount);
+					}
+					sameCount = 1;
+				}
+			}
+			if (sameCount >= 3) {
+				deleteHorizontalPieces(row, BOARD_SIZE - sameCount, sameCount);
+			}
+		}
+		//mGameOverDelay = 1;
+	}
+
+	private void deleteHorizontalPieces(int row, int fromCol, int size) {
+		Gdx.app.log("deletePieces", "row=" + row + "col=" + fromCol + " size="+ size);
+		for (int col = fromCol; col < fromCol + size; ++col) {
+			getPieceAt(col, row).destroy();
+		}
+		mCollapseNeeded = true;
 	}
 
 	private void collapse() {
