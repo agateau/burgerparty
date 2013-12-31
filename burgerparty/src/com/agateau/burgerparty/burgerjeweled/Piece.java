@@ -8,7 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class Piece extends SpriteImage {
 	static private final float DEATH_DURATION = 0.5f;
-	static private final float FALL_DURATION = 0.1f;
+	static private final float FALL_DURATION = 0.2f;
+	static private final float SWAP_DURATION = 0.2f;
 
 	public void destroy() {
 		mDying = true;
@@ -29,6 +30,19 @@ public class Piece extends SpriteImage {
 	public void fallTo(float dstY) {
 		clearActions();
 		addAction(Actions.moveTo(getX(), dstY, FALL_DURATION, Interpolation.pow2Out));
+	}
+
+	public void moveTo(float x, float y) {
+		clearActions();
+		addAction(Actions.moveTo(x, y, SWAP_DURATION));
+	}
+	public void swapTo(float x, float y) {
+		clearActions();
+		addAction(Actions.sequence(
+			Actions.moveTo(x, y, SWAP_DURATION),
+			Actions.moveTo(getX(), getY(), SWAP_DURATION)
+			)
+		);
 	}
 
 	public void reset(MaskedDrawable md, int id, float posX, float posY) {

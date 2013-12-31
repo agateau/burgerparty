@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -59,7 +60,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void handleClicks() {
-		if (!Gdx.input.justTouched()) {
+		if (!Gdx.input.justTouched() || mCollapseNeeded) {
 			return;
 		}
 		Vector2 v = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -67,11 +68,47 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		int col = MathUtils.floor(v.x / BOARD_CELL_WIDTH);
 		int row = MathUtils.floor(v.y / BOARD_CELL_HEIGHT);
 		Gdx.app.log("Main", "v=" + v + " col=" + col + " row=" + row);
-		Piece piece = getPieceAt(col, row);
-		if (piece == null) {
+
+		if (mClickedCol == -1) {
+			mClickedCol = col;
+			mClickedRow = row;
 			return;
 		}
-		piece.destroy();
+		int dc = Math.abs(mClickedCol - col);
+		int dr = Math.abs(mClickedRow - row);
+		if ((dr == 1 && dc == 0) || (dr == 0 && dc == 1)) {
+			swapPieces(col, row);
+		} else {
+			mClickedCol = -1;
+			mClickedRow = -1;
+		}
+	}
+
+	private void swapPieces(int col2, int row2) {
+		Gdx.app.log("swapPieces", "mClickedCol=" + mClickedCol + " mClickedRow=" + mClickedRow + " col2=" + col2 + " row2=" + row2);
+		Piece piece1 = getPieceAt(mClickedCol, mClickedRow);
+		Piece piece2 = getPieceAt(col2, row2);
+
+		doSwap(mClickedCol, mClickedRow, col2, row2);
+		findMatches();
+		if (mCollapseNeeded) {
+			piece1.moveTo(piece2.getX(), piece2.getY());
+			piece2.moveTo(piece1.getX(), piece1.getY());
+		} else {
+			piece1.swapTo(piece2.getX(), piece2.getY());
+			piece2.swapTo(piece1.getX(), piece1.getY());
+			Gdx.app.log("swap", "cancel swap");
+			doSwap(col2, row2, mClickedCol, mClickedRow);
+		}
+		mClickedCol = -1;
+		mClickedRow = -1;
+	}
+
+	private void doSwap(int col1, int row1, int col2, int row2) {
+		Piece piece1 = getPieceAt(col1, row1);
+		Piece piece2 = getPieceAt(col2, row2);
+		mBoard.get(col2).set(row2, piece1);
+		mBoard.get(col1).set(row1, piece2);
 	}
 
 	private void checkGameOver() {
@@ -254,6 +291,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private Piece getPieceAt(int col, int row) {
+		assert(col != -1);
+		assert(row != -1);
 		return mBoard.get(col).get(row);
 	}
 
@@ -280,6 +319,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private SpriteImagePool<Piece> mPool;
 	private float mTime = 0;
+
+	private int mClickedRow = -1;
+	private int mClickedCol = -1;
 
 	private Array<Array<Piece>> mBoard = new Array<Array<Piece>>();
 
