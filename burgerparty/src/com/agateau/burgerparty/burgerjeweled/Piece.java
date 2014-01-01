@@ -2,7 +2,6 @@ package com.agateau.burgerparty.burgerjeweled;
 
 import com.agateau.burgerparty.utils.MaskedDrawable;
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
@@ -56,7 +55,6 @@ public class Piece extends SpriteImage {
 		setScale(1);
 		setRotation(0);
 		setPosition(posX, getStage().getHeight() + posY);
-		Gdx.app.log("Piece", "x=" + posX + " y=" + posY + " w=" + getWidth() + " h=" + getHeight());
 		addAction(
 			Actions.moveTo(posX, posY, FALL_DURATION, Interpolation.pow2Out)
 			);

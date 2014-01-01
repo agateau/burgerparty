@@ -8,13 +8,11 @@ import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
@@ -47,7 +45,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			int row = MathUtils.floor(y / BOARD_CELL_HEIGHT);
 			if (col == mTouchedCol && row != mTouchedRow) {
 				// vertical swipe
-				Gdx.app.log("touchUp", "vswipe");
 				mFirstPieceCol = mTouchedCol;
 				mFirstPieceRow = mTouchedRow;
 				swapPieces(col, mTouchedRow + (row > mTouchedRow ? 1 : -1));
@@ -55,7 +52,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			}
 			if (col != mTouchedCol && row == mTouchedRow) {
 				// horizontal swipe
-				Gdx.app.log("touchUp", "hswipe");
 				mFirstPieceCol = mTouchedCol;
 				mFirstPieceRow = mTouchedRow;
 				swapPieces(mTouchedCol + (col > mTouchedCol ? 1 : -1), row);
@@ -63,12 +59,10 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			}
 			if (mFirstPieceCol == -1) {
 				// first piece clicked
-				Gdx.app.log("touchUp", "click1");
 				mFirstPieceCol = col;
 				mFirstPieceRow = row;
 			} else {
 				// second piece clicked
-				Gdx.app.log("touchUp", "click2");
 				swapPieces(col, row);
 			}
 		}
@@ -82,7 +76,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mMiniGame = miniGame;
 		createPools();
 		createPieceDrawables();
-		//createBg();
 		resetBoard();
 		createHud();
 		getStage().addListener(new OurInputListener());
@@ -118,14 +111,12 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void swapPieces(int col2, int row2) {
 		assert(!mBoard.hasDyingPieces());
-		Gdx.app.log("swapPieces", "mFirstPieceCol=" + mFirstPieceCol + " mFirstPieceRow=" + mFirstPieceRow + " col2=" + col2 + " row2=" + row2);
 		assert(mFirstPieceCol != -1);
 		assert(mFirstPieceRow != -1);
 		int dc = Math.abs(mFirstPieceCol - col2);
 		int dr = Math.abs(mFirstPieceRow - row2);
 		boolean adjacentSwap = (dc == 1 && dr == 0) || (dc == 0 && dr == 1);
 		if (!adjacentSwap) {
-			Gdx.app.log("swapPieces", "not adjacent");
 			mFirstPieceCol = -1;
 			mFirstPieceRow = -1;
 			return;
@@ -142,7 +133,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			piece1.moveTo(piece2.getX(), piece2.getY());
 			piece2.moveTo(piece1.getX(), piece1.getY());
 		} else {
-			Gdx.app.log("swap", "cancel swap");
 			piece1.swapTo(piece2.getX(), piece2.getY());
 			piece2.swapTo(piece1.getX(), piece1.getY());
 		}
@@ -159,12 +149,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	@Override
 	public void onBackPressed() {
 		mMiniGame.showStartScreen();
-	}
-
-	private void createBg() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("levels/3/background");
-		assert(region != null);
-		setBackgroundActor(new Image(region));
 	}
 
 	private void createPieceDrawables() {
@@ -197,7 +181,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mBonusPool = new Pool<Label>() {
 			@Override
 			protected Label newObject() {
-				Gdx.app.log("BonusPool", "newObject");
 				return new Label("", mMiniGame.getAssets().getSkin(), "score-feedback");
 			}
 		};
@@ -282,7 +265,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void findVerticalMatches() {
 		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 			Array<Piece> column = mBoard.getColumn(col);
-//			Gdx.app.log("findVerticalMatches", "col=" + col);
 			int sameCount = 1;
 			int lastId = -1;
 			for (int row = 0; row < Board.BOARD_SIZE; ++row) {
@@ -294,7 +276,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 					return;
 				}
 				int id = piece.getId();
-//				Gdx.app.log("findVerticalMatches", "row=" + row + " id=" + id + " lastId=" + lastId + " sameCount=" + sameCount);
 				if (id == lastId) {
 					++sameCount;
 				} else {
@@ -309,11 +290,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				deleteVerticalPieces(col, Board.BOARD_SIZE - sameCount, sameCount);
 			}
 		}
-		//mGameOverDelay = 1;
 	}
 
 	private void deleteVerticalPieces(int col, int fromRow, int size) {
-		Gdx.app.log("deleteVerticalPieces", "col=" + col + " row=" + fromRow + " size="+ size);
 		for (int row = fromRow; row < fromRow + size; ++row) {
 			mBoard.getPiece(col, row).mark();
 		}
@@ -350,7 +329,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void deleteHorizontalPieces(int row, int fromCol, int size) {
-		Gdx.app.log("deleteHorizontalPieces", "row=" + row + " col=" + fromCol + " size="+ size);
 		for (int col = fromCol; col < fromCol + size; ++col) {
 			mBoard.getPiece(col, row).mark();
 		}
@@ -359,10 +337,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void collapse() {
 		if (mBoard.hasDyingPieces()) {
-			Gdx.app.log("BJ", "collapsing canceled");
 			return;
 		}
-		Gdx.app.log("BJ", "collapsing");
 		mCollapseNeeded = false;
 		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 			collapseColumn(col);
@@ -407,22 +383,24 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mGameOverDelay = 0;
 	}
 
-	private float mGameOverDelay = -1;
+	// "final" fields
 	private BurgerjeweledMiniGame mMiniGame;
-	private int mScore = 0;
 	private Label mScoreLabel;
 
 	private Pool<Piece> mPiecePool;
 	private Pool<Label> mBonusPool;
-	private Label mLastBonusLabel;
-	private float mTime = START_TIME;
-
-	private int mFirstPieceRow = -1;
-	private int mFirstPieceCol = -1;
-	private boolean mCollapseNeeded = false;
 	private Board mBoard = new Board();
 	private Board mPendingBoard = new Board();
 
 	private Array<MaskedDrawable> mPiecesDrawable = new Array<MaskedDrawable>();
 	private HashSet<Object> mHandlers = new HashSet<Object>();
+
+	// mutable fields
+	private Label mLastBonusLabel;
+	private float mTime = START_TIME;
+	private int mScore = 0;
+	private float mGameOverDelay = -1;
+	private int mFirstPieceRow = -1;
+	private int mFirstPieceCol = -1;
+	private boolean mCollapseNeeded = false;
 }
