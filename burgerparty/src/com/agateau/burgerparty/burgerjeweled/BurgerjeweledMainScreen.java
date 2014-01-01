@@ -91,7 +91,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				mTime = 0;
 			}
 			getStage().act(delta);
-			if (!mBoard.hasDyingPieces()) {
+			if (!mBoard.hasDyingPieces() && !mCollapseNeeded) {
 				findMatches();
 			}
 			if (!mBoard.hasDyingPieces() && mCollapseNeeded) {
@@ -211,7 +211,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				Piece piece = mBoard.getPiece(col, row);
-				if (piece != null && piece.isMarked()) {
+				if (piece.isMarked()) {
 					piece.destroy();
 					++count; 
 				}
@@ -269,24 +269,20 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			int lastId = -1;
 			for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 				Piece piece = column.get(row);
-				if (piece == null) {
-					return;
-				}
-				if (piece.isDying()) {
-					return;
-				}
+				assert(piece != null);
+				assert(!piece.isDying());
 				int id = piece.getId();
 				if (id == lastId) {
 					++sameCount;
 				} else {
 					lastId = id;
-					if (sameCount >= 3) {
+					if (sameCount >= Board.MATCH_COUNT) {
 						deleteVerticalPieces(col, row - sameCount, sameCount);
 					}
 					sameCount = 1;
 				}
 			}
-			if (sameCount >= 3) {
+			if (sameCount >= Board.MATCH_COUNT) {
 				deleteVerticalPieces(col, Board.BOARD_SIZE - sameCount, sameCount);
 			}
 		}
@@ -305,24 +301,20 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			int lastId = -1;
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				Piece piece = mBoard.getPiece(col, row);
-				if (piece == null) {
-					return;
-				}
-				if (piece.isDying()) {
-					return;
-				}
+				assert(piece != null);
+				assert(!piece.isDying());
 				int id = piece.getId();
 				if (id == lastId) {
 					++sameCount;
 				} else {
 					lastId = id;
-					if (sameCount >= 3) {
+					if (sameCount >= Board.MATCH_COUNT) {
 						deleteHorizontalPieces(row, col - sameCount, sameCount);
 					}
 					sameCount = 1;
 				}
 			}
-			if (sameCount >= 3) {
+			if (sameCount >= Board.MATCH_COUNT) {
 				deleteHorizontalPieces(row, Board.BOARD_SIZE - sameCount, sameCount);
 			}
 		}
