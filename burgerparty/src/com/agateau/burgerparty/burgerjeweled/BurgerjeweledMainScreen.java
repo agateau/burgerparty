@@ -3,8 +3,7 @@ package com.agateau.burgerparty.burgerjeweled;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.utils.MaskedDrawable;
-import com.agateau.burgerparty.utils.Signal1;
-import com.agateau.burgerparty.utils.SpriteImagePool;
+import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -180,17 +179,25 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void createPools() {
-		mPiecePool = new SpriteImagePool<Piece>(Piece.class);
-		mPiecePool.removalRequested.connect(mHandlers, new Signal1.Handler<Piece>() {
+		mPiecePool = new Pool<Piece>() {
 			@Override
-			public void handle(Piece piece) {
-				if (mBoard.removePiece(piece)) {
-				}
+			public Piece newObject() {
+				final Piece piece = new Piece();
+				piece.removalRequested.connect(mHandlers, new Signal0.Handler() {
+					@Override
+					public void handle() {
+						if (mBoard.removePiece(piece)) {
+							mPiecePool.free(piece);
+						}
+					}
+				});
+				return piece;
 			}
-		});
+		};
 		mBonusPool = new Pool<Label>() {
 			@Override
 			protected Label newObject() {
+				Gdx.app.log("BonusPool", "newObject");
 				return new Label("", mMiniGame.getAssets().getSkin(), "score-feedback");
 			}
 		};
@@ -244,6 +251,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void addBonus(String name) {
 		final Label label = mBonusPool.obtain();
 		getStage().addActor(label);
+		label.setColor(1, 1, 1, 1);
 		label.setText(name);
 		label.invalidate();
 		label.setX((getStage(). getWidth() - label.getPrefWidth()) / 2);
@@ -258,7 +266,14 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				Actions.moveBy(0, height, BONUS_ANIM_DURATION),
 				Actions.alpha(0, BONUS_ANIM_DURATION, Interpolation.pow3In)
 			),
-			Actions.removeActor()
+			Actions.run(new Runnable() {
+				@Override
+				public void run() {
+					label.remove();
+					mLastBonusLabel = null;
+					mBonusPool.free(label);
+				}
+			})
 			)
 		);
 		mLastBonusLabel = label;
@@ -397,7 +412,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private int mScore = 0;
 	private Label mScoreLabel;
 
-	private SpriteImagePool<Piece> mPiecePool;
+	private Pool<Piece> mPiecePool;
 	private Pool<Label> mBonusPool;
 	private Label mLastBonusLabel;
 	private float mTime = START_TIME;
