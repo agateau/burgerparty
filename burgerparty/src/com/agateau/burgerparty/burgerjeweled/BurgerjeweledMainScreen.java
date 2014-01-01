@@ -7,12 +7,10 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImagePool;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -21,6 +19,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class BurgerjeweledMainScreen extends StageScreen {
 	private static final int SCORE_NORMAL = 200;
+	private static final float TIME_BONUS = 10;
+	private static final float START_TIME = 60;
 	private static final float BOARD_CELL_WIDTH = 100;
 	private static final float BOARD_CELL_HEIGHT = 60;
 
@@ -87,10 +87,13 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
-		mTime += delta;
 		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (mGameOverDelay < 0) {
+			mTime -= delta;
+			if (mTime < 0) {
+				mTime = 0;
+			}
 			getStage().act(delta);
 			if (!mBoard.hasDyingPieces()) {
 				findMatches();
@@ -98,12 +101,14 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			if (!mBoard.hasDyingPieces() && mCollapseNeeded) {
 				collapse();
 			}
+			checkGameOver();
+			updateHud();
 			getStage().draw();
 		} else {
 			mGameOverDelay += delta;
-			/*if (mGameOverDelay > 2) {
+			if (mGameOverDelay > 2) {
 				mMiniGame.showStartScreen();
-			}*/
+			}
 			getStage().draw();
 		}
 	}
@@ -143,18 +148,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void checkGameOver() {
-		/*
-		for (Enemy enemy: mEnemies) {
-			if (enemy == null) {
-				continue;
-			}
-			if (enemy.getY() < 0) {
-				Gdx.app.log("Vaders", "Game Over");
-				gameOver();
-				break;
-			}
+		if (mTime <= 0) {
+			gameOver();
 		}
-		*/
 	}
 
 	@Override
@@ -208,19 +204,24 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void findMatches() {
 		findVerticalMatches();
 		findHorizontalMatches();
-		int score = 0;
+		int count = 0;
 		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				Piece piece = mBoard.getPiece(col, row);
 				if (piece != null && piece.isMarked()) {
 					piece.destroy();
-					score += SCORE_NORMAL;
-					mCollapseNeeded = true;
+					++count; 
 				}
 			}
 		}
-		mScore += score;
-		updateHud();
+		if (count == 0) {
+			return;
+		}
+		mCollapseNeeded = true;
+		mScore += SCORE_NORMAL * count;
+		if (count > Board.MATCH_COUNT) {
+			mTime = Math.min(START_TIME, mTime + TIME_BONUS * (count - Board.MATCH_COUNT));
+		}
 	}
 
 	private void findVerticalMatches() {
@@ -335,14 +336,16 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "score");
+		mScoreLabel = new Label("0\n0", mMiniGame.getAssets().getSkin(), "score");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
 		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
 	}
 
 	private void updateHud() {
-		mScoreLabel.setText(String.valueOf((mScore / 10) * 10));
+		mScoreLabel.setText("Score: "+ mScore + "\nTime: " + (int)mTime);
+		// Keep hud above pieces
+		mScoreLabel.setZIndex(1000);
 	}
 
 	private void gameOver() {
@@ -355,7 +358,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private Label mScoreLabel;
 
 	private SpriteImagePool<Piece> mPool;
-	private float mTime = 0;
+	private float mTime = START_TIME;
 
 	private int mFirstPieceRow = -1;
 	private int mFirstPieceCol = -1;
