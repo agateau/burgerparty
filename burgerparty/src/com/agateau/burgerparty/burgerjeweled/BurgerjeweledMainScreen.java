@@ -32,27 +32,48 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			if (mBoard.hasDyingPieces()) {
 				return false;
 			}
+			int col = MathUtils.floor(x / BOARD_CELL_WIDTH);
+			int row = MathUtils.floor(y / BOARD_CELL_HEIGHT);
+			mTouchedCol = col;
+			mTouchedRow = row;
 			return true;
 		}
 
 		@Override
 		public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+			Gdx.app.log("BJ", "touchUp");
 			int col = MathUtils.floor(x / BOARD_CELL_WIDTH);
 			int row = MathUtils.floor(y / BOARD_CELL_HEIGHT);
-			if (mClickedCol == -1) {
-				mClickedCol = col;
-				mClickedRow = row;
+			if (col == mTouchedCol && row != mTouchedRow) {
+				// vertical swipe
+				Gdx.app.log("touchUp", "vswipe");
+				mFirstPieceCol = mTouchedCol;
+				mFirstPieceRow = mTouchedRow;
+				swapPieces(col, mTouchedRow + (row > mTouchedRow ? 1 : -1));
+				return;
+			}
+			if (col != mTouchedCol && row == mTouchedRow) {
+				// horizontal swipe
+				Gdx.app.log("touchUp", "hswipe");
+				mFirstPieceCol = mTouchedCol;
+				mFirstPieceRow = mTouchedRow;
+				swapPieces(mTouchedCol + (col > mTouchedCol ? 1 : -1), row);
+				return;
+			}
+			if (mFirstPieceCol == -1) {
+				// first piece clicked
+				Gdx.app.log("touchUp", "click1");
+				mFirstPieceCol = col;
+				mFirstPieceRow = row;
 			} else {
-				int dc = Math.abs(mClickedCol - col);
-				int dr = Math.abs(mClickedRow - row);
-				if ((dr == 1 && dc == 0) || (dr == 0 && dc == 1)) {
-					swapPieces(col, row);
-				} else {
-					mClickedCol = -1;
-					mClickedRow = -1;
-				}
+				// second piece clicked
+				Gdx.app.log("touchUp", "click2");
+				swapPieces(col, row);
 			}
 		}
+
+		private int mTouchedCol = -1;
+		private int mTouchedRow = -1;
 	}
 
 	public BurgerjeweledMainScreen(BurgerjeweledMiniGame miniGame) {
@@ -91,13 +112,24 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void swapPieces(int col2, int row2) {
 		assert(!mBoard.hasDyingPieces());
-		Gdx.app.log("swapPieces", "mClickedCol=" + mClickedCol + " mClickedRow=" + mClickedRow + " col2=" + col2 + " row2=" + row2);
-		Piece piece1 = mBoard.getPiece(mClickedCol, mClickedRow);
+		Gdx.app.log("swapPieces", "mFirstPieceCol=" + mFirstPieceCol + " mFirstPieceRow=" + mFirstPieceRow + " col2=" + col2 + " row2=" + row2);
+		assert(mFirstPieceCol != -1);
+		assert(mFirstPieceRow != -1);
+		int dc = Math.abs(mFirstPieceCol - col2);
+		int dr = Math.abs(mFirstPieceRow - row2);
+		boolean adjacentSwap = (dc == 1 && dr == 0) || (dc == 0 && dr == 1);
+		if (!adjacentSwap) {
+			Gdx.app.log("swapPieces", "not adjacent");
+			mFirstPieceCol = -1;
+			mFirstPieceRow = -1;
+			return;
+		}
+		Piece piece1 = mBoard.getPiece(mFirstPieceCol, mFirstPieceRow);
 		Piece piece2 = mBoard.getPiece(col2, row2);
 
 		mPendingBoard.initFrom(mBoard);
-		mPendingBoard.swap(mClickedCol, mClickedRow, col2, row2);
-		if (mPendingBoard.hasMatchesAt(mClickedCol, mClickedRow) || mPendingBoard.hasMatchesAt(col2, row2)) {
+		mPendingBoard.swap(mFirstPieceCol, mFirstPieceRow, col2, row2);
+		if (mPendingBoard.hasMatchesAt(mFirstPieceCol, mFirstPieceRow) || mPendingBoard.hasMatchesAt(col2, row2)) {
 			Board tmp = mPendingBoard;
 			mPendingBoard = mBoard;
 			mBoard = tmp;
@@ -108,8 +140,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			piece1.swapTo(piece2.getX(), piece2.getY());
 			piece2.swapTo(piece1.getX(), piece1.getY());
 		}
-		mClickedCol = -1;
-		mClickedRow = -1;
+		mFirstPieceCol = -1;
+		mFirstPieceRow = -1;
 	}
 
 	private void checkGameOver() {
@@ -314,8 +346,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private SpriteImagePool<Piece> mPool;
 	private float mTime = 0;
 
-	private int mClickedRow = -1;
-	private int mClickedCol = -1;
+	private int mFirstPieceRow = -1;
+	private int mFirstPieceCol = -1;
 	private boolean mCollapseNeeded = false;
 	private Board mBoard = new Board();
 	private Board mPendingBoard = new Board();
