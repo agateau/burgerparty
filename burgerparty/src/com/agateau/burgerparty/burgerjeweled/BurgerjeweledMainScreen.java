@@ -204,9 +204,43 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mBoard.setPiece(col, row, piece);
 	}
 
+	private void findMatches(int sliceStep, int cellStep) {
+		int firstCellId = mBoard.getCellId(0, 0);
+		for (int slice = 0; slice < Board.BOARD_SIZE; ++slice, firstCellId += sliceStep) {
+			int sameCount = 1;
+			int lastId = -1;
+			int cellId = firstCellId;
+			for (int step = 0; step < Board.BOARD_SIZE; ++step, cellId += cellStep) {
+				Piece piece = mBoard.getPiece(cellId);
+				assert(piece != null);
+				assert(!piece.isDying());
+				int id = piece.getId();
+				if (id == lastId) {
+					++sameCount;
+				} else {
+					lastId = id;
+					if (sameCount >= Board.MATCH_COUNT) {
+						markPieces(cellId - sameCount * cellStep, cellId, cellStep);
+					}
+					sameCount = 1;
+				}
+			}
+			if (sameCount >= Board.MATCH_COUNT) {
+				markPieces(cellId - sameCount * cellStep, cellId, cellStep);
+			}
+		}
+	}
+
+	private void markPieces(int from, int to, int step) {
+		for (int cellId = from; cellId != to; cellId += step) {
+			mBoard.getPiece(cellId).mark();
+		}
+	}
+
 	private void findMatches() {
-		findVerticalMatches();
-		findHorizontalMatches();
+		findMatches(1, Board.CELL_ROW_STEP);
+		findMatches(Board.CELL_ROW_STEP, 1);
+		
 		int count = 0;
 		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
@@ -260,64 +294,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			)
 		);
 		mLastBonusLabel = label;
-	}
-
-	private void findVerticalMatches() {
-		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
-			Array<Piece> column = mBoard.getColumn(col);
-			int sameCount = 1;
-			int lastId = -1;
-			for (int row = 0; row < Board.BOARD_SIZE; ++row) {
-				Piece piece = column.get(row);
-				assert(piece != null);
-				assert(!piece.isDying());
-				int id = piece.getId();
-				if (id == lastId) {
-					++sameCount;
-				} else {
-					lastId = id;
-					if (sameCount >= Board.MATCH_COUNT) {
-						markPieces(col, row - sameCount, sameCount, 0, 1);
-					}
-					sameCount = 1;
-				}
-			}
-			if (sameCount >= Board.MATCH_COUNT) {
-				markPieces(col, Board.BOARD_SIZE - sameCount, sameCount, 0, 1);
-			}
-		}
-	}
-
-	private void markPieces(int col, int row, int count, int dc, int dr) {
-		for (int idx = 0; idx < count; ++idx, col += dc, row += dr) {
-			mBoard.getPiece(col, row).mark();
-		}
-		mCollapseNeeded = true;
-	}
-
-	private void findHorizontalMatches() {
-		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
-			int sameCount = 1;
-			int lastId = -1;
-			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
-				Piece piece = mBoard.getPiece(col, row);
-				assert(piece != null);
-				assert(!piece.isDying());
-				int id = piece.getId();
-				if (id == lastId) {
-					++sameCount;
-				} else {
-					lastId = id;
-					if (sameCount >= Board.MATCH_COUNT) {
-						markPieces(col - sameCount, row, sameCount, 1, 0);
-					}
-					sameCount = 1;
-				}
-			}
-			if (sameCount >= Board.MATCH_COUNT) {
-				markPieces(Board.BOARD_SIZE - sameCount, row, sameCount, 1, 0);
-			}
-		}
 	}
 
 	private void collapse() {

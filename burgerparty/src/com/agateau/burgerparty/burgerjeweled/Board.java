@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class Board {
 	public static final int MATCH_COUNT = 3;
+	public static final int CELL_ROW_STEP = 100;
+
 	public Board() {
 		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 			Array<Piece> column = new Array<Piece>();
@@ -20,6 +22,18 @@ public class Board {
 				setPiece(col, row, other.getPiece(col, row));
 			}
 		}
+	}
+
+	public int getCellId(int col, int row) {
+		return row * CELL_ROW_STEP + col;
+	}
+
+	public int colFromCellId(int cellId) {
+		return cellId % CELL_ROW_STEP;
+	}
+
+	public int rowFromCellId(int cellId) {
+		return cellId / CELL_ROW_STEP;
 	}
 
 	public boolean hasMatchesAt(int atCol, int atRow) {
@@ -67,6 +81,10 @@ public class Board {
 		assert(col != -1);
 		assert(row != -1);
 		return mColumns.get(col).get(row);
+	}
+
+	public Piece getPiece(int cellId) {
+		return getPiece(colFromCellId(cellId), rowFromCellId(cellId));
 	}
 
 	public boolean removePiece(Piece piece) {
