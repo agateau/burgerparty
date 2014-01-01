@@ -21,8 +21,6 @@ import com.badlogic.gdx.utils.Array;
 
 public class BurgerjeweledMainScreen extends StageScreen {
 	private static final int SCORE_NORMAL = 200;
-	private static final int SCORE_4 = 400;
-	private static final int SCORE_5 = 800;
 	private static final float BOARD_CELL_WIDTH = 100;
 	private static final float BOARD_CELL_HEIGHT = 60;
 
@@ -210,15 +208,19 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void findMatches() {
 		findVerticalMatches();
 		findHorizontalMatches();
+		int score = 0;
 		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				Piece piece = mBoard.getPiece(col, row);
 				if (piece != null && piece.isMarked()) {
 					piece.destroy();
+					score += SCORE_NORMAL;
 					mCollapseNeeded = true;
 				}
 			}
 		}
+		mScore += score;
+		updateHud();
 	}
 
 	private void findVerticalMatches() {
@@ -333,7 +335,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "score");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
 		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
