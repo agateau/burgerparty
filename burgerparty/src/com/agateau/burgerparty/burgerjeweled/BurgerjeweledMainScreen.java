@@ -10,12 +10,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
 
 public class BurgerjeweledMainScreen extends StageScreen {
 	private static final int SCORE_NORMAL = 200;
@@ -23,6 +26,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private static final float START_TIME = 60;
 	private static final float BOARD_CELL_WIDTH = 100;
 	private static final float BOARD_CELL_HEIGHT = 60;
+	private static final float BONUS_ANIM_DURATION = 1.2f;
 
 	private class OurInputListener extends InputListener {
 		@Override
@@ -77,7 +81,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	public BurgerjeweledMainScreen(BurgerjeweledMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
-		createPool();
+		createPools();
 		createPieceDrawables();
 		//createBg();
 		resetBoard();
@@ -175,15 +179,21 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/3/toast-inventory")));
 	}
 
-	private void createPool() {
-		mPool = new SpriteImagePool<Piece>(Piece.class);
-		mPool.removalRequested.connect(mHandlers, new Signal1.Handler<Piece>() {
+	private void createPools() {
+		mPiecePool = new SpriteImagePool<Piece>(Piece.class);
+		mPiecePool.removalRequested.connect(mHandlers, new Signal1.Handler<Piece>() {
 			@Override
 			public void handle(Piece piece) {
 				if (mBoard.removePiece(piece)) {
 				}
 			}
 		});
+		mBonusPool = new Pool<Label>() {
+			@Override
+			protected Label newObject() {
+				return new Label("", mMiniGame.getAssets().getSkin(), "score-feedback");
+			}
+		};
 	}
 
 	private void resetBoard() {
@@ -195,7 +205,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void resetPiece(int col, int row) {
-		Piece piece = mPool.obtain();
+		Piece piece = mPiecePool.obtain();
 		getStage().addActor(piece);
 		int id = MathUtils.random(mPiecesDrawable.size - 1);
 		float posX = col * BOARD_CELL_WIDTH;
@@ -221,10 +231,37 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			return;
 		}
 		mCollapseNeeded = true;
-		mScore += SCORE_NORMAL * count;
+		int score = SCORE_NORMAL * count;
+		mScore += score;
+		addBonus("+" + score);
 		if (count > Board.MATCH_COUNT) {
-			mTime = Math.min(START_TIME, mTime + TIME_BONUS * (count - Board.MATCH_COUNT));
+			int bonus = (int)TIME_BONUS * (count - Board.MATCH_COUNT);
+			mTime = Math.min(START_TIME, mTime + bonus);
+			addBonus("+" + bonus + "s");
 		}
+	}
+
+	private void addBonus(String name) {
+		final Label label = mBonusPool.obtain();
+		getStage().addActor(label);
+		label.setText(name);
+		label.invalidate();
+		label.setX((getStage(). getWidth() - label.getPrefWidth()) / 2);
+		float height = label.getPrefHeight();
+		float y = (getStage().getHeight() - height) / 2;
+		if (mLastBonusLabel != null && mLastBonusLabel.getStage() != null) {
+			y = Math.min(y, mLastBonusLabel.getY() - height * 0.75f);
+		}
+		label.setY(y);
+		label.addAction(Actions.sequence(
+			Actions.parallel(
+				Actions.moveBy(0, height, BONUS_ANIM_DURATION),
+				Actions.alpha(0, BONUS_ANIM_DURATION, Interpolation.pow3In)
+			),
+			Actions.removeActor()
+			)
+		);
+		mLastBonusLabel = label;
 	}
 
 	private void findVerticalMatches() {
@@ -360,7 +397,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private int mScore = 0;
 	private Label mScoreLabel;
 
-	private SpriteImagePool<Piece> mPool;
+	private SpriteImagePool<Piece> mPiecePool;
+	private Pool<Label> mBonusPool;
+	private Label mLastBonusLabel;
 	private float mTime = START_TIME;
 
 	private int mFirstPieceRow = -1;
