@@ -277,19 +277,19 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				} else {
 					lastId = id;
 					if (sameCount >= Board.MATCH_COUNT) {
-						deleteVerticalPieces(col, row - sameCount, sameCount);
+						markPieces(col, row - sameCount, sameCount, 0, 1);
 					}
 					sameCount = 1;
 				}
 			}
 			if (sameCount >= Board.MATCH_COUNT) {
-				deleteVerticalPieces(col, Board.BOARD_SIZE - sameCount, sameCount);
+				markPieces(col, Board.BOARD_SIZE - sameCount, sameCount, 0, 1);
 			}
 		}
 	}
 
-	private void deleteVerticalPieces(int col, int fromRow, int size) {
-		for (int row = fromRow; row < fromRow + size; ++row) {
+	private void markPieces(int col, int row, int count, int dc, int dr) {
+		for (int idx = 0; idx < count; ++idx, col += dc, row += dr) {
 			mBoard.getPiece(col, row).mark();
 		}
 		mCollapseNeeded = true;
@@ -309,22 +309,15 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				} else {
 					lastId = id;
 					if (sameCount >= Board.MATCH_COUNT) {
-						deleteHorizontalPieces(row, col - sameCount, sameCount);
+						markPieces(col - sameCount, row, sameCount, 1, 0);
 					}
 					sameCount = 1;
 				}
 			}
 			if (sameCount >= Board.MATCH_COUNT) {
-				deleteHorizontalPieces(row, Board.BOARD_SIZE - sameCount, sameCount);
+				markPieces(Board.BOARD_SIZE - sameCount, row, sameCount, 1, 0);
 			}
 		}
-	}
-
-	private void deleteHorizontalPieces(int row, int fromCol, int size) {
-		for (int col = fromCol; col < fromCol + size; ++col) {
-			mBoard.getPiece(col, row).mark();
-		}
-		mCollapseNeeded = true;
 	}
 
 	private void collapse() {
