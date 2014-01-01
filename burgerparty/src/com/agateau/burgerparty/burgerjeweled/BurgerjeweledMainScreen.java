@@ -210,6 +210,15 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void findMatches() {
 		findVerticalMatches();
 		findHorizontalMatches();
+		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
+			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
+				Piece piece = mBoard.getPiece(col, row);
+				if (piece != null && piece.isMarked()) {
+					piece.destroy();
+					mCollapseNeeded = true;
+				}
+			}
+		}
 	}
 
 	private void findVerticalMatches() {
@@ -248,7 +257,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void deleteVerticalPieces(int col, int fromRow, int size) {
 		Gdx.app.log("deleteVerticalPieces", "col=" + col + " row=" + fromRow + " size="+ size);
 		for (int row = fromRow; row < fromRow + size; ++row) {
-			mBoard.getPiece(col, row).destroy();
+			mBoard.getPiece(col, row).mark();
 		}
 		mCollapseNeeded = true;
 	}
@@ -285,7 +294,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void deleteHorizontalPieces(int row, int fromCol, int size) {
 		Gdx.app.log("deleteHorizontalPieces", "row=" + row + " col=" + fromCol + " size="+ size);
 		for (int col = fromCol; col < fromCol + size; ++col) {
-			mBoard.getPiece(col, row).destroy();
+			mBoard.getPiece(col, row).mark();
 		}
 		mCollapseNeeded = true;
 	}
