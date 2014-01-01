@@ -12,17 +12,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 
 public class BurgerjeweledMainScreen extends StageScreen {
 	private static final int SCORE_NORMAL = 200;
 	private static final int SCORE_4 = 400;
 	private static final int SCORE_5 = 800;
-	private static final int BOARD_SIZE = 8;
 	private static final float BOARD_CELL_WIDTH = 100;
 	private static final float BOARD_CELL_HEIGHT = 60;
 
@@ -32,7 +29,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		createPool();
 		createPieceDrawables();
 		//createBg();
-		createBoard();
+		resetBoard();
 		createHud();
 	}
 
@@ -86,8 +83,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void swapPieces(int col2, int row2) {
 		Gdx.app.log("swapPieces", "mClickedCol=" + mClickedCol + " mClickedRow=" + mClickedRow + " col2=" + col2 + " row2=" + row2);
-		Piece piece1 = getPieceAt(mClickedCol, mClickedRow);
-		Piece piece2 = getPieceAt(col2, row2);
+		Piece piece1 = mBoard.getPiece(mClickedCol, mClickedRow);
+		Piece piece2 = mBoard.getPiece(col2, row2);
 
 		doSwap(mClickedCol, mClickedRow, col2, row2);
 		findMatches();
@@ -105,10 +102,10 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void doSwap(int col1, int row1, int col2, int row2) {
-		Piece piece1 = getPieceAt(col1, row1);
-		Piece piece2 = getPieceAt(col2, row2);
-		mBoard.get(col2).set(row2, piece1);
-		mBoard.get(col1).set(row1, piece2);
+		Piece piece1 = mBoard.getPiece(col1, row1);
+		Piece piece2 = mBoard.getPiece(col2, row2);
+		mBoard.setPiece(col2, row2, piece1);
+		mBoard.setPiece(col1, row1, piece2);
 	}
 
 	private void checkGameOver() {
@@ -150,25 +147,16 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mPool.removalRequested.connect(mHandlers, new Signal1.Handler<Piece>() {
 			@Override
 			public void handle(Piece piece) {
-				for (Array<Piece> column: mBoard) {
-					for (int row = 0; row < BOARD_SIZE; ++row) {
-						if (column.get(row) == piece) {
-							column.set(row, null);
-							mCollapseNeeded = true;
-							return;
-						}
-					}
+				if (mBoard.removePiece(piece)) {
+					mCollapseNeeded = true;
 				}
 			}
 		});
 	}
 
-	private void createBoard() {
-		for (int col = 0; col < BOARD_SIZE; ++col) {
-			Array<Piece> column = new Array<Piece>();
-			mBoard.add(column);
-			for (int row = 0; row < BOARD_SIZE; ++row) {
-				column.add(null);
+	private void resetBoard() {
+		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
+			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				resetPiece(col, row);
 			}
 		}
@@ -181,7 +169,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		float posX = col * BOARD_CELL_WIDTH;
 		float posY = row * BOARD_CELL_HEIGHT; 
 		piece.reset(mPiecesDrawable.get(id), id, posX, posY);
-		mBoard.get(col).set(row, piece);
+		mBoard.setPiece(col, row, piece);
 	}
 
 	private void findMatches() {
@@ -190,12 +178,12 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void findVerticalMatches() {
-		for (int col = 0; col < BOARD_SIZE; ++col) {
-			Array<Piece> column = mBoard.get(col);
+		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
+			Array<Piece> column = mBoard.getColumn(col);
 //			Gdx.app.log("findVerticalMatches", "col=" + col);
 			int sameCount = 1;
 			int lastId = -1;
-			for (int row = 0; row < BOARD_SIZE; ++row) {
+			for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 				Piece piece = column.get(row);
 				if (piece == null) {
 					return;
@@ -213,7 +201,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				}
 			}
 			if (sameCount >= 3) {
-				deleteVerticalPieces(column, BOARD_SIZE - sameCount, sameCount);
+				deleteVerticalPieces(column, Board.BOARD_SIZE - sameCount, sameCount);
 			}
 		}
 		//mGameOverDelay = 1;
@@ -228,11 +216,11 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void findHorizontalMatches() {
-		for (int row = 0; row < BOARD_SIZE; ++row) {
+		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			int sameCount = 1;
 			int lastId = -1;
-			for (int col = 0; col < BOARD_SIZE; ++col) {
-				Piece piece = getPieceAt(col, row);
+			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
+				Piece piece = mBoard.getPiece(col, row);
 				if (piece == null) {
 					return;
 				}
@@ -248,7 +236,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				}
 			}
 			if (sameCount >= 3) {
-				deleteHorizontalPieces(row, BOARD_SIZE - sameCount, sameCount);
+				deleteHorizontalPieces(row, Board.BOARD_SIZE - sameCount, sameCount);
 			}
 		}
 	}
@@ -256,24 +244,24 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private void deleteHorizontalPieces(int row, int fromCol, int size) {
 		Gdx.app.log("deletePieces", "row=" + row + "col=" + fromCol + " size="+ size);
 		for (int col = fromCol; col < fromCol + size; ++col) {
-			getPieceAt(col, row).destroy();
+			mBoard.getPiece(col, row).destroy();
 		}
 		mCollapseNeeded = true;
 	}
 
 	private void collapse() {
 		mCollapseNeeded = false;
-		for (int col = 0; col < BOARD_SIZE; ++col) {
+		for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 			collapseColumn(col);
 		}
 		findMatches();
 	}
 
 	private void collapseColumn(int col) {
-		Array<Piece> column = mBoard.get(col);
+		Array<Piece> column = mBoard.getColumn(col);
 		int fallSize = 0;
 		int dstRow = 0;
-		for (int row = 0; row < BOARD_SIZE; ++row) {
+		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			Piece piece = column.get(row);
 			if (piece == null) {
 				++fallSize;
@@ -285,15 +273,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 				++dstRow;
 			}
 		}
-		for (int row = BOARD_SIZE - fallSize; row < BOARD_SIZE; ++row) {
+		for (int row = Board.BOARD_SIZE - fallSize; row < Board.BOARD_SIZE; ++row) {
 			resetPiece(col, row);
 		}
-	}
-
-	private Piece getPieceAt(int col, int row) {
-		assert(col != -1);
-		assert(row != -1);
-		return mBoard.get(col).get(row);
 	}
 
 	private void createHud() {
@@ -322,8 +304,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private int mClickedRow = -1;
 	private int mClickedCol = -1;
-
-	private Array<Array<Piece>> mBoard = new Array<Array<Piece>>();
+	private Board mBoard = new Board();
 
 	private Array<MaskedDrawable> mPiecesDrawable = new Array<MaskedDrawable>();
 	private HashSet<Object> mHandlers = new HashSet<Object>();
