@@ -170,6 +170,9 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/0/salad-inventory")));
 		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/0/steak-inventory")));
 		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/0/tomato-inventory")));
+		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/0/fish-inventory")));
+		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/0/cheese-inventory")));
+		mPiecesDrawable.add(new MaskedDrawable(atlas.findRegion("mealitems/3/toast-inventory")));
 	}
 
 	private void createPool() {
