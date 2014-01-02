@@ -40,7 +40,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 		@Override
 		public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-			Gdx.app.log("BJ", "touchUp");
 			int col = MathUtils.floor(x / BOARD_CELL_WIDTH);
 			int row = MathUtils.floor(y / BOARD_CELL_HEIGHT);
 			if (col == mTouchedCol && row != mTouchedRow) {
