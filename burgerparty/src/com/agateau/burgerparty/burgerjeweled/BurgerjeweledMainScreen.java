@@ -213,7 +213,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 			for (int step = 0; step < Board.BOARD_SIZE; ++step, cellId += cellStep) {
 				Piece piece = mBoard.getPiece(cellId);
 				assert(piece != null);
-				assert(!piece.isDying());
 				int id = piece.getId();
 				if (id == lastId) {
 					++sameCount;
@@ -233,7 +232,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void markPieces(int from, int to, int step) {
 		for (int cellId = from; cellId != to; cellId += step) {
-			mBoard.getPiece(cellId).mark();
+			mBoard.getPiece(cellId).destroy();
 		}
 	}
 
@@ -245,8 +244,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		for (int row = 0; row < Board.BOARD_SIZE; ++row) {
 			for (int col = 0; col < Board.BOARD_SIZE; ++col) {
 				Piece piece = mBoard.getPiece(col, row);
-				if (piece.isMarked()) {
-					piece.destroy();
+				if (piece.isDying()) {
 					++count; 
 				}
 			}

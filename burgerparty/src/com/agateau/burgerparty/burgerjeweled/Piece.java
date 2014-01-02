@@ -48,7 +48,6 @@ public class Piece extends SpriteImage {
 		mTime = 0;
 		mId = id;
 		mDying = false;
-		mMarked = false;
 		init(md);
 		setOriginX(getWidth() / 2);
 		setOriginY(getHeight() / 2);
@@ -58,14 +57,6 @@ public class Piece extends SpriteImage {
 		addAction(
 			Actions.moveTo(posX, posY, FALL_DURATION, Interpolation.pow2Out)
 			);
-	}
-
-	public void mark() {
-		mMarked = true;
-	}
-
-	public boolean isMarked() {
-		return mMarked;
 	}
 
 	public boolean isDying() {
@@ -83,5 +74,4 @@ public class Piece extends SpriteImage {
 	private float mTime;
 	private int mId;
 	private boolean mDying = false;
-	private boolean mMarked = false;
 }
