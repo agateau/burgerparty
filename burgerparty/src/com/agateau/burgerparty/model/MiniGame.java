@@ -19,6 +19,13 @@ public abstract class MiniGame {
 
 	public abstract void showStartScreen();
 
+	public abstract void showMainScreen();
+
+	public void showGameOverScreen() {
+		Pixmap pix = UiUtils.getPixmap(0, 0, mGame.getWidth(), mGame.getHeight());
+		mGame.setScreen(new MiniGameOverScreen(this, pix));
+	}
+
 	public Assets getAssets() {
 		assert(mAssets != null);
 		return mAssets;

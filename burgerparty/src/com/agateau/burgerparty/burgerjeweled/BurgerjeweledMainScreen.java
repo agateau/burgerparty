@@ -2,17 +2,20 @@ package com.agateau.burgerparty.burgerjeweled;
 
 import java.util.HashSet;
 
+import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.utils.MaskedDrawable;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
@@ -70,9 +73,10 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		private int mTouchedRow = -1;
 	}
 
-	public BurgerjeweledMainScreen(BurgerjeweledMiniGame miniGame) {
+	public BurgerjeweledMainScreen(MiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
+		setupBg();
 		createPools();
 		createPieceDrawables();
 		resetBoard();
@@ -82,30 +86,20 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		if (mGameOverDelay < 0) {
-			mTime -= delta;
-			if (mTime < 0) {
-				mTime = 0;
-			}
-			getStage().act(delta);
-			if (!mBoard.hasDyingPieces() && !mCollapseNeeded) {
-				findMatches();
-			}
-			if (!mBoard.hasDyingPieces() && mCollapseNeeded) {
-				collapse();
-			}
-			checkGameOver();
-			updateHud();
-			getStage().draw();
-		} else {
-			mGameOverDelay += delta;
-			if (mGameOverDelay > 2) {
-				mMiniGame.showStartScreen();
-			}
-			getStage().draw();
+		mTime -= delta;
+		if (mTime < 0) {
+			mTime = 0;
 		}
+		getStage().act(delta);
+		if (!mBoard.hasDyingPieces() && !mCollapseNeeded) {
+			findMatches();
+		}
+		if (!mBoard.hasDyingPieces() && mCollapseNeeded) {
+			collapse();
+		}
+		checkGameOver();
+		updateHud();
+		getStage().draw();
 	}
 
 	private void swapPieces(int col2, int row2) {
@@ -141,13 +135,20 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	private void checkGameOver() {
 		if (mTime <= 0) {
-			gameOver();
+			mMiniGame.showGameOverScreen();
 		}
 	}
 
 	@Override
 	public void onBackPressed() {
 		mMiniGame.showStartScreen();
+	}
+
+	private void setupBg() {
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("ui/white-pixel");
+		Image bg = new Image(region);
+		bg.setColor(0.2f, 0.2f, 0.2f, 1);
+		setBackgroundActor(bg);
 	}
 
 	private void createPieceDrawables() {
@@ -337,12 +338,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mScoreLabel.setZIndex(1000);
 	}
 
-	private void gameOver() {
-		mGameOverDelay = 0;
-	}
-
 	// "final" fields
-	private BurgerjeweledMiniGame mMiniGame;
+	private MiniGame mMiniGame;
 	private Label mScoreLabel;
 
 	private Pool<Piece> mPiecePool;
@@ -357,7 +354,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private Label mLastBonusLabel;
 	private float mTime = START_TIME;
 	private int mScore = 0;
-	private float mGameOverDelay = -1;
 	private int mFirstPieceRow = -1;
 	private int mFirstPieceCol = -1;
 	private boolean mCollapseNeeded = false;

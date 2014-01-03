@@ -8,6 +8,8 @@ import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -26,7 +28,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
-		//createSky();
+		createSky();
 		//createBg();
 		createGround();
 		createEnemies();
@@ -42,18 +44,9 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private FPSLogger mLogger = new FPSLogger();
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.8f, 0.95f, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		if (mGameOverDelay < 0) {
-			getStage().act(delta);
-			mScore += SCORE_PER_SECOND * delta;
-			updateHud();
-		} else {
-			mGameOverDelay += delta;
-			if (mGameOverDelay > 2) {
-				mMiniGame.showStartScreen();
-			}
-		}
+		getStage().act(delta);
+		mScore += SCORE_PER_SECOND * delta;
+		updateHud();
 		getStage().draw();
 		mLogger.log();
 	}
@@ -118,11 +111,11 @@ public class BurgerCopterMainScreen extends StageScreen {
 			@Override
 			public boolean act(float delta) {
 				if (mGroundActor.collide(mPlayer)) {
-					gameOver();
+					mMiniGame.showGameOverScreen();
 				}
 				for(SpriteImage enemy: mEnemies) {
 					if (SpriteImage.collide(mPlayer, enemy)) {
-						gameOver();
+						mMiniGame.showGameOverScreen();
 					}
 				}
 				return false;
@@ -134,9 +127,10 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createSky() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/sky");
-		assert(region != null);
-		setBackgroundActor(new Image(region));
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("ui/white-pixel");
+		Image bg = new Image(region);
+		bg.setColor(0.8f, 0.95f, 1, 1);
+		setBackgroundActor(bg);
 	}
 
 	private void createBg() {
@@ -268,11 +262,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mScoreLabel.setText(String.valueOf((mScore / 10) * 10));
 	}
 
-	private void gameOver() {
-		mGameOverDelay = 0;
-	}
-
-	private float mGameOverDelay = -1;
 	private BurgerCopterMiniGame mMiniGame;
 	private SpriteImage mPlayer;
 	private TileActor mGroundActor;

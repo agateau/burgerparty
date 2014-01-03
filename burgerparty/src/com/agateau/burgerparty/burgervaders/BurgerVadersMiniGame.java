@@ -9,12 +9,13 @@ public class BurgerVadersMiniGame extends MiniGame {
 		super(assets, game);
 	}
 
-	public void showMainScreen() {
-		setScreen(new BurgerVadersMainScreen(this));
-	}
-
 	@Override
 	public void showStartScreen() {
 		setScreen(new BurgerVadersStartScreen(this));
+	}
+
+	@Override
+	public void showMainScreen() {
+		setScreen(new BurgerVadersMainScreen(this));
 	}
 }

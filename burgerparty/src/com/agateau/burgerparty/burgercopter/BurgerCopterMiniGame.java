@@ -14,6 +14,7 @@ public class BurgerCopterMiniGame extends MiniGame {
 		setScreen(new BurgerCopterStartScreen(this));
 	}
 
+	@Override
 	public void showMainScreen() {
 		setScreen(new BurgerCopterMainScreen(this));
 	}

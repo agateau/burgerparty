@@ -51,19 +51,11 @@ public class BurgerVadersMainScreen extends StageScreen {
 		mTime += delta;
 		Gdx.gl.glClearColor(0.8f, 0.95f, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		if (mGameOverDelay < 0) {
-			getStage().act(delta);
-			getStage().draw();
-			addEnemies();
-			checkBulletHits();
-			checkGameOver();
-		} else {
-			mGameOverDelay += delta;
-			if (mGameOverDelay > 2) {
-				mMiniGame.showStartScreen();
-			}
-			getStage().draw();
-		}
+		getStage().act(delta);
+		getStage().draw();
+		addEnemies();
+		checkBulletHits();
+		checkGameOver();
 	}
 
 	private void addEnemies() {
@@ -144,9 +136,8 @@ public class BurgerVadersMainScreen extends StageScreen {
 				continue;
 			}
 			if (enemy.getY() < 0) {
-				Gdx.app.log("Vaders", "Game Over");
-				gameOver();
-				break;
+				mMiniGame.showGameOverScreen();
+				return;
 			}
 		}
 	}
@@ -213,11 +204,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 		mScoreLabel.setText(String.valueOf((mScore / 10) * 10));
 	}
 
-	private void gameOver() {
-		mGameOverDelay = 0;
-	}
-
-	private float mGameOverDelay = -1;
 	private BurgerVadersMiniGame mMiniGame;
 	private SpriteImage mCannon;
 	private Array<Enemy> mEnemies = new Array<Enemy>(ENEMY_COUNT);

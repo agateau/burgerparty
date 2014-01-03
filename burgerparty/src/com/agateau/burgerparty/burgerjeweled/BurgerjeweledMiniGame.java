@@ -14,6 +14,7 @@ public class BurgerjeweledMiniGame extends MiniGame {
 		setScreen(new BurgerjeweledStartScreen(this));
 	}
 
+	@Override
 	public void showMainScreen() {
 		setScreen(new BurgerjeweledMainScreen(this));
 	}

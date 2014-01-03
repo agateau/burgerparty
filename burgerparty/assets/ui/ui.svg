@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142137"
-     inkscape:cx="1633.6936"
-     inkscape:cy="1014.5115"
+     inkscape:zoom="5.6568548"
+     inkscape:cx="143.36311"
+     inkscape:cy="833.88109"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="false"
@@ -12038,6 +12038,16 @@
            sodipodi:type="arc" />
       </g>
     </g>
+    <rect
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4326"
+       width="16"
+       height="16"
+       x="114"
+       y="325"
+       inkscape:export-filename="white-pixel.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
   <g
      inkscape:groupmode="layer"

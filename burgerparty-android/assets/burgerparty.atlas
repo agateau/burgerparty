@@ -145,7 +145,7 @@ ui/pause
   index: -1
 ui/vertical-gradient
   rotate: false
-  xy: 857, 62
+  xy: 875, 62
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
@@ -155,6 +155,13 @@ ui/vruler
   xy: 1016, 403
   size: 6, 12
   orig: 6, 12
+  offset: 0, 0
+  index: -1
+ui/white-pixel
+  rotate: false
+  xy: 857, 62
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 
