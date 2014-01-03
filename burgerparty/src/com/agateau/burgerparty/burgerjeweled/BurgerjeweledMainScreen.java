@@ -6,8 +6,6 @@ import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.utils.MaskedDrawable;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StageScreen;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
