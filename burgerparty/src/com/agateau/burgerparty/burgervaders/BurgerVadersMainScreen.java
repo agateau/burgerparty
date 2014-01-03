@@ -148,7 +148,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void createPlayer() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgervaders/cannon");
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");//"burgervaders/cannon");
 		assert(region != null);
 		mCannon = new Cannon(this, region);
 		mCannon.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
