@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.utils;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -23,6 +24,9 @@ public class TileActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+		Color color = getColor();
+		batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
+
 		int snapScrollOffset = (int)mScrollOffset;
 		int tileSize = mMap.getTileSize();
 		int colCount = mMap.getColumnCount();
