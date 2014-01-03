@@ -10,6 +10,7 @@ import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.SpriteImagePool;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -40,6 +41,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		// Find an available bullet, and fire it
 		for (Bullet bullet: mBullets) {
 			if (!bullet.isVisible()) {
+				mFireSound.play();
 				bullet.start(srcX, srcY, angle);
 				return;
 			}
@@ -154,6 +156,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		mCannon.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
 		mCannon.setY(0);
 		getStage().addActor(mCannon);
+		mFireSound = mMiniGame.getAssets().getSoundAtlas().findSound("splat");
 	}
 
 	private void createBg() {
@@ -210,6 +213,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private Array<Bullet> mBullets = new Array<Bullet>();
 	private int mScore = 0;
 	private Label mScoreLabel;
+	private Sound mFireSound;
 
 	private Map<Class<?>, SpriteImagePool<Enemy>> mEnemyPools;
 	private float mTime = 0;
