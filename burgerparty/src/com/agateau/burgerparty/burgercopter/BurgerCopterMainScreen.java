@@ -26,7 +26,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		createSky();
-		//createBg();
+		createBg();
 		createGround();
 		createEnemies();
 		createPlayer();
@@ -47,16 +47,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 		getStage().draw();
 		mLogger.log();
 	}
-
-	/*
-	private static class FollowMouseAction extends Action {
-		@Override
-		public boolean act(float delta) {
-			getActor().setY(Gdx.graphics.getHeight() - Gdx.input.getY());
-			return false;
-		}
-	}
-	*/
 
 	private static class GravityAction extends Action {
 		@Override
@@ -120,7 +110,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 				return false;
 			}
 		});
-//		image.addAction(new FollowMouseAction());
 		image.addAction(new GravityAction());
 		getStage().addActor(mPlayer);
 	}
@@ -133,16 +122,29 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createBg() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg1");
-		assert(region != null);
-		float width = region.getRegionWidth();
-		for (float x = 0; x <= getStage().getWidth(); x += width) {
-			Image image = new Image(region);
-			image.setX(x);
-			image.setY(TILE_SIZE);
-			image.addAction(new ScrollAction(PIXEL_PER_SECOND / 4));
-			getStage().addActor(image);
+		TextureRegion bg1Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg1");
+		assert(bg1Region != null);
+		TextureRegion bg2Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg2");
+		assert(bg2Region != null);
+		TileMap map = new TileMap(5, 1, bg1Region.getRegionWidth());
+
+		for (int col = 0; col < map.getColumnCount(); ++col) {
+			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1Region : bg2Region);
 		}
+
+		TileActor actor = new TileActor(map, PIXEL_PER_SECOND / 4);
+		actor.setBounds(0, TILE_SIZE * 2, getStage().getWidth(), bg1Region.getRegionWidth());
+		actor.setColor(1, 1, 1, 0.5f);
+		getStage().addActor(actor);
+
+		map = new TileMap(7, 1, bg1Region.getRegionWidth());
+		for (int col = 0; col < map.getColumnCount(); ++col) {
+			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1Region : bg2Region);
+		}
+
+		actor = new TileActor(map, PIXEL_PER_SECOND / 2);
+		actor.setBounds(0, TILE_SIZE, getStage().getWidth(), bg1Region.getRegionWidth());
+		getStage().addActor(actor);
 	}
 
 	private void createGround() {
