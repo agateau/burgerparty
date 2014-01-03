@@ -225,6 +225,24 @@ public class BurgerPartyGame extends Game {
 				showLevelListScreen(worldIndex);
 			}
 		});
-		setScreen(game.createScreen());
+		game.showStartScreen();
 	}
+
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		mWidth = width;
+		mHeight = height;
+	}
+
+	public int getWidth() {
+		return mWidth;
+	}
+
+	public int getHeight() {
+		return mHeight;
+	}
+
+	private int mWidth = 0;
+	private int mHeight = 0;
 }
