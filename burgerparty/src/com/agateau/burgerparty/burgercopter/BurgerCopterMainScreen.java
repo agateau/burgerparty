@@ -64,9 +64,11 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private static class GravityAction extends Action {
 		@Override
 		public boolean act(float delta) {
-			float y = getActor().getY();
+			Actor actor = getActor();
+			float y = actor.getY();
 			if (Gdx.input.isTouched()) {
-				y += PLAYER_DELTA * delta;
+				float maxY = actor.getStage().getHeight() - actor.getHeight();
+				y = Math.min(y + PLAYER_DELTA * delta, maxY);
 			} else {
 				y -= PLAYER_DELTA * delta;
 			}
