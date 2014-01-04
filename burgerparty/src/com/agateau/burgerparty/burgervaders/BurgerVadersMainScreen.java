@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
@@ -29,7 +30,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	public BurgerVadersMainScreen(BurgerVadersMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
-		mFireSound = mMiniGame.getAssets().getSoundAtlas().findSound("splat");
+		loadSounds();
 		createBg();
 		createBullets();
 		createPlayer();
@@ -136,6 +137,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				}
 				if (SpriteImage.collide(bullet, enemy)) {
 					enemy.onHit();
+					mEnemyHitSound.play();
 					bullet.setVisible(false);
 					mScore += SCORE_ENEMY_HIT;
 					updateHud();
@@ -147,6 +149,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				}
 				if (SpriteImage.collide(bullet, bonus)) {
 					bonus.onHit();
+					mBonusSound.play();
 					bullet.setVisible(false);
 					mPlayer.addGun();
 				}
@@ -169,6 +172,13 @@ public class BurgerVadersMainScreen extends StageScreen {
 	@Override
 	public void onBackPressed() {
 		mMiniGame.showStartScreen();
+	}
+
+	private void loadSounds() {
+		SoundAtlas atlas = mMiniGame.getAssets().getSoundAtlas();
+		mFireSound = atlas.findSound("splat");
+		mBonusSound = atlas.findSound("meal-done");
+		mEnemyHitSound = atlas.findSound("sauce");
 	}
 
 	private void createPlayer() {
@@ -267,6 +277,8 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private int mScore = 0;
 	private Label mScoreLabel;
 	private Sound mFireSound;
+	private Sound mBonusSound;
+	private Sound mEnemyHitSound;
 
 	private MaskedDrawableAtlas mMaskedDrawableAtlas;
 	private Map<Class<?>, Pool<Enemy>> mEnemyPools;
