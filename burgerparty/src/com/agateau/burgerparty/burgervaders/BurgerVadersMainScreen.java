@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import com.agateau.burgerparty.utils.CollisionMask;
+import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.SpriteImagePool;
@@ -18,12 +19,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
 
 public class BurgerVadersMainScreen extends StageScreen {
 	private static final int BULLET_COUNT = 6;
 	private static final int ENEMY_COUNT = 20;
 	private static final int SCORE_ENEMY_HIT = 200;
 	private static final float MAP_ROW_PER_SECOND = 0.5f;
+	private static final int BONUS_PERIOD = 2;
 
 	private static final int MAX_ENEMY_PER_LINE = 4;
 	private static final int HARDEST_ROW = 40;
@@ -33,7 +36,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		createBg();
 		createBullets();
 		createPlayer();
-		createEnemyPools();
+		createPools();
 		createHud();
 	}
 
@@ -55,19 +58,24 @@ public class BurgerVadersMainScreen extends StageScreen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		getStage().act(delta);
 		getStage().draw();
-		addEnemies();
+		fillNextRow();
 		checkBulletHits();
 		checkGameOver();
 	}
 
-	private void addEnemies() {
+	private void fillNextRow() {
 		int row = MathUtils.floor(mTime * MAP_ROW_PER_SECOND);
 		if (row == mRow) {
 			return;
 		}
 		mRow = row;
-		int enemyCount = MathUtils.random(0, MAX_ENEMY_PER_LINE * row / HARDEST_ROW) + 1;
-		Gdx.app.log("addEnemies", "row=" + row + " enemyCount=" + enemyCount);
+		addEnemies();
+		addBonuses();
+	}
+
+	private void addEnemies() {
+		int enemyCount = MathUtils.random(0, MAX_ENEMY_PER_LINE * mRow / HARDEST_ROW) + 1;
+		Gdx.app.log("addEnemies", "row=" + mRow + " enemyCount=" + enemyCount);
 		if (enemyCount == 0) {
 			return;
 		}
@@ -107,6 +115,15 @@ public class BurgerVadersMainScreen extends StageScreen {
 			}
 		}
 		Gdx.app.error("removeEnemy", "Could not find enemy " + enemy);
+	}
+
+	private void addBonuses() {
+		if (mRow == 0 || mRow % BONUS_PERIOD != 0) {
+			return;
+		}
+		Bonus bonus = mBonusPool.obtain();
+		bonus.init(getStage());
+		mBonuses.add(bonus);
 	}
 
 	private void checkBulletHits() {
@@ -165,8 +182,9 @@ public class BurgerVadersMainScreen extends StageScreen {
 		setBackgroundActor(new Image(region));
 	}
 
-	private void createEnemyPools() {
+	private void createPools() {
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
+		mMaskedDrawableAtlas = new MaskedDrawableAtlas(atlas);
 		mEnemyPools = new HashMap<Class<?>, SpriteImagePool<Enemy>>();
 		mEnemyPools.put(FriesEnemy.class,
 				new SpriteImagePool<Enemy>(FriesEnemy.class, atlas.findRegion("mealitems/0/big-fries-inventory"))
@@ -182,6 +200,19 @@ public class BurgerVadersMainScreen extends StageScreen {
 		};
 		mEnemyPools.get(FriesEnemy.class).removalRequested.connect(mHandlers, removalHandler);
 		mEnemyPools.get(SaladEnemy.class).removalRequested.connect(mHandlers, removalHandler);
+
+		mBonusPool = new Pool<Bonus>() {
+			@Override
+			protected Bonus newObject() {
+				return new Bonus(mMaskedDrawableAtlas) {
+					@Override
+					public void mustBeRemoved() {
+						mBonuses.removeValue(this, true);
+						mBonusPool.free(this);
+					}
+				};
+			}
+		};
 	}
 
 	private void createBullets() {
@@ -211,11 +242,14 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private SpriteImage mCannon;
 	private Array<Enemy> mEnemies = new Array<Enemy>(ENEMY_COUNT);
 	private Array<Bullet> mBullets = new Array<Bullet>();
+	private Array<Bonus> mBonuses = new Array<Bonus>();
 	private int mScore = 0;
 	private Label mScoreLabel;
 	private Sound mFireSound;
 
 	private Map<Class<?>, SpriteImagePool<Enemy>> mEnemyPools;
+	private MaskedDrawableAtlas mMaskedDrawableAtlas;
+	private Pool<Bonus> mBonusPool;
 	private float mTime = 0;
 	private int mRow = -1;
 
