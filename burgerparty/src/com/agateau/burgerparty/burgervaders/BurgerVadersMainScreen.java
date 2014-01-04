@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -52,8 +51,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 	@Override
 	public void render(float delta) {
 		mTime += delta;
-		Gdx.gl.glClearColor(0.8f, 0.95f, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		getStage().act(delta);
 		getStage().draw();
 		fillNextRow();
