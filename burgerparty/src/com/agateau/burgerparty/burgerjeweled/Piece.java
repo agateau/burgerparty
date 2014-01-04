@@ -5,7 +5,7 @@ import com.agateau.burgerparty.utils.SpriteImage;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class Piece extends SpriteImage {
+public abstract class Piece extends SpriteImage {
 	static private final float DEATH_DURATION = 0.5f;
 	static private final float FALL_DURATION = 0.2f;
 	static private final float SWAP_DURATION = 0.2f;
@@ -20,7 +20,7 @@ public class Piece extends SpriteImage {
 			Actions.run(new Runnable() {
 				@Override
 				public void run() {
-					removalRequested.emit();
+					mustBeRemoved();
 				}
 			})
 		));
@@ -70,6 +70,8 @@ public class Piece extends SpriteImage {
 	public int getId() {
 		return mId;
 	}
+
+	public abstract void mustBeRemoved();
 
 	private float mTime;
 	private int mId;

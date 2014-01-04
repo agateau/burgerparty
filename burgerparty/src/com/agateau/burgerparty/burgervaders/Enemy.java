@@ -12,7 +12,7 @@ public abstract class Enemy extends SpriteImage {
 			float k = mTime / DEATH_DURATION;
 			float scale = 1.0f - k;
 			if (scale < 0) {
-				removalRequested.emit();
+				mustBeRemoved();
 				return;
 			}
 			setScale(scale);
@@ -41,6 +41,8 @@ public abstract class Enemy extends SpriteImage {
 		mDying = true;
 		mTime = 0;
 	}
+
+	public abstract void mustBeRemoved();
 
 	public boolean isDying() {
 		return mDying;

@@ -1,14 +1,11 @@
 package com.agateau.burgerparty.burgervaders;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
-import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.agateau.burgerparty.utils.SpriteImagePool;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -82,7 +79,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		}
 		float step = getStage().getWidth() / enemyCount;
 		for (int idx = 0; idx < enemyCount; ++idx) {
-			SpriteImagePool<Enemy> pool = null;
+			Pool<Enemy> pool = null;
 			if (MathUtils.randomBoolean()) {
 				pool = mEnemyPools.get(SaladEnemy.class);
 			} else {
@@ -109,7 +106,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void removeEnemy(Enemy enemy) {
 		enemy.remove();
-		mEnemyPools.get(enemy.getClass()).free(enemy);
 		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
 			if (mEnemies.get(idx) == enemy) {
 				mEnemies.set(idx, null);
@@ -196,21 +192,38 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private void createPools() {
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		mMaskedDrawableAtlas = new MaskedDrawableAtlas(atlas);
-		mEnemyPools = new HashMap<Class<?>, SpriteImagePool<Enemy>>();
-		mEnemyPools.put(FriesEnemy.class,
-				new SpriteImagePool<Enemy>(FriesEnemy.class, atlas.findRegion("mealitems/0/big-fries-inventory"))
-				);
-		mEnemyPools.put(SaladEnemy.class,
-				new SpriteImagePool<Enemy>(SaladEnemy.class, atlas.findRegion("mealitems/0/salad-inventory"))
-				);
-		Signal1.Handler<Enemy> removalHandler = new Signal1.Handler<Enemy>() {
+		mEnemyPools = new HashMap<Class<?>, Pool<Enemy>>();
+
+		Pool<Enemy> friesPool = new Pool<Enemy>() {
 			@Override
-			public void handle(Enemy enemy) {
-				removeEnemy(enemy);
+			public Enemy newObject() {
+				final Pool<Enemy> pool = this;
+				return new FriesEnemy(mMaskedDrawableAtlas) {
+					@Override
+					public void mustBeRemoved() {
+						removeEnemy(this);
+						pool.free(this);
+					}
+				};
 			}
 		};
-		mEnemyPools.get(FriesEnemy.class).removalRequested.connect(mHandlers, removalHandler);
-		mEnemyPools.get(SaladEnemy.class).removalRequested.connect(mHandlers, removalHandler);
+
+		Pool<Enemy> saladPool = new Pool<Enemy>() {
+			@Override
+			public Enemy newObject() {
+				final Pool<Enemy> pool = this;
+				return new SaladEnemy(mMaskedDrawableAtlas) {
+					@Override
+					public void mustBeRemoved() {
+						removeEnemy(this);
+						pool.free(this);
+					}
+				};
+			}
+		};
+
+		mEnemyPools.put(FriesEnemy.class, friesPool);
+		mEnemyPools.put(SaladEnemy.class, saladPool);
 
 		mBonusPool = new Pool<Bonus>() {
 			@Override
@@ -258,11 +271,9 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private Label mScoreLabel;
 	private Sound mFireSound;
 
-	private Map<Class<?>, SpriteImagePool<Enemy>> mEnemyPools;
 	private MaskedDrawableAtlas mMaskedDrawableAtlas;
+	private Map<Class<?>, Pool<Enemy>> mEnemyPools;
 	private Pool<Bonus> mBonusPool;
 	private float mTime = 0;
 	private int mRow = -1;
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
 }

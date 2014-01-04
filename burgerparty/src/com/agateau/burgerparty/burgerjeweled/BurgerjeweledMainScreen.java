@@ -1,10 +1,7 @@
 package com.agateau.burgerparty.burgerjeweled;
 
-import java.util.HashSet;
-
 import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.utils.MaskedDrawable;
-import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -164,15 +161,14 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mPiecePool = new Pool<Piece>() {
 			@Override
 			public Piece newObject() {
-				final Piece piece = new Piece();
-				piece.removalRequested.connect(mHandlers, new Signal0.Handler() {
+				final Piece piece = new Piece() {
 					@Override
-					public void handle() {
-						if (mBoard.removePiece(piece)) {
-							mPiecePool.free(piece);
+					public void mustBeRemoved() {
+						if (mBoard.removePiece(this)) {
+							mPiecePool.free(this);
 						}
 					}
-				});
+				};
 				return piece;
 			}
 		};
@@ -346,7 +342,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	private Board mPendingBoard = new Board();
 
 	private Array<MaskedDrawable> mPiecesDrawable = new Array<MaskedDrawable>();
-	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	// mutable fields
 	private Label mLastBonusLabel;
