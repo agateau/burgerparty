@@ -28,15 +28,11 @@ public class SpriteImage extends Image {
 		this(maskedDrawable.drawable, maskedDrawable.mask);
 	}
 
-	public void init(Drawable drawable, CollisionMask mask) {
-		setDrawable(drawable);
-		mMask = mask;
+	public void init(MaskedDrawable maskedDrawable) {
+		setDrawable(maskedDrawable.drawable);
+		mMask = maskedDrawable.mask;
 		setWidth(getPrefWidth());
 		setHeight(getPrefHeight());
-	}
-
-	public void init(MaskedDrawable maskedDrawable) {
-		init(maskedDrawable.drawable, maskedDrawable.mask);
 	}
 
 	public static boolean collide(SpriteImage i1, SpriteImage i2) {
