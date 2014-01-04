@@ -185,7 +185,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");
 		assert(region != null);
 		mPlayer = new Player(this, region);
-		mPlayer.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
+		mPlayer.setX(getStage().getWidth() / 2);
 		mPlayer.setY(0);
 		getStage().addActor(mPlayer);
 	}
