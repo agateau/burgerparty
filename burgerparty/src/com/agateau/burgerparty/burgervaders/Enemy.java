@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.SpriteImage;
+import com.badlogic.gdx.math.MathUtils;
 
 public abstract class Enemy extends SpriteImage {
 	static private final float DEATH_DURATION = 0.5f;
@@ -14,7 +15,7 @@ public abstract class Enemy extends SpriteImage {
 				return;
 			}
 			setScale(scale);
-			setRotation(mTime / DEATH_DURATION * 540);
+			setRotation(MathUtils.sin(mTime / DEATH_DURATION * 6) * 60);
 		} else {
 			doAct(delta);
 		}
