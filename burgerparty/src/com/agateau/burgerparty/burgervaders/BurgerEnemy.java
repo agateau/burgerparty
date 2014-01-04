@@ -41,12 +41,12 @@ public abstract class BurgerEnemy extends Enemy {
 	public void onHit() {
 		SnapshotArray<Actor> array = getChildren();
 		float step = getWidth() * 1.4f;
-		float minCenter = step * (array.size - 1)/ 2f;
-		float center = MathUtils.clamp(getX(), minCenter, getStage().getWidth() - minCenter);
+		float minCenter = step * (array.size - 1) / 2f;
+		float center = MathUtils.clamp(getX(), minCenter, getStage().getWidth() - minCenter - getWidth());
 		for (int idx = 0, n = array.size; idx < n; ++idx) {
 			SpriteImage image = (SpriteImage)array.get(idx);
 			if (image != null) {
-				createEnemy(image, center + (idx - (array.size - 1) / 2f) * step);
+				createEnemy(image, center + step * (idx - (array.size - 1) / 2f));
 			}
 		}
 		mustBeRemoved();

@@ -72,15 +72,15 @@ public class BurgerVadersMainScreen extends StageScreen {
 		if (enemyCount == 0) {
 			return;
 		}
-		float gutterWidth = getStage().getWidth() / 6;
-		float step = (getStage().getWidth() - gutterWidth * 2) / (enemyCount + 1);
+		float gutter = getStage().getWidth() / 6;
+		float range = (getStage().getWidth() - gutter * 2) / enemyCount;
 
 		for (int idx = 0; idx < enemyCount; ++idx) {
 			Pool<Enemy> pool = mEnemyPools.get(MathUtils.random(mEnemyPools.size - 1));
 			Enemy enemy = pool.obtain();
 			float width = enemy.getWidth();
 			getStage().addActor(enemy);
-			enemy.init(gutterWidth + step * (idx + 1) - width / 2);
+			enemy.init(gutter + range * idx + MathUtils.random(width / 2, range - width / 2));
 			addEnemy(enemy);
 		}
 	}
