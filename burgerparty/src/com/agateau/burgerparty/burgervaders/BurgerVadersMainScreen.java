@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
 public class BurgerVadersMainScreen extends StageScreen {
-	private static final int BULLET_COUNT = 6;
+	private static final int BULLET_COUNT = 50;
 	private static final int ENEMY_COUNT = 20;
 	private static final int SCORE_ENEMY_HIT = 200;
 	private static final float MAP_ROW_PER_SECOND = 0.5f;
@@ -33,6 +33,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	public BurgerVadersMainScreen(BurgerVadersMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
+		mFireSound = mMiniGame.getAssets().getSoundAtlas().findSound("splat");
 		createBg();
 		createBullets();
 		createPlayer();
@@ -105,6 +106,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		Gdx.app.log("Vaders.addEnemy", "No room, must add. Size was " + mEnemies.size);
 		mEnemies.add(enemy);
 	}
+
 	private void removeEnemy(Enemy enemy) {
 		enemy.remove();
 		mEnemyPools.get(enemy.getClass()).free(enemy);
@@ -146,6 +148,16 @@ public class BurgerVadersMainScreen extends StageScreen {
 					updateHud();
 				}
 			}
+			for (Bonus bonus: mBonuses) {
+				if (bonus.hasBeenHit()) {
+					continue;
+				}
+				if (SpriteImage.collide(bullet, bonus)) {
+					bonus.onHit();
+					bullet.setVisible(false);
+					mPlayer.addGun();
+				}
+			}
 		}
 	}
 
@@ -167,13 +179,12 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void createPlayer() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");//"burgervaders/cannon");
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");
 		assert(region != null);
-		mCannon = new Cannon(this, region);
-		mCannon.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
-		mCannon.setY(0);
-		getStage().addActor(mCannon);
-		mFireSound = mMiniGame.getAssets().getSoundAtlas().findSound("splat");
+		mPlayer = new Player(this, region);
+		mPlayer.setX((getStage().getWidth() - region.getRegionWidth()) / 2);
+		mPlayer.setY(0);
+		getStage().addActor(mPlayer);
 	}
 
 	private void createBg() {
@@ -239,7 +250,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private BurgerVadersMiniGame mMiniGame;
-	private SpriteImage mCannon;
+	private Player mPlayer;
 	private Array<Enemy> mEnemies = new Array<Enemy>(ENEMY_COUNT);
 	private Array<Bullet> mBullets = new Array<Bullet>();
 	private Array<Bonus> mBonuses = new Array<Bonus>();
