@@ -23,7 +23,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private static final int ENEMY_COUNT = 20;
 	private static final int SCORE_ENEMY_HIT = 200;
 	private static final float MAP_ROW_PER_SECOND = 0.5f;
-	private static final int BONUS_PERIOD = 2;
+	private static final int BONUS_PERIOD = 8;
 
 	private static final int MAX_ENEMY_PER_LINE = 4;
 	private static final int HARDEST_ROW = 40;
