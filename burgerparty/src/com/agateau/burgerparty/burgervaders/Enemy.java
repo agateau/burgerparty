@@ -9,13 +9,15 @@ public abstract class Enemy extends SpriteImage {
 	public void act(float delta) {
 		mTime += delta;
 		if (mDying) {
-			float scale = 1.0f - mTime / DEATH_DURATION;
+			float k = mTime / DEATH_DURATION;
+			float scale = 1.0f - k;
 			if (scale < 0) {
 				removalRequested.emit();
 				return;
 			}
 			setScale(scale);
-			setRotation(MathUtils.sin(mTime / DEATH_DURATION * 6) * 60);
+			setRotation(MathUtils.sin(k * 6) * 60);
+			setColor(1, 1 - k, 1 - k, 1);
 		} else {
 			doAct(delta);
 		}
@@ -30,6 +32,7 @@ public abstract class Enemy extends SpriteImage {
 		setOriginY(getHeight() / 2);
 		setScale(1);
 		setRotation(0);
+		setColor(1, 1, 1, 1);
 
 		setPosition(posX, getStage().getHeight());
 	}
