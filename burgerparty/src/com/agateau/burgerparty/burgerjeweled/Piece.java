@@ -48,7 +48,7 @@ public abstract class Piece extends SpriteImage {
 		mTime = 0;
 		mId = id;
 		mDying = false;
-		init(md);
+		setMaskedDrawable(md);
 		setOriginX(getWidth() / 2);
 		setOriginY(getHeight() / 2);
 		setScale(1);

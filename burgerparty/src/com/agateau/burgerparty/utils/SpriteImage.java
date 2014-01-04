@@ -3,43 +3,43 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class SpriteImage extends Image {
 	public SpriteImage() {
 	}
 
 	public SpriteImage(TextureRegion region) {
-		super(region);
-		mMask = new CollisionMask(region);
+		setMaskedDrawable(new MaskedDrawable(region));
 	}
 
 	public SpriteImage(TextureRegion region, CollisionMask mask) {
-		super(region);
-		mMask = mask;
-	}
-
-	public SpriteImage(Drawable drawable, CollisionMask mask) {
-		super(drawable);
-		mMask = mask;
+		setMaskedDrawable(new MaskedDrawable(region, mask));
 	}
 
 	public SpriteImage(MaskedDrawable maskedDrawable) {
-		this(maskedDrawable.drawable, maskedDrawable.mask);
+		setMaskedDrawable(maskedDrawable);
 	}
 
-	public void init(MaskedDrawable maskedDrawable) {
+	public void setMaskedDrawable(MaskedDrawable maskedDrawable) {
+		mMaskedDrawable = maskedDrawable;
 		setDrawable(maskedDrawable.drawable);
-		mMask = maskedDrawable.mask;
 		setWidth(getPrefWidth());
 		setHeight(getPrefHeight());
+	}
+
+	public MaskedDrawable getMaskedDrawable() {
+		return mMaskedDrawable;
+	}
+
+	public CollisionMask getCollisionMask() {
+		return mMaskedDrawable.mask;
 	}
 
 	public static boolean collide(SpriteImage i1, SpriteImage i2) {
 		if (!boundCollide(i1, i2)) {
 			return false;
 		}
-		return i1.mMask.collide(i2.mMask, (int)(i2.getX() - i1.getX()), (int)(i2.getY() - i1.getY()));
+		return i1.mMaskedDrawable.mask.collide(i2.mMaskedDrawable.mask, (int)(i2.getX() - i1.getX()), (int)(i2.getY() - i1.getY()));
 	}
 
 	public static boolean boundCollide(Actor a1, Actor a2) {
@@ -72,5 +72,5 @@ public class SpriteImage extends Image {
 		return true;
 	}
 
-	private CollisionMask mMask;
+	private MaskedDrawable mMaskedDrawable;
 }
