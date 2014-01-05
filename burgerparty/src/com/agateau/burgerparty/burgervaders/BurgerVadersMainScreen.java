@@ -131,7 +131,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				}
 				if (enemy.collide(bullet)) {
 					enemy.onHit();
-					mEnemyHitSound.play();
+					//mEnemyHitSound.play();
 					bullet.setVisible(false);
 					mScore += SCORE_ENEMY_HIT;
 					updateHud();
