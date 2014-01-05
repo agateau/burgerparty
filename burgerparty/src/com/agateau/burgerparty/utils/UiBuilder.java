@@ -101,6 +101,8 @@ public class UiBuilder {
 			return createScrollPane(element);
 		} else if (name.equals("VerticalGroup")) {
 			return createVerticalGroup(element);
+		} else if (name.equals("HorizontalGroup")) {
+			return createHorizontalGroup(element);
 		}
 		throw new RuntimeException("Unknown UI element type: " + name);
 	}
@@ -192,6 +194,10 @@ public class UiBuilder {
 
 	protected VerticalGroup createVerticalGroup(XmlReader.Element element) {
 		return new VerticalGroup();
+	}
+
+	protected HorizontalGroup createHorizontalGroup(XmlReader.Element element) {
+		return new HorizontalGroup();
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
