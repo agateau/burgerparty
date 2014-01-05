@@ -168,6 +168,10 @@ public class Level {
 		return mScore;
 	}
 
+	public void lock() {
+		mStatus = Status.LOCKED;
+	}
+
 	public void unlock() {
 		if (mStatus == Status.LOCKED) {
 			mStatus = Status.NEW;
