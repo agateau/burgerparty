@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="51.969416"
-     inkscape:cy="359.39908"
+     inkscape:zoom="22.627416"
+     inkscape:cx="50.781156"
+     inkscape:cy="406.71079"
      inkscape:document-units="px"
-     inkscape:current-layer="g3901"
+     inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1563"
      inkscape:window-height="880"
@@ -81,13 +81,13 @@
          sodipodi:cy="72"
          sodipodi:cx="136"
          id="path3091"
-         style="color:#000000;fill:#1a1a1a;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          sodipodi:type="arc" />
       <path
          inkscape:connector-curvature="0"
          id="path3865"
          d="m 136.40625,628.39343 c 7.53325,0.76504 13.40625,7.10865 13.40625,14.84375 0,8.25077 -6.68673,14.9375 -14.9375,14.9375 -7.7351,0 -14.07871,-5.873 -14.84375,-13.40625 0.21928,8.64549 7.27042,15.59375 15.96875,15.59375 8.83656,0 16,-7.16344 16,-16 0,-8.69833 -6.94826,-15.74947 -15.59375,-15.96875 z"
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="color:#000000;fill:#aa0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
       <path
          transform="matrix(1.6666667,0,0,1.6666667,-90.666665,524.36218)"
          d="m 133,67.5 c 0,0.828427 -0.67157,1.5 -1.5,1.5 -0.82843,0 -1.5,-0.671573 -1.5,-1.5 0,-0.828427 0.67157,-1.5 1.5,-1.5 0.82843,0 1.5,0.671573 1.5,1.5 z"

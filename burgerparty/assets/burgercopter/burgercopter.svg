@@ -50,7 +50,8 @@
        y1="660.36218"
        x2="72"
        y2="700.36218"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.4,0,0,0.57142857,0,327.58379)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3930"
@@ -61,6 +62,26 @@
        y2="804.36218"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(208,-96)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3918"
+       id="linearGradient3072"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.4,0,0,0.57142857,0,399.58379)"
+       x1="72"
+       y1="660.36218"
+       x2="72"
+       y2="700.36218" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3918"
+       id="linearGradient3076"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.4,0,0,0.57142857,64,399.58379)"
+       x1="72"
+       y1="660.36218"
+       x2="72"
+       y2="700.36218" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -69,12 +90,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4"
-     inkscape:cx="156.63341"
-     inkscape:cy="472.31703"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="80.042667"
+     inkscape:cy="260.78319"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="true"
+     showgrid="false"
      inkscape:window-width="1563"
      inkscape:window-height="880"
      inkscape:window-x="37"
@@ -385,15 +406,6 @@
            y="-604.36218" />
       </g>
     </g>
-    <path
-       style="fill:url(#linearGradient3926);fill-opacity:1;stroke:none"
-       d="m 0,764.36218 0,-80 16,-32 8,16 24.023886,14.46474 L 64,668.36218 l 24,-8 16,-8 16,16 16,8 24,8 0,80 z"
-       id="path3916"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccc"
-       inkscape:export-filename="bg1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <rect
        style="opacity:0.98999999;color:#000000;fill:url(#linearGradient3938);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3928"
@@ -578,5 +590,23 @@
          d="m 144,588.36218 1,0 -1,1 z"
          style="color:#000000;fill:#338000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="bg1.png"
+       sodipodi:nodetypes="cccccc"
+       inkscape:connector-curvature="0"
+       id="path3070"
+       d="m 0,836.36218 0,-48 c 10,6 31.053819,-5.26878 37,-9 6,7 21.043176,11.97841 27,9 l 0,48 z"
+       style="fill:url(#linearGradient3072);fill-opacity:1;stroke:none" />
+    <path
+       style="fill:url(#linearGradient3076);fill-opacity:1;stroke:none"
+       d="m 64,836.36218 0,-48 c 3.193659,3.19366 8,0 16,-8 16,16 20.9948,0 24,-8 3.52513,8.06066 18.04318,18.97841 24,16 l 0,48 z"
+       id="path3074"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="bg2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
