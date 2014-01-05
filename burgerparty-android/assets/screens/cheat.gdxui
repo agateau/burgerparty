@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <ScrollPane
+            id="scrollPane"
+            topLeft="root.topLeft"
+            width="800"
+            height="480"
+            >
+                <VerticalGroup>
+                    <TextButton id="reset">Reset</TextButton>
+                    <Label>World 1</Label>
+                    <HorizontalGroup>
+                        <TextButton id="stars-1-0">0</TextButton>
+                        <TextButton id="stars-1-1">1</TextButton>
+                        <TextButton id="stars-1-2">2</TextButton>
+                        <TextButton id="stars-1-3">3</TextButton>
+                    </HorizontalGroup>
+                    <Label>World 2</Label>
+                    <HorizontalGroup>
+                        <TextButton id="stars-2-0">0</TextButton>
+                        <TextButton id="stars-2-1">1</TextButton>
+                        <TextButton id="stars-2-2">2</TextButton>
+                        <TextButton id="stars-2-3">3</TextButton>
+                    </HorizontalGroup>
+                    <Label>World 3</Label>
+                    <HorizontalGroup>
+                        <TextButton id="stars-3-0">0</TextButton>
+                        <TextButton id="stars-3-1">1</TextButton>
+                        <TextButton id="stars-3-2">2</TextButton>
+                        <TextButton id="stars-3-3">3</TextButton>
+                    </HorizontalGroup>
+                </VerticalGroup>
+        </ScrollPane>
+        <ImageButton id="backButton"
+            style="round-button"
+            imageName="ui/icon-back"
+            bottomLeft="root.bottomLeft 1 1"/>
+    </AnchorGroup>
+</gdxui>

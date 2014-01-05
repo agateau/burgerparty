@@ -8,11 +8,13 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class AboutScreen extends BurgerPartyScreen {
 	private static final float PIXEL_PER_SECOND = 48;
@@ -43,7 +45,17 @@ public class AboutScreen extends BurgerPartyScreen {
 				onBackPressed();
 			}
 		});
-		
+
+		builder.<Label>getActor("titleLabel").addListener(new ClickListener() {
+			public void clicked(InputEvent event, float x, float y) {
+				++mClickCount;
+				if (mClickCount >= 5) {
+					getGame().showCheatScreen();
+				}
+			}
+			private int mClickCount = 0;
+		});
+
 		mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
 		String aboutText = FileUtils.assets("about.txt").readString("utf-8");

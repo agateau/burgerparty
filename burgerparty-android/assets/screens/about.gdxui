@@ -9,7 +9,7 @@
             >
                 <VerticalGroup>
                     <Group height="400"/>
-                    <Label id="title" style="about-title">Burger Party</Label>
+                    <Label id="titleLabel" style="about-title">Burger Party</Label>
                     <Label id="bodyLabel" style="about-body" align="center"/>
                 </VerticalGroup>
         </ScrollPane>
