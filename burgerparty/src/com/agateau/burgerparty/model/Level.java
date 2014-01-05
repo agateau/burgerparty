@@ -69,7 +69,11 @@ public class Level {
 	public Definition definition = new Definition();
 
 	public int getStars() {
-		return getStarsFor(mScore);
+		if (mStatus == Status.PLAYED) {
+			return getStarsFor(mScore);
+		} else {
+			return 0;
+		}
 	}
 
 	public boolean hasBrandNewItem() {
@@ -165,7 +169,7 @@ public class Level {
 	}
 
 	public int getScore() {
-		return mScore;
+		return mStatus == Status.PLAYED ? mScore : 0;
 	}
 
 	public void lock() {
