@@ -22,15 +22,15 @@ public class TileActor extends Actor implements Disposable {
 
 	@Override
 	public void act(float delta) {
-		mScrollOffset -= mSpeed * delta;
-		if (mScrollOffset < -mMap.getTileSize()) {
+		if (mFrameBuffer == null) {
+			updateFrameBuffer();
+		}
+		mScrollOffset += mSpeed * delta;
+		if (mScrollOffset > mMap.getTileSize()) {
 			mScrollOffset = 0;
 			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
+			updateFrameBuffer();
 		}
-		SpriteBatch batch = getStage().getSpriteBatch();
-		batch.begin();
-		updateFrameBuffer(batch);
-		batch.end();
 	}
 
 	@Override
@@ -38,10 +38,10 @@ public class TileActor extends Actor implements Disposable {
 		Texture texture = mFrameBuffer.getColorBufferTexture();
 		Color color = getColor();
 		batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
-		batch.draw(texture, getX(), getY(), getWidth(), getHeight(), 0f, 0f, 1f, 1f);//, mFrameBuffer.getWidth() /** Gdx.graphics.getWidth() / getWidth()*/, getHeight(), 0f, 0f, 1f, 1f);
+		batch.draw(texture, getX() - mScrollOffset, getY(), mFrameBuffer.getWidth(), mFrameBuffer.getHeight(), 0f, 0f, 1f, 1f);
 	}
 
-	private void updateFrameBuffer(SpriteBatch batch) {
+	private void updateFrameBuffer() {
 		if (mFrameBuffer == null) {
 			int tileSize = mMap.getTileSize();
 			int w = MathUtils.ceil(getWidth() / tileSize) * tileSize + tileSize;
@@ -51,14 +51,16 @@ public class TileActor extends Actor implements Disposable {
 			mFrameBufferProjectionMatrix.setToOrtho2D(0, 0, w, h);
 		}
 
+		SpriteBatch batch = getStage().getSpriteBatch();
+		batch.begin();
+
 		mFrameBuffer.begin();
 		Gdx.gl.glClearColor(1, 1, 1, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(mFrameBufferProjectionMatrix);
-		int snapScrollOffset = (int)mScrollOffset;
 		int tileSize = mMap.getTileSize();
 		int colCount = mMap.getColumnCount();
-		for (int col = mStartCol, x = snapScrollOffset; x < mFrameBuffer.getWidth(); ++col, x += tileSize) {
+		for (int col = mStartCol, x = 0; x < mFrameBuffer.getWidth(); ++col, x += tileSize) {
 			Array<TextureRegion> column = mMap.getColumn(col % colCount);
 			for (int row = 0; row < mMap.getRowCount(); ++row) {
 				TextureRegion region = column.get(row);
@@ -70,6 +72,8 @@ public class TileActor extends Actor implements Disposable {
 		}
 		batch.flush();
 		mFrameBuffer.end();
+
+		batch.end();
 	}
 
 	public boolean collide(Actor actor) {
