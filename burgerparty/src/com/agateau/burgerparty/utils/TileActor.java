@@ -50,11 +50,12 @@ public class TileActor extends Actor implements Disposable {
 			mFrameBufferProjectionMatrix = new Matrix4();
 			mFrameBufferProjectionMatrix.setToOrtho2D(0, 0, w, h);
 		}
+		mFrameBuffer.begin();
 
 		SpriteBatch batch = getStage().getSpriteBatch();
 		batch.begin();
+		batch.disableBlending();
 
-		mFrameBuffer.begin();
 		Gdx.gl.glClearColor(1, 1, 1, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(mFrameBufferProjectionMatrix);
@@ -70,10 +71,10 @@ public class TileActor extends Actor implements Disposable {
 				batch.draw(region, x, row * tileSize);
 			}
 		}
-		batch.flush();
-		mFrameBuffer.end();
-
+		batch.enableBlending();
 		batch.end();
+
+		mFrameBuffer.end();
 	}
 
 	public boolean collide(Actor actor) {
