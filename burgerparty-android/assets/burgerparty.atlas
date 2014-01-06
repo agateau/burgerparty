@@ -169,72 +169,79 @@ burgerparty2.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-burgercopter/building-top
+burgercopter/bg1
   rotate: false
-  xy: 989, 2
-  size: 32, 32
-  orig: 32, 32
+  xy: 954, 816
+  size: 64, 57
+  orig: 64, 57
   offset: 0, 0
   index: -1
-burgercopter/sky
+customers/boys/top-0
   rotate: false
-  xy: 996, 298
-  size: 8, 80
-  orig: 8, 80
+  xy: 913, 543
+  size: 103, 57
+  orig: 103, 57
   offset: 0, 0
   index: -1
-customers/pirate-boys/face-boss-angry
+customers/girls/body-0
   rotate: false
-  xy: 804, 6
-  size: 147, 110
-  orig: 147, 110
+  xy: 906, 130
+  size: 115, 172
+  orig: 115, 172
   offset: 0, 0
   index: -1
-levels/1/button
+customers/ninjas/face-0-angry
   rotate: false
-  xy: 934, 778
-  size: 80, 80
-  orig: 80, 80
+  xy: 906, 9
+  size: 110, 119
+  orig: 110, 119
   offset: 0, 0
   index: -1
-levels/1/button-down
+customers/pirate-boys/top-boss
   rotate: false
-  xy: 934, 942
-  size: 80, 80
-  orig: 80, 80
+  xy: 913, 602
+  size: 108, 64
+  orig: 108, 64
   offset: 0, 0
   index: -1
-levels/2/button
+customers/pirate-girls/top-blue
   rotate: false
-  xy: 934, 696
-  size: 80, 80
-  orig: 80, 80
+  xy: 913, 668
+  size: 109, 61
+  orig: 109, 61
   offset: 0, 0
   index: -1
-levels/3/button
+customers/wrestler/face-0-angry
   rotate: false
-  xy: 934, 696
-  size: 80, 80
-  orig: 80, 80
+  xy: 954, 947
+  size: 68, 75
+  orig: 68, 75
   offset: 0, 0
   index: -1
-levels/2/button-down
+lcd-font
   rotate: false
-  xy: 934, 860
-  size: 80, 80
-  orig: 80, 80
+  xy: 2, 28
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
-levels/3/button-down
+levels/2/bottom-left-button-bar
   rotate: false
-  xy: 934, 860
-  size: 80, 80
-  orig: 80, 80
+  xy: 804, 542
+  size: 107, 187
+  orig: 107, 187
+  offset: 0, 0
+  index: -1
+levels/3/bottom-left-button-bar
+  rotate: false
+  xy: 804, 542
+  size: 107, 187
+  orig: 107, 187
   offset: 0, 0
   index: -1
 levels/2/preview
   rotate: false
-  xy: 804, 722
+  xy: 516, 2
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
@@ -248,132 +255,58 @@ levels/3/background
   index: -1
 levels/3/preview
   rotate: false
-  xy: 804, 420
+  xy: 646, 2
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
   index: -1
-mealitems/0/big-fries-inventory
+mealitems/0/big-fries
   rotate: false
-  xy: 953, 36
-  size: 57, 80
-  orig: 57, 80
+  xy: 804, 813
+  size: 148, 209
+  orig: 148, 209
   offset: 0, 0
   index: -1
-mealitems/0/bottom
+mealitems/0/fish
   rotate: false
-  xy: 2, 11
-  size: 244, 47
-  orig: 244, 47
+  xy: 804, 764
+  size: 194, 47
+  orig: 194, 47
   offset: 0, 0
   index: -1
-mealitems/0/cheese
+mealitems/0/onion
   rotate: false
-  xy: 478, 11
-  size: 223, 47
-  orig: 223, 47
-  offset: 0, 0
-  index: -1
-mealitems/0/small-fries-inventory
-  rotate: false
-  xy: 934, 118
-  size: 61, 80
-  orig: 61, 80
-  offset: 0, 0
-  index: -1
-mealitems/0/toast
-  rotate: false
-  xy: 248, 9
-  size: 228, 49
-  orig: 228, 49
-  offset: 0, 0
-  index: -1
-mealitems/3/toast-inventory
-  rotate: false
-  xy: 703, 7
-  size: 84, 51
-  orig: 84, 51
+  xy: 804, 731
+  size: 186, 31
+  orig: 186, 31
   offset: 0, 0
   index: -1
 sandbox-preview
   rotate: false
-  xy: 804, 118
+  xy: 776, 2
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
   index: -1
-ui/icon-back
+ui/icon-levels
   rotate: false
-  xy: 953, 2
-  size: 34, 32
-  orig: 34, 32
+  xy: 992, 734
+  size: 28, 28
+  orig: 28, 28
   offset: 0, 0
   index: -1
-ui/icon-button
+ui/inventory-burger
   rotate: false
-  xy: 934, 536
-  size: 76, 76
-  orig: 76, 76
+  xy: 954, 875
+  size: 68, 70
+  orig: 68, 70
   offset: 0, 0
   index: -1
-ui/icon-play
+ui/title
   rotate: false
-  xy: 996, 262
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/icon-play-big
-  rotate: false
-  xy: 934, 614
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-ui/icon-right
-  rotate: false
-  xy: 996, 226
-  size: 26, 34
-  orig: 26, 34
-  offset: 0, 0
-  index: -1
-ui/lock-key
-  rotate: false
-  xy: 934, 290
-  size: 60, 88
-  orig: 60, 88
-  offset: 0, 0
-  index: -1
-ui/lock-star
-  rotate: false
-  xy: 934, 200
-  size: 60, 88
-  orig: 60, 88
-  offset: 0, 0
-  index: -1
-ui/menu-bg
-  rotate: false
-  xy: 2, 60
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
-ui/text-button
-  rotate: false
-  xy: 934, 380
-  size: 76, 76
-  split: 37, 37, 37, 37
-  pad: 36, 36, 13, 15
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
-ui/text-button-down
-  rotate: false
-  xy: 934, 458
-  size: 76, 76
-  split: 37, 37, 37, 37
-  pad: 36, 36, 13, 15
-  orig: 76, 76
+  xy: 516, 304
+  size: 495, 236
+  orig: 495, 236
   offset: 0, 0
   index: -1
 
@@ -383,193 +316,186 @@ filter: Nearest,Linear
 repeat: none
 burgercopter/bg2
   rotate: false
-  xy: 945, 468
+  xy: 954, 496
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-customers/boys/body-2
+burgercopter/building-top
   rotate: false
-  xy: 902, 70
-  size: 111, 155
-  orig: 111, 155
+  xy: 988, 2
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
-customers/girls/top-0
+customers/boys/body-1
   rotate: false
-  xy: 950, 13
-  size: 70, 55
-  orig: 70, 55
+  xy: 804, 146
+  size: 111, 171
+  orig: 111, 171
+  offset: 0, 0
+  index: -1
+customers/boys/face-1-angry
+  rotate: false
+  xy: 947, 652
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
+customers/girls/body-1
+  rotate: false
+  xy: 804, 319
+  size: 111, 173
+  orig: 111, 173
   offset: 0, 0
   index: -1
 customers/japan-girls/body-0
   rotate: false
-  xy: 804, 434
+  xy: 804, 835
   size: 139, 186
   orig: 139, 186
   offset: 0, 0
   index: -1
-customers/japan-girls/face-0-angry
+customers/ninjas/face-0-happy
   rotate: false
-  xy: 945, 534
-  size: 76, 54
-  orig: 76, 54
-  offset: 0, 0
-  index: -1
-customers/japan-girls/face-0-neutral
-  rotate: false
-  xy: 945, 413
-  size: 76, 53
-  orig: 76, 53
-  offset: 0, 0
-  index: -1
-customers/wrestler/face-0-angry
-  rotate: false
-  xy: 954, 942
-  size: 68, 75
-  orig: 68, 75
-  offset: 0, 0
-  index: -1
-customers/wrestler/face-0-happy
-  rotate: false
-  xy: 947, 590
-  size: 66, 64
-  orig: 66, 64
-  offset: 0, 0
-  index: -1
-customers/wrestler/face-0-neutral
-  rotate: false
-  xy: 947, 725
-  size: 66, 71
-  orig: 66, 71
+  xy: 804, 25
+  size: 110, 119
+  orig: 110, 119
   offset: 0, 0
   index: -1
 levels/1/newitem-bg
   rotate: false
-  xy: 2, 537
+  xy: 2, 59
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
-levels/2/bottom-left-button-bar
+levels/2/bottom-right-button-bar
   rotate: false
-  xy: 804, 245
-  size: 107, 187
-  orig: 107, 187
+  xy: 916, 36
+  size: 106, 102
+  orig: 106, 102
   offset: 0, 0
   index: -1
-levels/3/bottom-left-button-bar
+levels/3/bottom-right-button-bar
   rotate: false
-  xy: 804, 245
-  size: 107, 187
-  orig: 107, 187
+  xy: 916, 36
+  size: 106, 102
+  orig: 106, 102
   offset: 0, 0
   index: -1
-levels/2/newitem-bg
+mealitems/0/bottom
   rotate: false
-  xy: 2, 55
-  size: 800, 480
-  orig: 800, 480
+  xy: 2, 10
+  size: 244, 47
+  orig: 244, 47
   offset: 0, 0
   index: -1
-levels/3/newitem-bg
+mealitems/0/cheese
   rotate: false
-  xy: 2, 55
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
-mealitems/0/big-fries
-  rotate: false
-  xy: 804, 808
-  size: 148, 209
-  orig: 148, 209
-  offset: 0, 0
-  index: -1
-mealitems/0/fish
-  rotate: false
-  xy: 228, 6
-  size: 194, 47
-  orig: 194, 47
+  xy: 478, 10
+  size: 223, 47
+  orig: 223, 47
   offset: 0, 0
   index: -1
 mealitems/0/juice
   rotate: false
-  xy: 913, 227
+  xy: 917, 317
   size: 96, 175
   orig: 96, 175
   offset: 0, 0
   index: -1
-mealitems/0/ketchup
-  rotate: false
-  xy: 424, 20
-  size: 224, 33
-  orig: 224, 33
-  offset: 0, 0
-  index: -1
 mealitems/0/small-fries
   rotate: false
-  xy: 804, 622
+  xy: 804, 649
   size: 141, 184
   orig: 141, 184
   offset: 0, 0
   index: -1
 mealitems/0/soda
   rotate: false
-  xy: 804, 68
+  xy: 917, 140
   size: 96, 175
   orig: 96, 175
   offset: 0, 0
   index: -1
-mealitems/0/steak
+mealitems/0/toast
   rotate: false
-  xy: 2, 9
-  size: 224, 44
-  orig: 224, 44
+  xy: 248, 8
+  size: 228, 49
+  orig: 228, 49
   offset: 0, 0
   index: -1
-mealitems/2/soda-inventory
+mealitems/2/soda
   rotate: false
-  xy: 947, 656
-  size: 65, 67
-  orig: 65, 67
+  xy: 804, 494
+  size: 148, 153
+  orig: 148, 153
   offset: 0, 0
   index: -1
-ui/hud-bg
+mealitems/3/toast-inventory
   rotate: false
-  xy: 804, 2
-  size: 144, 64
-  orig: 144, 64
+  xy: 703, 6
+  size: 84, 51
+  orig: 84, 51
   offset: 0, 0
   index: -1
-ui/icon-levels
+ui/icon-back
   rotate: false
-  xy: 913, 404
-  size: 28, 28
-  orig: 28, 28
+  xy: 916, 2
+  size: 34, 32
+  orig: 34, 32
   offset: 0, 0
   index: -1
-ui/inventory-burger
+ui/icon-button
   rotate: false
-  xy: 954, 870
-  size: 68, 70
-  orig: 68, 70
+  xy: 945, 945
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/icon-next-item
+  rotate: false
+  xy: 952, 2
+  size: 34, 32
+  orig: 34, 32
   offset: 0, 0
   index: -1
 ui/inventory-extra
   rotate: false
-  xy: 954, 798
+  xy: 954, 795
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
-ui/level-button-down
+ui/lock-key
   rotate: false
-  xy: 650, 5
-  size: 152, 48
-  split: 24, 24, 23, 23
-  pad: -1, -1, 4, 4
-  orig: 152, 48
+  xy: 947, 705
+  size: 60, 88
+  orig: 60, 88
+  offset: 0, 0
+  index: -1
+ui/lock-star
+  rotate: false
+  xy: 954, 562
+  size: 60, 88
+  orig: 60, 88
+  offset: 0, 0
+  index: -1
+ui/menu-bg
+  rotate: false
+  xy: 2, 541
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+ui/text-button-down
+  rotate: false
+  xy: 945, 867
+  size: 76, 76
+  split: 37, 37, 37, 37
+  pad: 36, 36, 13, 15
+  orig: 76, 76
   offset: 0, 0
   index: -1
 
@@ -577,226 +503,692 @@ burgerparty4.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-burgercopter/bg1
-  rotate: false
-  xy: 926, 7
-  size: 64, 57
-  orig: 64, 57
-  offset: 0, 0
-  index: -1
 burgercopter/building
   rotate: false
-  xy: 961, 532
+  xy: 979, 246
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-burgervaders/cannon
+burgercopter/ground
   rotate: false
-  xy: 804, 527
-  size: 44, 64
-  orig: 44, 64
+  xy: 990, 457
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
-customers/boys/body-0
+burgercopter/ground-down-a
   rotate: false
-  xy: 458, 7
-  size: 111, 170
-  orig: 111, 170
+  xy: 979, 212
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
-customers/boys/body-1
+burgercopter/ground-down-b
   rotate: false
-  xy: 232, 6
-  size: 111, 171
-  orig: 111, 171
+  xy: 984, 389
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-top
+  rotate: false
+  xy: 984, 355
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-up-a
+  rotate: false
+  xy: 990, 525
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+burgercopter/ground-up-b
+  rotate: false
+  xy: 990, 491
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 customers/boys/body-3
   rotate: false
-  xy: 345, 6
+  xy: 804, 581
   size: 111, 171
   orig: 111, 171
   offset: 0, 0
   index: -1
-customers/girls/body-0
+customers/boys/top-1
   rotate: false
-  xy: 115, 5
-  size: 115, 172
-  orig: 115, 172
+  xy: 904, 2
+  size: 108, 60
+  orig: 108, 60
   offset: 0, 0
   index: -1
-customers/girls/body-1
+customers/girls/face-1-angry
   rotate: false
-  xy: 2, 4
-  size: 111, 173
-  orig: 111, 173
+  xy: 826, 4
+  size: 76, 53
+  orig: 76, 53
   offset: 0, 0
   index: -1
-customers/pirate-boys/body-brown
+customers/girls/top-0
   rotate: false
-  xy: 571, 7
-  size: 110, 170
-  orig: 110, 170
+  xy: 598, 2
+  size: 70, 55
+  orig: 70, 55
   offset: 0, 0
   index: -1
-customers/pirate-boys/top-boss
+customers/japan-girls/face-0-angry
   rotate: false
-  xy: 248, 697
-  size: 108, 64
-  orig: 108, 64
+  xy: 670, 3
+  size: 76, 54
+  orig: 76, 54
   offset: 0, 0
   index: -1
-customers/pirate-girls/body-mixed
+customers/japan-girls/face-0-neutral
   rotate: false
-  xy: 683, 13
-  size: 111, 166
-  orig: 111, 166
+  xy: 748, 4
+  size: 76, 53
+  orig: 76, 53
   offset: 0, 0
   index: -1
-customers/pirate-girls/face-cap-angry
+customers/ninjas/body-0
   rotate: false
-  xy: 752, 183
-  size: 126, 100
-  orig: 126, 100
+  xy: 830, 64
+  size: 121, 145
+  orig: 121, 145
   offset: 0, 0
   index: -1
-customers/pirate-girls/face-cap-happy
+customers/pirate-boys/face-boss-angry
   rotate: false
-  xy: 516, 179
-  size: 126, 104
-  orig: 126, 104
+  xy: 830, 211
+  size: 147, 110
+  orig: 147, 110
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-greeneyes-angry
   rotate: false
-  xy: 804, 833
+  xy: 804, 875
   size: 158, 119
   orig: 158, 119
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-greeneyes-happy
   rotate: false
-  xy: 804, 712
+  xy: 804, 754
   size: 158, 119
   orig: 158, 119
   offset: 0, 0
   index: -1
 customers/pirate-girls/face-greeneyes-neutral
   rotate: false
-  xy: 804, 593
+  xy: 830, 423
   size: 158, 117
   orig: 158, 117
   offset: 0, 0
   index: -1
-customers/pirate-girls/top-blue
+customers/pirate-girls/top-red
   rotate: false
-  xy: 850, 530
-  size: 109, 61
-  orig: 109, 61
+  xy: 917, 693
+  size: 105, 59
+  orig: 105, 59
   offset: 0, 0
   index: -1
-lcd-font
+customers/wrestler/face-0-happy
   rotate: false
-  xy: 2, 179
+  xy: 953, 72
+  size: 66, 64
+  orig: 66, 64
+  offset: 0, 0
+  index: -1
+customers/wrestler/face-0-neutral
+  rotate: false
+  xy: 953, 138
+  size: 66, 71
+  orig: 66, 71
+  offset: 0, 0
+  index: -1
+levels/1/shelf
+  rotate: false
+  xy: 917, 601
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+levels/2/newitem-bg
+  rotate: false
+  xy: 2, 542
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+levels/3/newitem-bg
+  rotate: false
+  xy: 2, 542
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+levels/2/newitem-fg
+  rotate: false
+  xy: 516, 59
+  size: 312, 481
+  orig: 312, 481
+  offset: 0, 0
+  index: -1
+levels/3/newitem-fg
+  rotate: false
+  xy: 516, 59
+  size: 312, 481
+  orig: 312, 481
+  offset: 0, 0
+  index: -1
+main-font-small
+  rotate: false
+  xy: 2, 28
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-levels/1/counter
+mealitems/0/big-fries-inventory
   rotate: false
-  xy: 2, 931
-  size: 800, 82
-  orig: 800, 82
+  xy: 964, 914
+  size: 57, 80
+  orig: 57, 80
   offset: 0, 0
   index: -1
-levels/2/bottom-right-button-bar
+mealitems/0/cheese-inventory
   rotate: false
-  xy: 644, 181
-  size: 106, 102
-  orig: 106, 102
-  offset: 0, 0
-  index: -1
-levels/3/bottom-right-button-bar
-  rotate: false
-  xy: 644, 181
-  size: 106, 102
-  orig: 106, 102
-  offset: 0, 0
-  index: -1
-levels/2/counter
-  rotate: false
-  xy: 2, 847
-  size: 800, 82
-  orig: 800, 82
-  offset: 0, 0
-  index: -1
-levels/3/counter
-  rotate: false
-  xy: 2, 763
-  size: 800, 82
-  orig: 800, 82
+  xy: 898, 542
+  size: 80, 37
+  orig: 80, 37
   offset: 0, 0
   index: -1
 mealitems/0/cucumber
   rotate: false
-  xy: 804, 954
+  xy: 804, 996
   size: 181, 26
   orig: 181, 26
   offset: 0, 0
   index: -1
 mealitems/0/fish-inventory
   rotate: false
-  xy: 926, 116
+  xy: 804, 542
   size: 92, 37
   orig: 92, 37
   offset: 0, 0
   index: -1
-mealitems/0/juice-inventory
-  rotate: false
-  xy: 964, 693
-  size: 44, 80
-  orig: 44, 80
-  offset: 0, 0
-  index: -1
-mealitems/0/onion
-  rotate: false
-  xy: 804, 982
-  size: 186, 31
-  orig: 186, 31
-  offset: 0, 0
-  index: -1
-mealitems/0/soda-inventory
-  rotate: false
-  xy: 964, 775
-  size: 45, 80
-  orig: 45, 80
-  offset: 0, 0
-  index: -1
 mealitems/0/steak-inventory
   rotate: false
-  xy: 796, 132
+  xy: 516, 8
   size: 80, 49
   orig: 80, 49
   offset: 0, 0
   index: -1
+ui/done
+  rotate: false
+  xy: 964, 868
+  size: 56, 44
+  orig: 56, 44
+  offset: 0, 0
+  index: -1
+ui/level-button
+  rotate: false
+  xy: 830, 323
+  size: 152, 48
+  split: 24, 24, 23, 23
+  pad: 4, 4, 4, 4
+  orig: 152, 48
+  offset: 0, 0
+  index: -1
+ui/level-button-down
+  rotate: false
+  xy: 830, 373
+  size: 152, 48
+  split: 24, 24, 23, 23
+  pad: -1, -1, 4, 4
+  orig: 152, 48
+  offset: 0, 0
+  index: -1
+ui/star-off
+  rotate: false
+  xy: 980, 559
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/star-on
+  rotate: false
+  xy: 964, 781
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/surprise
+  rotate: false
+  xy: 979, 280
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
+ui/undo
+  rotate: false
+  xy: 964, 823
+  size: 48, 43
+  orig: 48, 43
+  offset: 0, 0
+  index: -1
+ui/world-button
+  rotate: false
+  xy: 984, 323
+  size: 32, 30
+  split: 12, 12, 10, 12
+  pad: 11, 11, 9, 11
+  orig: 32, 30
+  offset: 0, 0
+  index: -1
+
+burgerparty5.png
+format: RGBA8888
+filter: Nearest,Linear
+repeat: none
+customers/boys/body-0
+  rotate: false
+  xy: 516, 178
+  size: 111, 170
+  orig: 111, 170
+  offset: 0, 0
+  index: -1
+customers/boys/body-2
+  rotate: false
+  xy: 228, 15
+  size: 111, 155
+  orig: 111, 155
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-angry
+  rotate: false
+  xy: 950, 686
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-happy
+  rotate: false
+  xy: 629, 180
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-0-neutral
+  rotate: false
+  xy: 693, 76
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-1-happy
+  rotate: false
+  xy: 950, 738
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
+customers/boys/face-1-neutral
+  rotate: false
+  xy: 419, 3
+  size: 71, 46
+  orig: 71, 46
+  offset: 0, 0
+  index: -1
+customers/boys/face-2-angry
+  rotate: false
+  xy: 949, 249
+  size: 73, 48
+  orig: 73, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-2-happy
+  rotate: false
+  xy: 766, 78
+  size: 73, 48
+  orig: 73, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-2-neutral
+  rotate: false
+  xy: 949, 299
+  size: 73, 49
+  orig: 73, 49
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-angry
+  rotate: false
+  xy: 766, 28
+  size: 71, 48
+  orig: 71, 48
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-happy
+  rotate: false
+  xy: 693, 24
+  size: 71, 50
+  orig: 71, 50
+  offset: 0, 0
+  index: -1
+customers/boys/face-3-neutral
+  rotate: false
+  xy: 839, 31
+  size: 71, 45
+  orig: 71, 45
+  offset: 0, 0
+  index: -1
+customers/boys/top-2
+  rotate: false
+  xy: 629, 324
+  size: 107, 59
+  orig: 107, 59
+  offset: 0, 0
+  index: -1
+customers/boys/top-3
+  rotate: false
+  xy: 738, 307
+  size: 107, 59
+  orig: 107, 59
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-angry
+  rotate: false
+  xy: 887, 199
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-happy
+  rotate: false
+  xy: 780, 153
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/face-0-neutral
+  rotate: false
+  xy: 693, 128
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+customers/girls/face-1-happy
+  rotate: false
+  xy: 809, 203
+  size: 76, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+customers/girls/face-1-neutral
+  rotate: false
+  xy: 341, 2
+  size: 76, 47
+  orig: 76, 47
+  offset: 0, 0
+  index: -1
+customers/japan-girls/face-0-happy
+  rotate: false
+  xy: 702, 178
+  size: 76, 49
+  orig: 76, 49
+  offset: 0, 0
+  index: -1
+customers/ninjas/face-0-neutral
+  rotate: false
+  xy: 341, 51
+  size: 110, 119
+  orig: 110, 119
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/body-brown
+  rotate: false
+  xy: 581, 6
+  size: 110, 170
+  orig: 110, 170
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/face-boss-happy
+  rotate: false
+  xy: 804, 912
+  size: 147, 110
+  orig: 147, 110
+  offset: 0, 0
+  index: -1
+customers/pirate-boys/face-boss-neutral
+  rotate: false
+  xy: 804, 800
+  size: 147, 110
+  orig: 147, 110
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/body-mixed
+  rotate: false
+  xy: 2, 4
+  size: 111, 166
+  orig: 111, 166
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/body-purple
+  rotate: false
+  xy: 115, 4
+  size: 111, 166
+  orig: 111, 166
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-cap-angry
+  rotate: false
+  xy: 890, 350
+  size: 126, 100
+  orig: 126, 100
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-cap-happy
+  rotate: false
+  xy: 762, 368
+  size: 126, 104
+  orig: 126, 104
+  offset: 0, 0
+  index: -1
+customers/pirate-girls/face-cap-neutral
+  rotate: false
+  xy: 453, 72
+  size: 126, 98
+  orig: 126, 98
+  offset: 0, 0
+  index: -1
+levels/1/button
+  rotate: false
+  xy: 166, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/1/button-down
+  rotate: false
+  xy: 2, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/1/counter
+  rotate: false
+  xy: 2, 940
+  size: 800, 82
+  orig: 800, 82
+  offset: 0, 0
+  index: -1
+levels/2/button
+  rotate: false
+  xy: 248, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/3/button
+  rotate: false
+  xy: 248, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/2/button-down
+  rotate: false
+  xy: 84, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/3/button-down
+  rotate: false
+  xy: 84, 690
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+levels/2/counter
+  rotate: false
+  xy: 2, 856
+  size: 800, 82
+  orig: 800, 82
+  offset: 0, 0
+  index: -1
+levels/2/shelf
+  rotate: false
+  xy: 629, 232
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+levels/3/counter
+  rotate: false
+  xy: 2, 772
+  size: 800, 82
+  orig: 800, 82
+  offset: 0, 0
+  index: -1
+levels/3/shelf
+  rotate: false
+  xy: 847, 258
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+main-font
+  rotate: false
+  xy: 2, 172
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+mealitems/0/bottom-inventory
+  rotate: false
+  xy: 934, 539
+  size: 80, 46
+  orig: 80, 46
+  offset: 0, 0
+  index: -1
+mealitems/0/cucumber-inventory
+  rotate: false
+  xy: 934, 495
+  size: 80, 42
+  orig: 80, 42
+  offset: 0, 0
+  index: -1
+mealitems/0/juice-inventory
+  rotate: false
+  xy: 412, 690
+  size: 44, 80
+  orig: 44, 80
+  offset: 0, 0
+  index: -1
+mealitems/0/ketchup
+  rotate: false
+  xy: 516, 385
+  size: 224, 33
+  orig: 224, 33
+  offset: 0, 0
+  index: -1
+mealitems/0/onion-inventory
+  rotate: false
+  xy: 492, 34
+  size: 80, 36
+  orig: 80, 36
+  offset: 0, 0
+  index: -1
+mealitems/0/salad-inventory
+  rotate: false
+  xy: 934, 452
+  size: 80, 41
+  orig: 80, 41
+  offset: 0, 0
+  index: -1
+mealitems/0/small-fries-inventory
+  rotate: false
+  xy: 953, 873
+  size: 61, 80
+  orig: 61, 80
+  offset: 0, 0
+  index: -1
+mealitems/0/soda-inventory
+  rotate: false
+  xy: 953, 791
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+mealitems/0/steak
+  rotate: false
+  xy: 516, 420
+  size: 224, 44
+  orig: 224, 44
+  offset: 0, 0
+  index: -1
+mealitems/0/toast-inventory
+  rotate: false
+  xy: 912, 161
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: -1
+mealitems/0/tomato-inventory
+  rotate: false
+  xy: 934, 587
+  size: 80, 47
+  orig: 80, 47
+  offset: 0, 0
+  index: -1
 mealitems/0/top
   rotate: false
-  xy: 2, 697
+  xy: 516, 466
   size: 244, 64
   orig: 244, 64
   offset: 0, 0
   index: -1
 mealitems/0/top-inventory
   rotate: false
-  xy: 926, 66
+  xy: 934, 636
   size: 80, 48
   orig: 80, 48
   offset: 0, 0
   index: -1
+mealitems/2/soda-inventory
+  rotate: false
+  xy: 953, 955
+  size: 65, 67
+  orig: 65, 67
+  offset: 0, 0
+  index: -1
 ui/bubble-callout-left
   rotate: false
-  xy: 516, 643
+  xy: 516, 652
   size: 286, 118
   split: 54, 32, 28, 64
   pad: 46, 24, 24, 22
@@ -805,468 +1197,62 @@ ui/bubble-callout-left
   index: -1
 ui/bubble-callout-right
   rotate: false
-  xy: 516, 523
+  xy: 516, 532
   size: 286, 118
   split: 32, 54, 28, 64
   pad: 24, 46, 24, 22
   orig: 286, 118
   offset: 0, 0
   index: -1
-ui/done
+ui/hud-bg
   rotate: false
-  xy: 964, 902
-  size: 56, 44
-  orig: 56, 44
+  xy: 804, 734
+  size: 144, 64
+  orig: 144, 64
   offset: 0, 0
   index: -1
 ui/icon-button-big
   rotate: false
-  xy: 796, 2
+  xy: 804, 474
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/icon-button-big-down
   rotate: false
-  xy: 880, 155
+  xy: 804, 604
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-ui/icon-next-item
+ui/icon-play
   rotate: false
-  xy: 987, 948
-  size: 34, 32
-  orig: 34, 32
+  xy: 458, 736
+  size: 26, 34
+  orig: 26, 34
   offset: 0, 0
   index: -1
-ui/level-button
+ui/icon-play-big
   rotate: false
-  xy: 358, 713
-  size: 152, 48
-  split: 24, 24, 23, 23
-  pad: 4, 4, 4, 4
-  orig: 152, 48
+  xy: 330, 690
+  size: 80, 80
+  orig: 80, 80
   offset: 0, 0
   index: -1
-ui/star-off
+ui/icon-right
   rotate: false
-  xy: 964, 651
-  size: 40, 40
-  orig: 40, 40
+  xy: 486, 736
+  size: 26, 34
+  orig: 26, 34
   offset: 0, 0
   index: -1
-ui/star-on
+ui/text-button
   rotate: false
-  xy: 964, 609
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
-ui/surprise
-  rotate: false
-  xy: 964, 566
-  size: 36, 41
-  orig: 36, 41
-  offset: 0, 0
-  index: -1
-ui/title
-  rotate: false
-  xy: 516, 285
-  size: 495, 236
-  orig: 495, 236
-  offset: 0, 0
-  index: -1
-ui/undo
-  rotate: false
-  xy: 964, 857
-  size: 48, 43
-  orig: 48, 43
-  offset: 0, 0
-  index: -1
-
-burgerparty5.png
-format: RGBA8888
-filter: Nearest,Linear
-repeat: none
-burgercopter/ground
-  rotate: false
-  xy: 471, 45
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-burgercopter/ground-down-a
-  rotate: false
-  xy: 477, 476
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-burgercopter/ground-down-b
-  rotate: false
-  xy: 437, 62
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-burgercopter/ground-top
-  rotate: false
-  xy: 793, 507
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-burgercopter/ground-up-a
-  rotate: false
-  xy: 477, 442
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-burgercopter/ground-up-b
-  rotate: false
-  xy: 437, 28
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-customers/boys/face-0-angry
-  rotate: false
-  xy: 871, 441
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-0-happy
-  rotate: false
-  xy: 942, 556
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-0-neutral
-  rotate: false
-  xy: 942, 504
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-1-angry
-  rotate: false
-  xy: 942, 661
-  size: 71, 51
-  orig: 71, 51
-  offset: 0, 0
-  index: -1
-customers/boys/face-1-happy
-  rotate: false
-  xy: 942, 608
-  size: 71, 51
-  orig: 71, 51
-  offset: 0, 0
-  index: -1
-customers/boys/face-1-neutral
-  rotate: false
-  xy: 944, 404
-  size: 71, 46
-  orig: 71, 46
-  offset: 0, 0
-  index: -1
-customers/boys/face-2-angry
-  rotate: false
-  xy: 858, 341
-  size: 73, 48
-  orig: 73, 48
-  offset: 0, 0
-  index: -1
-customers/boys/face-2-happy
-  rotate: false
-  xy: 783, 304
-  size: 73, 48
-  orig: 73, 48
-  offset: 0, 0
-  index: -1
-customers/boys/face-2-neutral
-  rotate: false
-  xy: 783, 354
-  size: 73, 49
-  orig: 73, 49
-  offset: 0, 0
-  index: -1
-customers/boys/face-3-angry
-  rotate: false
-  xy: 871, 391
-  size: 71, 48
-  orig: 71, 48
-  offset: 0, 0
-  index: -1
-customers/boys/face-3-happy
-  rotate: false
-  xy: 944, 452
-  size: 71, 50
-  orig: 71, 50
-  offset: 0, 0
-  index: -1
-customers/boys/face-3-neutral
-  rotate: false
-  xy: 858, 294
-  size: 71, 45
-  orig: 71, 45
-  offset: 0, 0
-  index: -1
-customers/boys/top-0
-  rotate: false
-  xy: 559, 217
-  size: 103, 57
-  orig: 103, 57
-  offset: 0, 0
-  index: -1
-customers/boys/top-1
-  rotate: false
-  xy: 327, 34
-  size: 108, 60
-  orig: 108, 60
-  offset: 0, 0
-  index: -1
-customers/boys/top-2
-  rotate: false
-  xy: 450, 276
-  size: 107, 59
-  orig: 107, 59
-  offset: 0, 0
-  index: -1
-customers/boys/top-3
-  rotate: false
-  xy: 450, 215
-  size: 107, 59
-  orig: 107, 59
-  offset: 0, 0
-  index: -1
-customers/girls/face-0-angry
-  rotate: false
-  xy: 664, 217
-  size: 76, 48
-  orig: 76, 48
-  offset: 0, 0
-  index: -1
-customers/girls/face-0-happy
-  rotate: false
-  xy: 793, 443
-  size: 76, 48
-  orig: 76, 48
-  offset: 0, 0
-  index: -1
-customers/girls/face-0-neutral
-  rotate: false
-  xy: 942, 763
-  size: 76, 48
-  orig: 76, 48
-  offset: 0, 0
-  index: -1
-customers/girls/face-1-angry
-  rotate: false
-  xy: 943, 969
-  size: 76, 53
-  orig: 76, 53
-  offset: 0, 0
-  index: -1
-customers/girls/face-1-happy
-  rotate: false
-  xy: 943, 914
-  size: 76, 53
-  orig: 76, 53
-  offset: 0, 0
-  index: -1
-customers/girls/face-1-neutral
-  rotate: false
-  xy: 942, 714
-  size: 76, 47
-  orig: 76, 47
-  offset: 0, 0
-  index: -1
-customers/japan-girls/face-0-happy
-  rotate: false
-  xy: 943, 863
-  size: 76, 49
-  orig: 76, 49
-  offset: 0, 0
-  index: -1
-customers/ninjas/body-0
-  rotate: false
-  xy: 327, 208
-  size: 121, 145
-  orig: 121, 145
-  offset: 0, 0
-  index: -1
-customers/ninjas/face-0-angry
-  rotate: false
-  xy: 830, 735
-  size: 110, 119
-  orig: 110, 119
-  offset: 0, 0
-  index: -1
-customers/ninjas/face-0-happy
-  rotate: false
-  xy: 830, 614
-  size: 110, 119
-  orig: 110, 119
-  offset: 0, 0
-  index: -1
-customers/ninjas/face-0-neutral
-  rotate: false
-  xy: 830, 493
-  size: 110, 119
-  orig: 110, 119
-  offset: 0, 0
-  index: -1
-customers/pirate-boys/face-boss-happy
-  rotate: false
-  xy: 327, 96
-  size: 147, 110
-  orig: 147, 110
-  offset: 0, 0
-  index: -1
-customers/pirate-boys/face-boss-neutral
-  rotate: false
-  xy: 516, 429
-  size: 147, 110
-  orig: 147, 110
-  offset: 0, 0
-  index: -1
-customers/pirate-girls/body-purple
-  rotate: false
-  xy: 830, 856
-  size: 111, 166
-  orig: 111, 166
-  offset: 0, 0
-  index: -1
-customers/pirate-girls/face-cap-neutral
-  rotate: false
-  xy: 665, 441
-  size: 126, 98
-  orig: 126, 98
-  offset: 0, 0
-  index: -1
-customers/pirate-girls/top-red
-  rotate: false
-  xy: 559, 276
-  size: 105, 59
-  orig: 105, 59
-  offset: 0, 0
-  index: -1
-levels/1/newitem-fg
-  rotate: false
-  xy: 2, 28
-  size: 323, 480
-  orig: 323, 480
-  offset: 0, 0
-  index: -1
-levels/1/shelf
-  rotate: false
-  xy: 477, 337
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-levels/2/newitem-fg
-  rotate: false
-  xy: 516, 541
-  size: 312, 481
-  orig: 312, 481
-  offset: 0, 0
-  index: -1
-levels/3/newitem-fg
-  rotate: false
-  xy: 516, 541
-  size: 312, 481
-  orig: 312, 481
-  offset: 0, 0
-  index: -1
-levels/2/shelf
-  rotate: false
-  xy: 579, 337
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-levels/3/shelf
-  rotate: false
-  xy: 681, 349
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-main-font-small
-  rotate: false
-  xy: 2, 510
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
-mealitems/0/bottom-inventory
-  rotate: false
-  xy: 476, 118
-  size: 80, 46
-  orig: 80, 46
-  offset: 0, 0
-  index: -1
-mealitems/0/cheese-inventory
-  rotate: false
-  xy: 476, 79
-  size: 80, 37
-  orig: 80, 37
-  offset: 0, 0
-  index: -1
-mealitems/0/cucumber-inventory
-  rotate: false
-  xy: 681, 305
-  size: 80, 42
-  orig: 80, 42
-  offset: 0, 0
-  index: -1
-mealitems/0/onion-inventory
-  rotate: false
-  xy: 666, 267
-  size: 80, 36
-  orig: 80, 36
-  offset: 0, 0
-  index: -1
-mealitems/0/salad-inventory
-  rotate: false
-  xy: 942, 813
-  size: 80, 41
-  orig: 80, 41
-  offset: 0, 0
-  index: -1
-mealitems/0/toast-inventory
-  rotate: false
-  xy: 793, 405
-  size: 76, 36
-  orig: 76, 36
-  offset: 0, 0
-  index: -1
-mealitems/0/tomato-inventory
-  rotate: false
-  xy: 476, 166
-  size: 80, 47
-  orig: 80, 47
-  offset: 0, 0
-  index: -1
-mealitems/2/soda
-  rotate: false
-  xy: 327, 355
-  size: 148, 153
-  orig: 148, 153
-  offset: 0, 0
-  index: -1
-ui/world-button
-  rotate: false
-  xy: 327, 2
-  size: 32, 30
-  split: 12, 12, 10, 12
-  pad: 11, 11, 9, 11
-  orig: 32, 30
+  xy: 731, 229
+  size: 76, 76
+  split: 37, 37, 37, 37
+  pad: 36, 36, 13, 15
+  orig: 76, 76
   offset: 0, 0
   index: -1
 
@@ -1274,18 +1260,13 @@ burgerparty6.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-main-font
+levels/1/newitem-fg
   rotate: false
-  xy: 2, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 516, 34
+  size: 323, 480
+  orig: 323, 480
   offset: 0, 0
   index: -1
-
-burgerparty7.png
-format: RGBA8888
-filter: Nearest,Linear
-repeat: none
 scored-font
   rotate: false
   xy: 2, 2
