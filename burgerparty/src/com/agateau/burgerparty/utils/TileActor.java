@@ -1,13 +1,20 @@
 package com.agateau.burgerparty.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
-public class TileActor extends Actor {
+public class TileActor extends Actor implements Disposable {
 	public TileActor(TileMap map, float speed) {
 		mMap = map;
 		mSpeed = speed;
@@ -20,26 +27,49 @@ public class TileActor extends Actor {
 			mScrollOffset = 0;
 			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
 		}
+		SpriteBatch batch = getStage().getSpriteBatch();
+		batch.begin();
+		updateFrameBuffer(batch);
+		batch.end();
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+		Texture texture = mFrameBuffer.getColorBufferTexture();
 		Color color = getColor();
 		batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
+		batch.draw(texture, getX(), getY(), getWidth(), getHeight(), 0f, 0f, 1f, 1f);//, mFrameBuffer.getWidth() /** Gdx.graphics.getWidth() / getWidth()*/, getHeight(), 0f, 0f, 1f, 1f);
+	}
 
+	private void updateFrameBuffer(SpriteBatch batch) {
+		if (mFrameBuffer == null) {
+			int tileSize = mMap.getTileSize();
+			int w = MathUtils.ceil(getWidth() / tileSize) * tileSize + tileSize;
+			int h = (int)getHeight();
+			mFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, w, h, false);
+			mFrameBufferProjectionMatrix = new Matrix4();
+			mFrameBufferProjectionMatrix.setToOrtho2D(0, 0, w, h);
+		}
+
+		mFrameBuffer.begin();
+		Gdx.gl.glClearColor(1, 1, 1, 0);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		batch.setProjectionMatrix(mFrameBufferProjectionMatrix);
 		int snapScrollOffset = (int)mScrollOffset;
 		int tileSize = mMap.getTileSize();
 		int colCount = mMap.getColumnCount();
-		for (int col = mStartCol, x = snapScrollOffset; x < getWidth(); ++col, x += tileSize) {
+		for (int col = mStartCol, x = snapScrollOffset; x < mFrameBuffer.getWidth(); ++col, x += tileSize) {
 			Array<TextureRegion> column = mMap.getColumn(col % colCount);
 			for (int row = 0; row < mMap.getRowCount(); ++row) {
 				TextureRegion region = column.get(row);
 				if (region == null) {
 					continue;
 				}
-				batch.draw(region, getX() + x, getY() + row * tileSize);
+				batch.draw(region, x, row * tileSize);
 			}
 		}
+		batch.flush();
+		mFrameBuffer.end();
 	}
 
 	public boolean collide(Actor actor) {
@@ -72,8 +102,15 @@ public class TileActor extends Actor {
 		return MathUtils.floor(y / mMap.getTileSize());
 	}
 
+	@Override
+	public void dispose() {
+		mFrameBuffer.dispose();
+	}
+
 	private TileMap mMap;
 	private float mSpeed;
 	private float mScrollOffset = 0;
 	private int mStartCol = 0;
+	private FrameBuffer mFrameBuffer = null;
+	private Matrix4 mFrameBufferProjectionMatrix = null;
 }

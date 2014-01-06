@@ -132,7 +132,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1Region : bg2Region);
 		}
 
-		TileActor actor = new TileActor(map, PIXEL_PER_SECOND / 4);
+		TileActor actor;
+		actor = new TileActor(map, PIXEL_PER_SECOND / 4);
 		actor.setBounds(0, TILE_SIZE * 2, getStage().getWidth(), bg1Region.getRegionWidth());
 		actor.setColor(1, 1, 1, 0.5f);
 		getStage().addActor(actor);
@@ -143,7 +144,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		}
 
 		actor = new TileActor(map, PIXEL_PER_SECOND / 2);
-		actor.setBounds(0, TILE_SIZE, getStage().getWidth(), bg1Region.getRegionWidth());
+		actor.setBounds(0, TILE_SIZE - 1, getStage().getWidth(), map.getTileSize());
 		getStage().addActor(actor);
 	}
 
@@ -152,7 +153,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		int rowCount = 6;
 		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
-		mGroundActor.setBounds(0, 0, getStage().getWidth(), getStage().getHeight());
+		mGroundActor.setBounds(0, 0, getStage().getWidth(), TILE_SIZE * rowCount);
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
