@@ -21,6 +21,11 @@ public class TileActor extends Actor implements Disposable {
 	}
 
 	@Override
+	public void dispose() {
+		mFrameBuffer.dispose();
+	}
+
+	@Override
 	public void act(float delta) {
 		if (mFrameBuffer == null) {
 			updateFrameBuffer();
@@ -105,11 +110,6 @@ public class TileActor extends Actor implements Disposable {
 
 	private int rowForY(float y) {
 		return MathUtils.floor(y / mMap.getTileSize());
-	}
-
-	@Override
-	public void dispose() {
-		mFrameBuffer.dispose();
 	}
 
 	private TileMap mMap;

@@ -23,7 +23,7 @@ public abstract class MiniGame {
 
 	public void showGameOverScreen() {
 		Pixmap pix = UiUtils.getPixmap(0, 0, mGame.getWidth(), mGame.getHeight());
-		mGame.setScreen(new MiniGameOverScreen(this, pix));
+		mGame.setScreenAndDispose(new MiniGameOverScreen(this, pix));
 	}
 
 	public Assets getAssets() {
@@ -31,8 +31,8 @@ public abstract class MiniGame {
 		return mAssets;
 	}
 
-	public void setScreen(Screen screen) {
-		mGame.setScreen(screen);
+	public void setScreenAndDispose(Screen screen) {
+		mGame.setScreenAndDispose(screen);
 	}
 
 	private Assets mAssets;

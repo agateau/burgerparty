@@ -77,6 +77,14 @@ public class BurgerPartyGame extends Game {
 		}
 	}
 
+	public void setScreenAndDispose(Screen screen) {
+		Screen old = getScreen();
+		if (old != null) {
+			old.dispose();
+		}
+		setScreen(screen);
+	}
+
 	void setupAnimScriptLoader()
 	{
 		AnimScriptLoader loader = mAssets.getAnimScriptLoader();
@@ -147,7 +155,7 @@ public class BurgerPartyGame extends Game {
 					doStartLevel();
 				}
 			});
-			setScreen(screen);
+			setScreenAndDispose(screen);
 		} else {
 			doStartLevel();
 		}
@@ -155,7 +163,7 @@ public class BurgerPartyGame extends Game {
 
 	public void startSandBox() {
 		mMusicController.fadeOut();
-		setScreen(new SandBoxGameScreen(this));
+		setScreenAndDispose(new SandBoxGameScreen(this));
 	}
 
 	private void showLoadingScreen() {
@@ -166,7 +174,7 @@ public class BurgerPartyGame extends Game {
 				finishLoad();
 			}
 		});
-		setScreen(screen);
+		setScreenAndDispose(screen);
 	}
 
 	private void finishLoad() {
@@ -182,32 +190,32 @@ public class BurgerPartyGame extends Game {
 
 	public void showWorldListScreen() {
 		mMusicController.play();
-		setScreen(new WorldListScreen(this));
+		setScreenAndDispose(new WorldListScreen(this));
 	}
 
 	public void showStartScreen() {
 		mMusicController.play();
-		setScreen(new StartScreen(this));
+		setScreenAndDispose(new StartScreen(this));
 	}
 
 	public void showLevelListScreen(int worldIndex) {
 		mMusicController.play();
-		setScreen(new LevelListScreen(this, worldIndex));
+		setScreenAndDispose(new LevelListScreen(this, worldIndex));
 	}
 
 	public void showAboutScreen() {
 		mMusicController.play();
-		setScreen(new AboutScreen(this));
+		setScreenAndDispose(new AboutScreen(this));
 	}
 
 	public void showCheatScreen() {
 		mMusicController.play();
-		setScreen(new CheatScreen(this));
+		setScreenAndDispose(new CheatScreen(this));
 	}
 
 	private void doStartLevel() {
 		Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
-		setScreen(new GameScreen(this, level));
+		setScreenAndDispose(new GameScreen(this, level));
 	}
 
 	public void startMiniGame(final int worldIndex) {

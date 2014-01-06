@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
@@ -31,6 +32,14 @@ public class BurgerCopterMainScreen extends StageScreen {
 		createEnemies();
 		createPlayer();
 		createHud();
+	}
+
+	@Override
+	public void dispose() {
+		Gdx.app.log("BurgerCopterMiniGame.dispose" ,"");
+		for (Disposable obj: mDisposables) {
+			obj.dispose();
+		}
 	}
 
 	@Override
@@ -137,6 +146,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		actor.setBounds(0, TILE_SIZE * 2, getStage().getWidth(), bg1Region.getRegionWidth());
 		actor.setColor(1, 1, 1, 0.5f);
 		getStage().addActor(actor);
+		mDisposables.add(actor);
 
 		map = new TileMap(7, 1, bg1Region.getRegionWidth());
 		for (int col = 0; col < map.getColumnCount(); ++col) {
@@ -146,6 +156,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		actor = new TileActor(map, PIXEL_PER_SECOND / 2);
 		actor.setBounds(0, TILE_SIZE - 1, getStage().getWidth(), map.getTileSize());
 		getStage().addActor(actor);
+		mDisposables.add(actor);
 	}
 
 	private void createGround() {
@@ -154,6 +165,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
 		mGroundActor.setBounds(0, 0, getStage().getWidth(), TILE_SIZE * rowCount);
+		mDisposables.add(mGroundActor);
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
@@ -270,4 +282,5 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private Array<SpriteImage> mEnemies = new Array<SpriteImage>();
 	private int mScore = 0;
 	private Label mScoreLabel;
+	private Array<Disposable> mDisposables = new Array<Disposable>();
 }

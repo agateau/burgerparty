@@ -11,11 +11,11 @@ public class BurgerVadersMiniGame extends MiniGame {
 
 	@Override
 	public void showStartScreen() {
-		setScreen(new BurgerVadersStartScreen(this));
+		setScreenAndDispose(new BurgerVadersStartScreen(this));
 	}
 
 	@Override
 	public void showMainScreen() {
-		setScreen(new BurgerVadersMainScreen(this));
+		setScreenAndDispose(new BurgerVadersMainScreen(this));
 	}
 }
