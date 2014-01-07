@@ -51,6 +51,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 			shader.setUniformf("bgColor1", mBgColor1.r, mBgColor1.g, mBgColor1.b, mBgColor1.a);
 			shader.setUniformf("bgColor2", mBgColor2.r, mBgColor2.g, mBgColor2.b, mBgColor2.a);
 			shader.setUniformf("fgColor", mFgColor.r, mFgColor.g, mFgColor.b, mFgColor.a);
+			shader.setUniformf("parentAlpha", parentAlpha);
 		}
 
 		private Color mBgColor1;

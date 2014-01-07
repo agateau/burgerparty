@@ -13,6 +13,7 @@ uniform vec4 bgColor1;
 uniform vec4 bgColor2;
 uniform vec4 fgColor;
 uniform float modulationSpeed;
+uniform float parentAlpha;
 
 const float ANGLE1_EDGE = 5.0;
 const float ANGLE2_EDGE = 12.0;
@@ -41,5 +42,5 @@ void main()
 
     float rayAlpha = mystep(ANGLE1_EDGE - modulation / 2.0, angle)
         * mystep(angle, ANGLE2_EDGE + modulation / 2.0);
-    gl_FragColor = mix(bgColor, fgColor, rayAlpha * len);
+    gl_FragColor = vec4(mix(bgColor.rgb, fgColor.rgb, rayAlpha * len), parentAlpha);
 }
