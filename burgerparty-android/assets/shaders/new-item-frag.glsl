@@ -11,10 +11,16 @@ uniform sampler2D u_texture;
 uniform vec2 resolution;
 uniform float startAngle;
 
-const float ANGLE_EDGE = 20.0;
+const float ANGLE1_EDGE = 10.0;
+const float ANGLE2_EDGE = 22.0;
+const float EDGE_DELTA = 0.5;
 const float ANGLE_PERIOD = 30.0;
 
 const vec2 CENTER = vec2(0.6, 0.4);
+
+float mystep(float edge, float x) {
+    return smoothstep(edge - EDGE_DELTA / 2.0, edge + EDGE_DELTA / 2.0, x);
+}
 
 void main()
 {
@@ -23,5 +29,6 @@ void main()
     float angle = degrees(atan(position.y, position.x));
     angle = mod(angle + startAngle, ANGLE_PERIOD);
     float len = length(position);
-    gl_FragColor = vec4(vec3(step(ANGLE_EDGE, angle) * len), c.a);
+    float rayAlpha = mystep(ANGLE1_EDGE, angle) * mystep(angle, ANGLE2_EDGE);
+    gl_FragColor = vec4(vec3(rayAlpha * len), c.a);
 }

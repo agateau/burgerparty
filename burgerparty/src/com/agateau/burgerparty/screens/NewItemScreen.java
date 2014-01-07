@@ -4,6 +4,7 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
@@ -32,7 +33,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		private static float DEGREE_PER_SECOND = 20;
 		public BgActor(TextureRegion region) {
 			super(region);
-			mShader = new ShaderProgram(Gdx.files.internal("shaders/default-vert.glsl"), Gdx.files.internal("shaders/new-item-frag.glsl"));
+			mShader = new ShaderProgram(FileUtils.assets("shaders/default-vert.glsl"), FileUtils.assets("shaders/new-item-frag.glsl"));
 			if (!mShader.isCompiled()) {
 				Gdx.app.error("NewItemScreen", mShader.getLog());
 			}
