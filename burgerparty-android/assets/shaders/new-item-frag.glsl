@@ -6,15 +6,19 @@ precision mediump float;
 #endif
 varying LOWP vec4 v_color;
 varying vec2 v_texCoords;
+
+// Keep SpriteBatch happy :(
 uniform sampler2D u_texture;
 
 uniform vec2 resolution;
 uniform float startAngle;
+uniform vec3 bgColor;
+uniform vec3 fgColor;
 
-const float ANGLE1_EDGE = 10.0;
-const float ANGLE2_EDGE = 22.0;
+const float ANGLE1_EDGE = 5.0;
+const float ANGLE2_EDGE = 12.0;
 const float EDGE_DELTA = 0.5;
-const float ANGLE_PERIOD = 30.0;
+const float ANGLE_PERIOD = 20.0;
 
 const vec2 CENTER = vec2(0.6, 0.4);
 
@@ -24,11 +28,15 @@ float mystep(float edge, float x) {
 
 void main()
 {
-    vec4 c = texture2D(u_texture, v_texCoords);
     vec2 position = (gl_FragCoord.xy / resolution.xy) - CENTER;
     float angle = degrees(atan(position.y, position.x));
     angle = mod(angle + startAngle, ANGLE_PERIOD);
+
+    // Keep SpriteBatch happy, by making some dummy use of u_texture :(
+    vec4 c = texture2D(u_texture, v_texCoords);
+    angle = angle + c.a - c.a;
+
     float len = length(position);
     float rayAlpha = mystep(ANGLE1_EDGE, angle) * mystep(angle, ANGLE2_EDGE);
-    gl_FragColor = vec4(vec3(rayAlpha * len), c.a);
+    gl_FragColor = vec4(mix(bgColor, fgColor, rayAlpha * len), 1.0);
 }

@@ -50,6 +50,8 @@ public class NewItemScreen extends BurgerPartyScreen {
 			mShader.begin();
 			mShader.setUniformf("resolution", getWidth(), getHeight());
 			mShader.setUniformf("startAngle", mAngle);
+			mShader.setUniformf("bgColor", 0.412f, 0.765f, 0.953f);
+			mShader.setUniformf("fgColor", 1f, 1f, 1f);
 			mShader.end();
 			batch.setShader(mShader);
 			super.draw(batch, parentAlpha);
@@ -63,12 +65,10 @@ public class NewItemScreen extends BurgerPartyScreen {
 		super(game);
 
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
-		String bgName = levelDir + "/newitem-bg";
 		String fgName = levelDir + "/newitem-fg";
-		mBgActor = new BgActor(game.getAssets().getTextureAtlas().findRegion(bgName));
+		mBgActor = new BgActor(game.getAssets().getTextureAtlas().findRegion("ui/white-pixel"));
 		setBackgroundActor(mBgActor);
-		//mBgImage = new Image(game.getAssets().getTextureAtlas().findRegion(bgName));
-		//mBgImage.setFillParent(true);
+
 		mFgGroup = new WidgetGroup();
 		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
 
