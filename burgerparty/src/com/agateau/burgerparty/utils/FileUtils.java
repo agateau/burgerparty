@@ -1,10 +1,12 @@
 package com.agateau.burgerparty.utils;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class FileUtils {
 	static public FileHandle getUserWritableFile(String name) {
@@ -25,4 +27,17 @@ public class FileUtils {
 		return handle;
 	}
 
+	public static XmlReader.Element parseXml(FileHandle handle) {
+		XmlReader reader = new XmlReader();
+		XmlReader.Element root = null;
+		try {
+			root = reader.parse(handle);
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to parse xml file from " + handle.path() + ". Exception: " + e.toString() + ".");
+		}
+		if (root == null) {
+			throw new RuntimeException("Failed to parse xml file from " + handle.path() + ". No root element.");
+		}
+		return root;
+	}
 }

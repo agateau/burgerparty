@@ -4,10 +4,15 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.ShaderActor;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.XmlReader;
 
 public class NewItemScreen extends BurgerPartyScreen {
 	private static final float DISPLAY_DURATION = 3;
@@ -24,22 +30,58 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 	public Signal0 done = new Signal0();
 
+	private static class RayActor extends ShaderActor {
+		public RayActor(TextureRegion region, Color bgColor1, Color bgColor2, Color fgColor, float degPerSecond) {
+			super(region);
+			mBgColor1 = bgColor1;
+			mBgColor2 = bgColor2;
+			mFgColor = fgColor;
+			mDegPerSecond = degPerSecond;
+			setShader(new ShaderProgram(FileUtils.assets("shaders/default-vert.glsl"), FileUtils.assets("shaders/new-item-frag.glsl")));
+		}
+		@Override
+		public void act(float delta) {
+			mAngle = (mAngle + delta * mDegPerSecond) % 360;
+		}
+
+		@Override
+		protected void applyShaderParameters(ShaderProgram shader, float parentAlpha) {
+			shader.setUniformf("resolution", getWidth(), getHeight());
+			shader.setUniformf("startAngle", mAngle);
+			shader.setUniformf("bgColor1", mBgColor1.r, mBgColor1.g, mBgColor1.b, mBgColor1.a);
+			shader.setUniformf("bgColor2", mBgColor2.r, mBgColor2.g, mBgColor2.b, mBgColor2.a);
+			shader.setUniformf("fgColor", mFgColor.r, mFgColor.g, mFgColor.b, mFgColor.a);
+			shader.setUniformf("parentAlpha", parentAlpha);
+		}
+
+		private Color mBgColor1;
+		private Color mBgColor2;
+		private Color mFgColor;
+		private float mAngle = 0;
+		private float mDegPerSecond;
+	}
+
 	public NewItemScreen(BurgerPartyGame game, int levelWorld, MealItem item) {
 		super(game);
 
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
-		String bgName = levelDir + "/newitem-bg";
 		String fgName = levelDir + "/newitem-fg";
-		mBgImage = new Image(game.getAssets().getTextureAtlas().findRegion(bgName));
-		mBgImage.setFillParent(true);
+		TextureRegion region = game.getAssets().getTextureAtlas().findRegion(fgName);
+
+		XmlReader.Element root = FileUtils.parseXml(FileUtils.assets(levelDir + "/newitemscreen.xml"));
+		Color bgColor1 = Color.valueOf(root.getAttribute("bgColor1"));
+		Color bgColor2 = Color.valueOf(root.getAttribute("bgColor2"));
+		Color fgColor = Color.valueOf(root.getAttribute("fgColor"));
+		mBgActor = new RayActor(region, bgColor1, bgColor2, fgColor, 8);
+		setBackgroundActor(mBgActor);
+
 		mFgGroup = new WidgetGroup();
-		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
+		mFgImage = new Image(region);
 
 		setupBubble(item);
 
 		mBubble.setPosition(-mBubble.getWidth(), mFgImage.getHeight() / 2);
 
-		getStage().addActor(mBgImage);
 		getStage().addActor(mFgGroup);
 		mFgGroup.addActor(mFgImage);
 		mFgGroup.addActor(mBubble);
@@ -150,7 +192,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		done.emit();
 	}
 
-	private Image mBgImage;
+	private Actor mBgActor;
 	private WidgetGroup mFgGroup;
 	private Image mFgImage;
 	private Bubble mBubble;
