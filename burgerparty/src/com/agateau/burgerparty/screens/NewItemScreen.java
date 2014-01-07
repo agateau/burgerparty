@@ -7,7 +7,11 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,14 +28,46 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 	public Signal0 done = new Signal0();
 
+	private static class BgActor extends Image {
+		private static float DEGREE_PER_SECOND = 20;
+		public BgActor(TextureRegion region) {
+			super(region);
+			mShader = new ShaderProgram(Gdx.files.internal("shaders/default-vert.glsl"), Gdx.files.internal("shaders/new-item-frag.glsl"));
+			if (!mShader.isCompiled()) {
+				Gdx.app.error("NewItemScreen", mShader.getLog());
+			}
+		}
+		@Override
+		public void act(float delta) {
+			mAngle += delta * DEGREE_PER_SECOND;
+		}
+		@Override
+		public void draw(SpriteBatch batch, float parentAlpha) {
+			if (!mShader.isCompiled()) {
+				return;
+			}
+			mShader.begin();
+			mShader.setUniformf("resolution", getWidth(), getHeight());
+			mShader.setUniformf("startAngle", mAngle);
+			mShader.end();
+			batch.setShader(mShader);
+			super.draw(batch, parentAlpha);
+			batch.setShader(null);
+		}
+		ShaderProgram mShader;
+		private float mAngle = 0;
+	}
+
 	public NewItemScreen(BurgerPartyGame game, int levelWorld, MealItem item) {
 		super(game);
 
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
 		String bgName = levelDir + "/newitem-bg";
 		String fgName = levelDir + "/newitem-fg";
-		mBgImage = new Image(game.getAssets().getTextureAtlas().findRegion(bgName));
-		mBgImage.setFillParent(true);
+		mBgActor = new BgActor(game.getAssets().getTextureAtlas().findRegion(bgName));
+		setBackgroundActor(mBgActor);
+		//mBgImage = new Image(game.getAssets().getTextureAtlas().findRegion(bgName));
+		//mBgImage.setFillParent(true);
 		mFgGroup = new WidgetGroup();
 		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
 
@@ -39,7 +75,6 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		mBubble.setPosition(-mBubble.getWidth(), mFgImage.getHeight() / 2);
 
-		getStage().addActor(mBgImage);
 		getStage().addActor(mFgGroup);
 		mFgGroup.addActor(mFgImage);
 		mFgGroup.addActor(mBubble);
@@ -150,7 +185,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		done.emit();
 	}
 
-	private Image mBgImage;
+	private Actor mBgActor;
 	private WidgetGroup mFgGroup;
 	private Image mFgImage;
 	private Bubble mBubble;
