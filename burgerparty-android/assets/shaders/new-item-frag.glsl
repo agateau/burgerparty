@@ -7,9 +7,6 @@ precision mediump float;
 varying LOWP vec4 v_color;
 varying vec2 v_texCoords;
 
-// Keep SpriteBatch happy :(
-uniform sampler2D u_texture;
-
 uniform vec2 resolution;
 uniform float startAngle;
 uniform vec3 bgColor;
@@ -31,10 +28,6 @@ void main()
     vec2 position = (gl_FragCoord.xy / resolution.xy) - CENTER;
     float angle = degrees(atan(position.y, position.x));
     angle = mod(angle + startAngle, ANGLE_PERIOD);
-
-    // Keep SpriteBatch happy, by making some dummy use of u_texture :(
-    vec4 c = texture2D(u_texture, v_texCoords);
-    angle = angle + c.a - c.a;
 
     float len = length(position);
     float rayAlpha = mystep(ANGLE1_EDGE, angle) * mystep(angle, ANGLE2_EDGE);

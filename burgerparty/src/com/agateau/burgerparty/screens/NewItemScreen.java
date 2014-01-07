@@ -5,11 +5,10 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.ShaderActor;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -29,35 +28,25 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 	public Signal0 done = new Signal0();
 
-	private static class BgActor extends Image {
+	private static class BgActor extends ShaderActor {
 		private static float DEGREE_PER_SECOND = 20;
 		public BgActor(TextureRegion region) {
 			super(region);
-			mShader = new ShaderProgram(FileUtils.assets("shaders/default-vert.glsl"), FileUtils.assets("shaders/new-item-frag.glsl"));
-			if (!mShader.isCompiled()) {
-				Gdx.app.error("NewItemScreen", mShader.getLog());
-			}
+			setShader(new ShaderProgram(FileUtils.assets("shaders/default-vert.glsl"), FileUtils.assets("shaders/new-item-frag.glsl")));
 		}
 		@Override
 		public void act(float delta) {
 			mAngle += delta * DEGREE_PER_SECOND;
 		}
+
 		@Override
-		public void draw(SpriteBatch batch, float parentAlpha) {
-			if (!mShader.isCompiled()) {
-				return;
-			}
-			mShader.begin();
-			mShader.setUniformf("resolution", getWidth(), getHeight());
-			mShader.setUniformf("startAngle", mAngle);
-			mShader.setUniformf("bgColor", 0.412f, 0.765f, 0.953f);
-			mShader.setUniformf("fgColor", 1f, 1f, 1f);
-			mShader.end();
-			batch.setShader(mShader);
-			super.draw(batch, parentAlpha);
-			batch.setShader(null);
+		protected void applyShaderParameters(ShaderProgram shader, float parentAlpha) {
+			shader.setUniformf("resolution", getWidth(), getHeight());
+			shader.setUniformf("startAngle", mAngle);
+			shader.setUniformf("bgColor", 0.412f, 0.765f, 0.953f);
+			shader.setUniformf("fgColor", 1f, 1f, 1f);
 		}
-		ShaderProgram mShader;
+
 		private float mAngle = 0;
 	}
 
@@ -66,11 +55,12 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		String levelDir = "levels/" + String.valueOf(levelWorld + 1);
 		String fgName = levelDir + "/newitem-fg";
-		mBgActor = new BgActor(game.getAssets().getTextureAtlas().findRegion("ui/white-pixel"));
+		TextureRegion region = game.getAssets().getTextureAtlas().findRegion(fgName);
+		mBgActor = new BgActor(region);
 		setBackgroundActor(mBgActor);
 
 		mFgGroup = new WidgetGroup();
-		mFgImage = new Image(game.getAssets().getTextureAtlas().findRegion(fgName));
+		mFgImage = new Image(region);
 
 		setupBubble(item);
 
