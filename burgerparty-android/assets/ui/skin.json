@@ -121,6 +121,10 @@
             down: levels/2/button-down,
             up: levels/2/button,
             pressedOffsetY: -1
+        },
+        level-button: {
+            down: ui/level-button-down,
+            up: ui/level-button
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {

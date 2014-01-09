@@ -18,11 +18,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
@@ -66,6 +66,8 @@ public class LevelListScreen extends BurgerPartyScreen {
 		protected Actor createActorForElement(XmlReader.Element element) {
 			if (element.getName().equals("LevelGrid")) {
 				return createLevelButtonGridGroup();
+			} else if (element.getName().equals("LevelBaseButton")) {
+				return new LevelBaseButton(getGame().getAssets());
 			} else {
 				return super.createActorForElement(element);
 			}
@@ -85,8 +87,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 			}
 		});
 
-		ImageButton miniGameButton = builder.<ImageButton>getActor("miniGameButton");
+		TextButton miniGameButton = builder.<TextButton>getActor("miniGameButton");
 		Label miniGameLockLabel = builder.<Label>getActor("miniGameLockLabel");
+		Image miniGameButtonImage = builder.<Image>getActor("miniGameButtonImage");
+		miniGameButtonImage.setTouchable(Touchable.disabled);
 		if (getGame().getUniverse().getStarCount() > mLevelWorld.getMiniGameStarCount()) {
 			Image lockImage = builder.<Image>getActor("miniGameLockImage");
 			lockImage.setVisible(false);
@@ -98,7 +102,8 @@ public class LevelListScreen extends BurgerPartyScreen {
 				}
 			});
 		} else {
-			miniGameButton.setVisible(false);
+			miniGameButtonImage.setVisible(false);
+			miniGameButton.setDisabled(true);
 			miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
 		}
 	}
@@ -115,9 +120,27 @@ public class LevelListScreen extends BurgerPartyScreen {
 		return gridGroup;
 	}
 
-	class LevelButton extends TextButton {
-		public LevelButton(int levelWorldIndex, int levelIndex, Skin skin) {
-			super("", skin, "level-button");
+	private static class LevelBaseButton extends TextButton {
+		public LevelBaseButton(Assets assets) {
+			super("", assets.getSkin(), "level-button");
+			mAssets = assets;
+		}
+		@Override
+		public void draw(SpriteBatch batch, float parentAlpha) {
+			if (isDisabled()) {
+				batch.setShader(mAssets.getDisabledShader());
+				super.draw(batch, parentAlpha);
+				batch.setShader(null);
+			} else {
+				super.draw(batch, parentAlpha);
+			}
+		}
+		protected Assets mAssets;
+	}
+
+	private class LevelButton extends LevelBaseButton {
+		public LevelButton(Assets assets, int levelWorldIndex, int levelIndex) {
+			super(assets);
 			this.levelWorldIndex = levelWorldIndex;
 			this.levelIndex = levelIndex;
 
@@ -141,15 +164,11 @@ public class LevelListScreen extends BurgerPartyScreen {
 
 		@Override
 		public void draw(SpriteBatch batch, float parentAlpha) {
+			super.draw(batch, parentAlpha);
 			if (isDisabled()) {
-				batch.setShader(getGame().getAssets().getDisabledShader());
-				super.draw(batch, parentAlpha);
-				batch.setShader(null);
 				float posX = getX() + (getWidth() - mLock.getRegionWidth()) / 2;
 				float posY = getY() + (getHeight() - mLock.getRegionHeight()) / 2;
 				batch.draw(mLock, posX, posY);
-			} else {
-				super.draw(batch, parentAlpha);
 			}
 		}
 
@@ -160,7 +179,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 	}
 
 	private Actor createLevelButton(Level level) {
-		LevelButton button = new LevelButton(mLevelWorld.getIndex(), level.getIndex(), getGame().getAssets().getSkin());
+		LevelButton button = new LevelButton(getGame().getAssets(), mLevelWorld.getIndex(), level.getIndex());
 		button.setSize(CELL_SIZE, CELL_SIZE);
 
 		AnchorGroup group = new AnchorGroup();

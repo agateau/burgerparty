@@ -6,19 +6,23 @@
             imageName="ui/icon-back"/>
 
         <LevelGrid id="levelGrid"
-            center="root.center -3 0"
+            center="root.center -1 0"
             />
-        <Image id="miniGameCabinet"
-            centerLeft="levelGrid.centerRight 1 0"
-            name="ui/arcade-cabinet"
+
+        <LevelBaseButton id="miniGameButton"
+            width="130"
+            height="130"
+            zcenterLeft="levelGrid.centerRight 2 0"
+            bottomLeft="levelGrid.bottomRight 2 0"
             />
-        <ImageButton id="miniGameButton"
-            style="round-button"
-            imageName="ui/icon-play"
-            center="miniGameCabinet.center"/>
+
+        <Image id="miniGameButtonImage"
+            name="ui/minigame"
+            center="miniGameButton.center 0 -0.05"/>
+
         <Image id="miniGameLockImage"
             name="ui/lock-star"
-            center="miniGameCabinet.center"/>
+            center="miniGameButton.center"/>
         <Label id="miniGameLockLabel"
             bottomLeft="miniGameLockImage.bottomLeft 1.8 0.2"
             style="lock-star-text"
