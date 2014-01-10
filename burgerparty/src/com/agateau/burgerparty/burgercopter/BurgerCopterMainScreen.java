@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.StringBuilder;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
@@ -208,16 +209,23 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mScoreLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		mScoreLabel = new Label("0\n0", mMiniGame.getAssets().getSkin(), "lock-star-text");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
 		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
 	}
 
 	private void updateHud() {
-		mScoreLabel.setText(String.valueOf((mScore / 10) * 10));
+		float fuel = mPlayer.getJumpFuel();
+		mHudStringBuilder.setLength(0);
+		mHudStringBuilder.append(mScore).append("\n");
+		for (float f = 0f; f < 1.0f; f += 0.05f) {
+			mHudStringBuilder.append(f < fuel ? "|" : ".");
+		}
+		mScoreLabel.setText(mHudStringBuilder.toString());
 	}
 
+	private StringBuilder mHudStringBuilder = new StringBuilder();
 	private BurgerCopterMiniGame mMiniGame;
 	private Player mPlayer;
 	private TileActor mGroundActor;
