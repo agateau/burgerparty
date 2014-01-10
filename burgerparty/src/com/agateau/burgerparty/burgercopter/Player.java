@@ -48,9 +48,11 @@ public class Player {
 			mJumpFuel = Math.max(mJumpFuel - JUMP_FUEL_CONSUME_PER_SECOND * delta, 0);
 		} else {
 			float newY = y - PLAYER_DELTA_DOWN * delta;
-			float groundHeight1 = mGroundActor.getHeightAt(actor.getX());
-			float groundHeight2 = mGroundActor.getHeightAt(actor.getRight());
-			float minY = Math.max(groundHeight1, groundHeight2) + PLAYER_MIN_ALTITUDE;
+			float groundHeight = 0;
+			for (int x = 0; x < actor.getWidth(); x += 4) {
+				groundHeight = Math.max(groundHeight, mGroundActor.getHeightAt(actor.getX() + x));
+			}
+			float minY = groundHeight + PLAYER_MIN_ALTITUDE;
 			y = Math.max(newY, minY);
 			if (Math.abs(y - minY) < 4.0) {
 				mJumpFuel = Math.min(mJumpFuel + JUMP_FUEL_REFILL_PER_SECOND * delta, 1);
