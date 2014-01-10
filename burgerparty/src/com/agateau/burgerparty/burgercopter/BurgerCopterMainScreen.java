@@ -24,8 +24,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 	static final int SCORE_PER_SECOND = 200;
 	static final int TILE_SIZE = 32;
 	static final int ENEMY_COUNT = 4;
-	static final float PLAYER_DELTA = 2f * 60f;
-	static final float PLAYER_MIN_ALTITUDE = 2;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
@@ -55,50 +53,20 @@ public class BurgerCopterMainScreen extends StageScreen {
 	public void render(float delta) {
 		getStage().act(delta);
 		mScore += SCORE_PER_SECOND * delta;
+		for(SpriteImage enemy: mEnemies) {
+			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
+				mMiniGame.showGameOverScreen();
+			}
+		}
 		updateHud();
 		getStage().draw();
 		mLogger.log();
 	}
 
-	private class GravityAction extends Action {
-		@Override
-		public boolean act(float delta) {
-			Actor actor = getActor();
-			float y = actor.getY();
-			if (Gdx.input.isTouched()) {
-				float maxY = actor.getStage().getHeight() - actor.getHeight();
-				y = Math.min(y + PLAYER_DELTA * delta, maxY);
-			} else {
-				float newY = y - PLAYER_DELTA * delta;
-				float groundHeight1 = mGroundActor.getHeightAt(actor.getX());
-				float groundHeight2 = mGroundActor.getHeightAt(actor.getRight());
-				y = Math.max(newY, Math.max(groundHeight1, groundHeight2) + PLAYER_MIN_ALTITUDE);
-			}
-			getActor().setY(y);
-			return false;
-		}
-	}
-
 	private void createPlayer() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/top-inventory");
-		assert(region != null);
-		SpriteImage image = new SpriteImage(region);
-		mPlayer = image;
-		image.setX(10);
-		image.setY(getStage().getHeight() * 3 / 4);
-		image.addAction(new Action() {
-			@Override
-			public boolean act(float delta) {
-				for(SpriteImage enemy: mEnemies) {
-					if (SpriteImage.collide(mPlayer, enemy)) {
-						mMiniGame.showGameOverScreen();
-					}
-				}
-				return false;
-			}
-		});
-		image.addAction(new GravityAction());
-		getStage().addActor(mPlayer);
+		mPlayer = new Player(mMiniGame.getAssets(), mGroundActor);
+		mPlayer.getActor().setPosition(10, getStage().getHeight() * 3 / 4);
+		getStage().addActor(mPlayer.getActor());
 	}
 
 	private void createSky() {
@@ -251,7 +219,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private BurgerCopterMiniGame mMiniGame;
-	private SpriteImage mPlayer;
+	private Player mPlayer;
 	private TileActor mGroundActor;
 	private Array<SpriteImage> mEnemies = new Array<SpriteImage>();
 	private int mScore = 0;
