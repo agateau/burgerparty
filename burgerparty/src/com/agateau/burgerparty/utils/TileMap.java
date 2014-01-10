@@ -5,9 +5,14 @@ import com.badlogic.gdx.utils.Array;
 
 public class TileMap {
 	public TileMap(int columnCount, int rowCount, int tileSize) {
+		this(columnCount, rowCount, tileSize, tileSize);
+	}
+
+	public TileMap(int columnCount, int rowCount, int tileWidth, int tileHeight) {
 		mColumnCount = columnCount;
 		mRowCount = rowCount;
-		mTileSize = tileSize;
+		mTileWidth = tileWidth;
+		mTileHeight = tileHeight;
 
 		mColumns = new Array<Array <TextureRegion>>(mColumnCount);
 		for (int col = 0; col < mColumnCount; ++col) {
@@ -19,8 +24,12 @@ public class TileMap {
 		}
 	}
 
-	public int getTileSize() {
-		return mTileSize;
+	public int getTileWidth() {
+		return mTileWidth;
+	}
+
+	public int getTileHeight() {
+		return mTileHeight;
 	}
 
 	public int getRowCount() {
@@ -35,7 +44,8 @@ public class TileMap {
 		return mColumns.get(col);
 	}
 
-	private int mTileSize;
+	private int mTileWidth;
+	private int mTileHeight;
 	private int mRowCount;
 	private int mColumnCount;
 	private Array<Array<TextureRegion>> mColumns;

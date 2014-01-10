@@ -23,6 +23,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	static final int TILE_SIZE = 32;
 	static final int ENEMY_COUNT = 4;
 	static final float PLAYER_DELTA = 2f * 60f;
+	static final float PLAYER_MIN_ALTITUDE = 2;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
@@ -57,7 +58,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mLogger.log();
 	}
 
-	private static class GravityAction extends Action {
+	private class GravityAction extends Action {
 		@Override
 		public boolean act(float delta) {
 			Actor actor = getActor();
@@ -66,36 +67,14 @@ public class BurgerCopterMainScreen extends StageScreen {
 				float maxY = actor.getStage().getHeight() - actor.getHeight();
 				y = Math.min(y + PLAYER_DELTA * delta, maxY);
 			} else {
-				y -= PLAYER_DELTA * delta;
+				float newY = PLAYER_DELTA * delta;
+				float groundHeight1 = mGroundActor.getHeightAt(actor.getX());
+				float groundHeight2 = mGroundActor.getHeightAt(actor.getRight());
+				y = Math.max(newY, Math.max(groundHeight1, groundHeight2) + PLAYER_MIN_ALTITUDE);
 			}
 			getActor().setY(y);
 			return false;
 		}
-	}
-
-	private static class ScrollAction extends Action {
-		public ScrollAction(float speed) {
-			mSpeed = speed;
-		}
-
-		@Override
-		public boolean act(float delta) {
-			Actor actor = getActor();
-			float x = actor.getX() - mSpeed * delta;
-			if (x + actor.getWidth() > 0) {
-				actor.setX(x);
-			} else {
-				actor.setX(actor.getStage().getWidth());
-				return onFinished();
-			}
-			return false;
-		}
-
-		public boolean onFinished() {
-			return false;
-		}
-
-		private float mSpeed;
 	}
 
 	private void createPlayer() {
@@ -108,9 +87,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 		image.addAction(new Action() {
 			@Override
 			public boolean act(float delta) {
-				if (mGroundActor.collide(mPlayer)) {
-					mMiniGame.showGameOverScreen();
-				}
 				for(SpriteImage enemy: mEnemies) {
 					if (SpriteImage.collide(mPlayer, enemy)) {
 						mMiniGame.showGameOverScreen();
@@ -154,7 +130,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		}
 
 		actor = new TileActor(map, PIXEL_PER_SECOND / 2);
-		actor.setBounds(0, TILE_SIZE - 1, getStage().getWidth(), map.getTileSize());
+		actor.setBounds(0, TILE_SIZE - 1, getStage().getWidth(), map.getTileHeight());
 		getStage().addActor(actor);
 		mDisposables.add(actor);
 	}
@@ -162,94 +138,88 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private void createGround() {
 		int columnCount = 200;
 		int rowCount = 6;
-		TileMap map = new TileMap(columnCount, rowCount, TILE_SIZE);
+		int tileWidth = 128;
+		int tileHeight = 64;
+		TileMap map = new TileMap(columnCount, rowCount, tileWidth, tileHeight);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
-		mGroundActor.setBounds(0, 0, getStage().getWidth(), TILE_SIZE * rowCount);
+		mGroundActor.setBounds(0, 0, getStage().getWidth(), tileHeight * rowCount);
 		mDisposables.add(mGroundActor);
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
 		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
-		final TextureRegion groundTopRegion = atlas.findRegion("burgercopter/ground-top");
-		final TextureRegion groundUpARegion = atlas.findRegion("burgercopter/ground-up-a");
-		final TextureRegion groundUpBRegion = atlas.findRegion("burgercopter/ground-up-b");
-		final TextureRegion groundDownARegion = atlas.findRegion("burgercopter/ground-down-a");
-		final TextureRegion groundDownBRegion = atlas.findRegion("burgercopter/ground-down-b");
-		final TextureRegion buildingRegion = atlas.findRegion("burgercopter/building");
-		final TextureRegion buildingTopRegion = atlas.findRegion("burgercopter/building-top");
+		final TextureRegion stoneRegion = atlas.findRegion("burgercopter/stone");
+		final TextureRegion stoneUpARegion = atlas.findRegion("burgercopter/stone-up-a");
+		final TextureRegion stoneUpBRegion = atlas.findRegion("burgercopter/stone-up-b");
+		final TextureRegion stoneDownARegion = atlas.findRegion("burgercopter/stone-down-a");
+		final TextureRegion stoneDownBRegion = atlas.findRegion("burgercopter/stone-down-b");
 
 		int groundLevel = 0;
 		for (int col = 0; col < columnCount;) {
-			// Building
-			int end = Math.min(columnCount, col + MathUtils.random(1, 6));
-			for (; col < end; ++col) {
-				Array<TextureRegion> column = map.getColumn(col);
-				int row;
-				for (row = 0; row < groundLevel; ++row) {
-					column.set(row, groundRegion);
-				}
-				column.set(row++, groundTopRegion);
-				if (row < rowCount - 2) {
-					int floors = MathUtils.random(row, rowCount - 2);
-					for (; row < floors; ++row) {
-						column.set(row, buildingRegion);
-					}
-					column.set(row, buildingTopRegion);
-				}
-			}
-			if (col == columnCount) {
-				break;
-			}
 			// Raise or lower ground
 			int newGroundLevel = MathUtils.clamp(groundLevel + MathUtils.random(-1, 1), 0, rowCount - 2);
 			if (newGroundLevel > groundLevel) {
 				Array<TextureRegion> column = map.getColumn(col++);
 				int row;
-				for (row = 0; row < groundLevel; ++row) {
+				for (row = 0; row < newGroundLevel - 1; ++row) {
 					column.set(row, groundRegion);
 				}
-				column.set(row++, groundUpARegion);
-				column.set(row, groundUpBRegion);
+				column.set(row++, stoneUpARegion);
+				column.set(row++, stoneUpBRegion);
 			} else if (newGroundLevel < groundLevel) {
 				Array<TextureRegion> column = map.getColumn(col++);
 				int row;
-				for (row = 0; row < newGroundLevel; ++row) {
+				for (row = 0; row < groundLevel - 1; ++row) {
 					column.set(row, groundRegion);
 				}
-				column.set(row++, groundDownARegion);
-				column.set(row, groundDownBRegion);
+				column.set(row++, stoneDownARegion);
+				column.set(row, stoneDownBRegion);
 			}
 			groundLevel = newGroundLevel;
 			// Add some space
-			end = Math.min(columnCount, col + MathUtils.random(1, 4));
+			int end = Math.min(columnCount, col + MathUtils.random(1, 4));
 			for (; col < end; ++col) {
 				Array<TextureRegion> column = map.getColumn(col);
 				int row;
 				for (row = 0; row < groundLevel; ++row) {
 					column.set(row, groundRegion);
 				}
-				column.set(row++, groundTopRegion);
+				column.set(row, stoneRegion);
 			}
 		}
 
 		getStage().addActor(mGroundActor);
 	}
 
-	private static class EnemyAction extends ScrollAction {
+	private static class EnemyAction extends Action {
 		public EnemyAction(float speed) {
-			super(speed);
+			mSpeed = speed;
 		}
 
 		@Override
-		public boolean onFinished() {
+		public boolean act(float delta) {
+			Actor actor = getActor();
+			float x = actor.getX() - mSpeed * delta;
+			if (x + actor.getWidth() > 0) {
+				actor.setX(x);
+			} else {
+				actor.setX(actor.getStage().getWidth());
+				onFinished();
+			}
+			return false;
+		}
+
+		private void onFinished() {
 			float x = getActor().getStage().getWidth();
 			float y = MathUtils.random(240, 480);
 			actor.setX(x);
 			actor.setY(y);
-			return false;
 		}
+
+		private float mSpeed;
 	}
+
 	private void createEnemies() {
-		final TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/fish-inventory");
+		final TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/cheese-inventory");//"mealitems/0/fish-inventory");
 		assert(region != null);
 		CollisionMask mask = new CollisionMask(region);
 		float screenWidth = getStage().getWidth();

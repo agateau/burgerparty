@@ -219,6 +219,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public void startMiniGame(final int worldIndex) {
+		mMusicController.fadeOut();
 		MiniGame game = null;
 		switch (worldIndex) {
 		case 0:

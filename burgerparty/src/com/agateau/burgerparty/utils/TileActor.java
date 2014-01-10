@@ -31,7 +31,7 @@ public class TileActor extends Actor implements Disposable {
 			updateFrameBuffer();
 		}
 		mScrollOffset += mSpeed * delta;
-		if (mScrollOffset > mMap.getTileSize()) {
+		if (mScrollOffset > mMap.getTileWidth()) {
 			mScrollOffset = 0;
 			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
 			updateFrameBuffer();
@@ -48,8 +48,8 @@ public class TileActor extends Actor implements Disposable {
 
 	private void updateFrameBuffer() {
 		if (mFrameBuffer == null) {
-			int tileSize = mMap.getTileSize();
-			int w = MathUtils.ceil(getWidth() / tileSize) * tileSize + tileSize;
+			int tileWidth = mMap.getTileWidth();
+			int w = MathUtils.ceil(getWidth() / tileWidth) * tileWidth + tileWidth;
 			int h = (int)getHeight();
 			mFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, w, h, false);
 			mFrameBufferProjectionMatrix = new Matrix4();
@@ -64,16 +64,17 @@ public class TileActor extends Actor implements Disposable {
 		Gdx.gl.glClearColor(1, 1, 1, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(mFrameBufferProjectionMatrix);
-		int tileSize = mMap.getTileSize();
+		int tileWidth = mMap.getTileWidth();
+		int tileHeight = mMap.getTileHeight();
 		int colCount = mMap.getColumnCount();
-		for (int col = mStartCol, x = 0; x < mFrameBuffer.getWidth(); ++col, x += tileSize) {
+		for (int col = mStartCol, x = 0; x < mFrameBuffer.getWidth(); ++col, x += tileWidth) {
 			Array<TextureRegion> column = mMap.getColumn(col % colCount);
 			for (int row = 0; row < mMap.getRowCount(); ++row) {
 				TextureRegion region = column.get(row);
 				if (region == null) {
 					continue;
 				}
-				batch.draw(region, x, row * tileSize);
+				batch.draw(region, x, row * tileHeight);
 			}
 		}
 		batch.enableBlending();
@@ -104,12 +105,24 @@ public class TileActor extends Actor implements Disposable {
 		return false;
 	}
 
+	public float getHeightAt(float x) {
+		int col = colForX(x);
+		Array<TextureRegion> column = mMap.getColumn(col);
+		int row = column.size - 1;
+		for (; row >= 0; --row) {
+			if (column.get(row) != null) {
+				break;
+			}
+		}
+		return (row + 1) * mMap.getTileHeight();
+	}
+
 	private int colForX(float x) {
-		return (MathUtils.floor(x / mMap.getTileSize()) + mStartCol) % mMap.getColumnCount();
+		return (MathUtils.floor((x + mScrollOffset) / mMap.getTileWidth()) + mStartCol) % mMap.getColumnCount();
 	}
 
 	private int rowForY(float y) {
-		return MathUtils.floor(y / mMap.getTileSize());
+		return MathUtils.floor(y / mMap.getTileHeight());
 	}
 
 	private TileMap mMap;
