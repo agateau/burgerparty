@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
@@ -68,13 +67,13 @@ public class TileActor extends Actor implements Disposable {
 		int tileHeight = mMap.getTileHeight();
 		int colCount = mMap.getColumnCount();
 		for (int col = mStartCol, x = 0; x < mFrameBuffer.getWidth(); ++col, x += tileWidth) {
-			Array<TextureRegion> column = mMap.getColumn(col % colCount);
+			Array<Tile> column = mMap.getColumn(col % colCount);
 			for (int row = 0; row < mMap.getRowCount(); ++row) {
-				TextureRegion region = column.get(row);
-				if (region == null) {
+				Tile tile = column.get(row);
+				if (tile == null) {
 					continue;
 				}
-				batch.draw(region, x, row * tileHeight);
+				batch.draw(tile.region, x, row * tileHeight);
 			}
 		}
 		batch.enableBlending();
@@ -94,10 +93,10 @@ public class TileActor extends Actor implements Disposable {
 			return false;
 		}
 		for (int col = minCol; col <= maxCol; col = (col + 1) % colCount) {
-			Array<TextureRegion> column = mMap.getColumn(col);
+			Array<Tile> column = mMap.getColumn(col);
 			for (int row = minRow; row <= Math.min(maxRow, rowCount - 1); ++row) {
-				TextureRegion region = column.get(row);
-				if (region != null) {
+				Tile tile = column.get(row);
+				if (tile != null) {
 					return true;
 				}
 			}
@@ -107,14 +106,16 @@ public class TileActor extends Actor implements Disposable {
 
 	public float getHeightAt(float x) {
 		int col = colForX(x);
-		Array<TextureRegion> column = mMap.getColumn(col);
+		float xInTile = (x + mScrollOffset) % mMap.getTileWidth();
+		Array<Tile> column = mMap.getColumn(col);
 		int row = column.size - 1;
 		for (; row >= 0; --row) {
-			if (column.get(row) != null) {
-				break;
+			Tile tile = column.get(row);
+			if (tile != null) {
+				return row * mMap.getTileHeight() + tile.getHeightAt(xInTile);
 			}
 		}
-		return (row + 1) * mMap.getTileHeight();
+		return 0;
 	}
 
 	private int colForX(float x) {

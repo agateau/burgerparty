@@ -1,8 +1,10 @@
 package com.agateau.burgerparty.burgercopter;
 
 import com.agateau.burgerparty.utils.CollisionMask;
+import com.agateau.burgerparty.utils.MaskedTile;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
+import com.agateau.burgerparty.utils.Tile;
 import com.agateau.burgerparty.utils.TileActor;
 import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
@@ -109,12 +111,14 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private void createBg() {
 		TextureRegion bg1Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg1");
 		assert(bg1Region != null);
+		Tile bg1 = new Tile(bg1Region);
 		TextureRegion bg2Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg2");
 		assert(bg2Region != null);
+		Tile bg2 = new Tile(bg2Region);
 		TileMap map = new TileMap(5, 1, bg1Region.getRegionWidth());
 
 		for (int col = 0; col < map.getColumnCount(); ++col) {
-			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1Region : bg2Region);
+			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1 : bg2);
 		}
 
 		TileActor actor;
@@ -126,7 +130,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 		map = new TileMap(7, 1, bg1Region.getRegionWidth());
 		for (int col = 0; col < map.getColumnCount(); ++col) {
-			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1Region : bg2Region);
+			map.getColumn(col).set(0, MathUtils.randomBoolean() ? bg1 : bg2);
 		}
 
 		actor = new TileActor(map, PIXEL_PER_SECOND / 2);
@@ -146,44 +150,44 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mDisposables.add(mGroundActor);
 
 		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
-		final TextureRegion groundRegion = atlas.findRegion("burgercopter/ground");
-		final TextureRegion stoneRegion = atlas.findRegion("burgercopter/stone");
-		final TextureRegion stoneUpARegion = atlas.findRegion("burgercopter/stone-up-a");
-		final TextureRegion stoneUpBRegion = atlas.findRegion("burgercopter/stone-up-b");
-		final TextureRegion stoneDownARegion = atlas.findRegion("burgercopter/stone-down-a");
-		final TextureRegion stoneDownBRegion = atlas.findRegion("burgercopter/stone-down-b");
+		final Tile ground = new Tile(atlas.findRegion("burgercopter/ground"));
+		final Tile stone = new Tile(atlas.findRegion("burgercopter/stone"));
+		final Tile stoneUpA = new Tile(atlas.findRegion("burgercopter/stone-up-a"));
+		final Tile stoneUpB = new MaskedTile(atlas.findRegion("burgercopter/stone-up-b"));
+		final Tile stoneDownA = new Tile(atlas.findRegion("burgercopter/stone-down-a"));
+		final Tile stoneDownB = new MaskedTile(atlas.findRegion("burgercopter/stone-down-b"));
 
 		int groundLevel = 0;
 		for (int col = 0; col < columnCount;) {
 			// Raise or lower ground
 			int newGroundLevel = MathUtils.clamp(groundLevel + MathUtils.random(-1, 1), 0, rowCount - 2);
 			if (newGroundLevel > groundLevel) {
-				Array<TextureRegion> column = map.getColumn(col++);
+				Array<Tile> column = map.getColumn(col++);
 				int row;
 				for (row = 0; row < newGroundLevel - 1; ++row) {
-					column.set(row, groundRegion);
+					column.set(row, ground);
 				}
-				column.set(row++, stoneUpARegion);
-				column.set(row++, stoneUpBRegion);
+				column.set(row++, stoneUpA);
+				column.set(row++, stoneUpB);
 			} else if (newGroundLevel < groundLevel) {
-				Array<TextureRegion> column = map.getColumn(col++);
+				Array<Tile> column = map.getColumn(col++);
 				int row;
 				for (row = 0; row < groundLevel - 1; ++row) {
-					column.set(row, groundRegion);
+					column.set(row, ground);
 				}
-				column.set(row++, stoneDownARegion);
-				column.set(row, stoneDownBRegion);
+				column.set(row++, stoneDownA);
+				column.set(row, stoneDownB);
 			}
 			groundLevel = newGroundLevel;
 			// Add some space
 			int end = Math.min(columnCount, col + MathUtils.random(1, 4));
 			for (; col < end; ++col) {
-				Array<TextureRegion> column = map.getColumn(col);
+				Array<Tile> column = map.getColumn(col);
 				int row;
 				for (row = 0; row < groundLevel; ++row) {
-					column.set(row, groundRegion);
+					column.set(row, ground);
 				}
-				column.set(row, stoneRegion);
+				column.set(row, stone);
 			}
 		}
 

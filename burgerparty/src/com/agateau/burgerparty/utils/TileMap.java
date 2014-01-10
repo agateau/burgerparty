@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.utils;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 public class TileMap {
@@ -14,9 +13,9 @@ public class TileMap {
 		mTileWidth = tileWidth;
 		mTileHeight = tileHeight;
 
-		mColumns = new Array<Array <TextureRegion>>(mColumnCount);
+		mColumns = new Array<Array <Tile>>(mColumnCount);
 		for (int col = 0; col < mColumnCount; ++col) {
-			Array<TextureRegion> column = new Array<TextureRegion>(mRowCount);
+			Array<Tile> column = new Array<Tile>(mRowCount);
 			for (int row = 0; row < mRowCount; ++row) {
 				column.add(null);
 			}
@@ -40,7 +39,7 @@ public class TileMap {
 		return mColumnCount;
 	}
 
-	public Array<TextureRegion> getColumn(int col) {
+	public Array<Tile> getColumn(int col) {
 		return mColumns.get(col);
 	}
 
@@ -48,5 +47,5 @@ public class TileMap {
 	private int mTileHeight;
 	private int mRowCount;
 	private int mColumnCount;
-	private Array<Array<TextureRegion>> mColumns;
+	private Array<Array<Tile>> mColumns;
 }
