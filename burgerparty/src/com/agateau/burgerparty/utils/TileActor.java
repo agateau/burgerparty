@@ -32,6 +32,7 @@ public class TileActor extends Actor implements Disposable {
 		mScrollOffset += mSpeed * delta;
 		if (mScrollOffset > mMap.getTileWidth()) {
 			mScrollOffset = 0;
+			mMap.recycleColumn(mStartCol);
 			mStartCol = (mStartCol + 1) % mMap.getColumnCount();
 			updateFrameBuffer();
 		}

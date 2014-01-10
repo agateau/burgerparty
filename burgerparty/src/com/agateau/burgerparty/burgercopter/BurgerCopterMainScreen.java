@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.burgercopter;
 
 import com.agateau.burgerparty.utils.CollisionMask;
-import com.agateau.burgerparty.utils.MaskedTile;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.Tile;
@@ -9,7 +8,6 @@ import com.agateau.burgerparty.utils.TileActor;
 import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -109,57 +107,14 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createGround() {
-		int columnCount = 200;
 		int rowCount = 6;
 		int tileWidth = 128;
 		int tileHeight = 64;
-		TileMap map = new TileMap(columnCount, rowCount, tileWidth, tileHeight);
+		int columnCount = MathUtils.ceil(getStage().getWidth() / tileWidth) * 2;
+		TileMap map = new GroundTileMap(mMiniGame.getAssets().getTextureAtlas(), columnCount, rowCount, tileWidth, tileHeight);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
 		mGroundActor.setBounds(0, 0, getStage().getWidth(), tileHeight * rowCount);
 		mDisposables.add(mGroundActor);
-
-		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
-		final Tile ground = new Tile(atlas.findRegion("burgercopter/ground"));
-		final Tile stone = new Tile(atlas.findRegion("burgercopter/stone"));
-		final Tile stoneUpA = new Tile(atlas.findRegion("burgercopter/stone-up-a"));
-		final Tile stoneUpB = new MaskedTile(atlas.findRegion("burgercopter/stone-up-b"));
-		final Tile stoneDownA = new Tile(atlas.findRegion("burgercopter/stone-down-a"));
-		final Tile stoneDownB = new MaskedTile(atlas.findRegion("burgercopter/stone-down-b"));
-
-		int groundLevel = 0;
-		for (int col = 0; col < columnCount;) {
-			// Raise or lower ground
-			int newGroundLevel = MathUtils.clamp(groundLevel + MathUtils.random(-1, 1), 0, rowCount - 2);
-			if (newGroundLevel > groundLevel) {
-				Array<Tile> column = map.getColumn(col++);
-				int row;
-				for (row = 0; row < newGroundLevel - 1; ++row) {
-					column.set(row, ground);
-				}
-				column.set(row++, stoneUpA);
-				column.set(row++, stoneUpB);
-			} else if (newGroundLevel < groundLevel) {
-				Array<Tile> column = map.getColumn(col++);
-				int row;
-				for (row = 0; row < groundLevel - 1; ++row) {
-					column.set(row, ground);
-				}
-				column.set(row++, stoneDownA);
-				column.set(row, stoneDownB);
-			}
-			groundLevel = newGroundLevel;
-			// Add some space
-			int end = Math.min(columnCount, col + MathUtils.random(1, 4));
-			for (; col < end; ++col) {
-				Array<Tile> column = map.getColumn(col);
-				int row;
-				for (row = 0; row < groundLevel; ++row) {
-					column.set(row, ground);
-				}
-				column.set(row, stone);
-			}
-		}
-
 		getStage().addActor(mGroundActor);
 	}
 

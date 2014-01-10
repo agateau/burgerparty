@@ -43,6 +43,9 @@ public class TileMap {
 		return mColumns.get(col);
 	}
 
+	public void recycleColumn(int col) {
+	}
+
 	private int mTileWidth;
 	private int mTileHeight;
 	private int mRowCount;
