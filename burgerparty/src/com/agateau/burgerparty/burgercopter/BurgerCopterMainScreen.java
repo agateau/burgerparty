@@ -67,7 +67,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 				float maxY = actor.getStage().getHeight() - actor.getHeight();
 				y = Math.min(y + PLAYER_DELTA * delta, maxY);
 			} else {
-				float newY = PLAYER_DELTA * delta;
+				float newY = y - PLAYER_DELTA * delta;
 				float groundHeight1 = mGroundActor.getHeightAt(actor.getX());
 				float groundHeight2 = mGroundActor.getHeightAt(actor.getRight());
 				y = Math.max(newY, Math.max(groundHeight1, groundHeight2) + PLAYER_MIN_ALTITUDE);
