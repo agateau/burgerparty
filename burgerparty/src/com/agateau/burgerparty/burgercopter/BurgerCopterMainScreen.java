@@ -24,7 +24,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
-	static final int SCORE_PER_SECOND = 200;
+	static final float METERS_PER_SECOND = 4;
 	static final int TILE_SIZE = 32;
 	static final int GROUND_TILE_WIDTH = 128;
 	static final int GROUND_TILE_HEIGHT = 64;
@@ -60,7 +60,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 		if (!mFrozen) {
 			getStage().act(delta);
 		}
-		mScore += SCORE_PER_SECOND * delta;
+		mMeters += METERS_PER_SECOND * delta;
 		for(SpriteImage enemy: mEnemies) {
 			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
 				mMiniGame.showGameOverScreen();
@@ -200,20 +200,26 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mScoreLabel = new Label("0\n0", mMiniGame.getAssets().getSkin(), "lock-star-text");
-		getStage().addActor(mScoreLabel);
-		mScoreLabel.setX(0);
-		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());
+		mMeterLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		getStage().addActor(mMeterLabel);
+		mMeterLabel.setX(0);
+		mMeterLabel.setY(getStage().getHeight() - mMeterLabel.getPrefHeight());
+
+		mFuelLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		getStage().addActor(mFuelLabel);
+		mFuelLabel.setX(0);
+		mFuelLabel.setY(mMeterLabel.getY() - mFuelLabel.getPrefHeight() + 10);
 	}
 
 	private void updateHud() {
+		mMeterLabel.setText((int)mMeters + "m");
+
 		float fuel = mPlayer.getJumpFuel();
 		mHudStringBuilder.setLength(0);
-		mHudStringBuilder.append(mScore).append("\n");
 		for (float f = 0f; f < 1.0f; f += 0.05f) {
 			mHudStringBuilder.append(f < fuel ? "|" : ".");
 		}
-		mScoreLabel.setText(mHudStringBuilder.toString());
+		mFuelLabel.setText(mHudStringBuilder.toString());
 	}
 
 	private MaskedDrawableAtlas mMaskedDrawableAtlas;
@@ -224,8 +230,9 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private Player mPlayer;
 	private TileActor mGroundActor;
 	private Array<SpriteImage> mEnemies = new Array<SpriteImage>();
-	private int mScore = 0;
-	private Label mScoreLabel;
+	private float mMeters = 0;
+	private Label mMeterLabel;
+	private Label mFuelLabel;
 	private Array<Disposable> mDisposables = new Array<Disposable>();
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
