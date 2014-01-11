@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.burgercopter;
 
 import com.agateau.burgerparty.utils.MaskedTile;
+import com.agateau.burgerparty.utils.Signal2;
 import com.agateau.burgerparty.utils.Tile;
 import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,6 +10,9 @@ import com.badlogic.gdx.utils.Array;
 
 public class GroundTileMap extends TileMap {
 	private static final int MAX_FILL_SIZE = 6;
+
+	public Signal2<Integer, Integer> groundEnemyRequested = new Signal2<Integer, Integer>();
+	public Signal2<Integer, Integer> flyingEnemyRequested = new Signal2<Integer, Integer>();
 
 	public GroundTileMap(TextureAtlas atlas, int columnCount, int rowCount, int tileWidth, int tileHeight) {
 		super(columnCount, rowCount, tileWidth, tileHeight);
@@ -65,6 +69,9 @@ public class GroundTileMap extends TileMap {
 
 	private void fillFlat(int size) {
 		for (int idx = 0; idx < size; ++idx) {
+			if (mFirstFreeCol % 4 == 0) {
+				groundEnemyRequested.emit(mFirstFreeCol, mGroundLevel);
+			}
 			Array<Tile> column = advanceNextCol();
 			fillColumn(column, mStone);
 		}
@@ -92,9 +99,7 @@ public class GroundTileMap extends TileMap {
 			column.set(row, mGround);
 		}
 		column.set(row++, top);
-		for (; row < getRowCount(); ++row) {
-			column.set(row, null);
-		}
+		fillVoid(column, row);
 	}
 
 	private void fillColumn(Array<Tile> column, Tile top1, Tile top2) {
@@ -104,7 +109,19 @@ public class GroundTileMap extends TileMap {
 		}
 		column.set(row++, top1);
 		column.set(row++, top2);
-		for (; row < getRowCount(); ++row) {
+		fillVoid(column, row);
+	}
+
+	private void fillVoid(Array<Tile> column, int row) {
+		int rowCount = getRowCount();
+		if (rowCount - row > 3 && MathUtils.randomBoolean(0.6f)) {
+			int col = mFirstFreeCol - 1;
+			if (col < 0) {
+				col = getColumnCount() - 1;
+			}
+			flyingEnemyRequested.emit(col, MathUtils.random(row + 1, rowCount - 1));
+		}
+		for (; row < rowCount; ++row) {
 			column.set(row, null);
 		}
 	}

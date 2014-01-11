@@ -119,12 +119,24 @@ public class TileActor extends Actor implements Disposable {
 		return 0;
 	}
 
-	private int colForX(float x) {
+	public int colForX(float x) {
 		return (MathUtils.floor((x + mScrollOffset) / mMap.getTileWidth()) + mStartCol) % mMap.getColumnCount();
 	}
 
-	private int rowForY(float y) {
+	public int rowForY(float y) {
 		return MathUtils.floor(y / mMap.getTileHeight());
+	}
+
+	public float xForCol(int col) {
+		int colCount = mMap.getColumnCount();
+		while (col < mStartCol) {
+			col += colCount;
+		}
+		return (col - mStartCol) % colCount * mMap.getTileWidth() - mScrollOffset;
+	}
+
+	public float yForRow(int row) {
+		return row * mMap.getTileHeight();
 	}
 
 	private TileMap mMap;

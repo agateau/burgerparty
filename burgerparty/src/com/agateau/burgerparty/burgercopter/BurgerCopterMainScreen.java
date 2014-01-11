@@ -1,6 +1,10 @@
 package com.agateau.burgerparty.burgercopter;
 
-import com.agateau.burgerparty.utils.CollisionMask;
+import java.util.HashSet;
+
+import com.agateau.burgerparty.utils.MaskedDrawable;
+import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
+import com.agateau.burgerparty.utils.Signal2;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.Tile;
@@ -8,28 +12,30 @@ import com.agateau.burgerparty.utils.TileActor;
 import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.StringBuilder;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
 	static final int SCORE_PER_SECOND = 200;
 	static final int TILE_SIZE = 32;
+	static final int GROUND_TILE_WIDTH = 128;
+	static final int GROUND_TILE_HEIGHT = 64;
 	static final int ENEMY_COUNT = 4;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
+		createPools();
 		createSky();
 		createBg();
 		createGround();
-		createEnemies();
 		createPlayer();
 		createHud();
 	}
@@ -48,9 +54,12 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private FPSLogger mLogger = new FPSLogger();
+	private boolean mFrozen = false;
 	@Override
 	public void render(float delta) {
-		getStage().act(delta);
+		if (!mFrozen) {
+			getStage().act(delta);
+		}
 		mScore += SCORE_PER_SECOND * delta;
 		for(SpriteImage enemy: mEnemies) {
 			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
@@ -108,59 +117,86 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 	private void createGround() {
 		int rowCount = 6;
-		int tileWidth = 128;
-		int tileHeight = 64;
-		int columnCount = MathUtils.ceil(getStage().getWidth() / tileWidth) * 2;
-		TileMap map = new GroundTileMap(mMiniGame.getAssets().getTextureAtlas(), columnCount, rowCount, tileWidth, tileHeight);
+		int columnCount = MathUtils.ceil(getStage().getWidth() / GROUND_TILE_WIDTH) * 2;
+		GroundTileMap map = new GroundTileMap(mMiniGame.getAssets().getTextureAtlas(), columnCount, rowCount, GROUND_TILE_WIDTH, GROUND_TILE_HEIGHT);
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
-		mGroundActor.setBounds(0, 0, getStage().getWidth(), tileHeight * rowCount);
+		mGroundActor.setBounds(0, 0, getStage().getWidth(), GROUND_TILE_HEIGHT * rowCount);
 		mDisposables.add(mGroundActor);
 		getStage().addActor(mGroundActor);
+
+		map.groundEnemyRequested.connect(mHandlers, new Signal2.Handler<Integer, Integer>() {
+			@Override
+			public void handle(Integer column, Integer row) {
+				addEnemy(column, row, EnemyType.GROUND);
+			}
+		});
+		map.flyingEnemyRequested.connect(mHandlers, new Signal2.Handler<Integer, Integer>() {
+			@Override
+			public void handle(Integer column, Integer row) {
+				addEnemy(column, row, EnemyType.FLYING);
+			}
+		});
 	}
 
-	private static class EnemyAction extends Action {
-		public EnemyAction(float speed) {
-			mSpeed = speed;
+	private enum EnemyType {
+		GROUND,
+		FLYING,
+	}
+
+	private class Enemy extends SpriteImage {
+		public Enemy(MaskedDrawableAtlas atlas) {
+			mAtlas = atlas;
 		}
 
 		@Override
-		public boolean act(float delta) {
-			Actor actor = getActor();
-			float x = actor.getX() - mSpeed * delta;
-			if (x + actor.getWidth() > 0) {
-				actor.setX(x);
-			} else {
-				actor.setX(actor.getStage().getWidth());
-				onFinished();
+		public void act(float delta) {
+			float x = mGroundActor.xForCol(mCol);
+			setPosition(
+					x + (GROUND_TILE_WIDTH - getWidth()) / 2,
+					mGroundActor.yForRow(mRow));
+			if (getRight() < 0) {
+				remove();
+				mEnemies.removeValue(this, true);
+				mGroundEnemyPool.free(this);
 			}
-			return false;
+		}
+		public void init(int col, int row, EnemyType type) {
+			setPosition(getStage().getWidth(), -12);
+			mCol = col;
+			mRow = row;
+			MaskedDrawable md = null;
+			switch (type) {
+			case GROUND:
+				md = mAtlas.get("mealitems/0/cheese-inventory");
+				break;
+			case FLYING:
+				md = mAtlas.get("mealitems/0/fish-inventory");
+				break;
+			}
+			setMaskedDrawable(md);
 		}
 
-		private void onFinished() {
-			float x = getActor().getStage().getWidth();
-			float y = MathUtils.random(240, 480);
-			actor.setX(x);
-			actor.setY(y);
-		}
-
-		private float mSpeed;
+		private int mCol;
+		private int mRow;
+		private MaskedDrawableAtlas mAtlas;
 	}
 
-	private void createEnemies() {
-		final TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/cheese-inventory");//"mealitems/0/fish-inventory");
-		assert(region != null);
-		CollisionMask mask = new CollisionMask(region);
-		float screenWidth = getStage().getWidth();
-		for (int idx = 0; idx < ENEMY_COUNT; ++idx) {
-			float x = screenWidth * (1 + (float)idx / ENEMY_COUNT);
-			float y = MathUtils.random(240, 480);
-			SpriteImage actor = new SpriteImage(region, mask);
-			actor.setX(x);
-			actor.setY(y);
-			actor.addAction(new EnemyAction(PIXEL_PER_SECOND * 2));
-			getStage().addActor(actor);
-			mEnemies.add(actor);
-		}
+	private void addEnemy(int col, int row, EnemyType type) {
+		Enemy enemy = mGroundEnemyPool.obtain();
+		getStage().addActor(enemy);
+		enemy.init(col, row, type);
+		mEnemies.add(enemy);
+	}
+
+	private void createPools() {
+		TextureAtlas atlas = mMiniGame.getAssets().getTextureAtlas();
+		mMaskedDrawableAtlas = new MaskedDrawableAtlas(atlas);
+		mGroundEnemyPool = new Pool<Enemy>() {
+			@Override
+			protected Enemy newObject() {
+				return new Enemy(mMaskedDrawableAtlas);
+			}
+		};
 	}
 
 	private void createHud() {
@@ -180,6 +216,9 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mScoreLabel.setText(mHudStringBuilder.toString());
 	}
 
+	private MaskedDrawableAtlas mMaskedDrawableAtlas;
+	private Pool<Enemy> mGroundEnemyPool;
+
 	private StringBuilder mHudStringBuilder = new StringBuilder();
 	private BurgerCopterMiniGame mMiniGame;
 	private Player mPlayer;
@@ -188,4 +227,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private int mScore = 0;
 	private Label mScoreLabel;
 	private Array<Disposable> mDisposables = new Array<Disposable>();
+
+	private HashSet<Object> mHandlers = new HashSet<Object>();
 }
