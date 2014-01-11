@@ -97,5 +97,6 @@ public class CheatScreen extends BurgerPartyScreen {
 				level.setScore(value);
 			}
 		}
+		universe.saveRequested.emit();
 	}
 }
