@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -51,6 +52,14 @@ public class Assets {
 			Gdx.app.error("Kernel", "Not all assets have been loaded yet, going to block (progress=" + mAssetManager.getProgress() + ")");
 		}
 		mTextureAtlas = mAssetManager.get("burgerparty.atlas");
+
+		// Fix white-pixel to avoid fading borders
+		TextureRegion region = mTextureAtlas.findRegion("ui/white-pixel");
+		region.setRegionX(region.getRegionX() + 2);
+		region.setRegionY(region.getRegionY() + 2);
+		region.setRegionWidth(region.getRegionWidth() - 4);
+		region.setRegionHeight(region.getRegionHeight() - 4);
+
 		mSkin = new Skin(Gdx.files.internal("ui/skin.json"), mTextureAtlas);
 
 		mSoundAtlas.finishLoad();
