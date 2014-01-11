@@ -12,8 +12,8 @@ public class Player {
 	private static final float PLAYER_DELTA_DOWN = 2f * 60f;
 	private static final float PLAYER_MIN_ALTITUDE = 2;
 
-	private static final float JUMP_FUEL_CONSUME_PER_SECOND = 0.25f;
-	private static final float JUMP_FUEL_REFILL_PER_SECOND = 0.5f;
+	private static final float FUEL_CONSUME_PER_SECOND = 0.25f;
+	private static final float FUEL_REFILL_PER_SECOND = 0.5f;
 
 	public Player(Assets assets, TileActor groundActor) {
 		assert(groundActor != null);
@@ -35,17 +35,22 @@ public class Player {
 		return mImage;
 	}
 
-	public float getJumpFuel() {
-		return mJumpFuel;
+	public float getFuel() {
+		return mFuel;
+	}
+
+	public boolean isFlying() {
+		return mIsFlying;
 	}
 
 	private void act(float delta) {
 		Actor actor = getActor();
 		float y = actor.getY();
-		if (Gdx.input.isTouched() && mJumpFuel > 0) {
+		if (Gdx.input.isTouched() && mFuel > 0) {
 			float maxY = actor.getStage().getHeight() - actor.getHeight();
 			y = Math.min(y + PLAYER_DELTA_UP * delta, maxY);
-			mJumpFuel = Math.max(mJumpFuel - JUMP_FUEL_CONSUME_PER_SECOND * delta, 0);
+			mFuel = Math.max(mFuel - FUEL_CONSUME_PER_SECOND * delta, 0);
+			mIsFlying = true;
 		} else {
 			float newY = y - PLAYER_DELTA_DOWN * delta;
 			float groundHeight = 0;
@@ -54,8 +59,9 @@ public class Player {
 			}
 			float minY = groundHeight + PLAYER_MIN_ALTITUDE;
 			y = Math.max(newY, minY);
-			if (Math.abs(y - minY) < 4.0) {
-				mJumpFuel = Math.min(mJumpFuel + JUMP_FUEL_REFILL_PER_SECOND * delta, 1);
+			mIsFlying = Math.abs(y - minY) > 4.0f;
+			if (!mIsFlying) {
+				mFuel = Math.min(mFuel + FUEL_REFILL_PER_SECOND * delta, 1);
 			}
 		}
 		getActor().setY(y);
@@ -63,5 +69,6 @@ public class Player {
 
 	private SpriteImage mImage;
 	private TileActor mGroundActor;
-	private float mJumpFuel = 1;
+	private float mFuel = 1;
+	private boolean mIsFlying = false;
 }

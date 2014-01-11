@@ -5,12 +5,15 @@ import java.util.HashSet;
 import com.agateau.burgerparty.utils.MaskedDrawable;
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
 import com.agateau.burgerparty.utils.Signal2;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.Tile;
 import com.agateau.burgerparty.utils.TileActor;
 import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.StringBuilder;
+import com.badlogic.gdx.utils.Timer;
 
 public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
@@ -29,9 +32,12 @@ public class BurgerCopterMainScreen extends StageScreen {
 	static final int GROUND_TILE_WIDTH = 128;
 	static final int GROUND_TILE_HEIGHT = 64;
 	static final int ENEMY_COUNT = 4;
+	private static final float FUEL_MID_LEVEL = 0.4f;
+	private static final float FUEL_LOW_LEVEL = 0.2f;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
 		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
+		loadSounds();
 		createPools();
 		createSky();
 		createBg();
@@ -66,11 +72,15 @@ public class BurgerCopterMainScreen extends StageScreen {
 				mMiniGame.showGameOverScreen();
 			}
 		}
-		updateHud();
+		updateHud(delta);
 		getStage().draw();
 		mLogger.log();
 	}
 
+	private void loadSounds() {
+		SoundAtlas atlas = mMiniGame.getAssets().getSoundAtlas();
+		mLowFuelSound = atlas.findSound("low-fuel");
+	}
 	private void createPlayer() {
 		mPlayer = new Player(mMiniGame.getAssets(), mGroundActor);
 		mPlayer.getActor().setPosition(10, getStage().getHeight() * 3 / 4);
@@ -200,40 +210,70 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mMeterLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
+		mMeterLabel = new Label("0", mMiniGame.getAssets().getSkin(), "timer");
 		getStage().addActor(mMeterLabel);
 		mMeterLabel.setX(0);
-		mMeterLabel.setY(getStage().getHeight() - mMeterLabel.getPrefHeight());
+		mMeterLabel.setY(getStage().getHeight() - mMeterLabel.getPrefHeight() + 10);
 
-		mFuelLabel = new Label("0", mMiniGame.getAssets().getSkin(), "lock-star-text");
-		getStage().addActor(mFuelLabel);
-		mFuelLabel.setX(0);
-		mFuelLabel.setY(mMeterLabel.getY() - mFuelLabel.getPrefHeight() + 10);
+		mFuelBar = new Gauge(mMiniGame.getAssets().getTextureAtlas().findRegion("ui/white-pixel"), 20);
+		getStage().addActor(mFuelBar);
+		mFuelBar.setX(2);
+		mFuelBar.setY(getStage().getHeight() - mFuelBar.getPrefHeight() - 2);
+		mSecondBipTask = new Timer.Task() {
+			@Override
+			public void run() {
+				mLowFuelSound.play();
+			}
+		};
 	}
 
-	private void updateHud() {
+	private void updateHud(float delta) {
 		mMeterLabel.setText((int)mMeters + "m");
+		mMeterLabel.setX(getStage().getWidth() - mMeterLabel.getPrefWidth());
 
-		float fuel = mPlayer.getJumpFuel();
-		mHudStringBuilder.setLength(0);
-		for (float f = 0f; f < 1.0f; f += 0.05f) {
-			mHudStringBuilder.append(f < fuel ? "|" : ".");
+		float fuel = mPlayer.getFuel();
+		mFuelBar.setValue(fuel);
+
+		mFuelBar.setColor(Color.WHITE);
+		if (fuel < FUEL_MID_LEVEL) {
+			float oldTime = mFuelPulseTime;
+			if (mFuelPulseTime < 0) {
+				mFuelPulseTime = 0;
+			} else {
+				mFuelPulseTime += delta;
+				if (mFuelPulseTime > 1) {
+					oldTime = -1;
+					mFuelPulseTime = 0;
+				}
+			}
+			if (mPlayer.isFlying()) {
+				if (mFuelPulseTime >= 0f && oldTime < 0f) {
+					mLowFuelSound.play();
+					Timer.schedule(mSecondBipTask, 0.2f);
+				}
+			}
+			Color pulseColor = fuel < FUEL_LOW_LEVEL ? Color.RED : Color.ORANGE;
+			mFuelBar.getColor().lerp(pulseColor, 1.0f - mFuelPulseTime);
+		} else {
+			mFuelPulseTime = -1;
 		}
-		mFuelLabel.setText(mHudStringBuilder.toString());
 	}
 
 	private MaskedDrawableAtlas mMaskedDrawableAtlas;
 	private Pool<Enemy> mGroundEnemyPool;
 
-	private StringBuilder mHudStringBuilder = new StringBuilder();
 	private BurgerCopterMiniGame mMiniGame;
 	private Player mPlayer;
 	private TileActor mGroundActor;
 	private Array<SpriteImage> mEnemies = new Array<SpriteImage>();
 	private float mMeters = 0;
+	private float mFuelPulseTime = -1;
 	private Label mMeterLabel;
-	private Label mFuelLabel;
+	private Gauge mFuelBar;
 	private Array<Disposable> mDisposables = new Array<Disposable>();
+
+	private Sound mLowFuelSound;
+	private Timer.Task mSecondBipTask;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 }
