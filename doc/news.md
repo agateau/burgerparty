@@ -1,3 +1,21 @@
+# 0.8 - 2014-01-12
+
+- Mini-games! Each world features a mini game, which can be unlocked with stars
+- The sandbox mode is now locked until the player has collected some stars, to
+  avoid confusion when the game is started for the first time
+- The background of the new item screen is now animated
+- Added an about screen
+- Star count is now visible in world list screen
+- US world:
+    - The counter color has changed, making the whole screen more colorful
+- Japan world:
+    - The ninja customer has been redrawn to use the same drawing style as the
+      other customers
+    - New customer: Japanese girl in traditional costume
+- Low level changes:
+    - libgdx has been updated to 0.9.9
+    - Images are more compact, the game should use less space now
+
 # 0.7 - 2013-12-09
 
 - New world: Japan. Still a work in progress
