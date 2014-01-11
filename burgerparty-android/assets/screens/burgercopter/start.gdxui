@@ -3,7 +3,7 @@
     <AnchorGroup id="root" spacing="20">
         <Label id="titleLabel"
             topCenter="root.topCenter 0 -3"
-            style="score-feedback">Burger Copter</Label>
+            style="score-feedback">Air Burger</Label>
 
         <ImageButton id="startButton"
             style="round-button-big"
