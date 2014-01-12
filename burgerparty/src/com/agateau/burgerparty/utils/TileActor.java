@@ -58,8 +58,9 @@ public class TileActor extends Actor implements Disposable {
 		mFrameBuffer.begin();
 
 		SpriteBatch batch = getStage().getSpriteBatch();
-		batch.begin();
 		batch.disableBlending();
+		batch.setColor(Color.WHITE);
+		batch.begin();
 
 		Gdx.gl.glClearColor(1, 1, 1, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -77,8 +78,8 @@ public class TileActor extends Actor implements Disposable {
 				batch.draw(tile.region, x, row * tileHeight);
 			}
 		}
-		batch.enableBlending();
 		batch.end();
+		batch.enableBlending();
 
 		mFrameBuffer.end();
 	}
