@@ -11,7 +11,9 @@ import com.badlogic.gdx.utils.Array;
 
 public class Player extends Group {
 	private static final float GUN_OFFSET = 0.2f;
-	private static final int MAX_GUN_COUNT = 7;
+	private static final int MAX_GUN_COUNT = 5;
+	private static final float MAX_MULTIGUN_DURATION = 15f;
+
 	private class Gun extends SpriteImage {
 		public Gun(TextureRegion region, float angleOffset) {
 			super(region);
@@ -37,6 +39,29 @@ public class Player extends Group {
 
 	public void act(float delta) {
 		super.act(delta);
+		handleMultiGunTimeout(delta);
+		handleTouch();
+	}
+
+	private void handleMultiGunTimeout(float delta) {
+		if (mGuns.size > 1) {
+			mMultiGunTime += delta;
+			if (mMultiGunTime > MAX_MULTIGUN_DURATION) {
+				removeGun();
+				removeGun();
+				mMultiGunTime = 0;
+			}
+		}
+	}
+
+	private void removeGun() {
+		Gun gun = mGuns.pop();
+		gun.addAction(Actions.sequence(
+			Actions.scaleTo(0, 0, 0.5f),
+			Actions.removeActor()));
+	}
+
+	private void handleTouch() {
 		if (!Gdx.input.justTouched()) {
 			return;
 		}
@@ -55,6 +80,7 @@ public class Player extends Group {
 
 	public void addGun() {
 		if (mGuns.size < MAX_GUN_COUNT) {
+			mMultiGunTime = 0;
 			float offset = ((mGuns.size + 1) / 2) * GUN_OFFSET;
 			createGun(-offset);
 			createGun(+offset);
@@ -81,4 +107,5 @@ public class Player extends Group {
 	private TextureRegion mRegion;
 	private Array<Gun> mGuns = new Array<Gun>();
 	private BurgerVadersMainScreen mMainScreen;
+	private float mMultiGunTime = 0;
 }
