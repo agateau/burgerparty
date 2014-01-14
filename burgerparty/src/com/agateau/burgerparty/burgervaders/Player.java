@@ -8,15 +8,20 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
+import com.badlogic.gdx.utils.Pool.Poolable;
 
 public class Player extends Group {
 	private static final float GUN_OFFSET = 0.2f;
 	private static final int MAX_GUN_COUNT = 5;
 	private static final float MAX_MULTIGUN_DURATION = 15f;
 
-	private class Gun extends SpriteImage {
-		public Gun(TextureRegion region, float angleOffset) {
-			super(region);
+	private class Gun extends SpriteImage implements Poolable {
+		public Gun() {
+			super(mRegion);
+		}
+
+		public void init(float angleOffset) {
 			mAngleOffset = angleOffset;
 			setOriginX(getWidth() / 2);
 			setOriginY(0);
@@ -27,12 +32,31 @@ public class Player extends Group {
 			mMainScreen.fire(srcX, srcY, angle);
 			setRotation(MathUtils.radiansToDegrees * angle - 90);
 		}
-		
+
+		@Override
+		public void act(float delta) {
+			super.act(delta);
+			if (getParent() == null) {
+				mGunPool.free(this);
+			}
+		}
+
+		@Override
+		public void reset() {
+			setScale(1);
+		}
+
 		private float mAngleOffset;
 	}
 
 	public Player(BurgerVadersMainScreen mainScreen, TextureRegion region) {
 		mRegion = region;
+		mGunPool = new Pool<Gun>() {
+			@Override
+			protected Gun newObject() {
+				return new Gun();
+			}
+		};
 		createGun(0);
 		mMainScreen = mainScreen;
 	}
@@ -58,7 +82,8 @@ public class Player extends Group {
 		Gun gun = mGuns.pop();
 		gun.addAction(Actions.sequence(
 			Actions.scaleTo(0, 0, 0.5f),
-			Actions.removeActor()));
+			Actions.removeActor()
+		));
 	}
 
 	private void handleTouch() {
@@ -88,7 +113,8 @@ public class Player extends Group {
 	}
 
 	private void createGun(float angleOffset) {
-		Gun gun = new Gun(mRegion, angleOffset);
+		Gun gun = mGunPool.obtain();
+		gun.init(angleOffset);
 		gun.setX(-gun.getWidth() / 2);
 		addActor(gun);
 		if (mGuns.size > 0) {
@@ -106,6 +132,7 @@ public class Player extends Group {
 
 	private TextureRegion mRegion;
 	private Array<Gun> mGuns = new Array<Gun>();
+	private Pool<Gun> mGunPool;
 	private BurgerVadersMainScreen mMainScreen;
 	private float mMultiGunTime = 0;
 }
