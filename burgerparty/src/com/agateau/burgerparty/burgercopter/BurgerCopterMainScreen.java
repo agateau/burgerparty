@@ -62,13 +62,21 @@ public class BurgerCopterMainScreen extends StageScreen {
 	public void render(float delta) {
 		getStage().act(delta);
 		mMeters += METERS_PER_SECOND * delta;
-		for(SpriteImage enemy: mEnemies) {
-			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
-				mMiniGame.showGameOverScreen();
-			}
-		}
+		handleCollisions();
 		updateHud(delta);
 		getStage().draw();
+
+		if (mGameOver) {
+			mMiniGame.showGameOverScreen();
+		}
+	}
+
+	private void handleCollisions() {
+		for(SpriteImage enemy: mEnemies) {
+			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
+				mGameOver = true;
+			}
+		}
 	}
 
 	private void loadSounds() {
@@ -273,6 +281,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 	private Sound mLowFuelSound;
 	private Timer.Task mSecondBipTask;
+
+	private boolean mGameOver = false;
 
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 }
