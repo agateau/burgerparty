@@ -177,7 +177,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 			MaskedDrawable md = null;
 			switch (type) {
 			case GROUND:
-				md = mAtlas.get("mealitems/0/cheese-inventory");
+				md = mAtlas.get("burgercopter/spikes");
 				break;
 			case FLYING:
 				md = mAtlas.get("mealitems/0/fish-inventory");
