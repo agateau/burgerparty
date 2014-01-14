@@ -14,7 +14,6 @@ import com.agateau.burgerparty.utils.TileMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -59,13 +58,9 @@ public class BurgerCopterMainScreen extends StageScreen {
 		mMiniGame.showStartScreen();
 	}
 
-	private FPSLogger mLogger = new FPSLogger();
-	private boolean mFrozen = false;
 	@Override
 	public void render(float delta) {
-		if (!mFrozen) {
-			getStage().act(delta);
-		}
+		getStage().act(delta);
 		mMeters += METERS_PER_SECOND * delta;
 		for(SpriteImage enemy: mEnemies) {
 			if (SpriteImage.collide(mPlayer.getActor(), enemy)) {
@@ -74,7 +69,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 		}
 		updateHud(delta);
 		getStage().draw();
-		mLogger.log();
 	}
 
 	private void loadSounds() {
