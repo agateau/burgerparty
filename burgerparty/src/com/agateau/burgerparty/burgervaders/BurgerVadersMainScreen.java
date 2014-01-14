@@ -239,11 +239,25 @@ public class BurgerVadersMainScreen extends StageScreen {
 		};
 
 		final BurgerVadersMainScreen screen = this;
+		Pool<Enemy> multiBurgerPool = new Pool<Enemy>() {
+			@Override
+			public Enemy newObject() {
+				final Pool<Enemy> pool = this;
+				return new MultiBurgerEnemy(mMaskedDrawableAtlas, burgerItemPool, screen) {
+					@Override
+					public void mustBeRemoved() {
+						removeEnemy(this);
+						pool.free(this);
+					}
+				};
+			}
+		};
+
 		Pool<Enemy> burgerPool = new Pool<Enemy>() {
 			@Override
 			public Enemy newObject() {
 				final Pool<Enemy> pool = this;
-				return new BurgerEnemy(mMaskedDrawableAtlas, burgerItemPool, screen) {
+				return new BurgerEnemy(mMaskedDrawableAtlas) {
 					@Override
 					public void mustBeRemoved() {
 						removeEnemy(this);
@@ -255,6 +269,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 		mEnemyPools.add(friesPool);
 		mEnemyPools.add(saladPool);
+		mEnemyPools.add(multiBurgerPool);
 		mEnemyPools.add(burgerPool);
 
 		mBonusPool = new Pool<Bonus>() {
