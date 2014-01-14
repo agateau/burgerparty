@@ -140,6 +140,10 @@ public class TileActor extends Actor implements Disposable {
 		return row * mMap.getTileHeight();
 	}
 
+	public TileMap getMap() {
+		return mMap;
+	}
+
 	private TileMap mMap;
 	private float mSpeed;
 	private float mScrollOffset = 0;

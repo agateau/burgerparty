@@ -11,21 +11,29 @@ import com.badlogic.gdx.utils.Array;
 public class GroundTileMap extends TileMap {
 	private static final int MAX_FILL_SIZE = 6;
 
+	public static final int NEUTRAL_TYPE_ID = 1;
+	public static final int FATAL_TYPE_ID = 2;
+
 	public Signal2<Integer, Integer> groundEnemyRequested = new Signal2<Integer, Integer>();
 	public Signal2<Integer, Integer> flyingEnemyRequested = new Signal2<Integer, Integer>();
 
 	public GroundTileMap(TextureAtlas atlas, int columnCount, int rowCount, int tileWidth, int tileHeight) {
 		super(columnCount, rowCount, tileWidth, tileHeight);
-		mGround = new Tile(atlas.findRegion("burgercopter/ground"));
-		mStone = new Tile(atlas.findRegion("burgercopter/stone"));
-		mStoneUpA = new Tile(atlas.findRegion("burgercopter/stone-up-a"));
-		mStoneUpB = new MaskedTile(atlas.findRegion("burgercopter/stone-up-b"));
-		mStoneDownA = new Tile(atlas.findRegion("burgercopter/stone-down-a"));
-		mStoneDownB = new MaskedTile(atlas.findRegion("burgercopter/stone-down-b"));
+		mGround = new Tile(atlas.findRegion("burgercopter/ground"), NEUTRAL_TYPE_ID);
+		mStone = new Tile(atlas.findRegion("burgercopter/stone"), NEUTRAL_TYPE_ID);
+		mStoneUpA = new Tile(atlas.findRegion("burgercopter/stone-up-a"), NEUTRAL_TYPE_ID);
+		mStoneUpB = new MaskedTile(atlas.findRegion("burgercopter/stone-up-b"), NEUTRAL_TYPE_ID);
+		mStoneDownA = new Tile(atlas.findRegion("burgercopter/stone-down-a"), NEUTRAL_TYPE_ID);
+		mStoneDownB = new MaskedTile(atlas.findRegion("burgercopter/stone-down-b"), NEUTRAL_TYPE_ID);
+
+		mWater = new MaskedTile(atlas.findRegion("burgercopter/water"), FATAL_TYPE_ID);
 
 		mFirstFreeCol = 0;
 		mLastFreeCol = columnCount - 1;
 		mGroundLevel = 1;
+	}
+
+	public void firstFill() {
 		while (fillColumns()) {}
 	}
 
@@ -51,7 +59,11 @@ public class GroundTileMap extends TileMap {
 		int fillSize;
 		if (newGroundLevel == mGroundLevel) {
 			fillSize = MathUtils.random(MAX_FILL_SIZE / 2, MAX_FILL_SIZE);
-			fillFlat(fillSize);
+			if (MathUtils.randomBoolean()) {
+				fillFlat(fillSize);
+			} else {
+				fillWater(fillSize);
+			}
 		} else if (newGroundLevel > mGroundLevel) {
 			fillUp(newGroundLevel - mGroundLevel);
 		} else if (newGroundLevel < mGroundLevel) {
@@ -74,6 +86,17 @@ public class GroundTileMap extends TileMap {
 			}
 			Array<Tile> column = advanceNextCol();
 			fillColumn(column, mStone);
+		}
+	}
+
+	private void fillWater(int size) {
+		for (int idx = 0; idx < size; ++idx) {
+			Array<Tile> column = advanceNextCol();
+			if (idx > 0 && idx < size - 1) {
+				fillColumn(column, mWater);
+			} else {
+				fillColumn(column, mStone);
+			}
 		}
 	}
 
@@ -132,6 +155,7 @@ public class GroundTileMap extends TileMap {
 	private final Tile mStoneUpB;
 	private final Tile mStoneDownA;
 	private final Tile mStoneDownB;
+	private final Tile mWater;
 
 	private int mGroundLevel;
 

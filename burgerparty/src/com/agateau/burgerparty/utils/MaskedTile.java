@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 public class MaskedTile extends Tile {
-	public MaskedTile(TextureRegion region) {
-		super(region);
+	public MaskedTile(TextureRegion region, int typeId) {
+		super(region, typeId);
 		mHeights = new int[region.getRegionWidth()];
 		initHeights();
 	}

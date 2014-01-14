@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import com.agateau.burgerparty.utils.MaskedDrawable;
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
+import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal2;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.SpriteImage;
@@ -86,6 +87,12 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private void createPlayer() {
 		mPlayer = new Player(mMiniGame.getAssets(), mGroundActor);
 		mPlayer.getActor().setPosition(10, getStage().getHeight() * 3 / 4);
+		mPlayer.hitFatalGround.connect(mHandlers, new Signal0.Handler() {
+			@Override
+			public void handle() {
+				mGameOver = true;
+			}
+		});
 		getStage().addActor(mPlayer.getActor());
 	}
 
@@ -99,10 +106,10 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private void createBg() {
 		TextureRegion bg1Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg1");
 		assert(bg1Region != null);
-		Tile bg1 = new Tile(bg1Region);
+		Tile bg1 = new Tile(bg1Region, 0);
 		TextureRegion bg2Region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/bg2");
 		assert(bg2Region != null);
-		Tile bg2 = new Tile(bg2Region);
+		Tile bg2 = new Tile(bg2Region, 0);
 		TileMap map = new TileMap(5, 1, bg1Region.getRegionWidth());
 
 		for (int col = 0; col < map.getColumnCount(); ++col) {
@@ -131,6 +138,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 		int rowCount = 6;
 		int columnCount = MathUtils.ceil(getStage().getWidth() / GROUND_TILE_WIDTH) * 2;
 		GroundTileMap map = new GroundTileMap(mMiniGame.getAssets().getTextureAtlas(), columnCount, rowCount, GROUND_TILE_WIDTH, GROUND_TILE_HEIGHT);
+		map.firstFill();
+
 		mGroundActor = new TileActor(map, PIXEL_PER_SECOND);
 		mGroundActor.setBounds(0, 0, getStage().getWidth(), GROUND_TILE_HEIGHT * rowCount);
 		mDisposables.add(mGroundActor);
