@@ -160,18 +160,16 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 		@Override
 		public void act(float delta) {
-			float x = mGroundActor.xForCol(mCol);
-			setPosition(
-					x + (GROUND_TILE_WIDTH - getWidth()) / 2,
-					mGroundActor.yForRow(mRow));
-			if (getRight() < 0) {
+			float oldRight = getRight();
+			updatePosition();
+			if (getRight() > oldRight) {
+				// We wrapped around, recycle ourself
 				remove();
 				mEnemies.removeValue(this, true);
 				mGroundEnemyPool.free(this);
 			}
 		}
 		public void init(int col, int row, EnemyType type) {
-			setPosition(getStage().getWidth(), -12);
 			mCol = col;
 			mRow = row;
 			MaskedDrawable md = null;
@@ -184,6 +182,13 @@ public class BurgerCopterMainScreen extends StageScreen {
 				break;
 			}
 			setMaskedDrawable(md);
+			updatePosition();
+		}
+		private void updatePosition() {
+			float x = mGroundActor.xForCol(mCol);
+			setPosition(
+					x + (GROUND_TILE_WIDTH - getWidth()) / 2,
+					mGroundActor.yForRow(mRow));
 		}
 
 		private int mCol;
