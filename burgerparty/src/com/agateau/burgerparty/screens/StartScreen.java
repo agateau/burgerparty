@@ -3,6 +3,7 @@ package com.agateau.burgerparty.screens;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
@@ -43,6 +44,12 @@ public class StartScreen extends BurgerPartyScreen {
 		builder.<ImageButton>getActor("aboutButton").addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				getGame().showAboutScreen();
+			}
+		});
+		builder.<ImageButton>getActor("muteButton").addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				MusicController controller = getGame().getMusicController();
+				controller.setMuted(!controller.isMuted());
 			}
 		});
 	}

@@ -28,6 +28,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -50,6 +51,7 @@ public class BurgerPartyGame extends Game {
 		mAssets = new Assets();
 		MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
 		Gdx.input.setCatchBackKey(true);
+		mMusicController = new MusicController(getPreferences());
 		showLoadingScreen();
 	}
 
@@ -128,6 +130,10 @@ public class BurgerPartyGame extends Game {
 		return mAssets;
 	}
 
+	public MusicController getMusicController() {
+		return mMusicController;
+	}
+
 	public int getLevelWorldIndex() {
 		return mLevelWorldIndex;
 	}
@@ -181,7 +187,7 @@ public class BurgerPartyGame extends Game {
 		mAssets.finishLoad();
 		Music music = mAssets.getMusic();
 		music.setLooping(true);
-		mMusicController = new MusicController(music);
+		mMusicController.setMusic(music);
 		mMusicController.play();
 		setupAnimScriptLoader();
 		setupUniverse();
@@ -256,6 +262,10 @@ public class BurgerPartyGame extends Game {
 
 	public int getHeight() {
 		return mHeight;
+	}
+
+	public Preferences getPreferences() {
+		return Gdx.app.getPreferences("burgerparty");
 	}
 
 	private int mWidth = 0;
