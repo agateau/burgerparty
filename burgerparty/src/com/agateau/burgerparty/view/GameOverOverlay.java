@@ -5,11 +5,11 @@ import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Overlay;
-import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -23,14 +23,14 @@ public class GameOverOverlay extends Overlay {
 
 		Label label = new Label("Game Over", skin);
 
-		RoundButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
+		ImageButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
 		tryAgainButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
 			}
 		});
 
-		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
+		ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.showLevelListScreen(mGame.getLevelWorldIndex());

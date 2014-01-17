@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.utils;
 
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
@@ -36,11 +37,23 @@ public class MusicController {
 		int mDirection = 0;
 	}
 
-	public MusicController(Music music) {
+	public MusicController(Preferences prefs) {
+		mPrefs = prefs;
+		mIsMuted = mPrefs.getBoolean("muted", false);
+	}
+
+	public void setMusic(Music music) {
 		mMusic = music;
 	}
 
 	public void play() {
+		mPlaying = true;
+		if (mMusic == null) {
+			return;
+		}
+		if (isMuted()) {
+			return;
+		}
 		if (mMusic.isPlaying()) {
 			mFader.fade(1);
 		} else {
@@ -50,8 +63,16 @@ public class MusicController {
 	}
 
 	public void fadeOut() {
-		if (mMusic.isPlaying()) {
+		mPlaying = false;
+		if (mMusic != null && mMusic.isPlaying()) {
 			mFader.fade(-1);
+		}
+	}
+
+	public void stop() {
+		mPlaying = false;
+		if (mMusic != null) {
+			mMusic.stop();
 		}
 	}
 
@@ -60,6 +81,30 @@ public class MusicController {
 		mMusic.setVolume(volume);
 	}
 
+	public void setMuted(boolean muted) {
+		mIsMuted = muted;
+		mPrefs.putBoolean("muted", muted);
+		mPrefs.flush();
+		if (mPlaying) {
+			if (muted) {
+				mMusic.stop();
+			} else if (!mMusic.isPlaying()) {
+				mMusic.play();
+			}
+		}
+	}
+
+	public boolean isMuted() {
+		return mIsMuted;
+	}
+
+	private Preferences mPrefs;
+
 	private Music mMusic;
 	private Fader mFader = new Fader();
+
+	// Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
+	private boolean mPlaying = false;
+
+	private boolean mIsMuted = false;
 }

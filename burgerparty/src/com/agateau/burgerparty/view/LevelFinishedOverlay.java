@@ -11,7 +11,6 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.Overlay;
-import com.agateau.burgerparty.utils.RoundButton;
 import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.Gdx;
@@ -22,6 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -167,7 +167,7 @@ public class LevelFinishedOverlay extends Overlay {
 		Actor starsActor = createStarsActor(skin);
 
 		// Select level button
-		RoundButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
+		ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
 		selectLevelButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.showLevelListScreen(mGame.getLevelWorldIndex());
@@ -175,7 +175,7 @@ public class LevelFinishedOverlay extends Overlay {
 		});
 
 		// Restart button
-		RoundButton restartButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
+		ImageButton restartButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
 		restartButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
@@ -184,7 +184,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 		// Main label and next button
 		Label mainLabel = new Label("", skin);
-		RoundButton nextButton = null;
+		ImageButton nextButton = null;
 		int levelWorldIndex = mGame.getLevelWorldIndex();
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
@@ -225,8 +225,8 @@ public class LevelFinishedOverlay extends Overlay {
 		return starGroup;
 	}
 
-	private RoundButton createNextButton(String name) {
-		RoundButton button = Kernel.createRoundButton(mGame.getAssets(), name);
+	private ImageButton createNextButton(String name) {
+		ImageButton button = Kernel.createRoundButton(mGame.getAssets(), name);
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				goToNextLevel();
