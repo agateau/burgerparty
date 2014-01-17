@@ -39,6 +39,7 @@ public class MusicController {
 
 	public MusicController(Preferences prefs) {
 		mPrefs = prefs;
+		mIsMuted = mPrefs.getBoolean("muted", false);
 	}
 
 	public void setMusic(Music music) {
@@ -81,6 +82,7 @@ public class MusicController {
 	}
 
 	public void setMuted(boolean muted) {
+		mIsMuted = muted;
 		mPrefs.putBoolean("muted", muted);
 		mPrefs.flush();
 		if (mPlaying) {
@@ -93,7 +95,7 @@ public class MusicController {
 	}
 
 	public boolean isMuted() {
-		return mPrefs.getBoolean("muted", false);
+		return mIsMuted;
 	}
 
 	private Preferences mPrefs;
@@ -103,4 +105,6 @@ public class MusicController {
 
 	// Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
 	private boolean mPlaying = false;
+
+	private boolean mIsMuted = false;
 }
