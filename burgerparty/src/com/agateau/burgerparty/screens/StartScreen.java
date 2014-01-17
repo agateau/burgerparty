@@ -8,12 +8,11 @@ import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class StartScreen extends BurgerPartyScreen {
 
@@ -66,8 +65,8 @@ public class StartScreen extends BurgerPartyScreen {
 
 	private void updateMuteButton() {
 		boolean muted = getGame().getMusicController().isMuted();
-		TextureRegion region = getTextureAtlas().findRegion(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
-		mMuteButton.getImage().setDrawable(new TextureRegionDrawable(region));
+		Drawable drawable = getGame().getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
+		mMuteButton.getImage().setDrawable(drawable);
 	}
 
 	private ImageButton mMuteButton;
