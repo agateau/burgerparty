@@ -43,10 +43,19 @@ public class World {
 	public World(Level level) {
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
-		mBurgerGenerator = new BurgerGenerator(level.getLevelWorld().getIndex(), mLevel.definition.getBurgerItems());
+		int worldIndex = level.getLevelWorld().getIndex();
+		mBurgerGenerator = new BurgerGenerator(worldIndex, mLevel.definition.getBurgerItems());
 		mMealExtraGenerator = new MealExtraGenerator(mLevel.definition.getExtraItems());
 		mBurgerInventory.setItems(level.definition.getBurgerItems());
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
+
+		final int WORLD_COUNT = 3; // FIXME
+		final int STAR_COUNT = 3;
+		float difficulty = (worldIndex * LevelWorld.LEVEL_PER_WORLD + level.getIndex()) / (WORLD_COUNT * LevelWorld.LEVEL_PER_WORLD);
+		mStarCost = (int)(
+				((1 - difficulty) * NEUTRAL_COIN_COUNT + difficulty * HAPPY_COIN_COUNT) * mCustomers.size / STAR_COUNT
+				);
+
 		setupMeal();
 	}
 
@@ -124,6 +133,10 @@ public class World {
 
 	public int getCoinCount() {
 		return mCoinCount;
+	}
+
+	public int getStarCost() {
+		return mStarCost;
 	}
 
 	public LevelResult getLevelResult() {
@@ -289,6 +302,7 @@ public class World {
 	private Timer mTimer = new Timer();
 
 	private Level mLevel;
+	private int mStarCost;
 
 	private Inventory mBurgerInventory = new Inventory();
 	private Inventory mMealExtraInventory = new Inventory();
