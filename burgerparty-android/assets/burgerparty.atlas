@@ -600,7 +600,7 @@ ui/hud-bg
   index: -1
 ui/icon-left
   rotate: false
-  xy: 978, 4
+  xy: 978, 5
   size: 26, 34
   orig: 26, 34
   offset: 0, 0
@@ -633,25 +633,25 @@ ui/icon-right
   orig: 26, 34
   offset: 0, 0
   index: -1
-ui/star-off
+ui/icon-sound-off
   rotate: false
   xy: 458, 135
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/star-on
+ui/icon-sound-on
   rotate: false
   xy: 458, 93
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/surprise
+ui/star-off
   rotate: false
-  xy: 978, 40
-  size: 36, 41
-  orig: 36, 41
+  xy: 978, 41
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
 ui/undo
@@ -898,6 +898,20 @@ ui/level-button-down
   orig: 152, 48
   offset: 0, 0
   index: -1
+ui/star-on
+  rotate: false
+  xy: 459, 306
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/surprise
+  rotate: false
+  xy: 465, 417
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
 ui/title
   rotate: false
   xy: 516, 304
@@ -907,7 +921,7 @@ ui/title
   index: -1
 ui/world-button
   rotate: false
-  xy: 459, 316
+  xy: 470, 478
   size: 32, 30
   split: 12, 12, 10, 12
   pad: 11, 11, 9, 11

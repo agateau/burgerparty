@@ -16,7 +16,7 @@
             bottomRight="root.bottomRight -1 1"/>
         <ImageButton id="muteButton"
             style="round-button"
-            imageName="ui/icon-info"
+            imageName="ui/icon-sound-on"
             bottomLeft="root.bottomLeft 1 1"/>
     </AnchorGroup>
 </gdxui>

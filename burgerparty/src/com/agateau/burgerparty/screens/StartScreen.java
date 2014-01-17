@@ -8,10 +8,12 @@ import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class StartScreen extends BurgerPartyScreen {
 
@@ -46,16 +48,27 @@ public class StartScreen extends BurgerPartyScreen {
 				getGame().showAboutScreen();
 			}
 		});
-		builder.<ImageButton>getActor("muteButton").addListener(new ChangeListener() {
+		mMuteButton = builder.<ImageButton>getActor("muteButton");
+		mMuteButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 				MusicController controller = getGame().getMusicController();
 				controller.setMuted(!controller.isMuted());
+				updateMuteButton();
 			}
 		});
+		updateMuteButton();
 	}
 
 	@Override
 	public void onBackPressed() {
 		Gdx.app.exit();
 	}
+
+	private void updateMuteButton() {
+		boolean muted = getGame().getMusicController().isMuted();
+		TextureRegion region = getTextureAtlas().findRegion(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
+		mMuteButton.getImage().setDrawable(new TextureRegionDrawable(region));
+	}
+
+	private ImageButton mMuteButton;
 }
