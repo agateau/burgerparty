@@ -10,12 +10,13 @@ public class MusicController {
 	private class Fader extends Timer.Task {
 		@Override
 		public void run() {
-			setVolume(mVolume + FADE_STEP * mDirection);
-			if (mVolume == 0 && mDirection == -1) {
+			setVolume(mMusic.getVolume() + FADE_STEP * mDirection);
+			float volume = mMusic.getVolume();
+			if (volume == 0 && mDirection == -1) {
 				mMusic.stop();
 				return;
 			}
-			if (mVolume == 1 && mDirection == 1) {
+			if (volume == 1 && mDirection == 1) {
 				return;
 			}
 			scheduleUpdate();
@@ -54,12 +55,11 @@ public class MusicController {
 		}
 	}
 
-	public void setVolume(float volume) {
-		mVolume = MathUtils.clamp(volume, 0, 1);
-		mMusic.setVolume(mVolume);
+	private void setVolume(float volume) {
+		volume = MathUtils.clamp(volume, 0, 1);
+		mMusic.setVolume(volume);
 	}
 
 	private Music mMusic;
-	private float mVolume = 1;
 	private Fader mFader = new Fader();
 }
