@@ -35,26 +35,6 @@ public class World {
 	private static final int NEUTRAL_SCORE = 2000;
 	private static final int ANGRY_SCORE = 1000;
 
-	private Timer mTimer = new Timer();
-
-	private Level mLevel;
-
-	private Inventory mBurgerInventory = new Inventory();
-	private Inventory mMealExtraInventory = new Inventory();
-
-	private Burger mBurger;
-	private MealExtra mMealExtra;
-
-	private Burger mTargetBurger = new Burger();
-	private MealExtra mTargetMealExtra = new MealExtra();
-
-	private Array<Customer> mCustomers = new Array<Customer>();
-	private int mActiveCustomerIndex = 0;
-	private int mRemainingSeconds;
-	private int mScore = 0;
-
-	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
-
 	public World(Level level) {
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
@@ -292,4 +272,24 @@ public class World {
 	private MealExtraGenerator mMealExtraGenerator;
 	private Counter mItemAddedCounter = new Counter();
 	private Counter mMealDoneCounter = new Counter();
+
+	private Timer mTimer = new Timer();
+
+	private Level mLevel;
+
+	private Inventory mBurgerInventory = new Inventory();
+	private Inventory mMealExtraInventory = new Inventory();
+
+	private Burger mBurger;
+	private MealExtra mMealExtra;
+
+	private Burger mTargetBurger = new Burger();
+	private MealExtra mTargetMealExtra = new MealExtra();
+
+	private Array<Customer> mCustomers = new Array<Customer>();
+	private int mActiveCustomerIndex = 0;
+	private int mRemainingSeconds;
+	private int mScore = 0;
+
+	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 }
