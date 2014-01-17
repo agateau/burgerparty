@@ -23,7 +23,8 @@ public class World {
 		};
 		public Type type;
 		public String message = new String();
-		public int delta;
+		public int deltaScore;
+		public int deltaCoinCount;
 	}
 	public Signal0 burgerFinished = new Signal0();
 	public Signal1<Score> mealFinished = new Signal1<Score>();
@@ -34,6 +35,10 @@ public class World {
 	private static final int HAPPY_SCORE = 4000;
 	private static final int NEUTRAL_SCORE = 2000;
 	private static final int ANGRY_SCORE = 1000;
+
+	private static final int HAPPY_COIN_COUNT = 3;
+	private static final int NEUTRAL_COIN_COUNT = 2;
+	private static final int ANGRY_COIN_COUNT = 1;
 
 	public World(Level level) {
 		mLevel = level;
@@ -115,6 +120,10 @@ public class World {
 
 	public int getScore() {
 		return mScore;
+	}
+
+	public int getCoinCount() {
+		return mCoinCount;
 	}
 
 	public LevelResult getLevelResult() {
@@ -235,6 +244,7 @@ public class World {
 		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
 		Score score = new Score();
 		if (mood == Customer.Mood.HAPPY) {
+			score.deltaCoinCount = HAPPY_COIN_COUNT;
 			int count = 0;
 			for (int i = mActiveCustomerIndex; i >= 0; --i) {
 				if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
@@ -245,21 +255,24 @@ public class World {
 			}
 			if (count > 1) {
 				score.type = Score.Type.COMBO;
-				score.delta = HAPPY_SCORE + COMBO_SCORE * count;
+				score.deltaScore = HAPPY_SCORE + COMBO_SCORE * count;
 				score.message = count + "x combo!";
 			} else {
 				score.type = Score.Type.HAPPY;
-				score.delta = HAPPY_SCORE;
+				score.deltaScore = HAPPY_SCORE;
 				score.message = "Happy customer!";
 			}
 		} else if (mood == Customer.Mood.NEUTRAL) {
 			score.type = Score.Type.NEUTRAL;
-			score.delta = NEUTRAL_SCORE;
+			score.deltaScore = NEUTRAL_SCORE;
+			score.deltaCoinCount = NEUTRAL_COIN_COUNT;
 		} else {
 			score.type = Score.Type.ANGRY;
-			score.delta = ANGRY_SCORE;
+			score.deltaScore = ANGRY_SCORE;
+			score.deltaCoinCount = ANGRY_COIN_COUNT;
 		}
-		mScore += score.delta;
+		mScore += score.deltaScore;
+		mCoinCount += score.deltaCoinCount;
 		mealFinished.emit(score);
 	}
 
@@ -290,6 +303,7 @@ public class World {
 	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
 	private int mScore = 0;
+	private int mCoinCount = 0;
 
 	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 }

@@ -228,7 +228,7 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void updateScoreDisplay() {
-		String txt = String.format("%07d", mWorld.getScore());
+		String txt = String.format("S: %07d - C: %d", mWorld.getScore(), mWorld.getCoinCount());
 		mScoreDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mScoreDisplay);
 	}

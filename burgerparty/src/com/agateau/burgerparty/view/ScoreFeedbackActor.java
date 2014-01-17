@@ -17,7 +17,7 @@ public class ScoreFeedbackActor extends Label {
 		if (!text.isEmpty()) {
 			text += "\n";
 		}
-		text += "+" + score.delta;
+		text += "+" + score.deltaScore;
 		setText(text);
 		initAnim(loader);
 		parent.getStage().addActor(this);
