@@ -59,9 +59,9 @@ public class WorldListView extends HorizontalGroup {
 			createStarsActor(button.getGroup(), world);
 		}
 		button.mIndex = index;
+		button.addListener(mAssets.getClickListener());
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mAssets.getSoundAtlas().findSound("click").play();
 				WorldListView.WorldButton button = (WorldListView.WorldButton)actor;
 				currentIndexChanged.emit(button.mIndex);
 			}

@@ -193,9 +193,9 @@ public class LevelListScreen extends BurgerPartyScreen {
 			createSurpriseImage(group);
 		}
 
+		button.addListener(getGame().getAssets().getClickListener());
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().getAssets().getSoundAtlas().findSound("click").play();
 				LevelButton button = (LevelButton)actor;
 				getGame().startLevel(button.levelWorldIndex, button.levelIndex);
 			}
