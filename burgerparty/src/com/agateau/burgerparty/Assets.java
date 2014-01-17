@@ -99,10 +99,6 @@ public class Assets {
 		return mAssetManager;
 	}
 
-	public Sound getClickSound() {
-		return mClickSound;
-	}
-
 	public Music getMusic() {
 		return mMusic;
 	}
