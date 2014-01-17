@@ -80,7 +80,9 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		setupBubble(item);
 
-		mBubble.setPosition(-mBubble.getWidth(), mFgImage.getHeight() / 2);
+		mFgGroupFinalX = root.getFloatAttribute("fgX", 400);
+		float bubbleXOffset = root.getFloatAttribute("bubbleXOffset", 0);
+		mBubble.setPosition(-mBubble.getWidth() + bubbleXOffset, mFgImage.getHeight() / 2);
 
 		getStage().addActor(mFgGroup);
 		mFgGroup.addActor(mFgImage);
@@ -163,7 +165,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 		tl.addAction(
 			mFgGroup,
-			Actions.moveTo(400, 0, FADE_IN_DURATION, Interpolation.pow5Out)
+			Actions.moveTo(mFgGroupFinalX, 0, FADE_IN_DURATION, Interpolation.pow5Out)
 		);
 
 		tl.addAction(
@@ -199,4 +201,5 @@ public class NewItemScreen extends BurgerPartyScreen {
 	private AnchorGroup mBubbleContent;
 	private Label mBubbleLabel;
 	private Image mItemImage;
+	private float mFgGroupFinalX;
 }
