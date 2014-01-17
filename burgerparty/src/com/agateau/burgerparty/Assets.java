@@ -1,6 +1,7 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -16,12 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class Assets {
 	private static final String MAIN_MUSIC = "music/burger-party_main-theme.mp3";
-	public Assets() {
+	public Assets(MusicController musicController) {
 		mAssetManager = new AssetManager();
 		Texture.setAssetManager(mAssetManager);
 		mAssetManager.load("burgerparty.atlas", TextureAtlas.class);
 
-		mSoundAtlas = new SoundAtlas(mAssetManager, "sounds/");
+		mSoundAtlas = new SoundAtlas(mAssetManager, "sounds/", musicController);
 		String[] names = {
 			"add-item.wav",
 			"add-item-bottom.wav",

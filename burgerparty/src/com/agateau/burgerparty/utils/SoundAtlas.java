@@ -10,8 +10,161 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class SoundAtlas {
-	public SoundAtlas(AssetManager manager, String dir) {
+	private class AtlasSound implements Sound {
+		public AtlasSound(Sound sound) {
+			mSound = sound;
+		}
+
+		@Override
+		public long play() {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.play();
+		}
+
+		@Override
+		public long play(float volume) {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.play(volume);
+		}
+
+		@Override
+		public long play(float volume, float pitch, float pan) {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.play(volume, pitch, pan);
+		}
+
+		@Override
+		public long loop() {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.loop();
+		}
+
+		@Override
+		public long loop(float volume) {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.loop(volume);
+		}
+
+		@Override
+		public long loop(float volume, float pitch, float pan) {
+			if (mMusicController.isMuted()) {
+				return -1;
+			}
+			return mSound.loop(volume, pitch, pan);
+		}
+
+		@Override
+		public void stop() {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.stop();
+		}
+
+		@Override
+		public void pause() {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.pause();
+		}
+
+		@Override
+		public void resume() {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.resume();
+		}
+
+		@Override
+		public void dispose() {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.dispose();
+		}
+
+		@Override
+		public void stop(long soundId) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.stop(soundId);
+		}
+
+		@Override
+		public void pause(long soundId) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.pause(soundId);
+		}
+
+		@Override
+		public void resume(long soundId) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.resume(soundId);
+		}
+
+		@Override
+		public void setLooping(long soundId, boolean looping) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.setLooping(soundId, looping);
+		}
+
+		@Override
+		public void setPitch(long soundId, float pitch) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.setPitch(soundId, pitch);
+		}
+
+		@Override
+		public void setVolume(long soundId, float volume) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.setVolume(soundId, volume);
+		}
+
+		@Override
+		public void setPan(long soundId, float pan, float volume) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.setPan(soundId, pan, volume);
+		}
+
+		@Override
+		public void setPriority(long soundId, int priority) {
+			if (mMusicController.isMuted()) {
+				return;
+			}
+			mSound.setPriority(soundId, priority);
+		}
+
+		Sound mSound;
+	}
+
+	public SoundAtlas(AssetManager manager, String dir, MusicController musicController) {
 		mAssetManager = manager;
+		mMusicController = musicController;
 		mDir = dir;
 		if (!mDir.endsWith("/")) {
 			mDir = mDir.concat("/");
@@ -33,7 +186,7 @@ public class SoundAtlas {
 			Gdx.app.log("SoundAtlas", "Getting " + filename + " as " + name);
 			Sound sound = mAssetManager.get(filename);
 			assert(sound != null);
-			mSoundMap.put(name, sound);
+			mSoundMap.put(name, new AtlasSound(sound));
 		}
 	}
 
@@ -65,12 +218,13 @@ public class SoundAtlas {
 			mSound.play();
 		}
 
-		private Sound mSound;
+		private final Sound mSound;
 	}
 
 	Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
 
-	private AssetManager mAssetManager;
+	private final AssetManager mAssetManager;
+	private final MusicController mMusicController;
 	private String mDir;
 	private String[] mPendingNames;
 }

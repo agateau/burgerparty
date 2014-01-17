@@ -48,10 +48,10 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
-		mAssets = new Assets();
+		mMusicController = new MusicController(getPreferences());
+		mAssets = new Assets(mMusicController);
 		MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
 		Gdx.input.setCatchBackKey(true);
-		mMusicController = new MusicController(getPreferences());
 		showLoadingScreen();
 	}
 
