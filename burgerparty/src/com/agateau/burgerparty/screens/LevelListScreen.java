@@ -187,7 +187,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 		if (level.isLocked()) {
 			button.setDisabled(true);
 		} else {
-			button.createStars(level.getStars());
+			button.createStars(level.getStarCount());
 		}
 		if (level.hasBrandNewItem()) {
 			createSurpriseImage(group);

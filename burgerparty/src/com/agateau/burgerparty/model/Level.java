@@ -68,9 +68,13 @@ public class Level {
 
 	public Definition definition = new Definition();
 
-	public int getStars() {
+	public void setStarCount(int value) {
+		mStarCount = value;
+	}
+
+	public int getStarCount() {
 		if (mStatus == Status.PLAYED) {
-			return getStarsFor(mScore);
+			return mStarCount;
 		} else {
 			return 0;
 		}
@@ -78,18 +82,6 @@ public class Level {
 
 	public boolean hasBrandNewItem() {
 		return mStatus != Status.PLAYED && definition.mNewItem != null;
-	}
-
-	public int getStarsFor(int value) {
-		if (value >= definition.score3) {
-			return 3;
-		} else if (value >= definition.score2) {
-			return 2;
-		} else if (value > 0) {
-			return 1;
-		} else {
-			return 0;
-		}
 	}
 
 	public LevelWorld getLevelWorld() {
@@ -207,4 +199,5 @@ public class Level {
 
 	private Status mStatus = Status.LOCKED;
 	private int mScore = 0;
+	private int mStarCount = 0;
 }

@@ -131,9 +131,10 @@ public class LevelFinishedOverlay extends Overlay {
 		mScore = levelResult.getScore();
 		int remainingSeconds = levelResult.getRemainingSeconds();
 		int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;
+		int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 
 		// Store final score *now*
-		Set<String> unlockedThings = mGame.getUniverse().setLevelScore(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore);
+		Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount);
 		for (String thing: unlockedThings) {
 			Gdx.app.log("LevelFinishedOverlay", "Unlocked " + thing);
 		}
@@ -143,7 +144,6 @@ public class LevelFinishedOverlay extends Overlay {
 		setupWidgets(skin);
 
 		mRunQueue.add(new ConsumeSecondsTask(remainingSeconds));
-		int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 		for (int i = 0; i < starCount; ++i) {
 			mRunQueue.add(new LightUpStarTask(this, i));
 		}

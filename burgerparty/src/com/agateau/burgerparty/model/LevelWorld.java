@@ -33,7 +33,7 @@ public class LevelWorld {
 	public int getWonStarCount() {
 		int count = 0;
 		for (Level level: mLevels) {
-			count += level.getStars();
+			count += level.getStarCount();
 		}
 		return count;
 	}
