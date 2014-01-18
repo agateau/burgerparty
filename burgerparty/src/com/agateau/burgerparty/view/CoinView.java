@@ -35,10 +35,15 @@ public class CoinView extends Group {
 		}
 
 		public void setCoinCount(int count) {
-			for(int i = 0, n = mCoinImages.size; i < n; ++i) {
-				float alpha = i < count ? 1 : COIN_OFF_ALPHA;
-				mCoinImages.get(i).setColor(1, 1, 1, alpha);
+			if (count == mCoinCount) {
+				return;
 			}
+			assert(count >= mCoinCount);
+			assert(count <= mCoinImages.size);
+			for(int i = mCoinCount; i < count; ++i) {
+				mCoinImages.get(i).setColor(1, 1, 1, 1);
+			}
+			mCoinCount = count;
 			if (count == mCoinImages.size) {
 				mStarImage.setDrawable(mStarOn);
 			}
@@ -46,6 +51,8 @@ public class CoinView extends Group {
 
 		Array<Image> mCoinImages = new Array<Image>();
 		Image mStarImage;
+
+		private int mCoinCount = 0;
 	}
 
 	public CoinView(Assets assets, int starCost) {
