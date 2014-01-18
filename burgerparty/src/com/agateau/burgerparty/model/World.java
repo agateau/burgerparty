@@ -140,7 +140,7 @@ public class World {
 	}
 
 	public LevelResult getLevelResult() {
-		return new LevelResult(mLevel, mScore, mRemainingSeconds);
+		return new LevelResult(mLevel, mScore, mCoinCount, mStarCost, mRemainingSeconds);
 	}
 
 	public int getTargetComplexity() {

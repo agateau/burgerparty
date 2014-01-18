@@ -143,7 +143,7 @@ public class LevelFinishedOverlay extends Overlay {
 		setupWidgets(skin);
 
 		mRunQueue.add(new ConsumeSecondsTask(remainingSeconds));
-		int starCount = levelResult.getLevel().getStarsFor(finalScore);
+		int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 		for (int i = 0; i < starCount; ++i) {
 			mRunQueue.add(new LightUpStarTask(this, i));
 		}
