@@ -3,13 +3,6 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-burgervaders/bullet
-  rotate: false
-  xy: 970, 11
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 customers/pirate-boys/face-boss-angry
   rotate: false
   xy: 804, 6
@@ -115,18 +108,18 @@ mealitems/3/toast
   orig: 256, 56
   offset: 0, 0
   index: -1
-overlay-bg
-  rotate: false
-  xy: 988, 11
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 platter
   rotate: false
   xy: 2, 2
   size: 538, 56
   orig: 538, 56
+  offset: 0, 0
+  index: -1
+ui/coin
+  rotate: false
+  xy: 953, 8
+  size: 39, 19
+  orig: 39, 19
   offset: 0, 0
   index: -1
 ui/icon-button
@@ -159,7 +152,7 @@ ui/lock-key
   index: -1
 ui/pause
   rotate: false
-  xy: 953, 9
+  xy: 994, 9
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -187,13 +180,6 @@ ui/vruler
   orig: 6, 12
   offset: 0, 0
   index: -1
-ui/white-pixel
-  rotate: false
-  xy: 1006, 11
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 
 burgerparty2.png
 format: RGBA8888
@@ -204,6 +190,13 @@ burgercopter/bg1
   xy: 934, 723
   size: 64, 57
   orig: 64, 57
+  offset: 0, 0
+  index: -1
+burgervaders/bullet
+  rotate: false
+  xy: 1004, 889
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 customers/japan-girls/body-0
@@ -304,6 +297,13 @@ mealitems/3/toast-inventory
   orig: 84, 51
   offset: 0, 0
   index: -1
+overlay-bg
+  rotate: false
+  xy: 1004, 871
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 sandbox-preview
   rotate: false
   xy: 804, 717
@@ -360,6 +360,13 @@ ui/text-button
   split: 37, 37, 37, 37
   pad: 36, 36, 13, 15
   orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/white-pixel
+  rotate: false
+  xy: 997, 846
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 

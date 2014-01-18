@@ -24,7 +24,7 @@ import com.badlogic.gdx.utils.XmlWriter;
  *     ...
  *   </levels>
  * </progress>
- * 
+ *
  * V3:
  *
  * <progress version="3">

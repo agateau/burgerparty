@@ -52,6 +52,7 @@ public class WorldView extends AbstractWorldView {
 		setupTargetMealView();
 		setupInventoryView();
 		setupHud();
+		setupCoinView();
 		setupAnchors();
 
 		mWorld.burgerFinished.connect(mHandlers, new Signal0.Handler() {
@@ -220,11 +221,16 @@ public class WorldView extends AbstractWorldView {
 		}
 	}
 
+	private void setupCoinView() {
+		mCoinView = new CoinView(mAssets, mWorld.getStarCost());
+	}
+
 	private void setupAnchors() {
 		mHudLayer.addRule(mHudImage, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0, 0);
 		mHudLayer.addRule(mPauseButton, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -0.6f);
 		mHudLayer.addRule(mTimerDisplay, Anchor.CENTER_LEFT, mPauseButton, Anchor.CENTER_LEFT, 1.2f, 0);
 		mHudLayer.addRule(mScoreDisplay, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 0.7f, -1.6f);
+		mHudLayer.addRule(mCoinView, Anchor.BOTTOM_LEFT, mCounter, Anchor.BOTTOM_LEFT, 1, 1);
 	}
 
 	private void updateScoreDisplay() {
@@ -239,6 +245,10 @@ public class WorldView extends AbstractWorldView {
 		}
 		mScoreDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mScoreDisplay);
+	}
+
+	private void updateCoinView() {
+		mCoinView.setCoinCount(mWorld.getCoinCount());
 	}
 
 	private void updateTimerDisplay() {
@@ -292,6 +302,7 @@ public class WorldView extends AbstractWorldView {
 		scrollTo(0);
 		mActiveCustomerView.getCustomer().markServed();
 		updateScoreDisplay();
+		updateCoinView();
 		float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
 		float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
 		new ScoreFeedbackActor(this, x, y, score, mAssets.getSkin(), mAssets.getAnimScriptLoader());
@@ -390,4 +401,5 @@ public class WorldView extends AbstractWorldView {
 	private CustomerViewFactory mCustomerFactory;
 	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
 	private CustomerView mActiveCustomerView;
+	private CoinView mCoinView;
 }
