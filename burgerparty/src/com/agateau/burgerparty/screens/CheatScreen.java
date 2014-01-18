@@ -81,20 +81,13 @@ public class CheatScreen extends BurgerPartyScreen {
 		Universe universe = getGame().getUniverse();
 		LevelWorld world = universe.get(worldIndex);
 		for(Level level: world.getLevels()) {
-			int value = 0;
-			if (stars == 3) {
-				value = level.definition.score3;
-			} else if (stars == 2) {
-				value = level.definition.score2;
-			} else if (stars == 1) {
-				value = level.definition.score2 - 10;
-			} else {
+			if (stars == 0) {
 				level.lock();
 				level.unlock();
 				continue;
 			}
-			if (level.getScore() < value) {
-				level.setScore(value);
+			if (level.getStarCount() < stars) {
+				level.setStarCount(stars);
 			}
 		}
 		universe.saveRequested.emit();

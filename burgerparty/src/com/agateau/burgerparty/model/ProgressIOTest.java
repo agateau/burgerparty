@@ -17,16 +17,20 @@ public class ProgressIOTest {
 		Array<LevelWorld> worlds = createTestWorlds();
 		XmlReader.Element root = TestUtils.parseXml(
 			"<progress>"
-			+ "<item world='1' level='1' score='12'/>"
-			+ "<item world='2' level='2' score='24'/>"
+			+ "<item world='1' level='1' score='10000'/>"
+			+ "<item world='2' level='2' score='20000'/>"
 			+ "</progress>"
 			);
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
-		assertEquals(worlds.get(0).getLevel(0).getScore(), 12);
+		assertEquals(10000, worlds.get(0).getLevel(0).getScore());
+		assertEquals(1, worlds.get(0).getLevel(0).getStarCount());
+
 		assertTrue(worlds.get(0).getLevel(1).isLocked());
 		assertTrue(worlds.get(1).getLevel(0).isLocked());
-		assertEquals(worlds.get(1).getLevel(1).getScore(), 24);
+
+		assertEquals(20000, worlds.get(1).getLevel(1).getScore());
+		assertEquals(2, worlds.get(1).getLevel(1).getStarCount());
 	}
 
 	@Test
@@ -35,23 +39,52 @@ public class ProgressIOTest {
 		XmlReader.Element root = TestUtils.parseXml(
 			  "<progress version='2'>"
 			+ "    <levels>"
-			+ "        <level world='1' level='1' score='12'/>"
-			+ "        <level world='2' level='2' score='24'/>"
+			+ "        <level world='1' level='1' score='10000'/>"
+			+ "        <level world='2' level='2' score='20000'/>"
+			+ "    </levels>"
+			+ "</progress>"
+			);
+		ProgressIO progressIO = new ProgressIO(worlds);
+		progressIO.load(root);
+		assertEquals(10000, worlds.get(0).getLevel(0).getScore());
+		assertEquals(1, worlds.get(0).getLevel(0).getStarCount());
+
+		assertTrue(worlds.get(0).getLevel(1).isNew());
+		assertTrue(worlds.get(1).getLevel(0).isLocked());
+
+		assertEquals(20000, worlds.get(1).getLevel(1).getScore());
+		assertEquals(2, worlds.get(1).getLevel(1).getStarCount());
+	}
+
+	@Test
+	public void testLoadV3() {
+		Array<LevelWorld> worlds = createTestWorlds();
+		XmlReader.Element root = TestUtils.parseXml(
+			  "<progress version='3'>"
+			+ "    <levels>"
+			+ "        <level world='1' level='1' score='12' stars='2'/>"
+			+ "        <level world='2' level='2' score='24' stars='3'/>"
 			+ "    </levels>"
 			+ "</progress>"
 			);
 		ProgressIO progressIO = new ProgressIO(worlds);
 		progressIO.load(root);
 		assertEquals(12, worlds.get(0).getLevel(0).getScore());
+		assertEquals(2, worlds.get(0).getLevel(0).getStarCount());
+
 		assertTrue(worlds.get(0).getLevel(1).isNew());
+
 		assertTrue(worlds.get(1).getLevel(0).isLocked());
+
 		assertEquals(24, worlds.get(1).getLevel(1).getScore());
+		assertEquals(3, worlds.get(1).getLevel(1).getStarCount());
 	}
 
 	@Test
 	public void testSave() {
 		Array<LevelWorld> worlds = createTestWorlds();
 		worlds.get(0).getLevel(0).setScore(12);
+		worlds.get(0).getLevel(0).setStarCount(2);
 		worlds.get(1).getLevel(1).unlock();
 
 		StringWriter writer = new StringWriter();
@@ -60,7 +93,7 @@ public class ProgressIOTest {
 		progressIO.save(xmlWriter);
 
 		XmlReader.Element root = TestUtils.parseXml(writer.toString());
-		assertEquals(root.getIntAttribute("version"), 2);
+		assertEquals(root.getIntAttribute("version"), 3);
 		assertEquals(root.getChildCount(), 1);
 
 		XmlReader.Element levelsElement = root.getChildByName("levels");
@@ -70,6 +103,7 @@ public class ProgressIOTest {
 		assertEquals(child.getIntAttribute("world"), 1);
 		assertEquals(child.getIntAttribute("level"), 1);
 		assertEquals(child.getIntAttribute("score"), 12);
+		assertEquals(child.getIntAttribute("stars"), 2);
 
 		child = levelsElement.getChild(1);
 		assertEquals(child.getIntAttribute("world"), 2);

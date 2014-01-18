@@ -24,8 +24,6 @@ public class Level {
 	}
 	public static class Definition {
 		public int duration;
-		public int score2;
-		public int score3;
 
 		public Array<BurgerItem> getBurgerItems() {
 			return mBurgerItems;
@@ -103,8 +101,6 @@ public class Level {
 		Level level = new Level(levelWorld, handle.path());
 		level.mIndex = levelIndex;
 		int burgerSize = root.getIntAttribute("burgerSize");
-		level.definition.score2 = root.getIntAttribute("score2", 15000);
-		level.definition.score3 = root.getIntAttribute("score3", 30000);
 
 		Array<MealItem> lst = MealItemDb.getInstance().getItemsForLevel(worldIndex, levelIndex);
 		for (MealItem item: lst) {
