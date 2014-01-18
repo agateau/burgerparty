@@ -236,14 +236,6 @@ public class WorldView extends AbstractWorldView {
 
 	private void updateScoreDisplay() {
 		String txt = String.format("%07d", mWorld.getScore());
-		int starCost = mWorld.getStarCost();
-		int coinCount = mWorld.getCoinCount();
-		for (int s = 1; s <= 3; ++s) {
-			txt += " ";
-			for (int c = 0; c < starCost; ++c, --coinCount) {
-				txt += coinCount > 0 ? "|" : ".";
-			}
-		}
 		mScoreDisplay.setText(txt);
 		UiUtils.adjustToPrefSize(mScoreDisplay);
 	}
