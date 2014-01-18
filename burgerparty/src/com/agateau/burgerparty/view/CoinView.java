@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,12 +15,15 @@ public class CoinView extends Group {
 	private static final float STACK_SPACING = -3;
 	private static final float MIN_STAR_SPACING = 5;
 	private static final float NEW_COIN_DURATION = 0.2f;
+	private static final Color EXTRA_COLOR = new Color(1, 0.5f, 0.5f, 0);
+
 	private class CoinStack extends Group {
-		public CoinStack() {
+		public CoinStack(int size) {
+			mSize = size;
 			final float coinWidth = mCoinRegion.getRegionWidth();
 			final float coinHeight = mCoinRegion.getRegionHeight();
 
-			for (int i = 0; i < mStarCost; ++i) {
+			for (int i = 0; i < mSize; ++i) {
 				Image image = new Image(mCoinRegion);
 				mCoinImages.add(image);
 				image.setOrigin(coinWidth / 2, 0);
@@ -35,16 +39,23 @@ public class CoinView extends Group {
 			setWidth(mStarImage.getRight());
 			setHeight(Math.max(
 					mStarImage.getHeight() * mStarImage.getScaleY() + MIN_STAR_SPACING - STACK_SPACING,
-					(mStarCost - 1) * COIN_THICKNESS + coinHeight));
+					(mSize - 1) * COIN_THICKNESS + coinHeight));
+		}
+
+		public void setExtra(boolean extra) {
+			for (Image image: mCoinImages) {
+				image.setColor(EXTRA_COLOR);
+			}
+			mStarImage.setColor(EXTRA_COLOR);
 		}
 
 		public float setCoinCount(int count, float delay) {
-			if (count == mCoinCount) {
+			if (count == mCurrentCount) {
 				return 0;
 			}
-			assert(count >= mCoinCount);
-			assert(count <= mCoinImages.size);
-			for(int i = mCoinCount; i < count; ++i, delay += NEW_COIN_DURATION) {
+			assert(count >= mCurrentCount);
+			assert(count <= mSize);
+			for(int i = mCurrentCount; i < count; ++i, delay += NEW_COIN_DURATION) {
 				Image image = mCoinImages.get(i);
 
 				float finalY = i * COIN_THICKNESS;
@@ -59,8 +70,8 @@ public class CoinView extends Group {
 								)
 						)
 				);			}
-			mCoinCount = count;
-			if (count == mCoinImages.size) {
+			mCurrentCount = count;
+			if (count == mSize) {
 				mStarImage.addAction(
 						Actions.delay(delay, Actions.fadeIn(NEW_COIN_DURATION))
 				);
@@ -69,34 +80,48 @@ public class CoinView extends Group {
 			return delay;
 		}
 
-		Array<Image> mCoinImages = new Array<Image>();
-		Image mStarImage;
+		public int getSize() {
+			return mSize;
+		}
 
-		private int mCoinCount = 0;
+		private final int mSize;
+		private final Array<Image> mCoinImages = new Array<Image>();
+		private final Image mStarImage;
+
+		private int mCurrentCount = 0;
 	}
 
-	public CoinView(Assets assets, int starCost) {
+	public CoinView(Assets assets, int starCost, int maxCoinCount) {
 		mStarRegion = assets.getTextureAtlas().findRegion("ui/star-on");
 		mCoinRegion = assets.getTextureAtlas().findRegion("ui/coin");
-		mStarCost = starCost;
 		int y = 0;
 		for (int i = 1; i <= 3; ++i) {
-			CoinStack stack = new CoinStack();
+			CoinStack stack = new CoinStack(starCost);
 			stack.setY(y);
 			y += stack.getHeight() + STACK_SPACING;
 			mStacks.add(stack);
 			addActor(stack);
 		}
-		CoinStack last = mStacks.get(2);
+		int remaining = maxCoinCount - starCost * 3;
+		assert(remaining >= 0);
+		if (remaining > 0) {
+			CoinStack stack = new CoinStack(remaining);
+			stack.setY(y);
+			mStacks.add(stack);
+			addActor(stack);
+		}
+		CoinStack last = mStacks.get(mStacks.size - 1);
+		last.setExtra(true);
 		setSize(last.getWidth(), last.getTop());
 	}
 
 	public void setCoinCount(int count) {
 		float delay = 0;
 		for (CoinStack stack: mStacks) {
-			if (count >= mStarCost) {
-				delay = stack.setCoinCount(mStarCost, delay);
-				count -= mStarCost;
+			int stackSize = stack.getSize();
+			if (count >= stackSize) {
+				delay = stack.setCoinCount(stackSize, delay);
+				count -= stackSize;
 			} else {
 				delay = stack.setCoinCount(count, delay);
 				return;
@@ -105,6 +130,5 @@ public class CoinView extends Group {
 	}
 
 	private final Array<CoinStack> mStacks = new Array<CoinStack>();
-	private final int mStarCost;
 	private final TextureRegion mStarRegion, mCoinRegion;
 }

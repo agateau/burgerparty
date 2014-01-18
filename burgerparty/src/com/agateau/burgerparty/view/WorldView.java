@@ -222,7 +222,8 @@ public class WorldView extends AbstractWorldView {
 	}
 
 	private void setupCoinView() {
-		mCoinView = new CoinView(mAssets, mWorld.getStarCost());
+		int maxCoinCount = mWorld.getMaximumCoinCount();
+		mCoinView = new CoinView(mAssets, mWorld.getStarCost(), maxCoinCount);
 	}
 
 	private void setupAnchors() {

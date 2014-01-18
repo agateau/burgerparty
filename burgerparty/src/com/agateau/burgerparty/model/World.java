@@ -135,6 +135,10 @@ public class World {
 		return mCoinCount;
 	}
 
+	public int getMaximumCoinCount() {
+		return HAPPY_COIN_COUNT * mCustomers.size;
+	}
+
 	public int getStarCost() {
 		return mStarCost;
 	}
