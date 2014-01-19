@@ -157,7 +157,7 @@ public class LevelFinishedOverlay extends Overlay {
 		int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 
 		// Store final score *now*
-		Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount);
+		Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
 		for (String thing: unlockedThings) {
 			Gdx.app.log("LevelFinishedOverlay", "Unlocked " + thing);
 		}

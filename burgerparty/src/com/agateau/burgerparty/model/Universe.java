@@ -57,7 +57,7 @@ public class Universe {
 		return set;
 	}
 
-	public Set<String> updateLevel(int worldIndex, int levelIndex, int score, int levelStarCount) {
+	public Set<String> updateLevel(int worldIndex, int levelIndex, int score, int levelStarCount, boolean perfect) {
 		int oldStarCount = getStarCount();
 		// FIXME: Temporary implementation
 		Set<String> unlockedThings = new HashSet<String>();
@@ -69,6 +69,9 @@ public class Universe {
 		}
 		if (levelStarCount > currentLevel.getStarCount()) {
 			currentLevel.setStarCount(levelStarCount);
+		}
+		if (perfect) {
+			currentLevel.markPerfect();
 		}
 
 		// Unlock next level if necessary

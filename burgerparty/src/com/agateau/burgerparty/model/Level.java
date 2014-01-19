@@ -78,6 +78,10 @@ public class Level {
 		}
 	}
 
+	public boolean isPerfect() {
+		return mStatus == Status.PLAYED && mPerfect;
+	}
+
 	public boolean hasBrandNewItem() {
 		return mStatus != Status.PLAYED && definition.mNewItem != null;
 	}
@@ -175,6 +179,10 @@ public class Level {
 		mScore = value;
 	}
 
+	public void markPerfect() {
+		mPerfect = true;
+	}
+
 	private void initNewItemFieldInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
 		for(MealItem item: list) {
 			if (knownItems.contains(item)) {
@@ -196,4 +204,5 @@ public class Level {
 	private Status mStatus = Status.LOCKED;
 	private int mScore = 0;
 	private int mStarCount = 0;
+	private boolean mPerfect = false;
 }
