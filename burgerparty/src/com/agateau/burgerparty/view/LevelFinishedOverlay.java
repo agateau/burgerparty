@@ -124,11 +124,34 @@ public class LevelFinishedOverlay extends Overlay {
 		Label mLabel;
 	}
 
+	class PerfectTask extends RunQueue.Task {
+		public PerfectTask(Overlay parent) {
+			mLabel = new Label("PERFECT!", mGame.getAssets().getSkin(), "score-feedback");
+			parent.addActor(mLabel);
+			mLabel.setVisible(false);
+		}
+		@Override
+		public void run() {
+			mLabel.setVisible(true);
+			float finalX = mScoreLabel.getX() - mLabel.getWidth() - UiUtils.SPACING;
+			float finalY = mScoreLabel.getY() - 2;
+			mLabel.setPosition(-mLabel.getWidth(), finalY);
+			mLabel.addAction(
+				Actions.sequence(
+					Actions.moveTo(finalX, finalY, 1, Interpolation.bounceOut),
+					Actions.run(createDoneRunnable())
+				)
+			);
+		}
+		Label mLabel;
+	}
+
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mGame = game;
 		int previousScore = levelResult.getLevel().getScore();
 		mScore = levelResult.getScore();
+		boolean perfect = levelResult.getCoinCount() == levelResult.getMaximumCoinCount();
 		int remainingSeconds = levelResult.getRemainingSeconds();
 		int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;
 		int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
@@ -149,6 +172,9 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		if (finalScore > previousScore) {
 			mRunQueue.add(new HighScoreTask(this));
+		}
+		if (perfect) {
+			mRunQueue.add(new PerfectTask(this));
 		}
 		mRunQueue.start();
 		mGame.getAssets().getSoundAtlas().findSound("finished").play();
