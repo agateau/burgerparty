@@ -49,12 +49,8 @@ public class World {
 		mBurgerInventory.setItems(level.definition.getBurgerItems());
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
 
-		final int WORLD_COUNT = 3; // FIXME
 		final int STAR_COUNT = 3;
-		float difficulty = (worldIndex * LevelWorld.LEVEL_PER_WORLD + level.getIndex()) / (WORLD_COUNT * LevelWorld.LEVEL_PER_WORLD);
-		mStarCost = (int)(
-				((1 - difficulty) * NEUTRAL_COIN_COUNT + difficulty * HAPPY_COIN_COUNT) * mCustomers.size / STAR_COUNT
-				);
+		mStarCost = HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1;
 
 		setupMeal();
 	}
