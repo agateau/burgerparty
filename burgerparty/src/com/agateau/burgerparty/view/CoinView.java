@@ -46,7 +46,8 @@ public class CoinView extends Group {
 			for (Image image: mCoinImages) {
 				image.setColor(EXTRA_COLOR);
 			}
-			mStarImage.setColor(EXTRA_COLOR);
+			mStarImage.remove();
+			mStarImage = null;
 		}
 
 		public float setCoinCount(int count, float delay) {
@@ -71,7 +72,7 @@ public class CoinView extends Group {
 						)
 				);			}
 			mCurrentCount = count;
-			if (count == mSize) {
+			if (count == mSize && mStarImage != null) {
 				mStarImage.addAction(
 						Actions.delay(delay, Actions.fadeIn(NEW_COIN_DURATION))
 				);
@@ -86,7 +87,7 @@ public class CoinView extends Group {
 
 		private final int mSize;
 		private final Array<Image> mCoinImages = new Array<Image>();
-		private final Image mStarImage;
+		private Image mStarImage;
 
 		private int mCurrentCount = 0;
 	}
@@ -106,12 +107,12 @@ public class CoinView extends Group {
 		assert(remaining >= 0);
 		if (remaining > 0) {
 			CoinStack stack = new CoinStack(remaining);
+			stack.setExtra(true);
 			stack.setY(y);
 			mStacks.add(stack);
 			addActor(stack);
 		}
 		CoinStack last = mStacks.get(mStacks.size - 1);
-		last.setExtra(true);
 		setSize(last.getWidth(), last.getTop());
 	}
 
