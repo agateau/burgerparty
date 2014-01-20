@@ -151,7 +151,12 @@ public class ProgressIO {
 			}
 			Level level = world.getLevel(levelIndex);
 			level.setScore(score);
-			level.setStarCount(starCount);
+			if (starCount == 4) {
+				level.setStarCount(3);
+				level.markPerfect();
+			} else {
+				level.setStarCount(starCount);
+			}
 		}
 
 		boolean previousWasWon = true;
@@ -182,11 +187,12 @@ public class ProgressIO {
 					Level level = world.getLevel(levelIndex);
 					if (!level.isLocked()) {
 						int score = level.isNew() ? SCORE_NEW : level.getScore();
+						boolean perfect = level.isPerfect();
 						levelsElement.element("level")
 							.attribute("world", worldIndex + 1)
 							.attribute("level", levelIndex + 1)
 							.attribute("score", score)
-							.attribute("stars", level.getStarCount())
+							.attribute("stars", perfect ? 4 : level.getStarCount())
 						.pop();
 					}
 				}
