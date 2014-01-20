@@ -998,21 +998,21 @@ customers/boys/face-0-neutral
   index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 405, 353
+  xy: 487, 389
   size: 71, 46
   orig: 71, 46
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 509, 437
+  xy: 510, 437
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 487, 387
+  xy: 405, 351
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
@@ -1026,7 +1026,7 @@ customers/boys/face-2-neutral
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 478, 337
+  xy: 480, 339
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
@@ -1054,7 +1054,7 @@ customers/boys/top-0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 400, 449
+  xy: 401, 449
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
@@ -1152,7 +1152,7 @@ customers/pirate-girls/face-cap-neutral
   index: -1
 customers/pirate-girls/top-blue
   rotate: false
-  xy: 289, 447
+  xy: 290, 447
   size: 109, 61
   orig: 109, 61
   offset: 0, 0
@@ -1279,8 +1279,8 @@ ui/minigame
 ui/perfect
   rotate: false
   xy: 2, 451
-  size: 285, 57
-  orig: 285, 57
+  size: 286, 57
+  orig: 286, 57
   offset: 0, 0
   index: -1
 

@@ -24,9 +24,9 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="848.76084"
-     inkscape:cy="1914.0789"
-     inkscape:current-layer="layer1"
+     inkscape:cx="848.83651"
+     inkscape:cy="1911.5232"
+     inkscape:current-layer="g6337"
      inkscape:document-units="px"
      showgrid="true"
      inkscape:window-width="1563"
@@ -17928,24 +17928,26 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <g
-         transform="translate(-3,-19)"
-         id="g6176">
+         id="g5380"
+         inkscape:export-filename="perfect.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
         <path
            style="color:#000000;fill:#803300;fill-opacity:1;fill-rule:nonzero;stroke:#552200;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-           d="m 685,-695 60,0 0,30 -60,0 15,-15 z"
+           d="m 682,-714 60,0 0,30 -60,0 15,-15 z"
            id="rect5395"
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="cccccc" />
         <path
            style="fill:#3b1800;fill-opacity:1;stroke:none"
-           d="m 724,-681 22,-15 0,31 -22,0 z"
+           d="m 721,-700 22,-15 0,31 -22,0 z"
            id="path6169"
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="ccccc" />
         <use
            height="1200"
            width="1600"
-           transform="matrix(-1,0,0,1,1650,0)"
+           transform="matrix(-1,0,0,1,1645,0)"
            id="use6187"
            xlink:href="#rect5395"
            y="0"
@@ -17954,27 +17956,27 @@
            sodipodi:nodetypes="ccccc"
            inkscape:connector-curvature="0"
            id="path6174"
-           d="m 926,-681 -22,-15 0,31 22,0 z"
+           d="m 924,-700 -22,-15 0,31 22,0 z"
            style="fill:#3b1800;fill-opacity:1;stroke:none" />
         <rect
            style="color:#000000;fill:#af4600;fill-opacity:1;fill-rule:nonzero;stroke:#552200;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
            id="rect5397"
-           width="200"
+           width="201"
            height="40"
-           x="725"
-           y="-680" />
+           x="722"
+           y="-699" />
+        <text
+           xml:space="preserve"
+           style="font-size:36px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+           x="773.24219"
+           y="-667"
+           id="text6183"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan6185"
+             x="773.24219"
+             y="-667">Perfect!</tspan></text>
       </g>
-      <text
-         sodipodi:linespacing="125%"
-         id="text6183"
-         y="-666.79132"
-         x="772.16058"
-         style="font-size:36px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
-         xml:space="preserve"><tspan
-           y="-666.79132"
-           x="772.16058"
-           id="tspan6185"
-           sodipodi:role="line">Perfect!</tspan></text>
     </g>
     <g
        inkscape:export-ydpi="90"
