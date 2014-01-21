@@ -163,8 +163,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 		}
 
 		public void createPerfectIndicator() {
-			Label label = new Label("P!", mAssets.getSkin(), "score-feedback");
-			mGroup.addRule(label, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, 1);
+			Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/perfect"));
+			image.setScale(0.5f);
+			mGroup.addRule(image, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, -14);
+			image.setZIndex(0);
 		}
 
 		@Override
