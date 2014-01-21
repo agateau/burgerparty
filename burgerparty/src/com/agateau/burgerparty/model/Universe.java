@@ -34,7 +34,7 @@ public class Universe {
 		int stars = 0;
 		for (LevelWorld world: mLevelWorlds) {
 			for (Level level: world.getLevels()) {
-				stars += level.getStars();
+				stars += level.getStarCount();
 			}
 		}
 		return stars;
@@ -57,7 +57,7 @@ public class Universe {
 		return set;
 	}
 
-	public Set<String> setLevelScore(int worldIndex, int levelIndex, int score) {
+	public Set<String> updateLevel(int worldIndex, int levelIndex, int score, int levelStarCount, boolean perfect) {
 		int oldStarCount = getStarCount();
 		// FIXME: Temporary implementation
 		Set<String> unlockedThings = new HashSet<String>();
@@ -66,6 +66,12 @@ public class Universe {
 		Level currentLevel = currentWorld.getLevel(levelIndex);
 		if (score > currentLevel.getScore()) {
 			currentLevel.setScore(score);
+		}
+		if (levelStarCount > currentLevel.getStarCount()) {
+			currentLevel.setStarCount(levelStarCount);
+		}
+		if (perfect) {
+			currentLevel.markPerfect();
 		}
 
 		// Unlock next level if necessary

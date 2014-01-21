@@ -162,6 +162,13 @@ public class LevelListScreen extends BurgerPartyScreen {
 			mGroup.addRule(starGroup, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, 8);
 		}
 
+		public void createPerfectIndicator() {
+			Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/perfect"));
+			image.setScale(0.5f);
+			mGroup.addRule(image, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, -14);
+			image.setZIndex(0);
+		}
+
 		@Override
 		public void draw(SpriteBatch batch, float parentAlpha) {
 			super.draw(batch, parentAlpha);
@@ -187,7 +194,10 @@ public class LevelListScreen extends BurgerPartyScreen {
 		if (level.isLocked()) {
 			button.setDisabled(true);
 		} else {
-			button.createStars(level.getStars());
+			button.createStars(level.getStarCount());
+			if (level.isPerfect()) {
+				button.createPerfectIndicator();
+			}
 		}
 		if (level.hasBrandNewItem()) {
 			createSurpriseImage(group);

@@ -23,7 +23,8 @@ public class World {
 		};
 		public Type type;
 		public String message = new String();
-		public int delta;
+		public int deltaScore;
+		public int deltaCoinCount;
 	}
 	public Signal0 burgerFinished = new Signal0();
 	public Signal1<Score> mealFinished = new Signal1<Score>();
@@ -35,13 +36,22 @@ public class World {
 	private static final int NEUTRAL_SCORE = 2000;
 	private static final int ANGRY_SCORE = 1000;
 
+	private static final int HAPPY_COIN_COUNT = 3;
+	private static final int NEUTRAL_COIN_COUNT = 2;
+	private static final int ANGRY_COIN_COUNT = 1;
+
 	public World(Level level) {
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
-		mBurgerGenerator = new BurgerGenerator(level.getLevelWorld().getIndex(), mLevel.definition.getBurgerItems());
+		int worldIndex = level.getLevelWorld().getIndex();
+		mBurgerGenerator = new BurgerGenerator(worldIndex, mLevel.definition.getBurgerItems());
 		mMealExtraGenerator = new MealExtraGenerator(mLevel.definition.getExtraItems());
 		mBurgerInventory.setItems(level.definition.getBurgerItems());
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
+
+		final int STAR_COUNT = 3;
+		mStarCost = HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1;
+
 		setupMeal();
 	}
 
@@ -117,8 +127,20 @@ public class World {
 		return mScore;
 	}
 
+	public int getCoinCount() {
+		return mCoinCount;
+	}
+
+	public int getMaximumCoinCount() {
+		return HAPPY_COIN_COUNT * mCustomers.size;
+	}
+
+	public int getStarCost() {
+		return mStarCost;
+	}
+
 	public LevelResult getLevelResult() {
-		return new LevelResult(mLevel, mScore, mRemainingSeconds);
+		return new LevelResult(mLevel, mScore, mCoinCount,  getMaximumCoinCount(), mStarCost, mRemainingSeconds);
 	}
 
 	public int getTargetComplexity() {
@@ -235,6 +257,7 @@ public class World {
 		Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
 		Score score = new Score();
 		if (mood == Customer.Mood.HAPPY) {
+			score.deltaCoinCount = HAPPY_COIN_COUNT;
 			int count = 0;
 			for (int i = mActiveCustomerIndex; i >= 0; --i) {
 				if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
@@ -245,21 +268,24 @@ public class World {
 			}
 			if (count > 1) {
 				score.type = Score.Type.COMBO;
-				score.delta = HAPPY_SCORE + COMBO_SCORE * count;
+				score.deltaScore = HAPPY_SCORE + COMBO_SCORE * count;
 				score.message = count + "x combo!";
 			} else {
 				score.type = Score.Type.HAPPY;
-				score.delta = HAPPY_SCORE;
+				score.deltaScore = HAPPY_SCORE;
 				score.message = "Happy customer!";
 			}
 		} else if (mood == Customer.Mood.NEUTRAL) {
 			score.type = Score.Type.NEUTRAL;
-			score.delta = NEUTRAL_SCORE;
+			score.deltaScore = NEUTRAL_SCORE;
+			score.deltaCoinCount = NEUTRAL_COIN_COUNT;
 		} else {
 			score.type = Score.Type.ANGRY;
-			score.delta = ANGRY_SCORE;
+			score.deltaScore = ANGRY_SCORE;
+			score.deltaCoinCount = ANGRY_COIN_COUNT;
 		}
-		mScore += score.delta;
+		mScore += score.deltaScore;
+		mCoinCount += score.deltaCoinCount;
 		mealFinished.emit(score);
 	}
 
@@ -276,6 +302,7 @@ public class World {
 	private Timer mTimer = new Timer();
 
 	private Level mLevel;
+	private int mStarCost;
 
 	private Inventory mBurgerInventory = new Inventory();
 	private Inventory mMealExtraInventory = new Inventory();
@@ -290,6 +317,7 @@ public class World {
 	private int mActiveCustomerIndex = 0;
 	private int mRemainingSeconds;
 	private int mScore = 0;
+	private int mCoinCount = 0;
 
 	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 }

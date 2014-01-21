@@ -24,8 +24,6 @@ public class Level {
 	}
 	public static class Definition {
 		public int duration;
-		public int score2;
-		public int score3;
 
 		public Array<BurgerItem> getBurgerItems() {
 			return mBurgerItems;
@@ -68,28 +66,24 @@ public class Level {
 
 	public Definition definition = new Definition();
 
-	public int getStars() {
+	public void setStarCount(int value) {
+		mStarCount = value;
+	}
+
+	public int getStarCount() {
 		if (mStatus == Status.PLAYED) {
-			return getStarsFor(mScore);
+			return mStarCount;
 		} else {
 			return 0;
 		}
+	}
+
+	public boolean isPerfect() {
+		return mStatus == Status.PLAYED && mPerfect;
 	}
 
 	public boolean hasBrandNewItem() {
 		return mStatus != Status.PLAYED && definition.mNewItem != null;
-	}
-
-	public int getStarsFor(int value) {
-		if (value >= definition.score3) {
-			return 3;
-		} else if (value >= definition.score2) {
-			return 2;
-		} else if (value > 0) {
-			return 1;
-		} else {
-			return 0;
-		}
 	}
 
 	public LevelWorld getLevelWorld() {
@@ -111,8 +105,6 @@ public class Level {
 		Level level = new Level(levelWorld, handle.path());
 		level.mIndex = levelIndex;
 		int burgerSize = root.getIntAttribute("burgerSize");
-		level.definition.score2 = root.getIntAttribute("score2", 15000);
-		level.definition.score3 = root.getIntAttribute("score3", 30000);
 
 		Array<MealItem> lst = MealItemDb.getInstance().getItemsForLevel(worldIndex, levelIndex);
 		for (MealItem item: lst) {
@@ -187,6 +179,10 @@ public class Level {
 		mScore = value;
 	}
 
+	public void markPerfect() {
+		mPerfect = true;
+	}
+
 	private void initNewItemFieldInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
 		for(MealItem item: list) {
 			if (knownItems.contains(item)) {
@@ -207,4 +203,6 @@ public class Level {
 
 	private Status mStatus = Status.LOCKED;
 	private int mScore = 0;
+	private int mStarCount = 0;
+	private boolean mPerfect = false;
 }
