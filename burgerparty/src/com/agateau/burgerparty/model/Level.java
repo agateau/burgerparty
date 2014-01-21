@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.MissingResourceException;
+import java.util.Random;
 import java.util.Set;
 
 import com.badlogic.gdx.files.FileHandle;
@@ -115,13 +116,22 @@ public class Level {
 			}
 		}
 
+		// Use a deterministic seed to generate random burger size to ensure level difficulty remains the same between plays
+		Random random = new Random(worldIndex * 1000 + levelIndex);
+		int minBurgerSize = Math.max(burgerSize / 2, 4);
+		int burgerSizeDelta = burgerSize - minBurgerSize + 1;
+
 		XmlReader.Element elements = root.getChildByName("customers");
 		assert(elements != null);
 		for(int idx = 0; idx < elements.getChildCount(); ++idx) {
 			XmlReader.Element element = elements.getChild(idx);
 			CustomerDefinition def = new CustomerDefinition();
 			def.type = element.getAttribute("type");
-			def.burgerSize = element.getIntAttribute("burgerSize", burgerSize);
+			def.burgerSize = element.getIntAttribute("burgerSize", 0);
+			if (def.burgerSize == 0) {
+				// Init burger size for customers whose burger size has not been explicitly set
+				def.burgerSize = minBurgerSize + random.nextInt(burgerSizeDelta);
+			}
 			level.definition.mCustomerDefinitions.add(def);
 		}
 
