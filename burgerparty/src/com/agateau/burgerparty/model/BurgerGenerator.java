@@ -28,9 +28,6 @@ class BurgerGenerator {
 	}
 
 	public LinkedList<BurgerItem> run(int count) {
-		// Subtract 2 because we add top and bottom items out of the loop
-		count -= 2;
-
 		LinkedList<BurgerItem> lst = new LinkedList<BurgerItem>();
 
 		TopBottom topBottom = mTopBottomItems.get(MathUtils.random(mTopBottomItems.size - 1));
@@ -39,7 +36,9 @@ class BurgerGenerator {
 		// Generate content, make sure items cannot appear two times consecutively
 		Array<BurgerItem> items = new Array<BurgerItem>(mMiddleItems);
 		BurgerItem lastItem = null;
-		for (; count >= 0; count--) {
+
+		// Subtract 2 because we add top and bottom items out of the loop
+		for (int n = count - 2; n >= 0; n--) {
 			int index = MathUtils.random(items.size - 1);
 			BurgerItem item = items.removeIndex(index);
 			if (lastItem != null) {
@@ -50,6 +49,12 @@ class BurgerGenerator {
 		}
 
 		lst.add(topBottom.top);
+
+		// Replace item in the middle with an intermediate stage for tall burgers
+		if (count >= 7) {
+			lst.set(count / 2, topBottom.bottom);
+		}
+
 		return lst;
 	}
 
