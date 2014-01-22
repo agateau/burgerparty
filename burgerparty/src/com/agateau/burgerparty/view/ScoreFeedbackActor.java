@@ -37,10 +37,7 @@ public class ScoreFeedbackActor extends Label {
 			return;
 		}
 		sAnimScript = loader.load(
-			  "parallel\n"
-			+ "    alpha 0\n"
-			//+ "    play meal-done\n"
-			+ "end\n"
+			  "alpha 0\n"
 			+ "parallel\n"
 			+ "    alpha 1 0.05 pow2Out\n"
 			+ "    moveBy 0 0.01 0.1\n"
