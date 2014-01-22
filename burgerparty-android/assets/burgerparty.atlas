@@ -281,13 +281,6 @@ mealitems/3/toast-inventory
   orig: 84, 51
   offset: 0, 0
   index: -1
-overlay-bg
-  rotate: false
-  xy: 996, 773
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 sandbox-preview
   rotate: false
   xy: 804, 717
@@ -378,7 +371,7 @@ ui/text-button-down
   index: -1
 ui/white-pixel
   rotate: false
-  xy: 934, 755
+  xy: 996, 773
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
