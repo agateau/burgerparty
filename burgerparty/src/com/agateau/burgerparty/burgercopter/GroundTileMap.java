@@ -141,7 +141,7 @@ public class GroundTileMap extends TileMap {
 
 	private void fillVoid(Array<Tile> column, int row) {
 		int rowCount = getRowCount();
-		if (rowCount - row > 3 && MathUtils.randomBoolean(0.6f) && mFirstFreeCol % 1 == 0) {
+		if (rowCount - row > 3 && MathUtils.randomBoolean(0.6f) && mFirstFreeCol % 3 == 0) {
 			addFlyingEnemy(row);
 		}
 		for (; row < rowCount; ++row) {
