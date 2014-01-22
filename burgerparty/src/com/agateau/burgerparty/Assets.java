@@ -33,6 +33,7 @@ public class Assets {
 			"add-item-steak.wav",
 			"add-item-tomato.wav",
 			"click.wav",
+			"coin.wav",
 			"error.wav",
 			"finished.wav",
 			"invaders-hit.wav",

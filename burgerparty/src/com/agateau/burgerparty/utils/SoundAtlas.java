@@ -195,6 +195,11 @@ public class SoundAtlas {
 		return Actions.run(new PlayRunnable(sound));
 	}
 
+	public Action createPlayAction(String name, float pitch) {
+		Sound sound = findSound(name);
+		return Actions.run(new PlayRunnable(sound, pitch));
+	}
+
 	public boolean contains(String name) {
 		return mSoundMap.containsKey(name);
 	}
@@ -209,16 +214,22 @@ public class SoundAtlas {
 
 	private class PlayRunnable implements Runnable {
 		public PlayRunnable(Sound sound) {
+			this(sound, 1);
+		}
+
+		public PlayRunnable(Sound sound, float pitch) {
 			assert(sound != null);
 			mSound = sound;
+			mPitch = pitch;
 		}
 
 		@Override
 		public void run() {
-			mSound.play();
+			mSound.play(1, mPitch, 0 /* pan */);
 		}
 
 		private final Sound mSound;
+		private final float mPitch;
 	}
 
 	Map<String, Sound> mSoundMap = new HashMap<String, Sound>();

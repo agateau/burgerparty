@@ -66,6 +66,7 @@ public class LevelFinishedOverlay extends Overlay {
 
 	class LightUpStarTask extends RunQueue.Task {
 		public LightUpStarTask(Overlay parent, int index) {
+			mIndex = index;
 			mImage = new Image(mStarTextures.get(1));
 			mReferenceImage = mStarImages.get(index);
 			parent.addActor(mImage);
@@ -89,7 +90,7 @@ public class LevelFinishedOverlay extends Overlay {
 						Actions.rotateTo(0, STAR_ANIM_DURATION),
 						Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
 					),
-					mGame.getAssets().getSoundAtlas().createPlayAction("star"),
+					mGame.getAssets().getSoundAtlas().createPlayAction("star", 1 + mIndex * 0.05f),
 					Actions.run(createDoneRunnable())
 				)
 			);
@@ -98,6 +99,7 @@ public class LevelFinishedOverlay extends Overlay {
 		}
 		private Image mImage;
 		private Image mReferenceImage;
+		private int mIndex;
 	}
 
 	class HighScoreTask extends RunQueue.Task {

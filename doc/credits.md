@@ -1,39 +1,81 @@
-# Title font
+# Fonts
+
+Title
 
 <http://www.dafont.com/fr/walrus-gumbo.font>
 
-# LCD Font
+LCD
 
 <http://www.dafont.com/fr/liquid-crystal.font>
 
-# Main Font
+Main
 
 <http://www.dafont.com/fr/sanitechtro.font>
 
-# Click sound
+# Sounds
 
-<http://www.freesound.org/people/florian_reinke/sounds/63532/>
-
-# Finished sound
-
---<http://www.freesound.org/people/jivatma07/sounds/122255/>--
-
-# Onion sound
-
-<http://www.freesound.org/people/scriptique/sounds/50823/>
-
-# Bottom sound
+add-item-bottom.wav
 
 <http://www.freesound.org/people/AlienXXX/sounds/174929/>
 
-# error.wav
+add-item-cheese.wav
+
+add-item-coconut.wav
+
+add-item-onion.wav
+
+<http://www.freesound.org/people/scriptique/sounds/50823/>
+
+add-item-salad.wav
+
+add-item-steak.wav
+
+add-item-tomato.wav
+
+add-item.wav
+
+click.wav
+
+<http://www.freesound.org/people/florian_reinke/sounds/63532/>
+
+coin.wav
+
+<http://opengameart.org/content/inventory-sound-effects>
+
+error.wav
 
 <http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/>
 
-# tick.wav
+finished.wav
+
+invaders-hit.wav
+
+<http://opengameart.org/content/spell-sounds-starter-pack>
+
+invaders-shot.wav
+
+<http://opengameart.org/content/spell-sounds-starter-pack>
+
+low-fuel.wav
+
+BXFR
+
+meal-done.wav
+
+<http://www.soundjay.com/appliances/microwave-oven-bell-1.wav>
+
+sauce.wav
+
+splat.wav
+
+star.wav
+
+<http://opengameart.org/content/spell-sounds-starter-pack>
+
+tick.wav
 
 <http://www.freesound.org/people/DrMinky/sounds/174721/>
 
-# meal-done.wav
+time-bonus.wav
 
-<http://www.soundjay.com/appliances/microwave-oven-bell-1.wav>
+trash.wav
