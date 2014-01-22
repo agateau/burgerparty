@@ -169,7 +169,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void loadSounds() {
 		SoundAtlas atlas = mMiniGame.getAssets().getSoundAtlas();
-		mBonusSound = atlas.findSound("meal-done");
+		mBonusSound = atlas.findSound("star");
 		mEnemyHitSound = atlas.findSound("invaders-hit");
 	}
 
