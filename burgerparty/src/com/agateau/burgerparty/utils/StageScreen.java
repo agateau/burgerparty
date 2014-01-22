@@ -3,6 +3,7 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -47,6 +48,10 @@ public abstract class StageScreen implements Screen {
 		return mStage;
 	}
 
+	public void setBackgroundColor(Color color) {
+		mBackgroundColor = color.cpy();
+	}
+
 	public void setBackgroundActor(Actor actor) {
 		mBgActor = actor;
 		if (mBgActor != null) {
@@ -77,7 +82,7 @@ public abstract class StageScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(mBackgroundColor.r, mBackgroundColor.g, mBackgroundColor.b, mBackgroundColor.a);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		mStage.act(delta);
 		mStage.draw();
@@ -125,4 +130,5 @@ public abstract class StageScreen implements Screen {
 	}
 
 	private Overlay mOverlay = null;
+	private Color mBackgroundColor = Color.BLACK;
 }
