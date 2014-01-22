@@ -16,7 +16,6 @@ public class MiniGameOverScreen extends StageScreen {
 	private static final float BG_FADE_DURATION = 1;
 
 	public MiniGameOverScreen(MiniGame miniGame, Pixmap bgPix) {
-		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		setupBg(bgPix);
 		setupWidgets();

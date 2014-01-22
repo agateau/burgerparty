@@ -69,7 +69,6 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	public BurgerjeweledMainScreen(MiniGame miniGame) {
-		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		setupBg();
 		createPools();

@@ -14,7 +14,6 @@ public class LoadingScreen extends StageScreen {
 	public Signal0 ready = new Signal0();
 
 	public LoadingScreen(AssetManager assetManager) {
-		super(null /* skin */); // FIXME: Investigate if skin property can be removed from StageScreen
 		mAssetManager = assetManager;
 		setBackgroundColor(Color.WHITE);
 		setupWidgets();

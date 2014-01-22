@@ -9,21 +9,18 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
- * A Screen with a stage filling its surface and a reference to a skin
+ * A Screen with a stage filling its surface
  */
 public abstract class StageScreen implements Screen {
 	// FIXME: Ugly hard-coded sizes
 	private static final float STAGE_WIDTH = 800;
 	private static final float STAGE_HEIGHT = 480;
 	private Stage mStage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
-	private Skin mSkin;
 	private Actor mBgActor = null;
 
-	public StageScreen(Skin skin) {
-		mSkin = skin;
+	public StageScreen() {
 		mStage.getRoot().addListener(new InputListener() {
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
@@ -38,10 +35,6 @@ public abstract class StageScreen implements Screen {
 				return false;
 			}
 		});
-	}
-
-	public Skin getSkin() {
-		return mSkin;
 	}
 
 	public Stage getStage() {

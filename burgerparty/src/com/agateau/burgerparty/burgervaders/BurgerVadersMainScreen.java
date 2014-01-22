@@ -25,7 +25,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private static final int MAX_ENEMY_PER_LINE = 4;
 	private static final int HARDEST_ROW = 40;
 	public BurgerVadersMainScreen(BurgerVadersMiniGame miniGame) {
-		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		loadSounds();
 		createBg();

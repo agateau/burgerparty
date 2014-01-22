@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class BurgerjeweledStartScreen extends StageScreen {
 	public BurgerjeweledStartScreen(BurgerjeweledMiniGame miniGame) {
-		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		setupWidgets();
 	}

@@ -100,7 +100,7 @@ public class NewItemScreen extends BurgerPartyScreen {
 		mBubbleContent = new AnchorGroup();
 		mBubble.setChild(mBubbleContent);
 
-		mBubbleLabel = new Label("New item unlocked!", getSkin(), "bubble-text");
+		mBubbleLabel = new Label("New item unlocked!", getGame().getAssets().getSkin(), "bubble-text");
 
 		mItemImage = new Image(atlas.findRegion("mealitems/" + newItem.getPath() + "-inventory"));
 

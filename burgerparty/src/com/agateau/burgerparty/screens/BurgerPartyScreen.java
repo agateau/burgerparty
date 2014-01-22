@@ -11,7 +11,6 @@ public abstract class BurgerPartyScreen extends StageScreen {
 	private BurgerPartyGame mGame;
 
 	public BurgerPartyScreen(BurgerPartyGame game) {
-		super(game.getAssets().getSkin());
 		mGame = game;
 	}
 

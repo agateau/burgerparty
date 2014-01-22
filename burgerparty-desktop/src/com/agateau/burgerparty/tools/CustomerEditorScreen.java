@@ -27,7 +27,6 @@ import com.badlogic.gdx.utils.Array;
 public class CustomerEditorScreen extends StageScreen {
 
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
-		super(skin);
 		mGame = game;
 		mSkin = skin;
 

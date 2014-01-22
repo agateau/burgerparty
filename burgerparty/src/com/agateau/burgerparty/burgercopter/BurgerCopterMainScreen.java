@@ -35,7 +35,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 	private static final float FUEL_MID_LEVEL = 0.4f;
 	private static final float FUEL_LOW_LEVEL = 0.2f;
 	public BurgerCopterMainScreen(BurgerCopterMiniGame miniGame) {
-		super(miniGame.getAssets().getSkin());
 		mMiniGame = miniGame;
 		loadSounds();
 		createPools();
