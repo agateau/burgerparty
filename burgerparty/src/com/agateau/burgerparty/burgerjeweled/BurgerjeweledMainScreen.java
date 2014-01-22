@@ -2,7 +2,9 @@ package com.agateau.burgerparty.burgerjeweled;
 
 import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.utils.MaskedDrawable;
+import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.StageScreen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -17,7 +19,8 @@ import com.badlogic.gdx.utils.Pool;
 
 public class BurgerjeweledMainScreen extends StageScreen {
 	private static final int SCORE_NORMAL = 200;
-	private static final float TIME_BONUS = 10;
+	private static final int TIME_BONUS = 1;
+	private static final int BIG_TIME_BONUS = 4;
 	private static final float START_TIME = 60;
 	private static final float BOARD_CELL_WIDTH = 100;
 	private static final float BOARD_CELL_HEIGHT = 60;
@@ -70,6 +73,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 
 	public BurgerjeweledMainScreen(MiniGame miniGame) {
 		mMiniGame = miniGame;
+		loadSounds();
 		setupBg();
 		createPools();
 		createPieceDrawables();
@@ -138,6 +142,11 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		mMiniGame.showStartScreen();
 	}
 
+	private void loadSounds() {
+		SoundAtlas atlas = mMiniGame.getAssets().getSoundAtlas();
+		mMatchSound = atlas.findSound("coin");
+		mBigMatchSound = atlas.findSound("star");
+	}
 	private void setupBg() {
 		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("ui/white-pixel");
 		Image bg = new Image(region);
@@ -249,11 +258,17 @@ public class BurgerjeweledMainScreen extends StageScreen {
 		int score = SCORE_NORMAL * count;
 		mScore += score;
 		addBonus("+" + score);
+
+		int bonus;
 		if (count > Board.MATCH_COUNT) {
-			int bonus = (int)TIME_BONUS * (count - Board.MATCH_COUNT);
-			mTime = Math.min(START_TIME, mTime + bonus);
-			addBonus("+" + bonus + "s");
+			bonus = BIG_TIME_BONUS * (count - Board.MATCH_COUNT);
+			mBigMatchSound.play();
+		} else {
+			bonus = TIME_BONUS;
+			mMatchSound.play();
 		}
+		mTime = Math.min(START_TIME, mTime + bonus);
+		addBonus("+" + bonus + "s");
 	}
 
 	private void addBonus(String name) {
@@ -334,6 +349,8 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	// "final" fields
 	private MiniGame mMiniGame;
 	private Label mScoreLabel;
+	private Sound mMatchSound;
+	private Sound mBigMatchSound;
 
 	private Pool<Piece> mPiecePool;
 	private Pool<Label> mBonusPool;
