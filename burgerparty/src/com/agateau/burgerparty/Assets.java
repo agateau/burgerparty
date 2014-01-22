@@ -35,6 +35,8 @@ public class Assets {
 			"click.wav",
 			"error.wav",
 			"finished.wav",
+			"invaders-hit.wav",
+			"invaders-shot.wav",
 			"low-fuel.wav",
 			"meal-done.wav",
 			"sauce.wav",

@@ -1,7 +1,9 @@
 package com.agateau.burgerparty.burgervaders;
 
+import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -49,8 +51,10 @@ public class Player extends Group {
 		private float mAngleOffset;
 	}
 
-	public Player(BurgerVadersMainScreen mainScreen, TextureRegion region) {
-		mRegion = region;
+	public Player(BurgerVadersMainScreen mainScreen, Assets assets) {
+		mRegion = assets.getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");
+		assert(mRegion!= null);
+		mFireSound = assets.getSoundAtlas().findSound("invaders-shot");
 		mGunPool = new Pool<Gun>() {
 			@Override
 			protected Gun newObject() {
@@ -101,6 +105,7 @@ public class Player extends Group {
 		for(Gun gun: mGuns) {
 			gun.fire(srcX, srcY, angle);
 		}
+		mFireSound.play();
 	}
 
 	public void addGun() {
@@ -131,6 +136,7 @@ public class Player extends Group {
 	}
 
 	private TextureRegion mRegion;
+	private Sound mFireSound;
 	private Array<Gun> mGuns = new Array<Gun>();
 	private Pool<Gun> mGunPool;
 	private BurgerVadersMainScreen mMainScreen;

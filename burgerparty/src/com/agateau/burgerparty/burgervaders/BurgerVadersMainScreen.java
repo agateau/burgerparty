@@ -38,7 +38,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 		// Find an available bullet, and fire it
 		for (Bullet bullet: mBullets) {
 			if (!bullet.isVisible()) {
-				mFireSound.play();
 				bullet.start(srcX, srcY, angle);
 				return;
 			}
@@ -130,7 +129,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				}
 				if (enemy.collide(bullet)) {
 					enemy.onHit();
-					//mEnemyHitSound.play();
+					mEnemyHitSound.play();
 					bullet.setVisible(false);
 					mScore += SCORE_ENEMY_HIT;
 					updateHud();
@@ -170,15 +169,12 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void loadSounds() {
 		SoundAtlas atlas = mMiniGame.getAssets().getSoundAtlas();
-		mFireSound = atlas.findSound("splat");
 		mBonusSound = atlas.findSound("meal-done");
-		mEnemyHitSound = atlas.findSound("sauce");
+		mEnemyHitSound = atlas.findSound("invaders-hit");
 	}
 
 	private void createPlayer() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("mealitems/0/ketchup-inventory");
-		assert(region != null);
-		mPlayer = new Player(this, region);
+		mPlayer = new Player(this, mMiniGame.getAssets());
 		mPlayer.setX(getStage().getWidth() / 2);
 		mPlayer.setY(0);
 		getStage().addActor(mPlayer);
@@ -315,7 +311,6 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private Array<Bonus> mBonuses = new Array<Bonus>();
 	private int mScore = 0;
 	private Label mScoreLabel;
-	private Sound mFireSound;
 	private Sound mBonusSound;
 	private Sound mEnemyHitSound;
 
