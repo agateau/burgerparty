@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 public class GroundTileMap extends TileMap {
-	private static final int MAX_FILL_SIZE = 6;
+	private static final int MAX_FILL_SIZE = 12;
 
 	public static final int NEUTRAL_TYPE_ID = 1;
 	public static final int FATAL_TYPE_ID = 2;
@@ -19,14 +19,16 @@ public class GroundTileMap extends TileMap {
 
 	public GroundTileMap(TextureAtlas atlas, int columnCount, int rowCount, int tileWidth, int tileHeight) {
 		super(columnCount, rowCount, tileWidth, tileHeight);
-		mGround = new Tile(atlas.findRegion("burgercopter/ground"), NEUTRAL_TYPE_ID);
-		mStone = new Tile(atlas.findRegion("burgercopter/stone"), NEUTRAL_TYPE_ID);
-		mStoneUpA = new Tile(atlas.findRegion("burgercopter/stone-up-a"), NEUTRAL_TYPE_ID);
-		mStoneUpB = new MaskedTile(atlas.findRegion("burgercopter/stone-up-b"), NEUTRAL_TYPE_ID);
-		mStoneDownA = new Tile(atlas.findRegion("burgercopter/stone-down-a"), NEUTRAL_TYPE_ID);
-		mStoneDownB = new MaskedTile(atlas.findRegion("burgercopter/stone-down-b"), NEUTRAL_TYPE_ID);
+		mGround = new Tile(atlas.findRegion("burgercopter/ground-1"), NEUTRAL_TYPE_ID);
+		mGrass = new Tile(atlas.findRegion("burgercopter/grass-1"), NEUTRAL_TYPE_ID);
+		mGrassUpA = new Tile(atlas.findRegion("burgercopter/grass-up-low-a"), NEUTRAL_TYPE_ID);
+		mGrassUpB = new MaskedTile(atlas.findRegion("burgercopter/grass-up-low-b"), NEUTRAL_TYPE_ID);
+		mGrassUpC = new MaskedTile(atlas.findRegion("burgercopter/grass-up-low-c"), NEUTRAL_TYPE_ID);
+		mGrassDownA = new Tile(atlas.findRegion("burgercopter/grass-down-low-a"), NEUTRAL_TYPE_ID);
+		mGrassDownB = new MaskedTile(atlas.findRegion("burgercopter/grass-down-low-b"), NEUTRAL_TYPE_ID);
+		mGrassDownC = new MaskedTile(atlas.findRegion("burgercopter/grass-down-low-c"), NEUTRAL_TYPE_ID);
 
-		mWater = new MaskedTile(atlas.findRegion("burgercopter/water"), FATAL_TYPE_ID);
+		mWater = new MaskedTile(atlas.findRegion("burgercopter/water-1"), FATAL_TYPE_ID);
 
 		mFirstFreeCol = 0;
 		mLastFreeCol = columnCount - 1;
@@ -85,7 +87,7 @@ public class GroundTileMap extends TileMap {
 				groundEnemyRequested.emit(mFirstFreeCol, mGroundLevel);
 			}
 			Array<Tile> column = advanceNextCol();
-			fillColumn(column, mStone);
+			fillColumn(column, mGrass);
 		}
 	}
 
@@ -95,7 +97,7 @@ public class GroundTileMap extends TileMap {
 			if (idx > 0 && idx < size - 1) {
 				fillColumn(column, mWater);
 			} else {
-				fillColumn(column, mStone);
+				fillColumn(column, mGrass);
 			}
 		}
 	}
@@ -104,15 +106,17 @@ public class GroundTileMap extends TileMap {
 		++mGroundLevel;
 		for (int idx = 0; idx < size; ++idx, ++mGroundLevel) {
 			Array<Tile> column = advanceNextCol();
-			fillColumn(column, mStoneUpA, mStoneUpB);
+			fillColumn(column, mGrassUpA, mGrassUpB);
+			column = advanceNextCol();
+			fillColumn(column, mGround, mGrassUpC);
 		}
 		--mGroundLevel;
 	}
 
 	private void fillDown(int size) {
 		for (int idx = 0; idx < size; ++idx, --mGroundLevel) {
-			Array<Tile> column = advanceNextCol();
-			fillColumn(column, mStoneDownA, mStoneDownB);
+			fillColumn(advanceNextCol(), mGround, mGrassDownC);
+			fillColumn(advanceNextCol(), mGrassDownA, mGrassDownB);
 		}
 	}
 
@@ -137,24 +141,30 @@ public class GroundTileMap extends TileMap {
 
 	private void fillVoid(Array<Tile> column, int row) {
 		int rowCount = getRowCount();
-		if (rowCount - row > 3 && MathUtils.randomBoolean(0.6f)) {
-			int col = mFirstFreeCol - 1;
-			if (col < 0) {
-				col = getColumnCount() - 1;
-			}
-			flyingEnemyRequested.emit(col, MathUtils.random(row + 1, rowCount - 1));
+		if (rowCount - row > 3 && MathUtils.randomBoolean(0.6f) && mFirstFreeCol % 1 == 0) {
+			addFlyingEnemy(row);
 		}
 		for (; row < rowCount; ++row) {
 			column.set(row, null);
 		}
 	}
 
+	private void addFlyingEnemy(int row) {
+		int col = mFirstFreeCol - 1;
+		if (col < 0) {
+			col = getColumnCount() - 1;
+		}
+		flyingEnemyRequested.emit(col, MathUtils.random(row + 1, getRowCount() - 1));
+	}
+
 	private final Tile mGround;
-	private final Tile mStone;
-	private final Tile mStoneUpA;
-	private final Tile mStoneUpB;
-	private final Tile mStoneDownA;
-	private final Tile mStoneDownB;
+	private final Tile mGrass;
+	private final Tile mGrassUpA;
+	private final Tile mGrassUpB;
+	private final Tile mGrassUpC;
+	private final Tile mGrassDownA;
+	private final Tile mGrassDownB;
+	private final Tile mGrassDownC;
 	private final Tile mWater;
 
 	private int mGroundLevel;

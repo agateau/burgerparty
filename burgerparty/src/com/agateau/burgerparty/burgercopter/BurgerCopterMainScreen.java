@@ -29,7 +29,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	static final float PIXEL_PER_SECOND = 180;
 	static final float METERS_PER_SECOND = 4;
 	static final int TILE_SIZE = 32;
-	static final int GROUND_TILE_WIDTH = 128;
+	static final int GROUND_TILE_WIDTH = 64;
 	static final int GROUND_TILE_HEIGHT = 64;
 	static final int ENEMY_COUNT = 4;
 	private static final float FUEL_MID_LEVEL = 0.4f;
