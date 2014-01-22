@@ -1,3 +1,33 @@
+# 0.9 - 2014-01-22
+
+- New way to gain stars: depending on his satisfaction, a customer will pay you
+  between 1 and 3 coins. When you have enough coins you get a star. Stars cost
+  more and more as you progress through levels.
+- If all customers of a level are satisfied then you get a "perfect" ribbon in
+  addition to the 3 stars.
+- In advanced levels, burger size varies more from one customer to another.
+- Big burgers may now have a middle bun.
+- It is now possible to mute music and sound effects.
+- Japan world:
+    - Replaced place-holder "new item" cook with a real version.
+- Air Burger:
+    - Nicer level design
+    - Collisions are now more visible
+    - The "bad cheese" has been replaced with spikes
+    - A bug which caused the ground to become temporarily translucent has been
+      fixed
+- Burger Vaders:
+    - A new enemy type has been added: a burger which looses one ingredient each
+      time you hit it
+    - Fire sound has changed, a sound is now emitted when an enemy is hit
+    - Extra guns now have a time limit, and will go away unless you hit another
+      present box
+- Burger Crush:
+    - Destroying 3 items now gives a one-second bonus
+    - Sound has been added when items are destroyed
+- Overlay screens: Fixed blurry borders (pause, game over, level finished).
+- Loading screen: Make sure Green Yeti Lab logo stretches as expected.
+
 # 0.8 - 2014-01-12
 
 - Mini-games! Each world features a mini game, which can be unlocked with stars
