@@ -1,70 +1,42 @@
 package com.agateau.burgerparty.screens;
 
+import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class LoadingScreen implements Screen {
-	private final static float PADDING = 36;
+public class LoadingScreen extends StageScreen {
 	public Signal0 ready = new Signal0();
 
 	public LoadingScreen(AssetManager assetManager) {
-		super();
+		super(null /* skin */); // FIXME: Investigate if skin property can be removed from StageScreen
 		mAssetManager = assetManager;
+		setBackgroundColor(Color.WHITE);
+		setupWidgets();
+	}
+
+	private void setupWidgets() {
+		mLoadingTexture = new Texture(Gdx.files.internal("loading.png"));
+		AnchorGroup root = new AnchorGroup();
+		getStage().addActor(root);
+		root.setFillParent(true);
+
+		Image image = new Image(mLoadingTexture);
+		root.addRule(image, Anchor.CENTER, root, Anchor.CENTER);
 	}
 
 	@Override
 	public void render(float delta) {
-		if (mLoadingTexture == null) {
-			init();
-		}
-		boolean done = mAssetManager.update();
-		float alpha = Math.min(mAssetManager.getProgress() * 2, 1);
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		mSpriteBatch.begin();
-		mSpriteBatch.setColor(1, 1, 1, alpha);
-
-		float screenWidth = Gdx.graphics.getWidth();
-		float screenHeight = Gdx.graphics.getHeight();
-		float width = mLoadingTexture.getWidth() - PADDING;
-		float height = mLoadingTexture.getHeight() - PADDING;
-		float ratio = Math.min(width / screenWidth, height / screenHeight);
-		if (ratio < 1) {
-			width *= ratio;
-			height *= ratio;
-		}
-		mSpriteBatch.draw(mLoadingTexture, (screenWidth - width) / 2, (screenHeight - height) / 2, width, height);
-		mSpriteBatch.end();
-
-		if (done) {
+		super.render(delta);
+		if (mAssetManager.update()) {
 			ready.emit();
 		}
-	}
-
-	@Override
-	public void resize(int width, int height) {
-	}
-
-	@Override
-	public void show() {
-	}
-
-	@Override
-	public void hide() {
-	}
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
+		
 	}
 
 	@Override
@@ -73,11 +45,10 @@ public class LoadingScreen implements Screen {
 		mLoadingTexture = null;
 	}
 
-	private void init() {
-		mLoadingTexture = new Texture(Gdx.files.internal("loading.png"));
-	}
-
-	private SpriteBatch mSpriteBatch = new SpriteBatch();
 	private AssetManager mAssetManager;
 	private Texture mLoadingTexture = null;
+
+	@Override
+	public void onBackPressed() {
+	}
 }
