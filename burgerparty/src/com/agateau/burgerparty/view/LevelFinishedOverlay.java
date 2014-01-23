@@ -128,7 +128,6 @@ public class LevelFinishedOverlay extends Overlay {
 	class PerfectTask extends RunQueue.Task {
 		private static final float ANIM_DURATION = 0.5f;
 		public PerfectTask(Overlay parent) {
-
 			mImage = new Image(mGame.getAssets().getTextureAtlas().findRegion("ui/perfect"));
 			parent.addActor(mImage);
 			mImage.setOrigin(mImage.getWidth() / 2, mImage.getHeight() / 2);
@@ -141,9 +140,12 @@ public class LevelFinishedOverlay extends Overlay {
 			float finalY = mStarGroup.getY() - mImage.getHeight() + 12;
 			mImage.setPosition(finalX, finalY - 20);
 			mImage.addAction(
-				Actions.parallel(
-					Actions.moveTo(finalX, finalY, ANIM_DURATION, Interpolation.pow2Out),
-					Actions.fadeIn(ANIM_DURATION, Interpolation.pow2Out)
+				Actions.sequence(
+					Actions.parallel(
+						Actions.moveTo(finalX, finalY, ANIM_DURATION, Interpolation.pow2Out),
+						Actions.fadeIn(ANIM_DURATION, Interpolation.pow2Out)
+					),
+					Actions.run(createDoneRunnable())
 				)
 			);
 		}
