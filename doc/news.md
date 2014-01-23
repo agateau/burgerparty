@@ -1,3 +1,7 @@
+# 0.10 - 2014-01-23
+
+- Fix broken "Next" button on level finished screen when user made a "perfect".
+
 # 0.9 - 2014-01-22
 
 - New way to gain stars: depending on his satisfaction, a customer will pay you
