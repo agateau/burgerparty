@@ -68,6 +68,7 @@ public class Level {
 	public Definition definition = new Definition();
 
 	public void setStarCount(int value) {
+		mStatus = Status.PLAYED;
 		mStarCount = value;
 	}
 
