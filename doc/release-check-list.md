@@ -2,9 +2,12 @@
 
 Bump version number in AndroidManifest.xml and in ../burgerparty-android/assets/about.txt
 
-Smoke test
-
 Run unit tests
+
+Smoke test
+- on PC
+- on phone
+- on tablet
 
 Update news.md
 
@@ -21,6 +24,12 @@ Push
 
 Generate .apk
 
+# Upload .apk
+
+Upload on Google Play
+
+Upload on greenyetilab.com
+
 # Prepare spread
 
 Take screenshots
@@ -29,17 +38,19 @@ Take screenshots
 
 Update greenyetilab.com/burgerparty
 
+Publish
+
 Write announcement blog post
+
+Publish
 
 ## Google Play
 
-Upload
-
 Update Google Play
 
-# Spread
+Publish
 
-Upload new content on greenyetilab.com
+# Spread
 
 Notify Google Group
 
