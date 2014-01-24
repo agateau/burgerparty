@@ -3,7 +3,6 @@ package com.agateau.burgerparty.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -183,7 +182,7 @@ public class SoundAtlas {
 		for (int i=0, n=mPendingNames.length; i < n; ++i) {
 			String filename = mDir + mPendingNames[i];
 			String name = mPendingNames[i].replaceFirst("\\.[a-z]+$", "");
-			Gdx.app.log("SoundAtlas", "Getting " + filename + " as " + name);
+			NLog.i("SoundAtlas.finishLoad: Getting %s as %s", filename, name);
 			Sound sound = mAssetManager.get(filename);
 			assert(sound != null);
 			mSoundMap.put(name, new AtlasSound(sound));

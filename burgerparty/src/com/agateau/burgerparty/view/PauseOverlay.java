@@ -7,7 +7,6 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -81,7 +80,6 @@ public class PauseOverlay extends Overlay {
 
 	@Override
 	public void onBackPressed() {
-		Gdx.app.log("PauseOverlay", "onBackPressed");
 		mWorldView.resume();
 	}
 

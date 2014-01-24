@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Set;
 
+import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.MathUtils;
@@ -24,7 +25,7 @@ public class UniverseLoader {
 			if (!Gdx.files.internal(dirName + "1.xml").exists()) {
 				break;
 			}
-			Gdx.app.log("LevelWorldLoader", "dir=" + dirName);
+			NLog.i("UniverseLoader.run dir=%s", dirName);
 			LevelWorld world = loadWorld(n - 1, dirName);
 			universe.addWorld(world);
 		}
@@ -45,7 +46,7 @@ public class UniverseLoader {
 			String name = dirName + "/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);
 			assert(levelFile.exists());
-			Gdx.app.log("LevelWorldLoader", "levelFile=" + levelFile);
+			NLog.i("UniverseLoader.loadWorld levelFile=%s", levelFile);
 			Level level = Level.fromXml(world, n - 1, levelFile);
 			world.addLevel(level);
 			initDuration(index, n - 1, level);
@@ -67,8 +68,8 @@ public class UniverseLoader {
 		int duration = roundUp(itemCount * SEC_PER_ITEM * easiness);
 		level.definition.duration = duration;
 		if (DEBUG_DURATION) {
-			Gdx.app.log("LevelWorldLoader", ""
-					+ " world=" + (worldIndex + 1)
+			NLog.d("LevelWorldLoader.initDuration",
+					" world=" + (worldIndex + 1)
 					+ " level=" + (levelIndex + 1)
 					+ " normLevelIndex=" + normLevelIndex
 					+ " easiness=" + easiness

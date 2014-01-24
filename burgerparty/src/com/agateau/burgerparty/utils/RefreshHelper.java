@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -19,7 +18,7 @@ public abstract class RefreshHelper {
 							try {
 								refresh();
 							} catch (Exception exc) {
-								Gdx.app.log("RefreshHelper", exc.toString());
+								NLog.i("RefreshHelper.keyUp failed: %s", exc);
 							}
 						}
 					});

@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
@@ -85,7 +84,6 @@ public abstract class Enemy extends WidgetGroup implements Poolable {
 		setHeight(h);
 		setOriginX(w / 2);
 		setOriginY(h / 2);
-		Gdx.app.log("updateSize", "w=" + w + " h=" + h);
 	}
 
 	private float mTime;

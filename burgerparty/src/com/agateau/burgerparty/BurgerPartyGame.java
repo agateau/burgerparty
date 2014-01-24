@@ -24,6 +24,7 @@ import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.badlogic.gdx.Game;
@@ -58,15 +59,15 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void dispose() {
 		super.dispose();
-		Gdx.app.log("BurgerPartyGame", "dispose");
+		NLog.i("dispose");
 	}
 
 	@Override
 	public void resume() {
 		super.resume();
 		AssetManager manager = mAssets.getAssetManager();
-		Gdx.app.log("BurgerPartyGame", "resume: assetManager=" + manager);
-		Gdx.app.log("BurgerPartyGame", "resume: assetManager.getProgress()=" + manager.getProgress());
+		NLog.i("resume: assetManager=%h", manager);
+		NLog.i("resume: assetManager.getProgress()=%f", manager.getProgress());
 		if (manager.getQueuedAssets() > 0) {
 			final Screen oldScreen = getScreen();
 			LoadingScreen loadingScreen = new LoadingScreen(manager);

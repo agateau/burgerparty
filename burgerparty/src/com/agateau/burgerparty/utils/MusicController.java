@@ -47,6 +47,8 @@ public class MusicController {
 	}
 
 	public void play() {
+		NLog.d("play");
+		logState();
 		mPlaying = true;
 		if (mMusic == null) {
 			return;
@@ -55,21 +57,28 @@ public class MusicController {
 			return;
 		}
 		if (mMusic.isPlaying()) {
+			NLog.d("play: already playing, fading in");
 			mFader.fade(1);
 		} else {
+			NLog.d("play: starting");
 			setVolume(1);
 			mMusic.play();
 		}
 	}
 
 	public void fadeOut() {
+		NLog.d("fadeOut");
+		logState();
 		mPlaying = false;
 		if (mMusic != null && mMusic.isPlaying()) {
+			NLog.d("fadeOut: for real");
 			mFader.fade(-1);
 		}
 	}
 
 	public void stop() {
+		NLog.d("stop");
+		logState();
 		mPlaying = false;
 		if (mMusic != null) {
 			mMusic.stop();
@@ -82,6 +91,8 @@ public class MusicController {
 	}
 
 	public void setMuted(boolean muted) {
+		NLog.d("setMuted");
+		logState();
 		mIsMuted = muted;
 		mPrefs.putBoolean("muted", muted);
 		mPrefs.flush();
@@ -92,6 +103,7 @@ public class MusicController {
 				mMusic.play();
 			}
 		}
+		logState();
 	}
 
 	public boolean isMuted() {
@@ -105,6 +117,9 @@ public class MusicController {
 
 	// Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
 	private boolean mPlaying = false;
-
 	private boolean mIsMuted = false;
+
+	private void logState() {
+		NLog.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
+	}
 }

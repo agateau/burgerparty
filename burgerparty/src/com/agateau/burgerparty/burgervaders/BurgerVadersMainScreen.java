@@ -2,6 +2,7 @@ package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.CollisionMask;
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
@@ -66,7 +67,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 
 	private void addEnemies() {
 		int enemyCount = MathUtils.random(0, MAX_ENEMY_PER_LINE * mRow / HARDEST_ROW) + 1;
-		Gdx.app.log("addEnemies", "row=" + mRow + " enemyCount=" + enemyCount);
+		NLog.i("BurgerVadersMainScreen.addEnemies row=%d, enemyCount=%d", mRow, enemyCount);
 		if (enemyCount == 0) {
 			return;
 		}
@@ -90,7 +91,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				return;
 			}
 		}
-		Gdx.app.log("Vaders.addEnemy", "No room, must add. Size was " + mEnemies.size);
+		NLog.d("BurgerVadersMainScreen.addEnemy No room, must add. Size was %d", mEnemies.size);
 		mEnemies.add(enemy);
 	}
 
@@ -155,7 +156,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 				continue;
 			}
 			if (enemy.getY() < 0) {
-				Gdx.app.log("BurgerVadersMainScreen", "enemy hit the bottom: " + enemy);
+				NLog.i("BurgerVadersMainScreen.checkGameOver enemy hit the bottom: %s", enemy);
 				mMiniGame.showGameOverScreen();
 				return;
 			}

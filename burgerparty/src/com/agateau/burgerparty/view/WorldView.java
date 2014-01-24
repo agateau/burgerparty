@@ -10,6 +10,7 @@ import com.agateau.burgerparty.model.World;
 
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.utils.Anchor;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.UiUtils;
@@ -92,7 +93,7 @@ public class WorldView extends AbstractWorldView {
 			public void run() {
 				if (getWidth() == 0) {
 					// This happens for some reason when NewItemScreen is shown before level starts
-					Gdx.app.log("WorldView.scheduleGoToNextCustomer runnable", "Not ready yet, rescheduling");
+					NLog.i("WorldView.scheduleGoToNextCustomer.Runnable: Not ready yet, rescheduling");
 					scheduleGoToNextCustomer();
 				} else {
 					goToNextCustomer();

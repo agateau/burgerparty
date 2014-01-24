@@ -6,10 +6,10 @@ import java.util.Set;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.ConnectionManager;
 import com.agateau.burgerparty.utils.Counter;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
@@ -242,7 +242,8 @@ public class World {
 	}
 
 	private void onMealFinished() {
-		Gdx.app.log("World", "Meal done in " + mMealDoneCounter.restart() + "ms");
+		long time = mMealDoneCounter.restart();
+		NLog.i("World.onMealFinished: Meal done in %dms", time);
 		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
@@ -290,7 +291,8 @@ public class World {
 	}
 
 	private void restartItemTimer() {
-		Gdx.app.log("World", "Item added in " + mItemAddedCounter.restart() + "ms");
+		long time = mItemAddedCounter.restart();
+		NLog.i("World.restartItemTimer Item added in %dms", time);
 	}
 
 	private ConnectionManager mMealConnections = new ConnectionManager();

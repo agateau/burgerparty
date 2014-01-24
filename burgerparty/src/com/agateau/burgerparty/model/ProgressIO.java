@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -48,11 +49,11 @@ public class ProgressIO {
 		try {
 			root = reader.parse(handle);
 		} catch (IOException e) {
-			Gdx.app.log("Progress.load", "Failed to load progress from " + handle.path() + ". Exception: " + e.toString());
+			NLog.e("ProgressIO.load Failed to load progress from %s. Exception: %s", handle.path(), e);
 			return;
 		}
 		if (root == null) {
-			Gdx.app.log("Progress.load", "Failed to load progress from " + handle.path() + ". No root XML element found.");
+			NLog.e("ProgressIO.load Failed to load progress from %s. No root XML element found.", handle.path());
 			return;
 		}
 		load(root);
@@ -200,7 +201,7 @@ public class ProgressIO {
 			}
 			writer.close();
 		} catch (IOException e) {
-			Gdx.app.log("Progress.save", "Failed to save progress. Exception: " + e.toString());
+			NLog.e("ProgressIO.save Failed to save progress. Exception: %s", e);
 		}
 	}
 

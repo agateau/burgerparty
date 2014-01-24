@@ -1,8 +1,8 @@
 package com.agateau.burgerparty.burgervaders;
 
 import com.agateau.burgerparty.utils.MaskedDrawableAtlas;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.SpriteImage;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -15,7 +15,7 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	private static final float COLLAPSE_DURATION = 0.2f;
 
 	public BurgerEnemy(MaskedDrawableAtlas atlas) {
-		Gdx.app.log("Burger", "new");
+		NLog.i("BurgerEnemy");
 		mBottomItem = new SpriteImage(atlas.get("mealitems/0/bottom-inventory"));
 		mTopItem = new SpriteImage(atlas.get("mealitems/0/top-inventory"));
 
@@ -34,7 +34,7 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	@Override
 	public void init(float posX) {
 		super.init(posX);
-		Gdx.app.log("Burger", "init x=" + getX() +" y=" + getY());
+		NLog.i("BurgerEnemy.init x=%f, y=%f", getX(), getY());
 		mCurrentStack.clear();
 		addItem(mBottomItem);
 		int size = MathUtils.random(3, mMiddleItems.size - 1);
@@ -50,7 +50,7 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	@Override
 	public void reset() {
 		super.reset();
-		Gdx.app.log("Burger", "reset");
+		NLog.i("BurgerEnemy.reset");
 		for (SpriteImage image: mMiddleItems) {
 			image.remove();
 			image.clearActions();

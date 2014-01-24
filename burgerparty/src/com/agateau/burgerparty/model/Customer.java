@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.model;
 
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 
 public class Customer {
@@ -79,7 +79,7 @@ public class Customer {
 		assert(mState == State.WAITING);
 		mState = State.ACTIVE;
 		mMoodDelay = MOOD_MIN_SEC + itemCount * MOOD_SEC_PER_ITEM;
-		Gdx.app.log("Customer.markActive", "itemCount=" + itemCount + " => delay=" + (mMoodDelay * 1000));
+		NLog.i("Customer.markActive itemCount=%d => delay=%dms", itemCount, (int)(mMoodDelay * 1000));
 		scheduleMoodChange();
 	}
 

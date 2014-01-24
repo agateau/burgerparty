@@ -9,10 +9,10 @@ import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
@@ -165,7 +165,7 @@ public class LevelFinishedOverlay extends Overlay {
 		// Store final score *now*
 		Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
 		for (String thing: unlockedThings) {
-			Gdx.app.log("LevelFinishedOverlay", "Unlocked " + thing);
+			NLog.i("LevelFinishedOverlay: Unlocked %s", thing);
 		}
 
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off-big")));

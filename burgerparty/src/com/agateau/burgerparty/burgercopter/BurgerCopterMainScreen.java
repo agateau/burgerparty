@@ -12,7 +12,6 @@ import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.Tile;
 import com.agateau.burgerparty.utils.TileActor;
 import com.agateau.burgerparty.utils.TileMap;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -47,7 +46,6 @@ public class BurgerCopterMainScreen extends StageScreen {
 
 	@Override
 	public void dispose() {
-		Gdx.app.log("BurgerCopterMiniGame.dispose" ,"");
 		for (Disposable obj: mDisposables) {
 			obj.dispose();
 		}

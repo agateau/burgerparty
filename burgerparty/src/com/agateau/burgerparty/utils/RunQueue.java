@@ -2,7 +2,6 @@ package com.agateau.burgerparty.utils;
 
 import java.util.LinkedList;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 
 public class RunQueue {
@@ -13,7 +12,7 @@ public class RunQueue {
 				return;
 			}
 			if (!mQueue.mList.remove(this)) {
-				Gdx.app.log("RunQueue.Task.done", "Task " + this + " is not in the queue, ignoring call to done()");
+				NLog.e("RunQueue.Task.done: Task %s is not in the queue, ignoring call to done()", this);
 			}
 		}
 
@@ -74,9 +73,9 @@ public class RunQueue {
 	}
 
 	void dumpQueue(String method) {
-		Gdx.app.log("RunQueue." + method, "mList.size()=" + mList.size());
+		NLog.d("RunQueue.%s: mList.size()=%d", method, mList.size());
 		for (Task task: mList) {
-			Gdx.app.log("RunQueue." + method, "- " + task);
+			NLog.d("RunQueue.%s: - %s", method, task);
 		}
 	}
 

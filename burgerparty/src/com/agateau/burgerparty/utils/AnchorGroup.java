@@ -58,7 +58,6 @@ public class AnchorGroup extends WidgetGroup {
 				-target.getHeight() * target.getScaleY() * targetAnchor.vPercent);
 
 			target.setPosition(targetPos.x, targetPos.y);
-			//Gdx.app.log("applyRule", rule.target.toString());
 		}
 	}
 

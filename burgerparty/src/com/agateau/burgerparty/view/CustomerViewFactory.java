@@ -3,6 +3,7 @@ package com.agateau.burgerparty.view;
 import java.io.IOException;
 
 import com.agateau.burgerparty.model.Customer;
+import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -58,7 +59,7 @@ public class CustomerViewFactory {
 				continue;
 			}
 			if (path.length < 3) {
-				Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Should not exist!");
+				NLog.e("CustomerViewFactory: Skipping %s. Should not exist!", region.name);
 				continue;
 			}
 			String customerType = path[1];
@@ -76,14 +77,14 @@ public class CustomerViewFactory {
 			} else if (name.startsWith("face-")) {
 				String[] tokens = name.split("-", 3);
 				if (tokens.length != 3) {
-					Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Invalid face name!");
+					NLog.e("CustomerFactory: Skipping %s. Invalid face name!", region.name);
 					continue;
 				}
 				if (tokens[2].equals("happy")) {
 					elements.faces.add(tokens[0] + "-" + tokens[1]);
 				}
 			} else {
-				Gdx.app.log("CustomerFactory", "Skipping " + region.name + ". Unknown customer part!");
+				NLog.e("CustomerFactory: Skipping %s. Unknown customer part!", region.name);
 			}
 		}
 	}
