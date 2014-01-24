@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agateau.burgerparty"
     android:versionCode="10"
-    android:versionName="0.10" >
+    android:versionName="0.10"
+    android:installLocation="auto" >
 
-    <uses-sdk android:minSdkVersion="5" android:targetSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
 
     <application
         android:icon="@drawable/ic_launcher"
