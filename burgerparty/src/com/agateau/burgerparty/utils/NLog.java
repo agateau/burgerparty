@@ -6,7 +6,23 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class NLog {
 	public static abstract class Printer {
-		public abstract void print(int level, String tag, Object obj, Object... args);
+		public Printer() {
+			mStartTime = TimeUtils.nanoTime();
+		}
+
+		public void print(int level, String tag, Object obj, Object... args) {
+			final float NANOSECS = 1000 * 1000 * 1000;
+			final long timeDelta = TimeUtils.nanoTime() - mStartTime;
+			final String timeStamp = String.format("%.3f ", timeDelta / NANOSECS);
+			final String format = obj == null ? "(null)" : obj.toString();
+			final String message = timeStamp + (args.length > 0 ? String.format(format,args) : format);
+			doPrint(level, tag, message);
+		}
+
+		protected abstract void doPrint(int level, String tag, String message);
+
+		private long mStartTime;
+
 	}
 
 	public NLog(Printer printer, String tag) {
@@ -63,17 +79,8 @@ public class NLog {
 	 * @author aurelien
 	 */
 	public static class GdxPrinter extends Printer {
-		public GdxPrinter() {
-			mStartTime = TimeUtils.nanoTime();
-		}
-
 		@Override
-		public void print(int level, String tag, Object obj, Object... args) {
-			final float NANOSECS = 1000 * 1000 * 1000;
-			final long timeDelta = TimeUtils.nanoTime() - mStartTime;
-			final String timeStamp = String.format("%.3f ", timeDelta / NANOSECS);
-			final String format = obj == null ? "(null)" : obj.toString();
-			final String message = timeStamp + (args.length > 0 ? String.format(format,args) : format);
+		protected void doPrint(int level, String tag, String message) {
 			if (level == Application.LOG_DEBUG) {
 				Gdx.app.debug(tag, message);
 			} else if (level == Application.LOG_INFO) {
@@ -82,8 +89,6 @@ public class NLog {
 				Gdx.app.error(tag, message);
 			}
 		}
-
-		private long mStartTime;
 	}
 
 	private final Printer mPrinter;
