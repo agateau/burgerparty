@@ -1,5 +1,7 @@
 package com.agateau.burgerparty;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
@@ -55,6 +57,8 @@ public class BurgerPartyGame extends Game {
 		if (log == null) {
 			log = NLog.getRoot().create(getClass().getSimpleName());
 		}
+		String timeStamp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
+		log.i("create: date=%s", timeStamp);
 
 		mMusicController = new MusicController(getPreferences());
 		mAssets = new Assets(mMusicController);
