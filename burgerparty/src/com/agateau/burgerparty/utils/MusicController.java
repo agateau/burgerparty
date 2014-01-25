@@ -6,8 +6,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 
 public class MusicController {
-	private float FADE_STEP = 0.1f;
-	private float FADE_INTERVAL = 0.1f;
+	private static float FADE_STEP = 0.1f;
+	private static float FADE_INTERVAL = 0.1f;
+
 	private class Fader extends Timer.Task {
 		@Override
 		public void run() {
