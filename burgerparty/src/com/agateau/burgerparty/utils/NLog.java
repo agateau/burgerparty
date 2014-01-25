@@ -2,6 +2,7 @@ package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class NLog {
 	public static abstract class Printer {
@@ -62,10 +63,17 @@ public class NLog {
 	 * @author aurelien
 	 */
 	public static class GdxPrinter extends Printer {
+		public GdxPrinter() {
+			mStartTime = TimeUtils.nanoTime();
+		}
+
 		@Override
 		public void print(int level, String tag, Object obj, Object... args) {
+			final float NANOSECS = 1000 * 1000 * 1000;
+			final long timeDelta = TimeUtils.nanoTime() - mStartTime;
+			final String timeStamp = String.format("%.3f ", timeDelta / NANOSECS);
 			final String format = obj == null ? "(null)" : obj.toString();
-			final String message = args.length > 0 ? String.format(format,args) : format;
+			final String message = timeStamp + (args.length > 0 ? String.format(format,args) : format);
 			if (level == Application.LOG_DEBUG) {
 				Gdx.app.debug(tag, message);
 			} else if (level == Application.LOG_INFO) {
@@ -74,6 +82,8 @@ public class NLog {
 				Gdx.app.error(tag, message);
 			}
 		}
+
+		private long mStartTime;
 	}
 
 	private final Printer mPrinter;
