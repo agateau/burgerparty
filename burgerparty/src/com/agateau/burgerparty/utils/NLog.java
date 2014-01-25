@@ -1,26 +1,19 @@
 package com.agateau.burgerparty.utils;
 
-import roboguice.util.Strings;
-
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
 public class NLog {
 	public static void d(Object s1, Object... args) {
-		final String s = Strings.toString(s1);
-		final String message = args.length > 0 ? String.format(s,args) : s;
-		sPrinter.d(message);
+		sPrinter.print(Application.LOG_DEBUG, s1, args);
 	}
 
 	public static void i(Object s1, Object... args) {
-		final String s = Strings.toString(s1);
-		final String message = args.length > 0 ? String.format(s,args) : s;
-		sPrinter.i(message);
+		sPrinter.print(Application.LOG_INFO, s1, args);
 	}
 
 	public static void e(Object s1, Object... args) {
-		final String s = Strings.toString(s1);
-		final String message = args.length > 0 ? String.format(s,args) : s;
-		sPrinter.e(message);
+		sPrinter.print(Application.LOG_ERROR, s1, args);
 	}
 
 	public static void init(Printer printer) {
@@ -32,9 +25,7 @@ public class NLog {
 			mTag = tag;
 		}
 
-		public abstract void d(String message);
-		public abstract void i(String message);
-		public abstract void e(String message);
+		public abstract void print(int level, Object obj, Object... args);
 	
 		protected final String mTag;
 	}
@@ -45,18 +36,16 @@ public class NLog {
 		}
 
 		@Override
-		public void d(String message) {
-			Gdx.app.debug(mTag, message);
-		}
-
-		@Override
-		public void i(String message) {
-			Gdx.app.log(mTag, message);
-		}
-
-		@Override
-		public void e(String message) {
-			Gdx.app.error(mTag, message);
+		public void print(int level, Object obj, Object... args) {
+			final String format = obj == null ? "(null)" : obj.toString();
+			final String message = args.length > 0 ? String.format(format,args) : format;
+			if (level == Application.LOG_DEBUG) {
+				Gdx.app.debug(mTag, message);
+			} else if (level == Application.LOG_INFO) {
+				Gdx.app.log(mTag, message);
+			} else { // LOG_ERROR
+				Gdx.app.error(mTag, message);
+			}
 		}
 	}
 
