@@ -111,14 +111,23 @@ public class BurgerPartyGame extends Game {
 		return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
 	}
 
-	private void setupLog() {
-		FileLogPrinter printer = new FileLogPrinter();
-		if (printer.init("burgerparty")) {
-			NLog.init(printer, "BP");
-		} else {
-			Gdx.app.error("BurgerParty", "Failed to init FileLogPrinter");
-			NLog.init(new NLog.GdxPrinter(), "BP");
+	private static FileLogPrinter createFileLogPrinter() {
+		FileHandle cacheDir = FileUtils.getCacheDir("burgerparty");
+		if (cacheDir == null) {
+			Gdx.app.error("createFileLogPrinter", "Could not create cache dir");
+			return null;
 		}
+		FileHandle logHandle = cacheDir.child("burgerparty.log");
+		FileLogPrinter.rotate(logHandle, 6);
+		return new FileLogPrinter(logHandle);
+	}
+
+	private void setupLog() {
+		NLog.Printer printer = createFileLogPrinter();
+		if (printer == null) {
+			printer = new NLog.GdxPrinter();
+		}
+		NLog.init(printer, "BP");
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 

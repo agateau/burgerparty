@@ -8,14 +8,27 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 public class FileLogPrinter extends NLog.Printer {
-	public boolean init(String logFileName) {
-		FileHandle cacheDir = FileUtils.getCacheDir(logFileName);
-		if (cacheDir == null) {
-			return false;
-		}
-		mHandle = cacheDir.child(logFileName + ".log");
+	public FileLogPrinter(FileHandle logHandle) {
+		mHandle = logHandle;
 		mWriter = mHandle.writer(true /* append */);
-		return true;
+	}
+
+	public static void rotate(FileHandle logHandle, int count) {
+		FileHandle dir = logHandle.parent();
+		if (!dir.exists()) {
+			return;
+		}
+		String name = logHandle.name();
+		for (; count > 1; --count) {
+			FileHandle handle = dir.child(name + "." + (count - 1));
+			if (!handle.exists()) {
+				continue;
+			}
+			handle.moveTo(dir.child(name + "." + count));
+		}
+		if (logHandle.exists()) {
+			logHandle.moveTo(dir.child(name + ".1"));
+		}
 	}
 
 	@Override
