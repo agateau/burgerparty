@@ -19,6 +19,20 @@ public class FileUtils {
 		return handle;
 	}
 
+	static public FileHandle getCacheDir(String appName) {
+		FileHandle handle;
+		if (Gdx.app.getType() == ApplicationType.Desktop) {
+			handle = Gdx.files.external(".cache/" + appName);
+		} else {
+			if (!Gdx.files.isExternalStorageAvailable()) {
+				return null;
+			}
+			handle = Gdx.files.absolute(Gdx.files.getExternalStoragePath() + "/" + appName);
+		}
+		handle.mkdirs();
+		return handle;
+	}
+
 	public static FileHandle assets(String path) {
 		FileHandle handle = Gdx.files.internal(path);
 		if (Gdx.app.getType() == ApplicationType.Desktop) {
