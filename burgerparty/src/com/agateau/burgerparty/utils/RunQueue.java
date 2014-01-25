@@ -12,7 +12,7 @@ public class RunQueue {
 				return;
 			}
 			if (!mQueue.mList.remove(this)) {
-				NLog.e("RunQueue.Task.done: Task %s is not in the queue, ignoring call to done()", this);
+				log.e("Task.done: Task %s is not in the queue, ignoring call to done()", this);
 			}
 		}
 
@@ -40,6 +40,11 @@ public class RunQueue {
 		private RunQueue mQueue;
 	}
 
+	public RunQueue() {
+		if (log == null) {
+			log = NLog.getRoot().create(getClass().getSimpleName());
+		}
+	}
 	public void add(RunQueue.Task task) {
 		task.setQueue(this);
 		mList.add(task);
@@ -73,12 +78,13 @@ public class RunQueue {
 	}
 
 	void dumpQueue(String method) {
-		NLog.d("RunQueue.%s: mList.size()=%d", method, mList.size());
+		log.d("%s: mList.size()=%d", method, mList.size());
 		for (Task task: mList) {
-			NLog.d("RunQueue.%s: - %s", method, task);
+			log.d("%s: - %s", method, task);
 		}
 	}
 
+	private static NLog log;
 	private LinkedList<RunQueue.Task> mList = new LinkedList<RunQueue.Task>();
 	private RunQueue.Task mCurrentTask = null;
 }

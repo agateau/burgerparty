@@ -41,6 +41,9 @@ public class World {
 	private static final int ANGRY_COIN_COUNT = 1;
 
 	public World(Level level) {
+		if (log == null) {
+			log = NLog.getRoot().create("World");
+		}
 		mLevel = level;
 		mCustomers = level.definition.createCustomers();
 		int worldIndex = level.getLevelWorld().getIndex();
@@ -243,7 +246,7 @@ public class World {
 
 	private void onMealFinished() {
 		long time = mMealDoneCounter.restart();
-		NLog.i("World.onMealFinished: Meal done in %dms", time);
+		log.i("onMealFinished: Meal done in %dms", time);
 		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
@@ -292,8 +295,10 @@ public class World {
 
 	private void restartItemTimer() {
 		long time = mItemAddedCounter.restart();
-		NLog.i("World.restartItemTimer Item added in %dms", time);
+		log.i("restartItemTimer: Item added in %dms", time);
 	}
+
+	private static NLog log;
 
 	private ConnectionManager mMealConnections = new ConnectionManager();
 	private BurgerGenerator mBurgerGenerator;

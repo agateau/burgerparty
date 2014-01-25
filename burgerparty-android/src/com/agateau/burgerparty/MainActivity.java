@@ -10,7 +10,7 @@ public class MainActivity extends AndroidApplication {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NLog.init(new NLog.GdxPrinter("BurgerParty"));
+        NLog.init(new NLog.GdxPrinter(), "BurgerParty");
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useGL20 = true;
         cfg.useCompass = false;

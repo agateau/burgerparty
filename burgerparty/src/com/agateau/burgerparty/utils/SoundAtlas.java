@@ -162,6 +162,9 @@ public class SoundAtlas {
 	}
 
 	public SoundAtlas(AssetManager manager, String dir, MusicController musicController) {
+		if (log == null) {
+			log = NLog.createForClass(this);
+		}
 		mAssetManager = manager;
 		mMusicController = musicController;
 		mDir = dir;
@@ -182,7 +185,7 @@ public class SoundAtlas {
 		for (int i=0, n=mPendingNames.length; i < n; ++i) {
 			String filename = mDir + mPendingNames[i];
 			String name = mPendingNames[i].replaceFirst("\\.[a-z]+$", "");
-			NLog.i("SoundAtlas.finishLoad: Getting %s as %s", filename, name);
+			log.i("finishLoad: Getting %s as %s", filename, name);
 			Sound sound = mAssetManager.get(filename);
 			assert(sound != null);
 			mSoundMap.put(name, new AtlasSound(sound));
@@ -233,6 +236,7 @@ public class SoundAtlas {
 
 	Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
 
+	private static NLog log;
 	private final AssetManager mAssetManager;
 	private final MusicController mMusicController;
 	private String mDir;

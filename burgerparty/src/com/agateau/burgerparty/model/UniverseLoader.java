@@ -15,6 +15,12 @@ public class UniverseLoader {
 	private static final int TIME_STEP = 30;
 	private static final boolean DEBUG_DURATION = false;
 
+	public UniverseLoader() {
+		if (log == null) {
+			log = NLog.getRoot().create("UniverseLoader");
+		}
+	}
+
 	public void run(Universe universe) {
 		if (DEBUG_DURATION) {
 			mCsvHandle = Gdx.files.external("/tmp/duration.csv");
@@ -25,7 +31,7 @@ public class UniverseLoader {
 			if (!Gdx.files.internal(dirName + "1.xml").exists()) {
 				break;
 			}
-			NLog.i("UniverseLoader.run dir=%s", dirName);
+			log.i("run: dir=%s", dirName);
 			LevelWorld world = loadWorld(n - 1, dirName);
 			universe.addWorld(world);
 		}
@@ -46,7 +52,7 @@ public class UniverseLoader {
 			String name = dirName + "/" + n + ".xml";
 			FileHandle levelFile = Gdx.files.internal(name);
 			assert(levelFile.exists());
-			NLog.i("UniverseLoader.loadWorld levelFile=%s", levelFile);
+			log.i("loadWorld: levelFile=%s", levelFile);
 			Level level = Level.fromXml(world, n - 1, levelFile);
 			world.addLevel(level);
 			initDuration(index, n - 1, level);
@@ -68,8 +74,8 @@ public class UniverseLoader {
 		int duration = roundUp(itemCount * SEC_PER_ITEM * easiness);
 		level.definition.duration = duration;
 		if (DEBUG_DURATION) {
-			NLog.d("LevelWorldLoader.initDuration",
-					" world=" + (worldIndex + 1)
+			log.d("initDuration: "
+					+ " world=" + (worldIndex + 1)
 					+ " level=" + (levelIndex + 1)
 					+ " normLevelIndex=" + normLevelIndex
 					+ " easiness=" + easiness
@@ -101,6 +107,7 @@ public class UniverseLoader {
 		return MathUtils.ceil(x / (float)TIME_STEP) * TIME_STEP;
 	}
 
+	private static NLog log;
 	private FileHandle mCsvHandle;
 	private Writer mCsvWriter;
 }

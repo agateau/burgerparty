@@ -4,50 +4,73 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
 public class NLog {
-	public static void d(Object s1, Object... args) {
-		sPrinter.print(Application.LOG_DEBUG, s1, args);
+	public NLog(Printer printer, String tag) {
+		mPrinter = printer;
+		mTag = tag;
 	}
 
-	public static void i(Object s1, Object... args) {
-		sPrinter.print(Application.LOG_INFO, s1, args);
+	public void d(Object obj, Object...args) {
+		mPrinter.print(Application.LOG_DEBUG, mTag, obj, args);
 	}
 
-	public static void e(Object s1, Object... args) {
-		sPrinter.print(Application.LOG_ERROR, s1, args);
+	public void i(Object obj, Object...args) {
+		mPrinter.print(Application.LOG_INFO, mTag, obj, args);
+	}
+
+	public void e(Object obj, Object...args) {
+		mPrinter.print(Application.LOG_ERROR, mTag, obj, args);
+	}
+
+	public NLog create(String tag) {
+		return new NLog(mPrinter, mTag + "." + tag);
+	}
+
+	private final Printer mPrinter;
+	private final String mTag;
+
+	//// Static
+	public static NLog getRoot() {
+		if (sRoot == null) {
+			init(new GdxPrinter(), "(root)");
+		}
+		return sRoot;
 	}
 
 	public static void init(Printer printer) {
-		sPrinter = printer;
+		sRoot = new NLog(printer, "(root)");
 	}
 
-	public static abstract class Printer {
-		Printer(String tag) {
-			mTag = tag;
-		}
+	public static void init(Printer printer, String tag) {
+		sRoot = new NLog(printer, tag);
+	}
 
-		public abstract void print(int level, Object obj, Object... args);
-	
-		protected final String mTag;
+	public static NLog createForClass(Object obj) {
+		return sRoot.create(obj.getClass().getSimpleName());
+	}
+
+	public static NLog createForInstance(Object obj) {
+		return sRoot.create(obj.toString() + "(" + obj.hashCode() + ")");
+	}
+
+	private static NLog sRoot = null;
+	////
+
+	public static abstract class Printer {
+		public abstract void print(int level, String tag, Object obj, Object... args);
 	}
 
 	public static class GdxPrinter extends Printer {
-		public GdxPrinter(String tag) {
-			super(tag);
-		}
-
 		@Override
-		public void print(int level, Object obj, Object... args) {
+		public void print(int level, String tag, Object obj, Object... args) {
 			final String format = obj == null ? "(null)" : obj.toString();
 			final String message = args.length > 0 ? String.format(format,args) : format;
 			if (level == Application.LOG_DEBUG) {
-				Gdx.app.debug(mTag, message);
+				Gdx.app.debug(tag, message);
 			} else if (level == Application.LOG_INFO) {
-				Gdx.app.log(mTag, message);
+				Gdx.app.log(tag, message);
 			} else { // LOG_ERROR
-				Gdx.app.error(mTag, message);
+				Gdx.app.error(tag, message);
 			}
 		}
 	}
-
-	private static Printer sPrinter;
 }

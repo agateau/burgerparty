@@ -49,6 +49,10 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
+		if (log == null) {
+			log = NLog.getRoot().create(getClass().getSimpleName());
+		}
+
 		mMusicController = new MusicController(getPreferences());
 		mAssets = new Assets(mMusicController);
 		MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
@@ -59,15 +63,15 @@ public class BurgerPartyGame extends Game {
 	@Override
 	public void dispose() {
 		super.dispose();
-		NLog.i("dispose");
+		log.i("dispose");
 	}
 
 	@Override
 	public void resume() {
 		super.resume();
 		AssetManager manager = mAssets.getAssetManager();
-		NLog.i("resume: assetManager=%h", manager);
-		NLog.i("resume: assetManager.getProgress()=%f", manager.getProgress());
+		log.i("resume: assetManager=%h", manager);
+		log.i("resume: assetManager.getProgress()=%f", manager.getProgress());
 		if (manager.getQueuedAssets() > 0) {
 			final Screen oldScreen = getScreen();
 			LoadingScreen loadingScreen = new LoadingScreen(manager);
@@ -82,6 +86,7 @@ public class BurgerPartyGame extends Game {
 
 	public void setScreenAndDispose(Screen screen) {
 		Screen old = getScreen();
+		log.i("setScreenAndDispose old=%s new=%s", old, screen);
 		if (old != null) {
 			old.dispose();
 		}
@@ -271,4 +276,5 @@ public class BurgerPartyGame extends Game {
 
 	private int mWidth = 0;
 	private int mHeight = 0;
+	private static NLog log;
 }

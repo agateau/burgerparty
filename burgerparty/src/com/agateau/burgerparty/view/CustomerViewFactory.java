@@ -49,6 +49,9 @@ public class CustomerViewFactory {
 	}
 
 	public CustomerViewFactory(TextureAtlas atlas, FileHandle customerPartsHandle) {
+		if (log == null) {
+			log = NLog.createForClass(this);
+		}
 		initMap(customerPartsHandle);
 		assert(mCustomerPartForPath.size > 0);
 
@@ -59,7 +62,7 @@ public class CustomerViewFactory {
 				continue;
 			}
 			if (path.length < 3) {
-				NLog.e("CustomerViewFactory: Skipping %s. Should not exist!", region.name);
+				log.e("ctor: Skipping %s. Should not exist!", region.name);
 				continue;
 			}
 			String customerType = path[1];
@@ -77,14 +80,14 @@ public class CustomerViewFactory {
 			} else if (name.startsWith("face-")) {
 				String[] tokens = name.split("-", 3);
 				if (tokens.length != 3) {
-					NLog.e("CustomerFactory: Skipping %s. Invalid face name!", region.name);
+					log.e("ctor: Skipping %s. Invalid face name!", region.name);
 					continue;
 				}
 				if (tokens[2].equals("happy")) {
 					elements.faces.add(tokens[0] + "-" + tokens[1]);
 				}
 			} else {
-				NLog.e("CustomerFactory: Skipping %s. Unknown customer part!", region.name);
+				log.e("ctor: Skipping %s. Unknown customer part!", region.name);
 			}
 		}
 	}
@@ -157,6 +160,7 @@ public class CustomerViewFactory {
 		}
 	}
 
+	private static NLog log;
 	private TextureAtlas mAtlas;
 	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
 	private OrderedMap<String, CustomerPart> mCustomerPartForPath = new OrderedMap<String, CustomerPart>();

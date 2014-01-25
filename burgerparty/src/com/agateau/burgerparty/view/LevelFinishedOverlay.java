@@ -154,6 +154,9 @@ public class LevelFinishedOverlay extends Overlay {
 
 	public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
 		super(atlas);
+		if (log == null) {
+			log = NLog.createForClass(this);
+		}
 		mGame = game;
 		int previousScore = levelResult.getLevel().getScore();
 		mScore = levelResult.getScore();
@@ -165,7 +168,7 @@ public class LevelFinishedOverlay extends Overlay {
 		// Store final score *now*
 		Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
 		for (String thing: unlockedThings) {
-			NLog.i("LevelFinishedOverlay: Unlocked %s", thing);
+			log.i("ctor: Unlocked %s", thing);
 		}
 
 		mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off-big")));
@@ -296,6 +299,7 @@ public class LevelFinishedOverlay extends Overlay {
 		mGame.showLevelListScreen(mGame.getLevelWorldIndex());
 	}
 
+	private static NLog log;
 	private RunQueue mRunQueue = new RunQueue();
 	private BurgerPartyGame mGame;
 	private int mScore;

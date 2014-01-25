@@ -15,7 +15,10 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	private static final float COLLAPSE_DURATION = 0.2f;
 
 	public BurgerEnemy(MaskedDrawableAtlas atlas) {
-		NLog.i("BurgerEnemy");
+		if (log == null) {
+			log = NLog.getRoot().create("BurgerEnemy");
+		}
+		log.i("ctor");
 		mBottomItem = new SpriteImage(atlas.get("mealitems/0/bottom-inventory"));
 		mTopItem = new SpriteImage(atlas.get("mealitems/0/top-inventory"));
 
@@ -34,7 +37,7 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	@Override
 	public void init(float posX) {
 		super.init(posX);
-		NLog.i("BurgerEnemy.init x=%f, y=%f", getX(), getY());
+		log.i("init x=%f, y=%f", getX(), getY());
 		mCurrentStack.clear();
 		addItem(mBottomItem);
 		int size = MathUtils.random(3, mMiddleItems.size - 1);
@@ -50,7 +53,7 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 	@Override
 	public void reset() {
 		super.reset();
-		NLog.i("BurgerEnemy.reset");
+		log.i("reset");
 		for (SpriteImage image: mMiddleItems) {
 			image.remove();
 			image.clearActions();
@@ -103,6 +106,8 @@ public abstract class BurgerEnemy extends Enemy implements Poolable {
 			super.onHit();
 		}
 	}
+
+	private static NLog log;
 
 	private SpriteImage mBottomItem;
 	private SpriteImage mTopItem;

@@ -38,6 +38,9 @@ public class MusicController {
 	}
 
 	public MusicController(Preferences prefs) {
+		if (log == null) {
+			log = NLog.getRoot().create("MusicController");
+		}
 		mPrefs = prefs;
 		mIsMuted = mPrefs.getBoolean("muted", false);
 	}
@@ -47,7 +50,7 @@ public class MusicController {
 	}
 
 	public void play() {
-		NLog.d("play");
+		log.d("play");
 		logState();
 		mPlaying = true;
 		if (mMusic == null) {
@@ -57,27 +60,27 @@ public class MusicController {
 			return;
 		}
 		if (mMusic.isPlaying()) {
-			NLog.d("play: already playing, fading in");
+			log.d("play: already playing, fading in");
 			mFader.fade(1);
 		} else {
-			NLog.d("play: starting");
+			log.d("play: starting");
 			setVolume(1);
 			mMusic.play();
 		}
 	}
 
 	public void fadeOut() {
-		NLog.d("fadeOut");
+		log.d("fadeOut");
 		logState();
 		mPlaying = false;
 		if (mMusic != null && mMusic.isPlaying()) {
-			NLog.d("fadeOut: for real");
+			log.d("fadeOut: for real");
 			mFader.fade(-1);
 		}
 	}
 
 	public void stop() {
-		NLog.d("stop");
+		log.d("stop");
 		logState();
 		mPlaying = false;
 		if (mMusic != null) {
@@ -91,7 +94,7 @@ public class MusicController {
 	}
 
 	public void setMuted(boolean muted) {
-		NLog.d("setMuted");
+		log.d("setMuted");
 		logState();
 		mIsMuted = muted;
 		mPrefs.putBoolean("muted", muted);
@@ -120,6 +123,8 @@ public class MusicController {
 	private boolean mIsMuted = false;
 
 	private void logState() {
-		NLog.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
+		log.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
 	}
+
+	private static NLog log;
 }
