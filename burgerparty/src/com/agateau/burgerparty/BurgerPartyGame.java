@@ -22,11 +22,13 @@ import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
+import com.agateau.burgerparty.utils.FileLogPrinter;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -49,6 +51,7 @@ public class BurgerPartyGame extends Game {
 
 	@Override
 	public void create() {
+		setupLog();
 		if (log == null) {
 			log = NLog.getRoot().create(getClass().getSimpleName());
 		}
@@ -102,6 +105,17 @@ public class BurgerPartyGame extends Game {
 
 	public Action createPlayMealItemAction(String name) {
 		return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
+	}
+
+	private void setupLog() {
+		FileLogPrinter printer = new FileLogPrinter();
+		if (printer.init("burgerparty")) {
+			NLog.init(printer, "BP");
+		} else {
+			Gdx.app.error("BurgerParty", "Failed to init FileLogPrinter");
+			NLog.init(new NLog.GdxPrinter(), "BP");
+		}
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 
 	private void setupUniverse() {
