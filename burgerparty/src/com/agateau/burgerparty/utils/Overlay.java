@@ -26,6 +26,9 @@ public abstract class Overlay extends WidgetGroup {
 		});
 	}
 
+	public void aboutToBeRemoved() {
+	}
+
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		batch.setColor(0, 0, 0, ALPHA);
