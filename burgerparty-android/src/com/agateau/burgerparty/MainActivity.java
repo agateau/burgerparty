@@ -14,6 +14,6 @@ public class MainActivity extends AndroidApplication {
         cfg.useCompass = false;
         cfg.useAccelerometer = false;
         cfg.hideStatusBar = true;
-        initialize(new BurgerPartyGame(), cfg);
+        initialize(new BurgerPartyGame(new AndroidAdController()), cfg);
     }
 }

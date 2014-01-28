@@ -48,8 +48,13 @@ public class BurgerPartyGame extends Game {
 	private Universe mUniverse = new Universe();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
+	private final AdController mAdController;
 
 	private static final String PROGRESS_FILE = "progress.xml";
+
+	public BurgerPartyGame(AdController adController) {
+		mAdController = adController;
+	}
 
 	@Override
 	public void create() {
@@ -299,6 +304,10 @@ public class BurgerPartyGame extends Game {
 
 	public Preferences getPreferences() {
 		return Gdx.app.getPreferences("burgerparty");
+	}
+
+	public AdController getAdController() {
+		return mAdController;
 	}
 
 	private int mWidth = 0;
