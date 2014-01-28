@@ -48,17 +48,12 @@ public class BurgerPartyGame extends Game {
 	private Universe mUniverse = new Universe();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
-	private final AdController mAdController;
+	private AdController mAdController;
 
 	private static final String PROGRESS_FILE = "progress.xml";
 
-	public BurgerPartyGame(AdController adController) {
-		mAdController = adController;
-	}
-
 	@Override
 	public void create() {
-		setupLog();
 		if (log == null) {
 			log = NLog.getRoot().create(getClass().getSimpleName());
 		}
@@ -127,7 +122,7 @@ public class BurgerPartyGame extends Game {
 		return new FileLogPrinter(logHandle);
 	}
 
-	private void setupLog() {
+	public static void setupLog() {
 		NLog.Printer printer = createFileLogPrinter();
 		if (printer == null) {
 			printer = new NLog.GdxPrinter();
@@ -307,7 +302,12 @@ public class BurgerPartyGame extends Game {
 	}
 
 	public AdController getAdController() {
+		assert(mAdController != null);
 		return mAdController;
+	}
+
+	public void setAdController(AdController adController) {
+		mAdController = adController;
 	}
 
 	private int mWidth = 0;

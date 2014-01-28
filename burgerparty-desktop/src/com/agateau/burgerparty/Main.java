@@ -21,7 +21,9 @@ public class Main {
 			cfg.width = 800;
 			cfg.height = 480;
 		}
-
-		new LwjglApplication(new BurgerPartyGame(new DesktopAdController()), cfg);
+		BurgerPartyGame game = new BurgerPartyGame();
+		new LwjglApplication(game, cfg);
+		BurgerPartyGame.setupLog();
+		game.setAdController(new DesktopAdController());
 	}
 }
