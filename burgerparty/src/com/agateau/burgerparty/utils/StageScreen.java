@@ -113,8 +113,7 @@ public abstract class StageScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		setOverlay(null);
 	}
 
 	private void resizeBackgroundActor() {
