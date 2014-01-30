@@ -28,6 +28,7 @@ public class StartScreen extends BurgerPartyScreen {
 				dispose();
 			}
 		};
+		getGame().getAdController().showAd();
 	}
 
 	private void setupWidgets() {

@@ -213,6 +213,7 @@ public class BurgerPartyGame extends Game {
 				finishLoad();
 			}
 		});
+		mAdController.preloadAd();
 		setScreenAndDispose(screen);
 	}
 

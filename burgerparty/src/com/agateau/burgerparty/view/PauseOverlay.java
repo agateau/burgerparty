@@ -7,7 +7,6 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -77,18 +76,11 @@ public class PauseOverlay extends Overlay {
 		group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
 		group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
 		group.addRule(mMuteButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_LEFT, 0.5f, 1);
-
-		mGame.getAdController().showBanner(Gdx.graphics.getWidth() / 3, 0);
 	}
 
 	@Override
 	public void onBackPressed() {
 		mWorldView.resume();
-	}
-
-	@Override
-	public void aboutToBeRemoved() {
-		mGame.getAdController().hideBanner();
 	}
 
 	private void updateMuteButton() {
