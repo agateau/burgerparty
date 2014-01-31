@@ -14,8 +14,6 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -26,8 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <!-- Heyzap -->
+        <activity
+            android:name="com.heyzap.sdk.ads.HeyzapInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize" />
+        <activity
+            android:name="com.heyzap.sdk.ads.HeyzapVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize" />
+        <receiver android:name="com.heyzap.sdk.ads.PackageAddedReceiver" >
+            <intent-filter>
+                <data android:scheme="package" />
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+            </intent-filter>
+        </receiver>
+        <!-- /Heyzap -->
     </application>
 
 </manifest>
