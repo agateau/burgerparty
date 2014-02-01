@@ -5,9 +5,11 @@
     android:versionName="0.10"
     android:installLocation="auto" >
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -22,6 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Heyzap -->
+        <activity
+            android:name="com.heyzap.sdk.ads.HeyzapInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize" />
+        <activity
+            android:name="com.heyzap.sdk.ads.HeyzapVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize" />
+        <receiver android:name="com.heyzap.sdk.ads.PackageAddedReceiver" >
+            <intent-filter>
+                <data android:scheme="package" />
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+            </intent-filter>
+        </receiver>
+        <!-- /Heyzap -->
     </application>
 
 </manifest>

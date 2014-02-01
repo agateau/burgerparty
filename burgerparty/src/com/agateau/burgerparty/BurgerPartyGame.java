@@ -48,12 +48,12 @@ public class BurgerPartyGame extends Game {
 	private Universe mUniverse = new Universe();
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
+	private AdController mAdController;
 
 	private static final String PROGRESS_FILE = "progress.xml";
 
 	@Override
 	public void create() {
-		setupLog();
 		if (log == null) {
 			log = NLog.getRoot().create(getClass().getSimpleName());
 		}
@@ -74,11 +74,16 @@ public class BurgerPartyGame extends Game {
 	}
 
 	@Override
+	public void pause() {
+		super.pause();
+		log.i("pause");
+	}
+
+	@Override
 	public void resume() {
 		super.resume();
+		log.i("resume");
 		AssetManager manager = mAssets.getAssetManager();
-		log.i("resume: assetManager=%h", manager);
-		log.i("resume: assetManager.getProgress()=%f", manager.getProgress());
 		if (manager.getQueuedAssets() > 0) {
 			final Screen oldScreen = getScreen();
 			LoadingScreen loadingScreen = new LoadingScreen(manager);
@@ -122,7 +127,7 @@ public class BurgerPartyGame extends Game {
 		return new FileLogPrinter(logHandle);
 	}
 
-	private void setupLog() {
+	public static void setupLog() {
 		NLog.Printer printer = createFileLogPrinter();
 		if (printer == null) {
 			printer = new NLog.GdxPrinter();
@@ -213,6 +218,7 @@ public class BurgerPartyGame extends Game {
 				finishLoad();
 			}
 		});
+		mAdController.preloadAd();
 		setScreenAndDispose(screen);
 	}
 
@@ -299,6 +305,15 @@ public class BurgerPartyGame extends Game {
 
 	public Preferences getPreferences() {
 		return Gdx.app.getPreferences("burgerparty");
+	}
+
+	public AdController getAdController() {
+		assert(mAdController != null);
+		return mAdController;
+	}
+
+	public void setAdController(AdController adController) {
+		mAdController = adController;
 	}
 
 	private int mWidth = 0;

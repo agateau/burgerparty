@@ -59,6 +59,7 @@ public abstract class StageScreen implements Screen {
 
 	public void setOverlay(Overlay overlay) {
 		if (mOverlay != null) {
+			mOverlay.aboutToBeRemoved();
 			mOverlay.remove();
 			mOverlay = null;
 		}
@@ -112,8 +113,7 @@ public abstract class StageScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		setOverlay(null);
 	}
 
 	private void resizeBackgroundActor() {
