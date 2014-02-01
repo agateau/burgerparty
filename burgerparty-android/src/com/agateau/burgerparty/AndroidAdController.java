@@ -17,32 +17,32 @@ public class AndroidAdController implements AdController {
 	private class StatusListener implements OnStatusListener {
 		@Override
 		public void onShow(String tag) {
-			log.i("onShow: tag={}", tag);
+			log.i("onShow: tag=%s", tag);
 		}
 
 		@Override
 		public void onClick(String tag) {
-			log.i("onClick: tag={}", tag);
+			log.i("onClick: tag=%s", tag);
 		}
 
 		@Override
 		public void onHide(String tag) {
-			log.i("onHide: tag={}", tag);
+			log.i("onHide: tag=%s", tag);
 		}
 
 		@Override
 		public void onFailedToShow(String tag) {
-			log.i("onFailedToSHow: tag={}", tag);
+			log.i("onFailedToSHow: tag=%s", tag);
 		}
 
 		@Override
 		public void onAvailable(String tag) {
-			log.i("onAvailable: tag={}", tag);
+			log.i("onAvailable: tag=%s", tag);
 		}
 
 		@Override
 		public void onFailedToFetch(String tag) {
-			log.i("onFailedToFetch: tag={}", tag);
+			log.i("onFailedToFetch: tag=%s", tag);
 		}
 
 		@Override
