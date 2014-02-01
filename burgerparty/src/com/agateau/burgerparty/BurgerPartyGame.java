@@ -74,11 +74,16 @@ public class BurgerPartyGame extends Game {
 	}
 
 	@Override
+	public void pause() {
+		super.pause();
+		log.i("pause");
+	}
+
+	@Override
 	public void resume() {
 		super.resume();
+		log.i("resume");
 		AssetManager manager = mAssets.getAssetManager();
-		log.i("resume: assetManager=%h", manager);
-		log.i("resume: assetManager.getProgress()=%f", manager.getProgress());
 		if (manager.getQueuedAssets() > 0) {
 			final Screen oldScreen = getScreen();
 			LoadingScreen loadingScreen = new LoadingScreen(manager);
