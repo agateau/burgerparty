@@ -2,5 +2,6 @@ package com.agateau.burgerparty;
 
 public interface AdController {
 	void preloadAd();
-	void showAd();
+	boolean isAdAvailable();
+	void showAd(Runnable after);
 }

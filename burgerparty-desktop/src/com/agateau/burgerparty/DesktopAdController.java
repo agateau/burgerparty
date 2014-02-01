@@ -6,6 +6,12 @@ public class DesktopAdController implements AdController {
 	}
 
 	@Override
-	public void showAd() {
+	public boolean isAdAvailable() {
+		return true;
+	}
+
+	@Override
+	public void showAd(Runnable after) {
+		after.run();
 	}
 }

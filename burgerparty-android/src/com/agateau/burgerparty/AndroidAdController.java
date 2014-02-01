@@ -1,12 +1,12 @@
 package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.NLog;
+import com.badlogic.gdx.backends.android.AndroidApplication;
 
 import com.heyzap.sdk.ads.HeyzapAds;
 import com.heyzap.sdk.ads.HeyzapAds.OnStatusListener;
 import com.heyzap.sdk.ads.InterstitialAd;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 
@@ -28,11 +28,13 @@ public class AndroidAdController implements AdController {
 		@Override
 		public void onHide(String tag) {
 			log.i("onHide: tag=%s", tag);
+			mApplication.postRunnable(mOnFinishedRunnable);
 		}
 
 		@Override
 		public void onFailedToShow(String tag) {
 			log.i("onFailedToSHow: tag=%s", tag);
+			mApplication.postRunnable(mOnFinishedRunnable);
 		}
 
 		@Override
@@ -70,34 +72,47 @@ public class AndroidAdController implements AdController {
 		}
 
 		void preload() {
-			log.i("preload");
+			mController.log.i("preload");
 			InterstitialAd.fetch();
 		}
 
 		void show() {
 			if (InterstitialAd.isAvailable()) {
-				log.i("show: ad is available");
-				InterstitialAd.display(mActivity);
+				mController.log.i("show: ad is available");
+				InterstitialAd.display(mController.mApplication);
 			} else {
-				log.i("show: ad is not available");
+				mController.log.i("show: ad is not available");
 			}
 		}
 
-		Activity mActivity;
-		NLog log;
+		AndroidAdController mController;
 	};
 
-	private NLog log;
+	private final NLog log;
+	private final AndroidApplication mApplication;
 	private final AdHandler mHandler;
 
-	public AndroidAdController(Activity activity) {
+	// Called when user is back to the game
+	private final Runnable mOnFinishedRunnable = new Runnable() {
+		@Override
+		public void run() {
+			preloadAd();
+			mAfter.run();
+		}
+	};
+	Runnable mAfter;
+
+	public AndroidAdController(AndroidApplication application) {
 		log = NLog.createForClass(this);
-		HeyzapAds.start(activity);
-		InterstitialAd.fetch();
-		HeyzapAds.setOnStatusListener(new StatusListener());
+		mApplication = application;
 		mHandler = new AdHandler();
-		mHandler.mActivity = activity;
-		mHandler.log = log;
+		mHandler.mController = this;
+
+		HeyzapAds.start(application);
+		InterstitialAd.fetch();
+
+		StatusListener listener = new StatusListener();
+		HeyzapAds.setOnStatusListener(listener);
 	}
 
 	@Override
@@ -106,7 +121,13 @@ public class AndroidAdController implements AdController {
 	}
 
 	@Override
-	public void showAd() {
+	public boolean isAdAvailable() {
+		return InterstitialAd.isAvailable();
+	}
+
+	@Override
+	public void showAd(Runnable after) {
+		mAfter = after;
 		mHandler.sendEmptyMessage(SHOW_MSG);
 	}
 }
