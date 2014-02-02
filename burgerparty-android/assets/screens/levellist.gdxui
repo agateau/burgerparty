@@ -12,7 +12,6 @@
         <LevelBaseButton id="miniGameButton"
             width="130"
             height="130"
-            zcenterLeft="levelGrid.centerRight 2 0"
             bottomLeft="levelGrid.bottomRight 2 0"
             />
 
@@ -27,5 +26,11 @@
             bottomLeft="miniGameLockImage.bottomLeft 1.8 0.2"
             style="lock-star-text"
             >12</Label>
+
+        <LevelBaseButton id="newWorldButton"
+            width="130"
+            height="130"
+            topRight="levelGrid.topLeft -1 0"
+            />
     </AnchorGroup>
 </gdxui>
