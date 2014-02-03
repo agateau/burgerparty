@@ -94,9 +94,8 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createSky() {
-		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("ui/white-pixel");
+		TextureRegion region = mMiniGame.getAssets().getTextureAtlas().findRegion("burgercopter/sky-bg");
 		Image bg = new Image(region);
-		bg.setColor(0.8f, 0.95f, 1, 1);
 		setBackgroundActor(bg);
 	}
 
