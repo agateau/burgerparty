@@ -1,0 +1,7 @@
+<newworld duration="4" dotInterval="0.2">
+    <points>
+        <point x="0.1" y="0.1"/>
+        <point x="0.4" y="0.3"/>
+        <point x="0.5" y="0.8"/>
+    </points>
+</newworld>
