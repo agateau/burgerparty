@@ -3,51 +3,51 @@ burgerparty.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-burgervaders/bullet
-  rotate: false
-  xy: 1000, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 levels/1/counter
   rotate: false
-  xy: 2, 5
+  xy: 2, 2
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 levels/2/newworld-map
   rotate: false
-  xy: 2, 89
-  size: 1020, 933
-  orig: 1020, 933
+  xy: 2, 86
+  size: 1020, 934
+  orig: 1020, 934
   offset: 0, 0
   index: -1
 mealitems/0/fish
   rotate: false
-  xy: 804, 5
+  xy: 804, 2
   size: 194, 47
   orig: 194, 47
   offset: 0, 0
   index: -1
 mealitems/0/tomato
   rotate: false
-  xy: 804, 54
+  xy: 804, 51
   size: 210, 33
   orig: 210, 33
   offset: 0, 0
   index: -1
+newworld/dot
+  rotate: false
+  xy: 1000, 3
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
 ui/icon-info
   rotate: false
-  xy: 1000, 20
+  xy: 1000, 17
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 ui/vruler
   rotate: false
-  xy: 1016, 75
+  xy: 1016, 72
   size: 6, 12
   orig: 6, 12
   offset: 0, 0
@@ -62,6 +62,13 @@ burgercopter/sky-bg
   xy: 954, 23
   size: 16, 256
   orig: 16, 256
+  offset: 0, 0
+  index: -1
+burgervaders/bullet
+  rotate: false
+  xy: 1006, 17
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 levels/1/background
@@ -134,13 +141,6 @@ mealitems/3/toast
   orig: 256, 56
   offset: 0, 0
   index: -1
-newworld/dot
-  rotate: false
-  xy: 934, 267
-  size: 12, 12
-  orig: 12, 12
-  offset: 0, 0
-  index: -1
 platter
   rotate: false
   xy: 2, 2
@@ -171,7 +171,7 @@ ui/vertical-gradient
   index: -1
 ui/white-pixel
   rotate: false
-  xy: 1006, 17
+  xy: 934, 263
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
