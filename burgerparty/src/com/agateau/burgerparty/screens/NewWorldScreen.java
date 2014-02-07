@@ -69,7 +69,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
 			} else if (mTime > mDuration - ZOOM_DURATION_INTERVAL) {
 				k = (mDuration - mTime) / ZOOM_DURATION_INTERVAL;
 			}
-			return Interpolation.pow2Out.apply(0.4f, 1, k);
+			return Interpolation.pow2Out.apply(k);
 		}
 
 		private void addDot(float scale) {
@@ -95,6 +95,8 @@ public class NewWorldScreen extends BurgerPartyScreen {
 		createPlane();
 		loadXml();
 		createRefreshHelper();
+		createPin(mPath.points.get(0), worldIndex - 1);
+		createPin(mPath.points.get(mPath.points.size - 1), worldIndex);
 		getStage().getRoot().addAction(
 			Actions.sequence(
 				new FlyAction(),
@@ -140,6 +142,12 @@ public class NewWorldScreen extends BurgerPartyScreen {
 		}
 		assert(points.length >= 2);
 		mPath.set(points);
+	}
+
+	private void createPin(Vector2 pos, int worldIndex) {
+		Image pin = new Image(getTextureAtlas().findRegion("newworld/pin-" + (worldIndex + 1)));
+		pin.setPosition(pos.x - 15, pos.y);
+		getStage().addActor(pin);
 	}
 
 	private void createRefreshHelper() {
