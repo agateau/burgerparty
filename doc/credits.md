@@ -56,6 +56,10 @@ invaders-shot.wav
 
 <http://opengameart.org/content/spell-sounds-starter-pack>
 
+jet.wav
+
+<http://www.freesound.org/people/unfa/sounds/168079/>
+
 low-fuel.wav
 
 BXFR
