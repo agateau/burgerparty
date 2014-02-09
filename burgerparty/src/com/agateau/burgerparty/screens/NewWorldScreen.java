@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.XmlReader;
 
 public class NewWorldScreen extends BurgerPartyScreen {
 	private static final float ZOOM_DURATION_INTERVAL = 1.2f;
+	private static final float SHADOW_ALPHA = 0.3f;
 	private int mWorldIndex;
 	private float mDuration;
 
@@ -27,6 +28,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
 	private Bezier<Vector2> mPath = new Bezier<Vector2>();
 	private Vector2 mTmpV = new Vector2();
 	private Image mPlane;
+	private Image mPlaneShadow;
 	private Image mBackground;
 
 	private static class FadeToBlackAction extends Action {
@@ -78,19 +80,11 @@ public class NewWorldScreen extends BurgerPartyScreen {
 				return true;
 			}
 
-			float scale = computeScale();
-			mPlane.setScale(scale);
-
-			float oldX = mPlane.getX();
-			float oldY = mPlane.getY();
 			mPath.valueAt(mTmpV, mTime / mDuration);
-			mPlane.setPosition(mTmpV.x - mPlane.getWidth() / 2, mTmpV.y - mPlane.getHeight() / 2);
-
-			float angle = MathUtils.atan2(mPlane.getY() - oldY, mPlane.getX() - oldX);
-			mPlane.setRotation(MathUtils.radiansToDegrees * angle);
+			updatePlane(mTmpV.x - mPlane.getWidth() / 2, mTmpV.y - mPlane.getHeight() / 2);
 
 			if (mTime - mLastDotTime > mDotInterval) {
-				addDot(scale / 2); // FIXME: draw smaller dots
+				addDot();
 				mLastDotTime = mTime;
 			}
 			Camera camera = getStage().getCamera();
@@ -99,6 +93,22 @@ public class NewWorldScreen extends BurgerPartyScreen {
 			camera.position.x = MathUtils.clamp(MathUtils.round(mPlane.getX()), xBorder, mBackground.getWidth() - xBorder);
 			camera.position.y = MathUtils.clamp(MathUtils.round(mPlane.getY()), yBorder, mBackground.getHeight() - yBorder);
 			return false;
+		}
+
+		private void updatePlane(float x, float y) {
+
+			float scale = computeScale();
+			mPlane.setScale(scale);
+			mPlaneShadow.setScale(scale * 0.6f);
+
+			float oldX = mPlane.getX();
+			float oldY = mPlane.getY();
+			mPlane.setPosition(x, y + 20 * scale);
+			mPlaneShadow.setPosition(x, y);
+			float angle = MathUtils.atan2(mPlane.getY() - oldY, mPlane.getX() - oldX);
+
+			mPlane.setRotation(MathUtils.radiansToDegrees * angle);
+			mPlaneShadow.setRotation(MathUtils.radiansToDegrees * angle);
 		}
 
 		private float computeScale() {
@@ -111,15 +121,15 @@ public class NewWorldScreen extends BurgerPartyScreen {
 			return Interpolation.pow2Out.apply(k);
 		}
 
-		private void addDot(float scale) {
+		private void addDot() {
 			Image image = new Image(mDotRegion);
-			mPath.valueAt(mTmpV, mTime / mDuration);
+			mPath.valueAt(mTmpV, (mTime - mDotInterval) / mDuration);
 			image.setPosition(
 					MathUtils.round(mTmpV.x - image.getWidth() / 2),
 					MathUtils.round(mTmpV.y - image.getHeight() / 2)
 					);
 			image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
-			image.setScale(scale);
+			image.setColor(0, 0, 0, SHADOW_ALPHA);
 			getStage().addActor(image);
 			mPlane.toFront();
 		}
@@ -170,9 +180,18 @@ public class NewWorldScreen extends BurgerPartyScreen {
 	}
 
 	private void createPlane() {
-		mPlane = new Image(getTextureAtlas().findRegion("newworld/plane"));
-		mPlane.setOrigin(mPlane.getWidth() / 2, mPlane.getHeight() / 2);
+		TextureRegion region = getTextureAtlas().findRegion("newworld/plane");
+		float orgX = region.getRegionWidth() / 2;
+		float orgY = region.getRegionHeight() / 2;
+
+		mPlane = new Image(region);
+		mPlane.setOrigin(orgX, orgY);
 		getStage().addActor(mPlane);
+
+		mPlaneShadow = new Image(region);
+		mPlaneShadow.setOrigin(orgX, orgY);
+		mPlaneShadow.setColor(0, 0, 0, SHADOW_ALPHA);
+		getStage().addActor(mPlaneShadow);
 	}
 
 	private void loadXml() {
