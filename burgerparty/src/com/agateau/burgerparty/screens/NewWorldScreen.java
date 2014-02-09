@@ -9,7 +9,9 @@ import com.badlogic.gdx.math.Bezier;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.XmlReader;
@@ -26,6 +28,43 @@ public class NewWorldScreen extends BurgerPartyScreen {
 	private Vector2 mTmpV = new Vector2();
 	private Image mPlane;
 	private Image mBackground;
+
+	private static class FadeToBlackAction extends Action {
+		private final TextureRegion mRegion;
+		private final float mDuration;
+		private final Image mImage;
+		private float mTime = 0;
+
+		public FadeToBlackAction(TextureRegion region, float duration) {
+			mDuration = duration;
+			mRegion = region;
+			mImage = new Image(mRegion);
+		}
+
+		@Override
+		public boolean act(float delta) {
+			if (mImage.getStage() == null) {
+				init();
+			}
+			mTime += delta;
+			boolean done = false;
+			if (mTime > mDuration) {
+				mTime = mDuration;
+				done = true;
+			}
+			mImage.setColor(0, 0, 0, mTime / mDuration);
+			return done;
+		}
+
+		private void init() {
+			Stage stage = getActor().getStage();
+			stage.addActor(mImage);
+			float width = stage.getWidth();
+			float height = stage.getHeight();
+			Vector3 pos = stage.getCamera().position;
+			mImage.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
+		}
+	}
 
 	private class FlyAction extends Action {
 		private float mTime = 0;
@@ -97,17 +136,24 @@ public class NewWorldScreen extends BurgerPartyScreen {
 		createRefreshHelper();
 		createPin(mPath.points.get(0), worldIndex - 1);
 		createPin(mPath.points.get(mPath.points.size - 1), worldIndex);
+		createActions();
 		game.getAssets().getSoundAtlas().findSound("jet").play();
+	}
+
+	private void createActions() {
+		TextureRegion whitePixel = getTextureAtlas().findRegion("ui/white-pixel");
 		getStage().getRoot().addAction(
 			Actions.sequence(
 				new FlyAction(),
-				Actions.delay(2),
+				new FadeToBlackAction(whitePixel, 1),
+				Actions.delay(0.5f),
 				Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						startNextLevel();
+						@Override
+						public void run() {
+							startNextLevel();
+						}
 					}
-				})
+				)
 			)
 		);
 	}
