@@ -38,6 +38,7 @@ public class Assets {
 			"finished.wav",
 			"invaders-hit.wav",
 			"invaders-shot.wav",
+			"jet.wav",
 			"low-fuel.wav",
 			"meal-done.wav",
 			"sauce.wav",

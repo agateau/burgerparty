@@ -97,6 +97,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
 		createRefreshHelper();
 		createPin(mPath.points.get(0), worldIndex - 1);
 		createPin(mPath.points.get(mPath.points.size - 1), worldIndex);
+		game.getAssets().getSoundAtlas().findSound("jet").play();
 		getStage().getRoot().addAction(
 			Actions.sequence(
 				new FlyAction(),
