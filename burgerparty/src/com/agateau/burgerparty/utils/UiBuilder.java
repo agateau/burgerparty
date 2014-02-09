@@ -228,7 +228,9 @@ public class UiBuilder {
 			String anchorName = ANCHOR_NAMES[idx];
 			attr = element.getAttribute(anchorName, "");
 			if (!attr.isEmpty()) {
-				assert(anchorGroup != null);
+				if (anchorGroup == null) {
+					throw new RuntimeException("Parent of " + actor + " is not an anchor group");
+				}
 				Rule rule = parseRule(attr, anchorGroup.getSpacing());
 				rule.target = actor;
 				rule.targetAnchor = ANCHORS[idx];

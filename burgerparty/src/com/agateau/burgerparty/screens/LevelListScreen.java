@@ -106,6 +106,17 @@ public class LevelListScreen extends BurgerPartyScreen {
 			miniGameButton.setDisabled(true);
 			miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
 		}
+
+		LevelBaseButton newWorldButton = builder.<LevelBaseButton>getActor("newWorldButton");
+		if (mLevelWorld.getIndex() > 0) {
+			newWorldButton.addListener(new ChangeListener() {
+				public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+					getGame().showNewWorldScreen(mLevelWorld.getIndex());
+				}
+			});
+		} else {
+			newWorldButton.setVisible(false);
+		}
 	}
 
 	private GridGroup createLevelButtonGridGroup() {

@@ -286,12 +286,10 @@ public class LevelFinishedOverlay extends Overlay {
 		int levelIndex = mGame.getLevelIndex();
 		LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
 		if (levelIndex < levelWorld.getLevelCount() - 1) {
-			levelIndex++;
+			mGame.startLevel(levelWorldIndex, levelIndex + 1);
 		} else {
-			levelWorldIndex++;
-			levelIndex = 0;
+			mGame.showNewWorldScreen(levelWorldIndex + 1);
 		}
-		mGame.startLevel(levelWorldIndex, levelIndex);
 	}
 
 	@Override
