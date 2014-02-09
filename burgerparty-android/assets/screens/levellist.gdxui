@@ -31,6 +31,11 @@
             width="130"
             height="130"
             topRight="levelGrid.topLeft -1 0"
-            />
+            >
+            <AnchorGroup id="newWorldButtonGroup" width="130" height="130">
+                <Image name="ui/icon-play"
+                    center="newWorldButtonGroup.center"/>
+            </AnchorGroup>
+        </LevelBaseButton>
     </AnchorGroup>
 </gdxui>
