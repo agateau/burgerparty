@@ -76,13 +76,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1883"
-     inkscape:window-height="1060"
+     inkscape:window-width="1563"
+     inkscape:window-height="880"
      id="namedview6973"
      showgrid="false"
-     inkscape:zoom="4.1377894"
-     inkscape:cx="914.19846"
-     inkscape:cy="348.21364"
+     inkscape:zoom="1.0344474"
+     inkscape:cx="546.11189"
+     inkscape:cy="387.80489"
      inkscape:window-x="37"
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
@@ -30569,7 +30569,7 @@ circle.highlight{
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="selection"
-     style="display:none">
+     style="opacity:0.67346939;display:none">
     <rect
        style="opacity:0.47058824;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect55861"
@@ -30580,5 +30580,15 @@ circle.highlight{
        inkscape:export-filename="2/newworld-map.png"
        inkscape:export-xdpi="553.71588"
        inkscape:export-ydpi="553.71588" />
+    <rect
+       style="color:#000000;fill:#f4eed7;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7893"
+       width="662.32098"
+       height="311.681"
+       x="328.93301"
+       y="32.365002"
+       inkscape:export-filename="3/newworld-map.png"
+       inkscape:export-xdpi="138.60324"
+       inkscape:export-ydpi="138.60324" />
   </g>
 </svg>

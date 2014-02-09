@@ -654,7 +654,7 @@ mealitems/0/big-fries-inventory
   index: -1
 mealitems/0/cucumber-inventory
   rotate: false
-  xy: 877, 619
+  xy: 925, 619
   size: 80, 42
   orig: 80, 42
   offset: 0, 0
@@ -718,6 +718,13 @@ newworld/pin-1
 newworld/pin-2
   rotate: false
   xy: 964, 772
+  size: 46, 43
+  orig: 46, 43
+  offset: 0, 0
+  index: -1
+newworld/pin-3
+  rotate: false
+  xy: 877, 618
   size: 46, 43
   orig: 46, 43
   offset: 0, 0
@@ -829,13 +836,6 @@ ui/perfect
   xy: 722, 34
   size: 286, 57
   orig: 286, 57
-  offset: 0, 0
-  index: -1
-ui/surprise
-  rotate: false
-  xy: 959, 620
-  size: 36, 41
-  orig: 36, 41
   offset: 0, 0
   index: -1
 ui/title
@@ -1216,7 +1216,7 @@ ui/icon-button-big-down
   index: -1
 ui/icon-next-item
   rotate: false
-  xy: 984, 150
+  xy: 984, 107
   size: 34, 32
   orig: 34, 32
   offset: 0, 0
@@ -1244,6 +1244,13 @@ ui/star-off
   xy: 975, 184
   size: 40, 40
   orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/surprise
+  rotate: false
+  xy: 984, 141
+  size: 36, 41
+  orig: 36, 41
   offset: 0, 0
   index: -1
 
