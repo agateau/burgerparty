@@ -92,12 +92,14 @@
             down: ui/level-button-down,
             up: ui/level-button,
             font: main-font,
+            pressedOffsetY: -2,
             fontColor: white
         },
         level-button: {
             down: ui/level-button-down,
             up: ui/level-button,
             font: main-font,
+            pressedOffsetY: -2,
             fontColor: white
         }
     },
@@ -124,7 +126,8 @@
         },
         level-button: {
             down: ui/level-button-down,
-            up: ui/level-button
+            up: ui/level-button,
+            pressedOffsetY: -2
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {

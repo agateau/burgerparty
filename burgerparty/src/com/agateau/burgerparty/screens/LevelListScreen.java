@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -87,10 +86,8 @@ public class LevelListScreen extends BurgerPartyScreen {
 			}
 		});
 
-		TextButton miniGameButton = builder.<TextButton>getActor("miniGameButton");
+		ImageButton miniGameButton = builder.<ImageButton>getActor("miniGameButton");
 		Label miniGameLockLabel = builder.<Label>getActor("miniGameLockLabel");
-		Image miniGameButtonImage = builder.<Image>getActor("miniGameButtonImage");
-		miniGameButtonImage.setTouchable(Touchable.disabled);
 		if (getGame().getUniverse().getStarCount() > mLevelWorld.getMiniGameStarCount()) {
 			Image lockImage = builder.<Image>getActor("miniGameLockImage");
 			lockImage.setVisible(false);
@@ -102,26 +99,26 @@ public class LevelListScreen extends BurgerPartyScreen {
 				}
 			});
 		} else {
-			miniGameButtonImage.setVisible(false);
+			miniGameButton.getImage().setVisible(false);
 			miniGameButton.setDisabled(true);
 			miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
 		}
 
-		LevelBaseButton newWorldButton = builder.<LevelBaseButton>getActor("newWorldButton");
+		ImageButton cutSceneReplayButton = builder.<ImageButton>getActor("cutSceneReplayButton");
 		if (mLevelWorld.getIndex() > 0) {
-			newWorldButton.addListener(new ChangeListener() {
+			cutSceneReplayButton.addListener(new ChangeListener() {
 				public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
 					getGame().showNewWorldScreen(mLevelWorld.getIndex());
 				}
 			});
 		} else {
-			newWorldButton.setVisible(false);
+			cutSceneReplayButton.setVisible(false);
 		}
 	}
 
 	private GridGroup createLevelButtonGridGroup() {
 		GridGroup gridGroup = new GridGroup();
-		gridGroup.setSpacing(UiUtils.SPACING);
+		gridGroup.setSpacing(UiUtils.SPACING + 4);
 		gridGroup.setColumnCount(COL_COUNT);
 		gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
 
