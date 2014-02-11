@@ -5,19 +5,25 @@
             bottomLeft="root.bottomLeft 1 1"
             imageName="ui/icon-back"/>
 
-        <LevelGrid id="levelGrid"
-            center="root.center -1 0"
+        <ImageButton id="cutSceneReplayButton"
+            style="level-button"
+            topLeft="root.topLeft 1 -1"
+            imageName="ui/icon-level-video-play"
+            width="76"
+            height="58"
             />
 
-        <LevelBaseButton id="miniGameButton"
+        <LevelGrid id="levelGrid"
+            topCenter="root.topCenter -1 -1"
+            />
+
+        <ImageButton id="miniGameButton"
+            style="level-button"
             width="130"
             height="130"
             bottomLeft="levelGrid.bottomRight 2 0"
+            imageName="ui/minigame"
             />
-
-        <Image id="miniGameButtonImage"
-            name="ui/minigame"
-            center="miniGameButton.center 0 -0.05"/>
 
         <Image id="miniGameLockImage"
             name="ui/lock-star"
@@ -26,16 +32,5 @@
             bottomLeft="miniGameLockImage.bottomLeft 1.8 0.2"
             style="lock-star-text"
             >12</Label>
-
-        <LevelBaseButton id="newWorldButton"
-            width="130"
-            height="130"
-            topRight="levelGrid.topLeft -1 0"
-            >
-            <AnchorGroup id="newWorldButtonGroup" width="130" height="130">
-                <Image name="ui/icon-play"
-                    center="newWorldButtonGroup.center"/>
-            </AnchorGroup>
-        </LevelBaseButton>
     </AnchorGroup>
 </gdxui>
