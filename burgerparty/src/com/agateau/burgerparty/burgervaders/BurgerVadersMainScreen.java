@@ -76,6 +76,8 @@ public class BurgerVadersMainScreen extends StageScreen {
 		float gutter = getStage().getWidth() / 6;
 		float range = (getStage().getWidth() - gutter * 2) / enemyCount;
 
+		mEnemies.ensureCapacity(mActiveEnemyCount + enemyCount);
+
 		for (int idx = 0; idx < enemyCount; ++idx) {
 			Pool<Enemy> pool = mEnemyPools.get(MathUtils.random(mEnemyPools.size - 1));
 			Enemy enemy = pool.obtain();
@@ -87,6 +89,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	public void addEnemy(Enemy enemy) {
+		mActiveEnemyCount++;
 		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
 			if (mEnemies.get(idx) == null) {
 				mEnemies.set(idx, enemy);
@@ -98,6 +101,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	}
 
 	private void removeEnemy(Enemy enemy) {
+		mActiveEnemyCount--;
 		enemy.remove();
 		for (int idx = 0, n = mEnemies.size; idx < n; ++idx) {
 			if (mEnemies.get(idx) == enemy) {
@@ -312,6 +316,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 	private BurgerVadersMiniGame mMiniGame;
 	private Player mPlayer;
 	private Array<Enemy> mEnemies = new Array<Enemy>(ENEMY_COUNT);
+	private int mActiveEnemyCount = 0;
 	private Array<Bullet> mBullets = new Array<Bullet>();
 	private Array<Bonus> mBonuses = new Array<Bonus>();
 	private int mScore = 0;
