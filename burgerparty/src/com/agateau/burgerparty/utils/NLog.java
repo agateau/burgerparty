@@ -10,7 +10,7 @@ public class NLog {
 			mStartTime = TimeUtils.nanoTime();
 		}
 
-		public void print(int level, String tag, Object obj, Object... args) {
+		public synchronized void print(int level, String tag, Object obj, Object... args) {
 			final float NANOSECS = 1000 * 1000 * 1000;
 			final long timeDelta = TimeUtils.nanoTime() - mStartTime;
 			final String timeStamp = String.format("%.3f ", timeDelta / NANOSECS);
