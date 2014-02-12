@@ -4,6 +4,8 @@ Bump version number in AndroidManifest.xml and in ../burgerparty-android/assets/
 
 Run unit tests
 
+Generate .apk
+
 Smoke test
 - on PC
 - on phone
@@ -21,8 +23,6 @@ Push
 
     git push
     git push --tags
-
-Generate .apk
 
 # Upload .apk
 
