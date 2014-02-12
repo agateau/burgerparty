@@ -99,7 +99,9 @@ public class BurgerPartyGame extends Game {
 
 	public void setScreenAndDispose(Screen screen) {
 		Screen old = getScreen();
-		log.i("setScreenAndDispose old=%s new=%s", old, screen);
+		log.i("setScreenAndDispose %s => %s",
+				old == null ? "(null)" : old.getClass().getSimpleName(),
+				screen.getClass().getSimpleName());
 		if (old != null) {
 			old.dispose();
 		}
