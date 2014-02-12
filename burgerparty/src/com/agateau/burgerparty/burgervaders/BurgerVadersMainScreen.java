@@ -7,6 +7,7 @@ import com.agateau.burgerparty.utils.SoundAtlas;
 import com.agateau.burgerparty.utils.SpriteImage;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -47,6 +48,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		}
 	}
 
+	FPSLogger mFPSLogger = new FPSLogger();
 	@Override
 	public void render(float delta) {
 		mTime += delta;
@@ -55,6 +57,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 		fillNextRow();
 		checkBulletHits();
 		checkGameOver();
+		mFPSLogger.log();
 	}
 
 	private void fillNextRow() {
@@ -147,6 +150,7 @@ public class BurgerVadersMainScreen extends StageScreen {
 					continue;
 				}
 				if (SpriteImage.collide(bullet, bonus)) {
+					log.i("Bonus hit");
 					bonus.onHit();
 					mBonusSound.play();
 					bullet.setVisible(false);
