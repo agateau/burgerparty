@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="836.34244"
-     inkscape:cy="-36.01021"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="64.357926"
+     inkscape:cy="591.75984"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="true"
      inkscape:window-width="1563"
@@ -18828,40 +18828,37 @@
         </g>
       </g>
     </g>
-    <g
-       id="g8455">
-      <rect
-         style="color:#000000;fill:#035267;fill-opacity:1;fill-rule:nonzero;stroke:#035267;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-         id="rect8188"
-         width="74"
-         height="52"
-         x="782"
-         y="1238"
-         ry="14" />
-      <rect
-         ry="14"
-         y="1234"
-         x="782"
-         height="52"
-         width="74"
-         id="rect8184"
-         style="color:#000000;fill:#359eb9;fill-opacity:1;fill-rule:nonzero;stroke:#035267;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <path
-         sodipodi:nodetypes="sscsscsss"
-         inkscape:connector-curvature="0"
-         id="rect8190"
-         d="m 796,1237 c -6.094,0 -11,4.906 -11,11 l 0,2 c 0,-3.324 3.676,-7 7,-7 l 54,0 c 3.324,0 7,3.676 7,7 l 0,-2 c 0,-6.094 -4.906,-11 -11,-11 z"
-         style="color:#000000;fill:#76bed0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <path
-         sodipodi:nodetypes="cccc"
-         inkscape:connector-curvature="0"
-         id="path8186"
-         d="m 810,1249 0,23 21,-11.5 z"
-         style="fill:#ffffff;stroke:#035267;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         inkscape:export-filename="icon-level-video-play.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
-    </g>
+    <rect
+       ry="14"
+       y="1238"
+       x="782"
+       height="52"
+       width="74"
+       id="rect8188"
+       style="color:#000000;fill:#035267;fill-opacity:1;fill-rule:nonzero;stroke:#035267;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       style="color:#000000;fill:#359eb9;fill-opacity:1;fill-rule:nonzero;stroke:#035267;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect8184"
+       width="74"
+       height="52"
+       x="782"
+       y="1234"
+       ry="14" />
+    <path
+       style="color:#000000;fill:#76bed0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 796,1237 c -6.094,0 -11,4.906 -11,11 l 0,2 c 0,-3.324 3.676,-7 7,-7 l 54,0 c 3.324,0 7,3.676 7,7 l 0,-2 c 0,-6.094 -4.906,-11 -11,-11 z"
+       id="rect8190"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sscsscsss" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="icon-level-video-play.png"
+       style="fill:#ffffff;stroke:#035267;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 29.5,660.5 0,23 21,-11.5 z"
+       id="path8186"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
     <g
        id="g8449">
       <rect
@@ -19946,6 +19943,17 @@
        id="rect5338"
        style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
        inkscape:export-filename="icon-sound-off.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect5612"
+       width="40"
+       height="40"
+       x="20"
+       y="652"
+       ry="6.5276786e-17"
+       inkscape:export-filename="icon-level-video-play.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
