@@ -1,14 +1,13 @@
 # 0.11 - 2014-02-13
 
 - A cut-scene has been added when the player completes world 1 and world 2
-- An ad is now displayed when you click on the Start button.
-  The ad is game-oriented.
-  It currently starts to appear after 8 plays, and no more than one every 12
-  minutes. Those values may change in the future: my goal with introducing ads
-  early is to be able to adjust them.
+- An ad is now displayed when you click on the Start button. The ad is
+  game-oriented. It currently starts to appear after 8 plays, and no more than
+  one every 12 minutes. Those values may change in the future: my goal with
+  introducing ads early is to be able to adjust their frequency.
 - Logging support: to help with debugging, Burger Party now logs information on
-  the sdcard, in the "burgerparty" folder. This is way it now requests
-  authorization to write on the sdcard.
+  the sdcard, in the "burgerparty" folder. This is why it now requests
+  authorization to write to the sdcard.
 - Burger Party can now be installed on the sdcard.
 
 # 0.10 - 2014-01-23
