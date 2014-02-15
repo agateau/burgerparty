@@ -222,7 +222,7 @@ public class BurgerCopterMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mMeterLabel = new Label("0", mMiniGame.getAssets().getSkin(), "timer");
+		mMeterLabel = new Label("0", mMiniGame.getAssets().getSkin(), "hud");
 		getStage().addActor(mMeterLabel);
 		mMeterLabel.setX(0);
 		mMeterLabel.setY(getStage().getHeight() - mMeterLabel.getPrefHeight() + 10);

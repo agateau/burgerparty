@@ -37,11 +37,12 @@
             font: main-font,
             fontColor: black
         },
-        timer: {
+
+        hud: {
             font: main-font,
             fontColor: white
         },
-        score: {
+        hud-small: {
             font: main-font-small,
             fontColor: white
         },

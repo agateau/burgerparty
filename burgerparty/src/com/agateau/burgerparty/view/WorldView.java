@@ -209,9 +209,9 @@ public class WorldView extends AbstractWorldView {
 
 	private void setupHud() {
 		mHudImage = new Image(mAtlas.findRegion("ui/hud-bg"));
-		mScoreDisplay = new Label("0", mSkin, "score");
+		mScoreDisplay = new Label("0", mSkin, "hud-small");
 		updateScoreDisplay();
-		mTimerDisplay = new Label("0", mSkin, "timer");
+		mTimerDisplay = new Label("0", mSkin, "hud");
 		mPauseButton = new Image(mAtlas.findRegion("ui/pause"));
 
 		ClickListener listener = new ClickListener() {
