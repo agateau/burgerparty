@@ -402,13 +402,6 @@ customers/wrestler/body-0
   orig: 217, 193
   offset: 0, 0
   index: -1
-lcd-font
-  rotate: false
-  xy: 504, 12
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
 levels/2/bottom-left-button-bar
   rotate: false
   xy: 804, 526
@@ -428,6 +421,13 @@ levels/3/newitem-fg
   xy: 2, 2
   size: 500, 522
   orig: 500, 522
+  offset: 0, 0
+  index: -1
+main-font-small
+  rotate: false
+  xy: 504, 12
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
 mealitems/0/cucumber
@@ -638,7 +638,7 @@ levels/3/counter
   orig: 800, 82
   offset: 0, 0
   index: -1
-main-font-small
+main-font
   rotate: false
   xy: 2, 258
   size: 512, 512
@@ -1130,13 +1130,6 @@ levels/3/shelf
   orig: 100, 90
   offset: 0, 0
   index: -1
-main-font
-  rotate: false
-  xy: 2, 510
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
 mealitems/0/bottom-inventory
   rotate: false
   xy: 942, 703
@@ -1200,6 +1193,13 @@ mealitems/2/soda
   orig: 148, 153
   offset: 0, 0
   index: -1
+scored-font
+  rotate: false
+  xy: 2, 510
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
 ui/icon-button-big
   rotate: false
   xy: 440, 32
@@ -1260,161 +1260,154 @@ filter: Nearest,Linear
 repeat: none
 burgercopter/grass-up-low-b
   rotate: false
-  xy: 516, 146
+  xy: 2, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/grass-up-low-c
   rotate: false
-  xy: 582, 104
+  xy: 68, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/ground-1
   rotate: false
-  xy: 516, 80
+  xy: 134, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/ground-2
   rotate: false
-  xy: 648, 104
+  xy: 200, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/spikes
   rotate: false
-  xy: 516, 14
+  xy: 266, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/water-1
   rotate: false
-  xy: 582, 38
+  xy: 332, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 burgercopter/water-2
   rotate: false
-  xy: 648, 38
+  xy: 398, 63
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 customers/boys/face-0-neutral
   rotate: false
-  xy: 516, 262
+  xy: 257, 11
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-1-angry
   rotate: false
-  xy: 516, 314
+  xy: 111, 10
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-happy
   rotate: false
-  xy: 589, 270
+  xy: 184, 10
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 589, 170
+  xy: 612, 81
   size: 71, 46
   orig: 71, 46
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 516, 367
+  xy: 464, 79
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 591, 323
+  xy: 478, 29
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 594, 373
+  xy: 403, 12
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 516, 212
+  xy: 539, 79
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 589, 218
+  xy: 330, 11
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 516, 455
+  xy: 2, 2
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 625, 424
+  xy: 553, 30
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
 mealitems/0/salad-inventory
   rotate: false
-  xy: 625, 473
+  xy: 631, 6
   size: 80, 41
   orig: 80, 41
   offset: 0, 0
   index: -1
 mealitems/0/toast-inventory
   rotate: false
-  xy: 516, 417
+  xy: 685, 91
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
   index: -1
-scored-font
-  rotate: false
-  xy: 2, 2
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
 ui/star-off
   rotate: false
-  xy: 669, 382
+  xy: 685, 49
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 669, 340
+  xy: 713, 7
   size: 40, 40
   orig: 40, 40
   offset: 0, 0

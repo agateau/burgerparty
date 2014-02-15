@@ -6,9 +6,6 @@
         main-font-small: {
             file: ui/main-font-small.fnt
         },
-        lcd-font: {
-            file: ui/lcd-font.fnt
-        },
         scored-font: {
             file: ui/scored-font.fnt
         }
@@ -25,9 +22,6 @@
         },
         black: {
             a: 1, b: 0, g: 0, r: 0
-        },
-        lcd-color: {
-            a: 1, b: 1, g: 1, r: 1
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
