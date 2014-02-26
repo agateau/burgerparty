@@ -34,6 +34,7 @@ import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
+import com.agateau.burgerparty.view.AchievementViewController;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -54,6 +55,7 @@ public class BurgerPartyGame extends Game {
 	private int mLevelIndex = 0;
 	private AdController mAdController;
 	private BurgerPartyGameStats mGameStats;
+	private AchievementViewController mAchievementViewController = new AchievementViewController(this);
 
 	private static final String PROGRESS_FILE = "progress.xml";
 
@@ -177,6 +179,7 @@ public class BurgerPartyGame extends Game {
 
 	private void onAchievementUnlocked(Achievement achievement) {
 		log.i("Unlocked achievement '%s'", achievement.getTitle());
+		mAchievementViewController.show(achievement);
 	}
 
 	private void saveLevelProgress() {

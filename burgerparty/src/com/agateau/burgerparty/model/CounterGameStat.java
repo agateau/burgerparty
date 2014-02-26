@@ -2,7 +2,6 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
-import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
@@ -31,7 +30,6 @@ public class CounterGameStat extends GameStat {
 
 	public void increase() {
 		mValue++;
-		NLog.getRoot().i("mValue=%s", mValue);
 		changed.emit();
 	}
 
