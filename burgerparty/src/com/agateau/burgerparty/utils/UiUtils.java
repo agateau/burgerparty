@@ -120,4 +120,8 @@ public class UiUtils {
 		pix.dispose();
 		return handle.path();
 	}
+
+	public static String actorToString(Actor actor) {
+		return String.format("%s pos=%.2fx%.2f size=%.2fx%.2f", actor, actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+	}
 }
