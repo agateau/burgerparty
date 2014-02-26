@@ -1,7 +1,10 @@
 package com.agateau.burgerparty.model;
 
+import java.io.IOException;
+
 import com.agateau.burgerparty.utils.NLog;
-import com.badlogic.gdx.utils.XmlReader.Element;
+import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlWriter;
 
 public class CounterGameStat extends GameStat {
 	private int mValue = 0;
@@ -17,13 +20,13 @@ public class CounterGameStat extends GameStat {
 	}
 
 	@Override
-	public void load(Element element) {
+	public void load(XmlReader.Element element) {
 		mValue = element.getIntAttribute("value", 0);
 	}
 
 	@Override
-	public void save(Element element) {
-		element.setAttribute("value", String.valueOf(mValue));
+	public void save(XmlWriter writer) throws IOException {
+		writer.attribute("value", String.valueOf(mValue));
 	}
 
 	public void increase() {

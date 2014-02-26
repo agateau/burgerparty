@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.model.World.Score;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Signal1;
 
 public class BurgerPartyGameStats {
@@ -25,5 +26,9 @@ public class BurgerPartyGameStats {
 			}
 		};
 		manager.addGameStat(mealServedCount);
+
+		manager.setGameStatsFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
+		manager.setAchievementsFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
+		manager.load();
 	}
 }
