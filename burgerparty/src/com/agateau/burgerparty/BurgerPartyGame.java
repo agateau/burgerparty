@@ -7,6 +7,7 @@ import java.util.HashSet;
 import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
 import com.agateau.burgerparty.burgervaders.BurgerVadersMiniGame;
 import com.agateau.burgerparty.burgerjeweled.BurgerjeweledMiniGame;
+import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.model.Universe;
@@ -50,6 +51,7 @@ public class BurgerPartyGame extends Game {
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
 	private AdController mAdController;
+	private BurgerPartyGameStats mGameStats;
 
 	private static final String PROGRESS_FILE = "progress.xml";
 
@@ -161,6 +163,10 @@ public class BurgerPartyGame extends Game {
 		progressIO.load(handle);
 	}
 
+	private void setupAchievements() {
+		mGameStats = new BurgerPartyGameStats();
+	}
+
 	private void saveLevelProgress() {
 		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
@@ -185,6 +191,10 @@ public class BurgerPartyGame extends Game {
 
 	public Universe getUniverse() {
 		return mUniverse;
+	}
+
+	public BurgerPartyGameStats getGameStats() {
+		return mGameStats;
 	}
 
 	public void startLevel(int levelWorldIndex, int levelIndex) {
@@ -233,6 +243,7 @@ public class BurgerPartyGame extends Game {
 		mMusicController.play();
 		setupAnimScriptLoader();
 		setupUniverse();
+		setupAchievements();
 		showStartScreen();
 	}
 
