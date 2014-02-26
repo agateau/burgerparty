@@ -7,6 +7,7 @@ import java.util.HashSet;
 import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
 import com.agateau.burgerparty.burgervaders.BurgerVadersMiniGame;
 import com.agateau.burgerparty.burgerjeweled.BurgerjeweledMiniGame;
+import com.agateau.burgerparty.model.Achievement;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.MiniGame;
@@ -31,6 +32,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
@@ -165,6 +167,16 @@ public class BurgerPartyGame extends Game {
 
 	private void setupAchievements() {
 		mGameStats = new BurgerPartyGameStats();
+		mGameStats.manager.achievementUnlocked.connect(mHandlers, new Signal1.Handler<Achievement>() {
+			@Override
+			public void handle(Achievement achievement) {
+				onAchievementUnlocked(achievement);
+			}
+		});
+	}
+
+	private void onAchievementUnlocked(Achievement achievement) {
+		log.i("Unlocked achievement '%s'", achievement.getTitle());
 	}
 
 	private void saveLevelProgress() {

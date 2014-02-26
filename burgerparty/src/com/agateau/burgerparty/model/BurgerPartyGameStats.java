@@ -12,7 +12,7 @@ public class BurgerPartyGameStats {
 	public final CounterGameStat mealServedCount;
 
 	public final AchievementManager manager = new AchievementManager();
-	
+
 	public BurgerPartyGameStats() {
 		mealServedCount = new CounterGameStat("mealServedCount") {
 			@Override
@@ -26,6 +26,10 @@ public class BurgerPartyGameStats {
 			}
 		};
 		manager.addGameStat(mealServedCount);
+
+		CounterAchievement achievement = new CounterAchievement("burger-master", "Burger Master", "Serve 10 burgers");
+		achievement.init(mealServedCount, 10);
+		manager.addAchievement(achievement);
 
 		manager.setGameStatsFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
 		manager.setAchievementsFileHandle(FileUtils.getUserWritableFile("achievements.xml"));

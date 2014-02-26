@@ -34,4 +34,8 @@ public class CounterGameStat extends GameStat {
 		NLog.getRoot().i("mValue=%s", mValue);
 		changed.emit();
 	}
+
+	public int getValue() {
+		return mValue;
+	}
 }
