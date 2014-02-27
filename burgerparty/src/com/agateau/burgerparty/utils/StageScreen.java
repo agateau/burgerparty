@@ -6,9 +6,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 /**
  * A Screen with a stage filling its surface
@@ -19,6 +21,9 @@ public abstract class StageScreen implements Screen {
 	private static final float STAGE_HEIGHT = 480;
 	private Stage mStage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
 	private Actor mBgActor = null;
+
+	private Group mOverlayLayer = new Group();
+	private Group mNotificationLayer = new Group();
 
 	public StageScreen() {
 		mStage.getRoot().addListener(new InputListener() {
@@ -35,6 +40,12 @@ public abstract class StageScreen implements Screen {
 				return false;
 			}
 		});
+
+		mOverlayLayer.setTouchable(Touchable.childrenOnly);
+		mStage.addActor(mOverlayLayer);
+
+		mNotificationLayer.setTouchable(Touchable.childrenOnly);
+		mStage.addActor(mNotificationLayer);
 	}
 
 	public Stage getStage() {
@@ -65,8 +76,14 @@ public abstract class StageScreen implements Screen {
 		}
 		if (overlay != null) {
 			mOverlay = overlay;
-			mStage.getRoot().addActor(mOverlay);
+			mOverlayLayer.addActor(mOverlay);
+			updateLayersZOrder();
 		}
+	}
+
+	public void addNotificationActor(Actor actor) {
+		mNotificationLayer.addActor(actor);
+		updateLayersZOrder();
 	}
 
 	/**
@@ -85,6 +102,8 @@ public abstract class StageScreen implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		mStage.setViewport(STAGE_WIDTH, STAGE_HEIGHT, true);
+		mOverlayLayer.setSize(mStage.getWidth(), mStage.getHeight());
+		mNotificationLayer.setSize(mStage.getWidth(), mStage.getHeight());
 		resizeBackgroundActor();
 	}
 
@@ -120,6 +139,11 @@ public abstract class StageScreen implements Screen {
 		if (mBgActor != null) {
 			mBgActor.setBounds(0, 0, mStage.getWidth(), mStage.getHeight());
 		}
+	}
+
+	private void updateLayersZOrder() {
+		mOverlayLayer.toFront();
+		mNotificationLayer.toFront();
 	}
 
 	private Overlay mOverlay = null;

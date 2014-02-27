@@ -36,7 +36,7 @@ public class AchievementViewController {
 		Stage stage = screen.getStage();
 		AchievementView view = mViews.removeIndex(0);
 
-		stage.addActor(view);
+		screen.addNotificationActor(view);
 		view.setPosition((stage.getWidth() - view.getWidth()) / 2, stage.getHeight());
 		view.addAction(
 			Actions.sequence(
