@@ -1,6 +1,8 @@
 package com.agateau.burgerparty.model;
 
+import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.GameStatManager;
 
 public class BurgerPartyGameStats {
 	public final CounterGameStat mealServedCount;

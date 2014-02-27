@@ -1,4 +1,4 @@
-package com.agateau.burgerparty.model;
+package com.agateau.burgerparty.utils;
 
 import java.io.IOException;
 

@@ -1,8 +1,7 @@
-package com.agateau.burgerparty.model;
+package com.agateau.burgerparty.utils;
 
 import java.io.IOException;
 
-import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
@@ -34,6 +33,4 @@ public abstract class GameStat {
 	 * @param writer
 	 */
 	public abstract void save(XmlWriter writer) throws IOException;
-
-	public void onLevelStarted(World world) {}
 }
