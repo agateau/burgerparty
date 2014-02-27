@@ -1,15 +1,22 @@
 package com.agateau.burgerparty.model;
 
+import java.util.HashSet;
+
 import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GameStatManager;
+import com.agateau.burgerparty.utils.Signal0;
 
 public class BurgerPartyGameStats {
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+
 	public final CounterGameStat mealServedCount;
 
 	public final AchievementManager manager = new AchievementManager();
 
 	private final GameStatManager mGameStatManager = new GameStatManager();
+
+	private Achievement mCloseCall;
 
 	public BurgerPartyGameStats() {
 		mealServedCount = new CounterGameStat("mealServedCount");
@@ -21,7 +28,20 @@ public class BurgerPartyGameStats {
 		achievement.init(mealServedCount, 10);
 		manager.add(achievement);
 
+		mCloseCall = new Achievement("close-call", "Close Call", "Finish a level with 3 second left");
+		manager.add(mCloseCall);
+
 		manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
 		manager.load();
+	}
+
+	public void onLevelStarted(final World world) {
+		world.levelFinished.connect(mHandlers, new Signal0.Handler() {
+			public void handle() {
+				if (world.getRemainingSeconds() <= 3) {
+					mCloseCall.unlock();
+				}
+			}
+		});
 	}
 }
