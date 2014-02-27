@@ -1,13 +1,8 @@
 package com.agateau.burgerparty.model;
 
-import java.util.HashSet;
-
-import com.agateau.burgerparty.utils.GameStat;
 import com.agateau.burgerparty.utils.Signal0;
 
-public abstract class Achievement {
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-
+public class Achievement {
 	public Signal0 unlocked = new Signal0();
 
 	private String mId;
@@ -41,18 +36,7 @@ public abstract class Achievement {
 		return mUnlocked;
 	}
 
-	public abstract void update();
-
 	public void onLevelStarted(World world) {}
-
-	public void addDependentGameStat(GameStat stat) {
-		stat.changed.connect(mHandlers, new Signal0.Handler() {
-			@Override
-			public void handle() {
-				update();
-			}
-		});
-	}
 
 	protected void unlock() {
 		if (mUnlocked) {

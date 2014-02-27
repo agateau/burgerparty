@@ -2,7 +2,7 @@ package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.utils.CounterGameStat;
 
-public class CounterAchievement extends Achievement {
+public class CounterAchievement extends GameStatAchievement {
 	private CounterGameStat mStat;
 	private int mMinValue;
 
