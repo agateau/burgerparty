@@ -56,9 +56,11 @@ public class World {
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
 
 		final int STAR_COUNT = 3;
-		mStarCost = HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1;
+		// "- 1" to leave some room for "perfect" coins
+		mStarCost = Math.max(HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1, 1);
 
 		setupMeal();
+		mGameStats.onLevelStarted(this);
 	}
 
 	private void setupMeal() {
