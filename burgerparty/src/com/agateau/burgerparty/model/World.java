@@ -28,6 +28,7 @@ public class World {
 	}
 	public Signal0 burgerFinished = new Signal0();
 	public Signal1<Score> mealFinished = new Signal1<Score>();
+	public Signal0 levelFinished = new Signal0();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
 
@@ -260,6 +261,7 @@ public class World {
 			generateTarget();
 		} else {
 			mTimer.stop();
+			levelFinished.emit();
 		}
 	}
 
