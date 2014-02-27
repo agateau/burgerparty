@@ -1,6 +1,5 @@
-package com.agateau.burgerparty.model;
+package com.agateau.burgerparty.utils;
 
-import com.agateau.burgerparty.utils.Signal0;
 
 public class Achievement {
 	public Signal0 unlocked = new Signal0();
@@ -36,9 +35,7 @@ public class Achievement {
 		return mUnlocked;
 	}
 
-	public void onLevelStarted(World world) {}
-
-	protected void unlock() {
+	public void unlock() {
 		if (mUnlocked) {
 			return;
 		}

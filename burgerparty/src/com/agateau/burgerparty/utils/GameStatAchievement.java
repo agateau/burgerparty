@@ -1,9 +1,7 @@
-package com.agateau.burgerparty.model;
+package com.agateau.burgerparty.utils;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.utils.GameStat;
-import com.agateau.burgerparty.utils.Signal0;
 
 /**
  * An Achievement which depends on one or more GameStat 

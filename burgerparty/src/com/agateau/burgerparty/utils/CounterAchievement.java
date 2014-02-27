@@ -1,6 +1,5 @@
-package com.agateau.burgerparty.model;
+package com.agateau.burgerparty.utils;
 
-import com.agateau.burgerparty.utils.CounterGameStat;
 
 public class CounterAchievement extends GameStatAchievement {
 	private CounterGameStat mStat;

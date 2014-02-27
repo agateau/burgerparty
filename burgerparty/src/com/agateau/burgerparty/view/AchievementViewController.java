@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.Achievement;
+import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;

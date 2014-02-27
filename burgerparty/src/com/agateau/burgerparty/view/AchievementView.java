@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
-import com.agateau.burgerparty.model.Achievement;
+import com.agateau.burgerparty.utils.Achievement;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class AchievementView extends Label {
