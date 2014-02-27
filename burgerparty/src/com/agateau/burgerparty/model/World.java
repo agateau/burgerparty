@@ -40,7 +40,10 @@ public class World {
 	private static final int NEUTRAL_COIN_COUNT = 2;
 	private static final int ANGRY_COIN_COUNT = 1;
 
-	public World(Level level) {
+	private final BurgerPartyGameStats mGameStats;
+
+	public World(BurgerPartyGameStats gameStats, Level level) {
+		mGameStats = gameStats;
 		if (log == null) {
 			log = NLog.getRoot().create("World");
 		}
@@ -247,6 +250,7 @@ public class World {
 	private void onMealFinished() {
 		long time = mMealDoneCounter.restart();
 		log.i("onMealFinished: Meal done in %dms", time);
+		mGameStats.mealServedCount.increase();
 		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {

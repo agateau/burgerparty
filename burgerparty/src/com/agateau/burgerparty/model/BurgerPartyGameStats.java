@@ -14,17 +14,7 @@ public class BurgerPartyGameStats {
 	public final AchievementManager manager = new AchievementManager();
 
 	public BurgerPartyGameStats() {
-		mealServedCount = new CounterGameStat("mealServedCount") {
-			@Override
-			public void onLevelStarted(World world) {
-				world.mealFinished.connect(mHandlers, new Signal1.Handler<Score>() {
-					@Override
-					public void handle(Score score) {
-						increase();
-					}
-				});
-			}
-		};
+		mealServedCount = new CounterGameStat("mealServedCount");
 		manager.addGameStat(mealServedCount);
 
 		CounterAchievement achievement = new CounterAchievement("burger-master", "Burger Master", "Serve 10 burgers");
