@@ -10,17 +10,17 @@
             style="round-button-big"
             topCenter="titleImage.bottomCenter 0 -1"
             imageName="ui/icon-play-big"/>
-        <ImageButton id="aboutButton"
-            style="round-button"
-            imageName="ui/icon-info"
-            bottomRight="root.bottomRight -1 1"/>
-        <ImageButton id="achievementsButton"
-            style="round-button"
-            imageName="ui/icon-info"
-            bottomRight="aboutButton.bottomLeft -1 0"/>
         <ImageButton id="muteButton"
             style="round-button"
             imageName="ui/icon-sound-on"
             bottomLeft="root.bottomLeft 1 1"/>
+        <ImageButton id="aboutButton"
+            style="round-button"
+            imageName="ui/icon-info"
+            bottomLeft="muteButton.bottomRight 1 0"/>
+        <ImageButton id="achievementsButton"
+            style="round-button"
+            imageName="ui/icon-achievement"
+            bottomRight="root.bottomRight -1 1"/>
     </AnchorGroup>
 </gdxui>
