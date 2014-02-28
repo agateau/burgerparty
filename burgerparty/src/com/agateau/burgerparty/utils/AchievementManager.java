@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
@@ -12,15 +13,17 @@ public class AchievementManager {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	public Signal1<Achievement> achievementUnlocked = new Signal1<Achievement>();
-	
-	private HashMap<String, Achievement> mAchievements = new HashMap<String, Achievement>();
+
+	private Array<Achievement> mAchievements = new Array<Achievement>();
+	private HashMap<String, Achievement> mAchievementForId = new HashMap<String, Achievement>();
 	private FileHandle mFileHandle;
 
 	private NLog log = NLog.getRoot().create("AchievementManager");
 
 	public void add(final Achievement achievement) {
 		assert(achievement != null);
-		mAchievements.put(achievement.getId(), achievement);
+		mAchievements.add(achievement);
+		mAchievementForId.put(achievement.getId(), achievement);
 		achievement.unlocked.connect(mHandlers, new Signal0.Handler() {
 			@Override
 			public void handle() {
@@ -28,6 +31,10 @@ public class AchievementManager {
 				achievementUnlocked.emit(achievement);
 			}
 		});
+	}
+
+	public Array<Achievement> getAchievements() {
+		return mAchievements;
 	}
 
 	/// Achievements load/save
@@ -46,7 +53,7 @@ public class AchievementManager {
 		for(int idx = 0; idx < root.getChildCount(); ++idx) {
 			XmlReader.Element element = root.getChild(idx);
 			String id = element.getAttribute("id");
-			Achievement achievement = mAchievements.get(id);
+			Achievement achievement = mAchievementForId.get(id);
 			if (achievement == null) {
 				log.e("No achievement with id '%s'", id);
 				continue;
@@ -63,7 +70,7 @@ public class AchievementManager {
 	public void save(XmlWriter writer) {
 		try {
 			XmlWriter root = writer.element("achievements");
-			for (Achievement achievement: mAchievements.values()) {
+			for (Achievement achievement: mAchievements) {
 				if (achievement.isUnlocked()) {
 					root.element("achievement")
 						.attribute("id", achievement.getId())
