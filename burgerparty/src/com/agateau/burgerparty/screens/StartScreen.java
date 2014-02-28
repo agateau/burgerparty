@@ -56,6 +56,11 @@ public class StartScreen extends BurgerPartyScreen {
 				getGame().showAboutScreen();
 			}
 		});
+		builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				getGame().showAchievementsScreen();
+			}
+		});
 		mMuteButton = builder.<ImageButton>getActor("muteButton");
 		mMuteButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {

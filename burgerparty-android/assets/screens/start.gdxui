@@ -14,6 +14,10 @@
             style="round-button"
             imageName="ui/icon-info"
             bottomRight="root.bottomRight -1 1"/>
+        <ImageButton id="achievementsButton"
+            style="round-button"
+            imageName="ui/icon-info"
+            bottomRight="aboutButton.bottomLeft -1 0"/>
         <ImageButton id="muteButton"
             style="round-button"
             imageName="ui/icon-sound-on"

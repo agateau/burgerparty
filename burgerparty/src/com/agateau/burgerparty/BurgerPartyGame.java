@@ -16,6 +16,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.AboutScreen;
+import com.agateau.burgerparty.screens.AchievementsScreen;
 import com.agateau.burgerparty.screens.CheatScreen;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
@@ -285,6 +286,11 @@ public class BurgerPartyGame extends Game {
 	public void showAboutScreen() {
 		mMusicController.play();
 		setScreenAndDispose(new AboutScreen(this));
+	}
+
+	public void showAchievementsScreen() {
+		mMusicController.play();
+		setScreenAndDispose(new AchievementsScreen(this));
 	}
 
 	public void showCheatScreen() {

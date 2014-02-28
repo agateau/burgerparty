@@ -1,0 +1,14 @@
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <ImageButton id="backButton"
+            style="round-button"
+            bottomLeft="root.bottomLeft 1 1"
+            imageName="ui/icon-back"/>
+
+        <ScrollPane id="scrollPane"
+            topCenter="root.topCenter 0 -1"
+            width="600"
+            height="400"
+            />
+    </AnchorGroup>
+</gdxui>
