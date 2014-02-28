@@ -27,8 +27,12 @@ public class BurgerPartyGameStats {
 		mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
 		mGameStatManager.load();
 
-		CounterAchievement achievement = new CounterAchievement("burger-master", "Burger Master", "Serve 10 burgers");
-		achievement.init(mealServedCount, 10);
+		CounterAchievement achievement = new CounterAchievement("burger-master", "Burger Master", "Serve 50 burgers");
+		achievement.init(mealServedCount, 50);
+		manager.add(achievement);
+
+		achievement = new CounterAchievement("burger-god", "Burger God", "Serve 100 burgers");
+		achievement.init(mealServedCount, 100);
 		manager.add(achievement);
 
 		mCloseCall = new Achievement("close-call", "Close Call", "Finish a level with 3 second left");
