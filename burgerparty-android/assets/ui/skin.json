@@ -72,6 +72,13 @@
         about-body: {
             font: main-font,
             fontColor: black
+        },
+
+        achievement-title: {
+            font: scored-font
+        },
+        achievement-description: {
+            font: main-font-small
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {

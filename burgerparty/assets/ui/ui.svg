@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="64.357926"
-     inkscape:cy="591.75984"
-     inkscape:current-layer="layer3"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="57.540504"
+     inkscape:cy="-454.40823"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
      inkscape:window-width="1563"
@@ -72,6 +72,18 @@
   </sodipodi:namedview>
   <defs
      id="defs6974">
+    <linearGradient
+       id="linearGradient6802"
+       inkscape:collect="always">
+      <stop
+         id="stop6804"
+         offset="0"
+         style="stop-color:#d18500;stop-opacity:1" />
+      <stop
+         id="stop6806"
+         offset="1"
+         style="stop-color:#ffc434;stop-opacity:1" />
+    </linearGradient>
     <linearGradient
        id="linearGradient5672">
       <stop
@@ -9981,6 +9993,49 @@
        id="linearGradient6499"
        xlink:href="#linearGradient5672-2"
        inkscape:collect="always" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5696"
+       id="radialGradient5615"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.01533691,-0.75988217,0.94497084,0.01908393,-802.20154,3450.6138)"
+       cx="1780.7094"
+       cy="1179.8154"
+       fx="1780.7094"
+       fy="1179.8154"
+       r="400" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6802"
+       id="linearGradient6826"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.99949143,0,0,2.9921418,0.00584853,-3824.6078)"
+       x1="204.5"
+       y1="1881.25"
+       x2="204.5"
+       y2="1910.3281" />
+    <linearGradient
+       id="linearGradient6802-1"
+       inkscape:collect="always">
+      <stop
+         id="stop6804-4"
+         offset="0"
+         style="stop-color:#d18500;stop-opacity:1" />
+      <stop
+         id="stop6806-4"
+         offset="1"
+         style="stop-color:#ffc434;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6802-1"
+       id="linearGradient6998"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.07669365,0,0,3.0325761,6.618023,-4087.7431)"
+       x1="204.5"
+       y1="1881.25"
+       x2="204.5"
+       y2="1910.3281" />
   </defs>
   <metadata
      id="metadata6977">
@@ -10012,6 +10067,13 @@
      inkscape:groupmode="layer"
      inkscape:label="Layer 1"
      id="layer1">
+    <rect
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect6981"
+       width="123"
+       height="91"
+       x="451"
+       y="1609" />
     <rect
        style="fill:url(#radialGradient8439);fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect8290"
@@ -19874,6 +19936,214 @@
          width="1"
          id="rect5606-0"
          style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    </g>
+    <rect
+       style="fill:url(#radialGradient5615);fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect5613"
+       width="800"
+       height="480"
+       x="-66"
+       y="1750"
+       inkscape:export-filename="menu-bg.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g6424"
+       transform="translate(129,-0.11877441)">
+      <rect
+         y="1800.6188"
+         x="11.5"
+         height="74"
+         width="404"
+         id="rect6414"
+         style="color:#000000;fill:url(#linearGradient6826);fill-opacity:1;fill-rule:nonzero;stroke:#9e4a0a;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         ry="0" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5617"
+         y="1835"
+         x="84.573189"
+         style="font-size:42px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:-0.66224486px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:0.662;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         xml:space="preserve"><tspan
+           style="font-size:36px;font-style:normal;font-weight:bold;stroke:#999999;stroke-width:0.662;stroke-miterlimit:4;stroke-dasharray:none;-inkscape-font-specification:Sanitechtro Bold"
+           y="1835"
+           x="84.573189"
+           id="tspan5619"
+           sodipodi:role="line">Burger Master</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5640"
+         y="1865"
+         x="85.175781"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#999999;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         xml:space="preserve"><tspan
+           y="1865"
+           x="85.175781"
+           id="tspan5642"
+           sodipodi:role="line">Serve 100 burgers</tspan></text>
+      <rect
+         y="1805.6188"
+         x="15.5"
+         height="65"
+         width="65"
+         id="rect6412"
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         ry="32.5" />
+      <path
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 350,1839.1188 12,20 44,-44 -44,32 z"
+         id="use7255-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="done.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 21,1847.1188 c -0.0596,6.3602 3,7 27.5,7 24.5,0 27.5482,-0.5563 27.5,-7 z"
+         id="path6846"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="czcc" />
+      <path
+         sodipodi:nodetypes="sccs"
+         inkscape:connector-curvature="0"
+         id="path6856"
+         d="m 48.5,1819.6188 c -12.03659,0 -27.5,1.5 -27.5,10.5 l 55,0 c 0,-9 -15.4634,-10.5 -27.5,-10.5 z"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 24,1840.1188 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
+         id="path6858"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path6860"
+         d="m 24,1831.1188 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect6862"
+         width="53"
+         height="1"
+         x="151"
+         y="1838"
+         transform="translate(-129,0.11877441)" />
+    </g>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g6424"
+       id="use6434"
+       transform="translate(0,100.11877)"
+       width="1600"
+       height="1200" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use6434"
+       id="use6436"
+       transform="translate(0,100)"
+       width="1600"
+       height="1200" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="achievement-unlocked.png"
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="use7255-4-5"
+       d="m 476.5,1652.5 12,20 44,-44 -44,32 z"
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <g
+       id="g6973"
+       inkscape:export-filename="achievements/burger-master.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="1613.5"
+         x="-94.5"
+         height="65"
+         width="65"
+         id="rect6412-5"
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         ry="32.5" />
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m -89,1655 c -0.0596,6.3602 2.999999,7 27.499999,7 24.5,0 27.5482,-0.5563 27.5,-7 z"
+         id="path6846-3"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="czcc" />
+      <path
+         sodipodi:nodetypes="sccs"
+         inkscape:connector-curvature="0"
+         id="path6856-0"
+         d="M -61.500001,1627.5 C -73.536591,1627.5 -89,1629 -89,1638 l 54.999999,0 c 0,-9 -15.4634,-10.5 -27.5,-10.5 z"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m -86.000001,1648 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
+         id="path6858-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path6860-0"
+         d="m -86.000001,1639 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect6862-7"
+         width="53"
+         height="1"
+         x="-88.000008"
+         y="1646" />
+    </g>
+    <g
+       id="g6991"
+       inkscape:export-filename="achievement-bg.9.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="1613.5"
+         x="7.5"
+         height="75"
+         width="31"
+         id="rect6414-2"
+         style="color:#000000;fill:url(#linearGradient6998);fill-opacity:1;fill-rule:nonzero;stroke:#9e4a0a;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         ry="0" />
+      <rect
+         y="1612"
+         x="9"
+         height="1"
+         width="28"
+         id="rect6983"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         transform="matrix(0,1,-1,0,0,0)"
+         y="-7"
+         x="1615"
+         height="1"
+         width="72"
+         id="rect6987"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect7000"
+         width="28"
+         height="1"
+         x="9"
+         y="1689" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect7002"
+         width="72"
+         height="1"
+         x="1615"
+         y="-40"
+         transform="matrix(0,1,-1,0,0,0)" />
     </g>
   </g>
   <g

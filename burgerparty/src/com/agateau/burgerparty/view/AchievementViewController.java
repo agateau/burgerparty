@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
 public class AchievementViewController {
-	private static final float SLIDE_DURATION = 0.5f;
+	private static final float SLIDE_DURATION = 0.2f;
 	private static final float STAY_DURATION = 2;
 
 	private BurgerPartyGame mGame;
