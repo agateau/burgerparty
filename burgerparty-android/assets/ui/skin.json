@@ -75,7 +75,7 @@
         },
 
         achievement-title: {
-            font: scored-font
+            font: main-font
         },
         achievement-description: {
             font: main-font-small
