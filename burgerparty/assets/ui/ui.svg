@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99999999"
-     inkscape:cx="-159.89684"
-     inkscape:cy="857.04206"
-     inkscape:current-layer="layer3"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="1107.0704"
+     inkscape:cy="-113.01713"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1563"
@@ -10045,7 +10045,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -20049,51 +20049,6 @@
        id="use7255-4-5"
        d="m 476.5,1652.5 12,20 44,-44 -44,32 z"
        style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-    <g
-       id="g6973"
-       inkscape:export-filename="achievements/burger-master.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         y="1613.5"
-         x="-94.5"
-         height="65"
-         width="65"
-         id="rect6412-5"
-         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-         ry="32.5" />
-      <path
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-         d="m -89,1655 c -0.0596,6.3602 2.999999,7 27.499999,7 24.5,0 27.5482,-0.5563 27.5,-7 z"
-         id="path6846-3"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="czcc" />
-      <path
-         sodipodi:nodetypes="sccs"
-         inkscape:connector-curvature="0"
-         id="path6856-0"
-         d="M -61.500001,1627.5 C -73.536591,1627.5 -89,1629 -89,1638 l 54.999999,0 c 0,-9 -15.4634,-10.5 -27.5,-10.5 z"
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <path
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-         d="m -86.000001,1648 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
-         id="path6858-9"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="ccccc" />
-      <path
-         sodipodi:nodetypes="ccccc"
-         inkscape:connector-curvature="0"
-         id="path6860-0"
-         d="m -86.000001,1639 c -0.933487,2 -0.933487,4 0,6 l 49,0 c 0.933487,-2 0.933487,-4 0,-6 z"
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <rect
-         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-         id="rect6862-7"
-         width="53"
-         height="1"
-         x="-88.000008"
-         y="1646" />
-    </g>
     <g
        id="g6991"
        inkscape:export-filename="achievement-bg.9.png"
