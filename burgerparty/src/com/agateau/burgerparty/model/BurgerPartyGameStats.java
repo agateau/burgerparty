@@ -35,7 +35,7 @@ public class BurgerPartyGameStats {
 		achievement.init(mealServedCount, 100);
 		manager.add(achievement);
 
-		mCloseCall = new Achievement("close-call", "Close Call", "Finish a level with 3 second left");
+		mCloseCall = new Achievement("close-call", "Close Call", "Finish a level with 3 seconds left");
 		manager.add(mCloseCall);
 
 		manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
