@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# Python 2/3 compatibility
+from __future__ import division, absolute_import, print_function, unicode_literals
+
+import argparse
+import sys
+
+import jinja2
+import polib
+
+DESCRIPTION = """\
+"""
+
+
+def escape(txt):
+    return txt.replace('"', r'\"')
+
+
+def escape_plural(dct):
+    return [escape(dct[x]) for x in sorted(dct.keys())]
+
+
+def extract_plural_code(txt):
+    is_boolean = txt.startswith("nplurals=2")
+    code = txt.split("plural=")[1]
+    if is_boolean:
+        return code.strip(";") + " ? 1 : 0;"
+    else:
+        return code
+
+
+class App(object):
+    __slots__ = ("locale", "base_class")
+
+    def run(self, pofile, out):
+        with open("Messages.java.tmpl") as f:
+            tmpl = jinja2.Template(f.read())
+
+        entries = pofile.translated_entries()
+        plain_entries = [(escape(x.msgid), escape(x.msgstr)) for x in entries if not x.msgstr_plural]
+        plural_entries = [(escape(x.msgid), escape(x.msgid_plural), escape_plural(x.msgstr_plural)) for x in entries if x.msgstr_plural]
+        plural_code = extract_plural_code(pofile.metadata["Plural-Forms"])
+
+        txt = tmpl.render(dict(
+            locale=self.locale,
+            base_class=self.base_class,
+            plain_entries=plain_entries,
+            plural_entries=plural_entries,
+            plural_code=plural_code,
+        ))
+        out.write(txt.encode("utf-8"))
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+
+    parser.add_argument("-o", "--output", default="-",
+        help="write code to FILE", metavar="FILE")
+
+    parser.add_argument("-l", "--locale")
+
+    parser.add_argument("-b", "--base", default="Messages",
+        help="Base class name")
+
+    parser.add_argument("po_file")
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+    if args.output == "-":
+        out = sys.stdout
+    else:
+        out = open(args.output, "w")
+
+    app = App()
+    app.locale = args.locale
+    app.base_class = args.base
+
+    pofile = polib.pofile(args.po_file)
+    app.run(pofile, out)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+# vi: ts=4 sw=4 et

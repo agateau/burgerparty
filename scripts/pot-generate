@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+cd $(dirname $0)/..
+
+lst=/tmp/bp-pot-lst
+rm -f $lst
+for d in burgerparty burgerparty-android burgerparty-desktop ; do
+    find $d -name '*.java' | grep -v 'Messages_[_a-zA-Z]*.java' >> $lst
+done
+
+echo "Generating messages.pot"
+xgettext --keyword=_ --keyword=trn:1,2 -o po/messages.pot --files-from=$lst
+
+for pofile in po/*/*.po ; do
+    echo "Updating $pofile"
+    msgmerge -U $pofile po/messages.pot
+done
