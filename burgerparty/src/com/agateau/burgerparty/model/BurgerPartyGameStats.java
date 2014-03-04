@@ -10,6 +10,8 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GameStatManager;
 import com.agateau.burgerparty.utils.Signal0;
 
+import static com.agateau.burgerparty.utils.I18n._;
+
 public class BurgerPartyGameStats {
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -27,15 +29,15 @@ public class BurgerPartyGameStats {
 		mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
 		mGameStatManager.load();
 
-		CounterAchievement achievement = new CounterAchievement("burger-master", "Burger Master", "Serve 50 burgers");
+		CounterAchievement achievement = new CounterAchievement("burger-master", _("Burger Master"), _("Serve 50 burgers"));
 		achievement.init(mealServedCount, 50);
 		manager.add(achievement);
 
-		achievement = new CounterAchievement("burger-god", "Burger God", "Serve 100 burgers");
+		achievement = new CounterAchievement("burger-god", _("Burger God"), _("Serve 100 burgers"));
 		achievement.init(mealServedCount, 100);
 		manager.add(achievement);
 
-		mCloseCall = new Achievement("close-call", "Close Call", "Finish a level with 3 seconds left");
+		mCloseCall = new Achievement("close-call", _("Close Call"), _("Finish a level with 3 seconds left"));
 		manager.add(mCloseCall);
 
 		manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
