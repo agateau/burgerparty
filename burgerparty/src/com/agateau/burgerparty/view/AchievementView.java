@@ -15,27 +15,34 @@ public class AchievementView extends AnchorGroup {
 	public AchievementView(Assets assets, Achievement achievement) {
 		TextureAtlas atlas = assets.getTextureAtlas();
 		Image bg = new Image(atlas.createPatch("ui/achievement-bg"));
-		bg.setWidth(WIDTH);
+		bg.setFillParent(true);
 		addActor(bg);
-		setSize(bg.getWidth(), bg.getHeight());
 
 		TextureRegion iconRegion = atlas.findRegion("achievements/" + achievement.getId());
 		if (iconRegion == null) {
 			iconRegion = atlas.findRegion("achievements/generic");
 		}
 
-		TextureRegion statusRegion = atlas.findRegion("ui/achievement-" + (achievement.isUnlocked() ? "unlocked" : "locked"));
 
 		Image icon = new Image(iconRegion);
 		Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
 		Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
 
-		Image status = new Image(statusRegion);
+		Image statusIcon = null;
+		if (achievement.isUnlocked()) {
+			TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
+			statusIcon = new Image(statusRegion);
+		}
 
-		addRule(icon, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT, 6, 0);
-		addRule(titleLabel, Anchor.BOTTOM_LEFT, icon, Anchor.CENTER_RIGHT, 4, -10f);
-		addRule(descriptionLabel, Anchor.TOP_LEFT, icon, Anchor.CENTER_RIGHT, 4, 2f);
-		addRule(status, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT, -12, 0);
+		setWidth(WIDTH);
+		addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 12, -12);
+		addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, 7, 14f);
+		addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
+		if (statusIcon != null) {
+			addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
+		}
+
+		setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
 	}
 
 }
