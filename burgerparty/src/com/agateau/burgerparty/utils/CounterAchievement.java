@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.utils;
 
+import static com.agateau.burgerparty.utils.I18n.trn;
 
 public class CounterAchievement extends GameStatAchievement {
 	private CounterGameStat mStat;
@@ -22,4 +23,11 @@ public class CounterAchievement extends GameStatAchievement {
 		}
 	}
 
+	public String getDescription() {
+		String description = super.getDescription();
+		if (isUnlocked()) {
+			return description;
+		}
+		return description + "\n" + trn("1 remaining.", "%n remaining.", mMinValue - mStat.getValue());
+	}
 }
