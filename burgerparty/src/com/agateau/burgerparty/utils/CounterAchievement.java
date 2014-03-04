@@ -28,6 +28,6 @@ public class CounterAchievement extends GameStatAchievement {
 		if (isUnlocked()) {
 			return description;
 		}
-		return description + "\n" + trn("1 remaining.", "%n remaining.", mMinValue - mStat.getValue());
+		return description + " " + trn("1 remaining.", "%n remaining.", mMinValue - mStat.getValue());
 	}
 }
