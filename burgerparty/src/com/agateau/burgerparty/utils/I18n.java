@@ -13,7 +13,7 @@ public class I18n {
 			mMessages = messages;
 		}
 
-		public String translate(String src) {
+		public String tr(String src) {
 			if (mMessages == null) {
 				return src;
 			}
@@ -37,7 +37,7 @@ public class I18n {
 
 	public static String _(String src) {
 		init();
-		return sTranslator.translate(src);
+		return sTranslator.tr(src);
 	}
 
 	public static String trn(String singular, String plural, int n) {
