@@ -61,7 +61,6 @@ public class World {
 		mStarCost = Math.max(HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1, 1);
 
 		setupMeal();
-		mGameStats.onLevelStarted(this);
 	}
 
 	private void setupMeal() {
@@ -170,6 +169,7 @@ public class World {
 		};
 		mTimer.scheduleTask(task, 1, 1);
 		generateTarget();
+		mGameStats.onLevelStarted(this);
 	}
 
 	public void pause() {
