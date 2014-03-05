@@ -1,5 +1,6 @@
 package com.agateau.burgerparty.model;
 
+import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class TestUtils {
@@ -13,5 +14,13 @@ public class TestUtils {
 		XmlReader.Element root = parseXml(xml);
 		db.load(root);
 		return db;
+	}
+
+	public static class SignalSpy0 implements Signal0.Handler {
+		public int count = 0;
+		@Override
+		public void handle() {
+			++count;
+		}
 	}
 }
