@@ -179,7 +179,7 @@ public class BurgerPartyGame extends Game {
 	}
 
 	private void onAchievementUnlocked(Achievement achievement) {
-		log.i("Unlocked achievement '%s'", achievement.getTitle());
+		log.i("onAchievementUnlocked: '%s'", achievement.getTitle());
 		mAchievementViewController.show(achievement);
 	}
 
