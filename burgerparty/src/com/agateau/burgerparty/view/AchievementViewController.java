@@ -48,7 +48,8 @@ public class AchievementViewController {
 					public void run() {
 						showNextView();
 					}
-				})
+				}),
+				Actions.removeActor()
 			)
 		);
 	}
