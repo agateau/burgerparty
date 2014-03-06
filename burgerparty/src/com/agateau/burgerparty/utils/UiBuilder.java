@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -58,6 +59,9 @@ public class UiBuilder {
 				firstActor = actor;
 			}
 			assert(actor != null);
+			if (actor instanceof Widget) {
+				applyWidgetProperties((Widget)actor, element);
+			}
 			applyActorProperties(actor, element, parentActor);
 			String id = element.getAttribute("id", null);
 			if (id != null) {
@@ -203,6 +207,9 @@ public class UiBuilder {
 		group.setSpacing(element.getFloatAttribute("spacing", 0));
 		return group;
 	}
+
+	protected void applyWidgetProperties(Widget widget, XmlReader.Element element) {
+		widget.setFillParent(element.getBooleanAttribute("fillParent", false));
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
