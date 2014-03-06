@@ -111,6 +111,12 @@
             up: ui/icon-button,
             pressedOffsetY: -2
         },
+        checked-round-button: {
+            down: ui/icon-button-down,
+            checked: ui/icon-button-down,
+            up: ui/icon-button,
+            pressedOffsetY: 0
+        },
         round-button-big: {
             down: ui/icon-button-big-down,
             up: ui/icon-button-big,

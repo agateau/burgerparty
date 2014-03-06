@@ -10,14 +10,25 @@
             style="round-button-big"
             topCenter="titleImage.bottomCenter 0 -1"
             imageName="ui/icon-play-big"/>
-        <ImageButton id="muteButton"
-            style="round-button"
-            imageName="ui/icon-sound-on"
+
+        <ImageButton id="moreButton"
+            style="checked-round-button"
+            imageName="ui/icon-config"
             bottomLeft="root.bottomLeft 1 1"/>
-        <ImageButton id="aboutButton"
-            style="round-button"
-            imageName="ui/icon-info"
-            bottomLeft="muteButton.bottomRight 1 0"/>
+
+        <AnchorGroup id="moreGroup" spacing="20"
+            bottomzLeft="moreButton.topLeft 0 1"
+            >
+            <ImageButton id="muteButton"
+                style="round-button"
+                imageName="ui/icon-sound-on"
+                bottomLeft="moreGroup.bottomLeft 0 0"/>
+            <ImageButton id="aboutButton"
+                style="round-button"
+                imageName="ui/icon-info"
+                bottomLeft="muteButton.topLeft 0 1"/>
+        </AnchorGroup>
+
         <ImageButton id="achievementsButton"
             style="round-button"
             imageName="ui/icon-achievement"
