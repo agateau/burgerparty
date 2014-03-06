@@ -193,11 +193,16 @@ public class UiBuilder {
 	}
 
 	protected VerticalGroup createVerticalGroup(XmlReader.Element element) {
-		return new VerticalGroup();
+		VerticalGroup group = new VerticalGroup();
+		group.setSpacing(element.getFloatAttribute("spacing", 0));
+		return group;
 	}
 
 	protected HorizontalGroup createHorizontalGroup(XmlReader.Element element) {
-		return new HorizontalGroup();
+		HorizontalGroup group = new HorizontalGroup();
+		group.setSpacing(element.getFloatAttribute("spacing", 0));
+		return group;
+	}
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
