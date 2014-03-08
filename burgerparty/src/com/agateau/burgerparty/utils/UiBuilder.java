@@ -30,6 +30,14 @@ public class UiBuilder {
 		mSkin = skin;
 	}
 
+	public AnimScriptLoader getAnimScriptloader() {
+		return mAnimScriptloader;
+	}
+
+	public void setAnimScriptloader(AnimScriptLoader animScriptloader) {
+		mAnimScriptloader = animScriptloader;
+	}
+
 	public Actor build(FileHandle handle) {
 		return build(handle, null);
 	}
@@ -54,6 +62,9 @@ public class UiBuilder {
 		Actor firstActor = null;
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
+			if (element.getName().equals("Action")) {
+				continue;
+			}
 			Actor actor = createActorForElement(element);
 			if (idx == 0) {
 				firstActor = actor;
@@ -63,6 +74,9 @@ public class UiBuilder {
 				applyWidgetProperties((Widget)actor, element);
 			}
 			applyActorProperties(actor, element, parentActor);
+			if (mAnimScriptloader != null) {
+				createActorActions(actor, element);
+			}
 			String id = element.getAttribute("id", null);
 			if (id != null) {
 				if (mActorForId.containsKey(id)) {
@@ -286,9 +300,22 @@ public class UiBuilder {
 		return rule;
 	}
 
+	protected void createActorActions(Actor actor, XmlReader.Element element) {
+		for (XmlReader.Element child: element.getChildrenByName("Action")) {
+			String definition = child.getText();
+			float duration = child.getFloatAttribute("duration", -1);
+			if (duration < 0) {
+				throw new RuntimeException("Missing 'duration' attribute for action '" + definition + "'");
+			}
+			AnimScript script = mAnimScriptloader.load(definition);
+			actor.addAction(script.createAction(1, 1, duration));
+		}
+	}
+
 	private Map<String, Actor> mActorForId = new HashMap<String, Actor>();
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
+	private AnimScriptLoader mAnimScriptloader = null;
 
 	private static final String[] ANCHOR_NAMES = {
 		"topLeft",
