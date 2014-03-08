@@ -56,14 +56,23 @@ public class AchievementsScreen extends BurgerPartyScreen {
 
 		ScrollPane pane = builder.<ScrollPane>getActor("scrollPane");
 		VerticalGroup group = new VerticalGroup();
-		group.setSpacing(20);
 		pane.setWidget(group);
 		createAchievementViews(group);
 	}
 
 	private void createAchievementViews(VerticalGroup parent) {
 		AchievementManager manager = getGame().getGameStats().manager;
+		boolean first = true;
 		for (Achievement achievement: manager.getAchievements()) {
+			// VerticalGroup spacing is buggy and adds spacing on top of the first element.
+			// We create spaces manually to work-around this.
+			if (first) {
+				first = false;
+			} else {
+				Actor spacer = new Actor();
+				spacer.setHeight(20);
+				parent.addActor(spacer);
+			}
 			AchievementView view = new AchievementView(getGame().getAssets(), achievement);
 			parent.addActor(view);
 		}
