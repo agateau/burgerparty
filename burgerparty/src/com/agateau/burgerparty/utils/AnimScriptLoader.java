@@ -50,6 +50,7 @@ public class AnimScriptLoader {
 				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
+		mInstructionDefinitionMap.put("repeat", new RepeatInstructionDefinition(this));
 	}
 
 	public AnimScript load(String definition) {
