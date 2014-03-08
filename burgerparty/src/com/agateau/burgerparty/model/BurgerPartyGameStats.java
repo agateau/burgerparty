@@ -50,10 +50,10 @@ public class BurgerPartyGameStats {
 		mCloseCall = new Achievement("close-call", _("Close Call"), _("Finish a level with 3 seconds left."));
 		manager.add(mCloseCall);
 
-		mMorningGamer = new Achievement("morning-gamer", _("Morning Gamer"), _("Start a game between 7AM and 10AM for 4 days"));
+		mMorningGamer = new Achievement("morning-gamer", _("Morning Gamer"), _("Start a game between 7AM and 10AM for 4 days."));
 		manager.add(mMorningGamer);
 
-		mEveningGamer = new Achievement("evening-gamer", _("Evening Gamer"), _("Start a game between 7PM and 11PM for 4 days"));
+		mEveningGamer = new Achievement("evening-gamer", _("Evening Gamer"), _("Start a game between 7PM and 11PM for 4 days."));
 		manager.add(mEveningGamer);
 
 		manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
