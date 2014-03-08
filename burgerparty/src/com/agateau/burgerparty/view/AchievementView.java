@@ -32,10 +32,14 @@ public class AchievementView extends AnchorGroup {
 		if (achievement.isUnlocked()) {
 			TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
 			statusIcon = new Image(statusRegion);
+		} else {
+			icon.setColor(1, 1, 1, 0.3f);
+			titleLabel.setColor(1, 1, 1, 0.8f);
+			descriptionLabel.setColor(1, 1, 1, 0.8f);
 		}
 
 		setWidth(WIDTH);
-		addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 12, -12);
+		addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 10, -10);
 		addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, 7, 14f);
 		addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
 		if (statusIcon != null) {
