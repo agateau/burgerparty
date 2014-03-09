@@ -24,9 +24,9 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284272"
-     inkscape:cx="227.20485"
+     inkscape:cx="277.20189"
      inkscape:cy="1176.7237"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g5720"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1563"
@@ -92,7 +92,7 @@
          offset="0"
          id="stop5836" />
       <stop
-         style="stop-color:#009d00;stop-opacity:1"
+         style="stop-color:#008b00;stop-opacity:1"
          offset="1"
          id="stop5838" />
     </linearGradient>
@@ -100,7 +100,7 @@
        inkscape:collect="always"
        id="linearGradient5824">
       <stop
-         style="stop-color:#266000;stop-opacity:1"
+         style="stop-color:#1a4100;stop-opacity:1"
          offset="0"
          id="stop5826" />
       <stop
@@ -11188,24 +11188,25 @@
        id="g5720"
        inkscape:export-filename="morning-gamer.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       inkscape:export-ydpi="90"
+       transform="matrix(-1,0,0,1,552,0)">
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
          inkscape:export-filename="morning-gamer.png"
-         d="m 384,448 a 32,32 0 1 1 -64,0 32,32 0 1 1 64,0 z"
+         d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
          sodipodi:ry="32"
          sodipodi:rx="32"
          sodipodi:cy="448"
          sodipodi:cx="352"
          id="path4605"
-         style="fill:url(#linearGradient5777);fill-opacity:1;fill-rule:nonzero;stroke:#ffcc00;stroke-width:2.06451631000000013;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:url(#linearGradient5777);fill-opacity:1;fill-rule:nonzero;stroke:#ffcc00;stroke-width:2.06451631;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          sodipodi:type="arc"
          transform="matrix(0.96875,0,0,0.96875,-65,-398)" />
       <g
          transform="translate(-2,2)"
          id="g5806"
-         style="filter:url(#filter5820);fill:#fff700;fill-opacity:1">
+         style="fill:#fff700;fill-opacity:1;filter:url(#filter5820)">
         <path
            sodipodi:type="arc"
            style="color:#000000;fill:#fff700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -11337,7 +11338,7 @@
       <path
          style="color:#000000;fill:url(#linearGradient5840);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          clip-path="url(#clipPath4674)"
-         d="m 316,56 c 0,8.836556 -17.90861,16 -40,16 -22.09139,0 -40,-7.163444 -40,-16 0,-8.836556 34.87917,-11.873476 56.97056,-14.525126 C 314.90451,38.842121 316,47.163444 316,56 z"
+         d="m 316,56 c 0,8.836556 -17.90861,16 -40,16 -22.09139,0 -39,-4.163444 -39,-13 0,-8.836556 33.87917,-12.045049 55.97056,-17.525126 C 314.41209,36.156004 316,47.163444 316,56 z"
          id="path4670"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="sssss" />
