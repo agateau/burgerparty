@@ -1,8 +1,8 @@
 package com.agateau.burgerparty.utils;
 
 public interface Signal {
-	public interface Handler {
-	}
+    public interface Handler {
+    }
 
-	void disconnect(Handler handler);
+    void disconnect(Handler handler);
 }

@@ -19,123 +19,123 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class StartScreen extends BurgerPartyScreen {
-	private static int START_COUNT_BEFORE_ADS = 8;
-	private static long MINUTES_BETWEEN_ADS = 12;
-	private static NLog log;
+    private static int START_COUNT_BEFORE_ADS = 8;
+    private static long MINUTES_BETWEEN_ADS = 12;
+    private static NLog log;
 
-	private static final float MORE_ANIM_HEIGHT = 24;
+    private static final float MORE_ANIM_HEIGHT = 24;
 
-	private ImageButton mMuteButton;
+    private ImageButton mMuteButton;
 
-	public StartScreen(BurgerPartyGame game) {
-		super(game);
-		if (log == null) {
-			log = NLog.getRoot().create(getClass().getSimpleName());
-		}
-		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
-		setBackgroundActor(bgImage);
-		setupWidgets();
-		new RefreshHelper(getStage()) {
-			@Override
-			protected void refresh() {
-				getGame().showStartScreen();
-				dispose();
-			}
-		};
-	}
+    public StartScreen(BurgerPartyGame game) {
+        super(game);
+        if (log == null) {
+            log = NLog.getRoot().create(getClass().getSimpleName());
+        }
+        Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
+        setBackgroundActor(bgImage);
+        setupWidgets();
+        new RefreshHelper(getStage()) {
+            @Override
+            protected void refresh() {
+                getGame().showStartScreen();
+                dispose();
+            }
+        };
+    }
 
-	private void setupWidgets() {
-		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
-		builder.build(FileUtils.assets("screens/start.gdxui"));
-		AnchorGroup root = builder.getActor("root");
-		getStage().addActor(root);
-		root.setFillParent(true);
+    private void setupWidgets() {
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
+        builder.build(FileUtils.assets("screens/start.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        getStage().addActor(root);
+        root.setFillParent(true);
 
-		builder.<ImageButton>getActor("startButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				onStartClicked();
-			}
-		});
-		builder.<ImageButton>getActor("aboutButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showAboutScreen();
-			}
-		});
-		builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				getGame().showAchievementsScreen();
-			}
-		});
-		ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
-		final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
-		moreGroup.setColor(1, 1, 1, 0);
-		moreButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				boolean showing = moreGroup.getColor().a < 1;
-				moreGroup.addAction(Actions.alpha(showing ? 1 : 0, 0.2f));
-				moreGroup.addAction(Actions.moveBy(0, showing ? MORE_ANIM_HEIGHT : -MORE_ANIM_HEIGHT, 0.2f));
-			}
-		});
+        builder.<ImageButton>getActor("startButton").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                onStartClicked();
+            }
+        });
+        builder.<ImageButton>getActor("aboutButton").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                getGame().showAboutScreen();
+            }
+        });
+        builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                getGame().showAchievementsScreen();
+            }
+        });
+        ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
+        final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
+        moreGroup.setColor(1, 1, 1, 0);
+        moreButton.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                boolean showing = moreGroup.getColor().a < 1;
+                moreGroup.addAction(Actions.alpha(showing ? 1 : 0, 0.2f));
+                moreGroup.addAction(Actions.moveBy(0, showing ? MORE_ANIM_HEIGHT : -MORE_ANIM_HEIGHT, 0.2f));
+            }
+        });
 
-		mMuteButton = builder.<ImageButton>getActor("muteButton");
-		mMuteButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				MusicController controller = getGame().getMusicController();
-				controller.setMuted(!controller.isMuted());
-				updateMuteButton();
-			}
-		});
-		updateMuteButton();
-		root.layout();
-		moreGroup.setPosition(moreButton.getX(), moreButton.getTop() + root.getSpacing() - MORE_ANIM_HEIGHT);
-	}
+        mMuteButton = builder.<ImageButton>getActor("muteButton");
+        mMuteButton.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                MusicController controller = getGame().getMusicController();
+                controller.setMuted(!controller.isMuted());
+                updateMuteButton();
+            }
+        });
+        updateMuteButton();
+        root.layout();
+        moreGroup.setPosition(moreButton.getX(), moreButton.getTop() + root.getSpacing() - MORE_ANIM_HEIGHT);
+    }
 
-	private void onStartClicked() {
-		if (mustShowAd()) {
-			getGame().getAdController().showAd(new Runnable() {
-				@Override
-				public void run() {
-					log.i("startButton(runnable): showWorldListScreen");
-					getGame().showWorldListScreen();
-				}
-			});
-		} else {
-			getGame().showWorldListScreen();
-		}
-	}
+    private void onStartClicked() {
+        if (mustShowAd()) {
+            getGame().getAdController().showAd(new Runnable() {
+                @Override
+                public void run() {
+                    log.i("startButton(runnable): showWorldListScreen");
+                    getGame().showWorldListScreen();
+                }
+            });
+        } else {
+            getGame().showWorldListScreen();
+        }
+    }
 
-	private boolean mustShowAd() {
-		Preferences prefs = getGame().getPreferences();
-		int startCount = prefs.getInteger("startCount", 0) + 1;
-		log.i("mustShowAd: startCount=%d", startCount);
-		prefs.putInteger("startCount", startCount);
-		prefs.flush();
-		if (startCount < START_COUNT_BEFORE_ADS) {
-			return false;
-		}
+    private boolean mustShowAd() {
+        Preferences prefs = getGame().getPreferences();
+        int startCount = prefs.getInteger("startCount", 0) + 1;
+        log.i("mustShowAd: startCount=%d", startCount);
+        prefs.putInteger("startCount", startCount);
+        prefs.flush();
+        if (startCount < START_COUNT_BEFORE_ADS) {
+            return false;
+        }
 
-		long adDisplayTime = prefs.getLong("adDisplayTime", 0);
-		long now = TimeUtils.millis();
-		long delta = (now - adDisplayTime) / (60 * 1000);
-		boolean hasAd = getGame().getAdController().isAdAvailable();
-		log.i("mustShowAd: adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
-		if (delta > MINUTES_BETWEEN_ADS && hasAd) {
-			prefs.putLong("adDisplayTime", now);
-			prefs.flush();
-			return true;
-		} else {
-			return false;
-		}
-	}
+        long adDisplayTime = prefs.getLong("adDisplayTime", 0);
+        long now = TimeUtils.millis();
+        long delta = (now - adDisplayTime) / (60 * 1000);
+        boolean hasAd = getGame().getAdController().isAdAvailable();
+        log.i("mustShowAd: adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
+        if (delta > MINUTES_BETWEEN_ADS && hasAd) {
+            prefs.putLong("adDisplayTime", now);
+            prefs.flush();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public void onBackPressed() {
-		Gdx.app.exit();
-	}
+    @Override
+    public void onBackPressed() {
+        Gdx.app.exit();
+    }
 
-	private void updateMuteButton() {
-		boolean muted = getGame().getMusicController().isMuted();
-		Drawable drawable = getGame().getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
-		mMuteButton.getImage().setDrawable(drawable);
-	}
+    private void updateMuteButton() {
+        boolean muted = getGame().getMusicController().isMuted();
+        Drawable drawable = getGame().getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
+        mMuteButton.getImage().setDrawable(drawable);
+    }
 }

@@ -9,67 +9,67 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public abstract class MultiBurgerEnemy extends Enemy {
-	private static final float PIXEL_PER_SECOND = 120;
-	private static final float ITEM_OVERLAP = 35;
+    private static final float PIXEL_PER_SECOND = 120;
+    private static final float ITEM_OVERLAP = 35;
 
-	public MultiBurgerEnemy(MaskedDrawableAtlas atlas, Pool<BurgerItemEnemy> itemPool, BurgerVadersMainScreen mainScreen) {
-		mAtlas = atlas;
-		mScreen = mainScreen;
-		mItemPool = itemPool;
+    public MultiBurgerEnemy(MaskedDrawableAtlas atlas, Pool<BurgerItemEnemy> itemPool, BurgerVadersMainScreen mainScreen) {
+        mAtlas = atlas;
+        mScreen = mainScreen;
+        mItemPool = itemPool;
 
-		float y = 0;
-		y = addItem(y, "mealitems/0/toast-inventory");
-		y = addItem(y, "mealitems/0/steak-inventory");
-		y = addItem(y, "mealitems/0/tomato-inventory");
-		y = addItem(y, "mealitems/0/toast-inventory");
+        float y = 0;
+        y = addItem(y, "mealitems/0/toast-inventory");
+        y = addItem(y, "mealitems/0/steak-inventory");
+        y = addItem(y, "mealitems/0/tomato-inventory");
+        y = addItem(y, "mealitems/0/toast-inventory");
 
-		updateSize();
-		centerItems();
-	}
+        updateSize();
+        centerItems();
+    }
 
-	private float addItem(float y, String path) {
-		SpriteImage image = new SpriteImage(mAtlas.get(path));
-		image.setY(y);
-		addActor(image);
-		return image.getTop() - ITEM_OVERLAP;
-	}
+    private float addItem(float y, String path) {
+        SpriteImage image = new SpriteImage(mAtlas.get(path));
+        image.setY(y);
+        addActor(image);
+        return image.getTop() - ITEM_OVERLAP;
+    }
 
-	private void centerItems() {
-		for (Actor actor: getChildren()) {
-			actor.setX((getWidth() - actor.getWidth()) / 2);
-		}
-	}
+    private void centerItems() {
+        for (Actor actor: getChildren()) {
+            actor.setX((getWidth() - actor.getWidth()) / 2);
+        }
+    }
 
-	@Override
-	public void doAct(float delta) {
-		setY(getY() - PIXEL_PER_SECOND * delta);
-	}
+    @Override
+    public void doAct(float delta) {
+        setY(getY() - PIXEL_PER_SECOND * delta);
+    }
 
-	@Override
-	public void onHit() {
-		SnapshotArray<Actor> array = getChildren();
-		float step = getWidth() * 1.4f;
-		float minCenter = step * (array.size - 1) / 2f;
-		float center = MathUtils.clamp(getX(), minCenter, getStage().getWidth() - minCenter - getWidth());
-		for (int idx = 0, n = array.size; idx < n; ++idx) {
-			SpriteImage image = (SpriteImage)array.get(idx);
-			if (image != null) {
-				createEnemy(image, center + step * (idx - (array.size - 1) / 2f));
-			}
-		}
-		mustBeRemoved();
-	}
+    @Override
+    public void onHit() {
+        SnapshotArray<Actor> array = getChildren();
+        float step = getWidth() * 1.4f;
+        float minCenter = step * (array.size - 1) / 2f;
+        float center = MathUtils.clamp(getX(), minCenter, getStage().getWidth() - minCenter - getWidth());
+        for (int idx = 0, n = array.size; idx < n; ++idx) {
+            SpriteImage image = (SpriteImage)array.get(idx);
+            if (image != null) {
+                createEnemy(image, center + step * (idx - (array.size - 1) / 2f));
+            }
+        }
+        mustBeRemoved();
+    }
 
-	private void createEnemy(SpriteImage image, float x) {
-		BurgerItemEnemy enemy = mItemPool.obtain();
-		getStage().addActor(enemy);
-		enemy.init(image.getMaskedDrawable());
-		enemy.setPosition(getX() + image.getX(), getY() + image.getY());
-		enemy.addAction(Actions.moveTo(x, getY() + 40, 0.2f));
-		mScreen.addEnemy(enemy);
-	}
+    private void createEnemy(SpriteImage image, float x) {
+        BurgerItemEnemy enemy = mItemPool.obtain();
+        getStage().addActor(enemy);
+        enemy.init(image.getMaskedDrawable());
+        enemy.setPosition(getX() + image.getX(), getY() + image.getY());
+        enemy.addAction(Actions.moveTo(x, getY() + 40, 0.2f));
+        mScreen.addEnemy(enemy);
+    }
 
-	private MaskedDrawableAtlas mAtlas;
-	private BurgerVadersMainScreen mScreen;
-	private Pool<BurgerItemEnemy> mItemPool;
+    private MaskedDrawableAtlas mAtlas;
+    private BurgerVadersMainScreen mScreen;
+    private Pool<BurgerItemEnemy> mItemPool;
 }

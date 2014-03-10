@@ -5,6 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 
 interface Instruction {
 
-	public abstract Action run(Context context);
+    public abstract Action run(Context context);
 
 }

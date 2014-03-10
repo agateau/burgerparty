@@ -6,31 +6,31 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
 
 public class AnimScript {
-	public static class Context {
-		float width;
-		float height;
-		float duration;
-	}
+    public static class Context {
+        float width;
+        float height;
+        float duration;
+    }
 
-	private Array<Instruction> mInstructions;
+    private Array<Instruction> mInstructions;
 
-	public AnimScript(Array<Instruction> instructions) {
-		mInstructions = instructions;
-	}
+    public AnimScript(Array<Instruction> instructions) {
+        mInstructions = instructions;
+    }
 
-	public Action createAction(float width, float height, float duration) {
-		Context context = new Context();
-		context.width = width;
-		context.height = height;
-		context.duration = duration;
+    public Action createAction(float width, float height, float duration) {
+        Context context = new Context();
+        context.width = width;
+        context.height = height;
+        context.duration = duration;
 
-		if (mInstructions.size == 1) {
-			return mInstructions.get(0).run(context);
-		}
-		SequenceAction action = Actions.sequence();
-		for (Instruction instruction: mInstructions) {
-			action.addAction(instruction.run(context));
-		}
-		return action;
-	}
+        if (mInstructions.size == 1) {
+            return mInstructions.get(0).run(context);
+        }
+        SequenceAction action = Actions.sequence();
+        for (Instruction instruction: mInstructions) {
+            action.addAction(instruction.run(context));
+        }
+        return action;
+    }
 }

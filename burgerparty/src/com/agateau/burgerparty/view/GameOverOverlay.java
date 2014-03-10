@@ -15,40 +15,40 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class GameOverOverlay extends Overlay {
-	private BurgerPartyGame mGame;
+    private BurgerPartyGame mGame;
 
-	public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
-		super(atlas);
-		mGame = game;
+    public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
+        super(atlas);
+        mGame = game;
 
-		Label label = new Label("Game Over", skin);
+        Label label = new Label("Game Over", skin);
 
-		ImageButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
-		tryAgainButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
-			}
-		});
+        ImageButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
+        tryAgainButton.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
+            }
+        });
 
-		ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
-		selectLevelButton.addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				mGame.showLevelListScreen(mGame.getLevelWorldIndex());
-			}
-		});
+        ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
+        selectLevelButton.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                mGame.showLevelListScreen(mGame.getLevelWorldIndex());
+            }
+        });
 
-		AnchorGroup group = new AnchorGroup();
-		addActor(group);
-		group.setFillParent(true);
-		group.setSpacing(UiUtils.SPACING);
+        AnchorGroup group = new AnchorGroup();
+        addActor(group);
+        group.setFillParent(true);
+        group.setSpacing(UiUtils.SPACING);
 
-		group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
-		group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
-		group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
-	}
+        group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
+        group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
+        group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
+    }
 
-	@Override
-	public void onBackPressed() {
-		mGame.showLevelListScreen(mGame.getLevelWorldIndex());
-	}
+    @Override
+    public void onBackPressed() {
+        mGame.showLevelListScreen(mGame.getLevelWorldIndex());
+    }
 }

@@ -5,6 +5,6 @@ import java.io.StreamTokenizer;
 
 interface InstructionDefinition {
 
-	public abstract Instruction parse(StreamTokenizer tokenizer) throws IOException;
+    public abstract Instruction parse(StreamTokenizer tokenizer) throws IOException;
 
 }

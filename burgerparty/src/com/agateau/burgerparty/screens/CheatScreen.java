@@ -16,76 +16,76 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class CheatScreen extends BurgerPartyScreen {
-	public CheatScreen(BurgerPartyGame game) {
-		super(game);
-		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
-		setBackgroundActor(bgImage);
-		setupWidgets();
-		new RefreshHelper(getStage()) {
-			@Override
-			protected void refresh() {
-				getGame().showCheatScreen();
-				dispose();
-			}
-		};
-	}
+    public CheatScreen(BurgerPartyGame game) {
+        super(game);
+        Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
+        setBackgroundActor(bgImage);
+        setupWidgets();
+        new RefreshHelper(getStage()) {
+            @Override
+            protected void refresh() {
+                getGame().showCheatScreen();
+                dispose();
+            }
+        };
+    }
 
-	private void setupWidgets() {
-		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
-		builder.build(FileUtils.assets("screens/cheat.gdxui"));
-		AnchorGroup root = builder.getActor("root");
-		getStage().addActor(root);
-		root.setFillParent(true);
+    private void setupWidgets() {
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
+        builder.build(FileUtils.assets("screens/cheat.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        getStage().addActor(root);
+        root.setFillParent(true);
 
-		builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				onBackPressed();
-			}
-		});
+        builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                onBackPressed();
+            }
+        });
 
-		builder.<TextButton>getActor("reset").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				reset();
-			}
-		});
+        builder.<TextButton>getActor("reset").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                reset();
+            }
+        });
 
-		for (int idx = 1; idx <= 3; ++idx) {
-			final int worldIndex = idx - 1;
-			for (int star = 0; star <= 3; ++star) {
-				final int fstar = star;
-				builder.<TextButton>getActor("stars-" +idx + "-" + star).addListener(new ChangeListener() {
-					public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-						setStars(worldIndex, fstar);
-					}
-				});
-			}
-		}
-	}
+        for (int idx = 1; idx <= 3; ++idx) {
+            final int worldIndex = idx - 1;
+            for (int star = 0; star <= 3; ++star) {
+                final int fstar = star;
+                builder.<TextButton>getActor("stars-" +idx + "-" + star).addListener(new ChangeListener() {
+                    public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                        setStars(worldIndex, fstar);
+                    }
+                });
+            }
+        }
+    }
 
-	@Override
-	public void onBackPressed() {
-		getGame().showStartScreen();
-	}
+    @Override
+    public void onBackPressed() {
+        getGame().showStartScreen();
+    }
 
-	private void reset() {
-		Universe universe = getGame().getUniverse();
-		for (LevelWorld world: universe.getWorlds()) {
-			for(Level level: world.getLevels()) {
-				level.lock();
-			}
-		}
-		universe.get(0).getLevel(0).unlock();
-	}
+    private void reset() {
+        Universe universe = getGame().getUniverse();
+        for (LevelWorld world: universe.getWorlds()) {
+            for (Level level: world.getLevels()) {
+                level.lock();
+            }
+        }
+        universe.get(0).getLevel(0).unlock();
+    }
 
-	private void setStars(int worldIndex, int stars) {
-		Universe universe = getGame().getUniverse();
-		LevelWorld world = universe.get(worldIndex);
-		for(Level level: world.getLevels()) {
-			level.unlock();
-			if (level.getStarCount() < stars) {
-				level.setStarCount(stars);
-			}
-		}
-		universe.saveRequested.emit();
-	}
+    private void setStars(int worldIndex, int stars) {
+        Universe universe = getGame().getUniverse();
+        LevelWorld world = universe.get(worldIndex);
+        for (Level level: world.getLevels()) {
+            level.unlock();
+            if (level.getStarCount() < stars) {
+                level.setStarCount(stars);
+            }
+        }
+        universe.saveRequested.emit();
+    }
 }

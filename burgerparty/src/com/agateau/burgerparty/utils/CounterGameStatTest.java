@@ -13,47 +13,47 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
 public class CounterGameStatTest {
-	private HashSet<Object> mHandlers = new HashSet<Object>();
+    private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	@Test
-	public void testLoad() {
-		String xml = "<gamestat id='foo' value='12'/>";
-		XmlReader.Element element = TestUtils.parseXml(xml);
-		CounterGameStat stat = new CounterGameStat("foo");
-		stat.load(element);
-		assertEquals(12, stat.getValue());
-	}
+    @Test
+    public void testLoad() {
+        String xml = "<gamestat id='foo' value='12'/>";
+        XmlReader.Element element = TestUtils.parseXml(xml);
+        CounterGameStat stat = new CounterGameStat("foo");
+        stat.load(element);
+        assertEquals(12, stat.getValue());
+    }
 
-	@Test
-	public void testSave() throws IOException {
-		CounterGameStat stat = new CounterGameStat("foo");
-		assertEquals(0, stat.getValue());
-		stat.increase();
-		assertEquals(1, stat.getValue());
+    @Test
+    public void testSave() throws IOException {
+        CounterGameStat stat = new CounterGameStat("foo");
+        assertEquals(0, stat.getValue());
+        stat.increase();
+        assertEquals(1, stat.getValue());
 
-		StringWriter writer = new StringWriter();
-		{
-			XmlWriter xmlWriter = new XmlWriter(writer);
-			XmlWriter root = xmlWriter.element("gamestat");
-			stat.save(root);
-			root.pop();
-			xmlWriter.close();
-		}
+        StringWriter writer = new StringWriter();
+        {
+            XmlWriter xmlWriter = new XmlWriter(writer);
+            XmlWriter root = xmlWriter.element("gamestat");
+            stat.save(root);
+            root.pop();
+            xmlWriter.close();
+        }
 
-		XmlReader.Element root = TestUtils.parseXml(writer.toString());
-		assertEquals(root.getIntAttribute("value"), 1);
-	}
+        XmlReader.Element root = TestUtils.parseXml(writer.toString());
+        assertEquals(root.getIntAttribute("value"), 1);
+    }
 
-	@Test
-	public void testIncrease() {
-		CounterGameStat stat = new CounterGameStat("foo");
+    @Test
+    public void testIncrease() {
+        CounterGameStat stat = new CounterGameStat("foo");
 
-		TestUtils.SignalSpy0 spy = new TestUtils.SignalSpy0();
-		stat.changed.connect(mHandlers, spy);
-		assertEquals(0, stat.getValue());
-		stat.increase();
-		assertEquals(1, stat.getValue());
-		assertEquals(1, spy.count);
-	}
+        TestUtils.SignalSpy0 spy = new TestUtils.SignalSpy0();
+        stat.changed.connect(mHandlers, spy);
+        assertEquals(0, stat.getValue());
+        stat.increase();
+        assertEquals(1, stat.getValue());
+        assertEquals(1, spy.count);
+    }
 
 }

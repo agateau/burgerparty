@@ -10,43 +10,43 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class AchievementView extends AnchorGroup {
-	private static final float WIDTH = 600;
+    private static final float WIDTH = 600;
 
-	public AchievementView(Assets assets, Achievement achievement) {
-		TextureAtlas atlas = assets.getTextureAtlas();
-		Image bg = new Image(atlas.createPatch("ui/achievement-bg"));
-		bg.setFillParent(true);
-		addActor(bg);
+    public AchievementView(Assets assets, Achievement achievement) {
+        TextureAtlas atlas = assets.getTextureAtlas();
+        Image bg = new Image(atlas.createPatch("ui/achievement-bg"));
+        bg.setFillParent(true);
+        addActor(bg);
 
-		TextureRegion iconRegion = atlas.findRegion("achievements/" + achievement.getId());
-		if (iconRegion == null) {
-			iconRegion = atlas.findRegion("achievements/generic");
-		}
+        TextureRegion iconRegion = atlas.findRegion("achievements/" + achievement.getId());
+        if (iconRegion == null) {
+            iconRegion = atlas.findRegion("achievements/generic");
+        }
 
 
-		Image icon = new Image(iconRegion);
-		Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
-		Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
+        Image icon = new Image(iconRegion);
+        Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
+        Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
 
-		Image statusIcon = null;
-		if (achievement.isUnlocked()) {
-			TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
-			statusIcon = new Image(statusRegion);
-		} else {
-			icon.setColor(1, 1, 1, 0.3f);
-			titleLabel.setColor(1, 1, 1, 0.8f);
-			descriptionLabel.setColor(1, 1, 1, 0.8f);
-		}
+        Image statusIcon = null;
+        if (achievement.isUnlocked()) {
+            TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
+            statusIcon = new Image(statusRegion);
+        } else {
+            icon.setColor(1, 1, 1, 0.3f);
+            titleLabel.setColor(1, 1, 1, 0.8f);
+            descriptionLabel.setColor(1, 1, 1, 0.8f);
+        }
 
-		setWidth(WIDTH);
-		addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 10, -10);
-		addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, 7, 14f);
-		addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
-		if (statusIcon != null) {
-			addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
-		}
+        setWidth(WIDTH);
+        addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 10, -10);
+        addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, 7, 14f);
+        addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
+        if (statusIcon != null) {
+            addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
+        }
 
-		setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
-	}
+        setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
+    }
 
 }

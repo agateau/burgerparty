@@ -7,85 +7,85 @@ import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public class HorizontalGroup extends WidgetGroup {
-	private boolean mSizeInvalid = true;
-	private float mPrefWidth, mPrefHeight;
-	private int mAlignment = Align.top;
-	private float mSpacing = 0;
+    private boolean mSizeInvalid = true;
+    private float mPrefWidth, mPrefHeight;
+    private int mAlignment = Align.top;
+    private float mSpacing = 0;
 
-	public void invalidate() {
-		super.invalidate();
-		mSizeInvalid = true;
-	}
+    public void invalidate() {
+        super.invalidate();
+        mSizeInvalid = true;
+    }
 
-	private void computeSize() {
-		mSizeInvalid = false;
-		SnapshotArray<Actor> children = getChildren();
-		mPrefWidth = mSpacing * Math.max(children.size - 1, 0);
-		mPrefHeight = 0;
-		for (int i = 0, n = children.size; i < n; i++) {
-			Actor child = children.get(i);
-			if (child instanceof Layout) {
-				Layout layout = (Layout)child;
-				mPrefWidth += layout.getPrefWidth();
-				mPrefHeight = Math.max(mPrefHeight, layout.getPrefHeight());
-			} else {
-				mPrefWidth += child.getWidth();
-				mPrefHeight = Math.max(mPrefHeight, child.getHeight());
-			}
-		}
-	}
+    private void computeSize() {
+        mSizeInvalid = false;
+        SnapshotArray<Actor> children = getChildren();
+        mPrefWidth = mSpacing * Math.max(children.size - 1, 0);
+        mPrefHeight = 0;
+        for (int i = 0, n = children.size; i < n; i++) {
+            Actor child = children.get(i);
+            if (child instanceof Layout) {
+                Layout layout = (Layout)child;
+                mPrefWidth += layout.getPrefWidth();
+                mPrefHeight = Math.max(mPrefHeight, layout.getPrefHeight());
+            } else {
+                mPrefWidth += child.getWidth();
+                mPrefHeight = Math.max(mPrefHeight, child.getHeight());
+            }
+        }
+    }
 
-	public void layout() {
-		float groupHeight = getHeight();
-		float x = 0;
-		SnapshotArray<Actor> children = getChildren();
-		for (int i = 0, n = children.size; i < n; i++) {
-			Actor child = children.get(i);
-			float width, height;
-			if (child instanceof Layout) {
-				Layout layout = (Layout)child;
-				width = layout.getPrefWidth();
-				height = layout.getPrefHeight();
-			} else {
-				width = child.getWidth();
-				height = child.getHeight();
-			}
-			float y;
-			if ((mAlignment & Align.bottom) != 0) {
-				y = 0;
-			} else if ((mAlignment & Align.top) != 0) {
-				y = groupHeight - height;
-			} else {
-				y = (groupHeight - height) / 2;
-			}
-			child.setBounds(x, y, width, height);
-			x += width + mSpacing;
-		}
-	}
+    public void layout() {
+        float groupHeight = getHeight();
+        float x = 0;
+        SnapshotArray<Actor> children = getChildren();
+        for (int i = 0, n = children.size; i < n; i++) {
+            Actor child = children.get(i);
+            float width, height;
+            if (child instanceof Layout) {
+                Layout layout = (Layout)child;
+                width = layout.getPrefWidth();
+                height = layout.getPrefHeight();
+            } else {
+                width = child.getWidth();
+                height = child.getHeight();
+            }
+            float y;
+            if ((mAlignment & Align.bottom) != 0) {
+                y = 0;
+            } else if ((mAlignment & Align.top) != 0) {
+                y = groupHeight - height;
+            } else {
+                y = (groupHeight - height) / 2;
+            }
+            child.setBounds(x, y, width, height);
+            x += width + mSpacing;
+        }
+    }
 
-	public float getPrefWidth() {
-		if (mSizeInvalid) {
-			computeSize();
-		}
-		return mPrefWidth;
-	}
+    public float getPrefWidth() {
+        if (mSizeInvalid) {
+            computeSize();
+        }
+        return mPrefWidth;
+    }
 
-	public float getPrefHeight() {
-		if (mSizeInvalid) {
-			computeSize();
-		}
-		return mPrefHeight;
-	}
+    public float getPrefHeight() {
+        if (mSizeInvalid) {
+            computeSize();
+        }
+        return mPrefHeight;
+    }
 
-	public float getSpacing() {
-		return mSpacing;
-	}
+    public float getSpacing() {
+        return mSpacing;
+    }
 
-	public void setSpacing(float spacing) {
-		if (mSpacing == spacing) {
-			return;
-		}
-		mSpacing = spacing;
-		mSizeInvalid = true;
-	}
+    public void setSpacing(float spacing) {
+        if (mSpacing == spacing) {
+            return;
+        }
+        mSpacing = spacing;
+        mSizeInvalid = true;
+    }
 }

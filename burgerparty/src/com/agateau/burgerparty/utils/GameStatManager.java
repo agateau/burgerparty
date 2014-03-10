@@ -9,70 +9,70 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
 public class GameStatManager {
-	private HashSet<Object> mHandlers = new HashSet<Object>();
+    private HashSet<Object> mHandlers = new HashSet<Object>();
 
-	private FileHandle mFileHandle;
-	private HashMap<String, GameStat> mGameStats = new HashMap<String, GameStat>();
+    private FileHandle mFileHandle;
+    private HashMap<String, GameStat> mGameStats = new HashMap<String, GameStat>();
 
-	private NLog log = NLog.getRoot().create("GameStatManager");
+    private NLog log = NLog.getRoot().create("GameStatManager");
 
-	public void setFileHandle(FileHandle handle) {
-		mFileHandle = handle;
-	}
+    public void setFileHandle(FileHandle handle) {
+        mFileHandle = handle;
+    }
 
-	public void add(GameStat gameStat) {
-		mGameStats.put(gameStat.getId(), gameStat);
-		gameStat.changed.connect(mHandlers, new Signal0.Handler() {
-			@Override
-			public void handle() {
-				scheduleSave();
-			}
-		});
-	}
+    public void add(GameStat gameStat) {
+        mGameStats.put(gameStat.getId(), gameStat);
+        gameStat.changed.connect(mHandlers, new Signal0.Handler() {
+            @Override
+            public void handle() {
+                scheduleSave();
+            }
+        });
+    }
 
-	public void load() {
-		if (mFileHandle.exists()) {
-			load(FileUtils.parseXml(mFileHandle));
-		}
-	}
+    public void load() {
+        if (mFileHandle.exists()) {
+            load(FileUtils.parseXml(mFileHandle));
+        }
+    }
 
-	public void load(XmlReader.Element root) {
-		NLog.getRoot().i("GameStatManager.load");
-		for(int idx = 0; idx < root.getChildCount(); ++idx) {
-			XmlReader.Element element = root.getChild(idx);
-			String id = element.getAttribute("id");
-			NLog.getRoot().i("GameStatManager.load id=%s", id);
-			GameStat stat = mGameStats.get(id);
-			if (stat == null) {
-				log.e("No gamestat with id '%s'", id);
-				continue;
-			}
-			stat.load(element);
-		}
-	}
+    public void load(XmlReader.Element root) {
+        NLog.getRoot().i("GameStatManager.load");
+        for (int idx = 0; idx < root.getChildCount(); ++idx) {
+            XmlReader.Element element = root.getChild(idx);
+            String id = element.getAttribute("id");
+            NLog.getRoot().i("GameStatManager.load id=%s", id);
+            GameStat stat = mGameStats.get(id);
+            if (stat == null) {
+                log.e("No gamestat with id '%s'", id);
+                continue;
+            }
+            stat.load(element);
+        }
+    }
 
-	public void save() {
-		XmlWriter writer = new XmlWriter(mFileHandle.writer(false));
-		save(writer);
-	}
+    public void save() {
+        XmlWriter writer = new XmlWriter(mFileHandle.writer(false));
+        save(writer);
+    }
 
-	public void save(XmlWriter writer) {
-		try {
-			XmlWriter root = writer.element("gamestats");
-			for (GameStat stat: mGameStats.values()) {
-				XmlWriter element = root.element("gamestat");
-				element.attribute("id", stat.getId());
-				stat.save(element);
-				element.pop();
-			}
-			writer.close();
-		} catch (IOException e) {
-			log.e("saveGameStats: Failed to save gamestats. Exception: %s", e);
-		}
-	}
+    public void save(XmlWriter writer) {
+        try {
+            XmlWriter root = writer.element("gamestats");
+            for (GameStat stat: mGameStats.values()) {
+                XmlWriter element = root.element("gamestat");
+                element.attribute("id", stat.getId());
+                stat.save(element);
+                element.pop();
+            }
+            writer.close();
+        } catch (IOException e) {
+            log.e("saveGameStats: Failed to save gamestats. Exception: %s", e);
+        }
+    }
 
-	private void scheduleSave() {
-		// FIXME: Really schedule
-		save();
-	}
+    private void scheduleSave() {
+        // FIXME: Really schedule
+        save();
+    }
 }

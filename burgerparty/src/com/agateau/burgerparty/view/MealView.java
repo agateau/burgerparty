@@ -16,97 +16,97 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MealView extends Group implements ResizeToFitChildren {
-	public static final float ADD_ACTION_DURATION = 0.2f;
-	public static final float TRASH_ACTION_DURATION = 0.5f;
+    public static final float ADD_ACTION_DURATION = 0.2f;
+    public static final float TRASH_ACTION_DURATION = 0.5f;
 
-	private static final float PLATTER_BURGER_X = 70f;
-	private static final float PLATTER_MEAL_Y = 15f;
-	public static final float MEAL_ITEM_PADDING = 15f;
+    private static final float PLATTER_BURGER_X = 70f;
+    private static final float PLATTER_MEAL_Y = 15f;
+    public static final float MEAL_ITEM_PADDING = 15f;
 
-	private Image mPlatter = null;
-	private BurgerView mBurgerView;
-	private MealExtraView mMealExtraView;
+    private Image mPlatter = null;
+    private BurgerView mBurgerView;
+    private MealExtraView mMealExtraView;
 
-	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, boolean withPlatter) {
-		if (withPlatter) {
-			mPlatter = new Image(atlas.findRegion("platter"));
-			addActor(mPlatter);
-		}
-		mMealExtraView = new MealExtraView(mealExtra, atlas, loader);
-		addActor(mMealExtraView);
-		mBurgerView = new BurgerView(burger, atlas, soundAtlas, loader);
-		addActor(mBurgerView);
+    public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, boolean withPlatter) {
+        if (withPlatter) {
+            mPlatter = new Image(atlas.findRegion("platter"));
+            addActor(mPlatter);
+        }
+        mMealExtraView = new MealExtraView(mealExtra, atlas, loader);
+        addActor(mMealExtraView);
+        mBurgerView = new BurgerView(burger, atlas, soundAtlas, loader);
+        addActor(mBurgerView);
 
-		if (withPlatter) {
-			mBurgerView.setPosition(PLATTER_BURGER_X, PLATTER_MEAL_Y);
-		} else {
-			mBurgerView.setPosition(NextBurgerItemArrow.OVERALL_WIDTH, 0);
-			NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView(), atlas);
-			addActor(arrow);
-		}
-		updateGeometry();
-	}
+        if (withPlatter) {
+            mBurgerView.setPosition(PLATTER_BURGER_X, PLATTER_MEAL_Y);
+        } else {
+            mBurgerView.setPosition(NextBurgerItemArrow.OVERALL_WIDTH, 0);
+            NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView(), atlas);
+            addActor(arrow);
+        }
+        updateGeometry();
+    }
 
-	public BurgerView getBurgerView() {
-		return mBurgerView;
-	}
+    public BurgerView getBurgerView() {
+        return mBurgerView;
+    }
 
-	public MealExtraView getMealExtraView() {
-		return mMealExtraView;
-	}
+    public MealExtraView getMealExtraView() {
+        return mMealExtraView;
+    }
 
-	public void addItem(MealItem item) {
-		if (item.getType() == MealItem.Type.BURGER) {
-			addBurgerItem((BurgerItem)item);
-		} else {
-			addExtraItem(item);
-		}
-	}
+    public void addItem(MealItem item) {
+        if (item.getType() == MealItem.Type.BURGER) {
+            addBurgerItem((BurgerItem)item);
+        } else {
+            addExtraItem(item);
+        }
+    }
 
-	private void addBurgerItem(BurgerItem item) {
-		mBurgerView.addItem(item);
-	}
+    private void addBurgerItem(BurgerItem item) {
+        mBurgerView.addItem(item);
+    }
 
-	private void addExtraItem(MealItem item) {
-		mMealExtraView.addItem(item);
-	}
+    private void addExtraItem(MealItem item) {
+        mMealExtraView.addItem(item);
+    }
 
-	public void pop(MealItem.Type itemType) {
-		if (itemType == MealItem.Type.BURGER) {
-			mBurgerView.pop();
-		} else {
-			mMealExtraView.pop();
-		}
-	}
+    public void pop(MealItem.Type itemType) {
+        if (itemType == MealItem.Type.BURGER) {
+            mBurgerView.pop();
+        } else {
+            mMealExtraView.pop();
+        }
+    }
 
-	public void updateGeometry() {
-		mMealExtraView.setPosition(mBurgerView.getRight() + MEAL_ITEM_PADDING, mBurgerView.getY());
-		setSize(
-			mPlatter == null ? mMealExtraView.getRight() : mPlatter.getWidth(),
-			Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
-			);
-		UiUtils.notifyResizeToFitParent(this);
-	}
+    public void updateGeometry() {
+        mMealExtraView.setPosition(mBurgerView.getRight() + MEAL_ITEM_PADDING, mBurgerView.getY());
+        setSize(
+            mPlatter == null ? mMealExtraView.getRight() : mPlatter.getWidth(),
+            Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
+        );
+        UiUtils.notifyResizeToFitParent(this);
+    }
 
-	@Override
-	public void onChildSizeChanged() {
-		updateGeometry();
-	}
+    @Override
+    public void onChildSizeChanged() {
+        updateGeometry();
+    }
 
-	public static void addTrashActions(Actor actor) {
-		float xOffset = (float)(Math.random() * 200 - 100);
-		float rotation = xOffset;
-		actor.addAction(
-			Actions.sequence(
-				Actions.parallel(
-					Actions.moveBy(xOffset, 0, TRASH_ACTION_DURATION),
-					Actions.moveBy(0, -200, TRASH_ACTION_DURATION, Interpolation.pow2In),
-					Actions.scaleTo(0.5f, 0.5f, TRASH_ACTION_DURATION),
-					Actions.rotateBy(rotation, TRASH_ACTION_DURATION),
-					Actions.fadeOut(TRASH_ACTION_DURATION, Interpolation.pow5In)
-				),
-				Actions.removeActor()
-			)
-		);
-	}
+    public static void addTrashActions(Actor actor) {
+        float xOffset = (float)(Math.random() * 200 - 100);
+        float rotation = xOffset;
+        actor.addAction(
+            Actions.sequence(
+                Actions.parallel(
+                    Actions.moveBy(xOffset, 0, TRASH_ACTION_DURATION),
+                    Actions.moveBy(0, -200, TRASH_ACTION_DURATION, Interpolation.pow2In),
+                    Actions.scaleTo(0.5f, 0.5f, TRASH_ACTION_DURATION),
+                    Actions.rotateBy(rotation, TRASH_ACTION_DURATION),
+                    Actions.fadeOut(TRASH_ACTION_DURATION, Interpolation.pow5In)
+                ),
+                Actions.removeActor()
+            )
+        );
+    }
 }

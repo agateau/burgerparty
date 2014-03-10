@@ -17,71 +17,71 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class AboutScreen extends BurgerPartyScreen {
-	private static final float PIXEL_PER_SECOND = 48;
+    private static final float PIXEL_PER_SECOND = 48;
 
-	private ScrollPane mScrollPane;
+    private ScrollPane mScrollPane;
 
-	public AboutScreen(BurgerPartyGame game) {
-		super(game);
-		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
-		setBackgroundActor(bgImage);
-		setupWidgets();
-		new RefreshHelper(getStage()) {
-			@Override
-			protected void refresh() {
-				getGame().showAboutScreen();
-				dispose();
-			}
-		};
-	}
+    public AboutScreen(BurgerPartyGame game) {
+        super(game);
+        Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
+        setBackgroundActor(bgImage);
+        setupWidgets();
+        new RefreshHelper(getStage()) {
+            @Override
+            protected void refresh() {
+                getGame().showAboutScreen();
+                dispose();
+            }
+        };
+    }
 
-	private void setupWidgets() {
-		BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
-		builder.build(FileUtils.assets("screens/about.gdxui"));
-		AnchorGroup root = builder.getActor("root");
-		getStage().addActor(root);
-		root.setFillParent(true);
+    private void setupWidgets() {
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
+        builder.build(FileUtils.assets("screens/about.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        getStage().addActor(root);
+        root.setFillParent(true);
 
-		builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
-			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-				onBackPressed();
-			}
-		});
+        builder.<ImageButton>getActor("backButton").addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                onBackPressed();
+            }
+        });
 
-		builder.<Label>getActor("titleLabel").addListener(new ClickListener() {
-			public void clicked(InputEvent event, float x, float y) {
-				++mClickCount;
-				if (mClickCount >= 5) {
-					getGame().showCheatScreen();
-				}
-			}
-			private int mClickCount = 0;
-		});
+        builder.<Label>getActor("titleLabel").addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                ++mClickCount;
+                if (mClickCount >= 5) {
+                    getGame().showCheatScreen();
+                }
+            }
+            private int mClickCount = 0;
+        });
 
-		mScrollPane = builder.<ScrollPane>getActor("scrollPane");
+        mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
-		String aboutText = FileUtils.assets("about.txt").readString("utf-8");
+        String aboutText = FileUtils.assets("about.txt").readString("utf-8");
 
-		Label label = builder.<Label>getActor("bodyLabel");
-		label.setText(aboutText);
-		label.pack();
-	}
+        Label label = builder.<Label>getActor("bodyLabel");
+        label.setText(aboutText);
+        label.pack();
+    }
 
-	@Override
-	public void onBackPressed() {
-		getGame().showStartScreen();
-	}
+    @Override
+    public void onBackPressed() {
+        getGame().showStartScreen();
+    }
 
-	@Override
-	public void render(float delta) {
-		super.render(delta);
-		if (Gdx.input.isTouched()) {
-			return;
-		}
-		float maxY = mScrollPane.getWidget().getHeight();
-		float y = mScrollPane.getScrollY();
-		if (y < maxY) {
-			mScrollPane.setScrollY(y + PIXEL_PER_SECOND * delta);
-		}
-	}
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+        if (Gdx.input.isTouched()) {
+            return;
+        }
+        float maxY = mScrollPane.getWidget().getHeight();
+        float y = mScrollPane.getScrollY();
+        if (y < maxY) {
+            mScrollPane.setScrollY(y + PIXEL_PER_SECOND * delta);
+        }
+    }
 }

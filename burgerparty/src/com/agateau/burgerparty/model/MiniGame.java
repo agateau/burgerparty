@@ -9,32 +9,32 @@ import com.badlogic.gdx.graphics.Pixmap;
 
 
 public abstract class MiniGame {
-	public Signal0 exiting = new Signal0();
+    public Signal0 exiting = new Signal0();
 
-	public MiniGame(Assets assets, BurgerPartyGame game) {
-		assert(assets != null);
-		mAssets = assets;
-		mGame = game;
-	}
+    public MiniGame(Assets assets, BurgerPartyGame game) {
+        assert(assets != null);
+        mAssets = assets;
+        mGame = game;
+    }
 
-	public abstract void showStartScreen();
+    public abstract void showStartScreen();
 
-	public abstract void showMainScreen();
+    public abstract void showMainScreen();
 
-	public void showGameOverScreen() {
-		Pixmap pix = UiUtils.getPixmap(0, 0, mGame.getWidth(), mGame.getHeight());
-		mGame.setScreenAndDispose(new MiniGameOverScreen(this, pix));
-	}
+    public void showGameOverScreen() {
+        Pixmap pix = UiUtils.getPixmap(0, 0, mGame.getWidth(), mGame.getHeight());
+        mGame.setScreenAndDispose(new MiniGameOverScreen(this, pix));
+    }
 
-	public Assets getAssets() {
-		assert(mAssets != null);
-		return mAssets;
-	}
+    public Assets getAssets() {
+        assert(mAssets != null);
+        return mAssets;
+    }
 
-	public void setScreenAndDispose(Screen screen) {
-		mGame.setScreenAndDispose(screen);
-	}
+    public void setScreenAndDispose(Screen screen) {
+        mGame.setScreenAndDispose(screen);
+    }
 
-	private Assets mAssets;
-	private BurgerPartyGame mGame;
+    private Assets mAssets;
+    private BurgerPartyGame mGame;
 }

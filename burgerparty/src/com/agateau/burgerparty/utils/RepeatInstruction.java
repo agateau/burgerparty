@@ -8,26 +8,26 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
 
 public class RepeatInstruction implements Instruction {
-	private Array<Instruction> mInstructions;
-	private int mCount;
+    private Array<Instruction> mInstructions;
+    private int mCount;
 
-	public RepeatInstruction(Array<Instruction> instructions, int count) {
-		mInstructions = instructions;
-		mCount = count;
-	}
+    public RepeatInstruction(Array<Instruction> instructions, int count) {
+        mInstructions = instructions;
+        mCount = count;
+    }
 
-	@Override
-	public Action run(Context context) {
-		Action action;
-		if (mInstructions.size > 1) {
-			SequenceAction seq = Actions.sequence();
-			for (Instruction instruction: mInstructions) {
-				seq.addAction(instruction.run(context));
-			}
-			action = seq;
-		} else {
-			action = mInstructions.get(0).run(context);
-		}
-		return Actions.repeat(mCount == 0 ? RepeatAction.FOREVER : mCount, action);
-	}
+    @Override
+    public Action run(Context context) {
+        Action action;
+        if (mInstructions.size > 1) {
+            SequenceAction seq = Actions.sequence();
+            for (Instruction instruction: mInstructions) {
+                seq.addAction(instruction.run(context));
+            }
+            action = seq;
+        } else {
+            action = mInstructions.get(0).run(context);
+        }
+        return Actions.repeat(mCount == 0 ? RepeatAction.FOREVER : mCount, action);
+    }
 }

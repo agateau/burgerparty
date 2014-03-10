@@ -4,16 +4,16 @@ package com.agateau.burgerparty.utils;
 import java.lang.ref.WeakReference;
 
 public class Signal1<T1> extends AbstractSignal<Signal1.Handler<T1>> {
-	public interface Handler<T1> extends Signal.Handler {
-		void handle(T1 a1);
-	}
+    public interface Handler<T1> extends Signal.Handler {
+        void handle(T1 a1);
+    }
 
-	public void emit(T1 a1) {
-		for(WeakReference<Handler<T1>> ref : mHandlers) {
-			Handler<T1> handler = ref.get();
-			if (handler != null) {
-				handler.handle(a1);
-			}
-		}
-	}
+    public void emit(T1 a1) {
+        for (WeakReference<Handler<T1>> ref : mHandlers) {
+            Handler<T1> handler = ref.get();
+            if (handler != null) {
+                handler.handle(a1);
+            }
+        }
+    }
 }
