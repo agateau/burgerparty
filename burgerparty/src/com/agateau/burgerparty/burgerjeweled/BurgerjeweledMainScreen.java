@@ -334,7 +334,7 @@ public class BurgerjeweledMainScreen extends StageScreen {
 	}
 
 	private void createHud() {
-		mScoreLabel = new Label("0\n0", mMiniGame.getAssets().getSkin(), "score");
+		mScoreLabel = new Label("0\n0", mMiniGame.getAssets().getSkin(), "default");
 		getStage().addActor(mScoreLabel);
 		mScoreLabel.setX(0);
 		mScoreLabel.setY(getStage().getHeight() - mScoreLabel.getPrefHeight());

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
 import com.agateau.burgerparty.burgervaders.BurgerVadersMiniGame;
 import com.agateau.burgerparty.burgerjeweled.BurgerjeweledMiniGame;
+import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.model.Universe;
@@ -15,6 +16,7 @@ import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.AboutScreen;
+import com.agateau.burgerparty.screens.AchievementsScreen;
 import com.agateau.burgerparty.screens.CheatScreen;
 import com.agateau.burgerparty.screens.GameScreen;
 import com.agateau.burgerparty.screens.LevelListScreen;
@@ -24,13 +26,16 @@ import com.agateau.burgerparty.screens.NewWorldScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
+import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.FileLogPrinter;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
+import com.agateau.burgerparty.view.AchievementViewController;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -50,6 +55,8 @@ public class BurgerPartyGame extends Game {
 	private int mLevelWorldIndex = 0;
 	private int mLevelIndex = 0;
 	private AdController mAdController;
+	private BurgerPartyGameStats mGameStats;
+	private AchievementViewController mAchievementViewController = new AchievementViewController(this);
 
 	private static final String PROGRESS_FILE = "progress.xml";
 
@@ -161,6 +168,21 @@ public class BurgerPartyGame extends Game {
 		progressIO.load(handle);
 	}
 
+	private void setupAchievements() {
+		mGameStats = new BurgerPartyGameStats();
+		mGameStats.manager.achievementUnlocked.connect(mHandlers, new Signal1.Handler<Achievement>() {
+			@Override
+			public void handle(Achievement achievement) {
+				onAchievementUnlocked(achievement);
+			}
+		});
+	}
+
+	private void onAchievementUnlocked(Achievement achievement) {
+		log.i("onAchievementUnlocked: '%s'", achievement.getTitle());
+		mAchievementViewController.show(achievement);
+	}
+
 	private void saveLevelProgress() {
 		FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
 		ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
@@ -185,6 +207,10 @@ public class BurgerPartyGame extends Game {
 
 	public Universe getUniverse() {
 		return mUniverse;
+	}
+
+	public BurgerPartyGameStats getGameStats() {
+		return mGameStats;
 	}
 
 	public void startLevel(int levelWorldIndex, int levelIndex) {
@@ -233,6 +259,7 @@ public class BurgerPartyGame extends Game {
 		mMusicController.play();
 		setupAnimScriptLoader();
 		setupUniverse();
+		setupAchievements();
 		showStartScreen();
 	}
 
@@ -259,6 +286,11 @@ public class BurgerPartyGame extends Game {
 	public void showAboutScreen() {
 		mMusicController.play();
 		setScreenAndDispose(new AboutScreen(this));
+	}
+
+	public void showAchievementsScreen() {
+		mMusicController.play();
+		setScreenAndDispose(new AchievementsScreen(this));
 	}
 
 	public void showCheatScreen() {

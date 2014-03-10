@@ -11,7 +11,7 @@ public class GameScreen extends BurgerPartyScreen {
 
 	public GameScreen(BurgerPartyGame game, Level level) {
 		super(game);
-		mWorld = new World(level);
+		mWorld = new World(game.getGameStats(), level);
 		mWorldView = new WorldView(this, game, mWorld);
 		getStage().addActor(mWorldView);
 	}

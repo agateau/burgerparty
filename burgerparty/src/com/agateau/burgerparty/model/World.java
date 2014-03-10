@@ -28,6 +28,7 @@ public class World {
 	}
 	public Signal0 burgerFinished = new Signal0();
 	public Signal1<Score> mealFinished = new Signal1<Score>();
+	public Signal0 levelFinished = new Signal0();
 	public Signal0 levelFailed = new Signal0();
 	public Signal0 trashing = new Signal0();
 
@@ -40,7 +41,10 @@ public class World {
 	private static final int NEUTRAL_COIN_COUNT = 2;
 	private static final int ANGRY_COIN_COUNT = 1;
 
-	public World(Level level) {
+	private final BurgerPartyGameStats mGameStats;
+
+	public World(BurgerPartyGameStats gameStats, Level level) {
+		mGameStats = gameStats;
 		if (log == null) {
 			log = NLog.getRoot().create("World");
 		}
@@ -53,7 +57,8 @@ public class World {
 		mMealExtraInventory.setItems(level.definition.getExtraItems());
 
 		final int STAR_COUNT = 3;
-		mStarCost = HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1;
+		// "- 1" to leave some room for "perfect" coins
+		mStarCost = Math.max(HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1, 1);
 
 		setupMeal();
 	}
@@ -164,6 +169,7 @@ public class World {
 		};
 		mTimer.scheduleTask(task, 1, 1);
 		generateTarget();
+		mGameStats.onLevelStarted(this);
 	}
 
 	public void pause() {
@@ -247,6 +253,7 @@ public class World {
 	private void onMealFinished() {
 		long time = mMealDoneCounter.restart();
 		log.i("onMealFinished: Meal done in %dms", time);
+		mGameStats.mealServedCount.increase();
 		emitMealFinished();
 		mActiveCustomerIndex++;
 		if (mActiveCustomerIndex < mCustomers.size) {
@@ -254,6 +261,7 @@ public class World {
 			generateTarget();
 		} else {
 			mTimer.stop();
+			levelFinished.emit();
 		}
 	}
 

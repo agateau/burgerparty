@@ -1,0 +1,48 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Aurélien Gâteau <agateau@kde.org>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-04 14:10+0100\n"
+"PO-Revision-Date: 2014-03-02 22:55+0100\n"
+"Last-Translator: Aurélien Gâteau <agateau@kde.org>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:31
+msgid "1 remaining."
+msgid_plural "%n remaining."
+msgstr[0] "1 restant."
+msgstr[1] "%n restants."
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:32
+msgid "Burger Master"
+msgstr "Maître Burger"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:32
+msgid "Serve 50 burgers"
+msgstr "Servir 50 burgers"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:36
+msgid "Burger God"
+msgstr "Dieu des Burgers"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:36
+msgid "Serve 100 burgers"
+msgstr "Servir 100 burgers"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:40
+msgid "Close Call"
+msgstr "C'était juste"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:40
+msgid "Finish a level with 3 seconds left"
+msgstr "Finir un niveau avec 3 secondes restantes"

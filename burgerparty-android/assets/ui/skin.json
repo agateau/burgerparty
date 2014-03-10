@@ -72,6 +72,13 @@
         about-body: {
             font: main-font,
             fontColor: black
+        },
+
+        achievement-title: {
+            font: main-font
+        },
+        achievement-description: {
+            font: main-font-small
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
@@ -103,6 +110,12 @@
             down: ui/icon-button-down,
             up: ui/icon-button,
             pressedOffsetY: -2
+        },
+        checked-round-button: {
+            down: ui/icon-button-down,
+            checked: ui/icon-button-down,
+            up: ui/icon-button,
+            pressedOffsetY: 0
         },
         round-button-big: {
             down: ui/icon-button-big-down,

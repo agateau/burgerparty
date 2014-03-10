@@ -38,12 +38,19 @@ public class AnimScriptLoader {
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
 				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
+		registerAction("sizeTo",
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Height),
+				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+				new InterpolationArgumentDefinition(Interpolation.linear)
+		);
 		registerAction("alpha",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
 				new InterpolationArgumentDefinition(Interpolation.linear)
 		);
 		mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
+		mInstructionDefinitionMap.put("repeat", new RepeatInstructionDefinition(this));
 	}
 
 	public AnimScript load(String definition) {

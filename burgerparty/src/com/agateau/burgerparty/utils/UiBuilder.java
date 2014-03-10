@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -27,6 +28,14 @@ public class UiBuilder {
 	public UiBuilder(TextureAtlas atlas, Skin skin) {
 		mAtlas = atlas;
 		mSkin = skin;
+	}
+
+	public AnimScriptLoader getAnimScriptloader() {
+		return mAnimScriptloader;
+	}
+
+	public void setAnimScriptloader(AnimScriptLoader animScriptloader) {
+		mAnimScriptloader = animScriptloader;
 	}
 
 	public Actor build(FileHandle handle) {
@@ -53,12 +62,21 @@ public class UiBuilder {
 		Actor firstActor = null;
 		for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
 			XmlReader.Element element = parentElement.getChild(idx);
+			if (element.getName().equals("Action")) {
+				continue;
+			}
 			Actor actor = createActorForElement(element);
 			if (idx == 0) {
 				firstActor = actor;
 			}
 			assert(actor != null);
+			if (actor instanceof Widget) {
+				applyWidgetProperties((Widget)actor, element);
+			}
 			applyActorProperties(actor, element, parentActor);
+			if (mAnimScriptloader != null) {
+				createActorActions(actor, element);
+			}
 			String id = element.getAttribute("id", null);
 			if (id != null) {
 				if (mActorForId.containsKey(id)) {
@@ -193,11 +211,19 @@ public class UiBuilder {
 	}
 
 	protected VerticalGroup createVerticalGroup(XmlReader.Element element) {
-		return new VerticalGroup();
+		VerticalGroup group = new VerticalGroup();
+		group.setSpacing(element.getFloatAttribute("spacing", 0));
+		return group;
 	}
 
 	protected HorizontalGroup createHorizontalGroup(XmlReader.Element element) {
-		return new HorizontalGroup();
+		HorizontalGroup group = new HorizontalGroup();
+		group.setSpacing(element.getFloatAttribute("spacing", 0));
+		return group;
+	}
+
+	protected void applyWidgetProperties(Widget widget, XmlReader.Element element) {
+		widget.setFillParent(element.getBooleanAttribute("fillParent", false));
 	}
 
 	protected void applyActorProperties(Actor actor, XmlReader.Element element, Group parentActor) {
@@ -223,6 +249,14 @@ public class UiBuilder {
 		attr = element.getAttribute("height", "");
 		if (!attr.isEmpty()) {
 			actor.setHeight(Float.parseFloat(attr));
+		}
+		attr = element.getAttribute("originX", "");
+		if (!attr.isEmpty()) {
+			actor.setOriginX(Float.parseFloat(attr));
+		}
+		attr = element.getAttribute("originY", "");
+		if (!attr.isEmpty()) {
+			actor.setOriginY(Float.parseFloat(attr));
 		}
 		for (int idx = 0, size = ANCHOR_NAMES.length; idx < size; ++idx) {
 			String anchorName = ANCHOR_NAMES[idx];
@@ -266,9 +300,22 @@ public class UiBuilder {
 		return rule;
 	}
 
+	protected void createActorActions(Actor actor, XmlReader.Element element) {
+		for (XmlReader.Element child: element.getChildrenByName("Action")) {
+			String definition = child.getText();
+			float duration = child.getFloatAttribute("duration", -1);
+			if (duration < 0) {
+				throw new RuntimeException("Missing 'duration' attribute for action '" + definition + "'");
+			}
+			AnimScript script = mAnimScriptloader.load(definition);
+			actor.addAction(script.createAction(1, 1, duration));
+		}
+	}
+
 	private Map<String, Actor> mActorForId = new HashMap<String, Actor>();
 	private TextureAtlas mAtlas;
 	private Skin mSkin;
+	private AnimScriptLoader mAnimScriptloader = null;
 
 	private static final String[] ANCHOR_NAMES = {
 		"topLeft",

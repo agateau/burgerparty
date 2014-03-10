@@ -11,6 +11,7 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -21,6 +22,8 @@ public class StartScreen extends BurgerPartyScreen {
 	private static int START_COUNT_BEFORE_ADS = 8;
 	private static long MINUTES_BETWEEN_ADS = 12;
 	private static NLog log;
+
+	private static final float MORE_ANIM_HEIGHT = 24;
 
 	public StartScreen(BurgerPartyGame game) {
 		super(game);
@@ -56,6 +59,22 @@ public class StartScreen extends BurgerPartyScreen {
 				getGame().showAboutScreen();
 			}
 		});
+		builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				getGame().showAchievementsScreen();
+			}
+		});
+		ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
+		final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
+		moreGroup.setColor(1, 1, 1, 0);
+		moreButton.addListener(new ChangeListener() {
+			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+				boolean showing = moreGroup.getColor().a < 1;
+				moreGroup.addAction(Actions.alpha(showing ? 1 : 0, 0.2f));
+				moreGroup.addAction(Actions.moveBy(0, showing ? MORE_ANIM_HEIGHT : -MORE_ANIM_HEIGHT, 0.2f));
+			}
+		});
+
 		mMuteButton = builder.<ImageButton>getActor("muteButton");
 		mMuteButton.addListener(new ChangeListener() {
 			public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -65,6 +84,8 @@ public class StartScreen extends BurgerPartyScreen {
 			}
 		});
 		updateMuteButton();
+		root.layout();
+		moreGroup.setPosition(moreButton.getX(), moreButton.getTop() + root.getSpacing() - MORE_ANIM_HEIGHT);
 	}
 
 	private void onStartClicked() {

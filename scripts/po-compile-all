@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+cd $(dirname $0)
+
+OUT_DIR=burgerparty/i18n
+
+for podir in ../po/*/ ; do
+    locale=$(basename $podir)
+    echo $locale
+    ./po-compile $podir/messages.po \
+        --locale $locale \
+        --output ../burgerparty/i18n/Messages_$locale.java \
+        --base com.agateau.burgerparty.utils.Messages
+done

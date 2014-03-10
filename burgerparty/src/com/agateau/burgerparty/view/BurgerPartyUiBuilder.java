@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.XmlReader;
 public class BurgerPartyUiBuilder extends UiBuilder {
 	public BurgerPartyUiBuilder(Assets assets) {
 		super(assets.getTextureAtlas(), assets.getSkin());
+		setAnimScriptloader(assets.getAnimScriptLoader());
 		mAssets = assets;
 	}
 
