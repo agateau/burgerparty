@@ -3,8 +3,7 @@ package com.agateau.burgerparty.utils;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 
-public class StringArgumentDefinition extends
-		ArgumentDefinition<String> {
+public class StringArgumentDefinition extends ArgumentDefinition<String> {
 
 	public StringArgumentDefinition() {
 		super(String.class, null);

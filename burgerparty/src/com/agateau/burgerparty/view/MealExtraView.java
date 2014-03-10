@@ -24,6 +24,13 @@ public class MealExtraView extends Group {
 	private static final float ITEM1_X = -30;
 	private static final float ITEM1_Y = 10;
 
+	private MealExtra mMealExtra;
+	private TextureAtlas mAtlas;
+	private AnimScriptLoader mAnimScriptLoader;
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+	private Array<ItemImage> mItemActors = new Array<ItemImage>();
+	private boolean mOverlapping = true;
+
 	private static class ItemImage extends Image {
 		public ItemImage(MealItem item, TextureRegion region) {
 			super(region);
@@ -157,11 +164,4 @@ public class MealExtraView extends Group {
 		mItemActors.add(image);
 		return image;
 	}
-
-	private MealExtra mMealExtra;
-	private TextureAtlas mAtlas;
-	private AnimScriptLoader mAnimScriptLoader;
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private Array<ItemImage> mItemActors = new Array<ItemImage>();
-	private boolean mOverlapping = true;
 }

@@ -7,6 +7,12 @@ public class SandBoxWorld {
 	private static int MAX_MEAL_EXTRA = 2;
 	private static int MAX_BURGER_ITEMS = 200;
 
+	private Inventory mBurgerInventory = new Inventory();
+	private Inventory mMealExtraInventory = new Inventory();
+	private Burger mBurger = new Burger();
+	private MealExtra mMealExtra = new MealExtra();
+	private int mMaxBurgerItems = MAX_BURGER_ITEMS;
+
 	/**
 	 * For testing purposes
 	 */
@@ -52,10 +58,4 @@ public class SandBoxWorld {
 	public boolean canAddMealExtraItem(Array<MealItem> items, MealItem item) {
 		return items.size < MAX_MEAL_EXTRA;
 	}
-
-	private Inventory mBurgerInventory = new Inventory();
-	private Inventory mMealExtraInventory = new Inventory();
-	private Burger mBurger = new Burger();
-	private MealExtra mMealExtra = new MealExtra();
-	private int mMaxBurgerItems = MAX_BURGER_ITEMS;
 }

@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.utils.Array;
 
 public class ParallelInstruction implements Instruction {
+	private Array<Instruction> mInstructions;
+
 	public ParallelInstruction(Array<Instruction> instructions) {
 		mInstructions = instructions;
 	}
@@ -19,6 +21,4 @@ public class ParallelInstruction implements Instruction {
 		}
 		return action;
 	}
-
-	Array<Instruction> mInstructions;
 }

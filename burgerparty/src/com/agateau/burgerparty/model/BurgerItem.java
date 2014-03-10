@@ -3,6 +3,11 @@ package com.agateau.burgerparty.model;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class BurgerItem extends MealItem {
+	private int mHeight = 0;
+	private int mOffset = 0;
+	private SubType mSubType;
+	private String mBottomName;
+
 	public static enum SubType {
 		MIDDLE,
 		TOP,
@@ -62,9 +67,4 @@ public class BurgerItem extends MealItem {
 	public String getBottomName() {
 		return mBottomName;
 	}
-
-	private int mHeight = 0;
-	private int mOffset = 0;
-	private SubType mSubType;
-	private String mBottomName;
 }

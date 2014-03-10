@@ -3,6 +3,8 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class Counter {
+	private long mStart = 0;
+
 	public Counter() {
 		start();
 	}
@@ -17,6 +19,4 @@ public class Counter {
 		mStart = now;
 		return delta;
 	}
-
-	private long mStart = 0;
 }

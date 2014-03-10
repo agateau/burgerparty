@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class MaskedDrawableAtlas {
+	private HashMap<String, MaskedDrawable> mMap = new HashMap<String, MaskedDrawable>();
+	private final TextureAtlas mTextureAtlas;
+
 	public MaskedDrawableAtlas(TextureAtlas textureAtlas) {
 		mTextureAtlas = textureAtlas;
 	}
@@ -22,7 +25,4 @@ public class MaskedDrawableAtlas {
 		}
 		return drawable;
 	}
-
-	private HashMap<String, MaskedDrawable> mMap = new HashMap<String, MaskedDrawable>();
-	private final TextureAtlas mTextureAtlas;
 }

@@ -35,8 +35,11 @@ import com.badlogic.gdx.utils.XmlWriter;
  * </progress>
  */
 public class ProgressIO {
-	static final int SCORE_LOCKED = -2;
-	static final int SCORE_NEW = -1;
+	public static final int SCORE_LOCKED = -2;
+	public static final int SCORE_NEW = -1;
+
+	private static NLog log;
+	private Array<LevelWorld> mWorlds;
 
 	public ProgressIO(Array<LevelWorld> worlds) {
 		if (log == null) {
@@ -206,7 +209,4 @@ public class ProgressIO {
 			log.e("save: Failed to save progress. Exception: %s", e);
 		}
 	}
-
-	private static NLog log;
-	private Array<LevelWorld> mWorlds;
 }

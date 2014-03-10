@@ -3,6 +3,8 @@ package com.agateau.burgerparty.utils;
 import java.util.LinkedList;
 
 public class ConnectionManager {
+	private LinkedList<Connection> mConnections = new LinkedList<Connection>();
+
 	public void add(Signal signal, Signal.Handler handler) {
 		mConnections.add(new Connection(signal, handler));
 	}
@@ -22,6 +24,4 @@ public class ConnectionManager {
 		Signal signal;
 		Signal.Handler handler;
 	}
-
-	private LinkedList<Connection> mConnections = new LinkedList<Connection>();
 }

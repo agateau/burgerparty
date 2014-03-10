@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class BurgerPartyUiBuilder extends UiBuilder {
+	private final Assets mAssets;
+
 	public BurgerPartyUiBuilder(Assets assets) {
 		super(assets.getTextureAtlas(), assets.getSkin());
 		setAnimScriptloader(assets.getAnimScriptLoader());
@@ -34,6 +36,4 @@ public class BurgerPartyUiBuilder extends UiBuilder {
 
 		return button;
 	}
-
-	Assets mAssets;
 }

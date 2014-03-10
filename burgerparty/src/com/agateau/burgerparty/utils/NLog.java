@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class NLog {
+	private final Printer mPrinter;
+	private final String mTag;
+
 	public static abstract class Printer {
 		public Printer() {
 			mStartTime = TimeUtils.nanoTime();
@@ -90,8 +93,4 @@ public class NLog {
 			}
 		}
 	}
-
-	private final Printer mPrinter;
-	private final String mTag;
-
 }

@@ -3,6 +3,8 @@ package com.agateau.burgerparty.model;
 import java.util.LinkedList;
 
 public class MealExtra extends MealItemCollection<MealItem> {
+	private LinkedList<MealItem> mItems = new LinkedList<MealItem>();
+
 	public CompareResult compareTo(MealExtra reference) {
 		LinkedList<MealItem> us = new LinkedList<MealItem>(mItems);
 		LinkedList<MealItem> ref = new LinkedList<MealItem>(reference.mItems);
@@ -30,6 +32,4 @@ public class MealExtra extends MealItemCollection<MealItem> {
 	public LinkedList<MealItem> getItems() {
 		return mItems;
 	}
-
-	private LinkedList<MealItem> mItems = new LinkedList<MealItem>();
 }

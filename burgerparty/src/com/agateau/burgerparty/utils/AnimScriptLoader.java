@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
 public class AnimScriptLoader {
+	private Map<String, InstructionDefinition> mInstructionDefinitionMap = new HashMap<String, InstructionDefinition>();
+
 	public AnimScriptLoader() {
 		registerAction("moveTo",
 				new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Width),
@@ -125,6 +127,4 @@ public class AnimScriptLoader {
 	private void registerAction(String name, ArgumentDefinition<?>... types) {
 		registerStaticMethod(name, Actions.class, name, types);
 	}
-
-	private Map<String, InstructionDefinition> mInstructionDefinitionMap = new HashMap<String, InstructionDefinition>();
 }

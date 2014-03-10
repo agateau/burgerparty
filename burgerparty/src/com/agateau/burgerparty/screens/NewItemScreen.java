@@ -30,6 +30,15 @@ public class NewItemScreen extends BurgerPartyScreen {
 
 	public Signal0 done = new Signal0();
 
+	private Actor mBgActor;
+	private WidgetGroup mFgGroup;
+	private Image mFgImage;
+	private Bubble mBubble;
+	private AnchorGroup mBubbleContent;
+	private Label mBubbleLabel;
+	private Image mItemImage;
+	private float mFgGroupFinalX;
+
 	private static class RayActor extends ShaderActor {
 		public RayActor(TextureRegion region, Color bgColor1, Color bgColor2, Color fgColor, float degPerSecond) {
 			super(region);
@@ -193,13 +202,4 @@ public class NewItemScreen extends BurgerPartyScreen {
 	public void onBackPressed() {
 		done.emit();
 	}
-
-	private Actor mBgActor;
-	private WidgetGroup mFgGroup;
-	private Image mFgImage;
-	private Bubble mBubble;
-	private AnchorGroup mBubbleContent;
-	private Label mBubbleLabel;
-	private Image mItemImage;
-	private float mFgGroupFinalX;
 }

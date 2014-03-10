@@ -6,6 +6,8 @@ import java.io.StreamTokenizer;
 import com.badlogic.gdx.utils.Array;
 
 public class RepeatInstructionDefinition implements InstructionDefinition {
+	private AnimScriptLoader mLoader;
+
 	public RepeatInstructionDefinition(AnimScriptLoader loader) {
 		mLoader = loader;
 	}
@@ -27,6 +29,4 @@ public class RepeatInstructionDefinition implements InstructionDefinition {
 		}
 		throw new RuntimeException("Error in repeat instruction: '" + tokenizer.sval + "' is not a valid repeat count");
 	}
-
-	private AnimScriptLoader mLoader;
 }

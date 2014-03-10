@@ -6,6 +6,8 @@ import java.io.StreamTokenizer;
 import com.badlogic.gdx.utils.Array;
 
 public class ParallelInstructionDefinition implements InstructionDefinition {
+	private AnimScriptLoader mLoader;
+
 	public ParallelInstructionDefinition(AnimScriptLoader loader) {
 		mLoader = loader;
 	}
@@ -15,6 +17,4 @@ public class ParallelInstructionDefinition implements InstructionDefinition {
 		Array<Instruction> lst = mLoader.tokenize(tokenizer, "end");
 		return new ParallelInstruction(lst);
 	}
-
-	private AnimScriptLoader mLoader;
 }

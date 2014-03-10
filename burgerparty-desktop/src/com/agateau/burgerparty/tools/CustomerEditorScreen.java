@@ -25,6 +25,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
 public class CustomerEditorScreen extends StageScreen {
+	private CustomerEditorGame mGame;
+	private Skin mSkin;
+
+	private List mCustomerTypeList;
+	private VerticalGroup mCustomerContainer;
+	private List mMoodList;
+	private Array<Customer> mCustomers = new Array<Customer>();
 
 	public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
 		mGame = game;
@@ -156,12 +163,4 @@ public class CustomerEditorScreen extends StageScreen {
 		}
 		return moodStrings;
 	}
-
-	private CustomerEditorGame mGame;
-	private Skin mSkin;
-
-	private List mCustomerTypeList;
-	private VerticalGroup mCustomerContainer;
-	private List mMoodList;
-	private Array<Customer> mCustomers = new Array<Customer>();
 }

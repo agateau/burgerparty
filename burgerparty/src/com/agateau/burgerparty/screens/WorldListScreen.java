@@ -21,6 +21,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class WorldListScreen extends BurgerPartyScreen {
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+	private int mStarCount;
+
 	public WorldListScreen(BurgerPartyGame game) {
 		super(game);
 		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
@@ -104,7 +107,4 @@ public class WorldListScreen extends BurgerPartyScreen {
 		Label starCountLabel = builder.<Label>getActor("starCountLabel");
 		starCountLabel.setText(String.valueOf(mStarCount));
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private int mStarCount;
 }

@@ -22,6 +22,14 @@ import com.badlogic.gdx.utils.Array;
 public class BurgerView extends Group {
 	private static final float ADD_ACTION_HEIGHT = 100;
 
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+	private Burger mBurger;
+	private TextureAtlas mAtlas;
+	private SoundAtlas mSoundAtlas;
+	private AnimScriptLoader mAnimScriptLoader;
+	private float mPadding = 0;
+	private Array<ItemImage> mItemActors = new Array<ItemImage>();
+
 	private static class ItemImage extends Image {
 		public ItemImage(BurgerItem item, TextureRegion region) {
 			super(region);
@@ -172,12 +180,4 @@ public class BurgerView extends Group {
 		}
 		return value;
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private Burger mBurger;
-	private TextureAtlas mAtlas;
-	private SoundAtlas mSoundAtlas;
-	private AnimScriptLoader mAnimScriptLoader;
-	private float mPadding = 0;
-	private Array<ItemImage> mItemActors = new Array<ItemImage>();
 }

@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AbstractSignal<H extends Signal.Handler> implements Signal {
+	protected List<WeakReference<H>> mHandlers = new CopyOnWriteArrayList<WeakReference<H>>();
+
 	public void connect(Set<Object> tracker, H handler) {
 		tracker.add(handler);
 		mHandlers.add(new WeakReference<H>(handler));
@@ -29,6 +31,4 @@ public class AbstractSignal<H extends Signal.Handler> implements Signal {
 	public int getHandlerCount() {
 		return mHandlers.size();
 	}
-
-	protected List<WeakReference<H>> mHandlers = new CopyOnWriteArrayList<WeakReference<H>>();
 }

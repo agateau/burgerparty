@@ -9,6 +9,17 @@ public class MusicController {
 	private static float FADE_STEP = 0.1f;
 	private static float FADE_INTERVAL = 0.1f;
 
+	private Preferences mPrefs;
+
+	private Music mMusic;
+	private Fader mFader = new Fader();
+
+	// Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
+	private boolean mPlaying = false;
+	private boolean mIsMuted = false;
+
+	private static NLog log;
+
 	private class Fader extends Timer.Task {
 		@Override
 		public void run() {
@@ -114,18 +125,7 @@ public class MusicController {
 		return mIsMuted;
 	}
 
-	private Preferences mPrefs;
-
-	private Music mMusic;
-	private Fader mFader = new Fader();
-
-	// Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
-	private boolean mPlaying = false;
-	private boolean mIsMuted = false;
-
 	private void logState() {
 		log.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
 	}
-
-	private static NLog log;
 }

@@ -3,6 +3,12 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.utils.Array;
 
 public class TileMap {
+	private int mTileWidth;
+	private int mTileHeight;
+	private int mRowCount;
+	private int mColumnCount;
+	private Array<Array<Tile>> mColumns;
+
 	public TileMap(int columnCount, int rowCount, int tileSize) {
 		this(columnCount, rowCount, tileSize, tileSize);
 	}
@@ -49,10 +55,4 @@ public class TileMap {
 	public Tile getTile(int col, int row) {
 		return mColumns.get(col).get(row);
 	}
-
-	private int mTileWidth;
-	private int mTileHeight;
-	private int mRowCount;
-	private int mColumnCount;
-	private Array<Array<Tile>> mColumns;
 }

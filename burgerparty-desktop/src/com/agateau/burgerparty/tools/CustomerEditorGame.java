@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class CustomerEditorGame extends Game {
+	private Skin mSkin;
+	private TextureAtlas mAtlas;
+	private String mPartsXmlName;
+	private CustomerViewFactory mCustomerFactory;
+
 	CustomerEditorGame(String partsXmlName) {
 		mPartsXmlName = partsXmlName;
 	}
@@ -33,9 +38,4 @@ public class CustomerEditorGame extends Game {
 		FileHandle handle = Gdx.files.absolute(mPartsXmlName);
 		mCustomerFactory = new CustomerViewFactory(mAtlas, handle);
 	}
-
-	private Skin mSkin;
-	private TextureAtlas mAtlas;
-	private String mPartsXmlName;
-	private CustomerViewFactory mCustomerFactory;
 }

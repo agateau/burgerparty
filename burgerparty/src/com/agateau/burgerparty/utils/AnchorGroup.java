@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.Array;
 public class AnchorGroup extends WidgetGroup {
 	private float mSpacing = 1;
 
+	private Array<AnchorRule> mRules = new Array<AnchorRule>();
+
 	// A version of Actor.localToStageCoordinates which works with scaled actors
 	static private Vector2 localToStageCoordinates(Actor actor, Vector2 pos) {
 		while (actor != null) {
@@ -102,8 +104,6 @@ public class AnchorGroup extends WidgetGroup {
 		private float mWidthPercent;
 		private float mHeightPercent;
 	}
-
-	private Array<AnchorRule> mRules = new Array<AnchorRule>();
 
 	public void setSpacing(float spacing) {
 		mSpacing = spacing;

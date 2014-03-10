@@ -41,7 +41,36 @@ public class World {
 	private static final int NEUTRAL_COIN_COUNT = 2;
 	private static final int ANGRY_COIN_COUNT = 1;
 
+	private static NLog log;
+
+	private ConnectionManager mMealConnections = new ConnectionManager();
 	private final BurgerPartyGameStats mGameStats;
+	private BurgerGenerator mBurgerGenerator;
+	private MealExtraGenerator mMealExtraGenerator;
+	private Counter mItemAddedCounter = new Counter();
+	private Counter mMealDoneCounter = new Counter();
+
+	private Timer mTimer = new Timer();
+
+	private Level mLevel;
+	private int mStarCost;
+
+	private Inventory mBurgerInventory = new Inventory();
+	private Inventory mMealExtraInventory = new Inventory();
+
+	private Burger mBurger;
+	private MealExtra mMealExtra;
+
+	private Burger mTargetBurger = new Burger();
+	private MealExtra mTargetMealExtra = new MealExtra();
+
+	private Array<Customer> mCustomers = new Array<Customer>();
+	private int mActiveCustomerIndex = 0;
+	private int mRemainingSeconds;
+	private int mScore = 0;
+	private int mCoinCount = 0;
+
+	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
 	public World(BurgerPartyGameStats gameStats, Level level) {
 		mGameStats = gameStats;
@@ -305,34 +334,4 @@ public class World {
 		long time = mItemAddedCounter.restart();
 		log.i("restartItemTimer: Item added in %dms", time);
 	}
-
-	private static NLog log;
-
-	private ConnectionManager mMealConnections = new ConnectionManager();
-	private BurgerGenerator mBurgerGenerator;
-	private MealExtraGenerator mMealExtraGenerator;
-	private Counter mItemAddedCounter = new Counter();
-	private Counter mMealDoneCounter = new Counter();
-
-	private Timer mTimer = new Timer();
-
-	private Level mLevel;
-	private int mStarCost;
-
-	private Inventory mBurgerInventory = new Inventory();
-	private Inventory mMealExtraInventory = new Inventory();
-
-	private Burger mBurger;
-	private MealExtra mMealExtra;
-
-	private Burger mTargetBurger = new Burger();
-	private MealExtra mTargetMealExtra = new MealExtra();
-
-	private Array<Customer> mCustomers = new Array<Customer>();
-	private int mActiveCustomerIndex = 0;
-	private int mRemainingSeconds;
-	private int mScore = 0;
-	private int mCoinCount = 0;
-
-	private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 }

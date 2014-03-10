@@ -10,6 +10,14 @@ public class Customer {
 
 	public Signal0 moodChanged = new Signal0();
 
+	private static NLog log;
+	private final String mType;
+	private final int mBurgerSize;
+	private float mMoodDelay;
+	private Mood mMood = Mood.HAPPY;
+	private State mState = State.WAITING;
+	private Timer mMoodTimer = new Timer();
+
 	public enum Mood {
 		HAPPY("happy"),
 		NEUTRAL("neutral"),
@@ -126,12 +134,4 @@ public class Customer {
 		}
 		moodChanged.emit();
 	}
-
-	private static NLog log;
-	private final String mType;
-	private final int mBurgerSize;
-	private float mMoodDelay;
-	private Mood mMood = Mood.HAPPY;
-	private State mState = State.WAITING;
-	private Timer mMoodTimer = new Timer();
 }

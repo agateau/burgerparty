@@ -4,6 +4,10 @@ import java.io.StreamTokenizer;
 import java.lang.reflect.Method;
 
 class BasicInstructionDefinition implements InstructionDefinition {
+	private Object mInstance;
+	private Method mMethod;
+	private ArgumentDefinition<?>[] mArgumentDefinitions;
+
 	public BasicInstructionDefinition(Object instance, Method method, ArgumentDefinition<?>... argumentDefinitions) {
 		mInstance = instance;
 		mMethod = method;
@@ -29,8 +33,4 @@ class BasicInstructionDefinition implements InstructionDefinition {
 		}
 		return new BasicInstruction(mInstance, mMethod, args);
 	}
-
-	private Object mInstance;
-	private Method mMethod;
-	private ArgumentDefinition<?>[] mArgumentDefinitions;
 }

@@ -3,6 +3,9 @@ package com.agateau.burgerparty.utils;
 import com.agateau.burgerparty.utils.AnimScript.Context;
 
 class FloatArgument extends Argument {
+	private FloatArgumentDefinition.Domain mDomain;
+	private float mValue;
+
 	public FloatArgument(FloatArgumentDefinition.Domain d, float v) {
 		mDomain = d;
 		mValue = v;
@@ -26,8 +29,4 @@ class FloatArgument extends Argument {
 		}
 		return mValue;
 	}
-
-	private FloatArgumentDefinition.Domain mDomain;
-	private float mValue;
-
 }

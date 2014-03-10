@@ -9,7 +9,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class FileUtils {
-	static public FileHandle getUserWritableFile(String name) {
+	public static FileHandle getUserWritableFile(String name) {
 		FileHandle handle;
 		if (Gdx.app.getType() == ApplicationType.Desktop) {
 			handle = Gdx.files.external(".local/share/burgerparty/" + name);
@@ -19,7 +19,7 @@ public class FileUtils {
 		return handle;
 	}
 
-	static public FileHandle getCacheDir(String appName) {
+	public static FileHandle getCacheDir(String appName) {
 		FileHandle handle;
 		if (Gdx.app.getType() == ApplicationType.Desktop) {
 			handle = Gdx.files.external(".cache/" + appName);

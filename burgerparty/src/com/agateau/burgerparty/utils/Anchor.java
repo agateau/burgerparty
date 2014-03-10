@@ -11,11 +11,11 @@ public class Anchor {
 	public static final Anchor BOTTOM_CENTER = new Anchor(0.5f, 0);
 	public static final Anchor BOTTOM_RIGHT = new Anchor(1, 0);
 
+	public float hPercent;
+	public float vPercent;
+
 	public Anchor(float hPercent, float vPercent) {
 		this.hPercent = hPercent;
 		this.vPercent = vPercent;
 	}
-
-	public float hPercent;
-	public float vPercent;
 }

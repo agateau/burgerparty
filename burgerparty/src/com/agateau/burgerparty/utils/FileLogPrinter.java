@@ -8,6 +8,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 public class FileLogPrinter extends NLog.Printer {
+	private FileHandle mHandle;
+	private Writer mWriter;
+
 	public FileLogPrinter(FileHandle logHandle) {
 		mHandle = logHandle;
 		mWriter = mHandle.writer(true /* append */);
@@ -61,7 +64,4 @@ public class FileLogPrinter extends NLog.Printer {
 			Gdx.app.error(tag, message);
 		}
 	}
-
-	FileHandle mHandle;
-	Writer mWriter;
 }

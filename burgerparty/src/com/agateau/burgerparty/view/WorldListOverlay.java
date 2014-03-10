@@ -18,6 +18,11 @@ import com.badlogic.gdx.utils.Array;
 public class WorldListOverlay extends Overlay {
 	public Signal1<Integer> currentIndexChanged = new Signal1<Integer>();
 
+	private final HashSet<Object> mHandlers = new HashSet<Object>();
+	private final BurgerPartyScreen mScreen;
+	private final Array<LevelWorld> mWorlds;
+	private int mCurrentIndex;
+
 	public WorldListOverlay(BurgerPartyScreen screen, Array<LevelWorld> worlds, int currentIndex) {
 		super(screen.getGame().getAssets().getTextureAtlas());
 		mScreen = screen;
@@ -61,9 +66,4 @@ public class WorldListOverlay extends Overlay {
 		group.addRule(backButton, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 1, 1);
 		group.addRule(worldListView, Anchor.TOP_CENTER, group, Anchor.TOP_CENTER, 0, -1);
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private final BurgerPartyScreen mScreen;
-	private final Array<LevelWorld> mWorlds;
-	private int mCurrentIndex;
 }

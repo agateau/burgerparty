@@ -19,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class AboutScreen extends BurgerPartyScreen {
 	private static final float PIXEL_PER_SECOND = 48;
 
+	private ScrollPane mScrollPane;
+
 	public AboutScreen(BurgerPartyGame game) {
 		super(game);
 		Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
@@ -82,6 +84,4 @@ public class AboutScreen extends BurgerPartyScreen {
 			mScrollPane.setScrollY(y + PIXEL_PER_SECOND * delta);
 		}
 	}
-
-	private ScrollPane mScrollPane;
 }

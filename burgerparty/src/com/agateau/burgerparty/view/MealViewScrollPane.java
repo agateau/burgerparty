@@ -15,6 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 	private static final float EDGE_SIZE = 20f;
 
+	private final HashSet<Object> mHandlers = new HashSet<Object>();
+
+	private TextureAtlas mTextureAtlas;
+	private float mMaximumHeight = 1000;
+	private MealView mMealView;
+	private Image mTopEdge;
+	private Image mBottomEdge;
+
 	public MealViewScrollPane(MealView child, TextureAtlas atlas) {
 		super(child);
 		mTextureAtlas = atlas;
@@ -112,12 +120,4 @@ class MealViewScrollPane extends ScrollPane implements ResizeToFitChildren {
 			mTopEdge.layout();
 		}
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-
-	private TextureAtlas mTextureAtlas;
-	private float mMaximumHeight = 1000;
-	private MealView mMealView;
-	private Image mTopEdge;
-	private Image mBottomEdge;
 }

@@ -11,6 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class ScoreFeedbackActor extends Label {
 	private static final float FEEDBACK_ACTION_DURATION = 1.5f;
+
+	private static AnimScript sAnimScript = null;
+
 	public ScoreFeedbackActor(Actor parent, float mealXCenter, float mealY, World.Score score, Skin skin, AnimScriptLoader loader) {
 		super("", skin, "score-feedback");
 		String text = score.message;
@@ -48,6 +51,4 @@ public class ScoreFeedbackActor extends Label {
 			+ "end\n"
 		);
 	}
-
-	private static AnimScript sAnimScript = null;
 }

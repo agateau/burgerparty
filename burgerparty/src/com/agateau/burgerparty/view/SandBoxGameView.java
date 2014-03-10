@@ -29,6 +29,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 
 public class SandBoxGameView extends AbstractWorldView {
+	private HashSet<Object> mHandlers = new HashSet<Object>();
+
+	private int mLevelWorldIndex;
+	private SandBoxWorld mWorld = new SandBoxWorld();
+	private Stack<MealItem> mUndoStack = new Stack<MealItem>();
+	private MealView mMealView;
+	private final BurgerPartyGame mGame;
+	private final BurgerPartyScreen mScreen;
+
+	private Group mBottomLeftBar;
+	private ImageButton mSwitchInventoriesButton;
+	private ImageButton mUndoButton;
+
+	private Group mBottomRightBar;
+	private ImageButton mDeliverButton;
+
 	public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
 		super(game.getAssets(), game.getUniverse().get(0).getDirName());
 		mScreen = screen;
@@ -269,20 +285,4 @@ public class SandBoxGameView extends AbstractWorldView {
 	private void playError() {
 		mGame.getAssets().getSoundAtlas().findSound("error").play();
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-
-	private int mLevelWorldIndex;
-	private SandBoxWorld mWorld = new SandBoxWorld();
-	private Stack<MealItem> mUndoStack = new Stack<MealItem>();
-	private MealView mMealView;
-	private final BurgerPartyGame mGame;
-	private final BurgerPartyScreen mScreen;
-
-	Group mBottomLeftBar;
-	ImageButton mSwitchInventoriesButton;
-	ImageButton mUndoButton;
-
-	Group mBottomRightBar;
-	ImageButton mDeliverButton;
 }

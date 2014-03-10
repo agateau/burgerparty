@@ -13,6 +13,7 @@ public class Universe {
 	public static final int SANDBOX_MIN_STAR_COUNT = 4;
 
 	public Signal0 saveRequested = new Signal0();
+	private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 
 	public void addWorld(LevelWorld world) {
 		mLevelWorlds.add(world);
@@ -93,6 +94,4 @@ public class Universe {
 		saveRequested.emit();
 		return unlockedThings;
 	}
-
-	Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 }

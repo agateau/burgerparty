@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 public abstract class Overlay extends WidgetGroup {
 	private static float ALPHA = 0.7f;
 
+	private TextureRegion mBackgroundRegion;
+
 	public Overlay(TextureAtlas atlas) {
 		mBackgroundRegion = atlas.findRegion("ui/white-pixel");
 		setFillParent(true);
@@ -40,6 +42,4 @@ public abstract class Overlay extends WidgetGroup {
 	 * Must be implemented to handle pressing the "back" button
 	 */
 	public abstract void onBackPressed();
-
-	private TextureRegion mBackgroundRegion;
 }

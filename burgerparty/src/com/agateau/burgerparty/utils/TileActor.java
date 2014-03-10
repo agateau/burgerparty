@@ -14,6 +14,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class TileActor extends Actor implements Disposable {
+	private TileMap mMap;
+	private float mSpeed;
+	private float mScrollOffset = 0;
+	private int mStartCol = 0;
+	private FrameBuffer mFrameBuffer = null;
+	private Matrix4 mFrameBufferProjectionMatrix = null;
+
 	public TileActor(TileMap map, float speed) {
 		mMap = map;
 		mSpeed = speed;
@@ -143,11 +150,4 @@ public class TileActor extends Actor implements Disposable {
 	public TileMap getMap() {
 		return mMap;
 	}
-
-	private TileMap mMap;
-	private float mSpeed;
-	private float mScrollOffset = 0;
-	private int mStartCol = 0;
-	private FrameBuffer mFrameBuffer = null;
-	private Matrix4 mFrameBufferProjectionMatrix = null;
 }

@@ -16,6 +16,11 @@ import com.badlogic.gdx.utils.XmlReader;
  * Knows all available customer types. Can create a CustomerView given a customer type with create().
  */
 public class CustomerViewFactory {
+	private static NLog log;
+	private TextureAtlas mAtlas;
+	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
+	private OrderedMap<String, CustomerPart> mCustomerPartForPath = new OrderedMap<String, CustomerPart>();
+
 	public static class Elements {
 		public String dirName;
 		public Array<String> bodies = new Array<String>();
@@ -159,9 +164,4 @@ public class CustomerViewFactory {
 			return "";
 		}
 	}
-
-	private static NLog log;
-	private TextureAtlas mAtlas;
-	private OrderedMap<String, Elements> mElementsForType = new OrderedMap<String, Elements>();
-	private OrderedMap<String, CustomerPart> mCustomerPartForPath = new OrderedMap<String, CustomerPart>();
 }

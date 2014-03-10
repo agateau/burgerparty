@@ -16,6 +16,9 @@ import com.badlogic.gdx.utils.Array;
 public class WorldListView extends HorizontalGroup {
 	public Signal1<Integer> currentIndexChanged = new Signal1<Integer>();
 
+	private final Assets mAssets;
+	private int mCurrentIndex;
+
 	public enum Details {
 		SHOW_STARS,
 		HIDE_STARS
@@ -83,7 +86,4 @@ public class WorldListView extends HorizontalGroup {
 		group.addRule(image, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT, 13, 14);
 		group.addRule(label, Anchor.BOTTOM_LEFT, image, Anchor.BOTTOM_RIGHT, 0, -6);
 	}
-
-	private Assets mAssets;
-	private int mCurrentIndex;
 }

@@ -5,6 +5,10 @@ import com.badlogic.gdx.utils.Array;
 public class LevelWorld {
 	public static final int LEVEL_PER_WORLD = 9;
 
+	private int mIndex;
+	private String mDirName;
+	private Array<Level> mLevels = new Array<Level>();
+
 	public LevelWorld(int index, String dirName) {
 		mIndex = index;
 		mDirName = dirName;
@@ -49,8 +53,4 @@ public class LevelWorld {
 	public int getMiniGameStarCount() {
 		return (mIndex + 1) * 18;
 	}
-
-	private int mIndex;
-	private String mDirName;
-	private Array<Level> mLevels = new Array<Level>();
 }

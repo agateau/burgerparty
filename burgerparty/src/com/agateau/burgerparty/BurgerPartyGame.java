@@ -47,6 +47,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 
 public class BurgerPartyGame extends Game {
+	private static final String PROGRESS_FILE = "progress.xml";
+
 	private HashSet<Object> mHandlers = new HashSet<Object>();
 
 	private Assets mAssets;
@@ -57,8 +59,9 @@ public class BurgerPartyGame extends Game {
 	private AdController mAdController;
 	private BurgerPartyGameStats mGameStats;
 	private AchievementViewController mAchievementViewController = new AchievementViewController(this);
-
-	private static final String PROGRESS_FILE = "progress.xml";
+	private int mWidth = 0;
+	private int mHeight = 0;
+	private static NLog log;
 
 	@Override
 	public void create() {
@@ -355,8 +358,4 @@ public class BurgerPartyGame extends Game {
 	public void setAdController(AdController adController) {
 		mAdController = adController;
 	}
-
-	private int mWidth = 0;
-	private int mHeight = 0;
-	private static NLog log;
 }

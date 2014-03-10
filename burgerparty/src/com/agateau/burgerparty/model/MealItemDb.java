@@ -10,6 +10,14 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class MealItemDb {
+	private static class MealItemMap extends OrderedMap<String, MealItem> {
+	}
+
+	private MealItemMap mGenericMap = new MealItemMap();
+	private OrderedMap<Integer, MealItemMap> mWorldMaps = new OrderedMap<Integer, MealItemMap>();
+
+	private static MealItemDb sInstance = null;
+
 	public BurgerItem getBurgerItem(String name) {
 		BurgerItem item = (BurgerItem)get(name);
 		assert(item != null);
@@ -111,10 +119,4 @@ public class MealItemDb {
 			map.put(item.getName(), item);
 		}
 	}
-
-	static class MealItemMap extends OrderedMap<String, MealItem> {}
-	private MealItemMap mGenericMap = new MealItemMap();
-	private OrderedMap<Integer, MealItemMap> mWorldMaps = new OrderedMap<Integer, MealItemMap>();
-
-	private static MealItemDb sInstance = null;
 }

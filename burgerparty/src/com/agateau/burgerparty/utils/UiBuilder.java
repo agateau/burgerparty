@@ -25,6 +25,34 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class UiBuilder {
+	private Map<String, Actor> mActorForId = new HashMap<String, Actor>();
+	private TextureAtlas mAtlas;
+	private Skin mSkin;
+	private AnimScriptLoader mAnimScriptloader = null;
+
+	private static final String[] ANCHOR_NAMES = {
+		"topLeft",
+		"topCenter",
+		"topRight",
+		"centerLeft",
+		"center",
+		"centerRight",
+		"bottomLeft",
+		"bottomCenter",
+		"bottomRight"
+	};
+	private static final Anchor[] ANCHORS = {
+		Anchor.TOP_LEFT,
+		Anchor.TOP_CENTER,
+		Anchor.TOP_RIGHT,
+		Anchor.CENTER_LEFT,
+		Anchor.CENTER,
+		Anchor.CENTER_RIGHT,
+		Anchor.BOTTOM_LEFT,
+		Anchor.BOTTOM_CENTER,
+		Anchor.BOTTOM_RIGHT
+	};
+
 	public UiBuilder(TextureAtlas atlas, Skin skin) {
 		mAtlas = atlas;
 		mSkin = skin;
@@ -312,31 +340,4 @@ public class UiBuilder {
 		}
 	}
 
-	private Map<String, Actor> mActorForId = new HashMap<String, Actor>();
-	private TextureAtlas mAtlas;
-	private Skin mSkin;
-	private AnimScriptLoader mAnimScriptloader = null;
-
-	private static final String[] ANCHOR_NAMES = {
-		"topLeft",
-		"topCenter",
-		"topRight",
-		"centerLeft",
-		"center",
-		"centerRight",
-		"bottomLeft",
-		"bottomCenter",
-		"bottomRight"
-	};
-	private static final Anchor[] ANCHORS = {
-		Anchor.TOP_LEFT,
-		Anchor.TOP_CENTER,
-		Anchor.TOP_RIGHT,
-		Anchor.CENTER_LEFT,
-		Anchor.CENTER,
-		Anchor.CENTER_RIGHT,
-		Anchor.BOTTOM_LEFT,
-		Anchor.BOTTOM_CENTER,
-		Anchor.BOTTOM_RIGHT
-	};
 }

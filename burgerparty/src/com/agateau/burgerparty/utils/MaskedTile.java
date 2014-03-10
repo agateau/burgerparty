@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 public class MaskedTile extends Tile {
+	private final int mHeights[];
+
 	public MaskedTile(TextureRegion region, int typeId) {
 		super(region, typeId);
 		mHeights = new int[region.getRegionWidth()];
@@ -40,5 +42,4 @@ public class MaskedTile extends Tile {
 		}
 		data.disposePixmap();
 	}
-	private final int mHeights[];
 }

@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
 class MealExtraGenerator {
+	private ObjectMap<MealItem.Type, Array<MealItem>> mItemsForType;
+
 	public MealExtraGenerator(Array<MealItem> availableItems) {
 		mItemsForType = new ObjectMap<MealItem.Type, Array<MealItem>>();
 		for(MealItem item: availableItems) {
@@ -20,6 +22,7 @@ class MealExtraGenerator {
 			lst.add(item);
 		}
 	}
+
 	public Set<MealItem> run() {
 		// Pick one item per type
 		Set<MealItem> items = new HashSet<MealItem>();
@@ -32,5 +35,4 @@ class MealExtraGenerator {
 		}
 		return items;
 	}
-	private ObjectMap<MealItem.Type, Array<MealItem>> mItemsForType;
 }

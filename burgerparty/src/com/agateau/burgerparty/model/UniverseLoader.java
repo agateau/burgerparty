@@ -15,6 +15,10 @@ public class UniverseLoader {
 	private static final int TIME_STEP = 30;
 	private static final boolean DEBUG_DURATION = false;
 
+	private static NLog log;
+	private FileHandle mCsvHandle;
+	private Writer mCsvWriter;
+
 	public UniverseLoader() {
 		if (log == null) {
 			log = NLog.getRoot().create("UniverseLoader");
@@ -106,8 +110,4 @@ public class UniverseLoader {
 	private static int roundUp(float x) {
 		return MathUtils.ceil(x / (float)TIME_STEP) * TIME_STEP;
 	}
-
-	private static NLog log;
-	private FileHandle mCsvHandle;
-	private Writer mCsvWriter;
 }

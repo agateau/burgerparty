@@ -25,6 +25,8 @@ public class StartScreen extends BurgerPartyScreen {
 
 	private static final float MORE_ANIM_HEIGHT = 24;
 
+	private ImageButton mMuteButton;
+
 	public StartScreen(BurgerPartyGame game) {
 		super(game);
 		if (log == null) {
@@ -136,6 +138,4 @@ public class StartScreen extends BurgerPartyScreen {
 		Drawable drawable = getGame().getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
 		mMuteButton.getImage().setDrawable(drawable);
 	}
-
-	private ImageButton mMuteButton;
 }

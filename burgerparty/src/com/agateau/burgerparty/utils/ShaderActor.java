@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ShaderActor extends Image {
+	private ShaderProgram mShader;
+
 	public ShaderActor(TextureRegion region) {
 		super(region);
 	}
@@ -36,6 +38,4 @@ public class ShaderActor extends Image {
 			Gdx.app.error("ShaderActor", "Shader did not compile:\n" + mShader.getLog());
 		}
 	}
-
-	private ShaderProgram mShader;
 }

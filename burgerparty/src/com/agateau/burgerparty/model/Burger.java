@@ -8,7 +8,10 @@ import com.agateau.burgerparty.utils.Signal1;
 
 public class Burger extends MealItemCollection<BurgerItem> {
 	public Signal1<Integer> arrowIndexChanged = new Signal1<Integer>();
-	
+
+	private int mArrowIndex = -1;
+	private LinkedList<BurgerItem> mItems = new LinkedList<BurgerItem>();
+
 	public Collection<BurgerItem> getItems() {
 		return mItems;
 	}
@@ -58,7 +61,4 @@ public class Burger extends MealItemCollection<BurgerItem> {
 	protected void addItemInternal(BurgerItem item) {
 		mItems.add(item);
 	}
-
-	private int mArrowIndex = -1;
-	private LinkedList<BurgerItem> mItems = new LinkedList<BurgerItem>();
 }

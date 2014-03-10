@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class SpriteImage extends Image {
+	private MaskedDrawable mMaskedDrawable;
+
 	public SpriteImage() {
 	}
 
@@ -71,6 +73,4 @@ public class SpriteImage extends Image {
 		}
 		return true;
 	}
-
-	private MaskedDrawable mMaskedDrawable;
 }

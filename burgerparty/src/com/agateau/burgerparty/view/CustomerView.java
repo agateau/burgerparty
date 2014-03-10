@@ -9,6 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 public class CustomerView extends WidgetGroup {
+	private final HashSet<Object> mHandlers = new HashSet<Object>();
+
+	private CustomerViewFactory mFactory;
+	private String mDirName;
+	private Customer mCustomer;
+	private String mFaceName;
+	private CustomerViewFactory.BodyPart mBodyPart = null;
+	private Image mBodyImage = null;
+	private Image mFaceImage = null;
+
 	public CustomerView(Customer customer, CustomerViewFactory factory, String dirName, String bodyName, String topName, String faceName) {
 		mCustomer = customer;
 		mFactory = factory;
@@ -80,14 +90,4 @@ public class CustomerView extends WidgetGroup {
 		float refCenter = refPart.xCenter > 0 ? refPart.xCenter : (ref.getWidth() / 2);
 		image.setX(refCenter - imageCenter);
 	}
-	
-	private CustomerViewFactory mFactory;
-	private String mDirName;
-	private Customer mCustomer;
-	private String mFaceName;
-	private CustomerViewFactory.BodyPart mBodyPart = null;
-	private Image mBodyImage = null;
-	private Image mFaceImage = null;
-
-	HashSet<Object> mHandlers = new HashSet<Object>();
 }

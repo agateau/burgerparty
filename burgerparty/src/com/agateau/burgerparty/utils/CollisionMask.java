@@ -10,6 +10,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class CollisionMask {
 	private static int ALPHA_THRESHOLD = 128;
+
+	private final int mWidth;
+	private final int mHeight;
+	private final boolean mBits[][];
+
 	public CollisionMask(TextureRegion region) {
 		Texture texture = region.getTexture();
 		TextureData data = texture.getTextureData();
@@ -66,8 +71,4 @@ public class CollisionMask {
 		PixmapIO.writePNG(handle, pixmap);
 		pixmap.dispose();
 	}
-
-	private final int mWidth;
-	private final int mHeight;
-	private final boolean mBits[][];
 }

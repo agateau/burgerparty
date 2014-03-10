@@ -5,6 +5,8 @@ import com.agateau.burgerparty.model.MealItem;
 import com.badlogic.gdx.utils.Array;
 
 public class Inventory {
+	private Array<MealItem> mItems = new Array<MealItem>();
+
 	public void setItems(Array<? extends MealItem> items) {
 		mItems = new Array<MealItem>(items);
 	}
@@ -28,6 +30,4 @@ public class Inventory {
 			return null;
 		}
 	}
-
-	private Array<MealItem> mItems = new Array<MealItem>();
 }

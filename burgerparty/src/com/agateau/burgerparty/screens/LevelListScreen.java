@@ -33,6 +33,12 @@ public class LevelListScreen extends BurgerPartyScreen {
 	private static final float SURPRISE_ROTATE_ANGLE = 5f;
 	private static final float SURPRISE_ROTATE_DURATION = 0.8f;
 
+	private LevelWorld mLevelWorld;
+	private TextureRegion mStarOff;
+	private TextureRegion mStarOn;
+	private TextureRegion mLock;
+	private TextureRegion mSurpriseRegion;
+
 	public LevelListScreen(BurgerPartyGame game, int worldIndex) {
 		super(game);
 		TextureAtlas atlas = getTextureAtlas();
@@ -242,10 +248,4 @@ public class LevelListScreen extends BurgerPartyScreen {
 	public void onBackPressed() {
 		getGame().showWorldListScreen();
 	}
-
-	private LevelWorld mLevelWorld;
-	private TextureRegion mStarOff;
-	private TextureRegion mStarOn;
-	private TextureRegion mLock;
-	private TextureRegion mSurpriseRegion;
 }

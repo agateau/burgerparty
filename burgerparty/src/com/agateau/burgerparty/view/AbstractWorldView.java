@@ -17,6 +17,22 @@ import com.badlogic.gdx.utils.Scaling;
 public class AbstractWorldView extends AnchorGroup {
 	private static final float SLIDE_IN_ANIM_DURATION = 0.2f;
 
+	protected Assets mAssets;
+
+	private Array<AnchorGroup> mLayers = new Array<AnchorGroup>();
+	protected AnchorGroup mCustomersLayer;
+	protected AnchorGroup mCounterLayer;
+	protected AnchorGroup mInventoryLayer;
+	protected AnchorGroup mHudLayer;
+
+	protected InventoryView mInventoryView;
+	protected Image mCounter;
+	protected float mWidth = -1;
+	protected float mHeight = -1;
+
+	private TextureRegion mBackgroundRegion;
+	private float mScrollOffset = 0;
+
 	public AbstractWorldView(Assets assets, String worldDirName) {
 		mAssets = assets;
 		setFillParent(true);
@@ -117,20 +133,4 @@ public class AbstractWorldView extends AnchorGroup {
 		view.addAction(Actions.moveTo((getWidth() - view.getWidth()) / 2, view.getY(), SLIDE_IN_ANIM_DURATION, Interpolation.pow2Out));
 		mCounterLayer.addActor(view);
 	}
-
-	protected Assets mAssets;
-
-	private Array<AnchorGroup> mLayers = new Array<AnchorGroup>();
-	protected AnchorGroup mCustomersLayer;
-	protected AnchorGroup mCounterLayer;
-	protected AnchorGroup mInventoryLayer;
-	protected AnchorGroup mHudLayer;
-
-	protected InventoryView mInventoryView;
-	protected Image mCounter;
-	protected float mWidth = -1;
-	protected float mHeight = -1;
-
-	private TextureRegion mBackgroundRegion;
-	private float mScrollOffset = 0;
 }

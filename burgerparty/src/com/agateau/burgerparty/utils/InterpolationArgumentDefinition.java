@@ -7,35 +7,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.math.Interpolation;
 
-public class InterpolationArgumentDefinition extends
-		ArgumentDefinition<Interpolation> {
-
-	InterpolationArgumentDefinition(Interpolation defaultValue) {
-		super(Interpolation.class, defaultValue);
-		if (sMap.isEmpty()) {
-			initMap();
-		}
-	}
-
-	@Override
-	public Argument parse(StreamTokenizer tokenizer) {
-		try {
-			tokenizer.nextToken();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-		Interpolation value;
-		if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
-			value = sMap.get(tokenizer.sval);
-			assert(value != null);
-		} else {
-			assert(this.defaultValue != null);
-			tokenizer.pushBack();
-			value = this.defaultValue;
-		}
-		return new BasicArgument(Interpolation.class, value);
-	}
+public class InterpolationArgumentDefinition extends ArgumentDefinition<Interpolation> {
 
 	private static Map<String, Interpolation> sMap = new HashMap<String, Interpolation>();
 
@@ -76,4 +48,32 @@ public class InterpolationArgumentDefinition extends
 		sMap.put("swingIn", Interpolation.swingIn);
 		sMap.put("swingOut", Interpolation.swingOut);
 	}
+
+	InterpolationArgumentDefinition(Interpolation defaultValue) {
+		super(Interpolation.class, defaultValue);
+		if (sMap.isEmpty()) {
+			initMap();
+		}
+	}
+
+	@Override
+	public Argument parse(StreamTokenizer tokenizer) {
+		try {
+			tokenizer.nextToken();
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		Interpolation value;
+		if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
+			value = sMap.get(tokenizer.sval);
+			assert(value != null);
+		} else {
+			assert(this.defaultValue != null);
+			tokenizer.pushBack();
+			value = this.defaultValue;
+		}
+		return new BasicArgument(Interpolation.class, value);
+	}
+
 }

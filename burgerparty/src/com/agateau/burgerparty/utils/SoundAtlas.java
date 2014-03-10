@@ -9,6 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class SoundAtlas {
+	private Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
+
+	private static NLog log;
+	private final AssetManager mAssetManager;
+	private final MusicController mMusicController;
+	private String mDir;
+	private String[] mPendingNames;
+
 	private class AtlasSound implements Sound {
 		public AtlasSound(Sound sound) {
 			mSound = sound;
@@ -233,12 +241,4 @@ public class SoundAtlas {
 		private final Sound mSound;
 		private final float mPitch;
 	}
-
-	Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
-
-	private static NLog log;
-	private final AssetManager mAssetManager;
-	private final MusicController mMusicController;
-	private String mDir;
-	private String[] mPendingNames;
 }

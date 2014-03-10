@@ -16,6 +16,10 @@ public class WorldBaseButton extends Button {
 	public static final int WIDTH = 140;
 	public static final int HEIGHT = 300;
 
+	private final AnchorGroup mGroup = new AnchorGroup();
+	private Assets mAssets;
+	private ShadedImage mBgImage = new ShadedImage();
+
 	static private class ShadedImage extends Image {
 		public void setShader(ShaderProgram shader) {
 			mShader = shader;
@@ -64,8 +68,4 @@ public class WorldBaseButton extends Button {
 		Image image = new Image(lockRegion);
 		mGroup.addRule(image, Anchor.CENTER, mGroup, Anchor.CENTER);
 	}
-
-	private final AnchorGroup mGroup = new AnchorGroup();
-	private Assets mAssets;
-	private ShadedImage mBgImage = new ShadedImage();
 }

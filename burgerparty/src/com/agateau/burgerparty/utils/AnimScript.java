@@ -6,11 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
 
 public class AnimScript {
-	static class Context {
+	public static class Context {
 		float width;
 		float height;
 		float duration;
 	}
+
+	private Array<Instruction> mInstructions;
 
 	public AnimScript(Array<Instruction> instructions) {
 		mInstructions = instructions;
@@ -31,6 +33,4 @@ public class AnimScript {
 		}
 		return action;
 	}
-
-	private Array<Instruction> mInstructions;
 }

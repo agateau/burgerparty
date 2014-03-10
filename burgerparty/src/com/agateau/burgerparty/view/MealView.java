@@ -23,6 +23,10 @@ public class MealView extends Group implements ResizeToFitChildren {
 	private static final float PLATTER_MEAL_Y = 15f;
 	public static final float MEAL_ITEM_PADDING = 15f;
 
+	private Image mPlatter = null;
+	private BurgerView mBurgerView;
+	private MealExtraView mMealExtraView;
+
 	public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, boolean withPlatter) {
 		if (withPlatter) {
 			mPlatter = new Image(atlas.findRegion("platter"));
@@ -105,8 +109,4 @@ public class MealView extends Group implements ResizeToFitChildren {
 			)
 		);
 	}
-
-	private Image mPlatter = null;
-	private BurgerView mBurgerView;
-	private MealExtraView mMealExtraView;
 }

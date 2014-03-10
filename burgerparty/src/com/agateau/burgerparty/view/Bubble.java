@@ -8,6 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Bubble extends Group implements ResizeToFitChildren {
+	private Image mBgImage;
+	private NinePatch mPatch;
+	private Actor mChild = null;
+
 	public Bubble(NinePatch patch) {
 		mPatch = patch;
 		mBgImage = new Image(mPatch);
@@ -41,8 +45,4 @@ public class Bubble extends Group implements ResizeToFitChildren {
 	public void onChildSizeChanged() {
 		updateGeometry();
 	}
-
-	private Image mBgImage;
-	private NinePatch mPatch;
-	private Actor mChild = null;
 }

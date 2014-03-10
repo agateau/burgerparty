@@ -100,7 +100,7 @@ public class AndroidAdController implements AdController {
 			mAfter.run();
 		}
 	};
-	Runnable mAfter;
+	private Runnable mAfter;
 
 	public AndroidAdController(AndroidApplication application) {
 		log = NLog.createForClass(this);

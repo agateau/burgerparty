@@ -19,6 +19,11 @@ public class CoinView extends Group {
 	private static final float NEW_COIN_DURATION = 0.2f;
 	private static final Color EXTRA_COLOR = new Color(1, 0.5f, 0.5f, 0);
 
+	private final Array<CoinStack> mStacks = new Array<CoinStack>();
+	private final TextureRegion mStarRegion, mCoinRegion;
+	private final SoundAtlas mSoundAtlas;
+	private int mCoinCount = 0;
+
 	private class CoinStack extends Group {
 		public CoinStack(int size, int index) {
 			mSize = size;
@@ -153,9 +158,4 @@ public class CoinView extends Group {
 			}
 		}
 	}
-
-	private final Array<CoinStack> mStacks = new Array<CoinStack>();
-	private final TextureRegion mStarRegion, mCoinRegion;
-	private final SoundAtlas mSoundAtlas;
-	private int mCoinCount = 0;
 }

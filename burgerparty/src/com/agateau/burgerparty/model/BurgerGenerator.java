@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 class BurgerGenerator {
+	private Array<TopBottom> mTopBottomItems = new Array<TopBottom>();
+	private Array<BurgerItem> mMiddleItems = new Array<BurgerItem>();
+
 	public BurgerGenerator(int worldIndex, Array<BurgerItem> items) {
 		for (BurgerItem item: items) {
 			switch (item.getSubType()) {
@@ -66,7 +69,4 @@ class BurgerGenerator {
 			bottom = b;
 		}
 	}
-
-	private Array<TopBottom> mTopBottomItems = new Array<TopBottom>();
-	private Array<BurgerItem> mMiddleItems = new Array<BurgerItem>();
 }

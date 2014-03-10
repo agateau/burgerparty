@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class LoadingScreen extends StageScreen {
 	public Signal0 ready = new Signal0();
 
+	private AssetManager mAssetManager;
+	private Texture mLoadingTexture = null;
+
 	public LoadingScreen(AssetManager assetManager) {
 		mAssetManager = assetManager;
 		setBackgroundColor(Color.WHITE);
@@ -43,9 +46,6 @@ public class LoadingScreen extends StageScreen {
 		mLoadingTexture.dispose();
 		mLoadingTexture = null;
 	}
-
-	private AssetManager mAssetManager;
-	private Texture mLoadingTexture = null;
 
 	@Override
 	public void onBackPressed() {

@@ -35,6 +35,15 @@ public class LevelFinishedOverlay extends Overlay {
 
 	private static final float STAR_ANIM_DURATION = 0.3f;
 
+	private static NLog log;
+	private RunQueue mRunQueue = new RunQueue();
+	private BurgerPartyGame mGame;
+	private int mScore;
+	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
+	private Label mScoreLabel;
+	private Array<Image> mStarImages = new Array<Image>();
+	private HorizontalGroup mStarGroup = new HorizontalGroup();
+
 	class ConsumeSecondsTask extends RunQueue.Task {
 		public ConsumeSecondsTask(int secs) {
 			mRemainingSeconds = secs;
@@ -296,13 +305,4 @@ public class LevelFinishedOverlay extends Overlay {
 	public void onBackPressed() {
 		mGame.showLevelListScreen(mGame.getLevelWorldIndex());
 	}
-
-	private static NLog log;
-	private RunQueue mRunQueue = new RunQueue();
-	private BurgerPartyGame mGame;
-	private int mScore;
-	private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
-	private Label mScoreLabel;
-	private Array<Image> mStarImages = new Array<Image>();
-	private HorizontalGroup mStarGroup = new HorizontalGroup();
 }

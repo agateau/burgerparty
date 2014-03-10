@@ -25,6 +25,10 @@ public class Level {
 	}
 	public static class Definition {
 		public int duration;
+		private Array<CustomerDefinition> mCustomerDefinitions = new Array<CustomerDefinition>();
+		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
+		private Array<MealItem> mExtraItems = new Array<MealItem>();
+		private MealItem mNewItem = null;
 
 		public Array<BurgerItem> getBurgerItems() {
 			return mBurgerItems;
@@ -53,12 +57,16 @@ public class Level {
 			}
 			return size;
 		}
-
-		private Array<CustomerDefinition> mCustomerDefinitions = new Array<CustomerDefinition>();
-		private Array<BurgerItem> mBurgerItems = new Array<BurgerItem>();
-		private Array<MealItem> mExtraItems = new Array<MealItem>();
-		private MealItem mNewItem = null;
 	}
+
+	private LevelWorld mLevelWorld;
+	private String mFileName;
+	private int mIndex;
+
+	private Status mStatus = Status.LOCKED;
+	private int mScore = 0;
+	private int mStarCount = 0;
+	private boolean mPerfect = false;
 
 	public Level(LevelWorld world, String fileName) {
 		mLevelWorld = world;
@@ -207,13 +215,4 @@ public class Level {
 			}
 		}
 	}
-
-	private LevelWorld mLevelWorld;
-	private String mFileName;
-	private int mIndex;
-
-	private Status mStatus = Status.LOCKED;
-	private int mScore = 0;
-	private int mStarCount = 0;
-	private boolean mPerfect = false;
 }

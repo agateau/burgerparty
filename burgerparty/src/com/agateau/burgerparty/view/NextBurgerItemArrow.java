@@ -12,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class NextBurgerItemArrow extends Image {
 	public static final float OVERALL_WIDTH = 45;
 
+	private final HashSet<Object> mHandlers = new HashSet<Object>();
+	private BurgerView mBurgerView;
+
 	public NextBurgerItemArrow(BurgerView burgerView, TextureAtlas atlas) {
 		super(atlas.findRegion("ui/icon-next-item"));
 		mBurgerView = burgerView;
@@ -47,7 +50,4 @@ public class NextBurgerItemArrow extends Image {
 		float deltaY = (item.getY() + (item.getHeight() - getHeight()) / 2) - getY();
 		addAction(Actions.moveBy(0, deltaY, 0.3f, Interpolation.pow3Out));
 	}
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-	private BurgerView mBurgerView;
 }

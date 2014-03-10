@@ -17,6 +17,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class Assets {
 	private static final String MAIN_MUSIC = "music/burger-party_main-theme.mp3";
+
+	private AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
+	private SoundAtlas mSoundAtlas;
+	private TextureAtlas mTextureAtlas;
+	private Skin mSkin;
+	private Sound mClickSound;
+	private Music mMusic;
+	private ChangeListener mClickListener;
+	private AssetManager mAssetManager;
+	private ShaderProgram mDisabledShader = createDisabledShader();
+
 	public Assets(MusicController musicController) {
 		mAssetManager = new AssetManager();
 		Texture.setAssetManager(mAssetManager);
@@ -152,14 +163,4 @@ public class Assets {
 		}
 		return shader;
 	}
-
-	AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
-	SoundAtlas mSoundAtlas;
-	TextureAtlas mTextureAtlas;
-	Skin mSkin;
-	Sound mClickSound;
-	Music mMusic;
-	ChangeListener mClickListener;
-	AssetManager mAssetManager;
-	ShaderProgram mDisabledShader = createDisabledShader();
 }

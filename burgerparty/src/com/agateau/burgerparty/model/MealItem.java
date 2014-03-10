@@ -28,6 +28,16 @@ public class MealItem {
 		BURGER
 	}
 
+	private int mWorldIndex = WORLD_INDEX_NOT_SET;
+	private Type mType;
+	private String mName;
+	private String mAnim;
+	private AnimScript mAnimScript;
+	private int mColumn;
+	private int mRow;
+	private int mMinWorldIndex = 0;
+	private int mMinLevelIndex = 0;
+
 	public MealItem(int worldIndex, MealItem item) {
 		mWorldIndex = worldIndex;
 		mType = item.mType;
@@ -118,14 +128,4 @@ public class MealItem {
 			return atlas.createPlayAction("add-item");
 		}
 	}
-
-	private int mWorldIndex = WORLD_INDEX_NOT_SET;
-	private Type mType;
-	private String mName;
-	private String mAnim;
-	private AnimScript mAnimScript;
-	private int mColumn;
-	private int mRow;
-	private int mMinWorldIndex = 0;
-	private int mMinLevelIndex = 0;
 }

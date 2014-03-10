@@ -17,6 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 public class PauseOverlay extends Overlay {
+	private final WorldView mWorldView;
+	private final BurgerPartyGame mGame;
+	private ImageButton mMuteButton;
+
 	public PauseOverlay(WorldView worldView, BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
 		super(atlas);
 		mWorldView = worldView;
@@ -88,8 +92,4 @@ public class PauseOverlay extends Overlay {
 		Drawable drawable = mGame.getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
 		mMuteButton.getImage().setDrawable(drawable);
 	}
-
-	private final WorldView mWorldView;
-	private final BurgerPartyGame mGame;
-	private ImageButton mMuteButton;
 }

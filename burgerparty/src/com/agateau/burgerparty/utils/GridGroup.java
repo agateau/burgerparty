@@ -5,6 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.Array;
 
 public class GridGroup extends WidgetGroup {
+	private int mColCount = 1;
+	private float mSpacing = 0;
+	private float mCellWidth = 10;
+	private float mCellHeight = 10;
+	private Array<Actor> mChildren = new Array<Actor>();
+
 	public void setColumnCount(int colCount) {
 		if (mColCount == colCount) {
 			return;
@@ -78,10 +84,4 @@ public class GridGroup extends WidgetGroup {
 	public float getPrefHeight() {
 		return getHeight();
 	}
-
-	private int mColCount = 1;
-	private float mSpacing = 0;
-	private float mCellWidth = 10;
-	private float mCellHeight = 10;
-	private Array<Actor> mChildren = new Array<Actor>();
 }

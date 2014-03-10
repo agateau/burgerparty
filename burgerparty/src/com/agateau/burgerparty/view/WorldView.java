@@ -38,6 +38,29 @@ public class WorldView extends AbstractWorldView {
 	private static final float TARGET_BURGER_PADDING = 24;
 	private static final float SCROLL_PADDING = 24;
 
+	private static NLog log;
+
+	private final HashSet<Object> mHandlers = new HashSet<Object>();
+
+	private GameScreen mGameScreen;
+	private BurgerPartyGame mGame;
+	private World mWorld;
+	private TextureAtlas mAtlas;
+	private Skin mSkin;
+	private MealView mMealView;
+	private MealView mDoneMealView;
+	private MealViewScrollPane mTargetMealScrollPane;
+	private MealView mTargetMealView;
+	private Label mTimerDisplay;
+	private Label mScoreDisplay;
+	private Image mHudImage;
+	private Image mPauseButton;
+	private Bubble mBubble;
+	private CustomerViewFactory mCustomerFactory;
+	private final Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
+	private CustomerView mActiveCustomerView;
+	private CoinView mCoinView;
+
 	public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
 		super(game.getAssets(), world.getLevelWorld().getDirName());
 		if (log == null) {
@@ -378,27 +401,4 @@ public class WorldView extends AbstractWorldView {
 		Vector2 coord = UiUtils.toChildCoordinates(this, mTargetMealScrollPane, new Vector2(0, getHeight()));
 		mTargetMealScrollPane.setMaximumHeight(coord.y);
 	}
-
-	private static NLog log;
-
-	private HashSet<Object> mHandlers = new HashSet<Object>();
-
-	private GameScreen mGameScreen;
-	private BurgerPartyGame mGame;
-	private World mWorld;
-	private TextureAtlas mAtlas;
-	private Skin mSkin;
-	private MealView mMealView;
-	private MealView mDoneMealView;
-	private MealViewScrollPane mTargetMealScrollPane;
-	private MealView mTargetMealView;
-	private Label mTimerDisplay;
-	private Label mScoreDisplay;
-	private Image mHudImage;
-	private Image mPauseButton;
-	private Bubble mBubble;
-	private CustomerViewFactory mCustomerFactory;
-	private Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
-	private CustomerView mActiveCustomerView;
-	private CoinView mCoinView;
 }

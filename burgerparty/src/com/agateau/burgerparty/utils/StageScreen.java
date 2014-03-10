@@ -19,11 +19,13 @@ public abstract class StageScreen implements Screen {
 	// FIXME: Ugly hard-coded sizes
 	private static final float STAGE_WIDTH = 800;
 	private static final float STAGE_HEIGHT = 480;
+
 	private Stage mStage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
 	private Actor mBgActor = null;
-
 	private Group mOverlayLayer = new Group();
 	private Group mNotificationLayer = new Group();
+	private Overlay mOverlay = null;
+	private Color mBackgroundColor = Color.BLACK;
 
 	public StageScreen() {
 		mStage.getRoot().addListener(new InputListener() {
@@ -145,7 +147,4 @@ public abstract class StageScreen implements Screen {
 		mOverlayLayer.toFront();
 		mNotificationLayer.toFront();
 	}
-
-	private Overlay mOverlay = null;
-	private Color mBackgroundColor = Color.BLACK;
 }
