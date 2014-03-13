@@ -14,23 +14,7 @@
             />
 
         <LevelGrid id="levelGrid"
-            topCenter="root.topCenter -1 -1"
+            topCenter="root.topCenter 0 -1"
             />
-
-        <ImageButton id="miniGameButton"
-            style="level-button"
-            width="130"
-            height="130"
-            bottomLeft="levelGrid.bottomRight 2 0"
-            imageName="ui/minigame"
-            />
-
-        <Image id="miniGameLockImage"
-            name="ui/lock-star"
-            center="miniGameButton.center"/>
-        <Label id="miniGameLockLabel"
-            bottomLeft="miniGameLockImage.bottomLeft 1.8 0.2"
-            style="lock-star-text"
-            >12</Label>
     </AnchorGroup>
 </gdxui>

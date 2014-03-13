@@ -4,12 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 
-import com.agateau.burgerparty.burgercopter.BurgerCopterMiniGame;
-import com.agateau.burgerparty.burgervaders.BurgerVadersMiniGame;
-import com.agateau.burgerparty.burgerjeweled.BurgerjeweledMiniGame;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
-import com.agateau.burgerparty.model.MiniGame;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
 import com.agateau.burgerparty.model.MealItem;
@@ -303,31 +299,6 @@ public class BurgerPartyGame extends Game {
     private void doStartLevel() {
         Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
         setScreenAndDispose(new GameScreen(this, level));
-    }
-
-    public void startMiniGame(final int worldIndex) {
-        mMusicController.fadeOut();
-        MiniGame game = null;
-        switch (worldIndex) {
-        case 0:
-            game = new BurgerCopterMiniGame(mAssets, this);
-            break;
-        case 1:
-            game = new BurgerVadersMiniGame(mAssets, this);
-            break;
-        case 2:
-            game = new BurgerjeweledMiniGame(mAssets, this);
-            break;
-        default:
-            throw new RuntimeException("No minigame for world " + (worldIndex + 1));
-        }
-        game.exiting.connect(mHandlers, new Signal0.Handler() {
-            @Override
-            public void handle() {
-                showLevelListScreen(worldIndex);
-            }
-        });
-        game.showStartScreen();
     }
 
     @Override

@@ -21,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
@@ -91,24 +90,6 @@ public class LevelListScreen extends BurgerPartyScreen {
                 onBackPressed();
             }
         });
-
-        ImageButton miniGameButton = builder.<ImageButton>getActor("miniGameButton");
-        Label miniGameLockLabel = builder.<Label>getActor("miniGameLockLabel");
-        if (getGame().getUniverse().getStarCount() > mLevelWorld.getMiniGameStarCount()) {
-            Image lockImage = builder.<Image>getActor("miniGameLockImage");
-            lockImage.setVisible(false);
-            miniGameLockLabel.setVisible(false);
-            miniGameButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    getGame().startMiniGame(mLevelWorld.getIndex());
-                }
-            });
-        } else {
-            miniGameButton.getImage().setVisible(false);
-            miniGameButton.setDisabled(true);
-            miniGameLockLabel.setText(String.valueOf(mLevelWorld.getMiniGameStarCount()));
-        }
 
         ImageButton cutSceneReplayButton = builder.<ImageButton>getActor("cutSceneReplayButton");
         if (mLevelWorld.getIndex() > 0) {
