@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.utils.Array;
 
@@ -10,9 +11,9 @@ import com.badlogic.gdx.utils.Array;
  * Knows all the LevelWorld instances of the game
  */
 public class Universe {
-    public static final int SANDBOX_MIN_STAR_COUNT = 4;
-
     public Signal0 saveRequested = new Signal0();
+    public final CounterGameStat starCount = new CounterGameStat();
+
     private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 
     public void addWorld(LevelWorld world) {
@@ -31,14 +32,14 @@ public class Universe {
         return mLevelWorlds.get(world).getLevel(level).getScore();
     }
 
-    public int getStarCount() {
+    public void updateStarCount() {
         int stars = 0;
         for (LevelWorld world: mLevelWorlds) {
             for (Level level: world.getLevels()) {
                 stars += level.getStarCount();
             }
         }
-        return stars;
+        this.starCount.setValue(stars);
     }
 
     public Set<MealItem> getKnownItems() {
@@ -58,11 +59,7 @@ public class Universe {
         return set;
     }
 
-    public Set<String> updateLevel(int worldIndex, int levelIndex, int score, int levelStarCount, boolean perfect) {
-        int oldStarCount = getStarCount();
-        // FIXME: Temporary implementation
-        Set<String> unlockedThings = new HashSet<String>();
-
+    public void updateLevel(int worldIndex, int levelIndex, int score, int levelStarCount, boolean perfect) {
         LevelWorld currentWorld = mLevelWorlds.get(worldIndex);
         Level currentLevel = currentWorld.getLevel(levelIndex);
         if (score > currentLevel.getScore()) {
@@ -86,12 +83,7 @@ public class Universe {
             next.unlock();
         }
 
-        // Have we just unlocked the sandbox?
-        int starCount = getStarCount();
-        if (oldStarCount < SANDBOX_MIN_STAR_COUNT && SANDBOX_MIN_STAR_COUNT <= starCount) {
-            unlockedThings.add("Sandbox");
-        }
+        updateStarCount();
         saveRequested.emit();
-        return unlockedThings;
     }
 }

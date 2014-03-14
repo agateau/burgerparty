@@ -165,10 +165,11 @@ public class BurgerPartyGame extends Game {
         }
         ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
         progressIO.load(handle);
+        mUniverse.updateStarCount();
     }
 
     private void setupAchievements() {
-        mGameStats = new BurgerPartyGameStats();
+        mGameStats = new BurgerPartyGameStats(mUniverse);
         mGameStats.manager.achievementUnlocked.connect(mHandlers, new Signal1.Handler<Achievement>() {
             @Override
             public void handle(Achievement achievement) {

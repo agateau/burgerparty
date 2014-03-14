@@ -27,7 +27,7 @@ public class WorldListScreen extends BurgerPartyScreen {
     public WorldListScreen(BurgerPartyGame game) {
         super(game);
         Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
-        mStarCount = getGame().getUniverse().getStarCount();
+        mStarCount = getGame().getUniverse().starCount.getValue();
         setBackgroundActor(bgImage);
         setupWidgets();
         new RefreshHelper(getStage()) {
@@ -67,7 +67,7 @@ public class WorldListScreen extends BurgerPartyScreen {
                 WorldListView view = new WorldListView(universe.getWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
 
                 SandBoxButton button = new SandBoxButton();
-                if (mStarCount < Universe.SANDBOX_MIN_STAR_COUNT) {
+                if (!getGame().getGameStats().sandBoxAchievement.isUnlocked()) {
                     button.createLockOverlay();
                 }
 

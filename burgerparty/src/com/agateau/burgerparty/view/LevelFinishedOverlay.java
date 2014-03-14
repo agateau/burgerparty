@@ -1,7 +1,5 @@
 package com.agateau.burgerparty.view;
 
-import java.util.Set;
-
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelResult;
@@ -175,10 +173,7 @@ public class LevelFinishedOverlay extends Overlay {
         int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 
         // Store final score *now*
-        Set<String> unlockedThings = mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
-        for (String thing: unlockedThings) {
-            log.i("ctor: Unlocked %s", thing);
-        }
+        mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
 
         mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off-big")));
         mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on-big")));

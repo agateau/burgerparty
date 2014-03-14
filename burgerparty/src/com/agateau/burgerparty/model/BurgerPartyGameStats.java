@@ -23,6 +23,8 @@ public class BurgerPartyGameStats {
     public final StringListGameStat morningPlayDates = new StringListGameStat();
     public final StringListGameStat eveningPlayDates = new StringListGameStat();
 
+    public final CounterAchievement sandBoxAchievement;
+
     public final AchievementManager manager = new AchievementManager();
 
     private final GameStatManager mGameStatManager = new GameStatManager();
@@ -31,7 +33,7 @@ public class BurgerPartyGameStats {
     private Achievement mMorningGamer;
     private Achievement mEveningGamer;
 
-    public BurgerPartyGameStats() {
+    public BurgerPartyGameStats(Universe universe) {
         mGameStatManager.add("morningPlayDates", morningPlayDates);
         mGameStatManager.add("eveningPlayDates", eveningPlayDates);
         mGameStatManager.add("mealServedCount", mealServedCount);
@@ -46,6 +48,10 @@ public class BurgerPartyGameStats {
         achievement = new CounterAchievement("burger-god", _("Burger God"), _("Serve 100 burgers."));
         achievement.init(mealServedCount, 100);
         manager.add(achievement);
+
+        sandBoxAchievement = new CounterAchievement("sandbox", _("Do It Yourself"), _("Collect 4 stars to unlock the burger sandbox."));
+        sandBoxAchievement.init(universe.starCount, 4);
+        manager.add(sandBoxAchievement);
 
         mCloseCall = new Achievement("close-call", _("Close Call"), _("Finish a level with 3 seconds left."));
         manager.add(mCloseCall);
