@@ -32,4 +32,11 @@ public class CounterGameStat extends GameStat {
     public int getValue() {
         return mValue;
     }
+
+    public void setValue(int value) {
+        if (mValue != value) {
+            mValue = value;
+            changed.emit();
+        }
+    }
 }
