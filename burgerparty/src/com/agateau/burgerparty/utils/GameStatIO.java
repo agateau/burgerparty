@@ -5,11 +5,7 @@ import java.io.IOException;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
-public abstract class GameStat {
-    public Signal0 changed = new Signal0();
-
-    public abstract void reset();
-
+public interface GameStatIO {
     /**
      * Reads the GameStat value from element
      *

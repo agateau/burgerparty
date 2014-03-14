@@ -8,10 +8,6 @@ import com.badlogic.gdx.utils.XmlWriter;
 public class CounterGameStat extends GameStat {
     private int mValue = 0;
 
-    public CounterGameStat(String id) {
-        super(id);
-    }
-
     @Override
     public void reset() {
         mValue = 0;

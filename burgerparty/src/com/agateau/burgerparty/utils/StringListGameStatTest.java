@@ -20,14 +20,14 @@ public class StringListGameStatTest {
     public void testLoad() {
         String xml = "<gamestat id='foo'><item>One</item><item>Two</item></gamestat>";
         XmlReader.Element element = TestUtils.parseXml(xml);
-        StringListGameStat stat = new StringListGameStat("foo");
+        StringListGameStat stat = new StringListGameStat();
         stat.load(element);
         assertEquals(2, stat.getCount());
     }
 
     @Test
     public void testSave() throws IOException {
-        StringListGameStat stat = new StringListGameStat("foo");
+        StringListGameStat stat = new StringListGameStat();
         stat.add("Hello");
         stat.add("Good Bye");
         assertEquals(2, stat.getCount());
@@ -50,7 +50,7 @@ public class StringListGameStatTest {
 
     @Test
     public void testAdd() {
-        StringListGameStat stat = new StringListGameStat("foo");
+        StringListGameStat stat = new StringListGameStat();
 
         TestUtils.SignalSpy0 spy = new TestUtils.SignalSpy0();
         stat.changed.connect(mHandlers, spy);

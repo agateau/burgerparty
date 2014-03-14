@@ -19,9 +19,9 @@ import static com.agateau.burgerparty.utils.I18n._;
 public class BurgerPartyGameStats {
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
-    public final CounterGameStat mealServedCount = new CounterGameStat("mealServedCount");
-    public final StringListGameStat morningPlayDates = new StringListGameStat("morningPlayDates");
-    public final StringListGameStat eveningPlayDates = new StringListGameStat("eveningPlayDates");
+    public final CounterGameStat mealServedCount = new CounterGameStat();
+    public final StringListGameStat morningPlayDates = new StringListGameStat();
+    public final StringListGameStat eveningPlayDates = new StringListGameStat();
 
     public final AchievementManager manager = new AchievementManager();
 
@@ -32,9 +32,9 @@ public class BurgerPartyGameStats {
     private Achievement mEveningGamer;
 
     public BurgerPartyGameStats() {
-        mGameStatManager.add(morningPlayDates);
-        mGameStatManager.add(eveningPlayDates);
-        mGameStatManager.add(mealServedCount);
+        mGameStatManager.add("morningPlayDates", morningPlayDates);
+        mGameStatManager.add("eveningPlayDates", eveningPlayDates);
+        mGameStatManager.add("mealServedCount", mealServedCount);
 
         mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
         mGameStatManager.load();

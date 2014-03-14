@@ -10,10 +10,6 @@ import com.badlogic.gdx.utils.XmlWriter;
 public class StringListGameStat extends GameStat {
     private Array<String> mList = new Array<String>();
 
-    public StringListGameStat(String id) {
-        super(id);
-    }
-
     @Override
     public void reset() {
         mList.clear();

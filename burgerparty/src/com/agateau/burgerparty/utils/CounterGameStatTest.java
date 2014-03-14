@@ -19,14 +19,14 @@ public class CounterGameStatTest {
     public void testLoad() {
         String xml = "<gamestat id='foo' value='12'/>";
         XmlReader.Element element = TestUtils.parseXml(xml);
-        CounterGameStat stat = new CounterGameStat("foo");
+        CounterGameStat stat = new CounterGameStat();
         stat.load(element);
         assertEquals(12, stat.getValue());
     }
 
     @Test
     public void testSave() throws IOException {
-        CounterGameStat stat = new CounterGameStat("foo");
+        CounterGameStat stat = new CounterGameStat();
         assertEquals(0, stat.getValue());
         stat.increase();
         assertEquals(1, stat.getValue());
@@ -46,7 +46,7 @@ public class CounterGameStatTest {
 
     @Test
     public void testIncrease() {
-        CounterGameStat stat = new CounterGameStat("foo");
+        CounterGameStat stat = new CounterGameStat();
 
         TestUtils.SignalSpy0 spy = new TestUtils.SignalSpy0();
         stat.changed.connect(mHandlers, spy);

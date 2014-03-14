@@ -3,6 +3,8 @@ package com.agateau.burgerparty.utils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlReader;
@@ -20,8 +22,8 @@ public class GameStatManager {
         mFileHandle = handle;
     }
 
-    public void add(GameStat gameStat) {
-        mGameStats.put(gameStat.getId(), gameStat);
+    public void add(String id, GameStat gameStat) {
+        mGameStats.put(id, gameStat);
         gameStat.changed.connect(mHandlers, new Signal0.Handler() {
             @Override
             public void handle() {
@@ -37,11 +39,11 @@ public class GameStatManager {
     }
 
     public void load(XmlReader.Element root) {
-        NLog.getRoot().i("GameStatManager.load");
+        log.d("GameStatManager.load");
         for (int idx = 0; idx < root.getChildCount(); ++idx) {
             XmlReader.Element element = root.getChild(idx);
             String id = element.getAttribute("id");
-            NLog.getRoot().i("GameStatManager.load id=%s", id);
+            log.d("GameStatManager.load id=%s", id);
             GameStat stat = mGameStats.get(id);
             if (stat == null) {
                 log.e("No gamestat with id '%s'", id);
@@ -59,10 +61,12 @@ public class GameStatManager {
     public void save(XmlWriter writer) {
         try {
             XmlWriter root = writer.element("gamestats");
-            for (GameStat stat: mGameStats.values()) {
+            Iterator<Entry<String, GameStat>> it = mGameStats.entrySet().iterator();
+            while (it.hasNext()) {
+                Entry<String, GameStat> entry = it.next();
                 XmlWriter element = root.element("gamestat");
-                element.attribute("id", stat.getId());
-                stat.save(element);
+                element.attribute("id", entry.getKey());
+                entry.getValue().save(element);
                 element.pop();
             }
             writer.close();

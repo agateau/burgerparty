@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlReader.Element;
 
 public class TestUtils {
     public static XmlReader.Element parseXml(String xml) {
@@ -22,5 +23,15 @@ public class TestUtils {
         public void handle() {
             ++count;
         }
+    }
+
+    public static Element findChildElementById(Element root, String string) {
+        for (int i = 0, n = root.getChildCount(); i < n; ++i) {
+            Element child = root.getChild(i);
+            if (child.getAttribute("id").equals(string)) {
+                return child;
+            }
+        }
+        return null;
     }
 }
