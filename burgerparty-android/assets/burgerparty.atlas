@@ -823,6 +823,20 @@ achievements/morning-gamer
   orig: 64, 64
   offset: 0, 0
   index: -1
+achievements/sandbox
+  rotate: false
+  xy: 932, 132
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+achievements/star-collector
+  rotate: false
+  xy: 931, 66
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 customers/boys/body-0
   rotate: false
   xy: 830, 852
@@ -852,13 +866,6 @@ customers/boys/face-0-neutral
   offset: 0, 0
   index: -1
 customers/boys/face-1-angry
-  rotate: false
-  xy: 932, 145
-  size: 71, 51
-  orig: 71, 51
-  offset: 0, 0
-  index: -1
-customers/boys/face-1-happy
   rotate: false
   xy: 948, 288
   size: 71, 51
@@ -947,13 +954,6 @@ customers/japan-girls/face-0-angry
   xy: 706, 207
   size: 76, 54
   orig: 76, 54
-  offset: 0, 0
-  index: -1
-customers/japan-girls/face-0-happy
-  rotate: false
-  xy: 932, 94
-  size: 76, 49
-  orig: 76, 49
   offset: 0, 0
   index: -1
 customers/pirate-boys/body-brown
@@ -1145,13 +1145,6 @@ mealitems/0/soda-inventory
   orig: 45, 80
   offset: 0, 0
   index: -1
-mealitems/0/toast-inventory
-  rotate: false
-  xy: 931, 56
-  size: 76, 36
-  orig: 76, 36
-  offset: 0, 0
-  index: -1
 mealitems/0/tomato-inventory
   rotate: false
   xy: 795, 416
@@ -1281,65 +1274,86 @@ burgerparty7.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
+customers/boys/face-1-happy
+  rotate: false
+  xy: 2, 101
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 228, 2
+  xy: 2, 53
   size: 71, 46
   orig: 71, 46
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 2, 2
+  xy: 226, 104
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 77, 2
+  xy: 2, 2
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 153, 2
+  xy: 148, 52
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 80, 52
+  xy: 75, 52
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 231, 50
+  xy: 75, 102
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 2, 52
+  xy: 223, 53
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 153, 53
+  xy: 223, 4
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
+customers/japan-girls/face-0-happy
+  rotate: false
+  xy: 148, 103
+  size: 76, 49
+  orig: 76, 49
+  offset: 0, 0
+  index: -1
+mealitems/0/toast-inventory
+  rotate: false
+  xy: 119, 14
+  size: 76, 36
+  orig: 76, 36
+  offset: 0, 0
+  index: -1
 ui/star-on
   rotate: false
-  xy: 304, 60
+  xy: 77, 10
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
