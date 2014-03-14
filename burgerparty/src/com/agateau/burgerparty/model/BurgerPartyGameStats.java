@@ -15,6 +15,7 @@ import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringListGameStat;
 
 import static com.agateau.burgerparty.utils.I18n._;
+import static com.agateau.burgerparty.utils.I18n.trn;
 
 public class BurgerPartyGameStats {
     private HashSet<Object> mHandlers = new HashSet<Object>();
@@ -29,6 +30,7 @@ public class BurgerPartyGameStats {
 
     private final GameStatManager mGameStatManager = new GameStatManager();
 
+    private final static int CLOSE_CALL_COUNT = 3;
     private Achievement mCloseCall;
     private Achievement mMorningGamer;
     private Achievement mEveningGamer;
@@ -41,29 +43,34 @@ public class BurgerPartyGameStats {
         mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
         mGameStatManager.load();
 
-        CounterAchievement achievement = new CounterAchievement("burger-master", _("Burger Master"), _("Serve 50 burgers."));
-        achievement.init(mealServedCount, 50);
+        int count = 50;
+        CounterAchievement achievement = new CounterAchievement("burger-master", _("Burger Master"), trn("X", "Serve %n burgers.", count));
+        achievement.init(mealServedCount, count);
         manager.add(achievement);
 
-        achievement = new CounterAchievement("burger-god", _("Burger God"), _("Serve 100 burgers."));
-        achievement.init(mealServedCount, 100);
+        count = 100;
+        achievement = new CounterAchievement("burger-god", _("Burger God"), trn("X", "Serve %n burgers.", count));
+        achievement.init(mealServedCount, count);
         manager.add(achievement);
 
-        sandBoxAchievement = new CounterAchievement("sandbox", _("Do It Yourself"), _("Collect 4 stars to unlock the burger sandbox."));
-        sandBoxAchievement.init(universe.starCount, 4);
+        count = 4;
+        sandBoxAchievement = new CounterAchievement("sandbox", _("Practice Area"), trn("X", "Collect %n stars to unlock the practice area.", count));
+        sandBoxAchievement.init(universe.starCount, count);
         manager.add(sandBoxAchievement);
 
-        achievement = new CounterAchievement("star-collector", _("Star Collector"), _("Collect 30 stars."));
-        achievement.init(universe.starCount, 30);
+        count = 36;
+        achievement = new CounterAchievement("star-collector", _("Star Collector"), trn("X", "Collect %n stars.", count));
+        achievement.init(universe.starCount, count);
         manager.add(achievement);
 
-        mCloseCall = new Achievement("close-call", _("Close Call"), _("Finish a level with 3 seconds left."));
+        mCloseCall = new Achievement("close-call", _("Close Call"), trn("X", "Finish a level with %n seconds left.", CLOSE_CALL_COUNT));
         manager.add(mCloseCall);
 
-        mMorningGamer = new Achievement("morning-gamer", _("Morning Gamer"), _("Start a game between 7AM and 10AM for 4 days."));
+        count = 4;
+        mMorningGamer = new Achievement("morning-gamer", _("Morning Gamer"), trn("X", "Start a game between 7AM and 10AM for %n days.", count));
         manager.add(mMorningGamer);
 
-        mEveningGamer = new Achievement("evening-gamer", _("Evening Gamer"), _("Start a game between 7PM and 11PM for 4 days."));
+        mEveningGamer = new Achievement("evening-gamer", _("Evening Gamer"), trn("X", "Start a game between 7PM and 11PM for %n days.", count));
         manager.add(mEveningGamer);
 
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
@@ -73,7 +80,7 @@ public class BurgerPartyGameStats {
     public void onLevelStarted(final World world) {
         world.levelFinished.connect(mHandlers, new Signal0.Handler() {
             public void handle() {
-                if (world.getRemainingSeconds() <= 3) {
+                if (world.getRemainingSeconds() <= CLOSE_CALL_COUNT) {
                     mCloseCall.setUnlocked(true);
                 }
             }
