@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class NLog {
@@ -52,7 +51,7 @@ public class NLog {
     //// Static
     public static NLog getRoot() {
         if (sRoot == null) {
-            init(new GdxPrinter(), "(root)");
+            init(new DefaultPrinter(), "(root)");
         }
         return sRoot;
     }
@@ -77,20 +76,22 @@ public class NLog {
     ////
 
     /**
-     * Implementation of Printer which uses Gdx.app logging facilities
+     * Implementation of Printer which logs to System.err
      *
      * @author aurelien
      */
-    public static class GdxPrinter extends Printer {
+    public static class DefaultPrinter extends Printer {
         @Override
         protected void doPrint(int level, String tag, String message) {
+            String levelString;
             if (level == Application.LOG_DEBUG) {
-                Gdx.app.debug(tag, message);
+                levelString = "D";
             } else if (level == Application.LOG_INFO) {
-                Gdx.app.log(tag, message);
+                levelString = "I";
             } else { // LOG_ERROR
-                Gdx.app.error(tag, message);
+                levelString = "E";
             }
+            System.err.printf("%s/%s %s\n", tag, levelString, message);
         }
     }
 }

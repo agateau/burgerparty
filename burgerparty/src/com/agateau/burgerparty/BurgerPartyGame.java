@@ -26,6 +26,7 @@ import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.FileLogPrinter;
 import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.GdxPrinter;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
@@ -138,7 +139,7 @@ public class BurgerPartyGame extends Game {
     public static void setupLog() {
         NLog.Printer printer = createFileLogPrinter();
         if (printer == null) {
-            printer = new NLog.GdxPrinter();
+            printer = new GdxPrinter();
         }
         NLog.init(printer, "BP");
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
