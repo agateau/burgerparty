@@ -53,6 +53,10 @@ public class BurgerPartyGameStats {
         sandBoxAchievement.init(universe.starCount, 4);
         manager.add(sandBoxAchievement);
 
+        achievement = new CounterAchievement("star-collector", _("Star Collector"), _("Collect 30 stars."));
+        achievement.init(universe.starCount, 30);
+        manager.add(achievement);
+
         mCloseCall = new Achievement("close-call", _("Close Call"), _("Finish a level with 3 seconds left."));
         manager.add(mCloseCall);
 
