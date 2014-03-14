@@ -64,7 +64,7 @@ public class BurgerPartyGameStats {
         world.levelFinished.connect(mHandlers, new Signal0.Handler() {
             public void handle() {
                 if (world.getRemainingSeconds() <= 3) {
-                    mCloseCall.unlock();
+                    mCloseCall.setUnlocked(true);
                 }
             }
         });
@@ -94,7 +94,7 @@ public class BurgerPartyGameStats {
         }
         stat.add(dateString);
         if (stat.getCount() >= 4) {
-            achievement.unlock();
+            achievement.setUnlocked(true);
         }
     }
 }
