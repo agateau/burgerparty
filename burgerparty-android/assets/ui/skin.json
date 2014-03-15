@@ -81,10 +81,12 @@
         },
 
         achievement-title: {
-            font: main-font
+            font: main-font-plain,
+            fontColor: black
         },
         achievement-description: {
-            font: main-font-small
+            font: main-font-plain-small,
+            fontColor: black
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
