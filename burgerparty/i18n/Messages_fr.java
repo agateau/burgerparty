@@ -12,8 +12,8 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
         pluralEntries.put(
             new PluralId("1 remaining.", "%n remaining."),
             new String[] {
-                "1 restant.",
-                "%n restants.",
+                "Encore 1.",
+                "Encore %n.",
             }
         );
         pluralEntries.put(
