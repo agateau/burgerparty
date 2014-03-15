@@ -6,6 +6,12 @@
         main-font-small: {
             file: ui/main-font-small.fnt
         },
+        main-font-plain: {
+            file: ui/main-font-plain.fnt
+        },
+        main-font-plain-small: {
+            file: ui/main-font-plain-small.fnt
+        },
         scored-font: {
             file: ui/scored-font.fnt
         }
@@ -70,7 +76,7 @@
             fontColor: white
         },
         about-body: {
-            font: main-font,
+            font: main-font-plain,
             fontColor: black
         },
 
