@@ -1,3 +1,10 @@
+# 0.12 - 2014-03-15
+
+- An achievement system has been added.
+- Mini-games have been removed.
+- Start screen has been rearranged to make room for the achievement button:
+  about and audio buttons are now grouped in a configuration button.
+
 # 0.11 - 2014-02-13
 
 - A cut-scene has been added when the player completes world 1 and world 2
