@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 23:37+0100\n"
-"PO-Revision-Date: 2014-03-15 17:29+0100\n"
-"Last-Translator: Aurélien Gâteau <agateau@kde.org>\n"
+"POT-Creation-Date: 2014-03-15 23:14+0100\n"
+"PO-Revision-Date: 2014-03-15 23:26+0100\n"
+"Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -40,13 +40,13 @@ msgstr "Dieu des Burgers"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
 msgid "Practice Area"
-msgstr "Zone d'essai"
+msgstr "Laboratoire"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
 msgid "ignore-practice"
 msgid_plural "Collect %n stars to unlock the practice area."
 msgstr[0] "-"
-msgstr[1] "Récupérer %n étoiles pour débloquer la zone d'essai."
+msgstr[1] "Récupérer %n étoiles pour débloquer le laboratoire."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
 msgid "Star Collector"
@@ -64,9 +64,9 @@ msgstr "C'était juste"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
 msgid "ignore-close-call"
-msgid_plural "Finish a level with %n seconds left."
+msgid_plural "Finish a level with less than %n seconds left."
 msgstr[0] "-"
-msgstr[1] "Finir un niveau avec %n secondes."
+msgstr[1] "Finir un niveau avec moins de %n secondes restantes."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 msgid "Morning Gamer"
@@ -76,7 +76,7 @@ msgstr "Joueur du matin"
 msgid "ignore-morning"
 msgid_plural "Start a game between 7AM and 10AM for %n days."
 msgstr[0] "-"
-msgstr[1] "Jouer entre 7 heures et 10 heures du matin pendant %n jours."
+msgstr[1] "Jouer entre 7:00 et 10:00 pendant %n jours."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
 msgid "Evening Gamer"
@@ -86,7 +86,7 @@ msgstr "Joueur du soir"
 msgid "ignore-evening"
 msgid_plural "Start a game between 7PM and 11PM for %n days."
 msgstr[0] "-"
-msgstr[1] "Jouer entre 19 heures et 23 heures du matin pendant %n jours."
+msgstr[1] "Jouer entre 19:00 et 23:00 pendant %n jours."
 
 #~ msgid "X"
 #~ msgid_plural "Serve %n burgers."

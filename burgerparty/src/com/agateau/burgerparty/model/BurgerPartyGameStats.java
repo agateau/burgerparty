@@ -63,7 +63,7 @@ public class BurgerPartyGameStats {
         achievement.init(universe.starCount, count);
         manager.add(achievement);
 
-        mCloseCall = new Achievement("close-call", _("Close Call"), trn("ignore-close-call", "Finish a level with %n seconds left.", CLOSE_CALL_COUNT));
+        mCloseCall = new Achievement("close-call", _("Close Call"), trn("ignore-close-call", "Finish a level with less than %n seconds left.", CLOSE_CALL_COUNT + 1));
         manager.add(mCloseCall);
 
         count = 4;

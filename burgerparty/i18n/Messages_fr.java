@@ -4,7 +4,7 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
     public Messages_fr() {
         plainEntries.put("Burger Master", "Maître Burger");
         plainEntries.put("Burger God", "Dieu des Burgers");
-        plainEntries.put("Practice Area", "Zone d'essai");
+        plainEntries.put("Practice Area", "Laboratoire");
         plainEntries.put("Star Collector", "Collectionneur d'étoiles");
         plainEntries.put("Close Call", "C'était juste");
         plainEntries.put("Morning Gamer", "Joueur du matin");
@@ -27,7 +27,7 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
             new PluralId("ignore-practice", "Collect %n stars to unlock the practice area."),
             new String[] {
                 "-",
-                "Récupérer %n étoiles pour débloquer la zone d'essai.",
+                "Récupérer %n étoiles pour débloquer le laboratoire.",
             }
         );
         pluralEntries.put(
@@ -38,24 +38,24 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-close-call", "Finish a level with %n seconds left."),
+            new PluralId("ignore-close-call", "Finish a level with less than %n seconds left."),
             new String[] {
                 "-",
-                "Finir un niveau avec %n secondes.",
+                "Finir un niveau avec moins de %n secondes restantes.",
             }
         );
         pluralEntries.put(
             new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %n days."),
             new String[] {
                 "-",
-                "Jouer entre 7 heures et 10 heures du matin pendant %n jours.",
+                "Jouer entre 7:00 et 10:00 pendant %n jours.",
             }
         );
         pluralEntries.put(
             new PluralId("ignore-evening", "Start a game between 7PM and 11PM for %n days."),
             new String[] {
                 "-",
-                "Jouer entre 19 heures et 23 heures du matin pendant %n jours.",
+                "Jouer entre 19:00 et 23:00 pendant %n jours.",
             }
         );
     }
