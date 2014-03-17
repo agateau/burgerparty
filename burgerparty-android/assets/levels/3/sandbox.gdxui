@@ -1,23 +1,25 @@
 <?xml version="1.0"?>
 <gdxui>
     <AnchorGroup id="bottomLeftButtonBar">
-        <Image x="-5" y="8" id="bottomLeftBg" name="levels/2/bottom-left-button-bar"/>
+        <Image x="-8" y="4" id="bottomLeftBg" name="levels/3/button-bar.9"
+            width="106" height="199"/>
         <ImageButton id="switchInventoriesButton"
-            bottomLeft="bottomLeftBg.bottomLeft 9 11"
+            bottomCenter="bottomLeftBg.bottomCenter 0 16"
             width="80" height="80"
-            imageColor="703002ff" style="level2-hud-button"/>
+            imageColor="502d16ff" style="level3-hud-button"/>
         <ImageButton id="undoButton"
-            bottomLeft="switchInventoriesButton.topLeft 0 4"
+            bottomLeft="switchInventoriesButton.topLeft 0 6"
             width="80" height="80"
-            imageName="ui/undo" imageColor="703002ff" style="level2-hud-button"/>
+            imageName="ui/undo" imageColor="502d16ff" style="level3-hud-button"/>
     </AnchorGroup>
 
     <AnchorGroup id="bottomRightButtonBar" width="80">
-        <Image x="-18" y="9" id="bottomRightBg" name="levels/2/bottom-right-button-bar"/>
+        <Image x="-18" y="4" id="bottomRightBg" name="levels/3/button-bar.9"
+            width="106" height="112"/>
         <ImageButton id="deliverButton"
-            bottomLeft="bottomRightBg.bottomLeft 14 10"
+            bottomCenter="bottomRightBg.bottomCenter 0 16"
             width="80" height="80"
-            imageName="ui/done" imageColor="703002ff" style="level2-hud-button"
+            imageName="ui/done" imageColor="502d16ff" style="level3-hud-button"
             sound="meal-done"/>
     </AnchorGroup>
 </gdxui>

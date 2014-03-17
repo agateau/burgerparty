@@ -140,6 +140,11 @@
             up: levels/2/button,
             pressedOffsetY: -1
         },
+        level3-hud-button: {
+            down: levels/3/button-down,
+            up: levels/3/button,
+            pressedOffsetY: -1
+        },
         level-button: {
             down: ui/level-button-down,
             up: ui/level-button,
