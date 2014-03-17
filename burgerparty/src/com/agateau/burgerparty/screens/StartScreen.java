@@ -10,6 +10,7 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -73,7 +74,7 @@ public class StartScreen extends BurgerPartyScreen {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 boolean showing = moreGroup.getColor().a < 1;
                 moreGroup.addAction(Actions.alpha(showing ? 1 : 0, 0.2f));
-                moreGroup.addAction(Actions.moveBy(0, showing ? MORE_ANIM_HEIGHT : -MORE_ANIM_HEIGHT, 0.2f));
+                moreGroup.addAction(Actions.moveBy(0, showing ? MORE_ANIM_HEIGHT : -MORE_ANIM_HEIGHT, 0.2f, Interpolation.pow2Out));
             }
         });
 
