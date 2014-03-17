@@ -18,6 +18,6 @@
             bottomLeft="bottomRightBg.bottomLeft 14 10"
             width="80" height="80"
             imageName="ui/done" imageColor="703002ff" style="level2-hud-button"
-            sound="meal-done"/>/>
+            sound="meal-done"/>
     </AnchorGroup>
 </gdxui>
