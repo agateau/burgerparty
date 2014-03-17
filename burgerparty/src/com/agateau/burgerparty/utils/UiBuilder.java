@@ -7,6 +7,7 @@ import java.util.Map;
 import com.agateau.burgerparty.utils.AnchorGroup.Rule;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -157,16 +159,29 @@ public class UiBuilder {
         Image image = new Image();
         String attr = element.getAttribute("name", "");
         if (!attr.isEmpty()) {
-            TextureRegion region = mAtlas.findRegion(attr);
-            image.setDrawable(new TextureRegionDrawable(region));
-            if (image.getWidth() == 0) {
-                image.setWidth(region.getRegionWidth());
-            }
-            if (image.getHeight() == 0) {
-                image.setHeight(region.getRegionHeight());
+            if (attr.endsWith(".9")) {
+                initImageFromNinePatchName(image, attr);
+            } else {
+                initImageFromRegionName(image, attr);
             }
         }
         return image;
+    }
+
+    private void initImageFromNinePatchName(Image image, String name) {
+        NinePatch patch = mAtlas.createPatch(name.substring(0, name.length() - 2));
+        image.setDrawable(new NinePatchDrawable(patch));
+    }
+
+    private void initImageFromRegionName(Image image, String name) {
+        TextureRegion region = mAtlas.findRegion(name);
+        image.setDrawable(new TextureRegionDrawable(region));
+        if (image.getWidth() == 0) {
+            image.setWidth(region.getRegionWidth());
+        }
+        if (image.getHeight() == 0) {
+            image.setHeight(region.getRegionHeight());
+        }
     }
 
     protected ImageButton createImageButton(XmlReader.Element element) {
