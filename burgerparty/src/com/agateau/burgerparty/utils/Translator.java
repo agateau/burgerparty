@@ -49,9 +49,17 @@ public class Translator {
         return sImpl.tr(src);
     }
 
+    public static String tr(String src, Object... args) {
+        return String.format(tr(src), args);
+    }
+
     public static String trn(String singular, String plural, int n) {
         init();
         return sImpl.trn(singular, plural, n);
+    }
+
+    public static String trn(String singular, String plural, int n, Object... args) {
+        return String.format(trn(singular, plural, n), args);
     }
 
     private static void init() {
