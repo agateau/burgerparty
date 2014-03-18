@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class PauseOverlay extends Overlay {
     private final WorldView mWorldView;
     private final BurgerPartyGame mGame;
@@ -26,17 +28,17 @@ public class PauseOverlay extends Overlay {
         mWorldView = worldView;
         mGame = game;
 
-        String txt = "Level: " + (game.getLevelWorldIndex() + 1) + "-" + (game.getLevelIndex() + 1) + "\n";
+        String txt = String.format(tr("Level %d-%d"), game.getLevelWorldIndex() + 1, game.getLevelIndex() + 1) + "\n";
         int highScore = game.getUniverse().getHighScore(game.getLevelWorldIndex(), game.getLevelIndex());
         if (highScore > 0) {
-            txt += "High score: " + highScore;
+            txt += String.format(tr("High score: %d"), highScore);
         } else {
-            txt += "No high score yet";
+            txt += tr("No high score yet");
         }
         Label levelLabel = new Label(txt, skin);
         levelLabel.setAlignment(Align.center, Align.center);
 
-        Label pausedLabel = new Label("Paused", skin);
+        Label pausedLabel = new Label(tr("Paused"), skin);
 
         ImageButton resumeButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-play");
         resumeButton.addListener(new ChangeListener() {

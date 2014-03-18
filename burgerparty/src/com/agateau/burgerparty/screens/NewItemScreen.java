@@ -23,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class NewItemScreen extends BurgerPartyScreen {
     private static final float DISPLAY_DURATION = 3;
     private static final float FADE_IN_DURATION = 1;
@@ -109,7 +111,7 @@ public class NewItemScreen extends BurgerPartyScreen {
         mBubbleContent = new AnchorGroup();
         mBubble.setChild(mBubbleContent);
 
-        mBubbleLabel = new Label("New item unlocked!", getGame().getAssets().getSkin(), "bubble-text");
+        mBubbleLabel = new Label(tr("New item unlocked!"), getGame().getAssets().getSkin(), "bubble-text");
 
         mItemImage = new Image(atlas.findRegion("mealitems/" + newItem.getPath() + "-inventory"));
 

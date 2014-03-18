@@ -27,6 +27,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class LevelFinishedOverlay extends Overlay {
     private static final int EXTRA_TIME_SCORE = 100;
     private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
@@ -111,7 +113,7 @@ public class LevelFinishedOverlay extends Overlay {
 
     class HighScoreTask extends RunQueue.Task {
         public HighScoreTask(Overlay parent) {
-            mLabel = new Label("New High Score!", mGame.getAssets().getSkin(), "score-feedback");
+            mLabel = new Label(tr("New High Score!"), mGame.getAssets().getSkin(), "score-feedback");
             parent.addActor(mLabel);
             mLabel.setVisible(false);
         }
@@ -228,13 +230,13 @@ public class LevelFinishedOverlay extends Overlay {
         int levelIndex = mGame.getLevelIndex();
         LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
         if (levelIndex < levelWorld.getLevelCount() - 1) {
-            mainLabel.setText("Congratulations, you finished level " + (levelWorldIndex + 1) + "-" + (levelIndex + 1) + "!");
+            mainLabel.setText(String.format(tr("Congratulations, you finished level %d-%d!"), levelWorldIndex + 1, levelIndex + 1));
             nextButton = createNextButton("ui/icon-right");
         } else if (levelWorldIndex < mGame.getUniverse().getWorlds().size - 1) {
-            mainLabel.setText("Congratulations, you finished world " + (levelWorldIndex + 1) + "!");
+            mainLabel.setText(String.format(tr("Congratulations, you finished world %d!"), levelWorldIndex + 1));
             nextButton = createNextButton("ui/icon-right");
         } else {
-            mainLabel.setText("Congratulations, you finished the game!");
+            mainLabel.setText(tr("Congratulations, you finished the game!"));
         }
         UiUtils.adjustToPrefSize(mainLabel);
 

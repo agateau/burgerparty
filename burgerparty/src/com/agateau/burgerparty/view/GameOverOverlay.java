@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class GameOverOverlay extends Overlay {
     private BurgerPartyGame mGame;
 
@@ -21,7 +23,7 @@ public class GameOverOverlay extends Overlay {
         super(atlas);
         mGame = game;
 
-        Label label = new Label("Game Over", skin);
+        Label label = new Label(tr("Game Over"), skin);
 
         ImageButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
         tryAgainButton.addListener(new ChangeListener() {

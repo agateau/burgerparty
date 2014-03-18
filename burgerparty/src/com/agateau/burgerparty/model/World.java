@@ -13,6 +13,8 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class World {
     public static class Score {
         public enum Type {
@@ -310,11 +312,11 @@ public class World {
             if (count > 1) {
                 score.type = Score.Type.COMBO;
                 score.deltaScore = HAPPY_SCORE + COMBO_SCORE * count;
-                score.message = count + "x combo!";
+                score.message = String.format(tr("%dx combo!"), count);
             } else {
                 score.type = Score.Type.HAPPY;
                 score.deltaScore = HAPPY_SCORE;
-                score.message = "Happy customer!";
+                score.message = tr("Happy customer!");
             }
         } else if (mood == Customer.Mood.NEUTRAL) {
             score.type = Score.Type.NEUTRAL;

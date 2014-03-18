@@ -2,6 +2,15 @@
 
 public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
     public Messages_fr() {
+        plainEntries.put("New High Score!", "Nouveau record !");
+        plainEntries.put("Congratulations, you finished level %d-%d!", "Félicitations, vous avez terminé le niveau %d-%d !");
+        plainEntries.put("Congratulations, you finished world %d!", "Félicitations, vous avez terminé le monde %d !");
+        plainEntries.put("Congratulations, you finished the game!", "Félicitations, vous avez terminé le jeu !");
+        plainEntries.put("Level %d-%d", "Niveau %d-%d");
+        plainEntries.put("High score: %d", "Record : %d");
+        plainEntries.put("No high score yet", "Pas encore de record");
+        plainEntries.put("Paused", "Pause");
+        plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Burger Master", "Maître Burger");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Practice Area", "Laboratoire");
@@ -9,6 +18,9 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
         plainEntries.put("Close Call", "C'était juste");
         plainEntries.put("Morning Gamer", "Joueur du matin");
         plainEntries.put("Evening Gamer", "Joueur du soir");
+        plainEntries.put("%dx combo!", "%dx combo !");
+        plainEntries.put("Happy customer!", "Client satisfait !");
+        plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
         pluralEntries.put(
             new PluralId("1 remaining.", "%n remaining."),
             new String[] {
