@@ -21,6 +21,13 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
         plainEntries.put("%dx combo!", "%dx combo !");
         plainEntries.put("Happy customer!", "Client satisfait !");
         plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
+        plainEntries.put("Version %s", "Version %s");
+        plainEntries.put("Code & Design", "Code & Design");
+        plainEntries.put("Aurélien Gâteau", "Aurélien Gâteau");
+        plainEntries.put("Music", "Musique");
+        plainEntries.put("Thomas Tripon", "Thomas Tripon");
+        plainEntries.put("Testers", "Testeurs");
+        plainEntries.put("Clara Gâteau\nAntonin Gâteau\nGwenaëlle Gâteau\nMathieu Maret\nAnd many others!", "Clara Gâteau\nAntonin Gâteau\nGwenaëlle Gâteau\nMathieu Maret\nEt de nombreux autres !");
         pluralEntries.put(
             new PluralId("1 remaining.", "%n remaining."),
             new String[] {

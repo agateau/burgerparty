@@ -16,7 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import static com.agateau.burgerparty.utils.Translator.tr;
+
 public class AboutScreen extends BurgerPartyScreen {
+    private static final String VERSION = "0.12";
+
     private static final float PIXEL_PER_SECOND = 48;
 
     private ScrollPane mScrollPane;
@@ -60,7 +64,18 @@ public class AboutScreen extends BurgerPartyScreen {
 
         mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
-        String aboutText = FileUtils.assets("about.txt").readString("utf-8");
+        String aboutText =
+                tr("Version %s", VERSION) + "\n\n"
+                + tr("Code & Design") + "\n"
+                + tr("Aurélien Gâteau") + "\n\n"
+                + tr("Music") + "\n"
+                + tr("Thomas Tripon") + "\n\n"
+                + tr("Testers") + "\n"
+                + tr("Clara Gâteau\n"
+                        + "Antonin Gâteau\n"
+                        + "Gwenaëlle Gâteau\n"
+                        + "Mathieu Maret\n"
+                        + "And many others!");
 
         Label label = builder.<Label>getActor("bodyLabel");
         label.setText(aboutText);
