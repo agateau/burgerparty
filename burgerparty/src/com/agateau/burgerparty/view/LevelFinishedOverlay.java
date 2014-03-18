@@ -230,10 +230,10 @@ public class LevelFinishedOverlay extends Overlay {
         int levelIndex = mGame.getLevelIndex();
         LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
         if (levelIndex < levelWorld.getLevelCount() - 1) {
-            mainLabel.setText(String.format(tr("Congratulations, you finished level %d-%d!"), levelWorldIndex + 1, levelIndex + 1));
+            mainLabel.setText(tr("Congratulations, you finished level %d-%d!", levelWorldIndex + 1, levelIndex + 1));
             nextButton = createNextButton("ui/icon-right");
         } else if (levelWorldIndex < mGame.getUniverse().getWorlds().size - 1) {
-            mainLabel.setText(String.format(tr("Congratulations, you finished world %d!"), levelWorldIndex + 1));
+            mainLabel.setText(tr("Congratulations, you finished world %d!", levelWorldIndex + 1));
             nextButton = createNextButton("ui/icon-right");
         } else {
             mainLabel.setText(tr("Congratulations, you finished the game!"));

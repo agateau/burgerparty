@@ -312,7 +312,7 @@ public class World {
             if (count > 1) {
                 score.type = Score.Type.COMBO;
                 score.deltaScore = HAPPY_SCORE + COMBO_SCORE * count;
-                score.message = String.format(tr("%dx combo!"), count);
+                score.message = tr("%dx combo!", count);
             } else {
                 score.type = Score.Type.HAPPY;
                 score.deltaScore = HAPPY_SCORE;

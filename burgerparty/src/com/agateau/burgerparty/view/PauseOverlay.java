@@ -28,10 +28,10 @@ public class PauseOverlay extends Overlay {
         mWorldView = worldView;
         mGame = game;
 
-        String txt = String.format(tr("Level %d-%d"), game.getLevelWorldIndex() + 1, game.getLevelIndex() + 1) + "\n";
+        String txt = tr("Level %d-%d", game.getLevelWorldIndex() + 1, game.getLevelIndex() + 1) + "\n";
         int highScore = game.getUniverse().getHighScore(game.getLevelWorldIndex(), game.getLevelIndex());
         if (highScore > 0) {
-            txt += String.format(tr("High score: %d"), highScore);
+            txt += tr("High score: %d", highScore);
         } else {
             txt += tr("No high score yet");
         }
