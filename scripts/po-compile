@@ -13,9 +13,15 @@ import polib
 DESCRIPTION = """\
 """
 
-
+ESCAPES = [
+    ('"', r'\"'),
+    ('\n', r'\n'),
+    ('\\', r'\\'),
+    ]
 def escape(txt):
-    return txt.replace('"', r'\"')
+    for src, dst in ESCAPES:
+        txt = txt.replace(src, dst)
+    return txt
 
 
 def escape_plural(dct):
