@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.utils;
 
-import static com.agateau.burgerparty.utils.I18n.trn;
+import static com.agateau.burgerparty.utils.Translator.trn;
 
 public class CounterAchievement extends GameStatAchievement {
     private CounterGameStat mStat;

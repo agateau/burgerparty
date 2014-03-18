@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 
 import com.agateau.burgerparty.utils.Messages.PluralId;
 
-public class I18n {
-    private static class Translator {
+public class Translator {
+    private static class Impl {
         private Messages mMessages;
 
-        public Translator(Messages messages) {
+        public Impl(Messages messages) {
             mMessages = messages;
         }
 
@@ -22,32 +22,40 @@ public class I18n {
         }
 
         public String trn(String singular, String plural, int n) {
-            if (mMessages != null) {
-                PluralId id = new PluralId(singular, plural);
-                String[] lst = mMessages.pluralEntries.get(id);
-                if (lst != null) {
-                    return lst[mMessages.plural(n)];
-                }
+            String txt = findPluralTranslation(singular, plural, n);
+            if (txt == null) {
+                txt = n == 1 ? singular : plural;
             }
-            return n == 1 ? singular : plural;
+            return txt.replace("%n", String.valueOf(n));
+        }
+
+        private String findPluralTranslation(String singular, String plural, int n) {
+            if (mMessages == null) {
+                return null;
+            }
+            PluralId id = new PluralId(singular, plural);
+            String[] lst = mMessages.pluralEntries.get(id);
+            if (lst == null) {
+                return null;
+            }
+            return lst[mMessages.plural(n)];
         }
     }
 
-    private static Translator sTranslator;
+    private static Impl sImpl;
 
-    public static String _(String src) {
+    public static String tr(String src) {
         init();
-        return sTranslator.tr(src);
+        return sImpl.tr(src);
     }
 
     public static String trn(String singular, String plural, int n) {
         init();
-        String txt = sTranslator.trn(singular, plural, n);
-        return txt.replace("%n", String.valueOf(n));
+        return sImpl.trn(singular, plural, n);
     }
 
     private static void init() {
-        if (sTranslator != null) {
+        if (sImpl != null) {
             return;
         }
         Messages messages = null;
@@ -55,6 +63,6 @@ public class I18n {
             messages = (Messages)ResourceBundle.getBundle("Messages");
         } catch (MissingResourceException exception) {
         }
-        sTranslator = new Translator(messages);
+        sImpl = new Impl(messages);
     }
 }
