@@ -45,6 +45,8 @@ public class GameOverOverlay extends Overlay {
         group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
         group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
         group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
+
+        game.getAssets().getSoundAtlas().findSound("gameover").play();
     }
 
     @Override

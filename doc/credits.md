@@ -83,3 +83,7 @@ tick.wav
 time-bonus.wav
 
 trash.wav
+
+gameover.ogg
+
+<http://opengameart.org/content/85-short-music-jingles>

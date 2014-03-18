@@ -47,6 +47,7 @@ public class Assets {
             "coin.wav",
             "error.wav",
             "finished.wav",
+            "gameover.ogg",
             "jet.wav",
             "meal-done.wav",
             "sauce.wav",
