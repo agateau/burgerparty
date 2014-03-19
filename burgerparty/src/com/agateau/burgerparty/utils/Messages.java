@@ -1,10 +1,8 @@
 package com.agateau.burgerparty.utils;
 
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
-public class Messages extends ResourceBundle {
+public class Messages {
     public static class PluralId {
         public final String singular;
         public final String plural;
@@ -29,16 +27,6 @@ public class Messages extends ResourceBundle {
     public final HashMap<String, String> plainEntries = new HashMap<String, String>();
 
     public final HashMap<PluralId, String[]> pluralEntries = new HashMap<PluralId, String[]>();
-
-    @Override
-    public Enumeration<String> getKeys() {
-        return null;
-    }
-
-    @Override
-    protected Object handleGetObject(String key) {
-        return null;
-    }
 
     public int plural(int n) {
         return n == 1 ? 0 : 1;
