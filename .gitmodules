@@ -1,0 +1,3 @@
+[submodule "linguaj"]
+	path = linguaj
+	url = git://github.com/agateau/linguaj.git
