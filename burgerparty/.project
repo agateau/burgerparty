@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>linguaj</name>
+			<type>2</type>
+			<locationURI>WORKSPACE_LOC/linguaj/src</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
