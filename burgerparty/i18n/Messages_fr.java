@@ -27,52 +27,52 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Testers", "Testeurs");
         plainEntries.put("Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nAnd many others!", "Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nEt de nombreux autres !");
         pluralEntries.put(
-            new PluralId("1 remaining.", "%n remaining."),
+            new PluralId("1 remaining.", "%# remaining."),
             new String[] {
                 "Encore 1.",
-                "Encore %n.",
+                "Encore %#.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-n-burgers", "Serve %n burgers."),
+            new PluralId("ignore-n-burgers", "Serve %# burgers."),
             new String[] {
                 "-",
-                "Servir %n burgers.",
+                "Servir %# burgers.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-practice", "Collect %n stars to unlock the practice area."),
+            new PluralId("ignore-practice", "Collect %# stars to unlock the practice area."),
             new String[] {
                 "-",
-                "Récupérer %n étoiles pour débloquer le laboratoire.",
+                "Récupérer %# étoiles pour débloquer le laboratoire.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-collect", "Collect %n stars."),
+            new PluralId("ignore-collect", "Collect %# stars."),
             new String[] {
                 "-",
-                "Récupérer %n étoiles.",
+                "Récupérer %# étoiles.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-close-call", "Finish a level with less than %n seconds left."),
+            new PluralId("ignore-close-call", "Finish a level with less than %# seconds left."),
             new String[] {
                 "-",
-                "Finir un niveau avec moins de %n secondes restantes.",
+                "Finir un niveau avec moins de %# secondes restantes.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %n days."),
+            new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %# days."),
             new String[] {
                 "-",
-                "Jouer entre 7:00 et 10:00 pendant %n jours.",
+                "Jouer entre 7:00 et 10:00 pendant %# jours.",
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-evening", "Start a game between 7PM and 11PM for %n days."),
+            new PluralId("ignore-evening", "Start a game between 7PM and 11PM for %# days."),
             new String[] {
                 "-",
-                "Jouer entre 19:00 et 23:00 pendant %n jours.",
+                "Jouer entre 19:00 et 23:00 pendant %# jours.",
             }
         );
     }
