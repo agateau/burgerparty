@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 22:50+0100\n"
+"POT-Creation-Date: 2014-03-22 19:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:30
 msgid "1 remaining."
-msgid_plural "%n remaining."
+msgid_plural "%# remaining."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -67,7 +67,7 @@ msgstr ""
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:52
 msgid "ignore-n-burgers"
-msgid_plural "Serve %n burgers."
+msgid_plural "Serve %# burgers."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -81,7 +81,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
 msgid "ignore-practice"
-msgid_plural "Collect %n stars to unlock the practice area."
+msgid_plural "Collect %# stars to unlock the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -91,7 +91,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
 msgid "ignore-collect"
-msgid_plural "Collect %n stars."
+msgid_plural "Collect %# stars."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -101,7 +101,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
 msgid "ignore-close-call"
-msgid_plural "Finish a level with less than %n seconds left."
+msgid_plural "Finish a level with less than %# seconds left."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -111,7 +111,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 msgid "ignore-morning"
-msgid_plural "Start a game between 7AM and 10AM for %n days."
+msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -121,7 +121,7 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
 msgid "ignore-evening"
-msgid_plural "Start a game between 7PM and 11PM for %n days."
+msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 

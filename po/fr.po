@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 22:50+0100\n"
-"PO-Revision-Date: 2014-03-18 22:51+0100\n"
+"POT-Creation-Date: 2014-03-22 19:36+0100\n"
+"PO-Revision-Date: 2014-03-22 19:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -19,9 +19,9 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:30
 msgid "1 remaining."
-msgid_plural "%n remaining."
+msgid_plural "%# remaining."
 msgstr[0] "Encore 1."
-msgstr[1] "Encore %n."
+msgstr[1] "Encore %#."
 
 #: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:116
 msgid "New High Score!"
@@ -66,9 +66,9 @@ msgstr "Maître Burger"
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:52
 msgid "ignore-n-burgers"
-msgid_plural "Serve %n burgers."
+msgid_plural "Serve %# burgers."
 msgstr[0] "-"
-msgstr[1] "Servir %n burgers."
+msgstr[1] "Servir %# burgers."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:52
 msgid "Burger God"
@@ -80,9 +80,9 @@ msgstr "Laboratoire"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
 msgid "ignore-practice"
-msgid_plural "Collect %n stars to unlock the practice area."
+msgid_plural "Collect %# stars to unlock the practice area."
 msgstr[0] "-"
-msgstr[1] "Récupérer %n étoiles pour débloquer le laboratoire."
+msgstr[1] "Récupérer %# étoiles pour débloquer le laboratoire."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
 msgid "Star Collector"
@@ -90,9 +90,9 @@ msgstr "Collectionneur d'étoiles"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
 msgid "ignore-collect"
-msgid_plural "Collect %n stars."
+msgid_plural "Collect %# stars."
 msgstr[0] "-"
-msgstr[1] "Récupérer %n étoiles."
+msgstr[1] "Récupérer %# étoiles."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
 msgid "Close Call"
@@ -100,9 +100,9 @@ msgstr "C'était juste"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
 msgid "ignore-close-call"
-msgid_plural "Finish a level with less than %n seconds left."
+msgid_plural "Finish a level with less than %# seconds left."
 msgstr[0] "-"
-msgstr[1] "Finir un niveau avec moins de %n secondes restantes."
+msgstr[1] "Finir un niveau avec moins de %# secondes restantes."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 msgid "Morning Gamer"
@@ -110,9 +110,9 @@ msgstr "Joueur du matin"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 msgid "ignore-morning"
-msgid_plural "Start a game between 7AM and 10AM for %n days."
+msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] "-"
-msgstr[1] "Jouer entre 7:00 et 10:00 pendant %n jours."
+msgstr[1] "Jouer entre 7:00 et 10:00 pendant %# jours."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
 msgid "Evening Gamer"
@@ -120,9 +120,9 @@ msgstr "Joueur du soir"
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
 msgid "ignore-evening"
-msgid_plural "Start a game between 7PM and 11PM for %n days."
+msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] "-"
-msgstr[1] "Jouer entre 19:00 et 23:00 pendant %n jours."
+msgstr[1] "Jouer entre 19:00 et 23:00 pendant %# jours."
 
 #: burgerparty/src/com/agateau/burgerparty/model/World.java:315
 msgid "%dx combo!"

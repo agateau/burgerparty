@@ -6,10 +6,10 @@ PO_COMPILE=../linguaj/scripts/po-compile
 
 OUT_DIR=burgerparty/i18n
 
-for podir in ../po/*/ ; do
-    locale=$(basename $podir)
+for pofile in ../po/*.po ; do
+    locale=$(basename $pofile .po)
     echo $locale
-    $PO_COMPILE $podir/messages.po \
+    $PO_COMPILE $pofile \
         --locale $locale \
         --output ../burgerparty/i18n/Messages_$locale.java
 done
