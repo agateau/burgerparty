@@ -14,8 +14,8 @@ import com.agateau.burgerparty.utils.GameStatManager;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringListGameStat;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
-import static com.agateau.burgerparty.utils.Translator.trn;
+import static com.greenyetilab.linguaj.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.trn;
 
 public class BurgerPartyGameStats {
     private HashSet<Object> mHandlers = new HashSet<Object>();
@@ -44,33 +44,33 @@ public class BurgerPartyGameStats {
         mGameStatManager.load();
 
         int count = 50;
-        CounterAchievement achievement = new CounterAchievement("burger-master", tr("Burger Master"), trn("ignore-n-burgers", "Serve %n burgers.", count));
+        CounterAchievement achievement = new CounterAchievement("burger-master", tr("Burger Master"), trn("ignore-n-burgers", "Serve %# burgers.", count));
         achievement.init(mealServedCount, count);
         manager.add(achievement);
 
         count = 100;
-        achievement = new CounterAchievement("burger-god", tr("Burger God"), trn("ignore-n-burgers", "Serve %n burgers.", count));
+        achievement = new CounterAchievement("burger-god", tr("Burger God"), trn("ignore-n-burgers", "Serve %# burgers.", count));
         achievement.init(mealServedCount, count);
         manager.add(achievement);
 
         count = 4;
-        sandBoxAchievement = new CounterAchievement("sandbox", tr("Practice Area"), trn("ignore-practice", "Collect %n stars to unlock the practice area.", count));
+        sandBoxAchievement = new CounterAchievement("sandbox", tr("Practice Area"), trn("ignore-practice", "Collect %# stars to unlock the practice area.", count));
         sandBoxAchievement.init(universe.starCount, count);
         manager.add(sandBoxAchievement);
 
         count = 36;
-        achievement = new CounterAchievement("star-collector", tr("Star Collector"), trn("ignore-collect", "Collect %n stars.", count));
+        achievement = new CounterAchievement("star-collector", tr("Star Collector"), trn("ignore-collect", "Collect %# stars.", count));
         achievement.init(universe.starCount, count);
         manager.add(achievement);
 
-        mCloseCall = new Achievement("close-call", tr("Close Call"), trn("ignore-close-call", "Finish a level with less than %n seconds left.", CLOSE_CALL_COUNT + 1));
+        mCloseCall = new Achievement("close-call", tr("Close Call"), trn("ignore-close-call", "Finish a level with less than %# seconds left.", CLOSE_CALL_COUNT + 1));
         manager.add(mCloseCall);
 
         count = 4;
-        mMorningGamer = new Achievement("morning-gamer", tr("Morning Gamer"), trn("ignore-morning", "Start a game between 7AM and 10AM for %n days.", count));
+        mMorningGamer = new Achievement("morning-gamer", tr("Morning Gamer"), trn("ignore-morning", "Start a game between 7AM and 10AM for %# days.", count));
         manager.add(mMorningGamer);
 
-        mEveningGamer = new Achievement("evening-gamer", tr("Evening Gamer"), trn("ignore-evening", "Start a game between 7PM and 11PM for %n days.", count));
+        mEveningGamer = new Achievement("evening-gamer", tr("Evening Gamer"), trn("ignore-evening", "Start a game between 7PM and 11PM for %# days.", count));
         manager.add(mEveningGamer);
 
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));

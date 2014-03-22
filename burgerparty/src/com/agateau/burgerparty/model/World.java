@@ -13,7 +13,7 @@ import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.tr;
 
 public class World {
     public static class Score {

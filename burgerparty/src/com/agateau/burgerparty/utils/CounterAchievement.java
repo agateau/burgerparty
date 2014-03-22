@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.utils;
 
-import static com.agateau.burgerparty.utils.Translator.trn;
+import static com.greenyetilab.linguaj.Translator.trn;
 
 public class CounterAchievement extends GameStatAchievement {
     private CounterGameStat mStat;
@@ -27,6 +27,6 @@ public class CounterAchievement extends GameStatAchievement {
         if (isUnlocked()) {
             return description;
         }
-        return description + " " + trn("1 remaining.", "%n remaining.", mMinValue - mStat.getValue());
+        return description + " " + trn("1 remaining.", "%# remaining.", mMinValue - mStat.getValue());
     }
 }

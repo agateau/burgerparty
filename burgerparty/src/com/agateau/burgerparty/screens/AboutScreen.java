@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.tr;
 
 public class AboutScreen extends BurgerPartyScreen {
     private static final String VERSION = "0.12";

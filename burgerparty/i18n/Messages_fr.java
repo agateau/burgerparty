@@ -1,6 +1,4 @@
-
-
-public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
+public class Messages_fr extends com.greenyetilab.linguaj.Messages {
     public Messages_fr() {
         plainEntries.put("New High Score!", "Nouveau record !");
         plainEntries.put("Congratulations, you finished level %d-%d!", "Félicitations, vous avez terminé le niveau %d-%d !");
@@ -27,7 +25,7 @@ public class Messages_fr extends com.agateau.burgerparty.utils.Messages {
         plainEntries.put("Music", "Musique");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
         plainEntries.put("Testers", "Testeurs");
-        plainEntries.put("Clara Gâteau\nAntonin Gâteau\nGwenaëlle Gâteau\nMathieu Maret\nAnd many others!", "Clara Gâteau\nAntonin Gâteau\nGwenaëlle Gâteau\nMathieu Maret\nEt de nombreux autres !");
+        plainEntries.put("Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nAnd many others!", "Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nEt de nombreux autres !");
         pluralEntries.put(
             new PluralId("1 remaining.", "%n remaining."),
             new String[] {

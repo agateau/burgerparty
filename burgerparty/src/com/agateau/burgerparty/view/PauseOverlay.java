@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.tr;
 
 public class PauseOverlay extends Overlay {
     private final WorldView mWorldView;

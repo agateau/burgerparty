@@ -27,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.tr;
 
 public class LevelFinishedOverlay extends Overlay {
     private static final int EXTRA_TIME_SCORE = 100;

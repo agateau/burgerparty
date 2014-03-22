@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-import static com.agateau.burgerparty.utils.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.tr;
 
 public class GameOverOverlay extends Overlay {
     private BurgerPartyGame mGame;
