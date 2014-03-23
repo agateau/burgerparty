@@ -1,0 +1,34 @@
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <Label id="mainLabel"
+            topCenter="root.topCenter 0 -0.6">ZOG</Label>
+
+        <Label id="scoreLabel"
+            topCenter="mainLabel.bottomCenter 0 -0.6">123456</Label>
+
+        <AnchorGroup id="starGroup" spacing="6"
+            topCenter="scoreLabel.bottomCenter 0 -0.6" height="80">
+            <Image name="ui/star-off-big" id="star1"
+                bottomCenter="starGroup.bottomCenter"/>
+            <Image name="ui/star-off-big" id="star0"
+                bottomRight="star1.bottomLeft -1 0"/>
+            <Image name="ui/star-off-big" id="star2"
+                bottomLeft="star1.bottomRight 1 0"/>
+        </AnchorGroup>
+
+        <ImageButton id="nextButton"
+            style="round-button"
+            bottomCenter="root.bottomCenter 0 6"
+            imageName="ui/icon-right"/>
+
+        <ImageButton id="restartButton"
+            style="round-button"
+            bottomRight="root.bottomCenter -0.5 1"
+            imageName="ui/icon-restart"/>
+
+        <ImageButton id="selectLevelButton"
+            style="round-button"
+            bottomLeft="root.bottomCenter 0.5 1"
+            imageName="ui/icon-levels"/>
+    </AnchorGroup>
+</gdxui>

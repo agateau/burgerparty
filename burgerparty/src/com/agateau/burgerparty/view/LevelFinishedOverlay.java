@@ -1,12 +1,10 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
-import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
-import com.agateau.burgerparty.utils.HorizontalGroup;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.RunQueue;
@@ -40,9 +38,9 @@ public class LevelFinishedOverlay extends Overlay {
     private BurgerPartyGame mGame;
     private int mScore;
     private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
-    private Label mScoreLabel;
     private Array<Image> mStarImages = new Array<Image>();
-    private HorizontalGroup mStarGroup = new HorizontalGroup();
+    private Label mScoreLabel;
+    private AnchorGroup mStarGroup;
 
     class ConsumeSecondsTask extends RunQueue.Task {
         public ConsumeSecondsTask(int secs) {
@@ -196,80 +194,57 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     private void setupWidgets(Skin skin) {
-        AnchorGroup group = new AnchorGroup();
-        group.setSpacing(UiUtils.SPACING);
-        group.setFillParent(true);
-        addActor(group);
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mGame.getAssets());
+        builder.build(FileUtils.assets("screens/levelfinishedoverlay.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        root.setFillParent(true);
+        addActor(root);
 
-        // Score label
-        mScoreLabel = new Label(String.valueOf(mScore), skin);
+        mScoreLabel = builder.<Label>getActor("scoreLabel");
+        mScoreLabel.setText(String.valueOf(mScore));
+        UiUtils.adjustToPrefSize(mScoreLabel);
 
-        // Stars
-        createStarsActor(skin);
-
-        // Select level button
-        ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
-        selectLevelButton.addListener(new ChangeListener() {
+        builder.<ImageButton>getActor("selectLevelButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.showLevelListScreen(mGame.getLevelWorldIndex());
             }
         });
 
-        // Restart button
-        ImageButton restartButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
-        restartButton.addListener(new ChangeListener() {
+        builder.<ImageButton>getActor("restartButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
             }
         });
 
-        // Main label and next button
-        Label mainLabel = new Label("", skin);
-        ImageButton nextButton = null;
+        // main label and next button
+        ImageButton nextButton = builder.<ImageButton>getActor("nextButton");
+
         int levelWorldIndex = mGame.getLevelWorldIndex();
         int levelIndex = mGame.getLevelIndex();
         LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
+        Label mainLabel = builder.<Label>getActor("mainLabel");
         if (levelIndex < levelWorld.getLevelCount() - 1) {
             mainLabel.setText(tr("Congratulations, you finished level %d-%d!", levelWorldIndex + 1, levelIndex + 1));
-            nextButton = createNextButton("ui/icon-right");
         } else if (levelWorldIndex < mGame.getUniverse().getWorlds().size - 1) {
             mainLabel.setText(tr("Congratulations, you finished world %d!", levelWorldIndex + 1));
-            nextButton = createNextButton("ui/icon-right");
         } else {
             mainLabel.setText(tr("Congratulations, you finished the game!"));
+            nextButton.setVisible(false);
+            nextButton = null;
         }
         UiUtils.adjustToPrefSize(mainLabel);
-
-        // Layout
-        group.addRule(mainLabel, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER, 0, -0.6f);
-        group.addRule(mScoreLabel, Anchor.TOP_CENTER, mainLabel, Anchor.BOTTOM_CENTER, 0, -0.6f);
-        group.addRule(mStarGroup, Anchor.TOP_CENTER, mScoreLabel, Anchor.BOTTOM_CENTER, 0, -0.6f);
         if (nextButton != null) {
-            group.addRule(nextButton, Anchor.BOTTOM_CENTER, this, Anchor.BOTTOM_CENTER, 0, 6);
+            nextButton.addListener(new ChangeListener() {
+                public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                    goToNextLevel();
+                }
+            });
         }
-        group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
-        group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
-    }
 
-    private void createStarsActor(Skin skin) {
-        Drawable texture = mStarTextures.get(0);
+        mStarGroup = builder.<AnchorGroup>getActor("starGroup");
         for (int i = 0; i < 3; ++i) {
-            Image image = new Image(texture);
-            mStarImages.add(image);
-            mStarGroup.addActor(image);
+            mStarImages.add(builder.<Image>getActor("star" + String.valueOf(i)));
         }
-        mStarGroup.setWidth(mStarGroup.getPrefWidth());
-        mStarGroup.setHeight(mStarGroup.getPrefHeight());
-    }
-
-    private ImageButton createNextButton(String name) {
-        ImageButton button = Kernel.createRoundButton(mGame.getAssets(), name);
-        button.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                goToNextLevel();
-            }
-        });
-        return button;
     }
 
     private void goToNextLevel() {
