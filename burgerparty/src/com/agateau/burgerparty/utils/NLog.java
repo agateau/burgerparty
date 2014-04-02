@@ -65,11 +65,11 @@ public class NLog {
     }
 
     public static NLog createForClass(Object obj) {
-        return sRoot.create(obj.getClass().getSimpleName());
+        return getRoot().create(obj.getClass().getSimpleName());
     }
 
     public static NLog createForInstance(Object obj) {
-        return sRoot.create(obj.toString() + "(" + obj.hashCode() + ")");
+        return getRoot().create(obj.toString() + "(" + obj.hashCode() + ")");
     }
 
     private static NLog sRoot = null;
