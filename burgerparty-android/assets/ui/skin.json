@@ -91,7 +91,7 @@
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
         default: {
-            font: main-font,
+            font: main-font-plain-small,
             fontColorSelected: white,
             fontColorUnselected: black,
             selection: ui/level-button
