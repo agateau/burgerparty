@@ -62,4 +62,9 @@
     <face name="customers/wrestler/face-0-happy"/>
     <face name="customers/wrestler/face-0-neutral" yOffset="1"/>
     <face name="customers/wrestler/face-0-angry" yOffset="-3"/>
+
+    <body name="customers/pirate-boss/body-0" xCenter="141" yFace="135"/>
+    <face name="customers/pirate-boss/face-0-happy" xCenter="83"/>
+    <face name="customers/pirate-boss/face-0-neutral" xCenter="83"/>
+    <face name="customers/pirate-boss/face-0-angry" xCenter="83" yOffset="-3"/>
 </parts>
