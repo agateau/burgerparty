@@ -27,6 +27,11 @@ public class AllStarsAchievement extends Achievement {
         setAlreadyUnlocked(mWorld.getWonStarCount() == mWorld.getTotalStarCount());
     }
 
+    @Override
+    public String getIconName() {
+        return "all-stars";
+    }
+
     private void update() {
         if (isUnlocked()) {
             return;

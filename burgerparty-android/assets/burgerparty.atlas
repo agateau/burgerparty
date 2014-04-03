@@ -772,23 +772,30 @@ burgerparty6.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
-achievements/burger-god
+achievements/all-stars
   rotate: false
   xy: 958, 808
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-achievements/burger-master
+achievements/burger-god
   rotate: false
   xy: 958, 742
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-achievements/close-call
+achievements/burger-master
   rotate: false
   xy: 958, 676
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+achievements/close-call
+  rotate: false
+  xy: 958, 610
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -802,19 +809,12 @@ achievements/generic
   index: -1
 achievements/morning-gamer
   rotate: false
-  xy: 958, 610
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-achievements/sandbox
-  rotate: false
   xy: 958, 544
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-achievements/star-collector
+achievements/sandbox
   rotate: false
   xy: 958, 478
   size: 64, 64
@@ -1127,254 +1127,261 @@ burgerparty7.png
 format: RGBA8888
 filter: Nearest,Linear
 repeat: none
+achievements/star-collector
+  rotate: false
+  xy: 2, 255
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 customers/boys/face-0-angry
   rotate: false
-  xy: 516, 675
+  xy: 516, 626
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-happy
   rotate: false
-  xy: 2, 104
+  xy: 516, 574
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-neutral
   rotate: false
-  xy: 516, 623
+  xy: 516, 522
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-1-angry
   rotate: false
-  xy: 516, 727
+  xy: 516, 731
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-happy
   rotate: false
-  xy: 2, 156
+  xy: 516, 678
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 816, 918
+  xy: 455, 458
   size: 71, 46
   orig: 71, 46
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 516, 522
+  xy: 2, 102
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 2, 2
+  xy: 2, 52
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 516, 572
+  xy: 2, 152
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 455, 445
+  xy: 2, 2
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 2, 52
+  xy: 2, 203
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/top-1
   rotate: false
-  xy: 2, 367
+  xy: 2, 378
   size: 108, 60
   orig: 108, 60
   offset: 0, 0
   index: -1
 customers/boys/top-2
   rotate: false
-  xy: 112, 434
+  xy: 112, 445
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 516, 885
+  xy: 516, 896
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 299, 445
+  xy: 299, 456
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 516, 780
+  xy: 377, 456
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 2, 209
+  xy: 816, 970
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 221, 440
+  xy: 221, 451
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 516, 830
+  xy: 516, 841
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 377, 446
+  xy: 894, 971
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
 customers/girls/top-0
   rotate: false
-  xy: 112, 322
+  xy: 516, 784
   size: 70, 55
   orig: 70, 55
   offset: 0, 0
   index: -1
 customers/girls/top-1
   rotate: false
-  xy: 2, 310
+  xy: 2, 321
   size: 108, 55
   orig: 108, 55
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-happy
   rotate: false
-  xy: 2, 259
+  xy: 112, 339
   size: 76, 49
   orig: 76, 49
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-neutral
   rotate: false
-  xy: 112, 379
+  xy: 112, 390
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/pirate-boys/top-boss
   rotate: false
-  xy: 2, 429
+  xy: 2, 440
   size: 108, 64
   orig: 108, 64
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-blue
   rotate: false
-  xy: 516, 946
+  xy: 516, 957
   size: 109, 61
   orig: 109, 61
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-red
   rotate: false
-  xy: 627, 948
+  xy: 627, 959
   size: 105, 59
   orig: 105, 59
   offset: 0, 0
   index: -1
 main-font
   rotate: false
-  xy: 2, 495
+  xy: 2, 506
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 mealitems/0/bottom-inventory
   rotate: false
-  xy: 734, 961
+  xy: 734, 972
   size: 80, 46
   orig: 80, 46
   offset: 0, 0
   index: -1
 mealitems/0/cheese-inventory
   rotate: false
-  xy: 898, 970
+  xy: 734, 933
   size: 80, 37
   orig: 80, 37
   offset: 0, 0
   index: -1
 mealitems/0/onion-inventory
   rotate: false
-  xy: 734, 923
+  xy: 816, 932
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
 mealitems/0/salad-inventory
   rotate: false
-  xy: 816, 966
+  xy: 898, 928
   size: 80, 41
   orig: 80, 41
   offset: 0, 0
   index: -1
 mealitems/0/toast-inventory
   rotate: false
-  xy: 221, 402
+  xy: 112, 301
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
   index: -1
 ui/icon-sound-on
   rotate: false
-  xy: 299, 403
+  xy: 972, 978
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-off
   rotate: false
-  xy: 980, 967
+  xy: 68, 279
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 341, 403
+  xy: 190, 403
   size: 40, 40
   orig: 40, 40
   offset: 0, 0

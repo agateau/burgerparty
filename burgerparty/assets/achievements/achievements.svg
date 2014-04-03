@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568544"
-     inkscape:cx="485.36936"
-     inkscape:cy="1181.7653"
+     inkscape:zoom="1"
+     inkscape:cx="461.03182"
+     inkscape:cy="1277.5717"
      inkscape:current-layer="g13598"
      inkscape:document-units="px"
      showgrid="false"
@@ -72,6 +72,18 @@
   </sodipodi:namedview>
   <defs
      id="defs6974">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient6003">
+      <stop
+         style="stop-color:#8a48a5;stop-opacity:1"
+         offset="0"
+         id="stop6005" />
+      <stop
+         style="stop-color:#b381c8;stop-opacity:1"
+         offset="1"
+         id="stop6007" />
+    </linearGradient>
     <linearGradient
        id="linearGradient13592"
        inkscape:collect="always">
@@ -11138,6 +11150,126 @@
        fx="1115.6848"
        fy="226.61589"
        r="60.494766" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5684-6"
+       id="linearGradient5193"
+       gradientUnits="userSpaceOnUse"
+       x1="1128.1801"
+       y1="299.10449"
+       x2="1128.1801"
+       y2="214.16422" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5564-9-7-5-6"
+       id="radialGradient5195"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4635853,0.00388833,-0.00444936,1.5361217,-516.20665,-124.46658)"
+       cx="1115.6848"
+       cy="226.61589"
+       fx="1115.6848"
+       fy="226.61589"
+       r="60.494766" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5684-6"
+       id="linearGradient5203"
+       gradientUnits="userSpaceOnUse"
+       x1="1128.1801"
+       y1="299.10449"
+       x2="1128.1801"
+       y2="214.16422" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5564-9-7-5-6"
+       id="radialGradient5205"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4635853,0.00388833,-0.00444936,1.5361217,-516.20665,-124.46658)"
+       cx="1115.6848"
+       cy="226.61589"
+       fx="1115.6848"
+       fy="226.61589"
+       r="60.494766" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5538"
+       id="linearGradient5209"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-160,0)"
+       x1="356"
+       y1="8"
+       x2="356"
+       y2="40" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5684-6"
+       id="linearGradient5985"
+       gradientUnits="userSpaceOnUse"
+       x1="1128.1801"
+       y1="299.10449"
+       x2="1128.1801"
+       y2="214.16422" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5564-9-7-5-6"
+       id="radialGradient5987"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4635853,0.00388833,-0.00444936,1.5361217,-516.20665,-124.46658)"
+       cx="1115.6848"
+       cy="226.61589"
+       fx="1115.6848"
+       fy="226.61589"
+       r="60.494766" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5684-6"
+       id="linearGradient5989"
+       gradientUnits="userSpaceOnUse"
+       x1="1128.1801"
+       y1="299.10449"
+       x2="1128.1801"
+       y2="214.16422" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5564-9-7-5-6"
+       id="radialGradient5991"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4635853,0.00388833,-0.00444936,1.5361217,-516.20665,-124.46658)"
+       cx="1115.6848"
+       cy="226.61589"
+       fx="1115.6848"
+       fy="226.61589"
+       r="60.494766" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5684-6"
+       id="linearGradient5999"
+       gradientUnits="userSpaceOnUse"
+       x1="1128.1801"
+       y1="299.10449"
+       x2="1128.1801"
+       y2="214.16422" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5564-9-7-5-6"
+       id="radialGradient6001"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4635853,0.00388833,-0.00444936,1.5361217,-516.20665,-124.46658)"
+       cx="1115.6848"
+       cy="226.61589"
+       fx="1115.6848"
+       fy="226.61589"
+       r="60.494766" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6003"
+       id="radialGradient6011"
+       cx="352"
+       cy="448"
+       fx="352"
+       fy="448"
+       r="33.032258"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <metadata
      id="metadata6977">
@@ -12754,7 +12886,7 @@
          sodipodi:cy="448"
          sodipodi:rx="32"
          sodipodi:ry="32"
-         d="m 384,448 a 32,32 0 1 1 -64,0 32,32 0 1 1 64,0 z"
+         d="m 384,448 c 0,17.67311 -14.32689,32 -32,32 -17.67311,0 -32,-14.32689 -32,-32 0,-17.67311 14.32689,-32 32,-32 17.67311,0 32,14.32689 32,32 z"
          inkscape:export-filename="morning-gamer.png"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90" />
@@ -14654,8 +14786,119 @@
          inkscape:export-filename="star-collector.png"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="all-stars.png"
+         d="m 384,448 a 32,32 0 1 1 -64,0 32,32 0 1 1 64,0 z"
+         sodipodi:ry="32"
+         sodipodi:rx="32"
+         sodipodi:cy="448"
+         sodipodi:cx="352"
+         id="path5183"
+         style="fill:url(#radialGradient6011);fill-opacity:1;fill-rule:nonzero;stroke:#8e44ad;stroke-width:2.06451631000000013;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc"
+         transform="matrix(0.96875,0,0,0.96875,-145,-398)" />
       <g
-         transform="matrix(-1,0,0,1,276,-6.0000133)"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="star-on.png"
+         id="g5185"
+         transform="matrix(-0.75726712,0,0,0.75726712,287.21652,5.1684618)">
+        <path
+           sodipodi:type="star"
+           style="fill:url(#linearGradient5193);fill-opacity:1;stroke:#b14700;stroke-width:4.11465549;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path5187"
+           sodipodi:sides="5"
+           sodipodi:cx="1137.3516"
+           sodipodi:cy="264.57635"
+           sodipodi:r1="63.839165"
+           sodipodi:r2="36.368572"
+           sodipodi:arg1="0.93743947"
+           sodipodi:arg2="1.565758"
+           inkscape:flatsided="false"
+           inkscape:rounded="-3.469447e-18"
+           inkscape:randomized="0"
+           d="m 1175.135,316.03361 -37.6002,-15.08914 -37.4463,15.46725 2.7316,-40.42273 -26.2818,-30.83387 39.2884,-9.89348 21.2032,-34.52364 21.5501,34.30823 39.3861,9.49709 -25.9698,31.09713 z"
+           transform="matrix(0.31407702,0,0,0.32794329,-255.0829,-42.906267)"
+           inkscape:transform-center-x="-0.21320543"
+           inkscape:transform-center-y="-1.2061612"
+           inkscape:export-filename="star.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="star.png"
+           inkscape:transform-center-y="-1.0593615"
+           inkscape:transform-center-x="-0.18726288"
+           transform="matrix(0.27585609,0,0,0.28803494,-211.45507,-32.385007)"
+           d="m 1175.4681,315.27092 -37.5139,-13.92774 -37.0374,15.14963 1.6537,-39.98177 -25.8534,-30.54311 38.5359,-10.78235 21.0592,-34.02632 22.1628,33.31791 38.8686,9.51369 -24.8385,31.37395 z"
+           inkscape:randomized="0"
+           inkscape:rounded="3.469447e-18"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.5544078"
+           sodipodi:arg1="0.92608927"
+           sodipodi:r2="36.771759"
+           sodipodi:r1="63.425617"
+           sodipodi:cy="264.57635"
+           sodipodi:cx="1137.3516"
+           sodipodi:sides="5"
+           id="path5190"
+           style="fill:url(#radialGradient5195);fill-opacity:1;stroke:none"
+           sodipodi:type="star" />
+      </g>
+      <g
+         transform="matrix(-0.75726712,0,0,0.75726712,259.21652,5.1684618)"
+         id="g5979"
+         inkscape:export-filename="star-on.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="star.png"
+           inkscape:transform-center-y="-1.2061612"
+           inkscape:transform-center-x="-0.21320543"
+           transform="matrix(0.31407702,0,0,0.32794329,-255.0829,-42.906267)"
+           d="m 1175.135,316.03361 -37.6002,-15.08914 -37.4463,15.46725 2.7316,-40.42273 -26.2818,-30.83387 39.2884,-9.89348 21.2032,-34.52364 21.5501,34.30823 39.3861,9.49709 -25.9698,31.09713 z"
+           inkscape:randomized="0"
+           inkscape:rounded="-3.469447e-18"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.565758"
+           sodipodi:arg1="0.93743947"
+           sodipodi:r2="36.368572"
+           sodipodi:r1="63.839165"
+           sodipodi:cy="264.57635"
+           sodipodi:cx="1137.3516"
+           sodipodi:sides="5"
+           id="path5981"
+           style="fill:url(#linearGradient5985);fill-opacity:1;stroke:#b14700;stroke-width:4.11465549;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           sodipodi:type="star" />
+        <path
+           sodipodi:type="star"
+           style="fill:url(#radialGradient5987);fill-opacity:1;stroke:none"
+           id="path5983"
+           sodipodi:sides="5"
+           sodipodi:cx="1137.3516"
+           sodipodi:cy="264.57635"
+           sodipodi:r1="63.425617"
+           sodipodi:r2="36.771759"
+           sodipodi:arg1="0.92608927"
+           sodipodi:arg2="1.5544078"
+           inkscape:flatsided="false"
+           inkscape:rounded="3.469447e-18"
+           inkscape:randomized="0"
+           d="m 1175.4681,315.27092 -37.5139,-13.92774 -37.0374,15.14963 1.6537,-39.98177 -25.8534,-30.54311 38.5359,-10.78235 21.0592,-34.02632 22.1628,33.31791 38.8686,9.51369 -24.8385,31.37395 z"
+           transform="matrix(0.27585609,0,0,0.28803494,-211.45507,-32.385007)"
+           inkscape:transform-center-x="-0.18726288"
+           inkscape:transform-center-y="-1.0593615"
+           inkscape:export-filename="star.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <g
+         transform="matrix(-1,0,0,1,228,-6.000013)"
          id="g6390"
          inkscape:export-filename="star-on.png"
          inkscape:export-xdpi="90"
@@ -14679,11 +14922,11 @@
            sodipodi:cx="1137.3516"
            sodipodi:sides="5"
            id="path4911"
-           style="fill:url(#linearGradient10667);fill-opacity:1;stroke:#b14700;stroke-width:3.11589313;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           style="fill:url(#linearGradient5989);fill-opacity:1;stroke:#b14700;stroke-width:3.11589313;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
            sodipodi:type="star" />
         <path
            sodipodi:type="star"
-           style="fill:url(#radialGradient16383);fill-opacity:1;stroke:none"
+           style="fill:url(#radialGradient5991);fill-opacity:1;stroke:none"
            id="path5694"
            sodipodi:sides="5"
            sodipodi:cx="1137.3516"
@@ -14703,6 +14946,63 @@
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90" />
       </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="star-on.png"
+         id="g5993"
+         transform="matrix(-0.75726712,0,0,0.75726712,273.21652,8.168462)">
+        <path
+           sodipodi:type="star"
+           style="fill:url(#linearGradient5999);fill-opacity:1;stroke:#b14700;stroke-width:4.11465549;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path5995"
+           sodipodi:sides="5"
+           sodipodi:cx="1137.3516"
+           sodipodi:cy="264.57635"
+           sodipodi:r1="63.839165"
+           sodipodi:r2="36.368572"
+           sodipodi:arg1="0.93743947"
+           sodipodi:arg2="1.565758"
+           inkscape:flatsided="false"
+           inkscape:rounded="-3.469447e-18"
+           inkscape:randomized="0"
+           d="m 1175.135,316.03361 -37.6002,-15.08914 -37.4463,15.46725 2.7316,-40.42273 -26.2818,-30.83387 39.2884,-9.89348 21.2032,-34.52364 21.5501,34.30823 39.3861,9.49709 -25.9698,31.09713 z"
+           transform="matrix(0.31407702,0,0,0.32794329,-255.0829,-42.906267)"
+           inkscape:transform-center-x="-0.21320543"
+           inkscape:transform-center-y="-1.2061612"
+           inkscape:export-filename="star.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="star.png"
+           inkscape:transform-center-y="-1.0593615"
+           inkscape:transform-center-x="-0.18726288"
+           transform="matrix(0.27585609,0,0,0.28803494,-211.45507,-32.385007)"
+           d="m 1175.4681,315.27092 -37.5139,-13.92774 -37.0374,15.14963 1.6537,-39.98177 -25.8534,-30.54311 38.5359,-10.78235 21.0592,-34.02632 22.1628,33.31791 38.8686,9.51369 -24.8385,31.37395 z"
+           inkscape:randomized="0"
+           inkscape:rounded="3.469447e-18"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.5544078"
+           sodipodi:arg1="0.92608927"
+           sodipodi:r2="36.771759"
+           sodipodi:r1="63.425617"
+           sodipodi:cy="264.57635"
+           sodipodi:cx="1137.3516"
+           sodipodi:sides="5"
+           id="path5997"
+           style="fill:url(#radialGradient6001);fill-opacity:1;stroke:none"
+           sodipodi:type="star" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="star-collector.png"
+         style="fill:url(#linearGradient5209);fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 196,8.0063717 c -14.13231,0 -25.79476,10.5581303 -27.53125,24.2187503 8.03267,-4.86633 17.45384,-7.6875 27.53125,-7.6875 10.07741,0 19.49858,2.82117 27.53125,7.6875 C 221.79476,18.564502 210.13231,8.0063717 196,8.0063717 z"
+         id="path5207"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
   <g
