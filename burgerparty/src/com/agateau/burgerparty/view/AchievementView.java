@@ -18,7 +18,7 @@ public class AchievementView extends AnchorGroup {
         bg.setFillParent(true);
         addActor(bg);
 
-        TextureRegion iconRegion = atlas.findRegion("achievements/" + achievement.getId());
+        TextureRegion iconRegion = atlas.findRegion("achievements/" + achievement.getIconName());
         if (iconRegion == null) {
             iconRegion = atlas.findRegion("achievements/generic");
         }

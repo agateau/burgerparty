@@ -31,6 +31,10 @@ public class Achievement {
         return mDescription;
     }
 
+    public String getIconName() {
+        return getId();
+    }
+
     public boolean isUnlocked() {
         return mUnlocked;
     }
