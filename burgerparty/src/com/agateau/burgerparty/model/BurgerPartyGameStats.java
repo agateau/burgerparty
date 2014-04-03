@@ -73,6 +73,10 @@ public class BurgerPartyGameStats {
         mEveningGamer = new Achievement("evening-gamer", tr("Evening Gamer"), trn("ignore-evening", "Start a game between 7PM and 11PM for %# days.", count));
         manager.add(mEveningGamer);
 
+        for (int index = 0, n = universe.getWorlds().size; index < n; ++index) {
+            manager.add(new AllStarsAchievement(universe, index));
+        }
+
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
         manager.load();
     }
