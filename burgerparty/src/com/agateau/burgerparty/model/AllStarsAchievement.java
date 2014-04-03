@@ -14,8 +14,8 @@ public class AllStarsAchievement extends Achievement {
 
     public AllStarsAchievement(Universe universe, int index) {
         super("all-stars-" + (index + 1),
-                tr("3 Star #%d", index + 1),
-                tr("Finish all levels of world %d with 3 stars", index + 1)
+                tr("All Stars #%d", index + 1),
+                tr("Finish all levels of world %d with 3 stars.", index + 1)
                 );
         mWorld = universe.get(index);
         universe.starCount.changed.connect(mHandler, new Signal0.Handler() {
