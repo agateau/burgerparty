@@ -77,6 +77,10 @@ public class BurgerPartyGameStats {
             manager.add(new AllStarsAchievement(universe, index));
         }
 
+        for (int index = 0, n = universe.getWorlds().size; index < n; ++index) {
+            manager.add(new PerfectAchievement(universe, index));
+        }
+
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
         manager.load();
     }
