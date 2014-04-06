@@ -39,11 +39,9 @@ public class GameStatManager {
     }
 
     public void load(XmlReader.Element root) {
-        log.d("GameStatManager.load");
         for (int idx = 0; idx < root.getChildCount(); ++idx) {
             XmlReader.Element element = root.getChild(idx);
             String id = element.getAttribute("id");
-            log.d("GameStatManager.load id=%s", id);
             GameStat stat = mGameStats.get(id);
             if (stat == null) {
                 log.e("No gamestat with id '%s'", id);
