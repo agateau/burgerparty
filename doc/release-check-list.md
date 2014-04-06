@@ -1,6 +1,6 @@
 # Create .apk
 
-Bump version number in AndroidManifest.xml and in ../burgerparty-android/assets/about.txt
+Bump version number in AndroidManifest.xml and in AboutScreen
 
 Run unit tests
 
@@ -43,6 +43,10 @@ Publish
 Write announcement blog post
 
 Publish
+
+## Slidedb
+
+Post news
 
 ## Google Play
 
