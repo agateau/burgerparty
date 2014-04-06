@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 19:36+0100\n"
+"POT-Creation-Date: 2014-04-06 11:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,19 +24,19 @@ msgid_plural "%# remaining."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:116
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:114
 msgid "New High Score!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:233
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:227
 msgid "Congratulations, you finished level %d-%d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:236
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:229
 msgid "Congratulations, you finished world %d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:239
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:231
 msgid "Congratulations, you finished the game!"
 msgstr ""
 
@@ -58,6 +58,14 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:26
 msgid "Game Over"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
+msgid "Perfect #%d"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
+msgid "Get a perfect in all levels of world %d."
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
@@ -131,6 +139,14 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/World.java:319
 msgid "Happy customer!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
+msgid "All Stars #%d"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
+msgid "Finish all levels of world %d with 3 stars."
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:114

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 19:36+0100\n"
-"PO-Revision-Date: 2014-03-22 19:39+0100\n"
+"POT-Creation-Date: 2014-04-06 11:15+0200\n"
+"PO-Revision-Date: 2014-04-06 11:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -23,19 +23,19 @@ msgid_plural "%# remaining."
 msgstr[0] "Encore 1."
 msgstr[1] "Encore %#."
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:116
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:114
 msgid "New High Score!"
 msgstr "Nouveau record !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:233
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:227
 msgid "Congratulations, you finished level %d-%d!"
 msgstr "Félicitations, vous avez terminé le niveau %d-%d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:236
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:229
 msgid "Congratulations, you finished world %d!"
 msgstr "Félicitations, vous avez terminé le monde %d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:239
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:231
 msgid "Congratulations, you finished the game!"
 msgstr "Félicitations, vous avez terminé le jeu !"
 
@@ -58,6 +58,14 @@ msgstr "Pause"
 #: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:26
 msgid "Game Over"
 msgstr "Game Over"
+
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
+msgid "Perfect #%d"
+msgstr "Perfect #%d"
+
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
+msgid "Get a perfect in all levels of world %d."
+msgstr "Obtenir un Perfect dans tous les niveaux du monde %d."
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
 msgid "Burger Master"
@@ -132,6 +140,14 @@ msgstr "%dx combo !"
 msgid "Happy customer!"
 msgstr "Client satisfait !"
 
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
+msgid "All Stars #%d"
+msgstr "Toutes les étoiles #%d"
+
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
+msgid "Finish all levels of world %d with 3 stars."
+msgstr "Finir tous les niveaux du monde %d avec 3 étoiles."
+
 #: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:114
 msgid "New item unlocked!"
 msgstr "Nouvel ingrédient débloqué !"
@@ -184,6 +200,3 @@ msgstr ""
 
 #~ msgid "Serve 100 burgers"
 #~ msgstr "Servir 100 burgers"
-
-#~ msgid "Finish a level with 3 seconds left"
-#~ msgstr "Finir un niveau avec 3 secondes restantes"

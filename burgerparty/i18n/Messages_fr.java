@@ -9,6 +9,8 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("No high score yet", "Pas encore de record");
         plainEntries.put("Paused", "Pause");
         plainEntries.put("Game Over", "Game Over");
+        plainEntries.put("Perfect #%d", "Perfect #%d");
+        plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
         plainEntries.put("Burger Master", "Maître Burger");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Practice Area", "Laboratoire");
@@ -18,6 +20,8 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Evening Gamer", "Joueur du soir");
         plainEntries.put("%dx combo!", "%dx combo !");
         plainEntries.put("Happy customer!", "Client satisfait !");
+        plainEntries.put("All Stars #%d", "Toutes les étoiles #%d");
+        plainEntries.put("Finish all levels of world %d with 3 stars.", "Finir tous les niveaux du monde %d avec 3 étoiles.");
         plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
         plainEntries.put("Version %s", "Version %s");
         plainEntries.put("Code & Design", "Code & Design");
