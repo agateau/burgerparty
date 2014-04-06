@@ -1,3 +1,16 @@
+# 0.13 - 2014-04-06
+- New achievements have been added:
+    - 3 "All stars" achievements: finish all levels of world 1, 2, 3 with three
+      stars.
+    - 3 "Perfect" achievements: finish all levels of world 1, 2, 3 with perfect
+      score.
+- A new ingredient has been added: mustard.
+- All visible text is now translatable, and translated in French.
+- Added a gameover sound.
+- Pirate world: Added a boss.
+- Japan world: Created world-specific buttons for the sandbox mode, instead of
+  reusing the Pirate world buttons.
+
 # 0.12 - 2014-03-15
 
 - An achievement system has been added.

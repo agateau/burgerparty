@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class AboutScreen extends BurgerPartyScreen {
-    private static final String VERSION = "0.12";
+    private static final String VERSION = "0.13";
 
     private static final float PIXEL_PER_SECOND = 48;
 
