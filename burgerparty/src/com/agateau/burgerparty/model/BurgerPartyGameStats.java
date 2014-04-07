@@ -21,6 +21,7 @@ public class BurgerPartyGameStats {
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
     public final CounterGameStat mealServedCount = new CounterGameStat();
+    public final CounterGameStat levelPlayedCount = new CounterGameStat();
     public final StringListGameStat morningPlayDates = new StringListGameStat();
     public final StringListGameStat eveningPlayDates = new StringListGameStat();
 
@@ -36,6 +37,7 @@ public class BurgerPartyGameStats {
     private Achievement mEveningGamer;
 
     public BurgerPartyGameStats(Universe universe) {
+        mGameStatManager.add("levelPlayedCount", levelPlayedCount);
         mGameStatManager.add("morningPlayDates", morningPlayDates);
         mGameStatManager.add("eveningPlayDates", eveningPlayDates);
         mGameStatManager.add("mealServedCount", mealServedCount);
@@ -68,6 +70,11 @@ public class BurgerPartyGameStats {
         achievement.init(universe.starCount, count);
         manager.add(achievement);
 
+        count = 40;
+        achievement = new CounterAchievement("fan", tr("Fan"), trn("ignore-fan", "Play %# levels.", count));
+        achievement.init(levelPlayedCount, count);
+        manager.add(achievement);
+
         mCloseCall = new Achievement("close-call", tr("Close Call"), trn("ignore-close-call", "Finish a level with less than %# seconds left.", CLOSE_CALL_COUNT + 1));
         manager.add(mCloseCall);
 
@@ -98,7 +105,7 @@ public class BurgerPartyGameStats {
                 }
             }
         });
-
+        levelPlayedCount.increase();
         updateDateGameStats();
     }
 
