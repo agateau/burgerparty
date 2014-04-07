@@ -58,6 +58,9 @@ Publish
 
 Notify Google Group
 
+Notify G+ community
+
 Post link to announcement on:
+- G+
 - FB
 - libgdx forum

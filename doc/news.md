@@ -2,10 +2,9 @@
 - New achievements have been added:
     - 3 "All stars" achievements: finish all levels of world 1, 2, 3 with three
       stars.
-    - 3 "Perfect" achievements: finish all levels of world 1, 2, 3 with perfect
-      score.
+    - 3 "Perfect" achievements: get a perfect in all levels of world 1, 2, 3.
 - A new ingredient has been added: mustard.
-- All visible text is now translatable, and translated in French.
+- All visible texts are now translatable, and translated in French.
 - Added a gameover sound.
 - Pirate world: Added a boss.
 - Japan world: Created world-specific buttons for the sandbox mode, instead of
