@@ -272,18 +272,19 @@ mealitems/0/toast
   orig: 228, 49
   offset: 0, 0
   index: -1
-mealitems/3/toast-inventory
-  rotate: false
-  xy: 703, 3
-  size: 84, 51
-  orig: 84, 51
-  offset: 0, 0
-  index: -1
 sandbox-preview
   rotate: false
   xy: 804, 114
   size: 128, 300
   orig: 128, 300
+  offset: 0, 0
+  index: -1
+ui/achievement-small-bg
+  rotate: false
+  xy: 703, 7
+  size: 84, 47
+  split: 24, 24, 21, 24
+  orig: 84, 47
   offset: 0, 0
   index: -1
 ui/icon-button-down
@@ -1134,273 +1135,280 @@ filter: Nearest,Linear
 repeat: none
 achievements/morning-gamer
   rotate: false
-  xy: 516, 718
+  xy: 516, 720
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/perfect
   rotate: false
-  xy: 2, 158
+  xy: 2, 163
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/sandbox
   rotate: false
-  xy: 516, 652
+  xy: 516, 654
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/star-collector
   rotate: false
-  xy: 2, 92
+  xy: 2, 97
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 customers/boys/face-0-angry
   rotate: false
-  xy: 2, 40
+  xy: 516, 492
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-happy
   rotate: false
-  xy: 516, 494
+  xy: 268, 408
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-neutral
   rotate: false
-  xy: 262, 406
+  xy: 341, 409
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-1-angry
   rotate: false
-  xy: 516, 599
+  xy: 516, 544
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-happy
   rotate: false
-  xy: 516, 546
+  xy: 2, 44
   size: 71, 51
   orig: 71, 51
   offset: 0, 0
   index: -1
 customers/boys/face-1-neutral
   rotate: false
-  xy: 262, 358
+  xy: 194, 362
   size: 71, 46
   orig: 71, 46
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 335, 357
+  xy: 267, 358
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 410, 364
+  xy: 417, 365
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 408, 414
+  xy: 342, 358
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 514, 444
+  xy: 88, 283
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 335, 407
+  xy: 414, 415
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/top-0
   rotate: false
-  xy: 516, 839
+  xy: 516, 841
   size: 103, 57
   orig: 103, 57
   offset: 0, 0
   index: -1
 customers/boys/top-1
   rotate: false
-  xy: 2, 396
+  xy: 2, 398
   size: 108, 60
   orig: 108, 60
   offset: 0, 0
   index: -1
 customers/boys/top-2
   rotate: false
-  xy: 516, 898
+  xy: 516, 900
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 627, 961
+  xy: 627, 963
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 156, 458
+  xy: 156, 460
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 234, 458
+  xy: 234, 460
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 184, 408
+  xy: 190, 410
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 516, 784
+  xy: 2, 229
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 2, 224
+  xy: 924, 969
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 312, 459
+  xy: 312, 461
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
 customers/girls/top-0
   rotate: false
-  xy: 112, 401
+  xy: 516, 597
   size: 70, 55
   orig: 70, 55
   offset: 0, 0
   index: -1
 customers/girls/top-1
   rotate: false
-  xy: 736, 965
+  xy: 736, 967
   size: 108, 55
   orig: 108, 55
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-angry
   rotate: false
-  xy: 2, 279
+  xy: 846, 968
   size: 76, 54
   orig: 76, 54
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-happy
   rotate: false
-  xy: 924, 971
+  xy: 112, 409
   size: 76, 49
   orig: 76, 49
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-neutral
   rotate: false
-  xy: 846, 967
+  xy: 516, 786
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-blue
   rotate: false
-  xy: 516, 959
+  xy: 516, 961
   size: 109, 61
   orig: 109, 61
   offset: 0, 0
   index: -1
 customers/pirate-girls/top-red
   rotate: false
-  xy: 2, 335
+  xy: 2, 337
   size: 105, 59
   orig: 105, 59
   offset: 0, 0
   index: -1
 main-font
   rotate: false
-  xy: 2, 508
+  xy: 2, 510
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 mealitems/0/onion-inventory
   rotate: false
-  xy: 2, 2
+  xy: 112, 371
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
 mealitems/0/salad-inventory
   rotate: false
-  xy: 390, 465
+  xy: 390, 467
   size: 80, 41
   orig: 80, 41
   offset: 0, 0
   index: -1
 mealitems/0/toast-inventory
   rotate: false
-  xy: 184, 370
+  xy: 109, 333
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
   index: -1
+mealitems/3/toast-inventory
+  rotate: false
+  xy: 2, 284
+  size: 84, 51
+  orig: 84, 51
+  offset: 0, 0
+  index: -1
 ui/icon-sound-off
   rotate: false
-  xy: 472, 466
+  xy: 2, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/icon-sound-on
   rotate: false
-  xy: 80, 293
+  xy: 44, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/level-button
   rotate: false
-  xy: 2, 458
+  xy: 2, 460
   size: 152, 48
   split: 24, 24, 23, 23
   pad: 4, 4, 4, 4
@@ -1409,14 +1417,14 @@ ui/level-button
   index: -1
 ui/star-off
   rotate: false
-  xy: 80, 251
+  xy: 472, 468
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 594, 797
+  xy: 80, 241
   size: 40, 40
   orig: 40, 40
   offset: 0, 0

@@ -87,6 +87,10 @@
         achievement-description: {
             font: main-font-plain-small,
             fontColor: black
+        },
+        achievement-small: {
+            font: main-font-plain,
+            fontColor: white
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {

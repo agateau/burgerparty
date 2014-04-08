@@ -38,7 +38,7 @@ public class AchievementViewController {
 
         screen.addNotificationActor(view);
         view.setPosition((stage.getWidth() - view.getWidth()) / 2, stage.getHeight());
-        float viewHeight = view.getHeight();// - AchievementSmallView.PADDING;
+        float viewHeight = view.getHeight();
         view.addAction(
             Actions.sequence(
                 Actions.moveBy(0, -viewHeight, SLIDE_DURATION, Interpolation.pow2Out),

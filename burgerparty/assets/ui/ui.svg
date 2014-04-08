@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="164.69665"
-     inkscape:cy="-472.79837"
+     inkscape:zoom="7.9999996"
+     inkscape:cx="-53.988266"
+     inkscape:cy="-455.57532"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="true"
@@ -10129,6 +10129,14 @@
          inkscape:collect="always"
          stdDeviation="0.39"
          id="feGaussianBlur6606" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter6541">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.62"
+         id="feGaussianBlur6543" />
     </filter>
   </defs>
   <metadata
@@ -20917,6 +20925,64 @@
          height="22"
          x="-1649"
          y="105"
+         ry="0"
+         transform="matrix(0,-1,1,0,0,0)" />
+    </g>
+    <g
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="achievement-small-bg.9.png"
+       id="g5745"
+       transform="translate(-96,0)">
+      <rect
+         ry="21"
+         style="color:#000000;fill:#34495e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6541);enable-background:accumulate"
+         id="rect5759"
+         width="82"
+         height="42"
+         x="7"
+         y="1645"
+         transform="matrix(0.9885144,0,0,1,0.55130864,0)" />
+      <rect
+         y="1643"
+         x="7.0000005"
+         height="42"
+         width="82"
+         id="rect5747"
+         style="color:#000000;fill:#34495e;fill-opacity:1;fill-rule:nonzero;stroke:#ececec;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         ry="21" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6710-2);enable-background:accumulate"
+         id="rect5749"
+         width="1"
+         height="2"
+         x="5"
+         y="1663"
+         ry="0" />
+      <rect
+         ry="0"
+         y="1663"
+         x="90"
+         height="2"
+         width="1"
+         id="rect5751"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6710-2);enable-background:accumulate" />
+      <rect
+         transform="matrix(0,-1,1,0,0,0)"
+         ry="0"
+         y="30"
+         x="-1690"
+         height="36"
+         width="1"
+         id="rect5755"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6710-2);enable-background:accumulate" />
+      <rect
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6710-2);enable-background:accumulate"
+         id="rect6545"
+         width="1"
+         height="36"
+         x="-1642"
+         y="30"
          ry="0"
          transform="matrix(0,-1,1,0,0,0)" />
     </g>
