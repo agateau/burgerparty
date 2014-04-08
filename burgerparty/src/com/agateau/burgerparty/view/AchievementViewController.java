@@ -9,8 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
 public class AchievementViewController {
-    private static final float SLIDE_DURATION = 0.2f;
-    private static final float STAY_DURATION = 2;
+    private static final float IN_DURATION = 0.2f;
+    private static final float STAY_DURATION = 2.5f;
+    private static final float OUT_DURATION = 0.3f;
 
     private BurgerPartyGame mGame;
     private Array<AchievementSmallView> mViews = new Array<AchievementSmallView>();
@@ -38,12 +39,12 @@ public class AchievementViewController {
 
         screen.addNotificationActor(view);
         view.setPosition((stage.getWidth() - view.getWidth()) / 2, stage.getHeight());
-        float viewHeight = view.getHeight();
+        float dy = -view.getHeight() - 6;
         view.addAction(
             Actions.sequence(
-                Actions.moveBy(0, -viewHeight, SLIDE_DURATION, Interpolation.pow2Out),
+                Actions.moveBy(0, dy, IN_DURATION, Interpolation.pow2Out),
                 Actions.delay(STAY_DURATION),
-                Actions.moveBy(0, viewHeight, SLIDE_DURATION, Interpolation.pow2In),
+                Actions.alpha(0, OUT_DURATION),
         Actions.run(new Runnable() {
             @Override
             public void run() {
