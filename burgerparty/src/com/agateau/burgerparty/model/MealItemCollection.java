@@ -62,6 +62,17 @@ public abstract class MealItemCollection<T extends MealItem> {
         return out + "]";
     }
 
+    @Override
+    public int hashCode() {
+        int k = 11;
+        int value = 0;
+        for (T item: getItems()) {
+            value += item.hashCode() * k;
+            ++k;
+        }
+        return value;
+    }
+
     public abstract Collection<T> getItems();
 
     protected abstract void addItemInternal(T item);

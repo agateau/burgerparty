@@ -186,6 +186,8 @@ public class SandBoxGameView extends AbstractWorldView {
     }
 
     private void deliver() {
+        int mealHashCode = mWorld.getBurger().hashCode() + mWorld.getMealExtra().hashCode() * 11;
+        mGame.getGameStats().onSandBoxMealDelivered(mealHashCode);
         mMealView.addAction(
             Actions.sequence(
                 Actions.moveTo(getWidth(), mMealView.getY(), 0.4f, Interpolation.pow2In),

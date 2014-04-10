@@ -11,6 +11,7 @@ import com.agateau.burgerparty.utils.CounterAchievement;
 import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GameStatManager;
+import com.agateau.burgerparty.utils.IntegerListGameStat;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.StringListGameStat;
 
@@ -24,6 +25,7 @@ public class BurgerPartyGameStats {
     public final CounterGameStat levelPlayedCount = new CounterGameStat();
     public final StringListGameStat morningPlayDates = new StringListGameStat();
     public final StringListGameStat eveningPlayDates = new StringListGameStat();
+    public final IntegerListGameStat distinctSandBoxMeals = new IntegerListGameStat();
 
     public final CounterAchievement sandBoxAchievement;
 
@@ -32,15 +34,18 @@ public class BurgerPartyGameStats {
     private final GameStatManager mGameStatManager = new GameStatManager();
 
     private final static int CLOSE_CALL_COUNT = 3;
+    private final static int CREATIVE_MEAL_COUNT = 10;
     private Achievement mCloseCall;
     private Achievement mMorningGamer;
     private Achievement mEveningGamer;
+    private Achievement mCreative;
 
     public BurgerPartyGameStats(Universe universe) {
         mGameStatManager.add("levelPlayedCount", levelPlayedCount);
         mGameStatManager.add("morningPlayDates", morningPlayDates);
         mGameStatManager.add("eveningPlayDates", eveningPlayDates);
         mGameStatManager.add("mealServedCount", mealServedCount);
+        mGameStatManager.add("distinctSandBoxMeals", distinctSandBoxMeals);
 
         mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
         mGameStatManager.load();
@@ -93,6 +98,9 @@ public class BurgerPartyGameStats {
             manager.add(new PerfectAchievement(universe, index));
         }
 
+        mCreative = new Achievement("creative", tr("Creative"), trn("ignore-creative", "Create %# different burgers in the practice area", CREATIVE_MEAL_COUNT));
+        manager.add(mCreative);
+
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
         manager.load();
     }
@@ -108,6 +116,20 @@ public class BurgerPartyGameStats {
         levelPlayedCount.increase();
         updateDateGameStats();
     }
+
+    public void onSandBoxMealDelivered(int mealHashCode) {
+        if (mCreative.isUnlocked()) {
+            return;
+        }
+        if (distinctSandBoxMeals.contains(mealHashCode)) {
+            return;
+        }
+        distinctSandBoxMeals.add(mealHashCode);
+        if (distinctSandBoxMeals.getCount() >= CREATIVE_MEAL_COUNT) {
+            mCreative.setUnlocked(true);
+        }
+    }
+
 
     static private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private void updateDateGameStats() {
