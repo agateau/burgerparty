@@ -189,13 +189,13 @@ public class SandBoxGameView extends AbstractWorldView {
         mMealView.addAction(
             Actions.sequence(
                 Actions.moveTo(getWidth(), mMealView.getY(), 0.4f, Interpolation.pow2In),
-        Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                setupMealView();
-            }
-        }),
-        Actions.removeActor()
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        setupMealView();
+                    }
+                }),
+                Actions.removeActor()
             )
         );
     }
