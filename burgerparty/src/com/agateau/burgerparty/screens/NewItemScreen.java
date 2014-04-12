@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -29,6 +30,7 @@ public class NewItemScreen extends BurgerPartyScreen {
     private static final float DISPLAY_DURATION = 3;
     private static final float FADE_IN_DURATION = 1;
     private static final float FADE_OUT_DURATION = 1;
+    private static final float TEXT_MAX_WIDTH = 300;
 
     public Signal0 done = new Signal0();
 
@@ -112,12 +114,22 @@ public class NewItemScreen extends BurgerPartyScreen {
         mBubble.setChild(mBubbleContent);
 
         mBubbleLabel = new Label(tr("New item unlocked!"), getGame().getAssets().getSkin(), "bubble-text");
+        mBubbleLabel.setAlignment(Align.center);
+        float textSpacing = UiUtils.SPACING;
+        if (mBubbleLabel.getPrefWidth() > TEXT_MAX_WIDTH) {
+            mBubbleLabel.setWrap(true);
+            mBubbleLabel.setWidth(TEXT_MAX_WIDTH);
+            /* Set textSpacing to 0 to work around a bug in libgdx (I guess) which causes Label.getPrefHeight()
+             * to return a too high value when text wraps.
+             */
+            textSpacing = 0;
+        }
 
         mItemImage = new Image(atlas.findRegion("mealitems/" + newItem.getPath() + "-inventory"));
 
         mBubbleContent.setSize(
             mBubbleLabel.getWidth(),
-            mBubbleLabel.getHeight() + UiUtils.SPACING + mItemImage.getHeight());
+            mBubbleLabel.getPrefHeight() + textSpacing + mItemImage.getHeight());
 
         mBubbleContent.addRule(mBubbleLabel, Anchor.TOP_CENTER, mBubbleContent, Anchor.TOP_CENTER, 0, 0);
         mBubbleContent.addRule(mItemImage, Anchor.BOTTOM_CENTER, mBubbleContent, Anchor.BOTTOM_CENTER, 0, 0);
