@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -24,6 +25,7 @@ public class AboutScreen extends BurgerPartyScreen {
     private static final float PIXEL_PER_SECOND = 48;
 
     private ScrollPane mScrollPane;
+    private VerticalGroup mScrollGroup;
 
     public AboutScreen(BurgerPartyGame game) {
         super(game);
@@ -64,22 +66,42 @@ public class AboutScreen extends BurgerPartyScreen {
 
         mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
-        String aboutText =
-                tr("Version %s", VERSION) + "\n\n"
-                + tr("Code & Design") + "\n"
-                + tr("Aurélien Gâteau") + "\n\n"
-                + tr("Music") + "\n"
-                + tr("Thomas Tripon") + "\n\n"
-                + tr("Testers") + "\n"
-                + tr("Clara Gâteau\n"
-                        + "Antonin Gâteau\n"
-                        + "Gwenaëlle Gâteau\n"
-                        + "Mathieu Maret\n"
-                        + "And many others!");
+        mScrollGroup = builder.<VerticalGroup>getActor("scrollGroup");
+        addText(tr("Version %s", VERSION));
+        addHeading(tr("Code & Design"));
+        addText("Aurélien Gâteau");
 
-        Label label = builder.<Label>getActor("bodyLabel");
-        label.setText(aboutText);
-        label.pack();
+        addHeading(tr("Music"));
+        addText(tr("Thomas Tripon"));
+
+        addHeading(tr("Testers"));
+        addText("Clara Gâteau");
+        addText("Antonin Gâteau");
+        addText("Gwenaëlle Gâteau");
+        addText("Mathieu Maret");
+        addText("Joël Bray");
+        addText("Thomas Monjalon");
+
+        float screenHeight = getStage().getHeight();
+        addPadding(screenHeight / 3);
+        addText(tr("© 2013 - 2014 Green Yeti Lab"));
+        addPadding(screenHeight * 2 / 3);
+    }
+
+    private void addText(String text) {
+        Label label = new Label(text, getGame().getAssets().getSkin(), "about-text");
+        mScrollGroup.addActor(label);
+    }
+
+    private void addHeading(String text) {
+        Label label = new Label("\n" + text, getGame().getAssets().getSkin(), "about-heading");
+        mScrollGroup.addActor(label);
+    }
+
+    private void addPadding(float height) {
+        Actor padding = new Actor();
+        padding.setHeight(height);
+        mScrollGroup.addActor(padding);
     }
 
     @Override

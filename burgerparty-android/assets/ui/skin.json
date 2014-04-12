@@ -75,7 +75,11 @@
             font: scored-font,
             fontColor: white
         },
-        about-body: {
+        about-text: {
+            font: main-font-plain-small,
+            fontColor: black
+        },
+        about-heading: {
             font: main-font-plain,
             fontColor: black
         },

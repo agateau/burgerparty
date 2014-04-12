@@ -7,10 +7,9 @@
             width="800"
             height="480"
             >
-                <VerticalGroup>
+                <VerticalGroup id="scrollGroup">
                     <Group height="400"/>
                     <Label id="titleLabel" style="about-title">Burger Party</Label>
-                    <Label id="bodyLabel" style="about-body" align="center"/>
                 </VerticalGroup>
         </ScrollPane>
         <ImageButton id="backButton"
