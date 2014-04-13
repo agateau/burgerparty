@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-xmlstarlet sel -T -t -m "/items/generic/item" \
-    -v @name -o " " -v @world -o " " -v @level -n \
-    mealitems.xml \
-| sort -n -k 2 -k 3
