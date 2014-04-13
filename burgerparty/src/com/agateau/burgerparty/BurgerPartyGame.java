@@ -58,6 +58,7 @@ public class BurgerPartyGame extends Game {
     private AchievementViewController mAchievementViewController = new AchievementViewController(this);
     private int mWidth = 0;
     private int mHeight = 0;
+    private boolean mWaitInLoadingScreen = false;
     private static NLog log;
 
     @Override
@@ -102,6 +103,10 @@ public class BurgerPartyGame extends Game {
                 }
             });
         }
+    }
+
+    public void waitInLoadingScreen() {
+        mWaitInLoadingScreen = true;
     }
 
     public void setScreenAndDispose(Screen screen) {
@@ -241,6 +246,7 @@ public class BurgerPartyGame extends Game {
 
     private void showLoadingScreen() {
         LoadingScreen screen = new LoadingScreen(mAssets.getAssetManager());
+        screen.setWaitForClick(mWaitInLoadingScreen);
         screen.ready.connect(mHandlers, new Signal0.Handler() {
             @Override
             public void handle() {

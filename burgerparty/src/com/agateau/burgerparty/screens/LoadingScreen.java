@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class LoadingScreen extends StageScreen {
@@ -15,11 +17,16 @@ public class LoadingScreen extends StageScreen {
 
     private AssetManager mAssetManager;
     private Texture mLoadingTexture = null;
+    private boolean mWaitForClick = false;
 
     public LoadingScreen(AssetManager assetManager) {
         mAssetManager = assetManager;
         setBackgroundColor(Color.WHITE);
         setupWidgets();
+    }
+
+    public void setWaitForClick(boolean value) {
+        mWaitForClick = value;
     }
 
     private void setupWidgets() {
@@ -29,16 +36,25 @@ public class LoadingScreen extends StageScreen {
         root.setFillParent(true);
 
         Image image = new Image(mLoadingTexture);
+        image.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float screenX, float screenY, int pointer, int button) {
+                if (mAssetManager.update() && mWaitForClick) {
+                    ready.emit();
+                }
+                return true;
+            }
+        });
+
         root.addRule(image, Anchor.CENTER, root, Anchor.CENTER);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
-        if (mAssetManager.update()) {
+        if (mAssetManager.update() && !mWaitForClick) {
             ready.emit();
         }
-
     }
 
     @Override

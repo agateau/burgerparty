@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.BufferUtils;
 public class Main {
     private static boolean sFullScreen = false;
     private static boolean sHideCursor = false;
+    private static boolean sWait = false;
 
     private static void hideCursor() {
         Cursor sEmptyCursor;
@@ -63,6 +64,9 @@ public class Main {
                 }
             });
         }
+        if (sWait) {
+            game.waitInLoadingScreen();
+        }
         game.setAdController(new DesktopAdController());
     }
 
@@ -71,9 +75,13 @@ public class Main {
             String arg = args[idx];
             if (arg.equals("-f")) {
                 sFullScreen = true;
-            }
-            if (arg.equals("--hide-cursor")) {
+            } else if (arg.equals("--hide-cursor")) {
                 sHideCursor = true;
+            } else if (arg.equals("--wait")) {
+                sWait = true;
+            } else {
+                System.err.println("ERROR: Unknown argument: " + arg);
+                System.exit(1);
             }
         }
     }
