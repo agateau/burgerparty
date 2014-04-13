@@ -158,9 +158,9 @@ public class Level {
         return set;
     }
 
-    public void initNewItemField(Set<MealItem> knownItems) {
-        initNewItemFieldInternal(knownItems, definition.mBurgerItems);
-        initNewItemFieldInternal(knownItems, definition.mExtraItems);
+    public void initNewItemField(Set<String> knownItemNames) {
+        initNewItemFieldInternal(knownItemNames, definition.mBurgerItems);
+        initNewItemFieldInternal(knownItemNames, definition.mExtraItems);
     }
 
     public int getIndex() {
@@ -202,14 +202,14 @@ public class Level {
         mPerfect = true;
     }
 
-    private void initNewItemFieldInternal(Set<MealItem> knownItems, Array<? extends MealItem> list) {
+    private void initNewItemFieldInternal(Set<String> knownItemNames, Array<? extends MealItem> list) {
         for (MealItem item: list) {
-            if (knownItems.contains(item)) {
+            if (knownItemNames.contains(item.getName())) {
                 continue;
             }
             if (definition.mNewItem == null) {
                 definition.mNewItem = item;
-                knownItems.add(item);
+                knownItemNames.add(item.getName());
             } else {
                 throw new RuntimeException("Error in level defined in " + mFileName + ". Found new item '" + item + "', but there is already a new item: '" + definition.mNewItem + "'");
             }

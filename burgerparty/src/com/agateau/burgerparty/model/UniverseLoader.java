@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.agateau.burgerparty.utils.NLog;
@@ -99,10 +100,14 @@ public class UniverseLoader {
         assert(worlds.size > 0);
         Level level1 = worlds.get(0).getLevel(0);
         Set<MealItem> knownItems = level1.getKnownItems();
+        Set<String> knownItemNames = new HashSet<String>();
+        for (MealItem item: knownItems) {
+            knownItemNames.add(item.getName());
+        }
         for (LevelWorld world: worlds) {
             for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
                 Level level = world.getLevel(idx);
-                level.initNewItemField(knownItems);
+                level.initNewItemField(knownItemNames);
             }
         }
     }
