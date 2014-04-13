@@ -63,7 +63,6 @@ public class MusicController {
 
     public void play() {
         log.d("play");
-        logState();
         mPlaying = true;
         if (mMusic == null) {
             return;
@@ -83,7 +82,6 @@ public class MusicController {
 
     public void fadeOut() {
         log.d("fadeOut");
-        logState();
         mPlaying = false;
         if (mMusic != null && mMusic.isPlaying()) {
             log.d("fadeOut: for real");
@@ -93,7 +91,6 @@ public class MusicController {
 
     public void stop() {
         log.d("stop");
-        logState();
         mPlaying = false;
         if (mMusic != null) {
             mMusic.stop();
@@ -107,7 +104,6 @@ public class MusicController {
 
     public void setMuted(boolean muted) {
         log.d("setMuted");
-        logState();
         mIsMuted = muted;
         mPrefs.putBoolean("muted", muted);
         mPrefs.flush();
@@ -118,14 +114,13 @@ public class MusicController {
                 mMusic.play();
             }
         }
-        logState();
     }
 
     public boolean isMuted() {
         return mIsMuted;
     }
 
-    private void logState() {
+    /*private void logState() {
         log.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
-    }
+    }*/
 }
