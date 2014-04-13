@@ -1,1 +1,0 @@
-xmlstarlet sel -T -t -m "/level" -f -o " " -v @duration -n *.xml
