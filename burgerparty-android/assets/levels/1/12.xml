@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<level burgerSize="7">
+  <customers>
+    <customer type="boys"/>
+    <customer type="girls"/>
+    <customer type="wrestler" burgerSize="9"/>
+    <customer type="girls"/>
+    <customer type="boys"/>
+    <customer type="wrestler" burgerSize="11"/>
+    <customer type="boys"/>
+    <customer type="wrestler" burgerSize="13"/>
+  </customers>
+</level>

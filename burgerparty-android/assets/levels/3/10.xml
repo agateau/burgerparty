@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<level burgerSize="13">
+  <customers>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+    <customer type="ninjas"/>
+  </customers>
+</level>

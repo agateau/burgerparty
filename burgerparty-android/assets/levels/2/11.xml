@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<level burgerSize="10">
+  <customers>
+    <customer type="pirate-girls"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-girls"/>
+    <customer type="pirate-boss" burgerSize="12"/>
+    <customer type="pirate-boys"/>
+    <customer type="pirate-girls"/>
+    <customer type="pirate-boss" burgerSize="14"/>
+  </customers>
+</level>
