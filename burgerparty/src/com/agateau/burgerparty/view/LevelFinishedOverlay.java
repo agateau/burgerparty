@@ -42,6 +42,9 @@ public class LevelFinishedOverlay extends Overlay {
     private Label mScoreLabel;
     private AnchorGroup mStarGroup;
 
+    private final int mLevelWorldIndex;
+    private final int mLevelIndex;
+
     class ConsumeSecondsTask extends RunQueue.Task {
         public ConsumeSecondsTask(int secs) {
             mRemainingSeconds = secs;
@@ -165,6 +168,12 @@ public class LevelFinishedOverlay extends Overlay {
             log = NLog.createForClass(this);
         }
         mGame = game;
+
+        // Store level indexes to make sure two consecutive calls to doGoToNextLevel() do not end up skipping a level
+        mLevelWorldIndex = mGame.getLevelWorldIndex();
+        mLevelIndex = mGame.getLevelIndex();
+        log.i("LevelFinishedOverlay %d:%d", mLevelWorldIndex + 1, mLevelIndex + 1);
+
         int previousScore = levelResult.getLevel().getScore();
         mScore = levelResult.getScore();
         boolean perfect = levelResult.getCoinCount() == levelResult.getMaximumCoinCount();
@@ -263,13 +272,11 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     private void doGoToNextLevel() {
-        int levelWorldIndex = mGame.getLevelWorldIndex();
-        int levelIndex = mGame.getLevelIndex();
-        LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
-        if (levelIndex < levelWorld.getLevelCount() - 1) {
-            mGame.startLevel(levelWorldIndex, levelIndex + 1);
+        LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
+        if (mLevelIndex < levelWorld.getLevelCount() - 1) {
+            mGame.startLevel(mLevelWorldIndex, mLevelIndex + 1);
         } else {
-            mGame.showNewWorldScreen(levelWorldIndex + 1);
+            mGame.showNewWorldScreen(mLevelWorldIndex + 1);
         }
     }
 
