@@ -5,16 +5,18 @@ import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.MetaAction;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Overlay;
-import com.agateau.burgerparty.utils.RunQueue;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -23,18 +25,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class LevelFinishedOverlay extends Overlay {
     private static final int EXTRA_TIME_SCORE = 100;
-    private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.01f;
+    private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.03f;
 
     private static final float STAR_ANIM_DURATION = 0.3f;
 
     private static NLog log;
-    private RunQueue mRunQueue = new RunQueue();
     private BurgerPartyGame mGame;
     private int mScore;
     private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
@@ -45,37 +45,37 @@ public class LevelFinishedOverlay extends Overlay {
     private final int mLevelWorldIndex;
     private final int mLevelIndex;
 
-    class ConsumeSecondsTask extends RunQueue.Task {
-        public ConsumeSecondsTask(int secs) {
+    class ConsumeSecondsAction extends Action {
+        private int mRemainingSeconds;
+        private final Sound mSound;
+        private float mWaitDelta = 0;
+
+        public ConsumeSecondsAction(int secs) {
             mRemainingSeconds = secs;
             mSound = mGame.getAssets().getSoundAtlas().findSound("time-bonus");
         }
+
         @Override
-        public void run() {
-            consumeRemainingSeconds();
-        }
-        public void fastForward() {
-            mScore += mRemainingSeconds * EXTRA_TIME_SCORE;
-            mRemainingSeconds = 0;
-            mScoreLabel.setText(String.valueOf(mScore));
-        }
-        private void consumeRemainingSeconds() {
-            if (mRemainingSeconds == 0) {
-                done();
-                return;
+        public boolean act(float delta) {
+            mWaitDelta -= delta;
+            if (mWaitDelta > 0) {
+                return false;
             }
+            mWaitDelta = EXTRA_TIME_UPDATE_INTERVAL;
             mSound.play(0.1f);
             mScore += EXTRA_TIME_SCORE;
             mScoreLabel.setText(String.valueOf(mScore));
             --mRemainingSeconds;
-            Timer.schedule(this, EXTRA_TIME_UPDATE_INTERVAL);
+            if (mRemainingSeconds == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        private int mRemainingSeconds;
-        private Sound mSound;
     }
 
-    class LightUpStarTask extends RunQueue.Task {
-        public LightUpStarTask(Overlay parent, int index) {
+    class LightUpStarAction extends MetaAction {
+        public LightUpStarAction(Overlay parent, int index) {
             mIndex = index;
             mImage = new Image(mStarTextures.get(1));
             mReferenceImage = mStarImages.get(index);
@@ -83,8 +83,9 @@ public class LevelFinishedOverlay extends Overlay {
             mImage.setVisible(false);
             mImage.setOrigin(mImage.getWidth() / 2, mImage.getHeight() / 2);
         }
+
         @Override
-        public void run() {
+        protected void setup() {
             mImage.setVisible(true);
             Vector2 pos = mReferenceImage.localToAscendantCoordinates(getParent(), new Vector2(0, 0));
             mImage.setPosition(pos.x, pos.y);
@@ -101,25 +102,31 @@ public class LevelFinishedOverlay extends Overlay {
                         Actions.alpha(1, STAR_ANIM_DURATION, Interpolation.pow5In)
                     ),
                     mGame.getAssets().getSoundAtlas().createPlayAction("star", 1 + mIndex * 0.05f),
-                    Actions.run(createDoneRunnable())
+                    createDoneAction()
                 )
             );
             Drawable texture = mStarTextures.get(1);
             mImage.setDrawable(texture);
         }
+
+        @Override
+        protected void abort() {
+            mImage.clearActions();
+        }
+
         private Image mImage;
         private Image mReferenceImage;
         private int mIndex;
     }
 
-    class HighScoreTask extends RunQueue.Task {
-        public HighScoreTask(Overlay parent) {
+    class HighScoreAction extends MetaAction {
+        public HighScoreAction(Overlay parent) {
             mLabel = new Label(tr("New High Score!"), mGame.getAssets().getSkin(), "score-feedback");
             parent.addActor(mLabel);
             mLabel.setVisible(false);
         }
         @Override
-        public void run() {
+        protected void setup() {
             mLabel.setVisible(true);
             float screenWidth = mLabel.getParent().getWidth();
             float finalX = mScoreLabel.getRight() + UiUtils.SPACING;
@@ -128,16 +135,22 @@ public class LevelFinishedOverlay extends Overlay {
             mLabel.addAction(
                 Actions.sequence(
                     Actions.moveTo(finalX, finalY, 1, Interpolation.bounceOut),
-                    Actions.run(createDoneRunnable())
+                    createDoneAction()
                 )
             );
         }
+
+        @Override
+        protected void abort() {
+            mLabel.clearActions();
+        }
+
         Label mLabel;
     }
 
-    class PerfectTask extends RunQueue.Task {
+    class PerfectAction extends MetaAction {
         private static final float ANIM_DURATION = 0.5f;
-        public PerfectTask(Overlay parent) {
+        public PerfectAction(Overlay parent) {
             mImage = new Image(mGame.getAssets().getTextureAtlas().findRegion("ui/perfect"));
             parent.addActor(mImage);
             mImage.setOrigin(mImage.getWidth() / 2, mImage.getHeight() / 2);
@@ -145,7 +158,7 @@ public class LevelFinishedOverlay extends Overlay {
             mImage.setZIndex(0);
         }
         @Override
-        public void run() {
+        protected void setup() {
             float finalX = (getStage().getWidth() - mImage.getWidth()) / 2;
             float finalY = mStarGroup.getY() - mImage.getHeight() + 12;
             mImage.setPosition(finalX, finalY - 20);
@@ -155,9 +168,13 @@ public class LevelFinishedOverlay extends Overlay {
                         Actions.moveTo(finalX, finalY, ANIM_DURATION, Interpolation.pow2Out),
                         Actions.fadeIn(ANIM_DURATION, Interpolation.pow2Out)
                     ),
-                    Actions.run(createDoneRunnable())
+                    createDoneAction()
                 )
             );
+        }
+        @Override
+        protected void abort() {
+            mImage.clearActions();
         }
         private Image mImage;
     }
@@ -188,17 +205,18 @@ public class LevelFinishedOverlay extends Overlay {
         mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on-big")));
         setupWidgets(skin);
 
-        mRunQueue.add(new ConsumeSecondsTask(remainingSeconds));
+        SequenceAction sequence = Actions.sequence();
+        sequence.addAction(new ConsumeSecondsAction(remainingSeconds));
         for (int i = 0; i < starCount; ++i) {
-            mRunQueue.add(new LightUpStarTask(this, i));
+            sequence.addAction(new LightUpStarAction(this, i));
         }
         if (finalScore > previousScore) {
-            mRunQueue.add(new HighScoreTask(this));
+            sequence.addAction(new HighScoreAction(this));
         }
         if (perfect) {
-            mRunQueue.add(new PerfectTask(this));
+            sequence.addAction(new PerfectAction(this));
         }
-        mRunQueue.start();
+        addAction(sequence);
         mGame.getAssets().getSoundAtlas().findSound("finished").play();
     }
 
@@ -257,21 +275,7 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     private void goToNextLevel() {
-        if (mRunQueue.isEmpty()) {
-            doGoToNextLevel();
-        } else {
-            mRunQueue.add(new RunQueue.Task() {
-                @Override
-                public void run() {
-                    doGoToNextLevel();
-                    done();
-                }
-            });
-            mRunQueue.fastForward();
-        }
-    }
-
-    private void doGoToNextLevel() {
+        clearActions();
         LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
         if (mLevelIndex < levelWorld.getLevelCount() - 1) {
             mGame.startLevel(mLevelWorldIndex, mLevelIndex + 1);
