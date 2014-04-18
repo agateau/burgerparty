@@ -2,6 +2,8 @@
 
 Bump version number in AndroidManifest.xml and in AboutScreen
 
+Check translations are up to date
+
 Run unit tests
 
 Generate .apk
