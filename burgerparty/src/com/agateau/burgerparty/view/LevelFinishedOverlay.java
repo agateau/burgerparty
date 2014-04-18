@@ -275,7 +275,6 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     private void goToNextLevel() {
-        clearActions();
         LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
         if (mLevelIndex < levelWorld.getLevelCount() - 1) {
             mGame.startLevel(mLevelWorldIndex, mLevelIndex + 1);
@@ -285,7 +284,13 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     @Override
+    public void aboutToBeRemoved() {
+        clearActions();
+    }
+
+    @Override
     public void onBackPressed() {
+        clearActions();
         mGame.showLevelListScreen(mGame.getLevelWorldIndex());
     }
 }
