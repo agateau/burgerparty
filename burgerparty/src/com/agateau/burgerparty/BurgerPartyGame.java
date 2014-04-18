@@ -219,7 +219,7 @@ public class BurgerPartyGame extends Game {
     }
 
     public void startLevel(int levelWorldIndex, int levelIndex) {
-        log.i("startLevel %d:%d", levelWorldIndex + 1, levelIndex + 1);
+        log.i("startLevel level: %d-%d", levelWorldIndex + 1, levelIndex + 1);
         mMusicController.fadeOut();
         mLevelWorldIndex = levelWorldIndex;
         mLevelIndex = levelIndex;
@@ -306,7 +306,7 @@ public class BurgerPartyGame extends Game {
     }
 
     private void doStartLevel() {
-        log.i("doStartLevel %d:%d", mLevelWorldIndex + 1, mLevelIndex + 1);
+        log.i("doStartLevel level: %d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
         Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
         setScreenAndDispose(new GameScreen(this, level));
     }

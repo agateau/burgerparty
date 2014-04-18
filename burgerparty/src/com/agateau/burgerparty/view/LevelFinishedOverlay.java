@@ -172,7 +172,7 @@ public class LevelFinishedOverlay extends Overlay {
         // Store level indexes to make sure two consecutive calls to doGoToNextLevel() do not end up skipping a level
         mLevelWorldIndex = mGame.getLevelWorldIndex();
         mLevelIndex = mGame.getLevelIndex();
-        log.i("LevelFinishedOverlay %d:%d", mLevelWorldIndex + 1, mLevelIndex + 1);
+        log.i("LevelFinishedOverlay level: %d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
 
         int previousScore = levelResult.getLevel().getScore();
         mScore = levelResult.getScore();
