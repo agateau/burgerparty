@@ -1,4 +1,19 @@
+# 0.14 - 2014-04-18
+
+- New achievements have been added:
+    - Creative: create 10 different burgers in sandbox mode.
+    - Fan: play 40 levels.
+    - Burger Apprentice: create 25 burgers.
+- Fixed a bug which made it possible to skip a level by pressing the "next
+  level" button twice.
+- Reworked Japan world to add more variety in customers.
+- Back to 12 levels per world.
+- Fixed text overflowing out of screen in the "new item screen" when using the
+  game in French.
+- Reworked the background of achievement notifications.
+
 # 0.13 - 2014-04-06
+
 - New achievements have been added:
     - 3 "All stars" achievements: finish all levels of world 1, 2, 3 with three
       stars.
