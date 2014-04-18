@@ -10,6 +10,8 @@ public class RunQueue {
     private RunQueue.Task mCurrentTask = null;
 
     public static class Task extends Timer.Task {
+        private RunQueue mQueue;
+
         public void done() {
             if (mQueue.mCurrentTask == this) {
                 mQueue.processNext();
@@ -40,8 +42,6 @@ public class RunQueue {
         private void setQueue(RunQueue queue) {
             mQueue = queue;
         }
-
-        private RunQueue mQueue;
     }
 
     public RunQueue() {
