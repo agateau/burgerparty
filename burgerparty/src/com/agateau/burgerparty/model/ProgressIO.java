@@ -75,6 +75,20 @@ public class ProgressIO {
         } else {
             log.e("load: Don't know how to load progress version " + version + ". Did not load anything.");
         }
+        ensureNextLevelIsUnlocked();
+    }
+
+    private void ensureNextLevelIsUnlocked() {
+        boolean previousWasWon = true;
+        for (LevelWorld world: mWorlds) {
+            for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
+                Level level = world.getLevel(idx);
+                if (previousWasWon && level.isLocked()) {
+                    level.unlock();
+                }
+                previousWasWon = level.getScore() > 0 || level.getStarCount() > 0;
+            }
+        }
     }
 
     private void loadV1(XmlReader.Element root) {
@@ -123,17 +137,6 @@ public class ProgressIO {
                 level.setStarCount(1);
             }
         }
-
-        boolean previousWasWon = true;
-        for (LevelWorld world: mWorlds) {
-            for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
-                Level level = world.getLevel(idx);
-                if (previousWasWon && level.isLocked()) {
-                    level.unlock();
-                }
-                previousWasWon = level.getScore() > 0;
-            }
-        }
     }
 
     private void loadV3(XmlReader.Element root) {
@@ -162,17 +165,6 @@ public class ProgressIO {
                 level.markPerfect();
             } else {
                 level.setStarCount(starCount);
-            }
-        }
-
-        boolean previousWasWon = true;
-        for (LevelWorld world: mWorlds) {
-            for (int idx = 0, n = world.getLevelCount(); idx < n; ++idx) {
-                Level level = world.getLevel(idx);
-                if (previousWasWon && level.isLocked()) {
-                    level.unlock();
-                }
-                previousWasWon = level.getScore() > 0;
             }
         }
     }

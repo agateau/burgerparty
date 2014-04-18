@@ -26,7 +26,11 @@ public class ProgressIOTest {
         assertEquals(10000, worlds.get(0).getLevel(0).getScore());
         assertEquals(1, worlds.get(0).getLevel(0).getStarCount());
 
-        assertTrue(worlds.get(0).getLevel(1).isLocked());
+        // 1-2
+        assertFalse(worlds.get(0).getLevel(1).isLocked());
+        // 1-3
+        assertTrue(worlds.get(0).getLevel(2).isLocked());
+        // 2-1
         assertTrue(worlds.get(1).getLevel(0).isLocked());
 
         assertEquals(20000, worlds.get(1).getLevel(1).getScore());
@@ -96,6 +100,23 @@ public class ProgressIOTest {
         assertEquals(24, level.getScore());
         assertEquals(3, level.getStarCount());
         assertFalse(level.isPerfect());
+    }
+    @Test
+    public void testUnlockNewLevels() {
+        Array<LevelWorld> worlds = createTestWorlds();
+        XmlReader.Element root = TestUtils.parseXml(
+                                     "<progress version='3'>"
+                                     + "    <levels>"
+                                     + "        <level world='1' level='1' score='12' stars='2'/>"
+                                     + "        <level world='1' level='2' score='0' stars='4'/>" // Strange situation but we better be able to recover from it
+                                     + "    </levels>"
+                                     + "</progress>"
+                                 );
+        ProgressIO progressIO = new ProgressIO(worlds);
+        progressIO.load(root);
+        // 1-3
+        Level level = worlds.get(0).getLevel(2);
+        assertTrue(level.isNew());
     }
 
     @Test
