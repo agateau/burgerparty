@@ -45,13 +45,13 @@ public class AchievementViewController {
                 Actions.moveBy(0, dy, IN_DURATION, Interpolation.pow2Out),
                 Actions.delay(STAY_DURATION),
                 Actions.alpha(0, OUT_DURATION),
-        Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                showNextView();
-            }
-        }),
-        Actions.removeActor()
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        showNextView();
+                    }
+                }),
+                Actions.removeActor()
             )
         );
     }
