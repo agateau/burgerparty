@@ -396,7 +396,10 @@ public class WorldView extends AbstractWorldView {
     }
 
     private void updateBubbleGeometry() {
-        mBubble.setPosition(MathUtils.ceil(mActiveCustomerView.getRight() - 10), MathUtils.ceil(mActiveCustomerView.getY() + 50));
+        float maxX = getWidth() - mBubble.getWidth() + mBubble.getPadRight();
+        mBubble.setPosition(
+                MathUtils.ceil(Math.min(mActiveCustomerView.getRight() - 10, maxX)),
+                MathUtils.ceil(mActiveCustomerView.getY() + 50));
         // Adjust scroll pane so that it does not grow outside of screen
         Vector2 coord = UiUtils.toChildCoordinates(this, mTargetMealScrollPane, new Vector2(0, getHeight()));
         mTargetMealScrollPane.setMaximumHeight(coord.y);

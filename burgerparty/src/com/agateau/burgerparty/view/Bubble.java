@@ -30,6 +30,10 @@ public class Bubble extends Group implements ResizeToFitChildren {
         }
     }
 
+    public float getPadRight() {
+        return mPatch.getPadRight();
+    }
+
     public void updateGeometry() {
         final float padLeft = mPatch.getPadLeft();
         final float padRight = mPatch.getPadRight();
