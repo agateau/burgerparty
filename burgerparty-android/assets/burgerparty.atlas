@@ -1,7 +1,7 @@
 
 burgerparty.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 levels/1/counter
   rotate: false
@@ -55,7 +55,7 @@ ui/vruler
 
 burgerparty2.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 customers/wrestler/face-0-angry
   rotate: false
@@ -172,7 +172,7 @@ ui/white-pixel
 
 burgerparty3.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 customers/pirate-boys/face-boss-angry
   rotate: false
@@ -346,7 +346,7 @@ ui/star-on-big
 
 burgerparty4.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 customers/japan-girls/body-0
   rotate: false
@@ -483,7 +483,7 @@ ui/undo
 
 burgerparty5.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 achievements/evening-gamer
   rotate: false
@@ -769,7 +769,7 @@ ui/minigame
 
 burgerparty6.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 achievements/all-stars
   rotate: false
@@ -1131,7 +1131,7 @@ ui/world-button
 
 burgerparty7.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 achievements/fan
   rotate: false
@@ -1439,7 +1439,7 @@ ui/star-on
 
 burgerparty8.png
 format: RGBA8888
-filter: Nearest,Linear
+filter: Linear,Linear
 repeat: none
 scored-font
   rotate: false

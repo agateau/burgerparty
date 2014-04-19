@@ -11,6 +11,7 @@ public class PackerMain {
 
     private static void packTextures() {
         Settings settings = new Settings();
+        settings.filterMin = TextureFilter.Linear;
         settings.filterMag = TextureFilter.Linear;
         settings.pot = false;
         settings.combineSubdirectories = true;
