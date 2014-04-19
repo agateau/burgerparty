@@ -35,7 +35,7 @@ public class AchievementViewController {
         StageScreen screen = (StageScreen)mGame.getScreen();
         assert(screen != null);
         Stage stage = screen.getStage();
-        final AchievementSmallView view = mViews.removeIndex(0);
+        final AchievementSmallView view = mViews.get(0);
 
         screen.addNotificationActor(view);
         view.setPosition((stage.getWidth() - view.getWidth()) / 2, stage.getHeight());
@@ -48,6 +48,9 @@ public class AchievementViewController {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
+                        assert(mViews.size > 0);
+                        AchievementSmallView removedView = mViews.removeIndex(0);
+                        assert(removedView == view);
                         showNextView();
                     }
                 }),
