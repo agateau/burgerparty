@@ -53,7 +53,7 @@ public class BurgerPartyGame extends Game {
     private Universe mUniverse = new Universe();
     private int mLevelWorldIndex = 0;
     private int mLevelIndex = 0;
-    private AdController mAdController;
+    private AdSystem mAdController;
     private BurgerPartyGameStats mGameStats;
     private AchievementViewController mAchievementViewController = new AchievementViewController(this);
     private int mWidth = 0;
@@ -330,12 +330,12 @@ public class BurgerPartyGame extends Game {
         return Gdx.app.getPreferences("burgerparty");
     }
 
-    public AdController getAdController() {
+    public AdSystem getAdController() {
         assert(mAdController != null);
         return mAdController;
     }
 
-    public void setAdController(AdController adController) {
-        mAdController = adController;
+    public void setAdController(AdSystem adSystem) {
+        mAdController = adSystem;
     }
 }

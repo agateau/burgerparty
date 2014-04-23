@@ -10,7 +10,7 @@ import com.heyzap.sdk.ads.InterstitialAd;
 import android.os.Handler;
 import android.os.Message;
 
-public class AndroidAdController implements AdController {
+public class HeyzapAdSystem implements AdSystem {
     private static final int PRELOAD_MSG = 0;
     private static final int SHOW_MSG = 1;
 
@@ -85,7 +85,7 @@ public class AndroidAdController implements AdController {
             }
         }
 
-        AndroidAdController mController;
+        HeyzapAdSystem mController;
     };
 
     private final NLog log;
@@ -102,7 +102,7 @@ public class AndroidAdController implements AdController {
     };
     private Runnable mAfter;
 
-    public AndroidAdController(AndroidApplication application) {
+    public HeyzapAdSystem(AndroidApplication application) {
         log = NLog.createForClass(this);
         mApplication = application;
         mHandler = new AdHandler();
