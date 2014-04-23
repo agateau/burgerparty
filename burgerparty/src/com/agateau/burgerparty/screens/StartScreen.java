@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -17,11 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.TimeUtils;
 
 public class StartScreen extends BurgerPartyScreen {
-    private static int START_COUNT_BEFORE_ADS = 8;
-    private static long MINUTES_BETWEEN_ADS = 12;
     private static NLog log;
 
     private static final float MORE_ANIM_HEIGHT = 24;
@@ -92,41 +88,13 @@ public class StartScreen extends BurgerPartyScreen {
     }
 
     private void onStartClicked() {
-        if (mustShowAd()) {
-            getGame().getAdController().showAd(new Runnable() {
-                @Override
-                public void run() {
-                    log.i("startButton(runnable): showWorldListScreen");
-                    getGame().showWorldListScreen();
-                }
-            });
-        } else {
-            getGame().showWorldListScreen();
-        }
-    }
-
-    private boolean mustShowAd() {
-        Preferences prefs = getGame().getPreferences();
-        int startCount = prefs.getInteger("startCount", 0) + 1;
-        log.i("mustShowAd: startCount=%d", startCount);
-        prefs.putInteger("startCount", startCount);
-        prefs.flush();
-        if (startCount < START_COUNT_BEFORE_ADS) {
-            return false;
-        }
-
-        long adDisplayTime = prefs.getLong("adDisplayTime", 0);
-        long now = TimeUtils.millis();
-        long delta = (now - adDisplayTime) / (60 * 1000);
-        boolean hasAd = getGame().getAdController().isAdAvailable();
-        log.i("mustShowAd: adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
-        if (delta > MINUTES_BETWEEN_ADS && hasAd) {
-            prefs.putLong("adDisplayTime", now);
-            prefs.flush();
-            return true;
-        } else {
-            return false;
-        }
+        getGame().getAdController().onStartLevel(new Runnable() {
+            @Override
+            public void run() {
+                log.i("startButton(runnable): showWorldListScreen");
+                getGame().showWorldListScreen();
+            }
+        });
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 
+import com.agateau.burgerparty.model.AdController;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.Universe;
@@ -53,7 +54,7 @@ public class BurgerPartyGame extends Game {
     private Universe mUniverse = new Universe();
     private int mLevelWorldIndex = 0;
     private int mLevelIndex = 0;
-    private AdSystem mAdController;
+    private AdController mAdController;
     private BurgerPartyGameStats mGameStats;
     private AchievementViewController mAchievementViewController = new AchievementViewController(this);
     private int mWidth = 0;
@@ -254,7 +255,6 @@ public class BurgerPartyGame extends Game {
                 finishLoad();
             }
         });
-        mAdController.preloadAd();
         setScreenAndDispose(screen);
     }
 
@@ -330,12 +330,12 @@ public class BurgerPartyGame extends Game {
         return Gdx.app.getPreferences("burgerparty");
     }
 
-    public AdSystem getAdController() {
+    public AdController getAdController() {
         assert(mAdController != null);
         return mAdController;
     }
 
-    public void setAdController(AdSystem adSystem) {
-        mAdController = adSystem;
+    public void setAdSystem(AdSystem adSystem) {
+        mAdController = new AdController(getPreferences(), adSystem);
     }
 }

@@ -67,7 +67,7 @@ public class Main {
         if (sWait) {
             game.waitInLoadingScreen();
         }
-        game.setAdController(new DummyAdSystem());
+        game.setAdSystem(new DummyAdSystem());
     }
 
     private static void parseArgs(String[] args) {
