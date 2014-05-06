@@ -50,8 +50,7 @@ public class PauseOverlay extends Overlay {
         ImageButton restartButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-restart");
         restartButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                // Pretend level was failed so that we don't show an ad
-                mGame.getAdController().onLevelFailed();
+                mGame.getAdController().onLevelRestarted();
                 mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
             }
         });

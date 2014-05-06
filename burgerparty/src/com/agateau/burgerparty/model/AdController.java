@@ -6,13 +6,13 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class AdController {
-    private static int START_COUNT_BEFORE_ADS = 8;
+    private static int START_COUNT_BEFORE_ADS = 3;
     private static long MINUTES_BETWEEN_ADS = 5;
 
     private final AdSystem mAdSystem;
     private final Preferences mPrefs;
 
-    private boolean mFailedOnLastLevel = false;
+    private boolean mSkipNextAd = false;
 
     private static NLog log;
 
@@ -29,7 +29,7 @@ public class AdController {
         if (mustShowAd()) {
             mAdSystem.showAd(next);
         } else {
-            mFailedOnLastLevel = false;
+            mSkipNextAd = false;
             next.run();
         }
     }
@@ -38,10 +38,16 @@ public class AdController {
         int startCount = mPrefs.getInteger("startCount", 0) + 1;
         mPrefs.putInteger("startCount", startCount);
         mPrefs.flush();
+        // Skip next ad to make sure we don't show an ad before the first level has been played
+        mSkipNextAd = true;
+    }
+
+    public void onLevelRestarted() {
+        mSkipNextAd = true;
     }
 
     public void onLevelFailed() {
-        mFailedOnLastLevel = true;
+        mSkipNextAd = true;
     }
 
     private boolean mustShowAd() {
@@ -50,8 +56,8 @@ public class AdController {
             return false;
         }
 
-        if (mFailedOnLastLevel) {
-            log.d("Not showing ad: failed on last level");
+        if (mSkipNextAd) {
+            log.d("Not showing ad: skipped");
             return false;
         }
 
