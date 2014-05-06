@@ -88,7 +88,8 @@ public class StartScreen extends BurgerPartyScreen {
     }
 
     private void onStartClicked() {
-        getGame().getAdController().onStartLevel(new Runnable() {
+        getGame().getAdController().onStartPlaying();
+        getGame().getAdController().maybeShowAd(new Runnable() {
             @Override
             public void run() {
                 log.i("startButton(runnable): showWorldListScreen");

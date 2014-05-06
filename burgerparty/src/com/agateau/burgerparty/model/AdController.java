@@ -7,10 +7,13 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class AdController {
     private static int START_COUNT_BEFORE_ADS = 8;
-    private static long MINUTES_BETWEEN_ADS = 12;
+    private static long MINUTES_BETWEEN_ADS = 5;
 
     private final AdSystem mAdSystem;
     private final Preferences mPrefs;
+
+    private boolean mFailedOnLastLevel = false;
+
     private static NLog log;
 
     public AdController(Preferences prefs, AdSystem adSystem) {
@@ -22,20 +25,33 @@ public class AdController {
         mAdSystem.preloadAd();
     }
 
-    public void onStartLevel(Runnable next) {
+    public void maybeShowAd(Runnable next) {
         if (mustShowAd()) {
             mAdSystem.showAd(next);
         } else {
+            mFailedOnLastLevel = false;
             next.run();
         }
     }
 
-    private boolean mustShowAd() {
+    public void onStartPlaying() {
         int startCount = mPrefs.getInteger("startCount", 0) + 1;
-        log.i("mustShowAd: startCount=%d", startCount);
         mPrefs.putInteger("startCount", startCount);
         mPrefs.flush();
-        if (startCount < START_COUNT_BEFORE_ADS) {
+    }
+
+    public void onLevelFailed() {
+        mFailedOnLastLevel = true;
+    }
+
+    private boolean mustShowAd() {
+        if (mPrefs.getInteger("startCount", 0) < START_COUNT_BEFORE_ADS) {
+            log.d("Not showing ad: startCount=%d < %d", mPrefs.getInteger("startCount", 0), START_COUNT_BEFORE_ADS);
+            return false;
+        }
+
+        if (mFailedOnLastLevel) {
+            log.d("Not showing ad: failed on last level");
             return false;
         }
 
@@ -45,10 +61,12 @@ public class AdController {
         boolean hasAd = mAdSystem.isAdAvailable();
         log.i("mustShowAd: adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
         if (delta > MINUTES_BETWEEN_ADS && hasAd) {
+            log.d("Showing ad");
             mPrefs.putLong("adDisplayTime", now);
             mPrefs.flush();
             return true;
         } else {
+            log.d("Not showing ad");
             return false;
         }
     }
