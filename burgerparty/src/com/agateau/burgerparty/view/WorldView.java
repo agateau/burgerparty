@@ -94,7 +94,7 @@ public class WorldView extends AbstractWorldView {
         });
         mWorld.levelFailed.connect(mHandlers, new Signal0.Handler() {
             public void handle() {
-                showGameOverOverlay();
+                onLevelFailed();
             }
         });
         mWorld.trashing.connect(mHandlers, new Signal0.Handler() {
@@ -290,7 +290,8 @@ public class WorldView extends AbstractWorldView {
         UiUtils.adjustToPrefSize(mTimerDisplay);
     }
 
-    private void showGameOverOverlay() {
+    private void onLevelFailed() {
+        mGame.getAdController().onLevelFailed();
         mGameScreen.setOverlay(new GameOverOverlay(mGame, mAtlas, mSkin));
     }
 

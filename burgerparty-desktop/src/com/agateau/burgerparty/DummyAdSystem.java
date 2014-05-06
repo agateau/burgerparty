@@ -1,6 +1,6 @@
 package com.agateau.burgerparty;
 
-public class DesktopAdController implements AdController {
+public class DummyAdSystem implements AdSystem {
     @Override
     public void preloadAd() {
     }

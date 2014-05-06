@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 
+import com.agateau.burgerparty.model.AdController;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.Universe;
@@ -254,7 +255,6 @@ public class BurgerPartyGame extends Game {
                 finishLoad();
             }
         });
-        mAdController.preloadAd();
         setScreenAndDispose(screen);
     }
 
@@ -335,7 +335,7 @@ public class BurgerPartyGame extends Game {
         return mAdController;
     }
 
-    public void setAdController(AdController adController) {
-        mAdController = adController;
+    public void setAdSystem(AdSystem adSystem) {
+        mAdController = new AdController(getPreferences(), adSystem);
     }
 }
