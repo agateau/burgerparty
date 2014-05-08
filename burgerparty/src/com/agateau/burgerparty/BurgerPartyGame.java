@@ -232,12 +232,12 @@ public class BurgerPartyGame extends Game {
                 public void handle() {
                     level.setScore(0);
                     saveLevelProgress();
-                    doStartLevel();
+                    showAd();
                 }
             });
             setScreenAndDispose(screen);
         } else {
-            doStartLevel();
+            showAd();
         }
     }
 
@@ -303,6 +303,15 @@ public class BurgerPartyGame extends Game {
     public void showCheatScreen() {
         mMusicController.play();
         setScreenAndDispose(new CheatScreen(this));
+    }
+
+    private void showAd() {
+        mAdController.maybeShowAd(new Runnable() {
+            @Override
+            public void run() {
+                doStartLevel();
+            }
+        });
     }
 
     private void doStartLevel() {

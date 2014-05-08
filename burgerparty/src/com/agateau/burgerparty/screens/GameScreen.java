@@ -19,12 +19,7 @@ public class GameScreen extends BurgerPartyScreen {
     @Override
     public void show() {
         super.show();
-        getGame().getAdController().maybeShowAd(new Runnable() {
-            @Override
-            public void run() {
-                mWorld.start();
-            }
-        });
+        mWorld.start();
     }
 
     @Override
