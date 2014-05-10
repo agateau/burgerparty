@@ -11,13 +11,16 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Perfect #%d", "Perfect #%d");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
+        plainEntries.put("Burger Apprentice", "Apprenti");
         plainEntries.put("Burger Master", "Maître Burger");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Practice Area", "Laboratoire");
         plainEntries.put("Star Collector", "Collectionneur d'étoiles");
+        plainEntries.put("Fan", "Fan");
         plainEntries.put("Close Call", "C'était juste");
         plainEntries.put("Morning Gamer", "Joueur du matin");
         plainEntries.put("Evening Gamer", "Joueur du soir");
+        plainEntries.put("Creative", "Créatif");
         plainEntries.put("%dx combo!", "%dx combo !");
         plainEntries.put("Happy customer!", "Client satisfait !");
         plainEntries.put("All Stars #%d", "Toutes les étoiles #%d");
@@ -25,11 +28,10 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
         plainEntries.put("Version %s", "Version %s");
         plainEntries.put("Code & Design", "Code & Design");
-        plainEntries.put("Aurélien Gâteau", "Aurélien Gâteau");
         plainEntries.put("Music", "Musique");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
         plainEntries.put("Testers", "Testeurs");
-        plainEntries.put("Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nAnd many others!", "Clara Gâteau\\nAntonin Gâteau\\nGwenaëlle Gâteau\\nMathieu Maret\\nEt de nombreux autres !");
+        plainEntries.put("© 2013 - 2014 Green Yeti Lab", "© 2013 - 2014 Green Yeti Lab");
         pluralEntries.put(
             new PluralId("1 remaining.", "%# remaining."),
             new String[] {
@@ -59,6 +61,13 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             }
         );
         pluralEntries.put(
+            new PluralId("ignore-fan", "Play %# levels."),
+            new String[] {
+                "-",
+                "Jouer à %# niveaux.",
+            }
+        );
+        pluralEntries.put(
             new PluralId("ignore-close-call", "Finish a level with less than %# seconds left."),
             new String[] {
                 "-",
@@ -77,6 +86,13 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             new String[] {
                 "-",
                 "Jouer entre 19:00 et 23:00 pendant %# jours.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-creative", "Create %# different burgers in the practice area."),
+            new String[] {
+                "-",
+                "Créer %# burgers différents dans le laboratoire.",
             }
         );
     }

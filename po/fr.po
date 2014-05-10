@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-06 11:15+0200\n"
-"PO-Revision-Date: 2014-04-06 11:18+0100\n"
+"POT-Creation-Date: 2014-05-10 22:51+0200\n"
+"PO-Revision-Date: 2014-05-10 22:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -23,19 +23,19 @@ msgid_plural "%# remaining."
 msgstr[0] "Encore 1."
 msgstr[1] "Encore %#."
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:114
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
 msgid "New High Score!"
 msgstr "Nouveau record !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:227
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
 msgid "Congratulations, you finished level %d-%d!"
 msgstr "Félicitations, vous avez terminé le niveau %d-%d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:229
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
 msgid "Congratulations, you finished world %d!"
 msgstr "Félicitations, vous avez terminé le monde %d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:231
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:258
 msgid "Congratulations, you finished the game!"
 msgstr "Félicitations, vous avez terminé le jeu !"
 
@@ -67,70 +67,95 @@ msgstr "Perfect #%d"
 msgid "Get a perfect in all levels of world %d."
 msgstr "Obtenir un Perfect dans tous les niveaux du monde %d."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
-msgid "Burger Master"
-msgstr "Maître Burger"
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:54
+msgid "Burger Apprentice"
+msgstr "Apprenti"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:47
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:52
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:54
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:59
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:64
 msgid "ignore-n-burgers"
 msgid_plural "Serve %# burgers."
 msgstr[0] "-"
 msgstr[1] "Servir %# burgers."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:52
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:59
+msgid "Burger Master"
+msgstr "Maître Burger"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:64
 msgid "Burger God"
 msgstr "Dieu des Burgers"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:69
 msgid "Practice Area"
 msgstr "Laboratoire"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:57
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:69
 msgid "ignore-practice"
 msgid_plural "Collect %# stars to unlock the practice area."
 msgstr[0] "-"
 msgstr[1] "Récupérer %# étoiles pour débloquer le laboratoire."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:74
 msgid "Star Collector"
 msgstr "Collectionneur d'étoiles"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:62
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:74
 msgid "ignore-collect"
 msgid_plural "Collect %# stars."
 msgstr[0] "-"
 msgstr[1] "Récupérer %# étoiles."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:79
+msgid "Fan"
+msgstr "Fan"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:79
+msgid "ignore-fan"
+msgid_plural "Play %# levels."
+msgstr[0] "-"
+msgstr[1] "Jouer à %# niveaux."
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:83
 msgid "Close Call"
 msgstr "C'était juste"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:66
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:83
 msgid "ignore-close-call"
 msgid_plural "Finish a level with less than %# seconds left."
 msgstr[0] "-"
 msgstr[1] "Finir un niveau avec moins de %# secondes restantes."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
 msgid "Morning Gamer"
 msgstr "Joueur du matin"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
 msgid "ignore-morning"
 msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] "-"
 msgstr[1] "Jouer entre 7:00 et 10:00 pendant %# jours."
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:90
 msgid "Evening Gamer"
 msgstr "Joueur du soir"
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:73
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:90
 msgid "ignore-evening"
 msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] "-"
 msgstr[1] "Jouer entre 19:00 et 23:00 pendant %# jours."
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+msgid "Creative"
+msgstr "Créatif"
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+msgid "ignore-creative"
+msgid_plural "Create %# different burgers in the practice area."
+msgstr[0] "-"
+msgstr[1] "Créer %# burgers différents dans le laboratoire."
 
 #: burgerparty/src/com/agateau/burgerparty/model/World.java:315
 msgid "%dx combo!"
@@ -148,47 +173,49 @@ msgstr "Toutes les étoiles #%d"
 msgid "Finish all levels of world %d with 3 stars."
 msgstr "Finir tous les niveaux du monde %d avec 3 étoiles."
 
-#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:114
+#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:116
 msgid "New item unlocked!"
 msgstr "Nouvel ingrédient débloqué !"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:68
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
 msgid "Version %s"
 msgstr "Version %s"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:69
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:71
 msgid "Code & Design"
 msgstr "Code & Design"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
-msgid "Aurélien Gâteau"
-msgstr "Aurélien Gâteau"
-
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:71
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
 msgid "Music"
 msgstr "Musique"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:72
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:75
 msgid "Thomas Tripon"
 msgstr "Thomas Tripon"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:73
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:77
 msgid "Testers"
 msgstr "Testeurs"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
-msgid ""
-"Clara Gâteau\n"
-"Antonin Gâteau\n"
-"Gwenaëlle Gâteau\n"
-"Mathieu Maret\n"
-"And many others!"
-msgstr ""
-"Clara Gâteau\n"
-"Antonin Gâteau\n"
-"Gwenaëlle Gâteau\n"
-"Mathieu Maret\n"
-"Et de nombreux autres !"
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:87
+msgid "© 2013 - 2014 Green Yeti Lab"
+msgstr "© 2013 - 2014 Green Yeti Lab"
+
+#~ msgid "Aurélien Gâteau"
+#~ msgstr "Aurélien Gâteau"
+
+#~ msgid ""
+#~ "Clara Gâteau\n"
+#~ "Antonin Gâteau\n"
+#~ "Gwenaëlle Gâteau\n"
+#~ "Mathieu Maret\n"
+#~ "And many others!"
+#~ msgstr ""
+#~ "Clara Gâteau\n"
+#~ "Antonin Gâteau\n"
+#~ "Gwenaëlle Gâteau\n"
+#~ "Mathieu Maret\n"
+#~ "Et de nombreux autres !"
 
 #~ msgid "X"
 #~ msgid_plural "Serve %n burgers."

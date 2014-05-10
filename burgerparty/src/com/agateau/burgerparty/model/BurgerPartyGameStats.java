@@ -98,7 +98,7 @@ public class BurgerPartyGameStats {
             manager.add(new PerfectAchievement(universe, index));
         }
 
-        mCreative = new Achievement("creative", tr("Creative"), trn("ignore-creative", "Create %# different burgers in the practice area", CREATIVE_MEAL_COUNT));
+        mCreative = new Achievement("creative", tr("Creative"), trn("ignore-creative", "Create %# different burgers in the practice area.", CREATIVE_MEAL_COUNT));
         manager.add(mCreative);
 
         manager.setFileHandle(FileUtils.getUserWritableFile("achievements.xml"));
