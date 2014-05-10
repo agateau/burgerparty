@@ -4,11 +4,16 @@ Bump version number in AndroidManifest.xml and in AboutScreen
 
 Check translations are up to date
 
+    pot-generate
+    # translate
+    po-compile-all
+
 Run unit tests
 
 Generate .apk
 
 Smoke test
+
 - on PC
 - on phone
 - on tablet
@@ -63,6 +68,7 @@ Notify Google Group
 Notify G+ community
 
 Post link to announcement on:
+
 - G+
 - FB
 - libgdx forum
