@@ -1,3 +1,13 @@
+# 0.15 - 2014-05-10
+
+- When two achievements are unlocked at the same time, their notifications do
+  not overlap themselves anymore.
+- Make sure the content of the customer bubble always fit in the screen.
+- Translated texts of achievements added in 0.14 to French.
+- Reworked how ads are shown: they now appear between levels, never before
+  first level and no more than once every 5 minutes.
+- Use linear filtering to shrink images on devices with low resolution screen.
+
 # 0.14 - 2014-04-18
 
 - New achievements have been added:
