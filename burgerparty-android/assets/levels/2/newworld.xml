@@ -1,7 +1,24 @@
-<newworld duration="5" dotInterval="0.1">
-    <points>
-        <point x="490" y="210"/>
-        <point x="520" y="600"/>
-        <point x="736" y="699"/>
-    </points>
+<newworld>
+    <view type="gdxui" duration="5">
+        <gdxui>
+            <AnchorGroup id="root">
+                <Image x="0" y="0" name="levels/1/background" center="root.center"/>
+                <Image x="220" y="30" name="cutscenes/leaving-restaurant"/>
+            </AnchorGroup>
+        </gdxui>
+    </view>
+    <view type="gdxui" duration="5">
+        <gdxui>
+            <AnchorGroup id="root">
+                <Image x="0" y="0" name="cutscenes/boarding" center="root.center"/>
+            </AnchorGroup>
+        </gdxui>
+    </view>
+    <view type="flying" duration="5" dotInterval="0.1">
+        <points>
+            <point x="490" y="210"/>
+            <point x="520" y="600"/>
+            <point x="736" y="699"/>
+        </points>
+    </view>
 </newworld>
