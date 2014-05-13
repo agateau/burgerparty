@@ -157,13 +157,12 @@ public class NewWorldScreen extends BurgerPartyScreen {
                 new FlyAction(),
                 new FadeToBlackAction(whitePixel, 1),
                 Actions.delay(0.5f),
-        Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                startNextLevel();
-            }
-        }
-                           )
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        startNextLevel();
+                    }
+                })
             )
         );
     }
