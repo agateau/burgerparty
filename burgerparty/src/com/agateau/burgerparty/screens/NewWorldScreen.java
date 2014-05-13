@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.FadeToBlackAction;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.badlogic.gdx.graphics.Camera;
@@ -9,9 +10,7 @@ import com.badlogic.gdx.math.Bezier;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.XmlReader;
@@ -30,43 +29,6 @@ public class NewWorldScreen extends BurgerPartyScreen {
     private Image mPlane;
     private Image mPlaneShadow;
     private Image mBackground;
-
-    private static class FadeToBlackAction extends Action {
-        private final TextureRegion mRegion;
-        private final float mDuration;
-        private final Image mImage;
-        private float mTime = 0;
-
-        public FadeToBlackAction(TextureRegion region, float duration) {
-            mDuration = duration;
-            mRegion = region;
-            mImage = new Image(mRegion);
-        }
-
-        @Override
-        public boolean act(float delta) {
-            if (mImage.getStage() == null) {
-                init();
-            }
-            mTime += delta;
-            boolean done = false;
-            if (mTime > mDuration) {
-                mTime = mDuration;
-                done = true;
-            }
-            mImage.setColor(0, 0, 0, mTime / mDuration);
-            return done;
-        }
-
-        private void init() {
-            Stage stage = getActor().getStage();
-            stage.addActor(mImage);
-            float width = stage.getWidth();
-            float height = stage.getHeight();
-            Vector3 pos = stage.getCamera().position;
-            mImage.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
-        }
-    }
 
     private class FlyAction extends Action {
         private float mTime = 0;
