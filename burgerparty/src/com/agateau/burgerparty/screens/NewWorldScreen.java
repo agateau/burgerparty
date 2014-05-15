@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -75,9 +76,25 @@ public class NewWorldScreen extends BurgerPartyScreen {
     }
 
     private Actor createContainerForView(Actor view, float width, float height) {
-        Group container = new FboGroup();
-        container.addActor(view);
+        final float shadowWidth = 8;
+        final float shadowAlpha = 0.6f;
+
+        Image shadow = new Image(getTextureAtlas().findRegion("ui/white-pixel"));
+        shadow.setColor(0, 0, 0, shadowAlpha);
+        shadow.setSize(shadowWidth, height);
+        shadow.setX(width);
+
+        Image shadow2 = new Image(getTextureAtlas().findRegion("ui/white-pixel"));
+        shadow2.setColor(0, 0, 0, shadowAlpha);
+        shadow2.setSize(shadowWidth / 2, height);
+        shadow2.setX(width);
+
         view.setSize(width, height);
+
+        Group container = new FboGroup();
+        container.addActor(shadow);
+        container.addActor(shadow2);
+        container.addActor(view);
         container.setSize(width, height);
         return container;
     }
@@ -114,20 +131,21 @@ public class NewWorldScreen extends BurgerPartyScreen {
             });
         } else {
             getStage().addActor(newView);
+            // Fade in from behind
             newView.toBack();
             newView.setColor(1, 1, 1, 0);
-            newView.addAction(Actions.delay(ANIM_DURATION / 2, Actions.alpha(1, ANIM_DURATION)));
+            newView.addAction(Actions.alpha(1, ANIM_DURATION, Interpolation.pow3In));
         }
 
         Actor oldView = mCurrentViewIndex >= 1 ? mViews.get(mCurrentViewIndex - 1) : null;
         if (oldView != null) {
-            SequenceAction oldViewAction = Actions.sequence(
-                Actions.parallel(
-                    Actions.alpha(0.5f, ANIM_DURATION),
-                    Actions.moveBy(-oldView.getWidth(), 0, ANIM_DURATION, Interpolation.pow3In)
-                )
-            );
-            if (nextAction != null) {
+            SequenceAction oldViewAction = Actions.sequence();
+            if (nextAction == null) {
+                // Not last view, scroll out to the left
+                oldViewAction.addAction(Actions.moveBy(-oldView.getWidth(), 0, ANIM_DURATION, Interpolation.pow3In));
+            } else {
+                // Last view, fade out
+                oldViewAction.addAction(Actions.alpha(0, ANIM_DURATION, Interpolation.pow3In));
                 oldViewAction.addAction(nextAction);
             }
             oldViewAction.addAction(Actions.removeActor());
