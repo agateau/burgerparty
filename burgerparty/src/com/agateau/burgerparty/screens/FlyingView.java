@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.utils.AnchorGroup;
-import com.agateau.burgerparty.utils.FadeToBlackAction;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Bezier;
 import com.badlogic.gdx.math.Interpolation;
@@ -114,7 +113,6 @@ class FlyingView extends AnchorGroup {
     }
 
     private void createActions() {
-        TextureRegion whitePixel = mScreen.getTextureAtlas().findRegion("ui/white-pixel");
         addAction(
             Actions.sequence(
                 Actions.run(new Runnable() {
@@ -125,8 +123,6 @@ class FlyingView extends AnchorGroup {
                 }),
                 Actions.delay(NewWorldScreen.ANIM_DURATION),
                 new FlyAction(),
-                new FadeToBlackAction(whitePixel, 1),
-                Actions.delay(0.5f),
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
@@ -135,7 +131,8 @@ class FlyingView extends AnchorGroup {
                 })
             )
         );
-        addAction(mScreen.getGame().getAssets().getSoundAtlas().createPlayAction("jet"));
+        Action jetSoundAction = mScreen.getGame().getAssets().getSoundAtlas().createPlayAction("jet");
+        addAction(Actions.delay(NewWorldScreen.ANIM_DURATION, jetSoundAction));
     }
 
     private void createBackground() {

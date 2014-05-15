@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.utils.FboGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.UiBuilder;
@@ -8,6 +9,7 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
@@ -50,21 +52,34 @@ public class NewWorldScreen extends BurgerPartyScreen {
         XmlReader.Element rootElement = FileUtils.parseXml(FileUtils.assets("levels/" + (mWorldIndex + 1) + "/newworld.xml"));
         BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
 
+        float width = getStage().getWidth();
+        float height = getStage().getHeight();
         for (XmlReader.Element viewElement: rootElement.getChildrenByName("view")) {
             String type = viewElement.getAttribute("type");
             Actor view = null;
             if (type.equals("gdxui")) {
                 view = createGdxuiView(builder, viewElement);
             } else if (type.equals("flying")) {
-                view = new FlyingView(this, viewElement, mWorldIndex);
+                view = createFlyingView(viewElement);
             } else {
                 throw new RuntimeException("Unknown view type '" + type + "'");
             }
             assert(view != null);
-            view.setSize(getStage().getWidth(), getStage().getHeight());
-            mViews.add(view);
+            mViews.add(createContainerForView(view, width, height));
         }
         goToNextView();
+    }
+
+    private Actor createFlyingView(XmlReader.Element element) {
+        return new FlyingView(this, element, mWorldIndex);
+    }
+
+    private Actor createContainerForView(Actor view, float width, float height) {
+        Group container = new FboGroup();
+        container.addActor(view);
+        view.setSize(width, height);
+        container.setSize(width, height);
+        return container;
     }
 
     private Actor createGdxuiView(UiBuilder builder, XmlReader.Element element) {
@@ -82,13 +97,12 @@ public class NewWorldScreen extends BurgerPartyScreen {
                 })
             )
         );
-        view.addAction(Actions.scaleBy(0.05f, 0.05f, duration + ANIM_DURATION, Interpolation.pow2In));
-        view.setOrigin(view.getWidth() / 2, view.getHeight() / 2);
         return view;
     }
 
     public void goToNextView() {
         Action nextAction = null;
+
         ++mCurrentViewIndex;
         Actor newView = mCurrentViewIndex < mViews.size ? mViews.get(mCurrentViewIndex) : null;
         if (newView == null) {
@@ -101,16 +115,16 @@ public class NewWorldScreen extends BurgerPartyScreen {
         } else {
             getStage().addActor(newView);
             newView.toBack();
-            newView.setColor(0, 0, 0, 0);
-            newView.addAction(Actions.alpha(1, ANIM_DURATION));
+            newView.setColor(1, 1, 1, 0);
+            newView.addAction(Actions.delay(ANIM_DURATION / 2, Actions.alpha(1, ANIM_DURATION)));
         }
 
         Actor oldView = mCurrentViewIndex >= 1 ? mViews.get(mCurrentViewIndex - 1) : null;
         if (oldView != null) {
             SequenceAction oldViewAction = Actions.sequence(
                 Actions.parallel(
-                    Actions.alpha(0, ANIM_DURATION),
-                    Actions.moveBy(-oldView.getWidth(), 0, ANIM_DURATION, Interpolation.pow4In)
+                    Actions.alpha(0.5f, ANIM_DURATION),
+                    Actions.moveBy(-oldView.getWidth(), 0, ANIM_DURATION, Interpolation.pow3In)
                 )
             );
             if (nextAction != null) {
