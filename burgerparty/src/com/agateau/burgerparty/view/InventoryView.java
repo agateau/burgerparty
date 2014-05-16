@@ -8,19 +8,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class InventoryView extends Actor {
+public class InventoryView extends Group {
     public Signal1<MealItem> itemSelected = new Signal1<MealItem>();
     private TextureRegion mBgRegion;
     private Inventory mInventory = null;
     private TextureAtlas mAtlas;
+    private Image mClickHighlight;
 
     private static final int COLUMN_COUNT = 8;
     private static final int ROW_COUNT = 2;
-
+    private static final float HIGHLIGHT_MARGIN = 2;
+    private static final float HIGHLIGHT_DURATION = 0.4f;
+    private static final float HIGHLIGHT_ALPHA = 0.4f;
     public InventoryView(TextureAtlas atlas) {
         mAtlas = atlas;
         addListener(new ClickListener() {
@@ -29,6 +34,9 @@ public class InventoryView extends Actor {
                 onClicked(x, y);
             }
         });
+        mClickHighlight = new Image(atlas.findRegion("ui/white-pixel"));
+        mClickHighlight.setColor(0, 0, 0, 0);
+        addActor(mClickHighlight);
     }
 
     public void setWorldDirName(String levelWorldDirName) {
@@ -72,6 +80,7 @@ public class InventoryView extends Actor {
                              MathUtils.ceil(posX + (cellWidth - region.getRegionWidth()) / 2),
                              MathUtils.ceil(posY + (cellHeight - region.getRegionHeight()) / 2));
         }
+        super.draw(spriteBatch, parentAlpha);
     }
 
     private void onClicked(float posX, float posY) {
@@ -81,8 +90,26 @@ public class InventoryView extends Actor {
         int row = (int)(posY / cellHeight);
         for (MealItem item: mInventory.getItems()) {
             if (item.getRow() == row && item.getColumn() == column) {
+                showHighlight(column, row);
                 itemSelected.emit(item);
             }
         }
+    }
+
+    private void showHighlight(int column, int row) {
+        float cellWidth = getWidth() / COLUMN_COUNT;
+        float cellHeight = getHeight() / ROW_COUNT;
+        mClickHighlight.setBounds(
+            column * cellWidth + HIGHLIGHT_MARGIN,
+            row * cellHeight + HIGHLIGHT_MARGIN,
+            cellWidth - 2 * HIGHLIGHT_MARGIN,
+            cellHeight - 2 * HIGHLIGHT_MARGIN
+        );
+        mClickHighlight.addAction(
+            Actions.sequence(
+                Actions.alpha(HIGHLIGHT_ALPHA, HIGHLIGHT_DURATION * 0.25f),
+                Actions.alpha(0, HIGHLIGHT_DURATION * 0.75f)
+            )
+        );
     }
 }
