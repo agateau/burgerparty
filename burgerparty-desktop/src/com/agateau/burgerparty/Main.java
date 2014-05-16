@@ -73,16 +73,30 @@ public class Main {
     private static void parseArgs(String[] args) {
         for (int idx = 0, n = args.length; idx < n; ++idx) {
             String arg = args[idx];
-            if (arg.equals("-f")) {
+            if (arg.equals("-f") || args.equals("--fullscreen")) {
                 sFullScreen = true;
             } else if (arg.equals("--hide-cursor")) {
                 sHideCursor = true;
             } else if (arg.equals("--wait")) {
                 sWait = true;
+            } else if (arg.equals("-h") || arg.equals("--help")) {
+                usage();
             } else {
                 System.err.println("ERROR: Unknown argument: " + arg);
                 System.exit(1);
             }
         }
+    }
+
+    private static void usage() {
+        System.err.println("Usage: burgeparty [OPTIONS]\n"
+            + "\n"
+            + "Options:\n"
+            + "  -h,--help        This screen\n"
+            + "  -f,--fullscreen  Start in fullscreen mode\n"
+            + "  --hide-cursor    Hide cursor\n"
+            + "  --wait           Wait for a click on the loading screen to continue\n"
+        );
+        System.exit(1);
     }
 }
