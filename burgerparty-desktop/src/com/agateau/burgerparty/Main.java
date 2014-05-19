@@ -10,7 +10,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.BufferUtils;
+import com.greenyetilab.linguaj.Translator;
 
 public class Main {
     private static boolean sFullScreen = false;
@@ -70,17 +72,21 @@ public class Main {
         game.setAdSystem(new DummyAdSystem());
     }
 
-    private static void parseArgs(String[] args) {
-        for (int idx = 0, n = args.length; idx < n; ++idx) {
-            String arg = args[idx];
-            if (arg.equals("-f") || args.equals("--fullscreen")) {
+    private static void parseArgs(String[] _args) {
+        Array<String> args = new Array<String>(_args);
+        while (args.size > 0) {
+            String arg = args.removeIndex(0);
+            if (arg.equals("-h") || arg.equals("--help")) {
+                usage();
+            } else if (arg.equals("-f") || args.equals("--fullscreen")) {
                 sFullScreen = true;
             } else if (arg.equals("--hide-cursor")) {
                 sHideCursor = true;
             } else if (arg.equals("--wait")) {
                 sWait = true;
-            } else if (arg.equals("-h") || arg.equals("--help")) {
-                usage();
+            } else if (arg.equals("--locale")) {
+                String locale = args.removeIndex(0);
+                Translator.init(locale);
             } else {
                 System.err.println("ERROR: Unknown argument: " + arg);
                 System.exit(1);
@@ -96,6 +102,7 @@ public class Main {
             + "  -f,--fullscreen  Start in fullscreen mode\n"
             + "  --hide-cursor    Hide cursor\n"
             + "  --wait           Wait for a click on the loading screen to continue\n"
+            + "  --locale LOCALE  Force usage of LOCALE\n"
         );
         System.exit(1);
     }
