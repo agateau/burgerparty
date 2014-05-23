@@ -89,6 +89,11 @@ public class UiBuilder {
     }
 
     public Actor build(XmlReader.Element parentElement, Group parentActor) {
+        mActorForId.clear();
+        return doBuild(parentElement, parentActor);
+    }
+
+    private Actor doBuild(XmlReader.Element parentElement, Group parentActor) {
         Actor firstActor = null;
         for (int idx=0, size = parentElement.getChildCount(); idx < size; ++idx) {
             XmlReader.Element element = parentElement.getChild(idx);
@@ -115,7 +120,7 @@ public class UiBuilder {
                 mActorForId.put(id, actor);
             }
             if (actor instanceof Group && !(actor instanceof ScrollPane)) {
-                build(element, (Group)actor);
+                doBuild(element, (Group)actor);
             }
         }
         return firstActor;
@@ -246,7 +251,7 @@ public class UiBuilder {
         } else {
             pane = new ScrollPane(null, mSkin, styleName);
         }
-        Actor child = build(element);
+        Actor child = doBuild(element, null);
         if (child != null) {
             pane.setWidget(child);
         }
