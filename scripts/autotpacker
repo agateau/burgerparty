@@ -2,4 +2,4 @@
 cd $(dirname $0)
 SCRIPT_DIR=$PWD
 cd ../burgerparty/assets
-inotifyrun $SCRIPT_DIR/packer
+inotifyrun $SCRIPT_DIR/tpacker
