@@ -5,51 +5,58 @@ filter: Linear,Linear
 repeat: none
 levels/1/counter
   rotate: false
-  xy: 2, 2
+  xy: 2, 5
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
   index: -1
 levels/2/newworld-map
   rotate: false
-  xy: 2, 86
-  size: 1020, 934
-  orig: 1020, 934
+  xy: 2, 89
+  size: 1019, 933
+  orig: 1019, 933
   offset: 0, 0
   index: -1
 mealitems/0/fish
   rotate: false
-  xy: 804, 2
+  xy: 804, 5
   size: 194, 47
   orig: 194, 47
   offset: 0, 0
   index: -1
 mealitems/0/tomato
   rotate: false
-  xy: 804, 51
+  xy: 804, 54
   size: 210, 33
   orig: 210, 33
   offset: 0, 0
   index: -1
 newworld/dot
   rotate: false
-  xy: 1016, 64
+  xy: 1016, 67
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 ui/icon-info
   rotate: false
-  xy: 1000, 17
+  xy: 1000, 20
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 ui/vruler
   rotate: false
-  xy: 1016, 72
+  xy: 1016, 75
   size: 6, 12
   orig: 6, 12
+  offset: 0, 0
+  index: -1
+ui/white-pixel
+  rotate: false
+  xy: 1000, 2
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 
@@ -160,13 +167,6 @@ ui/vertical-gradient
   xy: 1012, 42
   size: 8, 16
   orig: 8, 16
-  offset: 0, 0
-  index: -1
-ui/white-pixel
-  rotate: false
-  xy: 841, 11
-  size: 16, 16
-  orig: 16, 16
   offset: 0, 0
   index: -1
 
