@@ -1,17 +1,19 @@
 <?xml version="1.0"?>
 <level burgerSize="13">
   <customers>
+    <customer type="japan-girls"/>
     <customer type="ninjas"/>
+    <customer type="girls"/>
+    <customer type="japan-girls"/>
+    <customer type="boys"/>
     <customer type="ninjas"/>
+    <customer type="dragon" burgerSize="15"/>
+    <customer type="boys"/>
+    <customer type="girls"/>
     <customer type="ninjas"/>
+    <customer type="dragon" burgerSize="17"/>
+    <customer type="japan-girls"/>
     <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
-    <customer type="ninjas"/>
+    <customer type="dragon" burgerSize="19"/>
   </customers>
 </level>
