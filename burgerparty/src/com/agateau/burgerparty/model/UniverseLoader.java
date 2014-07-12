@@ -70,12 +70,9 @@ public class UniverseLoader {
          * normLevelIndex goes from 0 to 1 between level 1.1 and level 3.LEVEL_PER_WORLD
          * easiness starts at 3 and tends to 1
          */
-        float normLevelIndex = (worldIndex * LevelWorld.LEVEL_PER_WORLD + levelIndex) / (3f * LevelWorld.LEVEL_PER_WORLD);
-        if (normLevelIndex > 1) {
-            normLevelIndex = 1;
-        }
-        int itemCount = level.definition.getTotalItemCount();
+        float normLevelIndex = (worldIndex * LevelWorld.LEVEL_PER_WORLD + levelIndex) / (3f * LevelWorld.LEVEL_PER_WORLD - 1f);
         float easiness = 3f - 2f * (float)Math.pow(normLevelIndex, 0.5f);
+        int itemCount = level.definition.getTotalItemCount();
         int duration = roundUp(itemCount * SEC_PER_ITEM * easiness);
         level.definition.duration = duration;
         if (DEBUG_DURATION) {
