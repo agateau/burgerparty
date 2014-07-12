@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 public class UniverseLoader {
-    private static final float SEC_PER_ITEM = 1.3f;
-    private static final int TIME_STEP = 30;
+    private static final float SEC_PER_ITEM = 0.75f;
+    private static final int TIME_STEP = 10;
     private static final boolean DEBUG_DURATION = false;
 
     private static NLog log;

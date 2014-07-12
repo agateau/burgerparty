@@ -27,6 +27,7 @@ public class World {
         public String message = new String();
         public int deltaScore;
         public int deltaCoinCount;
+        public int deltaSeconds;
     }
     public Signal0 burgerFinished = new Signal0();
     public Signal1<Score> mealFinished = new Signal1<Score>();
@@ -42,6 +43,13 @@ public class World {
     private static final int HAPPY_COIN_COUNT = 3;
     private static final int NEUTRAL_COIN_COUNT = 2;
     private static final int ANGRY_COIN_COUNT = 1;
+
+    private static final int HAPPY_EXTRA_SECS = 2;
+    private static final int NEUTRAL_EXTRA_SECS = 1;
+    private static final int ANGRY_EXTRA_SECS = 0;
+
+    private static final int BIG_BURGER_SIZE = 11;
+    private static final int MED_BURGER_SIZE = 7;
 
     private static NLog log;
 
@@ -150,7 +158,7 @@ public class World {
     }
 
     public int getDuration() {
-        return mLevel.definition.duration - mRemainingSeconds;
+        return mLevel.definition.duration;
     }
 
     public boolean isTrashing() {
@@ -299,8 +307,17 @@ public class World {
     private void emitMealFinished() {
         Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
         Score score = new Score();
+        int burgerSize = mTargetBurger.getItems().size();
+        if (burgerSize >= BIG_BURGER_SIZE) {
+            score.deltaSeconds = 2;
+        } else if (burgerSize >= MED_BURGER_SIZE) {
+            score.deltaSeconds = 1;
+        } else {
+            score.deltaSeconds = 0;
+        }
         if (mood == Customer.Mood.HAPPY) {
             score.deltaCoinCount = HAPPY_COIN_COUNT;
+            score.deltaSeconds += HAPPY_EXTRA_SECS;
             int count = 0;
             for (int i = mActiveCustomerIndex; i >= 0; --i) {
                 if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
@@ -322,13 +339,16 @@ public class World {
             score.type = Score.Type.NEUTRAL;
             score.deltaScore = NEUTRAL_SCORE;
             score.deltaCoinCount = NEUTRAL_COIN_COUNT;
+            score.deltaSeconds += NEUTRAL_EXTRA_SECS;
         } else {
             score.type = Score.Type.ANGRY;
             score.deltaScore = ANGRY_SCORE;
             score.deltaCoinCount = ANGRY_COIN_COUNT;
+            score.deltaSeconds += ANGRY_EXTRA_SECS;
         }
         mScore += score.deltaScore;
         mCoinCount += score.deltaCoinCount;
+        mRemainingSeconds += score.deltaSeconds;
         mealFinished.emit(score);
     }
 

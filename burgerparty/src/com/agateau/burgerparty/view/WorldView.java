@@ -1,5 +1,7 @@
 package com.agateau.burgerparty.view;
 
+import static com.greenyetilab.linguaj.Translator.tr;
+
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
@@ -324,9 +326,12 @@ public class WorldView extends AbstractWorldView {
         mActiveCustomerView.getCustomer().markServed();
         updateScoreDisplay();
         updateCoinView();
-        float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
-        float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-        new ScoreFeedbackActor(this, x, y, score, mAssets.getSkin(), mAssets.getAnimScriptLoader());
+        if (score.deltaSeconds > 0) {
+            String text = tr("+%d sec", score.deltaSeconds);
+            float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
+            float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
+            new ScoreFeedbackActor(this, x, y, text, mAssets.getSkin());
+        }
         slideDoneMealView(new Runnable() {
             @Override
             public void run() {

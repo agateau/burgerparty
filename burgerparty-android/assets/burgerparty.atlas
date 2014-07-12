@@ -1488,7 +1488,19 @@ burgerparty9.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-scored-font
+new-highscore-font
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+burgerparty10.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+score-feedback-font
   rotate: false
   xy: 2, 2
   size: 512, 512

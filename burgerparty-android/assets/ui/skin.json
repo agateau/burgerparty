@@ -12,8 +12,11 @@
         main-font-plain-small: {
             file: ui/main-font-plain-small.fnt
         },
-        scored-font: {
-            file: ui/scored-font.fnt
+        new-highscore-font: {
+            file: ui/new-highscore-font.fnt
+        },
+        score-feedback-font: {
+            file: ui/score-feedback-font.fnt
         }
     },
     com.badlogic.gdx.graphics.Color: {
@@ -35,8 +38,12 @@
             font: main-font,
             fontColor: white
         },
+        new-highscore: {
+            font: new-highscore-font,
+            fontColor: white
+        },
         score-feedback: {
-            font: scored-font,
+            font: score-feedback-font,
             fontColor: white
         },
         bubble-text: {
@@ -72,7 +79,7 @@
         },
 
         about-title: {
-            font: scored-font,
+            font: new-highscore-font,
             fontColor: white
         },
         about-text: {

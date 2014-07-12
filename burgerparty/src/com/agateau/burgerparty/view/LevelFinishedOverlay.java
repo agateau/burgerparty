@@ -121,7 +121,7 @@ public class LevelFinishedOverlay extends Overlay {
 
     class HighScoreAction extends MetaAction {
         public HighScoreAction(Overlay parent) {
-            mLabel = new Label(tr("New High Score!"), mGame.getAssets().getSkin(), "score-feedback");
+            mLabel = new Label(tr("New High Score!"), mGame.getAssets().getSkin(), "new-highscore");
             parent.addActor(mLabel);
             mLabel.setVisible(false);
         }
