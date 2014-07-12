@@ -127,6 +127,7 @@ public class Level {
 
         // Use a deterministic seed to generate random burger size to ensure level difficulty remains the same between plays
         Random random = new Random(worldIndex * 1000 + levelIndex);
+        // No less than 4 burger items: top + bottom + 2 middle
         int minBurgerSize = Math.max(burgerSize / 2, 4);
         int burgerSizeDelta = burgerSize - minBurgerSize + 1;
 
