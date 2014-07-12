@@ -326,11 +326,24 @@ public class WorldView extends AbstractWorldView {
         mActiveCustomerView.getCustomer().markServed();
         updateScoreDisplay();
         updateCoinView();
+        {
+            String text = String.format("+%d", score.deltaScore);
+            if (!score.message.isEmpty()) {
+                text += "\n" + score.message;
+            }
+            ScoreFeedbackActor actor = new ScoreFeedbackActor(this, mScoreDisplay.getHeight(), text, mAssets.getSkin(), "hud");
+            actor.setPosition(
+                mScoreDisplay.getX(),
+                mScoreDisplay.getY() - actor.getPrefHeight()
+            );
+        }
         if (score.deltaSeconds > 0) {
             String text = tr("+%d sec", score.deltaSeconds);
-            float x = mMealView.getX() + mMealView.getBurgerView().getWidth() / 2;
-            float y = mMealView.getY() + mMealView.getBurgerView().getHeight();
-            new ScoreFeedbackActor(this, x, y, text, mAssets.getSkin());
+            ScoreFeedbackActor actor = new ScoreFeedbackActor(this, 20, text, mAssets.getSkin(), "score-feedback");
+            actor.setPosition(
+                (getWidth() - actor.getPrefWidth()) / 2,
+                mMealView.getY() + mMealView.getBurgerView().getHeight()
+            );
         }
         slideDoneMealView(new Runnable() {
             @Override
