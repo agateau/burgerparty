@@ -13,8 +13,10 @@ import com.badlogic.gdx.utils.Array;
 
 public class UniverseLoader {
     private static final float SEC_PER_ITEM = 0.75f;
-    private static final int TIME_STEP = 10;
-    private static final boolean DEBUG_DURATION = false;
+    private static final int TIME_STEP = 5;
+    private static final boolean DEBUG_DURATION = true;
+    private static final float MIN_EASINESS = 1;
+    private static final float MAX_EASINESS = 2;
 
     private static NLog log;
     private FileHandle mCsvHandle;
@@ -68,10 +70,10 @@ public class UniverseLoader {
     private void initDuration(int worldIndex, int levelIndex, Level level) {
         /*
          * normLevelIndex goes from 0 to 1 between level 1.1 and level 3.LEVEL_PER_WORLD
-         * easiness starts at 3 and tends to 1
+         * easiness starts at MIN_EASINESS and tends to MAX_EASINESS
          */
         float normLevelIndex = (worldIndex * LevelWorld.LEVEL_PER_WORLD + levelIndex) / (3f * LevelWorld.LEVEL_PER_WORLD - 1f);
-        float easiness = 3f - 2f * (float)Math.pow(normLevelIndex, 0.5f);
+        float easiness = MIN_EASINESS + (MAX_EASINESS - MIN_EASINESS) * (float)Math.pow(1 - normLevelIndex, 4f);
         int itemCount = level.definition.getTotalItemCount();
         int duration = roundUp(itemCount * SEC_PER_ITEM * easiness);
         level.definition.duration = duration;
