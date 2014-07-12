@@ -9,7 +9,9 @@ public class BurgerItem extends MealItem {
     private String mBottomName;
 
     public static enum SubType {
-        MIDDLE,
+        MIDDLE_MAIN,
+        MIDDLE_OTHER,
+        MIDDLE_SAUCE,
         TOP,
         BOTTOM,
         TOP_BOTTOM,
@@ -25,9 +27,13 @@ public class BurgerItem extends MealItem {
 
     protected BurgerItem(int worldIndex, XmlReader.Element element) {
         super(worldIndex, Type.BURGER, element);
-        String subType = element.getAttribute("subType", "middle");
-        if (subType.equals("middle")) {
-            mSubType = SubType.MIDDLE;
+        String subType = element.getAttribute("subType");
+        if (subType.equals("middle-main")) {
+            mSubType = SubType.MIDDLE_MAIN;
+        } else if (subType.equals("middle-other")) {
+            mSubType = SubType.MIDDLE_OTHER;
+        } else if (subType.equals("middle-sauce")) {
+            mSubType = SubType.MIDDLE_SAUCE;
         } else if (subType.equals("top")) {
             mSubType = SubType.TOP;
             mBottomName = element.getAttribute("bottom");

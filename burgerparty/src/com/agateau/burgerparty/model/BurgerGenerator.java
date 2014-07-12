@@ -9,11 +9,17 @@ import com.badlogic.gdx.utils.Array;
 class BurgerGenerator {
     private Array<TopBottom> mTopBottomItems = new Array<TopBottom>();
     private Array<BurgerItem> mMiddleItems = new Array<BurgerItem>();
+    private Array<BurgerItem> mMainItems = new Array<BurgerItem>();
 
     public BurgerGenerator(int worldIndex, Array<BurgerItem> items) {
         for (BurgerItem item: items) {
             switch (item.getSubType()) {
-            case MIDDLE:
+            case MIDDLE_MAIN:
+                mMainItems.add(item);
+                mMiddleItems.add(item);
+                break;
+            case MIDDLE_OTHER:
+            case MIDDLE_SAUCE:
                 mMiddleItems.add(item);
                 break;
             case BOTTOM:
@@ -54,14 +60,36 @@ class BurgerGenerator {
         Array<BurgerItem> items = new Array<BurgerItem>(mMiddleItems);
         BurgerItem lastItem = null;
 
-        for (int n = start; n < end; ++n) {
-            int index = MathUtils.random(items.size - 1);
-            BurgerItem item = items.removeIndex(index);
+        boolean hasMain = false;
+        for (int pos = start; pos < end; ++pos) {
+            BurgerItem item = null;
+            int index = -1;
+            while (index == -1) {
+                index = MathUtils.random(items.size - 1);
+                item = items.get(index);
+                if (lastItem != null) {
+                    if (lastItem.getSubType() == BurgerItem.SubType.MIDDLE_SAUCE && item.getSubType() == BurgerItem.SubType.MIDDLE_SAUCE) {
+                        // Try again, we don't want two consecutive sauces
+                        index = -1;
+                    }
+                }
+            }
+            items.removeIndex(index);
+            lst.set(pos, item);
+            if (item.getSubType() == BurgerItem.SubType.MIDDLE_MAIN) {
+                hasMain = true;
+            }
             if (lastItem != null) {
                 items.add(lastItem);
             }
             lastItem = item;
-            lst.set(n, item);
+        }
+
+        // Make sure we have at least one main item
+        if (!hasMain) {
+            BurgerItem item = mMainItems.get(MathUtils.random(mMainItems.size - 1));
+            int pos = MathUtils.random(start, end - 1);
+            lst.set(pos, item);
         }
     }
 
