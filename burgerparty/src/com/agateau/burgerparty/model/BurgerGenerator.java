@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.model;
 
-import java.util.LinkedList;
+import java.util.Collection;
+import java.util.Vector;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -30,35 +31,38 @@ class BurgerGenerator {
         }
     }
 
-    public LinkedList<BurgerItem> run(int count) {
-        LinkedList<BurgerItem> lst = new LinkedList<BurgerItem>();
-
+    public Collection<BurgerItem> run(int count) {
+        Vector<BurgerItem> lst = new Vector<BurgerItem>();
+        lst.setSize(count);
         TopBottom topBottom = mTopBottomItems.get(MathUtils.random(mTopBottomItems.size - 1));
-        lst.add(topBottom.bottom);
+        lst.set(0, topBottom.bottom);
+        lst.set(count - 1, topBottom.top);
+        // Create a second stage for tall burgers
+        if (count >= 7) {
+            int separator = count / 2;
+            lst.set(separator, topBottom.bottom);
+            fillStage(lst, 1, separator);
+            fillStage(lst, separator + 1, count - 1);
+        } else {
+            fillStage(lst, 1, count - 1);
+        }
+        return lst;
+    }
 
+    public void fillStage(Vector<BurgerItem> lst, int start, int end) {
         // Generate content, make sure items cannot appear two times consecutively
         Array<BurgerItem> items = new Array<BurgerItem>(mMiddleItems);
         BurgerItem lastItem = null;
 
-        // Subtract 2 because we add top and bottom items out of the loop
-        for (int n = 0; n < count - 2; ++n) {
+        for (int n = start; n < end; ++n) {
             int index = MathUtils.random(items.size - 1);
             BurgerItem item = items.removeIndex(index);
             if (lastItem != null) {
                 items.add(lastItem);
             }
             lastItem = item;
-            lst.add(item);
+            lst.set(n, item);
         }
-
-        lst.add(topBottom.top);
-
-        // Replace item in the middle with an intermediate stage for tall burgers
-        if (count >= 7) {
-            lst.set(count / 2, topBottom.bottom);
-        }
-
-        return lst;
     }
 
     private static class TopBottom {

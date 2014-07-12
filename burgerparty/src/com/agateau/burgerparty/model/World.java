@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.model;
 
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.Set;
 
 import com.agateau.burgerparty.model.Inventory;
@@ -230,7 +230,7 @@ public class World {
 
     private void generateTargetBurger() {
         int count = mCustomers.get(mActiveCustomerIndex).getBurgerSize();
-        LinkedList<BurgerItem> items = mBurgerGenerator.run(count);
+        Collection<BurgerItem> items = mBurgerGenerator.run(count);
         mTargetBurger.setItems(items);
         mTargetBurger.resetArrow();
     }
