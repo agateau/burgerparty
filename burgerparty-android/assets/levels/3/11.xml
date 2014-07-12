@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<level burgerSize="13">
+<level burgerSize="7">
   <customers>
     <customer type="ninjas"/>
     <customer type="boys"/>
@@ -8,10 +8,10 @@
     <customer type="ninjas"/>
     <customer type="japan-girls"/>
     <customer type="ninjas"/>
-    <customer type="dragon" burgerSize="15"/>
+    <customer type="dragon" burgerSize="9"/>
     <customer type="ninjas"/>
     <customer type="japan-girls"/>
     <customer type="ninjas"/>
-    <customer type="dragon" burgerSize="17"/>
+    <customer type="dragon" burgerSize="11"/>
   </customers>
 </level>
