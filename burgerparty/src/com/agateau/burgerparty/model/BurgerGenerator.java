@@ -41,7 +41,7 @@ class BurgerGenerator {
         BurgerItem lastItem = null;
 
         // Subtract 2 because we add top and bottom items out of the loop
-        for (int n = count - 2; n >= 0; n--) {
+        for (int n = 0; n < count - 2; ++n) {
             int index = MathUtils.random(items.size - 1);
             BurgerItem item = items.removeIndex(index);
             if (lastItem != null) {
