@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.view;
 
-import static com.greenyetilab.linguaj.Translator.tr;
+import static com.greenyetilab.linguaj.Translator.trn;
 
 import java.util.HashSet;
 
@@ -338,7 +338,7 @@ public class WorldView extends AbstractWorldView {
             );
         }
         if (score.deltaSeconds > 0) {
-            String text = tr("+%d sec", score.deltaSeconds);
+            String text = trn("+%# sec", "+%# sec", score.deltaSeconds);
             ScoreFeedbackActor actor = new ScoreFeedbackActor(this, 20, text, mAssets.getSkin(), "score-feedback");
             actor.setPosition(
                 (getWidth() - actor.getPrefWidth()) / 2,
