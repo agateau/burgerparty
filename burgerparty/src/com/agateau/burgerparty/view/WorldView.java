@@ -342,7 +342,7 @@ public class WorldView extends AbstractWorldView {
             ScoreFeedbackActor actor = new ScoreFeedbackActor(this, 20, text, mAssets.getSkin(), "score-feedback");
             actor.setPosition(
                 (getWidth() - actor.getPrefWidth()) / 2,
-                mMealView.getY() + mMealView.getBurgerView().getHeight()
+                mCounter.getTop() + UiUtils.SPACING
             );
         }
         slideDoneMealView(new Runnable() {
