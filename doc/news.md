@@ -1,3 +1,16 @@
+# 0.16 - 2014-07-13
+
+- The game difficulty has been adjusted: levels are shorter and a bit harder,
+  making the game more challenging. One now gains back up to 4 seconds of extra
+  time when customers are satisfied.
+- Burgers are now more "realistic": all stages now have at least one meat or
+  fish ingredient, two sauces cannot be stacked on each others
+- Pirate world: Background has been redrawn.
+- Japan world: Added a boss.
+- The "new world" sequences are a bit longer: they show the heroine leaving the
+  current world and boarding a plane to the next world. The maps have also been
+  improved.
+
 # 0.15 - 2014-05-10
 
 - When two achievements are unlocked at the same time, their notifications do
