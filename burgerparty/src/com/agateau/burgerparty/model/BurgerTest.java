@@ -15,8 +15,8 @@ public class BurgerTest {
                             + "  <generic>"
                             + "    <item row='0' column='0' name='top'    type='burger' subType='top' bottom='bottom' height='12'/>"
                             + "    <item row='0' column='1' name='bottom' type='burger' subType='bottom' height='12'/>"
-                            + "    <item row='0' column='2' name='tomato' type='burger' height='12'/>"
-                            + "    <item row='0' column='3' name='salad'  type='burger' height='12'/>"
+                            + "    <item row='0' column='2' name='tomato' type='burger' subType='middle-other' height='12'/>"
+                            + "    <item row='0' column='3' name='salad'  type='burger' subType='middle-other' height='12'/>"
                             + "  </generic>"
                             + "</items>");
         BurgerItem top = db.getBurgerItem("top");

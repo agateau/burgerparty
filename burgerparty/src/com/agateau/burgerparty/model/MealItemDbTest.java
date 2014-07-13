@@ -14,7 +14,7 @@ public class MealItemDbTest {
         XmlReader.Element root = parseXml(
                                      "<items>"
                                      + "<generic>"
-                                     + "  <item name='foo' type='burger' row='1' column='3' height='12'/>"
+                                     + "  <item name='foo' type='burger' subType='middle-other' row='1' column='3' height='12'/>"
                                      + "</generic>"
                                      + "<world index='3'>"
                                      + "  <item name='foo' height='24'/>"
@@ -45,8 +45,8 @@ public class MealItemDbTest {
         MealItemDb db = TestUtils.createMealItemDb(
                             "<items>"
                             + "<generic>"
-                            + "  <item name='salad' type='burger' row='1' column='1' height='12'/>"
-                            + "  <item name='onion' type='burger' row='1' column='1' height='12' world='2' level='1'/>"
+                            + "  <item name='salad' type='burger' subType='middle-other' row='1' column='1' height='12'/>"
+                            + "  <item name='onion' type='burger' subType='middle-other' row='1' column='1' height='12' world='2' level='1'/>"
                             + "</generic>"
                             + "<world index='2'>"
                             + "  <item name='salad' height='24'/>"
