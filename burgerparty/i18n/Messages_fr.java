@@ -40,6 +40,13 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             }
         );
         pluralEntries.put(
+            new PluralId("+%# sec", "+%# sec"),
+            new String[] {
+                "+%# seconde",
+                "+%# secondes",
+            }
+        );
+        pluralEntries.put(
             new PluralId("ignore-n-burgers", "Serve %# burgers."),
             new String[] {
                 "-",

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-10 22:51+0200\n"
+"POT-Creation-Date: 2014-07-13 12:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,12 @@ msgstr ""
 #: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:26
 msgid "Game Over"
 msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:342
+msgid "+%# sec"
+msgid_plural "+%# sec"
+msgstr[0] ""
+msgstr[1] ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
 msgid "Perfect #%d"
@@ -158,11 +164,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:315
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:332
 msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:319
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:336
 msgid "Happy customer!"
 msgstr ""
 
