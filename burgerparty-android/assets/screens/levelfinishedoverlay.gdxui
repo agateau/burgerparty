@@ -19,7 +19,7 @@
         <ImageButton id="nextButton"
             style="round-button"
             bottomCenter="root.bottomCenter 0 6"
-            imageName="ui/icon-right"/>
+            imageName="ui/icon-next"/>
 
         <ImageButton id="restartButton"
             style="round-button"
