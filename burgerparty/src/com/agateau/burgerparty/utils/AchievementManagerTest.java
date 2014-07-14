@@ -51,7 +51,7 @@ public class AchievementManagerTest {
         Achievement bar = createAchievement("bar");
         manager.add(foo);
         manager.add(bar);
-        foo.setUnlocked(true);
+        foo.unlock();
 
         assertTrue(manager.mSaveCalled);
 

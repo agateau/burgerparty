@@ -109,7 +109,7 @@ public class BurgerPartyGameStats {
         world.levelFinished.connect(mHandlers, new Signal0.Handler() {
             public void handle() {
                 if (world.getRemainingSeconds() <= CLOSE_CALL_COUNT) {
-                    mCloseCall.setUnlocked(true);
+                    mCloseCall.unlock();
                 }
             }
         });
@@ -126,7 +126,7 @@ public class BurgerPartyGameStats {
         }
         distinctSandBoxMeals.add(mealHashCode);
         if (distinctSandBoxMeals.getCount() >= CREATIVE_MEAL_COUNT) {
-            mCreative.setUnlocked(true);
+            mCreative.unlock();
         }
     }
 
@@ -153,7 +153,7 @@ public class BurgerPartyGameStats {
         }
         stat.add(dateString);
         if (stat.getCount() >= 4) {
-            achievement.setUnlocked(true);
+            achievement.unlock();
         }
     }
 }

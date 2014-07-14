@@ -33,9 +33,8 @@ public class AllStarsAchievement extends Achievement {
     }
 
     private void update() {
-        if (isUnlocked()) {
-            return;
+        if (mWorld.getWonStarCount() == mWorld.getTotalStarCount()) {
+            unlock();
         }
-        setUnlocked(mWorld.getWonStarCount() == mWorld.getTotalStarCount());
     }
 }

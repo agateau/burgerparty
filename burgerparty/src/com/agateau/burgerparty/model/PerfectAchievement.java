@@ -36,7 +36,9 @@ public class PerfectAchievement extends Achievement {
         if (isUnlocked()) {
             return;
         }
-        setUnlocked(allPerfect());
+        if (allPerfect()) {
+            unlock();
+        }
     }
 
     private boolean allPerfect() {

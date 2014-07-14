@@ -39,13 +39,11 @@ public class Achievement {
         return mUnlocked;
     }
 
-    public void setUnlocked(boolean value) {
-        if (mUnlocked == value) {
+    public void unlock() {
+        if (mUnlocked) {
             return;
         }
-        mUnlocked = value;
-        if (value) {
-            unlocked.emit();
-        }
+        mUnlocked = true;
+        unlocked.emit();
     }
 }
