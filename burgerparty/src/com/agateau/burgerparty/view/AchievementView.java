@@ -23,9 +23,10 @@ public class AchievementView extends AnchorGroup {
             iconRegion = atlas.findRegion("achievements/generic");
         }
 
-
         Image icon = new Image(iconRegion);
-        Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
+        boolean isNew = achievement.isUnlocked() && !achievement.hasBeenSeen();
+        Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(),
+            isNew ? "achievement-title-new" : "achievement-title");
         Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
 
         Image statusIcon = null;

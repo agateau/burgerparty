@@ -95,6 +95,10 @@
             font: main-font-plain,
             fontColor: black
         },
+        achievement-title-new: {
+            font: main-font-plain,
+            fontColor: red
+        },
         achievement-description: {
             font: main-font-plain-small,
             fontColor: black
