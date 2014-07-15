@@ -3,11 +3,13 @@ package com.agateau.burgerparty.utils;
 
 public class Achievement {
     public Signal0 unlocked = new Signal0();
+    public Signal0 savingRequested = new Signal0();
 
     private String mId;
     private String mTitle;
     private String mDescription;
     private boolean mUnlocked = false;
+    private boolean mSeen = false;
 
     public Achievement(String id, String title, String description) {
         mId = id;
@@ -17,6 +19,10 @@ public class Achievement {
 
     public void setAlreadyUnlocked(boolean value) {
         mUnlocked = value;
+    }
+
+    public void setAlreadySeen(boolean value) {
+        mSeen = value;
     }
 
     public String getId() {
@@ -44,6 +50,17 @@ public class Achievement {
             return;
         }
         mUnlocked = true;
+        savingRequested.emit();
         unlocked.emit();
+    }
+
+    public boolean hasBeenSeen() {
+        return mSeen;
+    }
+
+    public void markSeen() {
+        assert(mUnlocked);
+        mSeen = true;
+        savingRequested.emit();
     }
 }
