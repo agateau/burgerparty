@@ -110,4 +110,14 @@ public class AchievementManager {
         // FIXME: Really schedule
         save();
     }
+
+    public boolean hasUnseenAchievements() {
+        for (int i = 0, n = mAchievements.size; i < n; ++i) {
+            Achievement achievement = mAchievements.get(i);
+            if (achievement.isUnlocked() && !achievement.hasBeenSeen()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

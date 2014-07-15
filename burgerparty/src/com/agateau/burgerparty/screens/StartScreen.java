@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -58,11 +59,8 @@ public class StartScreen extends BurgerPartyScreen {
                 getGame().showAboutScreen();
             }
         });
-        builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                getGame().showAchievementsScreen();
-            }
-        });
+        setupAchievementButton(builder.<ImageButton>getActor("achievementsButton"));
+
         ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
         final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
         moreGroup.setColor(1, 1, 1, 0);
@@ -85,6 +83,17 @@ public class StartScreen extends BurgerPartyScreen {
         updateMuteButton();
         root.layout();
         moreGroup.setPosition(moreButton.getX(), moreButton.getTop() + root.getSpacing() - MORE_ANIM_HEIGHT);
+    }
+
+    private void setupAchievementButton(ImageButton button) {
+        button.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                getGame().showAchievementsScreen();
+            }
+        });
+        if (getGame().getGameStats().manager.hasUnseenAchievements()) {
+            button.setColor(Color.RED);
+        }
     }
 
     private void onStartClicked() {
