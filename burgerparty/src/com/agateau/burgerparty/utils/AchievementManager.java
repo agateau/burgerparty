@@ -87,7 +87,11 @@ public class AchievementManager {
     public void save(XmlWriter writer) {
         try {
             XmlWriter root = writer.element("achievements");
-            for (Achievement achievement: mAchievements) {
+            // Use a manual loop rather than a foreach-like loop because if we are called while iterating on achievements
+            // (for example marking an achievement as seen while creating a view of the achievement list) Array aborts,
+            // complaining its iterator cannot be used recursively
+            for (int i = 0, n = mAchievements.size; i < n; ++i) {
+                Achievement achievement = mAchievements.get(i);
                 if (achievement.isUnlocked()) {
                     root.element("achievement")
                     .attribute("id", achievement.getId())

@@ -75,6 +75,9 @@ public class AchievementsScreen extends BurgerPartyScreen {
             }
             AchievementView view = new AchievementView(getGame().getAssets(), achievement);
             parent.addActor(view);
+            if (achievement.isUnlocked() && !achievement.hasBeenSeen()) {
+                achievement.markSeen();
+            }
         }
     }
 }
