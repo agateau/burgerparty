@@ -9,6 +9,7 @@ import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.AchievementView;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class AchievementsScreen extends BurgerPartyScreen {
     private static NLog log;
+    private Screen mReturnScreen;
 
     public AchievementsScreen(BurgerPartyGame game) {
         super(game);
@@ -38,7 +40,12 @@ public class AchievementsScreen extends BurgerPartyScreen {
 
     @Override
     public void onBackPressed() {
-        getGame().showStartScreen();
+        if (mReturnScreen == null) {
+            getGame().showStartScreen();
+            return;
+        }
+        getGame().setScreen(mReturnScreen);
+        dispose();
     }
 
     private void setupWidgets() {
@@ -79,5 +86,9 @@ public class AchievementsScreen extends BurgerPartyScreen {
                 achievement.markSeen();
             }
         }
+    }
+
+    public void setReturnScreen(Screen screen) {
+        mReturnScreen = screen;
     }
 }

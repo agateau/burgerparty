@@ -6,10 +6,10 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.RefreshHelper;
+import com.agateau.burgerparty.view.AchievementsButtonIndicator;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -86,14 +86,7 @@ public class StartScreen extends BurgerPartyScreen {
     }
 
     private void setupAchievementButton(ImageButton button) {
-        button.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                getGame().showAchievementsScreen();
-            }
-        });
-        if (getGame().getGameStats().manager.hasUnseenAchievements()) {
-            button.setColor(Color.RED);
-        }
+        new AchievementsButtonIndicator(button, getGame());
     }
 
     private void onStartClicked() {
