@@ -72,6 +72,9 @@ public class PauseOverlay extends Overlay {
         });
         updateMuteButton();
 
+        ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
+        new AchievementsButtonIndicator(achievementsButton, game);
+
         AnchorGroup group = new AnchorGroup();
         addActor(group);
         group.setFillParent(true);
@@ -83,6 +86,7 @@ public class PauseOverlay extends Overlay {
         group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
         group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
         group.addRule(mMuteButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_LEFT, 0.5f, 1);
+        group.addRule(achievementsButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_RIGHT, -1, 1);
     }
 
     @Override
