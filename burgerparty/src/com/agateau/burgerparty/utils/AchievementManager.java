@@ -13,6 +13,7 @@ public class AchievementManager {
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
     public Signal1<Achievement> achievementUnlocked = new Signal1<Achievement>();
+    public Signal0 changed = new Signal0();
 
     private Array<Achievement> mAchievements = new Array<Achievement>();
     private HashMap<String, Achievement> mAchievementForId = new HashMap<String, Achievement>();
@@ -30,10 +31,11 @@ public class AchievementManager {
                 achievementUnlocked.emit(achievement);
             }
         });
-        achievement.savingRequested.connect(mHandlers, new Signal0.Handler() {
+        achievement.changed.connect(mHandlers, new Signal0.Handler() {
             @Override
             public void handle() {
                 scheduleSave();
+                changed.emit();
             }
         });
     }

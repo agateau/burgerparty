@@ -3,7 +3,7 @@ package com.agateau.burgerparty.utils;
 
 public class Achievement {
     public Signal0 unlocked = new Signal0();
-    public Signal0 savingRequested = new Signal0();
+    public Signal0 changed = new Signal0();
 
     private String mId;
     private String mTitle;
@@ -50,7 +50,7 @@ public class Achievement {
             return;
         }
         mUnlocked = true;
-        savingRequested.emit();
+        changed.emit();
         unlocked.emit();
     }
 
@@ -61,6 +61,6 @@ public class Achievement {
     public void markSeen() {
         assert(mUnlocked);
         mSeen = true;
-        savingRequested.emit();
+        changed.emit();
     }
 }
