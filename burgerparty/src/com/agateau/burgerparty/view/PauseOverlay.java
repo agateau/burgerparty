@@ -73,7 +73,7 @@ public class PauseOverlay extends Overlay {
         updateMuteButton();
 
         ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
-        new AchievementsButtonIndicator(achievementsButton, game);
+        AchievementsButtonIndicator.setupButton(achievementsButton, game);
 
         AnchorGroup group = new AnchorGroup();
         addActor(group);

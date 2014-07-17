@@ -20,11 +20,23 @@ public class AchievementsButtonIndicator extends Image {
     private AchievementManager mManager;
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
-    public AchievementsButtonIndicator(ImageButton button, final BurgerPartyGame game) {
+    static public void setupButton(ImageButton button, final BurgerPartyGame game) {
+        AchievementsButtonIndicator indicator = new AchievementsButtonIndicator(game);
+        button.addActor(indicator);
+
+        button.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                AchievementsScreen screen = new AchievementsScreen(game);
+                screen.setReturnScreen(game.getScreen());
+                game.setScreen(screen);
+            }
+        });
+    }
+
+    public AchievementsButtonIndicator(final BurgerPartyGame game) {
         super(game.getAssets().getTextureAtlas().findRegion("ui/star-on"));
         mManager = game.getGameStats().manager;
 
-        button.addActor(this);
         setOrigin(getWidth() / 2, getHeight() / 2);
         addAction(Actions.forever(Actions.rotateBy(360, 5)));
 
@@ -33,14 +45,6 @@ public class AchievementsButtonIndicator extends Image {
             @Override
             public void handle() {
                 update();
-            }
-        });
-
-        button.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                AchievementsScreen screen = new AchievementsScreen(game);
-                screen.setReturnScreen(game.getScreen());
-                game.setScreen(screen);
             }
         });
     }

@@ -59,7 +59,7 @@ public class StartScreen extends BurgerPartyScreen {
                 getGame().showAboutScreen();
             }
         });
-        setupAchievementButton(builder.<ImageButton>getActor("achievementsButton"));
+        AchievementsButtonIndicator.setupButton(builder.<ImageButton>getActor("achievementsButton"), getGame());
 
         ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
         final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
@@ -83,10 +83,6 @@ public class StartScreen extends BurgerPartyScreen {
         updateMuteButton();
         root.layout();
         moreGroup.setPosition(moreButton.getX(), moreButton.getTop() + root.getSpacing() - MORE_ANIM_HEIGHT);
-    }
-
-    private void setupAchievementButton(ImageButton button) {
-        new AchievementsButtonIndicator(button, getGame());
     }
 
     private void onStartClicked() {
