@@ -272,6 +272,8 @@ public class LevelFinishedOverlay extends Overlay {
         for (int i = 0; i < 3; ++i) {
             mStarImages.add(builder.<Image>getActor("star" + String.valueOf(i)));
         }
+
+        AchievementsButtonIndicator.setupButton(builder.<ImageButton>getActor("achievementsButton"), mGame);
     }
 
     private void goToNextLevel() {
