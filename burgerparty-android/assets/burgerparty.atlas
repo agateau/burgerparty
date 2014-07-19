@@ -1450,16 +1450,23 @@ ui/minigame
   orig: 106, 106
   offset: 0, 0
   index: -1
-ui/star-off
+ui/new-achievement-indicator
   rotate: false
   xy: 982, 828
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/star-on
+ui/star-off
   rotate: false
   xy: 982, 786
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/star-on
+  rotate: false
+  xy: 981, 744
   size: 40, 40
   orig: 40, 40
   offset: 0, 0

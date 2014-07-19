@@ -24,9 +24,11 @@ public class AchievementView extends AnchorGroup {
         }
 
         Image icon = new Image(iconRegion);
-        boolean isNew = achievement.isUnlocked() && !achievement.hasBeenSeen();
-        Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(),
-            isNew ? "achievement-title-new" : "achievement-title");
+        AchievementsButtonIndicator indicator = null;
+        if (achievement.isUnlocked() && !achievement.hasBeenSeen()) {
+            indicator = new AchievementsButtonIndicator(assets);
+        }
+        Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
         Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
 
         Image statusIcon = null;
@@ -45,6 +47,9 @@ public class AchievementView extends AnchorGroup {
         addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
         if (statusIcon != null) {
             addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
+        }
+        if (indicator != null) {
+            addRule(indicator, Anchor.TOP_LEFT, icon, Anchor.TOP_LEFT, -5, 5);
         }
 
         setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
