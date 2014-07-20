@@ -41,6 +41,8 @@ public class LevelFinishedOverlay extends Overlay {
     private Array<Image> mStarImages = new Array<Image>();
     private Label mScoreLabel;
     private AnchorGroup mStarGroup;
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     private final int mLevelWorldIndex;
     private final int mLevelIndex;
@@ -272,6 +274,8 @@ public class LevelFinishedOverlay extends Overlay {
         for (int i = 0; i < 3; ++i) {
             mStarImages.add(builder.<Image>getActor("star" + String.valueOf(i)));
         }
+
+        mAchievementsButtonController = new AchievementsButtonController(builder.<ImageButton>getActor("achievementsButton"), mGame);
     }
 
     private void goToNextLevel() {

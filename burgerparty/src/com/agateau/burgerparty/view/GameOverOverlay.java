@@ -18,6 +18,8 @@ import static com.greenyetilab.linguaj.Translator.tr;
 
 public class GameOverOverlay extends Overlay {
     private BurgerPartyGame mGame;
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
         super(atlas);
@@ -39,6 +41,9 @@ public class GameOverOverlay extends Overlay {
             }
         });
 
+        ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
+        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, game);
+
         AnchorGroup group = new AnchorGroup();
         addActor(group);
         group.setFillParent(true);
@@ -47,6 +52,7 @@ public class GameOverOverlay extends Overlay {
         group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
         group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
         group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
+        group.addRule(achievementsButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_RIGHT, -1, 1);
 
         game.getAssets().getSoundAtlas().findSound("gameover").play();
     }

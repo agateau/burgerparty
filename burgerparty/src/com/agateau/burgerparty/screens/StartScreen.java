@@ -6,6 +6,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.RefreshHelper;
+import com.agateau.burgerparty.view.AchievementsButtonController;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.Gdx;
@@ -23,6 +24,9 @@ public class StartScreen extends BurgerPartyScreen {
     private static final float MORE_ANIM_HEIGHT = 24;
 
     private ImageButton mMuteButton;
+
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     public StartScreen(BurgerPartyGame game) {
         super(game);
@@ -58,11 +62,10 @@ public class StartScreen extends BurgerPartyScreen {
                 getGame().showAboutScreen();
             }
         });
-        builder.<ImageButton>getActor("achievementsButton").addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                getGame().showAchievementsScreen();
-            }
-        });
+
+        mAchievementsButtonController = new AchievementsButtonController(
+            builder.<ImageButton>getActor("achievementsButton"), getGame());
+
         ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
         final AnchorGroup moreGroup = builder.<AnchorGroup>getActor("moreGroup");
         moreGroup.setColor(1, 1, 1, 0);

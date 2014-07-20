@@ -30,5 +30,10 @@
             style="round-button"
             bottomLeft="root.bottomCenter 0.5 1"
             imageName="ui/icon-levels"/>
+
+        <ImageButton id="achievementsButton"
+            style="round-button"
+            bottomRight="root.bottomRight -1 1"
+            imageName="ui/icon-achievement"/>
     </AnchorGroup>
 </gdxui>

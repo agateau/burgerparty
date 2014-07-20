@@ -13,6 +13,7 @@ public class AchievementManager {
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
     public Signal1<Achievement> achievementUnlocked = new Signal1<Achievement>();
+    public Signal0 changed = new Signal0();
 
     private Array<Achievement> mAchievements = new Array<Achievement>();
     private HashMap<String, Achievement> mAchievementForId = new HashMap<String, Achievement>();
@@ -27,8 +28,14 @@ public class AchievementManager {
         achievement.unlocked.connect(mHandlers, new Signal0.Handler() {
             @Override
             public void handle() {
-                scheduleSave();
                 achievementUnlocked.emit(achievement);
+            }
+        });
+        achievement.changed.connect(mHandlers, new Signal0.Handler() {
+            @Override
+            public void handle() {
+                scheduleSave();
+                changed.emit();
             }
         });
     }
@@ -50,6 +57,12 @@ public class AchievementManager {
     }
 
     public void load(XmlReader.Element root) {
+        /**
+         * <achievements>
+         *   <achievement id='foo' unlocked='true' seen='false'/>
+         *   <achievement id='bar' unlocked='false'/>
+         * </achievements>
+         */
         for (int idx = 0; idx < root.getChildCount(); ++idx) {
             XmlReader.Element element = root.getChild(idx);
             String id = element.getAttribute("id");
@@ -58,7 +71,13 @@ public class AchievementManager {
                 log.e("No achievement with id '%s'", id);
                 continue;
             }
-            achievement.setAlreadyUnlocked(element.getBoolean("unlocked", false));
+            achievement.setAlreadyUnlocked(
+                element.getBooleanAttribute("unlocked", false)
+            );
+            achievement.setAlreadySeen(
+                // default to true for achievements which were unlocked before the "seen" property got introduced
+                element.getBooleanAttribute("seen", true)
+            );
         }
     }
 
@@ -70,11 +89,16 @@ public class AchievementManager {
     public void save(XmlWriter writer) {
         try {
             XmlWriter root = writer.element("achievements");
-            for (Achievement achievement: mAchievements) {
+            // Use a manual loop rather than a foreach-like loop because if we are called while iterating on achievements
+            // (for example marking an achievement as seen while creating a view of the achievement list) Array aborts,
+            // complaining its iterator cannot be used recursively
+            for (int i = 0, n = mAchievements.size; i < n; ++i) {
+                Achievement achievement = mAchievements.get(i);
                 if (achievement.isUnlocked()) {
                     root.element("achievement")
                     .attribute("id", achievement.getId())
                     .attribute("unlocked", "true")
+                    .attribute("seen", achievement.hasBeenSeen())
                     .pop();
                 }
             }
@@ -87,5 +111,15 @@ public class AchievementManager {
     private void scheduleSave() {
         // FIXME: Really schedule
         save();
+    }
+
+    public boolean hasUnseenAchievements() {
+        for (int i = 0, n = mAchievements.size; i < n; ++i) {
+            Achievement achievement = mAchievements.get(i);
+            if (achievement.isUnlocked() && !achievement.hasBeenSeen()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

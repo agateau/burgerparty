@@ -8,6 +8,7 @@ import com.agateau.burgerparty.view.WorldView;
 public class GameScreen extends BurgerPartyScreen {
     private World mWorld;
     private WorldView mWorldView;
+    private boolean mStarted = false;
 
     public GameScreen(BurgerPartyGame game, Level level) {
         super(game);
@@ -19,7 +20,10 @@ public class GameScreen extends BurgerPartyScreen {
     @Override
     public void show() {
         super.show();
-        mWorld.start();
+        if (!mStarted) {
+            mWorld.start();
+            mStarted = true;
+        }
     }
 
     @Override

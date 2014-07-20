@@ -19,7 +19,9 @@ public class CounterAchievement extends GameStatAchievement {
 
     @Override
     public void update() {
-        setUnlocked(mStat.getValue() >= mMinValue);
+        if (mStat.getValue() >= mMinValue) {
+            unlock();
+        }
     }
 
     public String getDescription() {
