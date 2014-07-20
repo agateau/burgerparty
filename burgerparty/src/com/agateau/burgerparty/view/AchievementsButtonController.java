@@ -19,12 +19,18 @@ public class AchievementsButtonController {
     private HashSet<Object> mHandlers = new HashSet<Object>();
     private AchievementsButtonIndicator mIndicator;
 
+    private static final float SCALE = 0.5f;
+
     public AchievementsButtonController(ImageButton button, final BurgerPartyGame game) {
         mManager = game.getGameStats().manager;
         mIndicator = new AchievementsButtonIndicator(game.getAssets());
+        mIndicator.setScale(SCALE);
         button.addActor(mIndicator);
         final int OFFSET = 8;
-        mIndicator.setPosition(-OFFSET, button.getHeight() - mIndicator.getHeight() + OFFSET);
+        mIndicator.setPosition(
+            -OFFSET,
+            button.getHeight() - mIndicator.getHeight() * SCALE + OFFSET
+        );
 
         button.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {

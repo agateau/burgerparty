@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9999996"
-     inkscape:cx="274.6524"
-     inkscape:cy="803.24038"
+     inkscape:zoom="3.9999998"
+     inkscape:cx="337.82489"
+     inkscape:cy="849.30864"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="false"
@@ -72,6 +72,36 @@
   </sodipodi:namedview>
   <defs
      id="defs6974">
+    <linearGradient
+       id="linearGradient7750">
+      <stop
+         style="stop-color:#f69a16;stop-opacity:1"
+         offset="0"
+         id="stop7752" />
+      <stop
+         id="stop7754"
+         offset="0.5"
+         style="stop-color:#fada61;stop-opacity:1" />
+      <stop
+         style="stop-color:#ffeeaa;stop-opacity:1"
+         offset="1"
+         id="stop7756" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7681">
+      <stop
+         id="stop7683"
+         offset="0"
+         style="stop-color:#f69e1f;stop-opacity:1" />
+      <stop
+         style="stop-color:#fac664;stop-opacity:1;"
+         offset="0.5"
+         id="stop7748" />
+      <stop
+         id="stop7685"
+         offset="1"
+         style="stop-color:#ffeeaa;stop-opacity:1" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient9373">
@@ -10180,6 +10210,33 @@
        x2="351.02383"
        y2="401.70419"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7681"
+       id="linearGradient5783"
+       gradientUnits="userSpaceOnUse"
+       x1="352.54553"
+       y1="405.27448"
+       x2="352.54553"
+       y2="370.36188" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient9373"
+       id="linearGradient5797"
+       gradientUnits="userSpaceOnUse"
+       x1="351.02383"
+       y1="369.22742"
+       x2="351.02383"
+       y2="401.70419" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7750"
+       id="linearGradient7700"
+       gradientUnits="userSpaceOnUse"
+       x1="352.54553"
+       y1="405.27448"
+       x2="352.54553"
+       y2="370.36188" />
   </defs>
   <metadata
      id="metadata6977">
@@ -21158,6 +21215,151 @@
            inkscape:export-filename="done.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90" />
+      </g>
+    </g>
+    <g
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="new-achievement-indicator.png"
+       transform="matrix(2.0117402,0,0,2.0117402,-231.10308,-469.23779)"
+       id="g5775">
+      <path
+         sodipodi:type="star"
+         style="color:#000000;fill:url(#linearGradient7700);fill-opacity:1;fill-rule:nonzero;stroke:#d44708;stroke-width:1.44620192;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="path5777"
+         sodipodi:sides="12"
+         sodipodi:cx="352"
+         sodipodi:cy="388"
+         sodipodi:r1="27.821733"
+         sodipodi:r2="23.063835"
+         sodipodi:arg1="3.1341938"
+         sodipodi:arg2="3.3959932"
+         inkscape:flatsided="false"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 324.17903,388.20585 5.49946,-6.01022 -1.87508,-7.92785 7.76778,-2.45526 2.34006,-7.80326 7.95472,1.75756 5.92818,-5.58779 6.01022,5.49946 7.92785,-1.87508 2.45526,7.76778 7.80326,2.34006 -1.75756,7.95472 5.58779,5.92818 -5.49946,6.01022 1.87508,7.92785 -7.76778,2.45526 -2.34006,7.80326 -7.95472,-1.75756 -5.92818,5.58779 -6.01022,-5.49946 -7.92785,1.87508 -2.45526,-7.76778 -7.80326,-2.34006 1.75756,-7.95472 z"
+         inkscape:transform-center-x="-0.14149643"
+         inkscape:transform-center-y="0.14149535"
+         transform="matrix(0.68743106,0,0,0.68743106,85.649261,137.40174)"
+         inkscape:export-filename="new-achievement-indicator.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="achievement-locked.png"
+         id="g7758"
+         transform="matrix(0.40359682,0,0,0.40359682,126.41238,-376.26995)"
+         style="opacity:0.28235294;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.0000838;stroke-linecap:square;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline">
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="done.png"
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           id="path7760"
+           d="m 469,1939 12,20 44,-44 -44,32 z"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.0000838;stroke-linecap:square;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      </g>
+      <g
+         style="fill:#d44708;fill-opacity:1;display:inline"
+         transform="matrix(0.40359682,0,0,0.40359682,126.41238,-376.76703)"
+         id="g5779"
+         inkscape:export-filename="achievement-locked.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           style="color:#000000;fill:#d44708;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           d="m 469,1939 12,20 44,-44 -44,32 z"
+           id="path5781"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc"
+           inkscape:export-filename="done.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="new-achievement-indicator.png"
+         transform="matrix(0.63520902,0,0,0.63520902,104.03141,157.66388)"
+         inkscape:transform-center-y="0.1307235"
+         inkscape:transform-center-x="-0.13072915"
+         d="m 324.17903,388.20585 5.49946,-6.01022 -1.87508,-7.92785 7.76778,-2.45526 2.34006,-7.80326 7.95472,1.75756 5.92818,-5.58779 6.01022,5.49946 7.92785,-1.87508 2.45526,7.76778 7.80326,2.34006 -1.75756,7.95472 5.58779,5.92818 -5.49946,6.01022 1.87508,7.92785 -7.76778,2.45526 -2.34006,7.80326 -7.95472,-1.75756 -5.92818,5.58779 -6.01022,-5.49946 -7.92785,1.87508 -2.45526,-7.76778 -7.80326,-2.34006 1.75756,-7.95472 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="3.3959932"
+         sodipodi:arg1="3.1341938"
+         sodipodi:r2="23.063835"
+         sodipodi:r1="27.821733"
+         sodipodi:cy="388"
+         sodipodi:cx="352"
+         sodipodi:sides="12"
+         id="path7746"
+         style="color:#000000;fill:none;stroke:#ffffff;stroke-width:1.56509769;stroke-miterlimit:4;stroke-opacity:0.42735045;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="star" />
+    </g>
+    <g
+       id="g5785"
+       transform="matrix(2.0264209,0,0,2.0264209,-325.62472,-475.45876)"
+       inkscape:export-filename="new-achievement-indicator.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="new-achievement-indicator.png"
+         transform="matrix(0.68743106,0,0,0.68743106,85.649261,137.40174)"
+         inkscape:transform-center-y="0.14149535"
+         inkscape:transform-center-x="-0.14149643"
+         d="m 324.17903,388.20585 5.49946,-6.01022 -1.87508,-7.92785 7.76778,-2.45526 2.34006,-7.80326 7.95472,1.75756 5.92818,-5.58779 6.01022,5.49946 7.92785,-1.87508 2.45526,7.76778 7.80326,2.34006 -1.75756,7.95472 5.58779,5.92818 -5.49946,6.01022 1.87508,7.92785 -7.76778,2.45526 -2.34006,7.80326 -7.95472,-1.75756 -5.92818,5.58779 -6.01022,-5.49946 -7.92785,1.87508 -2.45526,-7.76778 -7.80326,-2.34006 1.75756,-7.95472 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="3.3959932"
+         sodipodi:arg1="3.1341938"
+         sodipodi:r2="23.063835"
+         sodipodi:r1="27.821733"
+         sodipodi:cy="388"
+         sodipodi:cx="352"
+         sodipodi:sides="12"
+         id="path5787"
+         style="color:#000000;fill:url(#linearGradient5797);fill-opacity:1;fill-rule:nonzero;stroke:#fc335d;stroke-width:1.43572474;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="star" />
+      <g
+         style="fill:#fc335d;fill-opacity:1;display:inline"
+         transform="matrix(0.40359682,0,0,0.40359682,126.41238,-375.73464)"
+         id="g5789"
+         inkscape:export-filename="achievement-locked.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           style="color:#000000;fill:#fc335d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           d="m 469,1939 12,20 44,-44 -44,32 z"
+           id="path5791"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc"
+           inkscape:export-filename="done.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="achievement-locked.png"
+         id="g5793"
+         transform="matrix(0.40359682,0,0,0.40359682,126.41238,-376.76703)"
+         style="fill:#ffffff;display:inline">
+        <path
+           inkscape:export-ydpi="90"
+           inkscape:export-xdpi="90"
+           inkscape:export-filename="done.png"
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           id="path5795"
+           d="m 469,1939 12,20 44,-44 -44,32 z"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
       </g>
     </g>
   </g>

@@ -6,6 +6,7 @@ import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -24,17 +25,17 @@ public class AchievementView extends AnchorGroup {
         }
 
         Image icon = new Image(iconRegion);
-        AchievementsButtonIndicator indicator = null;
-        if (achievement.isUnlocked() && !achievement.hasBeenSeen()) {
-            indicator = new AchievementsButtonIndicator(assets);
-        }
         Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
         Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
 
-        Image statusIcon = null;
+        Actor statusIcon = null;
         if (achievement.isUnlocked()) {
-            TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
-            statusIcon = new Image(statusRegion);
+            if (achievement.hasBeenSeen()) {
+                TextureRegion statusRegion = atlas.findRegion("ui/achievement-unlocked");
+                statusIcon = new Image(statusRegion);
+            } else {
+                statusIcon = new AchievementsButtonIndicator(assets);
+            }
         } else {
             icon.setColor(1, 1, 1, 0.3f);
             titleLabel.setColor(1, 1, 1, 0.8f);
@@ -47,9 +48,6 @@ public class AchievementView extends AnchorGroup {
         addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
         if (statusIcon != null) {
             addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
-        }
-        if (indicator != null) {
-            addRule(indicator, Anchor.TOP_LEFT, icon, Anchor.TOP_LEFT, -5, 5);
         }
 
         setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
