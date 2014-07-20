@@ -22,6 +22,8 @@ public class PauseOverlay extends Overlay {
     private final WorldView mWorldView;
     private final BurgerPartyGame mGame;
     private ImageButton mMuteButton;
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     public PauseOverlay(WorldView worldView, BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
         super(atlas);
@@ -73,7 +75,7 @@ public class PauseOverlay extends Overlay {
         updateMuteButton();
 
         ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
-        AchievementsButtonIndicator.setupButton(achievementsButton, game);
+        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, game);
 
         AnchorGroup group = new AnchorGroup();
         addActor(group);

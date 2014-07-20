@@ -18,6 +18,8 @@ import static com.greenyetilab.linguaj.Translator.tr;
 
 public class GameOverOverlay extends Overlay {
     private BurgerPartyGame mGame;
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
         super(atlas);
@@ -40,7 +42,7 @@ public class GameOverOverlay extends Overlay {
         });
 
         ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
-        AchievementsButtonIndicator.setupButton(achievementsButton, game);
+        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, game);
 
         AnchorGroup group = new AnchorGroup();
         addActor(group);
