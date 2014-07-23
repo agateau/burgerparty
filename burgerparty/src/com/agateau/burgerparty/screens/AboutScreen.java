@@ -82,6 +82,21 @@ public class AboutScreen extends BurgerPartyScreen {
         addText("Joël Bray");
         addText("Thomas Monjalon");
 
+        addHeading(tr("Fonts"));
+        addText("Nick Curtis - www.dafont.com/fr/walrus-gumbo.font");
+        addText("Jayvee D. Enaguas - www.dafont.com/fr/sanitechtro.font");
+
+        addHeading(tr("Sounds"));
+        addText("AlienXXX - www.freesound.org/people/AlienXXX");
+        addText("artisticdude - opengameart.org/content/inventory-sound-effects");
+        addText("Autistic Lucario - www.freesound.org/people/Autistic%20Lucario");
+        addText("DrMinky - www.freesound.org/people/DrMinky");
+        addText("Florian Reinke - www.freesound.org/people/florian_reinke");
+        addText("Kenney - opengameart.org/content/85-short-music-jingles");
+        addText("p0ss - opengameart.org/content/spell-sounds-starter-pack");
+        addText("Scriptique - www.freesound.org/people/scriptique");
+        addText("Soundjay - www.soundjay.com");
+
         float screenHeight = getStage().getHeight();
         addPadding(screenHeight / 3);
         addText(tr("© 2013 - 2014 Green Yeti Lab"));
