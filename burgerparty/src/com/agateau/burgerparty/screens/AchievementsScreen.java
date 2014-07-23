@@ -5,7 +5,6 @@ import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.AchievementManager;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
-import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.AchievementView;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
@@ -18,14 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class AchievementsScreen extends BurgerPartyScreen {
-    private static NLog log;
     private Screen mReturnScreen;
 
     public AchievementsScreen(BurgerPartyGame game) {
         super(game);
-        if (log == null) {
-            log = NLog.getRoot().create(getClass().getSimpleName());
-        }
         Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
         setBackgroundActor(bgImage);
         setupWidgets();

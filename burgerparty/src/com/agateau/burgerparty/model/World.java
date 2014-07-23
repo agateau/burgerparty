@@ -51,8 +51,6 @@ public class World {
     private static final int BIG_BURGER_SIZE = 11;
     private static final int MED_BURGER_SIZE = 7;
 
-    private static NLog log;
-
     private ConnectionManager mMealConnections = new ConnectionManager();
     private final BurgerPartyGameStats mGameStats;
     private BurgerGenerator mBurgerGenerator;
@@ -83,10 +81,8 @@ public class World {
     private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
     public World(BurgerPartyGameStats gameStats, Level level) {
+        NLog.d("");
         mGameStats = gameStats;
-        if (log == null) {
-            log = NLog.getRoot().create("World");
-        }
         mLevel = level;
         mCustomers = level.definition.createCustomers();
         int worldIndex = level.getLevelWorld().getIndex();
@@ -291,7 +287,7 @@ public class World {
 
     private void onMealFinished() {
         long time = mMealDoneCounter.restart();
-        log.i("onMealFinished: Meal done in %dms", time);
+        NLog.i("Meal done in %dms", time);
         mGameStats.mealServedCount.increase();
         emitMealFinished();
         mActiveCustomerIndex++;
@@ -354,6 +350,6 @@ public class World {
 
     private void restartItemTimer() {
         long time = mItemAddedCounter.restart();
-        log.i("restartItemTimer: Item added in %dms", time);
+        NLog.i("Item added in %dms", time);
     }
 }

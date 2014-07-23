@@ -18,7 +18,7 @@ public abstract class RefreshHelper {
                             try {
                                 refresh();
                             } catch (Exception exc) {
-                                NLog.getRoot().create("RefreshHelper").i("keyUp: failed: %s", exc);
+                                NLog.e("failed: %s", exc);
                             }
                         }
                     });

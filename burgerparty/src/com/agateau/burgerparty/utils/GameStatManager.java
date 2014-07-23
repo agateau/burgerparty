@@ -16,8 +16,6 @@ public class GameStatManager {
     private FileHandle mFileHandle;
     private HashMap<String, GameStat> mGameStats = new HashMap<String, GameStat>();
 
-    private NLog log = NLog.getRoot().create("GameStatManager");
-
     public void setFileHandle(FileHandle handle) {
         mFileHandle = handle;
     }
@@ -44,7 +42,7 @@ public class GameStatManager {
             String id = element.getAttribute("id");
             GameStat stat = mGameStats.get(id);
             if (stat == null) {
-                log.e("No gamestat with id '%s'", id);
+                NLog.e("No gamestat with id '%s'", id);
                 continue;
             }
             stat.load(element);
@@ -69,7 +67,7 @@ public class GameStatManager {
             }
             writer.close();
         } catch (IOException e) {
-            log.e("saveGameStats: Failed to save gamestats. Exception: %s", e);
+            NLog.e("Failed to save gamestats. Exception: %s", e);
         }
     }
 

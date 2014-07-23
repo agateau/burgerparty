@@ -14,14 +14,9 @@ public class AdController {
 
     private boolean mSkipNextAd = false;
 
-    private static NLog log;
-
     public AdController(Preferences prefs, AdSystem adSystem) {
         mPrefs = prefs;
         mAdSystem = adSystem;
-        if (log == null) {
-            log = NLog.getRoot().create(getClass().getSimpleName());
-        }
         mAdSystem.preloadAd();
     }
 
@@ -52,12 +47,12 @@ public class AdController {
 
     private boolean mustShowAd() {
         if (mPrefs.getInteger("startCount", 0) < START_COUNT_BEFORE_ADS) {
-            log.d("Not showing ad: startCount=%d < %d", mPrefs.getInteger("startCount", 0), START_COUNT_BEFORE_ADS);
+            NLog.d("Not showing ad: startCount=%d < %d", mPrefs.getInteger("startCount", 0), START_COUNT_BEFORE_ADS);
             return false;
         }
 
         if (mSkipNextAd) {
-            log.d("Not showing ad: skipped");
+            NLog.d("Not showing ad: skipped");
             return false;
         }
 
@@ -65,14 +60,14 @@ public class AdController {
         long now = TimeUtils.millis();
         long delta = (now - adDisplayTime) / (60 * 1000);
         boolean hasAd = mAdSystem.isAdAvailable();
-        log.i("mustShowAd: adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
+        NLog.i("adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
         if (delta > MINUTES_BETWEEN_ADS && hasAd) {
-            log.d("Showing ad");
+            NLog.d("Showing ad");
             mPrefs.putLong("adDisplayTime", now);
             mPrefs.flush();
             return true;
         } else {
-            log.d("Not showing ad");
+            NLog.d("Not showing ad");
             return false;
         }
     }

@@ -40,8 +40,6 @@ public class WorldView extends AbstractWorldView {
     private static final float TARGET_BURGER_PADDING = 24;
     private static final float SCROLL_PADDING = 24;
 
-    private static NLog log;
-
     private final HashSet<Object> mHandlers = new HashSet<Object>();
 
     private GameScreen mGameScreen;
@@ -65,9 +63,6 @@ public class WorldView extends AbstractWorldView {
 
     public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
         super(game.getAssets(), world.getLevelWorld().getDirName());
-        if (log == null) {
-            log = NLog.createForClass(this);
-        }
         setFillParent(true);
         setSpacing(UiUtils.SPACING);
         mGameScreen = screen;
@@ -121,7 +116,7 @@ public class WorldView extends AbstractWorldView {
             public void run() {
                 if (getWidth() == 0) {
                     // This happens for some reason when NewItemScreen is shown before level starts
-                    log.i("scheduleGoToNextCustomer.Runnable: Not ready yet, rescheduling");
+                    NLog.i("scheduleGoToNextCustomer.Runnable: Not ready yet, rescheduling");
                     scheduleGoToNextCustomer();
                 } else {
                     goToNextCustomer();

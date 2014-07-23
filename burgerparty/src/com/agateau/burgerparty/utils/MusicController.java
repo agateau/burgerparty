@@ -18,8 +18,6 @@ public class MusicController {
     private boolean mPlaying = false;
     private boolean mIsMuted = false;
 
-    private static NLog log;
-
     private class Fader extends Timer.Task {
         @Override
         public void run() {
@@ -50,9 +48,6 @@ public class MusicController {
     }
 
     public MusicController(Preferences prefs) {
-        if (log == null) {
-            log = NLog.getRoot().create("MusicController");
-        }
         mPrefs = prefs;
         mIsMuted = mPrefs.getBoolean("muted", false);
     }
@@ -62,7 +57,7 @@ public class MusicController {
     }
 
     public void play() {
-        log.d("play");
+        NLog.d("");
         mPlaying = true;
         if (mMusic == null) {
             return;
@@ -71,26 +66,26 @@ public class MusicController {
             return;
         }
         if (mMusic.isPlaying()) {
-            log.d("play: already playing, fading in");
+            NLog.d("Already playing, fading in");
             mFader.fade(1);
         } else {
-            log.d("play: starting");
+            NLog.d("Starting");
             setVolume(1);
             mMusic.play();
         }
     }
 
     public void fadeOut() {
-        log.d("fadeOut");
+        NLog.d("");
         mPlaying = false;
         if (mMusic != null && mMusic.isPlaying()) {
-            log.d("fadeOut: for real");
+            NLog.d("for real");
             mFader.fade(-1);
         }
     }
 
     public void stop() {
-        log.d("stop");
+        NLog.d("");
         mPlaying = false;
         if (mMusic != null) {
             mMusic.stop();
@@ -103,7 +98,7 @@ public class MusicController {
     }
 
     public void setMuted(boolean muted) {
-        log.d("setMuted");
+        NLog.d("");
         mIsMuted = muted;
         mPrefs.putBoolean("muted", muted);
         mPrefs.flush();
@@ -121,6 +116,6 @@ public class MusicController {
     }
 
     /*private void logState() {
-        log.d("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
+        NLog.sd("state: mMusic=%h, playing=%b, mPlaying=%b, mIsMuted=%b", mMusic, mMusic == null ? false : mMusic.isPlaying(), mPlaying, mIsMuted);
     }*/
 }

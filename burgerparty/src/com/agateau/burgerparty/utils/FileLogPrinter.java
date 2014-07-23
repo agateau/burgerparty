@@ -36,7 +36,6 @@ public class FileLogPrinter extends NLog.Printer {
 
     @Override
     protected void doPrint(int level, String tag, String message) {
-        gdxPrint(level, tag, message);
         try {
             if (level == Application.LOG_DEBUG) {
                 mWriter.write("D ");
@@ -52,16 +51,6 @@ public class FileLogPrinter extends NLog.Printer {
             mWriter.flush();
         } catch (IOException exc) {
             Gdx.app.error("FileLogPrinter", "Failed to write: " + exc.toString());
-        }
-    }
-
-    private static void gdxPrint(int level, String tag, String message) {
-        if (level == Application.LOG_DEBUG) {
-            Gdx.app.debug(tag, message);
-        } else if (level == Application.LOG_INFO) {
-            Gdx.app.log(tag, message);
-        } else { // LOG_ERROR
-            Gdx.app.error(tag, message);
         }
     }
 }

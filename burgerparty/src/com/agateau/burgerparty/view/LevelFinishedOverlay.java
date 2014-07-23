@@ -34,7 +34,6 @@ public class LevelFinishedOverlay extends Overlay {
 
     private static final float STAR_ANIM_DURATION = 0.3f;
 
-    private static NLog log;
     private BurgerPartyGame mGame;
     private int mScore;
     private Array<TextureRegionDrawable> mStarTextures = new Array<TextureRegionDrawable>();
@@ -183,15 +182,12 @@ public class LevelFinishedOverlay extends Overlay {
 
     public LevelFinishedOverlay(BurgerPartyGame game, LevelResult levelResult, TextureAtlas atlas, Skin skin) {
         super(atlas);
-        if (log == null) {
-            log = NLog.createForClass(this);
-        }
         mGame = game;
 
         // Store level indexes to make sure two consecutive calls to doGoToNextLevel() do not end up skipping a level
         mLevelWorldIndex = mGame.getLevelWorldIndex();
         mLevelIndex = mGame.getLevelIndex();
-        log.i("LevelFinishedOverlay level: %d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
+        NLog.i("LevelFinishedOverlay level: %d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
 
         int previousScore = levelResult.getLevel().getScore();
         mScore = levelResult.getScore();

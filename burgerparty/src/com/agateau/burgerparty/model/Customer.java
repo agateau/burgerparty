@@ -10,7 +10,6 @@ public class Customer {
 
     public Signal0 moodChanged = new Signal0();
 
-    private static NLog log;
     private final String mType;
     private final int mBurgerSize;
     private float mMoodDelay;
@@ -52,9 +51,6 @@ public class Customer {
     }
 
     public Customer(String type, int burgerSize) {
-        if (log == null) {
-            log = NLog.getRoot().create("Customer");
-        }
         mType = type;
         mBurgerSize = burgerSize;
     }
@@ -90,7 +86,7 @@ public class Customer {
         assert(mState == State.WAITING);
         mState = State.ACTIVE;
         mMoodDelay = MOOD_MIN_SEC + itemCount * MOOD_SEC_PER_ITEM;
-        log.i("markActive: itemCount=%d => delay=%dms", itemCount, (int)(mMoodDelay * 1000));
+        NLog.i("itemCount=%d => delay=%dms", itemCount, (int)(mMoodDelay * 1000));
         scheduleMoodChange();
     }
 

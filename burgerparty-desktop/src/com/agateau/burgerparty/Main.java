@@ -6,10 +6,15 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
 
+import com.agateau.burgerparty.utils.FileLogPrinter;
+import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.GdxPrinter;
+import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.greenyetilab.linguaj.Translator;
@@ -57,7 +62,10 @@ public class Main {
         }
         BurgerPartyGame game = new BurgerPartyGame();
         new LwjglApplication(game, cfg);
-        BurgerPartyGame.setupLog();
+
+        // Must be done after creating the app, so that Gdx.app is not null
+        setupLog();
+
         if (sHideCursor) {
             Gdx.app.postRunnable(new Runnable() {
                 @Override
@@ -105,5 +113,24 @@ public class Main {
             + "  --locale LOCALE  Force usage of LOCALE\n"
         );
         System.exit(1);
+    }
+
+    private static FileLogPrinter createFileLogPrinter() {
+        FileHandle cacheDir = FileUtils.getCacheDir("burgerparty");
+        if (cacheDir == null) {
+            Gdx.app.error("createFileLogPrinter", "Could not create cache dir");
+            return null;
+        }
+        FileHandle logHandle = cacheDir.child("burgerparty.log");
+        FileLogPrinter.rotate(logHandle, 6);
+        return new FileLogPrinter(logHandle);
+    }
+
+    private static void setupLog() {
+        NLog.Printer printer = createFileLogPrinter();
+        if (printer != null) {
+            NLog.addPrinter(printer);
+        }
+        NLog.addPrinter(new GdxPrinter());
     }
 }

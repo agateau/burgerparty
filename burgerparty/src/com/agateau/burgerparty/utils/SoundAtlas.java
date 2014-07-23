@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class SoundAtlas {
     private Map<String, Sound> mSoundMap = new HashMap<String, Sound>();
 
-    private static NLog log;
     private final AssetManager mAssetManager;
     private final MusicController mMusicController;
     private String mDir;
@@ -170,9 +169,6 @@ public class SoundAtlas {
     }
 
     public SoundAtlas(AssetManager manager, String dir, MusicController musicController) {
-        if (log == null) {
-            log = NLog.createForClass(this);
-        }
         mAssetManager = manager;
         mMusicController = musicController;
         mDir = dir;
@@ -193,11 +189,11 @@ public class SoundAtlas {
         for (int i=0, n=mPendingNames.length; i < n; ++i) {
             String filename = mDir + mPendingNames[i];
             String name = mPendingNames[i].replaceFirst("\\.[a-z]+$", "");
-            log.i("finishLoad: Getting %s as %s", filename, name);
             Sound sound = mAssetManager.get(filename);
             assert(sound != null);
             mSoundMap.put(name, new AtlasSound(sound));
         }
+        NLog.i("Loaded %d sounds", mPendingNames.length);
     }
 
     public Action createPlayAction(String name) {

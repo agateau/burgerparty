@@ -19,8 +19,6 @@ public class AchievementManager {
     private HashMap<String, Achievement> mAchievementForId = new HashMap<String, Achievement>();
     private FileHandle mFileHandle;
 
-    private NLog log = NLog.getRoot().create("AchievementManager");
-
     public void add(final Achievement achievement) {
         assert(achievement != null);
         mAchievements.add(achievement);
@@ -68,7 +66,7 @@ public class AchievementManager {
             String id = element.getAttribute("id");
             Achievement achievement = mAchievementForId.get(id);
             if (achievement == null) {
-                log.e("No achievement with id '%s'", id);
+                NLog.e("No achievement with id '%s'", id);
                 continue;
             }
             achievement.setAlreadyUnlocked(
@@ -104,7 +102,7 @@ public class AchievementManager {
             }
             writer.close();
         } catch (IOException e) {
-            log.e("saveAchievements: Failed to save achievements. Exception: %s", e);
+            NLog.e("Failed to save achievements. Exception: %s", e);
         }
     }
 

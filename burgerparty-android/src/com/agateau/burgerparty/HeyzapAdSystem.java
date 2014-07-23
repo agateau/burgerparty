@@ -17,44 +17,44 @@ public class HeyzapAdSystem implements AdSystem {
     private class StatusListener implements OnStatusListener {
         @Override
         public void onShow(String tag) {
-            log.i("onShow: tag=%s", tag);
+            NLog.i("tag=%s", tag);
         }
 
         @Override
         public void onClick(String tag) {
-            log.i("onClick: tag=%s", tag);
+            NLog.i("tag=%s", tag);
         }
 
         @Override
         public void onHide(String tag) {
-            log.i("onHide: tag=%s", tag);
+            NLog.i("onHide: tag=%s", tag);
             mApplication.postRunnable(mOnFinishedRunnable);
         }
 
         @Override
         public void onFailedToShow(String tag) {
-            log.i("onFailedToSHow: tag=%s", tag);
+            NLog.i("onFailedToSHow: tag=%s", tag);
             mApplication.postRunnable(mOnFinishedRunnable);
         }
 
         @Override
         public void onAvailable(String tag) {
-            log.i("onAvailable: tag=%s", tag);
+            NLog.i("onAvailable: tag=%s", tag);
         }
 
         @Override
         public void onFailedToFetch(String tag) {
-            log.i("onFailedToFetch: tag=%s", tag);
+            NLog.i("onFailedToFetch: tag=%s", tag);
         }
 
         @Override
         public void onAudioStarted() {
-            log.i("onAudioStarted");
+            NLog.i("onAudioStarted");
         }
 
         @Override
         public void onAudioFinished() {
-            log.i("onAudioFinished");
+            NLog.i("onAudioFinished");
         }
     };
 
@@ -72,23 +72,22 @@ public class HeyzapAdSystem implements AdSystem {
         }
 
         void preload() {
-            mController.log.i("preload");
+            NLog.i("preload");
             InterstitialAd.fetch();
         }
 
         void show() {
             if (InterstitialAd.isAvailable()) {
-                mController.log.i("show: ad is available");
+                NLog.i("show: ad is available");
                 InterstitialAd.display(mController.mApplication);
             } else {
-                mController.log.i("show: ad is not available");
+                NLog.i("show: ad is not available");
             }
         }
 
         HeyzapAdSystem mController;
     };
 
-    private final NLog log;
     private final AndroidApplication mApplication;
     private final AdHandler mHandler;
 
@@ -103,7 +102,6 @@ public class HeyzapAdSystem implements AdSystem {
     private Runnable mAfter;
 
     public HeyzapAdSystem(AndroidApplication application) {
-        log = NLog.createForClass(this);
         mApplication = application;
         mHandler = new AdHandler();
         mHandler.mController = this;

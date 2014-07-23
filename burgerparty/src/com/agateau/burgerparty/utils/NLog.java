@@ -1,79 +1,30 @@
 package com.agateau.burgerparty.utils;
 
+import java.util.Vector;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class NLog {
-    private final Printer mPrinter;
-    private final String mTag;
+    private static Vector<Printer> sPrinters = new Vector<Printer>();
+    private static int sStackDepth = -1;
 
     public static abstract class Printer {
         public Printer() {
             mStartTime = TimeUtils.nanoTime();
         }
 
-        public synchronized void print(int level, String tag, Object obj, Object... args) {
+        public synchronized void print(int level, String tag, String message) {
             final float NANOSECS = 1000 * 1000 * 1000;
             final long timeDelta = TimeUtils.nanoTime() - mStartTime;
             final String timeStamp = String.format("%.3f ", timeDelta / NANOSECS);
-            final String format = obj == null ? "(null)" : obj.toString();
-            final String message = timeStamp + (args.length > 0 ? String.format(format,args) : format);
-            doPrint(level, tag, message);
+            doPrint(level, tag, timeStamp + message);
         }
 
         protected abstract void doPrint(int level, String tag, String message);
 
         private long mStartTime;
-
     }
-
-    public NLog(Printer printer, String tag) {
-        mPrinter = printer;
-        mTag = tag;
-    }
-
-    public void d(Object obj, Object...args) {
-        mPrinter.print(Application.LOG_DEBUG, mTag, obj, args);
-    }
-
-    public void i(Object obj, Object...args) {
-        mPrinter.print(Application.LOG_INFO, mTag, obj, args);
-    }
-
-    public void e(Object obj, Object...args) {
-        mPrinter.print(Application.LOG_ERROR, mTag, obj, args);
-    }
-
-    public NLog create(String tag) {
-        return new NLog(mPrinter, mTag + "." + tag);
-    }
-
-    //// Static
-    public static NLog getRoot() {
-        if (sRoot == null) {
-            init(new DefaultPrinter(), "(root)");
-        }
-        return sRoot;
-    }
-
-    public static void init(Printer printer) {
-        sRoot = new NLog(printer, "(root)");
-    }
-
-    public static void init(Printer printer, String tag) {
-        sRoot = new NLog(printer, tag);
-    }
-
-    public static NLog createForClass(Object obj) {
-        return getRoot().create(obj.getClass().getSimpleName());
-    }
-
-    public static NLog createForInstance(Object obj) {
-        return getRoot().create(obj.toString() + "(" + obj.hashCode() + ")");
-    }
-
-    private static NLog sRoot = null;
-    ////
 
     /**
      * Implementation of Printer which logs to System.err
@@ -94,4 +45,59 @@ public class NLog {
             System.err.printf("%s/%s %s\n", tag, levelString, message);
         }
     }
+
+    public static void d(Object obj, Object...args) {
+        print(Application.LOG_DEBUG, obj, args);
+    }
+
+    public static void i(Object obj, Object...args) {
+        print(Application.LOG_INFO, obj, args);
+    }
+
+    public static void e(Object obj, Object...args) {
+        print(Application.LOG_ERROR, obj, args);
+    }
+
+    public static void addPrinter(Printer printer) {
+        sPrinters.add(printer);
+    }
+
+    private static void print(int level, Object obj, Object...args) {
+        if (sStackDepth < 0) {
+            initStackDepth();
+        }
+        final String tag = getCallerMethod();
+        String message;
+        if (obj == null) {
+            message = "(null)";
+        } else {
+            String format = obj.toString();
+            message = args.length > 0 ? String.format(format, args) : format;
+        }
+        if (sPrinters.isEmpty()) {
+            sPrinters.add(new DefaultPrinter());
+        }
+        for (Printer printer: sPrinters) {
+            printer.print(level, tag, message);
+        }
+    }
+
+    private static void initStackDepth() {
+        final StackTraceElement lst[] = Thread.currentThread().getStackTrace();
+        for (int i = 0, n = lst.length; i < n; ++i) {
+            if (lst[i].getMethodName().equals("initStackDepth")) {
+                sStackDepth = i;
+                return;
+            }
+        }
+    }
+
+    private static String getCallerMethod() {
+        final StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[sStackDepth + 3];
+        final String fullClassName = stackTraceElement.getClassName();
+        final String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
+        final String method = stackTraceElement.getMethodName();
+        return className + "." + method;
+    }
+
 }

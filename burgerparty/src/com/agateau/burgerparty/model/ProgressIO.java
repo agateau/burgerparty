@@ -38,13 +38,9 @@ public class ProgressIO {
     public static final int SCORE_LOCKED = -2;
     public static final int SCORE_NEW = -1;
 
-    private static NLog log;
     private Array<LevelWorld> mWorlds;
 
     public ProgressIO(Array<LevelWorld> worlds) {
-        if (log == null) {
-            log = NLog.getRoot().create("ProgressIO");
-        }
         mWorlds = worlds;
     }
 
@@ -54,11 +50,11 @@ public class ProgressIO {
         try {
             root = reader.parse(handle);
         } catch (IOException e) {
-            log.e("load: Failed to load progress from %s. Exception: %s", handle.path(), e);
+            NLog.e("Failed to load progress from %s. Exception: %s", handle.path(), e);
             return;
         }
         if (root == null) {
-            log.e("load: Failed to load progress from %s. No root XML element found.", handle.path());
+            NLog.e("Failed to load progress from %s. No root XML element found.", handle.path());
             return;
         }
         load(root);
@@ -73,7 +69,7 @@ public class ProgressIO {
         } else if (version == 3) {
             loadV3(root);
         } else {
-            log.e("load: Don't know how to load progress version " + version + ". Did not load anything.");
+            NLog.e("Don't know how to load progress version " + version + ". Did not load anything.");
         }
         ensureNextLevelIsUnlocked();
     }
@@ -119,12 +115,12 @@ public class ProgressIO {
             int levelIndex = element.getIntAttribute("level") - 1;
             int score = element.getIntAttribute("score", SCORE_LOCKED);
             if (worldIndex >= mWorlds.size) {
-                log.e("loadV2: No world with index " + (worldIndex + 1));
+                NLog.e("No world with index " + (worldIndex + 1));
                 continue;
             }
             LevelWorld world = mWorlds.get(worldIndex);
             if (levelIndex >= world.getLevelCount()) {
-                log.e("loadV2: No level with index " + (levelIndex + 1) + " in world " + (worldIndex + 1));
+                NLog.e("No level with index " + (levelIndex + 1) + " in world " + (worldIndex + 1));
                 continue;
             }
             Level level = world.getLevel(levelIndex);
@@ -150,12 +146,12 @@ public class ProgressIO {
             int score = element.getIntAttribute("score", SCORE_LOCKED);
             int starCount = element.getIntAttribute("stars", 0);
             if (worldIndex >= mWorlds.size) {
-                log.e("loadV3: No world with index " + (worldIndex + 1));
+                NLog.e("No world with index " + (worldIndex + 1));
                 continue;
             }
             LevelWorld world = mWorlds.get(worldIndex);
             if (levelIndex >= world.getLevelCount()) {
-                log.e("loadV3: No level with index " + (levelIndex + 1) + " in world " + (worldIndex + 1));
+                NLog.e("No level with index " + (levelIndex + 1) + " in world " + (worldIndex + 1));
                 continue;
             }
             Level level = world.getLevel(levelIndex);
@@ -198,7 +194,7 @@ public class ProgressIO {
             }
             writer.close();
         } catch (IOException e) {
-            log.e("save: Failed to save progress. Exception: %s", e);
+            NLog.e("Failed to save progress. Exception: %s", e);
         }
     }
 }

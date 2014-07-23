@@ -10,8 +10,20 @@ import com.badlogic.gdx.Gdx;
  * @author aurelien
  */
 public class GdxPrinter extends Printer {
+    private final String mPrefix;
+
+    public GdxPrinter() {
+        this("");
+    }
+
+    public GdxPrinter(String prefix) {
+        mPrefix = prefix.isEmpty() ? "" : (prefix + ".");
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
+    }
+
     @Override
     protected void doPrint(int level, String tag, String message) {
+        tag = mPrefix + tag;
         if (level == Application.LOG_DEBUG) {
             Gdx.app.debug(tag, message);
         } else if (level == Application.LOG_INFO) {

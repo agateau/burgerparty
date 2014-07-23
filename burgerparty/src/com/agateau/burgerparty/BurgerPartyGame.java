@@ -25,16 +25,13 @@ import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
-import com.agateau.burgerparty.utils.FileLogPrinter;
 import com.agateau.burgerparty.utils.FileUtils;
-import com.agateau.burgerparty.utils.GdxPrinter;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.StringArgumentDefinition;
 import com.agateau.burgerparty.view.AchievementViewController;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -60,15 +57,11 @@ public class BurgerPartyGame extends Game {
     private int mWidth = 0;
     private int mHeight = 0;
     private boolean mWaitInLoadingScreen = false;
-    private static NLog log;
 
     @Override
     public void create() {
-        if (log == null) {
-            log = NLog.getRoot().create(getClass().getSimpleName());
-        }
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
-        log.i("create: date=%s", timeStamp);
+        NLog.i("date=%s", timeStamp);
 
         mMusicController = new MusicController(getPreferences());
         mAssets = new Assets(mMusicController);
@@ -80,19 +73,19 @@ public class BurgerPartyGame extends Game {
     @Override
     public void dispose() {
         super.dispose();
-        log.i("dispose");
+        NLog.i("");
     }
 
     @Override
     public void pause() {
         super.pause();
-        log.i("pause");
+        NLog.i("");
     }
 
     @Override
     public void resume() {
         super.resume();
-        log.i("resume");
+        NLog.i("");
         AssetManager manager = mAssets.getAssetManager();
         if (manager.getQueuedAssets() > 0) {
             final Screen oldScreen = getScreen();
@@ -112,7 +105,7 @@ public class BurgerPartyGame extends Game {
 
     public void setScreenAndDispose(Screen screen) {
         Screen old = getScreen();
-        log.i("setScreenAndDispose %s => %s",
+        NLog.i("%s => %s",
               old == null ? "(null)" : old.getClass().getSimpleName(),
               screen.getClass().getSimpleName());
         if (old != null) {
@@ -129,26 +122,6 @@ public class BurgerPartyGame extends Game {
 
     public Action createPlayMealItemAction(String name) {
         return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
-    }
-
-    private static FileLogPrinter createFileLogPrinter() {
-        FileHandle cacheDir = FileUtils.getCacheDir("burgerparty");
-        if (cacheDir == null) {
-            Gdx.app.error("createFileLogPrinter", "Could not create cache dir");
-            return null;
-        }
-        FileHandle logHandle = cacheDir.child("burgerparty.log");
-        FileLogPrinter.rotate(logHandle, 6);
-        return new FileLogPrinter(logHandle);
-    }
-
-    public static void setupLog() {
-        NLog.Printer printer = createFileLogPrinter();
-        if (printer == null) {
-            printer = new GdxPrinter();
-        }
-        NLog.init(printer, "BP");
-        Gdx.app.setLogLevel(Application.LOG_DEBUG);
     }
 
     private void setupUniverse() {
@@ -185,7 +158,7 @@ public class BurgerPartyGame extends Game {
     }
 
     private void onAchievementUnlocked(Achievement achievement) {
-        log.i("onAchievementUnlocked: '%s'", achievement.getTitle());
+        NLog.i("%s", achievement.getTitle());
         mAchievementViewController.show(achievement);
     }
 
@@ -220,7 +193,7 @@ public class BurgerPartyGame extends Game {
     }
 
     public void startLevel(int levelWorldIndex, int levelIndex) {
-        log.i("startLevel level: %d-%d", levelWorldIndex + 1, levelIndex + 1);
+        NLog.i("%d-%d", levelWorldIndex + 1, levelIndex + 1);
         mMusicController.fadeOut();
         mLevelWorldIndex = levelWorldIndex;
         mLevelIndex = levelIndex;
@@ -315,7 +288,7 @@ public class BurgerPartyGame extends Game {
     }
 
     private void doStartLevel() {
-        log.i("doStartLevel level: %d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
+        NLog.i("%d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
         Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
         setScreenAndDispose(new GameScreen(this, level));
     }
