@@ -22,6 +22,7 @@ public class MainActivity extends AndroidApplication {
         // Must be done *after* initialize because it requires Gdx.app to be
         // valid
         NLog.addPrinter(new GdxPrinter("BP"));
+        NLog.i("");
         game.setAdSystem(new HeyzapAdSystem(this));
     }
 }
