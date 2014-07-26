@@ -61,4 +61,8 @@ public class Burger extends MealItemCollection<BurgerItem> {
     protected void addItemInternal(BurgerItem item) {
         mItems.add(item);
     }
+
+    public BurgerItem getItemAt(int idx) {
+        return mItems.get(idx);
+    }
 }

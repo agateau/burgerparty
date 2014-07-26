@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -52,12 +53,19 @@ public class InventoryView extends Group {
         mInventory = inventory;
     }
 
+    public void getItemPosition(MealItem item, Vector2 pos) {
+        final float cellWidth = getWidth() / COLUMN_COUNT;
+        final float cellHeight = getHeight() / ROW_COUNT;
+        pos.x = item.getColumn() * cellWidth;
+        pos.y = item.getRow() * cellHeight;
+    }
+
     @Override
     public void draw(SpriteBatch spriteBatch, float parentAlpha) {
         spriteBatch.setColor(1, 1, 1, parentAlpha);
 
-        float cellWidth = getWidth() / COLUMN_COUNT;
-        float cellHeight = getHeight() / ROW_COUNT;
+        final float cellWidth = getWidth() / COLUMN_COUNT;
+        final float cellHeight = getHeight() / ROW_COUNT;
 
         for (int row = 0; row < ROW_COUNT; ++row) {
             for (int col = 0; col < COLUMN_COUNT; ++col) {

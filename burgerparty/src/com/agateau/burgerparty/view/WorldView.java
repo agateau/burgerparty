@@ -60,6 +60,7 @@ public class WorldView extends AbstractWorldView {
     private final Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
     private CustomerView mActiveCustomerView;
     private CoinView mCoinView;
+    private TutorialController mTutorialController = null;
 
     public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
         super(game.getAssets(), world.getLevelWorld().getDirName());
@@ -225,6 +226,9 @@ public class WorldView extends AbstractWorldView {
         scrollTo(0);
         mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
         slideInMealView(mMealView);
+        if (mTutorialController != null) {
+            mTutorialController.onNewMeal();
+        }
     }
 
     private void setupHud() {
@@ -417,5 +421,10 @@ public class WorldView extends AbstractWorldView {
         // Adjust scroll pane so that it does not grow outside of screen
         Vector2 coord = UiUtils.toChildCoordinates(this, mTargetMealScrollPane, new Vector2(0, getHeight()));
         mTargetMealScrollPane.setMaximumHeight(coord.y);
+    }
+
+    public void setupTutorial() {
+        mTutorialController = new TutorialController(mGame, mWorld, mInventoryView);
+        mHudLayer.addActor(mTutorialController.getIndicator());
     }
 }
