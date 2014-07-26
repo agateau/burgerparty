@@ -27,7 +27,7 @@ public class TutorialController {
     private static final float MOVE_DURATION = 0.5f; 
 
     public TutorialController(BurgerPartyGame game, World world, InventoryView inventoryView) {
-        mIndicator = new Image(game.getAssets().getTextureAtlas().findRegion("ui/icon-next-item"));
+        mIndicator = new Image(game.getAssets().getTextureAtlas().findRegion("ui/finger"));
         mIndicator.setTouchable(Touchable.disabled);
         mWorld = world;
         mInventoryView = inventoryView;
@@ -82,6 +82,7 @@ public class TutorialController {
         Vector2 pos = new Vector2();
         mInventoryView.getItemPosition(nextItem, pos);
         mInventoryView.localToAscendantCoordinates(mIndicator.getParent(), pos);
+        pos.y -= mIndicator.getHeight();
 
         if (mMoveAction != null) {
             mIndicator.removeAction(mMoveAction);

@@ -56,8 +56,8 @@ public class InventoryView extends Group {
     public void getItemPosition(MealItem item, Vector2 pos) {
         final float cellWidth = getWidth() / COLUMN_COUNT;
         final float cellHeight = getHeight() / ROW_COUNT;
-        pos.x = item.getColumn() * cellWidth;
-        pos.y = item.getRow() * cellHeight;
+        pos.x = item.getColumn() * cellWidth + cellWidth / 2;
+        pos.y = item.getRow() * cellHeight + cellHeight / 2;
     }
 
     @Override
