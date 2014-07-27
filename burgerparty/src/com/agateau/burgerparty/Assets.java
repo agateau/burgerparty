@@ -53,7 +53,8 @@ public class Assets {
             "sauce.wav",
             "splat.wav",
             "star.wav",
-            "tick.wav",
+            "tick1.wav",
+            "tick2.wav",
             "time-bonus.wav",
             "trash.wav"
         };

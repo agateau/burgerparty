@@ -19,6 +19,7 @@ import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.InventoryView;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
@@ -47,6 +48,8 @@ public class WorldView extends AbstractWorldView {
     private World mWorld;
     private TextureAtlas mAtlas;
     private Skin mSkin;
+    private Sound mTick1;
+    private Sound mTick2;
     private MealView mMealView;
     private MealView mDoneMealView;
     private MealViewScrollPane mTargetMealScrollPane;
@@ -64,6 +67,8 @@ public class WorldView extends AbstractWorldView {
 
     public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
         super(game.getAssets(), world.getLevelWorld().getDirName());
+        mTick1 = game.getAssets().getSoundAtlas().findSound("tick1");
+        mTick2 = game.getAssets().getSoundAtlas().findSound("tick2");
         setFillParent(true);
         setSpacing(UiUtils.SPACING);
         mGameScreen = screen;
@@ -280,15 +285,23 @@ public class WorldView extends AbstractWorldView {
         if (txt.contentEquals(mTimerDisplay.getText())) {
             return;
         }
-        if (total >= 20) {
+        if (total > 20) {
             mTimerDisplay.setColor(Color.WHITE);
-        } else {
-            mTimerDisplay.setColor(Color.RED);
-            mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
-            mGame.getAssets().getSoundAtlas().findSound("tick").play();
+        } else if (total > 10) {
+            mTick1.play();
+            flashTimerDisplay();
+        } else if (total > 0) {
+            mTick1.play(0.5f);
+            mTick2.play();
+            flashTimerDisplay();
         }
         mTimerDisplay.setText(txt);
         UiUtils.adjustToPrefSize(mTimerDisplay);
+    }
+
+    private void flashTimerDisplay() {
+        mTimerDisplay.setColor(Color.RED);
+        mTimerDisplay.addAction(Actions.color(Color.WHITE, 0.5f));
     }
 
     private void onLevelFailed() {

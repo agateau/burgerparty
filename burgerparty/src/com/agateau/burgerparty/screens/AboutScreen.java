@@ -71,7 +71,7 @@ public class AboutScreen extends BurgerPartyScreen {
         addHeading(tr("Code & Design"));
         addText("Aurélien Gâteau");
 
-        addHeading(tr("Music"));
+        addHeading(tr("Musics"));
         addText(tr("Thomas Tripon"));
 
         addHeading(tr("Testers"));
@@ -92,7 +92,6 @@ public class AboutScreen extends BurgerPartyScreen {
         addText("Autistic Lucario - www.freesound.org/people/Autistic%20Lucario");
         addText("DrMinky - www.freesound.org/people/DrMinky");
         addText("Florian Reinke - www.freesound.org/people/florian_reinke");
-        addText("Kenney - opengameart.org/content/85-short-music-jingles");
         addText("p0ss - opengameart.org/content/spell-sounds-starter-pack");
         addText("Scriptique - www.freesound.org/people/scriptique");
         addText("Soundjay - www.soundjay.com");
