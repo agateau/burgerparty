@@ -27,9 +27,9 @@ import com.badlogic.gdx.utils.XmlReader;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class NewItemScreen extends BurgerPartyScreen {
-    private static final float DISPLAY_DURATION = 3;
-    private static final float FADE_IN_DURATION = 1;
-    private static final float FADE_OUT_DURATION = 1;
+    private static final float DISPLAY_DURATION = 3f;
+    private static final float FADE_IN_DURATION = 0.5f;
+    private static final float FADE_OUT_DURATION = 0.8f;
     private static final float TEXT_MAX_WIDTH = 300;
 
     public Signal0 done = new Signal0();
@@ -103,6 +103,8 @@ public class NewItemScreen extends BurgerPartyScreen {
 
         mFgGroup.setPosition(800, 0);
         mFgGroup.setColor(1, 1, 1, 0);
+
+        game.getAssets().getSoundAtlas().findSound("new-item-unlocked").play();
     }
 
     private void setupBubble(MealItem newItem) {

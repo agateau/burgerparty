@@ -50,6 +50,7 @@ public class Assets {
             "gameover.ogg",
             "jet.wav",
             "meal-done.wav",
+            "new-item-unlocked.ogg",
             "sauce.wav",
             "splat.wav",
             "star.wav",
