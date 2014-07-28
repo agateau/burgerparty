@@ -10,8 +10,8 @@ import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 import com.agateau.burgerparty.utils.Signal1;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 
 import static com.greenyetilab.linguaj.Translator.tr;
 
@@ -58,8 +58,6 @@ public class World {
     private Counter mItemAddedCounter = new Counter();
     private Counter mMealDoneCounter = new Counter();
 
-    private Timer mTimer = new Timer();
-
     private Level mLevel;
     private int mStarCost;
 
@@ -74,9 +72,11 @@ public class World {
 
     private Array<Customer> mCustomers = new Array<Customer>();
     private int mActiveCustomerIndex = 0;
-    private int mRemainingSeconds;
+    private float mRemainingSeconds;
     private int mScore = 0;
     private int mCoinCount = 0;
+    private boolean mIsPaused = false;
+
 
     private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
 
@@ -145,7 +145,7 @@ public class World {
         return mTargetMealExtra;
     }
 
-    public int getRemainingSeconds() {
+    public float getRemainingSeconds() {
         return mRemainingSeconds;
     }
 
@@ -183,7 +183,7 @@ public class World {
     }
 
     public LevelResult getLevelResult() {
-        return new LevelResult(mLevel, mScore, mCoinCount,  getMaximumCoinCount(), mStarCost, mRemainingSeconds);
+        return new LevelResult(mLevel, mScore, mCoinCount,  getMaximumCoinCount(), mStarCost, MathUtils.ceil(mRemainingSeconds));
     }
 
     public int getTargetComplexity() {
@@ -192,28 +192,28 @@ public class World {
 
     public void start() {
         mRemainingSeconds = mLevel.definition.duration;
-        Timer.Task task = new Timer.Task() {
-            @Override
-            public void run() {
-                mRemainingSeconds--;
-                if (mRemainingSeconds == 0) {
-                    cancel();
-                    levelFailed.emit();
-                }
-            }
-        };
-        mTimer.scheduleTask(task, 1, 1);
         generateTarget();
         mGameStats.onLevelStarted(this);
     }
 
+    public void act(float delta) {
+        if (mIsPaused) {
+            return;
+        }
+        mRemainingSeconds -= delta;
+        if (mRemainingSeconds <= 0) {
+            mIsPaused = true;
+            levelFailed.emit();
+        }
+    }
+
     public void pause() {
-        mTimer.stop();
+        mIsPaused = true;
         mCustomers.get(mActiveCustomerIndex).pause();
     }
 
     public void resume() {
-        mTimer.start();
+        mIsPaused = false;
         mCustomers.get(mActiveCustomerIndex).resume();
     }
 
@@ -295,7 +295,7 @@ public class World {
             setupMeal();
             generateTarget();
         } else {
-            mTimer.stop();
+            mIsPaused = true;
             levelFinished.emit();
         }
     }

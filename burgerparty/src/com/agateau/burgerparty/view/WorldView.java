@@ -182,6 +182,7 @@ public class WorldView extends AbstractWorldView {
     @Override
     public void act(float delta) {
         super.act(delta);
+        mWorld.act(delta);
         updateTimerDisplay();
     }
 
@@ -278,7 +279,7 @@ public class WorldView extends AbstractWorldView {
     }
 
     private void updateTimerDisplay() {
-        int total = mWorld.getRemainingSeconds();
+        int total = MathUtils.ceil(mWorld.getRemainingSeconds());
         int minutes = total / 60;
         int seconds = total % 60;
         String txt = String.format("%d:%02d", minutes, seconds);
