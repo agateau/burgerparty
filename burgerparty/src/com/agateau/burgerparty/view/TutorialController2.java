@@ -26,7 +26,7 @@ public class TutorialController2 {
     private MealView mMealView;
     private Burger mTargetBurger;
 
-    private static final float MOVE_DURATION = 0.5f;
+    private static final float MOVE_DURATION = 0.75f;
 
     private static final float PULSING_SCALE_MIN = 0.8f;
     private static final float PULSING_DURATION = 0.6f;
