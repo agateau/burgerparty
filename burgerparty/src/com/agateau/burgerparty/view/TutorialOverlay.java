@@ -40,9 +40,7 @@ public class TutorialOverlay extends Overlay {
         super(game.getAssets().getTextureAtlas());
         mWorldView = worldView;
         mGame = game;
-
         mAtlas = game.getAssets().getTextureAtlas();
-        mBgImage = new Image(mAtlas.findRegion("tutorial/bg"));
 
         ImageButton skipButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-next");
         skipButton.addListener(new ChangeListener() {
@@ -51,6 +49,7 @@ public class TutorialOverlay extends Overlay {
             }
         });
 
+        mBgImage = new Image(mAtlas.findRegion("tutorial/bg"));
         setupEmptyInventoryView();
         setupInventoryView();
         setupTargetMealView();
@@ -144,7 +143,6 @@ public class TutorialOverlay extends Overlay {
     private void setupMealView() {
         mBurger = new Burger();
         MealExtra extra = new MealExtra();
-
         Assets assets = mGame.getAssets();
         mMealView = new MealView(mBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), true);
     }
