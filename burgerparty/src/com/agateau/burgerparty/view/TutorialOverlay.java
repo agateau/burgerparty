@@ -4,17 +4,14 @@ import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
-import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.MealExtra;
-import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.TimeLineAction;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -37,6 +34,7 @@ public class TutorialOverlay extends Overlay {
     private TimeLineAction mTimeLineAction = new TimeLineAction();
     private TutorialController2 mTutorialController;
     private InventoryView mEmptyInventoryView;
+    private Image mCustomer;
 
     public TutorialOverlay(WorldView worldView, BurgerPartyGame game) {
         super(game.getAssets().getTextureAtlas());
@@ -57,12 +55,13 @@ public class TutorialOverlay extends Overlay {
         setupInventoryView();
         setupTargetMealView();
         setupMealView();
+        setupCustomer();
 
         mTutorialController = new TutorialController2(mGame, mMealView, mTargetBurger, mInventoryView);
 
         mTutorialGroup = new AnchorGroup();
         mTutorialGroup.setScale(SCALE);
-        mTutorialGroup.setSize(mBgImage.getWidth() / SCALE, mBgImage.getHeight() / SCALE);
+        mTutorialGroup.setSize(mBgImage.getWidth(), mBgImage.getHeight());
 
         AnchorGroup group = new AnchorGroup();
         addActor(group);
@@ -70,9 +69,10 @@ public class TutorialOverlay extends Overlay {
         group.setSpacing(UiUtils.SPACING);
 
         group.addRule(skipButton, Anchor.BOTTOM_CENTER, this, Anchor.BOTTOM_CENTER, 0, 1);
-        group.addRule(mBgImage, Anchor.BOTTOM_CENTER, skipButton, Anchor.TOP_CENTER, 0, 1);
-        group.addRule(mTutorialGroup, Anchor.BOTTOM_LEFT, mBgImage, Anchor.BOTTOM_LEFT);
+        group.addRule(mTutorialGroup, Anchor.BOTTOM_CENTER, skipButton, Anchor.TOP_CENTER, 0, 1);
 
+        mTutorialGroup.addRule(mBgImage, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
+        mTutorialGroup.addRule(mCustomer, Anchor.BOTTOM_CENTER, mTutorialGroup, Anchor.TOP_CENTER, 0, -222 * SCALE);
         mTutorialGroup.addRule(mInventoryView, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
         mTutorialGroup.addRule(mEmptyInventoryView, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
         mTutorialGroup.addRule(mBubble, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.CENTER, 50, 45);
@@ -86,6 +86,10 @@ public class TutorialOverlay extends Overlay {
     @Override
     public void onBackPressed() {
         mWorldView.resume();
+    }
+
+    private void setupCustomer() {
+        mCustomer = new Image(mAtlas.findRegion("tutorial/customer"));
     }
 
     private void setupEmptyInventoryView() {
@@ -147,12 +151,14 @@ public class TutorialOverlay extends Overlay {
 
     private void setupTimeLine() {
         mBubble.setColor(1, 1, 1, 0);
-        mTutorialController.getIndicator().setVisible(false);
+        mCustomer.setColor(1, 1, 1, 0);
+        mTutorialController.getIndicator().setColor(1, 1, 1, 0);
 
-        mTimeLineAction.addAction(1, mBubble, Actions.alpha(1, 0.3f));
-        mTimeLineAction.addAction(4, mEmptyInventoryView, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addAction(5, mTutorialController.getIndicator(), Actions.show());
-        mTimeLineAction.addAction(5, this, Actions.run(new Runnable() {
+        mTimeLineAction.addAction(1, mCustomer, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addAction(2, mBubble, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addAction(3, mEmptyInventoryView, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addAction(4, mTutorialController.getIndicator(), Actions.alpha(1, 0.3f));
+        mTimeLineAction.addAction(4, this, Actions.run(new Runnable() {
             @Override
             public void run() {
                 mTutorialController.updateIndicator();
