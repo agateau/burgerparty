@@ -130,7 +130,7 @@ public class TutorialOverlay extends Overlay {
         targetMealView.getBurgerView().setPadding(WorldView.TARGET_BURGER_PADDING);
 
         MealViewScrollPane scrollPane = new MealViewScrollPane(targetMealView, mAtlas);
-        scrollPane.setScale(0.5f, 0.5f);
+        scrollPane.setScale(0.6f, 0.6f);
 
         mBubble.setChild(scrollPane);
 
