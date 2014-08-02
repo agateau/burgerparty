@@ -1,6 +1,8 @@
 package com.agateau.burgerparty.utils;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
+import java.util.Vector;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,19 +25,21 @@ public class TimeLineAction extends Action {
     }
 
     private float mTime = 0;
-    private PriorityQueue<ActorAction> mQueue = new PriorityQueue<ActorAction>();
+    private Vector<ActorAction> mArray = new Vector<ActorAction>();
+    private int mIndex = 0;
 
     @Override
     public boolean act(float delta) {
-        if (mQueue.isEmpty()) {
+        if (mIndex >= mArray.size()) {
             return true;
         }
         mTime += delta;
-        if (mQueue.peek().time <= mTime) {
-            ActorAction aa = mQueue.remove();
+        ActorAction aa = mArray.get(mIndex);
+        if (aa.time <= mTime) {
             aa.actor.addAction(aa.action);
+            ++mIndex;
         }
-        return mQueue.isEmpty();
+        return mIndex >= mArray.size();
     }
 
     public void addAction(float time, Actor actor, Action action) {
@@ -43,6 +47,7 @@ public class TimeLineAction extends Action {
         aa.time = time;
         aa.actor = actor;
         aa.action = action;
-        mQueue.add(aa);
+        mArray.add(aa);
+        Collections.sort(mArray);
     }
 }
