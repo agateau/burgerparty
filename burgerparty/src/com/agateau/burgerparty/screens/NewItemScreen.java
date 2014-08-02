@@ -7,6 +7,7 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.ShaderActor;
 import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.TimeLineAction;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.Bubble;
 import com.badlogic.gdx.graphics.Color;
@@ -14,14 +15,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
 import static com.greenyetilab.linguaj.Translator.tr;
@@ -139,43 +138,12 @@ public class NewItemScreen extends BurgerPartyScreen {
         UiUtils.notifyResizeToFitParent(mBubbleContent);
     }
 
-    private static class TimeLine {
-        private static class ActorAction {
-            Actor actor;
-            Action action;
-        }
-        public void addAction(Actor actor, Action action) {
-            ActorAction aa = new ActorAction();
-            aa.actor = actor;
-            aa.action = Actions.sequence(
-                            action,
-            Actions.run(new Runnable() {
-                @Override
-                public void run() {
-                    startNext();
-                }
-            })
-                        );
-            mList.add(aa);
-        }
-        public void run() {
-            startNext();
-        }
-        private void startNext() {
-            if (mList.size == 0) {
-                return;
-            }
-            ActorAction aa = mList.removeIndex(0);
-            aa.actor.addAction(aa.action);
-        }
-        private Array<ActorAction> mList = new Array<ActorAction>();
-    }
-
     public void show() {
         super.show();
-        TimeLine tl = new TimeLine();
+        TimeLineAction tl = new TimeLineAction();
         Actor root = getStage().getRoot();
-        tl.addAction(
+
+        tl.addAction(0,
             root,
             Actions.sequence(
                 Actions.alpha(0),
@@ -183,35 +151,36 @@ public class NewItemScreen extends BurgerPartyScreen {
             )
         );
 
-        tl.addAction(
+        tl.addActionRelative(FADE_IN_DURATION,
             mFgGroup,
             Actions.alpha(1)
         );
 
-        tl.addAction(
+        tl.addActionRelative(0,
             mFgGroup,
             Actions.moveTo(mFgGroupFinalX, 0, FADE_IN_DURATION, Interpolation.pow5Out)
         );
 
-        tl.addAction(
+        tl.addActionRelative(FADE_IN_DURATION,
             mBubble,
             Actions.alpha(1, FADE_IN_DURATION)
         );
 
-        tl.addAction(
+        tl.addActionRelative(FADE_IN_DURATION,
             root,
             Actions.sequence(
                 Actions.delay(DISPLAY_DURATION),
                 Actions.alpha(0, FADE_OUT_DURATION),
-        Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                done.emit();
-            }
-        })
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        done.emit();
+                    }
+                })
             )
         );
-        tl.run();
+
+        root.addAction(tl);
     }
 
     @Override
