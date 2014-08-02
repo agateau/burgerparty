@@ -4,6 +4,8 @@ import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
+import com.agateau.burgerparty.model.BurgerGenerator;
+import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.MealExtra;
 import com.agateau.burgerparty.model.MealItemDb;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
 
 public class TutorialOverlay extends Overlay {
     private static final Color EMPTY_INVENTORY_COLOR = new Color(0.5f, 0.5f, 0.5f, 1);
@@ -34,6 +37,7 @@ public class TutorialOverlay extends Overlay {
     private BurgerPartyGame mGame;
     private Bubble mBubble;
     private static final float SCALE = 0.6f;
+    private BurgerGenerator mBurgerGenerator;
     private Burger mTargetBurger;
     private Burger mBurger;
     private MealView mMealView;
@@ -105,14 +109,20 @@ public class TutorialOverlay extends Overlay {
     }
 
     private void setupInventoryView() {
-        Inventory inventory = new Inventory();
         MealItemDb db = MealItemDb.getInstance();
-        inventory.addItem(db.get("bottom"));
-        inventory.addItem(db.get("top"));
-        inventory.addItem(db.get("steak"));
-        inventory.addItem(db.get("tomato"));
-        inventory.addItem(db.get("salad"));
-        inventory.addItem(db.get("cheese"));
+        Array<BurgerItem> lst = new Array<BurgerItem>();
+        lst.add(db.getBurgerItem("bottom"));
+        lst.add(db.getBurgerItem("top"));
+        lst.add(db.getBurgerItem("steak"));
+        lst.add(db.getBurgerItem("tomato"));
+        lst.add(db.getBurgerItem("salad"));
+        lst.add(db.getBurgerItem("cheese"));
+
+        Inventory inventory = new Inventory();
+        inventory.setItems(lst);
+
+        mBurgerGenerator = new BurgerGenerator(0, lst);
+
         mInventoryView = new InventoryView(mAtlas);
         mInventoryView.setWorldDirName("levels/1/");
         mInventoryView.setInventory(inventory);
@@ -133,15 +143,6 @@ public class TutorialOverlay extends Overlay {
         scrollPane.setScale(0.6f, 0.6f);
 
         mBubble.setChild(scrollPane);
-
-        MealItemDb db = MealItemDb.getInstance();
-        mTargetBurger.addItem(db.getBurgerItem("bottom"));
-        mTargetBurger.addItem(db.getBurgerItem("steak"));
-        mTargetBurger.addItem(db.getBurgerItem("tomato"));
-        mTargetBurger.addItem(db.getBurgerItem("cheese"));
-        mTargetBurger.addItem(db.getBurgerItem("top"));
-        mTargetBurger.initialized.emit(); // Needed, otherwise targetMealView does not resize to fit the burger
-        mTargetBurger.resetArrow();
     }
 
     private void setupMealView() {
@@ -157,7 +158,10 @@ public class TutorialOverlay extends Overlay {
         mCustomer.setColor(WHITE_TRANSPARENT);
         mBubble.setColor(WHITE_TRANSPARENT);
         mTutorialController.getIndicator().setColor(WHITE_TRANSPARENT);
+
+        mTargetBurger.setItems(mBurgerGenerator.run(5));
         mTargetBurger.resetArrow();
+
         setupMealView();
         mMealView.setColor(WHITE_TRANSPARENT);
         mTutorialGroup.addRule(mMealView, Anchor.BOTTOM_CENTER, mInventoryView, Anchor.TOP_CENTER, 0, 10);

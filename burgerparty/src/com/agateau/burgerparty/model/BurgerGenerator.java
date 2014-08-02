@@ -6,7 +6,7 @@ import java.util.Vector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
-class BurgerGenerator {
+public class BurgerGenerator {
     private Array<TopBottom> mTopBottomItems = new Array<TopBottom>();
     private Array<BurgerItem> mMiddleItems = new Array<BurgerItem>();
     private Array<BurgerItem> mMainItems = new Array<BurgerItem>();
