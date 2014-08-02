@@ -12,7 +12,10 @@ import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.TimeLineAction;
 import com.agateau.burgerparty.utils.UiUtils;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -20,6 +23,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class TutorialOverlay extends Overlay {
+    private static final Color EMPTY_INVENTORY_COLOR = new Color(0.5f, 0.5f, 0.5f, 1);
+    private static final Color WHITE_TRANSPARENT = new Color(1, 1, 1, 0);
+
     private final WorldView mWorldView;
     private final Image mBgImage;
     private final TextureAtlas mAtlas;
@@ -27,11 +33,11 @@ public class TutorialOverlay extends Overlay {
     private AnchorGroup mTutorialGroup;
     private BurgerPartyGame mGame;
     private Bubble mBubble;
-    private static final float SCALE = 600f / 800f;
+    private static final float SCALE = 0.6f;
     private Burger mTargetBurger;
     private Burger mBurger;
     private MealView mMealView;
-    private TimeLineAction mTimeLineAction = new TimeLineAction();
+    private TimeLineAction mTimeLineAction;
     private TutorialController2 mTutorialController;
     private InventoryView mEmptyInventoryView;
     private Image mCustomer;
@@ -53,10 +59,9 @@ public class TutorialOverlay extends Overlay {
         setupEmptyInventoryView();
         setupInventoryView();
         setupTargetMealView();
-        setupMealView();
         setupCustomer();
 
-        mTutorialController = new TutorialController2(mGame, mMealView, mTargetBurger, mInventoryView);
+        mTutorialController = new TutorialController2(mGame, mTargetBurger, mInventoryView);
 
         mTutorialGroup = new AnchorGroup();
         mTutorialGroup.setScale(SCALE);
@@ -67,15 +72,14 @@ public class TutorialOverlay extends Overlay {
         group.setFillParent(true);
         group.setSpacing(UiUtils.SPACING);
 
-        group.addRule(skipButton, Anchor.BOTTOM_CENTER, this, Anchor.BOTTOM_CENTER, 0, 1);
-        group.addRule(mTutorialGroup, Anchor.BOTTOM_CENTER, skipButton, Anchor.TOP_CENTER, 0, 1);
+        group.addRule(mTutorialGroup, Anchor.CENTER, this, Anchor.CENTER, 0, 0);
+        group.addRule(skipButton, Anchor.CENTER_RIGHT, mTutorialGroup, Anchor.BOTTOM_RIGHT, -1, 0);
 
         mTutorialGroup.addRule(mBgImage, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
         mTutorialGroup.addRule(mCustomer, Anchor.BOTTOM_CENTER, mTutorialGroup, Anchor.TOP_CENTER, 0, -222 * SCALE);
         mTutorialGroup.addRule(mInventoryView, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
         mTutorialGroup.addRule(mEmptyInventoryView, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
-        mTutorialGroup.addRule(mBubble, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.CENTER, 50, 45);
-        mTutorialGroup.addRule(mMealView, Anchor.BOTTOM_CENTER, mInventoryView, Anchor.TOP_CENTER, 0, 10);
+        mTutorialGroup.addRule(mBubble, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.CENTER, 50 * SCALE, 45 * SCALE);
 
         addActor(mTutorialController.getIndicator());
 
@@ -97,7 +101,7 @@ public class TutorialOverlay extends Overlay {
         mEmptyInventoryView.setWorldDirName("levels/1/");
         mEmptyInventoryView.setInventory(inventory);
         mEmptyInventoryView.setSize(800, 180);
-        mEmptyInventoryView.setColor(0.5f, 0.5f, 0.5f, 1);
+        mEmptyInventoryView.setColor(EMPTY_INVENTORY_COLOR);
     }
 
     private void setupInventoryView() {
@@ -145,29 +149,62 @@ public class TutorialOverlay extends Overlay {
         MealExtra extra = new MealExtra();
         Assets assets = mGame.getAssets();
         mMealView = new MealView(mBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), true);
+        mTutorialController.setMealView(mMealView);
     }
 
     private void setupTimeLine() {
-        mBubble.setColor(1, 1, 1, 0);
-        mCustomer.setColor(1, 1, 1, 0);
-        mTutorialController.getIndicator().setColor(1, 1, 1, 0);
+        // Reset state
+        mCustomer.setColor(WHITE_TRANSPARENT);
+        mBubble.setColor(WHITE_TRANSPARENT);
+        mTutorialController.getIndicator().setColor(WHITE_TRANSPARENT);
+        mTargetBurger.resetArrow();
+        setupMealView();
+        mMealView.setColor(WHITE_TRANSPARENT);
+        mTutorialGroup.addRule(mMealView, Anchor.BOTTOM_CENTER, mInventoryView, Anchor.TOP_CENTER, 0, 10);
+        mTutorialGroup.layout(); // Move all actors back to their starting places
 
-        mTimeLineAction.addAction(1, mCustomer, Actions.alpha(1, 0.3f));
-        mTimeLineAction.addActionRelative(1, mBubble, Actions.alpha(1, 0.3f));
-        mTimeLineAction.addActionRelative(1, mEmptyInventoryView, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addActionRelative(1, mTutorialController.getIndicator(), Actions.alpha(1, 0.3f));
-        mTimeLineAction.addActionRelative(0, this, Actions.run(new Runnable() {
+        mTimeLineAction = new TimeLineAction();
+
+        mTimeLineAction.addActionRelative(0.5f, mCustomer, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addActionRelative(1f, mBubble, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addActionRelative(1f, mMealView, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addActionRelative(0.5f, mEmptyInventoryView, Actions.alpha(0, 0.3f));
+
+        // Create burger
+        for (int x = 0; x < mTargetBurger.getItems().size(); ++x) {
+            mTimeLineAction.addActionRelative(1, this, createUpdateIndicatorAction());
+            if (x == 0) {
+                mTimeLineAction.addActionRelative(0, mTutorialController.getIndicator(), Actions.alpha(1, 0.3f));
+            }
+        }
+        mTimeLineAction.addActionRelative(1, mTutorialController.getIndicator(), Actions.alpha(0, 0.3f));
+
+        // Move customer and meal away
+        mTimeLineAction.addActionRelative(0.5f, mBubble, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addActionRelative(0.5f, mCustomer, Actions.moveBy(300, 0, 0.3f, Interpolation.pow2In));
+        mTimeLineAction.addActionRelative(0, mCustomer, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addActionRelative(0, mMealView, Actions.moveBy(300, 0, 0.3f, Interpolation.pow2In));
+        mTimeLineAction.addActionRelative(0, mMealView, Actions.alpha(0, 0.3f));
+
+        mTimeLineAction.addActionRelative(0.5f, mEmptyInventoryView, Actions.color(EMPTY_INVENTORY_COLOR, 0.3f));
+
+        // Restart animation
+        mTimeLineAction.addActionRelative(1.5f, this, Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                setupTimeLine();
+            }
+        }));
+
+        addAction(mTimeLineAction);
+    }
+
+    private Action createUpdateIndicatorAction() {
+        return Actions.run(new Runnable() {
             @Override
             public void run() {
                 mTutorialController.updateIndicator();
             }
-        }));
-        float doneDuration = 5;
-        mTimeLineAction.addActionRelative(doneDuration, mBubble, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addActionRelative(0.5f, mCustomer, Actions.moveBy(300, 0, 0.3f));
-        mTimeLineAction.addActionRelative(0, mCustomer, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addActionRelative(0, mMealView, Actions.moveBy(300, 0, 0.3f));
-        mTimeLineAction.addActionRelative(0, mMealView, Actions.alpha(0, 0.3f));
-        addAction(mTimeLineAction);
+        });
     }
 }

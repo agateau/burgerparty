@@ -1,12 +1,8 @@
 package com.agateau.burgerparty.view;
 
-import java.util.HashSet;
-
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.MealItem;
-import com.agateau.burgerparty.utils.NLog;
-import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -17,12 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class TutorialController2 {
-    private final HashSet<Object> mHandlers = new HashSet<Object>();
     private InventoryView mInventoryView;
     private Group mGroup;
     private Image mIndicator;
     private Image mPulsingCircle;
-    private Action mMoveAction = null;
     private MealView mMealView;
     private Burger mTargetBurger;
 
@@ -31,8 +25,7 @@ public class TutorialController2 {
     private static final float PULSING_SCALE_MIN = 0.8f;
     private static final float PULSING_DURATION = 0.6f;
 
-    public TutorialController2(BurgerPartyGame game, MealView mealView, Burger targetBurger, InventoryView inventoryView) {
-        mMealView = mealView;
+    public TutorialController2(BurgerPartyGame game, Burger targetBurger, InventoryView inventoryView) {
         mTargetBurger = targetBurger;
         mInventoryView = inventoryView;
 
@@ -46,26 +39,18 @@ public class TutorialController2 {
         mGroup.addActor(mPulsingCircle);
         mGroup.addActor(mIndicator);
         mPulsingCircle.setPosition(-13, mIndicator.getHeight() - 28);
-        updateConnections();
     }
 
     public Actor getIndicator() {
         return mGroup;
     }
 
-    private void updateConnections() {
-        mMealView.getBurgerView().getBurger().itemAdded.connect(mHandlers, new Signal1.Handler<MealItem>(){
-            @Override
-            public void handle(MealItem a1) {
-                NLog.i("Calling updateIndicator");
-                updateIndicator();
-            }
-        });
+    public void setMealView(MealView view) {
+        mMealView = view;
     }
 
     public void updateIndicator() {
         MealItem nextItem = findNextItem();
-        NLog.i("nextItem=%s", nextItem);
         if (nextItem == null) {
             mGroup.setVisible(false);
             return;
@@ -77,12 +62,9 @@ public class TutorialController2 {
         mInventoryView.localToAscendantCoordinates(mIndicator.getParent(), pos);
         pos.y -= mIndicator.getHeight();
 
-        if (mMoveAction != null) {
-            mGroup.removeAction(mMoveAction);
-        }
         mPulsingCircle.setColor(1, 1, 1, 0);
         mPulsingCircle.setScale(1);
-        mMoveAction = Actions.sequence(
+        Action action = Actions.sequence(
             Actions.moveTo(pos.x, pos.y, MOVE_DURATION, Interpolation.pow2),
             Actions.addAction(createPulseAction(), mPulsingCircle),
             Actions.run(new Runnable() {
@@ -92,12 +74,11 @@ public class TutorialController2 {
                 }
             })
         );
-        mGroup.addAction(mMoveAction);
+        mGroup.addAction(action);
     }
 
     private void addNextItem() {
         MealItem item = findNextItem();
-        NLog.i(item);
         mMealView.addItem(item);
         if (item.getName().equals("top")) {
             mTargetBurger.hideArrow();
