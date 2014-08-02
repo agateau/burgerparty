@@ -15,7 +15,7 @@ public class GameScreen extends BurgerPartyScreen {
         mWorld = new World(game.getGameStats(), level);
         mWorldView = new WorldView(this, game, mWorld);
         if (level.getLevelWorld().getIndex() == 0 && level.getIndex() == 0) {
-            mWorldView.setupTutorial();
+            mWorldView.showTutorial();
         }
         getStage().addActor(mWorldView);
     }

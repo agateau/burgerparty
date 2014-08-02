@@ -62,7 +62,7 @@ public class InventoryView extends Group {
 
     @Override
     public void draw(SpriteBatch spriteBatch, float parentAlpha) {
-        spriteBatch.setColor(1, 1, 1, parentAlpha);
+        spriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
 
         final float cellWidth = getWidth() / COLUMN_COUNT;
         final float cellHeight = getHeight() / ROW_COUNT;
