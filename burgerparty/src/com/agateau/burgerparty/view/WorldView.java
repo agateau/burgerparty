@@ -38,7 +38,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AbstractWorldView {
-    private static final float TARGET_BURGER_PADDING = 24;
+    public static final float TARGET_BURGER_PADDING = 24;
     private static final float SCROLL_PADDING = 24;
 
     private final HashSet<Object> mHandlers = new HashSet<Object>();
@@ -63,7 +63,6 @@ public class WorldView extends AbstractWorldView {
     private final Array<CustomerView> mWaitingCustomerViews = new Array<CustomerView>();
     private CustomerView mActiveCustomerView;
     private CoinView mCoinView;
-    private TutorialController mTutorialController = null;
 
     public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
         super(game.getAssets(), world.getLevelWorld().getDirName());
@@ -232,9 +231,6 @@ public class WorldView extends AbstractWorldView {
         scrollTo(0);
         mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
         slideInMealView(mMealView);
-        if (mTutorialController != null) {
-            mTutorialController.onNewMeal();
-        }
     }
 
     private void setupHud() {
@@ -437,8 +433,14 @@ public class WorldView extends AbstractWorldView {
         mTargetMealScrollPane.setMaximumHeight(coord.y);
     }
 
-    public void setupTutorial() {
-        mTutorialController = new TutorialController(mGame, mWorld, mInventoryView);
-        mHudLayer.addActor(mTutorialController.getIndicator());
+    public void showTutorial() {
+        mWorld.pause();
+        final WorldView that = this;
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                mGameScreen.setOverlay(new TutorialOverlay(that, mGame));
+            }
+        });
     }
 }
