@@ -110,6 +110,12 @@ public class BurgerView extends Group {
         Action addItemAction = Actions.run(new AddItemRunnable(item));
         image.addAction(Actions.sequence(animAction, addItemAction));
 
+        // Make sure the image is not visible at all until the animation
+        // starts. Avoids a flash of the image at its final position when the
+        // tutorial is running.
+        image.setVisible(false);
+        image.addAction(Actions.show());
+
         UiUtils.notifyResizeToFitParent(this);
     }
 
