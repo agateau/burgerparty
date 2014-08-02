@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.utils;
 
 import java.util.Collections;
-import java.util.PriorityQueue;
 import java.util.Vector;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
