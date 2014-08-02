@@ -7,7 +7,9 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-public class FileLogPrinter extends NLog.Printer {
+public class FileLogPrinter implements NLog.Printer {
+    private TimeTracker mTracker = new TimeTracker();
+
     private FileHandle mHandle;
     private Writer mWriter;
 
@@ -35,7 +37,8 @@ public class FileLogPrinter extends NLog.Printer {
     }
 
     @Override
-    protected void doPrint(int level, String tag, String message) {
+    public void print(int level, String tag, String message) {
+        String timeStamp = mTracker.restart();
         try {
             if (level == Application.LOG_DEBUG) {
                 mWriter.write("D ");
@@ -44,6 +47,8 @@ public class FileLogPrinter extends NLog.Printer {
             } else { // LOG_ERROR
                 mWriter.write("E ");
             }
+            mWriter.write(timeStamp);
+            mWriter.write(' ');
             mWriter.write(tag);
             mWriter.write(' ');
             mWriter.write(message);

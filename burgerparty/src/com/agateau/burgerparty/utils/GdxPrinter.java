@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
  *
  * @author aurelien
  */
-public class GdxPrinter extends Printer {
+public class GdxPrinter implements Printer {
     private final String mPrefix;
 
     public GdxPrinter() {
@@ -22,7 +22,7 @@ public class GdxPrinter extends Printer {
     }
 
     @Override
-    protected void doPrint(int level, String tag, String message) {
+    public void print(int level, String tag, String message) {
         tag = mPrefix + tag;
         if (level == Application.LOG_DEBUG) {
             Gdx.app.debug(tag, message);
