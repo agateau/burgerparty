@@ -49,4 +49,9 @@ public class TimeLineAction extends Action {
         mArray.add(aa);
         Collections.sort(mArray);
     }
+
+    public void addActionRelative(float dt, Actor actor, Action action) {
+        float time = mArray.isEmpty() ? 0 : mArray.lastElement().time;
+        addAction(time + dt, actor, action);
+    }
 }

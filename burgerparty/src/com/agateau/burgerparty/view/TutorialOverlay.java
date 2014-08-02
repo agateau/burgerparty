@@ -155,21 +155,21 @@ public class TutorialOverlay extends Overlay {
         mTutorialController.getIndicator().setColor(1, 1, 1, 0);
 
         mTimeLineAction.addAction(1, mCustomer, Actions.alpha(1, 0.3f));
-        mTimeLineAction.addAction(2, mBubble, Actions.alpha(1, 0.3f));
-        mTimeLineAction.addAction(3, mEmptyInventoryView, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addAction(4, mTutorialController.getIndicator(), Actions.alpha(1, 0.3f));
-        mTimeLineAction.addAction(4, this, Actions.run(new Runnable() {
+        mTimeLineAction.addActionRelative(1, mBubble, Actions.alpha(1, 0.3f));
+        mTimeLineAction.addActionRelative(1, mEmptyInventoryView, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addActionRelative(1, mTutorialController.getIndicator(), Actions.alpha(1, 0.3f));
+        mTimeLineAction.addActionRelative(0, this, Actions.run(new Runnable() {
             @Override
             public void run() {
                 mTutorialController.updateIndicator();
             }
         }));
-        float doneTime = 12;
-        mTimeLineAction.addAction(doneTime, mBubble, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addAction(doneTime + 0.5f, mCustomer, Actions.moveBy(300, 0, 0.3f));
-        mTimeLineAction.addAction(doneTime + 0.5f, mCustomer, Actions.alpha(0, 0.3f));
-        mTimeLineAction.addAction(doneTime + 0.5f, mMealView, Actions.moveBy(300, 0, 0.3f));
-        mTimeLineAction.addAction(doneTime + 0.5f, mMealView, Actions.alpha(0, 0.3f));
+        float doneDuration = 5;
+        mTimeLineAction.addActionRelative(doneDuration, mBubble, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addActionRelative(0.5f, mCustomer, Actions.moveBy(300, 0, 0.3f));
+        mTimeLineAction.addActionRelative(0, mCustomer, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addActionRelative(0, mMealView, Actions.moveBy(300, 0, 0.3f));
+        mTimeLineAction.addActionRelative(0, mMealView, Actions.alpha(0, 0.3f));
         addAction(mTimeLineAction);
     }
 }
