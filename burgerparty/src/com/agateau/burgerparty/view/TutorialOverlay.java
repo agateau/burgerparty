@@ -42,7 +42,7 @@ public class TutorialOverlay extends Overlay {
     private Burger mBurger;
     private MealView mMealView;
     private TimeLineAction mTimeLineAction;
-    private TutorialController2 mTutorialController;
+    private TutorialIndicatorController mTutorialController;
     private InventoryView mEmptyInventoryView;
     private Image mCustomer;
 
@@ -65,7 +65,7 @@ public class TutorialOverlay extends Overlay {
         setupTargetMealView();
         setupCustomer();
 
-        mTutorialController = new TutorialController2(mGame, mTargetBurger, mInventoryView);
+        mTutorialController = new TutorialIndicatorController(mGame, mTargetBurger, mInventoryView);
 
         mTutorialGroup = new AnchorGroup();
         mTutorialGroup.setScale(SCALE);

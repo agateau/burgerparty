@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class TutorialController2 {
+public class TutorialIndicatorController {
     private InventoryView mInventoryView;
     private Group mGroup;
     private Image mIndicator;
@@ -25,7 +25,7 @@ public class TutorialController2 {
     private static final float PULSING_SCALE_MIN = 0.8f;
     private static final float PULSING_DURATION = 0.4f;
 
-    public TutorialController2(BurgerPartyGame game, Burger targetBurger, InventoryView inventoryView) {
+    public TutorialIndicatorController(BurgerPartyGame game, Burger targetBurger, InventoryView inventoryView) {
         mTargetBurger = targetBurger;
         mInventoryView = inventoryView;
 
