@@ -23,7 +23,7 @@ public class TutorialController2 {
     private static final float MOVE_DURATION = 0.75f;
 
     private static final float PULSING_SCALE_MIN = 0.8f;
-    private static final float PULSING_DURATION = 0.6f;
+    private static final float PULSING_DURATION = 0.4f;
 
     public TutorialController2(BurgerPartyGame game, Burger targetBurger, InventoryView inventoryView) {
         mTargetBurger = targetBurger;
@@ -60,7 +60,8 @@ public class TutorialController2 {
         Vector2 pos = new Vector2();
         mInventoryView.getItemPosition(nextItem, pos);
         mInventoryView.localToAscendantCoordinates(mIndicator.getParent(), pos);
-        pos.y -= mIndicator.getHeight();
+        pos.y -= mIndicator.getHeight() - 5;
+        pos.x -= 5;
 
         mPulsingCircle.setColor(1, 1, 1, 0);
         mPulsingCircle.setScale(1);
