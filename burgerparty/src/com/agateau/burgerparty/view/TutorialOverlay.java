@@ -28,6 +28,7 @@ import com.badlogic.gdx.utils.Array;
 public class TutorialOverlay extends Overlay {
     private static final Color EMPTY_INVENTORY_COLOR = new Color(0.5f, 0.5f, 0.5f, 1);
     private static final Color WHITE_TRANSPARENT = new Color(1, 1, 1, 0);
+    private static final float SCALE = 0.6f;
 
     private final WorldView mWorldView;
     private final Image mBgImage;
@@ -36,7 +37,6 @@ public class TutorialOverlay extends Overlay {
     private AnchorGroup mTutorialGroup;
     private BurgerPartyGame mGame;
     private Bubble mBubble;
-    private static final float SCALE = 0.6f;
     private BurgerGenerator mBurgerGenerator;
     private Burger mTargetBurger;
     private Burger mBurger;
