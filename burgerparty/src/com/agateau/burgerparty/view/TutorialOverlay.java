@@ -164,6 +164,12 @@ public class TutorialOverlay extends Overlay {
                 mTutorialController.updateIndicator();
             }
         }));
+        float doneTime = 12;
+        mTimeLineAction.addAction(doneTime, mBubble, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addAction(doneTime + 0.5f, mCustomer, Actions.moveBy(300, 0, 0.3f));
+        mTimeLineAction.addAction(doneTime + 0.5f, mCustomer, Actions.alpha(0, 0.3f));
+        mTimeLineAction.addAction(doneTime + 0.5f, mMealView, Actions.moveBy(300, 0, 0.3f));
+        mTimeLineAction.addAction(doneTime + 0.5f, mMealView, Actions.alpha(0, 0.3f));
         addAction(mTimeLineAction);
     }
 }
