@@ -1,12 +1,10 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.Overlay;
-import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -29,42 +27,51 @@ public class PauseOverlay extends Overlay {
         super(atlas);
         mWorldView = worldView;
         mGame = game;
+        setupWidgets();
+    }
 
-        String txt = tr("Level %d-%d", game.getLevelWorldIndex() + 1, game.getLevelIndex() + 1) + "\n";
-        int highScore = game.getUniverse().getHighScore(game.getLevelWorldIndex(), game.getLevelIndex());
+    private void setupWidgets() {
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mGame.getAssets());
+        builder.build(FileUtils.assets("screens/pauseoverlay.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        root.setFillParent(true);
+        addActor(root);
+
+        String txt = tr("Level %d-%d", mGame.getLevelWorldIndex() + 1, mGame.getLevelIndex() + 1) + "\n";
+        int highScore = mGame.getUniverse().getHighScore(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
         if (highScore > 0) {
             txt += tr("High score: %d", highScore);
         } else {
             txt += tr("No high score yet");
         }
-        Label levelLabel = new Label(txt, skin);
+        Label levelLabel = builder.getActor("levelLabel");
         levelLabel.setAlignment(Align.center, Align.center);
+        levelLabel.setText(txt);
 
-        Label pausedLabel = new Label(tr("Paused"), skin);
+        Label pausedLabel = builder.getActor("pausedLabel");
+        pausedLabel.setAlignment(Align.center, Align.center);
+        pausedLabel.setText(tr("Paused"));
 
-        ImageButton resumeButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-play");
-        resumeButton.addListener(new ChangeListener() {
+        builder.getActor("resumeButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mWorldView.resume();
             }
         });
 
-        ImageButton restartButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-restart");
-        restartButton.addListener(new ChangeListener() {
+        builder.getActor("restartButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.getAdController().onLevelRestarted();
                 mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
             }
         });
 
-        ImageButton selectLevelButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-levels");
-        selectLevelButton.addListener(new ChangeListener() {
+        builder.getActor("selectLevelButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.showLevelListScreen(mGame.getLevelWorldIndex());
             }
         });
 
-        mMuteButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-sound-on");
+        mMuteButton = builder.getActor("muteButton");
         mMuteButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 MusicController controller = mGame.getMusicController();
@@ -74,21 +81,8 @@ public class PauseOverlay extends Overlay {
         });
         updateMuteButton();
 
-        ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
-        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, game);
-
-        AnchorGroup group = new AnchorGroup();
-        addActor(group);
-        group.setFillParent(true);
-        group.setSpacing(UiUtils.SPACING);
-
-        group.addRule(levelLabel, Anchor.TOP_CENTER, this, Anchor.TOP_CENTER);
-        group.addRule(resumeButton, Anchor.CENTER, this, Anchor.CENTER);
-        group.addRule(pausedLabel, Anchor.BOTTOM_CENTER, resumeButton, Anchor.TOP_CENTER, 0, 1);
-        group.addRule(restartButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_CENTER, -0.5f, 1);
-        group.addRule(selectLevelButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_CENTER, 0.5f, 1);
-        group.addRule(mMuteButton, Anchor.BOTTOM_LEFT, this, Anchor.BOTTOM_LEFT, 0.5f, 1);
-        group.addRule(achievementsButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_RIGHT, -1, 1);
+        ImageButton achievementsButton = builder.getActor("achievementsButton");
+        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, mGame);
     }
 
     @Override
