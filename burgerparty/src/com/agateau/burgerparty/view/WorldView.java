@@ -282,14 +282,16 @@ public class WorldView extends AbstractWorldView {
         if (txt.contentEquals(mTimerDisplay.getText())) {
             return;
         }
-        if (total > 20) {
+        if (total > 10) {
             mTimerDisplay.setColor(Color.WHITE);
-        } else if (total > 10) {
-            mTick1.play();
+        } else if (total > 5) {
+            // 10..6
+            mTick1.play(0.5f);
             flashTimerDisplay();
         } else if (total > 0) {
-            mTick1.play(0.5f);
-            mTick2.play();
+            // 5..1
+            mTick1.play();
+            //mTick2.play();
             flashTimerDisplay();
         }
         mTimerDisplay.setText(txt);
