@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
@@ -45,11 +44,9 @@ public class PauseOverlay extends Overlay {
             txt += tr("No high score yet");
         }
         Label levelLabel = builder.getActor("levelLabel");
-        levelLabel.setAlignment(Align.center, Align.center);
         levelLabel.setText(txt);
 
         Label pausedLabel = builder.getActor("pausedLabel");
-        pausedLabel.setAlignment(Align.center, Align.center);
         pausedLabel.setText(tr("Paused"));
 
         builder.getActor("resumeButton").addListener(new ChangeListener() {

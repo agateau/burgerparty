@@ -1,14 +1,20 @@
 <?xml version="1.0"?>
 <gdxui>
     <AnchorGroup id="root" spacing="20">
-        <Label id="levelLabel" style="default" topCenter="root.topCenter 0 -3"></Label>
+        <Label id="levelLabel"
+            style="default"
+            align="center"
+            topCenter="root.topCenter 0 -3"></Label>
 
-        <Label id="pausedLabel" style="default" topCenter="levelLabel.bottomCenter 0 -3.5"></Label>
+        <Label id="pausedLabel"
+            style="default"
+            align="center"
+            topCenter="levelLabel.bottomCenter 0 -3.5"></Label>
 
         <ImageButton id="resumeButton"
             style="round-button-big"
             imageName="ui/icon-play-big"
-            center="root.center 0 -1"/>
+            center="root.center 0 -1.5"/>
 
         <ImageButton id="selectLevelButton"
             style="round-button"

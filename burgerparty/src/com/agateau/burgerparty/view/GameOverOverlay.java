@@ -1,11 +1,9 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
-import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Overlay;
-import com.agateau.burgerparty.utils.UiUtils;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -18,43 +16,37 @@ import static com.greenyetilab.linguaj.Translator.tr;
 
 public class GameOverOverlay extends Overlay {
     private BurgerPartyGame mGame;
-    @SuppressWarnings("unused")
-    private AchievementsButtonController mAchievementsButtonController;
 
     public GameOverOverlay(BurgerPartyGame game, TextureAtlas atlas, Skin skin) {
         super(atlas);
         mGame = game;
+        setupWidgets();
+        mGame.getAssets().getSoundAtlas().findSound("gameover").play();
+    }
 
-        Label label = new Label(tr("Game Over"), skin);
+    private void setupWidgets() {
+        BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mGame.getAssets());
+        builder.build(FileUtils.assets("screens/gameoveroverlay.gdxui"));
+        AnchorGroup root = builder.getActor("root");
+        root.setFillParent(true);
+        addActor(root);
 
-        ImageButton tryAgainButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-restart");
+        Label label = builder.getActor("gameOverLabel");
+        label.setText(tr("Game Over"));
+
+        ImageButton tryAgainButton = builder.getActor("tryAgainButton");
         tryAgainButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
             }
         });
 
-        ImageButton selectLevelButton = Kernel.createRoundButton(mGame.getAssets(), "ui/icon-levels");
+        ImageButton selectLevelButton = builder.getActor("selectLevelButton");
         selectLevelButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mGame.showLevelListScreen(mGame.getLevelWorldIndex());
             }
         });
-
-        ImageButton achievementsButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-achievement");
-        mAchievementsButtonController = new AchievementsButtonController(achievementsButton, game);
-
-        AnchorGroup group = new AnchorGroup();
-        addActor(group);
-        group.setFillParent(true);
-        group.setSpacing(UiUtils.SPACING);
-
-        group.addRule(label, Anchor.BOTTOM_CENTER, this, Anchor.CENTER, 0, 2);
-        group.addRule(tryAgainButton, Anchor.TOP_CENTER, this, Anchor.CENTER);
-        group.addRule(selectLevelButton, Anchor.TOP_CENTER, tryAgainButton, Anchor.BOTTOM_CENTER, 0, -1);
-        group.addRule(achievementsButton, Anchor.BOTTOM_RIGHT, this, Anchor.BOTTOM_RIGHT, -1, 1);
-
-        game.getAssets().getSoundAtlas().findSound("gameover").play();
     }
 
     @Override

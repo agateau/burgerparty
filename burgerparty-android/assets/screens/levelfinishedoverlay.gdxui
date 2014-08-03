@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <gdxui>
     <AnchorGroup id="root" spacing="20">
         <Label id="mainLabel"
@@ -16,20 +17,20 @@
                 bottomLeft="star1.bottomRight 1 0"/>
         </AnchorGroup>
 
-        <ImageButton id="nextButton"
-            style="round-button"
-            bottomCenter="root.bottomCenter 0 6"
-            imageName="ui/icon-next"/>
-
         <ImageButton id="restartButton"
             style="round-button"
-            bottomRight="root.bottomCenter -0.5 1"
-            imageName="ui/icon-restart"/>
+            imageName="ui/icon-restart"
+            center="root.center 0 -5"/>
 
         <ImageButton id="selectLevelButton"
             style="round-button"
-            bottomLeft="root.bottomCenter 0.5 1"
-            imageName="ui/icon-levels"/>
+            imageName="ui/icon-levels"
+            centerRight="restartButton.centerLeft -1 0"/>
+
+        <ImageButton id="nextButton"
+            style="round-button"
+            imageName="ui/icon-next"
+            centerLeft="restartButton.centerRight 1 0"/>
 
         <ImageButton id="achievementsButton"
             style="round-button"

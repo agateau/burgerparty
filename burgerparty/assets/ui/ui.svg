@@ -23,15 +23,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="133.12355"
-     inkscape:cy="363.56001"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="53.832359"
+     inkscape:cy="590.81655"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1563"
      inkscape:window-height="880"
-     inkscape:window-x="35"
+     inkscape:window-x="34"
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
      showguides="false"
@@ -10292,7 +10292,7 @@
        inkscape:export-ydpi="90" />
     <rect
        ry="6.5276786e-17"
-       y="554"
+       y="584"
        x="12"
        height="80"
        width="80"
@@ -10344,8 +10344,8 @@
        id="rect5612"
        width="40"
        height="40"
-       x="20"
-       y="652"
+       x="12"
+       y="672"
        ry="6.5276786e-17"
        inkscape:export-filename="icon-level-video-play.png"
        inkscape:export-xdpi="90"
@@ -10414,6 +10414,50 @@
        width="40"
        id="rect5779"
        style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="icon-sound-on.png"
+       ry="3.2638393e-17"
+       y="524"
+       x="12"
+       height="40"
+       width="40"
+       id="rect5808"
+       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="icon-restart-big.png"
+       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect5810"
+       width="80"
+       height="80"
+       x="100"
+       y="584"
+       ry="6.5276786e-17" />
+    <rect
+       ry="6.5276786e-17"
+       y="584"
+       x="188"
+       height="80"
+       width="80"
+       id="rect5814"
+       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       inkscape:export-filename="icon-next-big.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       ry="6.5276786e-17"
+       y="672"
+       x="100"
+       height="80"
+       width="80"
+       id="rect5824"
+       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       inkscape:export-filename="icon-restart-big.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -16588,7 +16632,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-restart.png"
        id="use4905"
-       d="m 368,511 -5.21875,5.21875 C 359.93537,513.6141 356.16194,512 352,512 c -8.83656,0 -16,7.16344 -16,16 0,8.83656 7.16344,16 16,16 4.41828,0 8.41707,-1.79207 11.3125,-4.6875 l -5.65625,-5.65625 C 356.20853,535.10397 354.20914,536 352,536 c -4.41828,0 -8,-3.58172 -8,-8 0,-4.41828 3.58172,-8 8,-8 1.95687,0 3.76619,0.67694 5.15625,1.84375 L 351,528 l 17,0 0,-17 z"
+       d="m 48,528 -5.21875,5.21875 C 39.93537,530.6141 36.16194,529 32,529 c -8.83656,0 -16,7.16344 -16,16 0,8.83656 7.16344,16 16,16 4.41828,0 8.41707,-1.79207 11.3125,-4.6875 l -5.65625,-5.65625 C 36.20853,552.10397 34.20914,553 32,553 c -4.41828,0 -8,-3.58172 -8,-8 0,-4.41828 3.58172,-8 8,-8 1.95687,0 3.76619,0.67694 5.15625,1.84375 L 31,545 l 17,0 0,-17 z"
        style="fill:#ffffff;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <path
        inkscape:connector-curvature="0"
@@ -17035,7 +17079,8 @@
        id="g6557"
        inkscape:export-filename="world-button.9.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       inkscape:export-ydpi="90"
+       transform="translate(0,90)">
       <rect
          y="621.5"
          x="236.5"
@@ -17087,14 +17132,14 @@
          style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
     <rect
-       y="630"
+       y="720"
        x="300"
        height="4"
        width="0.99999976"
        id="rect6686"
        style="color:#000000;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <rect
-       transform="matrix(1.3579295,0,0,1.3232313,-107.55782,-185.657)"
+       transform="matrix(1.3579295,0,0,1.3232313,-107.55782,-95.657)"
        style="opacity:0.63999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6668-5);enable-background:accumulate"
        id="rect6582-9"
        width="1"
@@ -17108,7 +17153,7 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path5689"
-       d="m 32,564 0,60 46,-30 z"
+       d="m 32,594 0,60 46,-30 z"
        style="fill:#ffffff;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <g
        transform="matrix(1.7108752,0,0,1.7108752,-218.22809,-110.47219)"
@@ -19243,7 +19288,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-level-video-play.png"
        style="fill:#ffffff;stroke:#035267;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 29.5,660.5 0,23 21,-11.5 z"
+       d="m 21.5,680.5 0,23 21,-11.5 z"
        id="path8186"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
@@ -21414,6 +21459,47 @@
          d="m 213.00001,911.49999 c 3.16713,-0.0196 5.49697,0.6049 6.5,2.25 l 28.75,40 c 1.91859,2.93418 4.48135,1.99423 5.10355,0.55806 l 3.64645,-8.05806 9.5026,0.75 2.4974,-3.25 4.47963,-2.86091 c 5.79869,-0.24458 7.37194,1.27144 10.64169,2.08058 2.15653,-2.84501 4.97243,-3.6258 8.39385,-3.33318 3.79454,-0.0342 12.40814,8.69024 15.72228,18.73743 l 9.79549,27.80546 7.4519,18.03033 21.51517,-15.20971 -67.25001,-100.50001 -67.5,1.5 z"
          style="color:#000000;fill:#ffaaaa;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 173 590 L 159.90625 603.09375 C 154.29781 597.48175 146.5604 594 138 594 C 120.87917 594 107 607.87917 107 625 C 107 642.12083 120.87917 656 138 656 C 147.24692 656 155.53898 651.95257 161.21875 645.53125 L 152.21875 637.5625 C 148.73745 641.50213 143.67076 644 138 644 C 127.50659 644 119 635.49341 119 625 C 119 614.50659 127.50659 606 138 606 C 143.23963 606 147.96855 608.13336 151.40625 611.5625 L 137.9375 625.03125 L 173 625.03125 L 173 590 z "
+       id="use5806" />
+    <g
+       transform="matrix(2,0,0,2,71,-272)"
+       id="g5816">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="icon-play.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path5818"
+         d="m 76,432 0,32 20,-16 z"
+         style="fill:#ffffff;stroke:#009100;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         style="fill:#ffffff;stroke:#009100;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 64,432 0,32 20,-16 z"
+         id="path5820"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccc"
+         inkscape:export-filename="icon-play.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <rect
+         style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect5822"
+         width="8.5"
+         height="14"
+         x="76.5"
+         y="441" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="icon-restart.png"
+       id="path5826"
+       d="m 173,678.00002 -10.76367,10.75379 C 156.3667,683.38665 148.584,680.06063 140,680.06063 c -18.2254,0 -33,14.76103 -33,32.96969 0,18.20867 14.7746,32.9697 33,32.9697 9.1127,0 17.36021,-3.69275 23.33203,-9.65909 l -11.66601,-11.6553 c -2.98593,2.98318 -7.10967,4.82954 -11.66602,4.82954 -9.1127,0 -16.5,-7.38051 -16.5,-16.48485 0,-9.10433 7.3873,-16.48484 16.5,-16.48484 4.03604,0 7.76777,1.3949 10.63477,3.79924 l -12.69727,12.6856 35.0625,0 0,-35.0303 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <g
      inkscape:groupmode="layer"

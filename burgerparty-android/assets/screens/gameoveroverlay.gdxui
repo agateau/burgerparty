@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<gdxui>
+    <AnchorGroup id="root" spacing="20">
+        <Label id="gameOverLabel"
+            style="default"
+            align="center"
+            topCenter="root.topCenter 0 -3"></Label>
+
+        <ImageButton id="tryAgainButton"
+            style="round-button-big"
+            imageName="ui/icon-restart-big"
+            center="root.center 0 -1"/>
+
+        <ImageButton id="selectLevelButton"
+            style="round-button"
+            imageName="ui/icon-levels"
+            bottomCenter="root.bottomCenter 0 1"/>
+    </AnchorGroup>
+</gdxui>
