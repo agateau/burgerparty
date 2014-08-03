@@ -924,6 +924,14 @@ ui/finger-circle
   orig: 40, 40
   offset: 0, 0
   index: -1
+ui/frame
+  rotate: false
+  xy: 314, 2
+  size: 26, 26
+  split: 7, 7, 7, 9
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
 ui/icon-achievement
   rotate: false
   xy: 644, 898

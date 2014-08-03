@@ -15,8 +15,10 @@ import com.agateau.burgerparty.utils.Overlay;
 import com.agateau.burgerparty.utils.TimeLineAction;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -59,7 +61,13 @@ public class TutorialOverlay extends Overlay {
             }
         });
 
+        NinePatch framePatch = mAtlas.createPatch("ui/frame");
+        Image frameImage = new Image(framePatch);
         mBgImage = new Image(mAtlas.findRegion("tutorial/bg"));
+        frameImage.setSize(
+            MathUtils.ceil(mBgImage.getWidth() * SCALE) + framePatch.getPadLeft() + framePatch.getPadRight(),
+            MathUtils.ceil(mBgImage.getHeight() * SCALE) + framePatch.getPadTop() + framePatch.getPadBottom()
+            );
         setupEmptyInventoryView();
         setupInventoryView();
         setupTargetMealView();
@@ -76,8 +84,9 @@ public class TutorialOverlay extends Overlay {
         group.setFillParent(true);
         group.setSpacing(UiUtils.SPACING);
 
-        group.addRule(mTutorialGroup, Anchor.CENTER, this, Anchor.CENTER, 0, 0);
-        group.addRule(skipButton, Anchor.CENTER_RIGHT, mTutorialGroup, Anchor.BOTTOM_RIGHT, -1, 0);
+        group.addRule(frameImage, Anchor.CENTER, group, Anchor.CENTER, 0, 0);
+        group.addRule(mTutorialGroup, Anchor.CENTER, frameImage, Anchor.CENTER, 0, 0);
+        group.addRule(skipButton, Anchor.CENTER_RIGHT, frameImage, Anchor.BOTTOM_RIGHT, -1, 0);
 
         mTutorialGroup.addRule(mBgImage, Anchor.BOTTOM_LEFT, mTutorialGroup, Anchor.BOTTOM_LEFT);
         mTutorialGroup.addRule(mCustomer, Anchor.BOTTOM_CENTER, mTutorialGroup, Anchor.TOP_CENTER, 0, -222 * SCALE);
