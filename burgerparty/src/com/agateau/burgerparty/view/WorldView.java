@@ -49,7 +49,6 @@ public class WorldView extends AbstractWorldView {
     private TextureAtlas mAtlas;
     private Skin mSkin;
     private Sound mTick1;
-    private Sound mTick2;
     private MealView mMealView;
     private MealView mDoneMealView;
     private MealViewScrollPane mTargetMealScrollPane;
@@ -67,7 +66,6 @@ public class WorldView extends AbstractWorldView {
     public WorldView(GameScreen screen, BurgerPartyGame game, World world) {
         super(game.getAssets(), world.getLevelWorld().getDirName());
         mTick1 = game.getAssets().getSoundAtlas().findSound("tick1");
-        mTick2 = game.getAssets().getSoundAtlas().findSound("tick2");
         setFillParent(true);
         setSpacing(UiUtils.SPACING);
         mGameScreen = screen;
@@ -291,7 +289,6 @@ public class WorldView extends AbstractWorldView {
         } else if (total > 0) {
             // 5..1
             mTick1.play();
-            //mTick2.play();
             flashTimerDisplay();
         }
         mTimerDisplay.setText(txt);
