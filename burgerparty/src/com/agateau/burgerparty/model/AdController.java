@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class AdController {
     private static int START_COUNT_BEFORE_ADS = 3;
-    private static long MINUTES_BETWEEN_ADS = 5;
+    private static long MINUTES_BETWEEN_ADS = 3;
 
     private final AdSystem mAdSystem;
     private final Preferences mPrefs;
@@ -60,8 +60,8 @@ public class AdController {
         long now = TimeUtils.millis();
         long delta = (now - adDisplayTime) / (60 * 1000);
         boolean hasAd = mAdSystem.isAdAvailable();
-        NLog.i("adDisplayTime=%d, now=%d, delta=%d, hasAd=%b", adDisplayTime, now, delta, hasAd);
-        if (delta > MINUTES_BETWEEN_ADS && hasAd) {
+        NLog.i("adDisplayTime=%d, now=%d, delta=%dmn, hasAd=%b", adDisplayTime, now, delta, hasAd);
+        if (delta >= MINUTES_BETWEEN_ADS && hasAd) {
             NLog.d("Showing ad");
             mPrefs.putLong("adDisplayTime", now);
             mPrefs.flush();
