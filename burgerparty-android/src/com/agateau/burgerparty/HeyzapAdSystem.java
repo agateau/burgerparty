@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 
 public class HeyzapAdSystem implements AdSystem {
+    private static final String PUBLISHER_ID = "8e60c0ef3a2232935daf2006bb5367f6";
     private static final int PRELOAD_MSG = 0;
     private static final int SHOW_MSG = 1;
 
@@ -106,11 +107,11 @@ public class HeyzapAdSystem implements AdSystem {
         mHandler = new AdHandler();
         mHandler.mController = this;
 
-        HeyzapAds.start(application);
+        HeyzapAds.start(PUBLISHER_ID, application);
         InterstitialAd.fetch();
 
         StatusListener listener = new StatusListener();
-        HeyzapAds.setOnStatusListener(listener);
+        InterstitialAd.setOnStatusListener(listener);
     }
 
     @Override
