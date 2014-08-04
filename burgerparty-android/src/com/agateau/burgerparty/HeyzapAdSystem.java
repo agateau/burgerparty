@@ -28,34 +28,34 @@ public class HeyzapAdSystem implements AdSystem {
 
         @Override
         public void onHide(String tag) {
-            NLog.i("onHide: tag=%s", tag);
+            NLog.i("tag=%s", tag);
             mApplication.postRunnable(mOnFinishedRunnable);
         }
 
         @Override
         public void onFailedToShow(String tag) {
-            NLog.i("onFailedToSHow: tag=%s", tag);
+            NLog.i("tag=%s", tag);
             mApplication.postRunnable(mOnFinishedRunnable);
         }
 
         @Override
         public void onAvailable(String tag) {
-            NLog.i("onAvailable: tag=%s", tag);
+            NLog.i("tag=%s", tag);
         }
 
         @Override
         public void onFailedToFetch(String tag) {
-            NLog.i("onFailedToFetch: tag=%s", tag);
+            NLog.i("tag=%s", tag);
         }
 
         @Override
         public void onAudioStarted() {
-            NLog.i("onAudioStarted");
+            NLog.i("");
         }
 
         @Override
         public void onAudioFinished() {
-            NLog.i("onAudioFinished");
+            NLog.i("");
         }
     };
 
@@ -73,16 +73,16 @@ public class HeyzapAdSystem implements AdSystem {
         }
 
         void preload() {
-            NLog.i("preload");
+            NLog.i("");
             InterstitialAd.fetch();
         }
 
         void show() {
             if (InterstitialAd.isAvailable()) {
-                NLog.i("show: ad is available");
+                NLog.i("ad is available");
                 InterstitialAd.display(mController.mApplication);
             } else {
-                NLog.i("show: ad is not available");
+                NLog.i("ad is not available");
             }
         }
 
