@@ -172,6 +172,7 @@ public class LevelFinishedOverlay extends Overlay {
                     createDoneAction()
                 )
             );
+            mImage.addAction(mGame.getAssets().getSoundAtlas().createPlayAction("perfect"));
         }
         @Override
         protected void abort() {

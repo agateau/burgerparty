@@ -51,6 +51,7 @@ public class Assets {
             "jet.wav",
             "meal-done.wav",
             "new-item-unlocked.ogg",
+            "perfect.ogg",
             "sauce.wav",
             "splat.wav",
             "star.wav",
