@@ -48,6 +48,7 @@ public class Assets {
             "error.wav",
             "finished.wav",
             "gameover.ogg",
+            "goodbye.ogg",
             "jet.wav",
             "meal-done.wav",
             "new-item-unlocked.ogg",
@@ -58,7 +59,8 @@ public class Assets {
             "tick1.wav",
             "tick2.wav",
             "time-bonus.wav",
-            "trash.wav"
+            "trash.wav",
+            "wind.ogg",
         };
         mSoundAtlas.preload(names);
 

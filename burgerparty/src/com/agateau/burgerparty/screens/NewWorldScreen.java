@@ -6,6 +6,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.UiBuilder;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -66,9 +67,19 @@ public class NewWorldScreen extends BurgerPartyScreen {
                 throw new RuntimeException("Unknown view type '" + type + "'");
             }
             assert(view != null);
+            XmlReader.Element soundElement = viewElement.getChildByName("sound");
+            if (soundElement != null) {
+                view.addAction(createSoundAction(soundElement));
+            }
             mViews.add(createContainerForView(view, width, height));
         }
         goToNextView();
+    }
+
+    private Action createSoundAction(XmlReader.Element soundElement) {
+        String soundName = soundElement.getAttribute("name");
+        Action action = getGame().getAssets().getSoundAtlas().createPlayAction(soundName);
+        return Actions.delay(ANIM_DURATION, action);
     }
 
     private Actor createFlyingView(XmlReader.Element element) {
