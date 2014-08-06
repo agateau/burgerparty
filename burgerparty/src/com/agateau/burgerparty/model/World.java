@@ -12,6 +12,7 @@ import com.agateau.burgerparty.utils.Signal1;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import static com.greenyetilab.linguaj.Translator.tr;
 
@@ -76,9 +77,8 @@ public class World {
     private int mScore = 0;
     private int mCoinCount = 0;
     private boolean mIsPaused = false;
-
-
     private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
+    private long mLastUpdateTime;
 
     public World(BurgerPartyGameStats gameStats, Level level) {
         NLog.d("");
@@ -193,13 +193,25 @@ public class World {
     public void start() {
         mRemainingSeconds = mLevel.definition.duration;
         generateTarget();
+        mLastUpdateTime = TimeUtils.nanoTime();
         mGameStats.onLevelStarted(this);
     }
 
-    public void act(float delta) {
+    /**
+     * Decrease remaining seconds. We measure the delta using
+     * TimeUtils.nanoTime() instead of accepting a delta parameter coming from
+     * WorldView.act() because the delta parameter takes into account the time
+     * spent showing an ad, causing the level after the ad to start with a
+     * shortened time or even going directly to game over state.
+     */
+    public void updateRemainingSeconds() {
         if (mIsPaused) {
             return;
         }
+        final float NS = 1000 * 1000 * 1000;
+        long oldTime = mLastUpdateTime;
+        mLastUpdateTime = TimeUtils.nanoTime();
+        float delta = (mLastUpdateTime - oldTime) / NS;
         mRemainingSeconds -= delta;
         if (mRemainingSeconds <= 0) {
             mIsPaused = true;
@@ -214,6 +226,7 @@ public class World {
 
     public void resume() {
         mIsPaused = false;
+        mLastUpdateTime = TimeUtils.nanoTime();
         mCustomers.get(mActiveCustomerIndex).resume();
     }
 

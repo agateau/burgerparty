@@ -179,7 +179,7 @@ public class WorldView extends AbstractWorldView {
     @Override
     public void act(float delta) {
         super.act(delta);
-        mWorld.act(delta);
+        mWorld.updateRemainingSeconds();
         updateTimerDisplay();
     }
 
