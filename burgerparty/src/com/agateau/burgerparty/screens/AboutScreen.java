@@ -88,7 +88,6 @@ public class AboutScreen extends BurgerPartyScreen {
 
         addHeading(tr("Sounds"));
         addText("Clara Gâteau");
-        addText("Antonin Gâteau");
         addText("AlienXXX - www.freesound.org/people/AlienXXX");
         addText("artisticdude - opengameart.org/content/inventory-sound-effects");
         addText("Autistic Lucario - www.freesound.org/people/Autistic%20Lucario");
