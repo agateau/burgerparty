@@ -49,8 +49,4 @@ public class LevelWorld {
     public int getIndex() {
         return mIndex;
     }
-
-    public int getMiniGameStarCount() {
-        return (mIndex + 1) * 18;
-    }
 }
