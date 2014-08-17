@@ -6,12 +6,12 @@
     <customer type="ninjas"/>
     <customer type="boys"/>
     <customer type="ninjas"/>
-    <customer type="ninjas"/>
     <customer type="japan-girls"/>
+    <customer type="ninjas"/>
     <customer type="girls"/>
     <customer type="ninjas"/>
     <customer type="japan-girls"/>
     <customer type="ninjas"/>
-    <customer type="ninjas"/>
+    <customer type="dragon" burgerSize="9"/>
   </customers>
 </level>

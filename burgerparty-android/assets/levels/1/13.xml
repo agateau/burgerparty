@@ -7,6 +7,6 @@
     <customer type="boys"/>
     <customer type="boys"/>
     <customer type="girls"/>
-    <customer type="boys"/>
+    <customer type="wrestler" burgerSize="7"/>
   </customers>
 </level>
