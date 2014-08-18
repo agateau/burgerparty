@@ -18,23 +18,28 @@ public class ProgressIOTest {
         XmlReader.Element root = TestUtils.parseXml(
                                      "<progress>"
                                      + "<item world='1' level='1' score='10000'/>"
-                                     + "<item world='2' level='2' score='20000'/>"
+                                     + "<item world='1' level='2' score='14000'/>"
+                                     + "<item world='1' level='3' score='13000'/>"
+                                     + "<item world='2' level='1' score='20000'/>"
                                      + "</progress>"
                                  );
         ProgressIO progressIO = new ProgressIO(worlds);
         progressIO.load(root);
+        // 1-1
         assertEquals(10000, worlds.get(0).getLevel(0).getScore());
         assertEquals(1, worlds.get(0).getLevel(0).getStarCount());
-
         // 1-2
         assertFalse(worlds.get(0).getLevel(1).isLocked());
         // 1-3
-        assertTrue(worlds.get(0).getLevel(2).isLocked());
+        assertFalse(worlds.get(0).getLevel(2).isLocked());
         // 2-1
-        assertTrue(worlds.get(1).getLevel(0).isLocked());
-
-        assertEquals(20000, worlds.get(1).getLevel(1).getScore());
-        assertEquals(2, worlds.get(1).getLevel(1).getStarCount());
+        assertFalse(worlds.get(1).getLevel(0).isLocked());
+        assertEquals(20000, worlds.get(1).getLevel(0).getScore());
+        assertEquals(2, worlds.get(1).getLevel(0).getStarCount());
+        // 2-2
+        assertFalse(worlds.get(1).getLevel(1).isLocked());
+        // 2-3
+        assertTrue(worlds.get(1).getLevel(2).isLocked());
     }
 
     @Test
@@ -44,20 +49,24 @@ public class ProgressIOTest {
                                      "<progress version='2'>"
                                      + "    <levels>"
                                      + "        <level world='1' level='1' score='10000'/>"
-                                     + "        <level world='2' level='2' score='20000'/>"
+                                     + "        <level world='1' level='2' score='10000'/>"
+                                     + "        <level world='1' level='3' score='10000'/>"
+                                     + "        <level world='2' level='1' score='20000'/>"
                                      + "    </levels>"
                                      + "</progress>"
                                  );
         ProgressIO progressIO = new ProgressIO(worlds);
         progressIO.load(root);
+        // 1-1
         assertEquals(10000, worlds.get(0).getLevel(0).getScore());
         assertEquals(1, worlds.get(0).getLevel(0).getStarCount());
-
-        assertTrue(worlds.get(0).getLevel(1).isNew());
-        assertTrue(worlds.get(1).getLevel(0).isLocked());
-
-        assertEquals(20000, worlds.get(1).getLevel(1).getScore());
-        assertEquals(2, worlds.get(1).getLevel(1).getStarCount());
+        // 2-1
+        assertEquals(20000, worlds.get(1).getLevel(0).getScore());
+        assertEquals(2, worlds.get(1).getLevel(0).getStarCount());
+        // 2-2
+        assertTrue(worlds.get(1).getLevel(1).isNew());
+        // 2-3
+        assertTrue(worlds.get(1).getLevel(2).isLocked());
     }
 
     @Test
@@ -67,8 +76,9 @@ public class ProgressIOTest {
                                      "<progress version='3'>"
                                      + "    <levels>"
                                      + "        <level world='1' level='1' score='12' stars='2'/>"
+                                     + "        <level world='1' level='2' score='12' stars='2'/>"
+                                     + "        <level world='1' level='3' score='12' stars='2'/>"
                                      + "        <level world='2' level='1' score='24' stars='4'/>"
-                                     + "        <level world='2' level='2' score='24' stars='3'/>"
                                      + "    </levels>"
                                      + "</progress>"
                                  );
@@ -83,11 +93,13 @@ public class ProgressIOTest {
 
         // 1-2
         level = worlds.get(0).getLevel(1);
-        assertTrue(level.isNew());
+        assertFalse(level.isNew());
+        assertFalse(level.isLocked());
 
         // 1-3
         level = worlds.get(0).getLevel(2);
-        assertTrue(level.isLocked());
+        assertFalse(level.isNew());
+        assertFalse(level.isLocked());
 
         // 2-1
         level = worlds.get(1).getLevel(0);
@@ -97,10 +109,37 @@ public class ProgressIOTest {
 
         // 2-2
         level = worlds.get(1).getLevel(1);
-        assertEquals(24, level.getScore());
-        assertEquals(3, level.getStarCount());
-        assertFalse(level.isPerfect());
+        assertTrue(level.isNew());
+
+        // 2-3
+        level = worlds.get(1).getLevel(2);
+        assertTrue(level.isLocked());
     }
+
+    @Test
+    public void testLevelsBeforeLastUnlockedAreUnlocked() {
+        Array<LevelWorld> worlds = createTestWorlds();
+        XmlReader.Element root = TestUtils.parseXml(
+                                     "<progress version='3'>"
+                                     + "    <levels>"
+                                     + "        <level world='1' level='1' score='12' stars='2'/>"
+                                     + "        <level world='2' level='1' score='24' stars='4'/>"
+                                     + "    </levels>"
+                                     + "</progress>"
+                                 );
+        ProgressIO progressIO = new ProgressIO(worlds);
+        progressIO.load(root);
+        Level level;
+
+        // 1-2
+        level = worlds.get(0).getLevel(1);
+        assertFalse(level.isLocked());
+
+        // 1-3
+        level = worlds.get(0).getLevel(2);
+        assertFalse(level.isLocked());
+    }
+
     @Test
     public void testUnlockNewLevels() {
         Array<LevelWorld> worlds = createTestWorlds();

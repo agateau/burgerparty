@@ -3,10 +3,11 @@
   <customers>
     <customer type="boys"/>
     <customer type="girls"/>
+    <customer type="wrestler" burgerSize="7"/>
     <customer type="girls"/>
     <customer type="boys"/>
+    <customer type="wrestler" burgerSize="9"/>
     <customer type="boys"/>
-    <customer type="girls"/>
-    <customer type="boys"/>
+    <customer type="wrestler" burgerSize="11"/>
   </customers>
 </level>

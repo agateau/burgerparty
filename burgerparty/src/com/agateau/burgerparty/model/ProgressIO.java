@@ -71,7 +71,31 @@ public class ProgressIO {
         } else {
             NLog.e("Don't know how to load progress version " + version + ". Did not load anything.");
         }
+        ensureLevelsBeforeLastUnlockedAreUnlocked();
         ensureNextLevelIsUnlocked();
+    }
+
+    // If a user played Burger Party in a version where the number of levels
+    // per world was 12 and unlocked level 2-1, when he starts a version
+    // where the number of levels per world is 15, levels 1-13, 1-14 and 1-15
+    // should be unlocked.
+    private void ensureLevelsBeforeLastUnlockedAreUnlocked() {
+        boolean foundLastUnlocked = false;
+        for (int worldIdx = mWorlds.size - 1; worldIdx >= 0; --worldIdx) {
+            LevelWorld world = mWorlds.get(worldIdx);
+            for (int idx = world.getLevelCount() - 1; idx >= 0; --idx) {
+                Level level = world.getLevel(idx);
+                if (foundLastUnlocked) {
+                    if (level.isLocked()) {
+                        level.unlock();
+                    }
+                } else {
+                    if (!level.isLocked()) {
+                        foundLastUnlocked = true;
+                    }
+                }
+            }
+        }
     }
 
     private void ensureNextLevelIsUnlocked() {

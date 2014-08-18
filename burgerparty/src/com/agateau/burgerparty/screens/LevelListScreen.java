@@ -10,7 +10,6 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RefreshHelper;
-import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -26,8 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class LevelListScreen extends BurgerPartyScreen {
-    private static final int COL_COUNT = 4;
-    private static final float CELL_SIZE = 130;
+    private static final int COL_COUNT = 5;
 
     private static final float SURPRISE_ROTATE_ANGLE = 5f;
     private static final float SURPRISE_ROTATE_DURATION = 0.8f;
@@ -69,7 +67,10 @@ public class LevelListScreen extends BurgerPartyScreen {
         @Override
         protected Actor createActorForElement(XmlReader.Element element) {
             if (element.getName().equals("LevelGrid")) {
-                return createLevelButtonGridGroup();
+                return createLevelButtonGridGroup(
+                    element.getFloatAttribute("cellSize"),
+                    element.getFloatAttribute("cellSpacing")
+                );
             } else if (element.getName().equals("LevelBaseButton")) {
                 return new LevelBaseButton(getGame().getAssets());
             } else {
@@ -103,14 +104,14 @@ public class LevelListScreen extends BurgerPartyScreen {
         }
     }
 
-    private GridGroup createLevelButtonGridGroup() {
+    private GridGroup createLevelButtonGridGroup(float cellSize, float cellSpacing) {
         GridGroup gridGroup = new GridGroup();
-        gridGroup.setSpacing(UiUtils.SPACING + 4);
+        gridGroup.setSpacing(cellSpacing);
         gridGroup.setColumnCount(COL_COUNT);
-        gridGroup.setCellSize(CELL_SIZE, CELL_SIZE);
+        gridGroup.setCellSize(cellSize, cellSize);
 
         for (Level level: mLevelWorld.getLevels()) {
-            gridGroup.addActor(createLevelButton(level));
+            gridGroup.addActor(createLevelButton(level, cellSize));
         }
         return gridGroup;
     }
@@ -159,7 +160,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
         public void createPerfectIndicator() {
             Image image = new Image(mAssets.getTextureAtlas().findRegion("ui/perfect"));
-            image.setScale(0.5f);
+            image.setScale(0.4f);
             mGroup.addRule(image, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, -14);
             image.setZIndex(0);
         }
@@ -180,9 +181,9 @@ public class LevelListScreen extends BurgerPartyScreen {
         public int levelIndex;
     }
 
-    private Actor createLevelButton(Level level) {
+    private Actor createLevelButton(Level level, float size) {
         LevelButton button = new LevelButton(getGame().getAssets(), mLevelWorld.getIndex(), level.getIndex());
-        button.setSize(CELL_SIZE, CELL_SIZE);
+        button.setSize(size, size);
 
         AnchorGroup group = new AnchorGroup();
         group.addRule(button, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT);

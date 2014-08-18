@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <level burgerSize="5">
   <customers>
-    <customer type="girls"/>
     <customer type="boys"/>
     <customer type="girls"/>
-    <customer type="wrestler" burgerSize="7"/>
+    <customer type="girls"/>
     <customer type="boys"/>
     <customer type="boys"/>
-    <customer type="wrestler" burgerSize="9"/>
+    <customer type="girls"/>
+    <customer type="boys"/>
   </customers>
 </level>

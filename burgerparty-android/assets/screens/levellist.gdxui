@@ -14,7 +14,9 @@
             />
 
         <LevelGrid id="levelGrid"
-            topCenter="root.topCenter 0 -1"
+            topCenter="root.topCenter 0 -0.5"
+            cellSize="110"
+            cellSpacing="24"
             />
     </AnchorGroup>
 </gdxui>
