@@ -76,6 +76,7 @@
     <item name="soda" row="1" column="0" type="drink" world="1" level="9"/>
     <item name="juice" row="1" column="1" type="drink" world="2" level="9"/>
     <item name="sundae" row="1" column="2" type="side-order" world="2" level="12"/>
+    <item name="sundae2" row="1" column="3" type="side-order" world="3" level="12"/>
   </generic>
   <world index="2">
     <item name="soda">
