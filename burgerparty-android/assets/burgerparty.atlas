@@ -260,9 +260,9 @@ mealitems/0/bottom
   index: -1
 mealitems/0/cheese
   rotate: false
-  xy: 478, 11
-  size: 223, 47
-  orig: 223, 47
+  xy: 478, 12
+  size: 223, 46
+  orig: 223, 46
   offset: 0, 0
   index: -1
 mealitems/0/salad-inventory
