@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,7 +9,11 @@ import com.badlogic.gdx.utils.Timer;
 
 public abstract class RefreshHelper {
     public RefreshHelper(Stage stage) {
-        stage.getRoot().addListener(new InputListener() {
+        this(stage.getRoot());
+    }
+
+    public RefreshHelper(Actor actor) {
+        actor.addListener(new InputListener() {
             @Override
             public boolean keyUp(InputEvent event, int keycode) {
                 if (keycode == Input.Keys.F5) {
