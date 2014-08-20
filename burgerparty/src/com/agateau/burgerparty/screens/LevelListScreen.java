@@ -67,10 +67,7 @@ public class LevelListScreen extends BurgerPartyScreen {
         @Override
         protected Actor createActorForElement(XmlReader.Element element) {
             if (element.getName().equals("LevelGrid")) {
-                return createLevelButtonGridGroup(
-                    element.getFloatAttribute("cellSize"),
-                    element.getFloatAttribute("cellSpacing")
-                );
+                return createLevelButtonGridGroup(element);
             } else if (element.getName().equals("LevelBaseButton")) {
                 return new LevelBaseButton(getGame().getAssets());
             } else {
@@ -104,14 +101,19 @@ public class LevelListScreen extends BurgerPartyScreen {
         }
     }
 
-    private GridGroup createLevelButtonGridGroup(float cellSize, float cellSpacing) {
+    private GridGroup createLevelButtonGridGroup(XmlReader.Element element) {
+        float cellSize = element.getFloatAttribute("cellSize");
+        float cellSpacing = element.getFloatAttribute("cellSpacing");
+        float starScale = element.getFloatAttribute("starScale");
+        float lockScale = element.getFloatAttribute("lockScale");
+
         GridGroup gridGroup = new GridGroup();
         gridGroup.setSpacing(cellSpacing);
         gridGroup.setColumnCount(COL_COUNT);
         gridGroup.setCellSize(cellSize, cellSize);
 
         for (Level level: mLevelWorld.getLevels()) {
-            gridGroup.addActor(createLevelButton(level, cellSize));
+            gridGroup.addActor(createLevelButton(level, cellSize, starScale, lockScale));
         }
         return gridGroup;
     }
@@ -145,7 +147,7 @@ public class LevelListScreen extends BurgerPartyScreen {
             mGroup.setFillParent(true);
         }
 
-        public void createStars(int stars) {
+        public void createStars(int stars, float starScale) {
             setText(String.valueOf(levelWorldIndex + 1) + "-" + String.valueOf(levelIndex + 1));
             HorizontalGroup starGroup = new HorizontalGroup();
             starGroup.setSpacing(4);
@@ -153,7 +155,7 @@ public class LevelListScreen extends BurgerPartyScreen {
                 Image image = new Image(n > stars ? mStarOff : mStarOn);
                 starGroup.addActor(image);
             }
-            starGroup.setScale(0.8f);
+            starGroup.setScale(starScale);
             starGroup.pack();
             mGroup.addRule(starGroup, Anchor.BOTTOM_CENTER, mGroup, Anchor.BOTTOM_CENTER, 0, 8);
         }
@@ -169,20 +171,24 @@ public class LevelListScreen extends BurgerPartyScreen {
         public void draw(SpriteBatch batch, float parentAlpha) {
             super.draw(batch, parentAlpha);
             if (isDisabled()) {
-                float posX = getX() + (getWidth() - mLock.getRegionWidth()) / 2;
-                float posY = getY() + (getHeight() - mLock.getRegionHeight()) / 2;
-                batch.draw(mLock, posX, posY);
+                float width = mLock.getRegionWidth();
+                float height= mLock.getRegionHeight();
+                float posX = getX() + (getWidth() - width * mLockScale) / 2;
+                float posY = getY() + (getHeight() - height * mLockScale) / 2;
+                batch.draw(mLock, posX, posY, 0, 0, width, height, mLockScale, mLockScale, 0);
             }
         }
 
         private AnchorGroup mGroup;
+        public float mLockScale;
 
         public int levelWorldIndex;
         public int levelIndex;
     }
 
-    private Actor createLevelButton(Level level, float size) {
+    private Actor createLevelButton(Level level, float size, float starScale, float lockScale) {
         LevelButton button = new LevelButton(getGame().getAssets(), mLevelWorld.getIndex(), level.getIndex());
+        button.mLockScale = lockScale;
         button.setSize(size, size);
 
         AnchorGroup group = new AnchorGroup();
@@ -190,7 +196,7 @@ public class LevelListScreen extends BurgerPartyScreen {
         if (level.isLocked()) {
             button.setDisabled(true);
         } else {
-            button.createStars(level.getStarCount());
+            button.createStars(level.getStarCount(), starScale);
             if (level.isPerfect()) {
                 button.createPerfectIndicator();
             }
@@ -212,7 +218,7 @@ public class LevelListScreen extends BurgerPartyScreen {
     private void createSurpriseImage(AnchorGroup group) {
         Image image = new Image(mSurpriseRegion);
         image.setOrigin(mSurpriseRegion.getRegionWidth() / 2, mSurpriseRegion.getRegionHeight() / 2);
-        group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, -2f, 2f);
+        group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, 2f, -2f);
         float variation = MathUtils.random(0.9f, 1.1f);
         image.addAction(
             Actions.forever(

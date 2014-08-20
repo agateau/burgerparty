@@ -5,18 +5,20 @@
             bottomLeft="root.bottomLeft 1 1"
             imageName="ui/icon-back"/>
 
+        <LevelGrid id="levelGrid"
+            topCenter="root.topCenter 0 -1"
+            cellSize="99"
+            cellSpacing="20"
+            starScale="0.6"
+            lockScale="0.5"
+            />
+
         <ImageButton id="cutSceneReplayButton"
             style="level-button"
-            topLeft="root.topLeft 1 -1"
+            topRight="levelGrid.topLeft -1 0"
             imageName="ui/icon-level-video-play"
             width="76"
             height="58"
-            />
-
-        <LevelGrid id="levelGrid"
-            topCenter="root.topCenter 0 -0.5"
-            cellSize="110"
-            cellSpacing="24"
             />
     </AnchorGroup>
 </gdxui>
