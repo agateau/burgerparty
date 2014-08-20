@@ -65,9 +65,13 @@ public class BurgerPartyGame extends Game {
 
         mMusicController = new MusicController(getPreferences());
         mAssets = new Assets(mMusicController);
-        MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
+        initMealItemDb();
         Gdx.input.setCatchBackKey(true);
         showLoadingScreen();
+    }
+
+    public void initMealItemDb() {
+        MealItemDb.getInstance().load(Gdx.files.internal("mealitems.xml"));
     }
 
     @Override

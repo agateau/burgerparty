@@ -59,6 +59,8 @@ public class MealItemDb {
     }
 
     public void load(XmlReader.Element root) {
+        mGenericMap.clear();
+        mWorldMaps.clear();
         loadGenericItems(root.getChildByName("generic"));
         for (XmlReader.Element element: root.getChildrenByName("world")) {
             loadWorldItems(element);
