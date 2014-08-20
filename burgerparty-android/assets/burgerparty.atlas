@@ -253,9 +253,9 @@ levels/3/preview
   index: -1
 mealitems/0/bottom
   rotate: false
-  xy: 2, 11
-  size: 244, 47
-  orig: 244, 47
+  xy: 2, 8
+  size: 244, 50
+  orig: 244, 50
   offset: 0, 0
   index: -1
 mealitems/0/cheese
