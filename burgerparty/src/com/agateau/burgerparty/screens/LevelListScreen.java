@@ -14,10 +14,10 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -27,7 +27,7 @@ import com.badlogic.gdx.utils.XmlReader;
 public class LevelListScreen extends BurgerPartyScreen {
     private static final int COL_COUNT = 5;
 
-    private static final float SURPRISE_ROTATE_ANGLE = 5f;
+    private static final float SURPRISE_ROTATE_ANGLE = 20f;
     private static final float SURPRISE_ROTATE_DURATION = 0.8f;
 
     private LevelWorld mLevelWorld;
@@ -215,18 +215,38 @@ public class LevelListScreen extends BurgerPartyScreen {
         return group;
     }
 
+    private static class PendulumAction extends TemporalAction {
+        private float mStart;
+        private float mAmplitude;
+
+        protected void begin () {
+            mStart = actor.getRotation();
+        }
+
+        protected void update (float percent) {
+            float angle = mAmplitude / 2 * MathUtils.sin(percent * MathUtils.PI) * MathUtils.sin(percent * MathUtils.PI2 * 5);
+            actor.setRotation(mStart + angle);
+        }
+
+        public void setAmplitude(float amplitude) {
+            mAmplitude = amplitude;
+        }
+    }
+
     private void createSurpriseImage(AnchorGroup group) {
         Image image = new Image(mSurpriseRegion);
-        image.setOrigin(mSurpriseRegion.getRegionWidth() / 2, mSurpriseRegion.getRegionHeight() / 2);
-        group.addRule(image, Anchor.BOTTOM_RIGHT, group, Anchor.BOTTOM_RIGHT, 2f, -2f);
+        image.setOrigin(mSurpriseRegion.getRegionWidth() / 2f, mSurpriseRegion.getRegionHeight() - 2f);
+        group.addRule(image, Anchor.TOP_RIGHT, group, Anchor.CENTER_RIGHT, -17 + image.getOriginX(), 0);
         float variation = MathUtils.random(0.9f, 1.1f);
+
+        PendulumAction pendulumAction = new PendulumAction();
+        pendulumAction.setAmplitude(SURPRISE_ROTATE_ANGLE);
+        pendulumAction.setDuration(SURPRISE_ROTATE_DURATION * variation * 10);
         image.addAction(
             Actions.forever(
                 Actions.sequence(
                     Actions.delay(MathUtils.random(1f, 5f)),
-                    Actions.rotateTo(SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine),
-                    Actions.rotateTo(-SURPRISE_ROTATE_ANGLE, SURPRISE_ROTATE_DURATION * variation, Interpolation.sine),
-                    Actions.rotateTo(0, SURPRISE_ROTATE_DURATION * variation / 2, Interpolation.sine)
+                    pendulumAction
                 )
             )
         );

@@ -1089,14 +1089,14 @@ mealitems/2/soda-inventory
   index: -1
 newworld/pin-2
   rotate: false
-  xy: 867, 379
+  xy: 964, 897
   size: 46, 43
   orig: 46, 43
   offset: 0, 0
   index: -1
 newworld/pin-3
   rotate: false
-  xy: 964, 897
+  xy: 959, 852
   size: 46, 43
   orig: 46, 43
   offset: 0, 0
@@ -1148,7 +1148,7 @@ ui/icon-button-big
   index: -1
 ui/icon-config
   rotate: false
-  xy: 959, 855
+  xy: 981, 208
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -1169,9 +1169,9 @@ ui/perfect
   index: -1
 ui/surprise
   rotate: false
-  xy: 981, 207
-  size: 36, 41
-  orig: 36, 41
+  xy: 867, 356
+  size: 33, 66
+  orig: 33, 66
   offset: 0, 0
   index: -1
 
