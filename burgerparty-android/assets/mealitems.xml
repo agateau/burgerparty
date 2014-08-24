@@ -17,7 +17,7 @@
                 end
                 ]]></anim>
     </item>
-    <item name="steak" row="0" column="1" type="burger" subType="middle-main" height="22" offset="0"/>
+    <item name="steak" row="0" column="1" type="burger" subType="middle-main" height="20" offset="0"/>
     <item name="tomato" row="0" column="2" type="burger" subType="middle-other" height="8" offset="-4"/>
     <item name="salad" row="0" column="3" type="burger" subType="middle-other" height="3" offset="-8"/>
     <item name="cheese" row="0" column="4" type="burger" subType="middle-other" height="4" offset="-19"/>
