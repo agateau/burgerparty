@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-13 12:38+0200\n"
+"POT-Creation-Date: 2014-08-25 14:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,49 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:30
+#: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:32
 msgid "1 remaining."
 msgid_plural "%# remaining."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:125
 msgid "New High Score!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:253
 msgid "Congratulations, you finished level %d-%d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:255
 msgid "Congratulations, you finished world %d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:258
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:257
 msgid "Congratulations, you finished the game!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:31
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:39
 msgid "Level %d-%d"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:34
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:42
 msgid "High score: %d"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:36
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:44
 msgid "No high score yet"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:41
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:50
 msgid "Paused"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:26
+#: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
 msgid "Game Over"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:342
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:349
 msgid "+%# sec"
 msgid_plural "+%# sec"
 msgstr[0] ""
@@ -164,11 +164,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:332
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:341
 msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:336
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:345
 msgid "Happy customer!"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Finish all levels of world %d with 3 stars."
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:116
+#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:117
 msgid "New item unlocked!"
 msgstr ""
 
@@ -193,7 +193,7 @@ msgid "Code & Design"
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
-msgid "Music"
+msgid "Musics"
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:75
@@ -204,6 +204,14 @@ msgstr ""
 msgid "Testers"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:87
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:85
+msgid "Fonts"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:89
+msgid "Sounds"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:102
 msgid "© 2013 - 2014 Green Yeti Lab"
 msgstr ""
