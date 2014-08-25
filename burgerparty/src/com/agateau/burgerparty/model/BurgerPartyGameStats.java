@@ -50,17 +50,17 @@ public class BurgerPartyGameStats {
         mGameStatManager.setFileHandle(FileUtils.getUserWritableFile("gamestats.xml"));
         mGameStatManager.load();
 
-        int count = 25;
+        int count = 50;
         CounterAchievement achievement = new CounterAchievement("burger-apprentice", tr("Burger Apprentice"), trn("ignore-n-burgers", "Serve %# burgers.", count));
         achievement.init(mealServedCount, count);
         manager.add(achievement);
 
-        count = 50;
+        count = 100;
         achievement = new CounterAchievement("burger-master", tr("Burger Master"), trn("ignore-n-burgers", "Serve %# burgers.", count));
         achievement.init(mealServedCount, count);
         manager.add(achievement);
 
-        count = 100;
+        count = 200;
         achievement = new CounterAchievement("burger-god", tr("Burger God"), trn("ignore-n-burgers", "Serve %# burgers.", count));
         achievement.init(mealServedCount, count);
         manager.add(achievement);
