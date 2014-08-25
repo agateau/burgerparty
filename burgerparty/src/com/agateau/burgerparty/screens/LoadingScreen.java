@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -31,6 +32,7 @@ public class LoadingScreen extends StageScreen {
 
     private void setupWidgets() {
         mLoadingTexture = new Texture(Gdx.files.internal("loading.png"));
+        mLoadingTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         AnchorGroup root = new AnchorGroup();
         getStage().addActor(root);
         root.setFillParent(true);
