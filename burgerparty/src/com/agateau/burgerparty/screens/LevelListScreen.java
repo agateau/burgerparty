@@ -245,8 +245,9 @@ public class LevelListScreen extends BurgerPartyScreen {
         image.addAction(
             Actions.forever(
                 Actions.sequence(
-                    Actions.delay(MathUtils.random(1f, 5f)),
-                    pendulumAction
+                    Actions.delay(MathUtils.random(0f, 2f)),
+                    pendulumAction,
+                    Actions.delay(MathUtils.random(1f, 2f))
                 )
             )
         );
