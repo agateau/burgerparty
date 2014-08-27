@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -235,6 +236,7 @@ public class LevelListScreen extends BurgerPartyScreen {
 
     private void createSurpriseImage(AnchorGroup group) {
         Image image = new Image(mSurpriseRegion);
+        image.setTouchable(Touchable.disabled);
         image.setOrigin(mSurpriseRegion.getRegionWidth() / 2f, mSurpriseRegion.getRegionHeight() - 2f);
         group.addRule(image, Anchor.TOP_RIGHT, group, Anchor.CENTER_RIGHT, -17 + image.getOriginX(), 0);
         float variation = MathUtils.random(0.9f, 1.1f);
