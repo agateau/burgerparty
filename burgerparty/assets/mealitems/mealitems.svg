@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="1279.1793"
-     inkscape:cy="767.25369"
+     inkscape:cx="1140.3727"
+     inkscape:cy="975.46669"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -3213,7 +3213,7 @@
     <g
        transform="translate(590,-190)"
        id="g6565"
-       inkscape:export-filename="bottom.png"
+       inkscape:export-filename="0/bottom.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <g
@@ -3244,7 +3244,7 @@
              transform="translate(-415.80461,577.24)"
              inkscape:connector-curvature="0"
              id="path5548"
-             d="m 599.2511,128.88201 c -0.17074,10.0323 -9.898,20.06461 -19.88547,30.09691 l 91.36564,-8.06167 16.6608,-22.03525 1.07489,-14.51101 z"
+             d="m 599.2511,128.88201 c -0.17074,10.0323 -1.398,20.06461 -8.38547,30.09691 l 79.86564,-8.06167 16.6608,-22.03525 1.07489,-14.51101 z"
              style="fill:#b54800;fill-opacity:1;stroke:none" />
           <path
              sodipodi:nodetypes="cccccc"
@@ -3252,7 +3252,7 @@
              transform="translate(-415.80461,577.24)"
              inkscape:connector-curvature="0"
              id="path5561"
-             d="m 660.4938,119.34188 c 10.77644,8.37593 -8.93701,24.53651 -20.33166,38.57314 l 24.13197,-3.80031 20.71169,-28.88235 -1.52013,-6.46052 z"
+             d="m 660.4938,119.34188 c 0.27644,4.87593 1.06299,25.53651 -11.83166,36.57314 l 28.63197,-1.80031 7.71169,-28.88235 -1.52013,-6.46052 z"
              style="fill:#913a00;fill-opacity:1;stroke:none" />
           <path
              sodipodi:nodetypes="sssss"
