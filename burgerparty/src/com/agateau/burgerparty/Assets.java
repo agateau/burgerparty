@@ -2,6 +2,7 @@ package com.agateau.burgerparty;
 
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.MusicController;
+import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.SoundAtlas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -14,8 +15,9 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Disposable;
 
-public class Assets {
+public class Assets implements Disposable {
     private static final String MAIN_MUSIC = "music/burger-party_main-theme.mp3";
 
     private AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
@@ -67,9 +69,16 @@ public class Assets {
         mAssetManager.load(MAIN_MUSIC, Music.class);
     }
 
+    @Override
+    public void dispose() {
+        NLog.i("");
+        mTextureAtlas.dispose();
+        mMusic.dispose();
+    }
+
     public void finishLoad() {
         if (mAssetManager.getQueuedAssets() > 0) {
-            Gdx.app.error("Kernel", "Not all assets have been loaded yet, going to block (progress=" + mAssetManager.getProgress() + ")");
+            NLog.i("Not all assets have been loaded yet, going to block (progress=%f)", mAssetManager.getProgress());
         }
         mTextureAtlas = mAssetManager.get("burgerparty.atlas");
 

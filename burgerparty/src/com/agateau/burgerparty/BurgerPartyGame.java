@@ -76,8 +76,10 @@ public class BurgerPartyGame extends Game {
 
     @Override
     public void dispose() {
-        super.dispose();
         NLog.i("");
+        super.dispose();
+        mAssets.dispose();
+        mAssets = null;
     }
 
     @Override
@@ -236,6 +238,7 @@ public class BurgerPartyGame extends Game {
     }
 
     private void finishLoad() {
+        NLog.i("");
         mAssets.finishLoad();
         Music music = mAssets.getMusic();
         music.setLooping(true);
