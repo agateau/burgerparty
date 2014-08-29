@@ -43,7 +43,7 @@ public class Assets implements Disposable {
             "add-item-coconut.wav",
             "add-item-onion.wav",
             "add-item-salad.wav",
-            "add-item-steak.wav",
+            "add-item-meat.wav",
             "add-item-tomato.wav",
             "click.wav",
             "coin.wav",

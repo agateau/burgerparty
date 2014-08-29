@@ -122,7 +122,7 @@ public class TutorialOverlay extends Overlay {
         Array<BurgerItem> lst = new Array<BurgerItem>();
         lst.add(db.getBurgerItem("bottom"));
         lst.add(db.getBurgerItem("top"));
-        lst.add(db.getBurgerItem("steak"));
+        lst.add(db.getBurgerItem("meat"));
         lst.add(db.getBurgerItem("tomato"));
         lst.add(db.getBurgerItem("salad"));
         lst.add(db.getBurgerItem("cheese"));

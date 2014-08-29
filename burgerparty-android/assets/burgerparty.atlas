@@ -429,6 +429,13 @@ mealitems/0/ketchup
   orig: 224, 33
   offset: 0, 0
   index: -1
+mealitems/0/meat
+  rotate: false
+  xy: 2, 14
+  size: 224, 44
+  orig: 224, 44
+  offset: 0, 0
+  index: -1
 mealitems/0/mustard
   rotate: false
   xy: 228, 24
@@ -462,13 +469,6 @@ mealitems/0/soda
   xy: 913, 40
   size: 96, 175
   orig: 96, 175
-  offset: 0, 0
-  index: -1
-mealitems/0/steak
-  rotate: false
-  xy: 2, 14
-  size: 224, 44
-  orig: 224, 44
   offset: 0, 0
   index: -1
 mealitems/0/tomato
@@ -1445,7 +1445,7 @@ mealitems/0/fish-inventory
   orig: 92, 37
   offset: 0, 0
   index: -1
-mealitems/0/steak-inventory
+mealitems/0/meat-inventory
   rotate: false
   xy: 922, 973
   size: 80, 49
