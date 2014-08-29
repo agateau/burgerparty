@@ -1,3 +1,51 @@
+# 1.0rc1 - 2014-08-xx
+
+- Made the game a little bit easier
+
+- Big fries appear earlier (level 2-6 instead of 3-6)
+
+- Doubled the number of burgers required for "Apprentice", "King" and "God"
+  achievements
+
+- Reworked loading image: it now uses flat shading and is smoothly scaled on
+  bigger screens
+
+- The "new item" animation on the level list has been improved
+
+- Redrawn salad one more time
+
+# 0.17 - 2014-08-22 (not released on the Internet)
+
+- Reworked the appearance of many meal items:
+  - Cucumbers
+  - Meat
+  - Cheese
+  - Salad
+  - Bottom bun (looks nicer when used as a middle bun)
+
+- Three new ingredients have been added: bacon and two sundaes (chocolate and
+  strawberry). To accommodate those new ingredients, new levels have been added:
+  worlds now come with 15 levels.
+
+- More sound effects:
+  - All images of the "new world" animation have sound effects
+
+  - There is now a sound effect when one get a "Perfect" and a short jingle for
+    the new item unlocked screen
+
+  - The game over jingle has been redone
+
+- There is now a tutorial when playing level 1.1
+
+- Credits now list the authors of all fonts and sound effects used in the game
+
+- There is now an indicator which appears over the achievement button when a
+  new achievement has been unlocked
+
+- Changed layout of "Pause", "Level Finished" and "Game Over" overlays. In
+  particular, the "Pause" and "Level Finished" overlays now provides an
+  achievement button.
+
 # 0.16 - 2014-07-13
 
 - The game difficulty has been adjusted: levels are shorter and a bit harder,
