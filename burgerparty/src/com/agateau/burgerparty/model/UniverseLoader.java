@@ -16,7 +16,7 @@ public class UniverseLoader {
     private static final int TIME_STEP = 5;
     private static final boolean DEBUG_DURATION = false;
     private static final float MIN_EASINESS = 1;
-    private static final float MAX_EASINESS = 2.2f;
+    private static final float MAX_EASINESS = 2.4f;
 
     private FileHandle mCsvHandle;
     private Writer mCsvWriter;
