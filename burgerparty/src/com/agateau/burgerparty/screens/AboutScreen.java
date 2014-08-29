@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
@@ -20,8 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class AboutScreen extends BurgerPartyScreen {
-    private static final String VERSION = "1.0rc1";
-
     private static final float PIXEL_PER_SECOND = 48;
 
     private ScrollPane mScrollPane;
@@ -67,7 +66,7 @@ public class AboutScreen extends BurgerPartyScreen {
         mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
         mScrollGroup = builder.<VerticalGroup>getActor("scrollGroup");
-        addText(tr("Version %s", VERSION));
+        addText(tr("Version %s", Constants.VERSION));
         addHeading(tr("Code & Design"));
         addText("Aurélien Gâteau");
 

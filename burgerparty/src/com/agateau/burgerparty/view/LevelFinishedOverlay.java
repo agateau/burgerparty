@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.model.LevelResult;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.AnchorGroup;
@@ -29,9 +30,7 @@ import com.badlogic.gdx.utils.Array;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class LevelFinishedOverlay extends Overlay {
-    private static final int EXTRA_TIME_SCORE = 100;
-    private static final float EXTRA_TIME_UPDATE_INTERVAL = 0.03f;
-
+    private static final float CONSUME_SECONDS_INTERVAL = 0.03f;
     private static final float STAR_ANIM_DURATION = 0.3f;
 
     private BurgerPartyGame mGame;
@@ -47,6 +46,7 @@ public class LevelFinishedOverlay extends Overlay {
     private final int mLevelIndex;
 
     class ConsumeSecondsAction extends Action {
+
         private int mRemainingSeconds;
         private final Sound mSound;
         private float mWaitDelta = 0;
@@ -62,9 +62,9 @@ public class LevelFinishedOverlay extends Overlay {
             if (mWaitDelta > 0) {
                 return false;
             }
-            mWaitDelta = EXTRA_TIME_UPDATE_INTERVAL;
+            mWaitDelta = CONSUME_SECONDS_INTERVAL;
             mSound.play(0.1f);
-            mScore += EXTRA_TIME_SCORE;
+            mScore += Constants.SCORE_BONUS_PER_REMAINING_SECOND;
             mScoreLabel.setText(String.valueOf(mScore));
             --mRemainingSeconds;
             if (mRemainingSeconds == 0) {
@@ -194,7 +194,7 @@ public class LevelFinishedOverlay extends Overlay {
         mScore = levelResult.getScore();
         boolean perfect = levelResult.getCoinCount() == levelResult.getMaximumCoinCount();
         int remainingSeconds = levelResult.getRemainingSeconds();
-        int finalScore = mScore + EXTRA_TIME_SCORE * remainingSeconds;
+        int finalScore = mScore + Constants.SCORE_BONUS_PER_REMAINING_SECOND * remainingSeconds;
         int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 
         // Store final score *now*

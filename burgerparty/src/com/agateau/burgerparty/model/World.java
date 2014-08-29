@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.util.Collection;
 import java.util.Set;
 
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.ConnectionManager;
 import com.agateau.burgerparty.utils.Counter;
@@ -35,22 +36,6 @@ public class World {
     public Signal0 levelFinished = new Signal0();
     public Signal0 levelFailed = new Signal0();
     public Signal0 trashing = new Signal0();
-
-    private static final int COMBO_SCORE = 1000;
-    private static final int HAPPY_SCORE = 4000;
-    private static final int NEUTRAL_SCORE = 2000;
-    private static final int ANGRY_SCORE = 1000;
-
-    private static final int HAPPY_COIN_COUNT = 3;
-    private static final int NEUTRAL_COIN_COUNT = 2;
-    private static final int ANGRY_COIN_COUNT = 1;
-
-    private static final int HAPPY_EXTRA_SECS = 2;
-    private static final int NEUTRAL_EXTRA_SECS = 1;
-    private static final int ANGRY_EXTRA_SECS = 0;
-
-    private static final int BIG_BURGER_SIZE = 11;
-    private static final int MED_BURGER_SIZE = 7;
 
     private ConnectionManager mMealConnections = new ConnectionManager();
     private final BurgerPartyGameStats mGameStats;
@@ -93,7 +78,7 @@ public class World {
 
         final int STAR_COUNT = 3;
         // "- 1" to leave some room for "perfect" coins
-        mStarCost = Math.max(HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1, 1);
+        mStarCost = Math.max(Constants.HAPPY_COIN_COUNT * mCustomers.size / STAR_COUNT - 1, 1);
 
         setupMeal();
     }
@@ -175,7 +160,7 @@ public class World {
     }
 
     public int getMaximumCoinCount() {
-        return HAPPY_COIN_COUNT * mCustomers.size;
+        return Constants.HAPPY_COIN_COUNT * mCustomers.size;
     }
 
     public int getStarCost() {
@@ -317,16 +302,16 @@ public class World {
         Customer.Mood mood = mCustomers.get(mActiveCustomerIndex).getMood();
         Score score = new Score();
         int burgerSize = mTargetBurger.getItems().size();
-        if (burgerSize >= BIG_BURGER_SIZE) {
-            score.deltaSeconds = 2;
-        } else if (burgerSize >= MED_BURGER_SIZE) {
-            score.deltaSeconds = 1;
+        if (burgerSize >= Constants.BIG_BURGER_SIZE) {
+            score.deltaSeconds = Constants.BIG_BURGER_EXTRA_SECS;
+        } else if (burgerSize >= Constants.MED_BURGER_SIZE) {
+            score.deltaSeconds = Constants.MED_BURGER_EXTRA_SECS;
         } else {
             score.deltaSeconds = 0;
         }
         if (mood == Customer.Mood.HAPPY) {
-            score.deltaCoinCount = HAPPY_COIN_COUNT;
-            score.deltaSeconds += HAPPY_EXTRA_SECS;
+            score.deltaCoinCount = Constants.HAPPY_COIN_COUNT;
+            score.deltaSeconds += Constants.HAPPY_EXTRA_SECS;
             int count = 0;
             for (int i = mActiveCustomerIndex; i >= 0; --i) {
                 if (mCustomers.get(i).getMood() == Customer.Mood.HAPPY) {
@@ -337,23 +322,23 @@ public class World {
             }
             if (count > 1) {
                 score.type = Score.Type.COMBO;
-                score.deltaScore = HAPPY_SCORE + COMBO_SCORE * count;
+                score.deltaScore = Constants.HAPPY_SCORE + Constants.COMBO_SCORE * count;
                 score.message = tr("%dx combo!", count);
             } else {
                 score.type = Score.Type.HAPPY;
-                score.deltaScore = HAPPY_SCORE;
+                score.deltaScore = Constants.HAPPY_SCORE;
                 score.message = tr("Happy customer!");
             }
         } else if (mood == Customer.Mood.NEUTRAL) {
             score.type = Score.Type.NEUTRAL;
-            score.deltaScore = NEUTRAL_SCORE;
-            score.deltaCoinCount = NEUTRAL_COIN_COUNT;
-            score.deltaSeconds += NEUTRAL_EXTRA_SECS;
+            score.deltaScore = Constants.NEUTRAL_SCORE;
+            score.deltaCoinCount = Constants.NEUTRAL_COIN_COUNT;
+            score.deltaSeconds += Constants.NEUTRAL_EXTRA_SECS;
         } else {
             score.type = Score.Type.ANGRY;
-            score.deltaScore = ANGRY_SCORE;
-            score.deltaCoinCount = ANGRY_COIN_COUNT;
-            score.deltaSeconds += ANGRY_EXTRA_SECS;
+            score.deltaScore = Constants.ANGRY_SCORE;
+            score.deltaCoinCount = Constants.ANGRY_COIN_COUNT;
+            score.deltaSeconds += Constants.ANGRY_EXTRA_SECS;
         }
         mScore += score.deltaScore;
         mCoinCount += score.deltaCoinCount;

@@ -5,6 +5,7 @@ import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -12,12 +13,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 public class UniverseLoader {
-    private static final float SEC_PER_ITEM = 0.75f;
     private static final int TIME_STEP = 5;
     private static final boolean DEBUG_DURATION = false;
-    private static final float MIN_EASINESS = 1;
-    private static final float MAX_EASINESS = 2.4f;
-
     private FileHandle mCsvHandle;
     private Writer mCsvWriter;
 
@@ -48,7 +45,7 @@ public class UniverseLoader {
 
     private LevelWorld loadWorld(int index, String dirName) {
         LevelWorld world = new LevelWorld(index, dirName);
-        for (int n=1; n <= LevelWorld.LEVEL_PER_WORLD; n++) {
+        for (int n=1; n <= Constants.LEVEL_PER_WORLD; n++) {
             String name = dirName + "/" + n + ".xml";
             FileHandle levelFile = Gdx.files.internal(name);
             assert(levelFile.exists());
@@ -64,10 +61,10 @@ public class UniverseLoader {
          * normLevelIndex goes from 0 to 1 between level 1.1 and level 3.LEVEL_PER_WORLD
          * easiness starts at MIN_EASINESS and tends to MAX_EASINESS
          */
-        float normLevelIndex = (worldIndex * LevelWorld.LEVEL_PER_WORLD + levelIndex) / (3f * LevelWorld.LEVEL_PER_WORLD - 1f);
-        float easiness = MIN_EASINESS + (MAX_EASINESS - MIN_EASINESS) * (float)Math.pow(1 - normLevelIndex, 4f);
+        float normLevelIndex = (worldIndex * Constants.LEVEL_PER_WORLD + levelIndex) / (3f * Constants.LEVEL_PER_WORLD - 1f);
+        float easiness = Constants.MIN_EASINESS + (Constants.MAX_EASINESS - Constants.MIN_EASINESS) * (float)Math.pow(1 - normLevelIndex, 4f);
         int itemCount = level.definition.getTotalItemCount();
-        int duration = roundUp(itemCount * SEC_PER_ITEM * easiness);
+        int duration = roundUp(itemCount * Constants.SECOND_PER_MEALITEM * easiness);
         level.definition.duration = duration;
         if (DEBUG_DURATION) {
             NLog.d(" world=" + (worldIndex + 1)
