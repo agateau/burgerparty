@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.BurgerItem;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.model.LevelWorld;
@@ -68,14 +67,14 @@ public class SandBoxGameView extends AbstractWorldView {
     }
 
     private void setupWidgets() {
-        ImageButton backButton = Kernel.createRoundButton(mAssets, "ui/icon-back");
+        ImageButton backButton = BurgerPartyUiBuilder.createRoundButton(mAssets, "ui/icon-back");
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 onBackPressed();
             }
         });
 
-        ImageButton worldButton = Kernel.createRoundButton(mAssets, "ui/icon-levels");
+        ImageButton worldButton = BurgerPartyUiBuilder.createRoundButton(mAssets, "ui/icon-levels");
         worldButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 switchWorld();

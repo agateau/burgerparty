@@ -2,7 +2,6 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.Burger;
 import com.agateau.burgerparty.model.BurgerGenerator;
 import com.agateau.burgerparty.model.BurgerItem;
@@ -54,7 +53,7 @@ public class TutorialOverlay extends Overlay {
         mGame = game;
         mAtlas = game.getAssets().getTextureAtlas();
 
-        ImageButton skipButton = Kernel.createRoundButton(game.getAssets(), "ui/icon-next");
+        ImageButton skipButton = BurgerPartyUiBuilder.createRoundButton(game.getAssets(), "ui/icon-next");
         skipButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 mWorldView.resume();

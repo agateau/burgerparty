@@ -36,4 +36,11 @@ public class BurgerPartyUiBuilder extends UiBuilder {
 
         return button;
     }
+
+    public static ImageButton createRoundButton(Assets assets, String name) {
+        ImageButton button = new ImageButton(assets.getSkin(), "round-button");
+        button.getImage().setDrawable(assets.getSkin().getDrawable(name));
+        button.addListener(assets.getClickListener());
+        return button;
+    }
 }

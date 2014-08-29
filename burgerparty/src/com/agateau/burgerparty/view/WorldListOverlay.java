@@ -2,7 +2,6 @@ package com.agateau.burgerparty.view;
 
 import java.util.HashSet;
 
-import com.agateau.burgerparty.Kernel;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.screens.BurgerPartyScreen;
 import com.agateau.burgerparty.utils.Anchor;
@@ -42,7 +41,7 @@ public class WorldListOverlay extends Overlay {
     }
 
     private void setupWidgets() {
-        ImageButton backButton = Kernel.createRoundButton(mScreen.getGame().getAssets(), "ui/icon-back");
+        ImageButton backButton = BurgerPartyUiBuilder.createRoundButton(mScreen.getGame().getAssets(), "ui/icon-back");
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 close();
