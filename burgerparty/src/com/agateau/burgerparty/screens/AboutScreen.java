@@ -80,6 +80,7 @@ public class AboutScreen extends BurgerPartyScreen {
         addText("Mathieu Maret");
         addText("Joël Bray");
         addText("Thomas Monjalon");
+        addText("David Edmundson");
 
         addHeading(tr("Fonts"));
         addText("Nick Curtis - www.dafont.com/fr/walrus-gumbo.font");
