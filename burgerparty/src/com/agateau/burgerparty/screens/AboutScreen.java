@@ -70,7 +70,7 @@ public class AboutScreen extends BurgerPartyScreen {
         addHeading(tr("Code & Design"));
         addText("Aurélien Gâteau");
 
-        addHeading(tr("Musics"));
+        addHeading(tr("Music"));
         addText(tr("Thomas Tripon"));
 
         addHeading(tr("Testers"));
