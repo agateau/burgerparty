@@ -35,7 +35,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 
 public class WorldView extends AbstractWorldView {
     public static final float TARGET_BURGER_PADDING = 24;
@@ -130,14 +129,20 @@ public class WorldView extends AbstractWorldView {
 
     public void onTrashing() {
         mInventoryView.setInventory(mWorld.getBurgerInventory());
-        Timer.schedule(
-        new Timer.Task() {
-            @Override
-            public void run() {
-                mWorld.markTrashingDone();
-                scrollTo(0);
-            }
-        }, MealView.TRASH_ACTION_DURATION);
+        addAction(
+            Actions.delay(
+                MealView.TRASH_ACTION_DURATION,
+                Actions.run(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            mWorld.markTrashingDone();
+                            scrollTo(0);
+                        }
+                    }
+                )
+            )
+        );
     }
 
     public void onBurgerItemAdded() {

@@ -1,8 +1,8 @@
 package com.agateau.burgerparty.model;
 
+import com.agateau.burgerparty.utils.FixedTimer;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
-import com.badlogic.gdx.utils.Timer;
 
 public class Customer {
     private static final float MOOD_MIN_SEC = 0.5f;
@@ -15,7 +15,7 @@ public class Customer {
     private float mMoodDelay;
     private Mood mMood = Mood.HAPPY;
     private State mState = State.WAITING;
-    private Timer mMoodTimer = new Timer();
+    private FixedTimer mMoodTimer = new FixedTimer();
 
     public enum Mood {
         HAPPY("happy"),
@@ -106,13 +106,13 @@ public class Customer {
             // but stopping a timer does not suspend its time :/ Recreating the
             // timer is a workaround, but it could be used to cheat since it
             // essentially resets the mood timer.
-            mMoodTimer = new Timer();
+            mMoodTimer = new FixedTimer();
             scheduleMoodChange();
         }
     }
 
     private void scheduleMoodChange() {
-        mMoodTimer.scheduleTask(new Timer.Task() {
+        mMoodTimer.scheduleTask(new FixedTimer.Task() {
             @Override
             public void run() {
                 degradeMood();

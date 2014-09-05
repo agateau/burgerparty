@@ -3,7 +3,6 @@ package com.agateau.burgerparty.utils;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Timer;
 
 public class MusicController {
     private static float FADE_STEP = 0.1f;
@@ -12,13 +11,14 @@ public class MusicController {
     private Preferences mPrefs;
 
     private Music mMusic;
+    private FixedTimer mTimer = new FixedTimer();
     private Fader mFader = new Fader();
 
     // Tracks whether we are in a situation where we should be playing music, regardless of whether we are muted or not
     private boolean mPlaying = false;
     private boolean mIsMuted = false;
 
-    private class Fader extends Timer.Task {
+    private class Fader extends FixedTimer.Task {
         @Override
         public void run() {
             setVolume(mMusic.getVolume() + FADE_STEP * mDirection);
@@ -40,7 +40,7 @@ public class MusicController {
 
         private void scheduleUpdate() {
             if (!isScheduled()) {
-                Timer.schedule(this, FADE_INTERVAL);
+                mTimer.scheduleTask(this, FADE_INTERVAL);
             }
         }
 
