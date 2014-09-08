@@ -55,7 +55,6 @@ public class Assets implements Disposable {
             "meal-done.wav",
             "new-item-unlocked.ogg",
             "perfect.ogg",
-            "sauce.wav",
             "splat.wav",
             "star.wav",
             "tick1.wav",
