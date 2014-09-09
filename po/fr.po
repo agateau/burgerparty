@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-25 14:53+0200\n"
-"PO-Revision-Date: 2014-08-25 14:56+0100\n"
+"POT-Creation-Date: 2014-09-09 22:53+0200\n"
+"PO-Revision-Date: 2014-09-09 22:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -59,7 +59,7 @@ msgstr "Pause"
 msgid "Game Over"
 msgstr "Game Over"
 
-#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:349
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:354
 msgid "+%# sec"
 msgid_plural "+%# sec"
 msgstr[0] "+%# seconde"
@@ -163,11 +163,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] "-"
 msgstr[1] "Créer %# burgers différents dans le laboratoire."
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:341
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:326
 msgid "%dx combo!"
 msgstr "%dx combo !"
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:345
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:330
 msgid "Happy customer!"
 msgstr "Client satisfait !"
 
@@ -183,23 +183,24 @@ msgstr "Finir tous les niveaux du monde %d avec 3 étoiles."
 msgid "New item unlocked!"
 msgstr "Nouvel ingrédient débloqué !"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:69
 msgid "Version %s"
 msgstr "Version %s"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:71
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
 msgid "Code & Design"
 msgstr "Code & Design"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
-msgid "Musics"
-msgstr "Musiques"
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:73
+msgid "Music"
+msgstr "Musique"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:75
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:91
 msgid "Thomas Tripon"
 msgstr "Thomas Tripon"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:77
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:76
 msgid "Testers"
 msgstr "Testeurs"
 
@@ -211,7 +212,7 @@ msgstr "Fontes"
 msgid "Sounds"
 msgstr "Effets sonores"
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:102
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:105
 msgid "© 2013 - 2014 Green Yeti Lab"
 msgstr "© 2013 - 2014 Green Yeti Lab"
 

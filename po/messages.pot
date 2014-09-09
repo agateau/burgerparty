@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-25 14:53+0200\n"
+"POT-Creation-Date: 2014-09-09 22:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Game Over"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:349
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:354
 msgid "+%# sec"
 msgid_plural "+%# sec"
 msgstr[0] ""
@@ -164,11 +164,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:341
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:326
 msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:345
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:330
 msgid "Happy customer!"
 msgstr ""
 
@@ -184,23 +184,24 @@ msgstr ""
 msgid "New item unlocked!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:69
 msgid "Version %s"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:71
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:70
 msgid "Code & Design"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
-msgid "Musics"
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:73
+msgid "Music"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:75
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:91
 msgid "Thomas Tripon"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:77
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:76
 msgid "Testers"
 msgstr ""
 
@@ -212,6 +213,6 @@ msgstr ""
 msgid "Sounds"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:102
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:105
 msgid "© 2013 - 2014 Green Yeti Lab"
 msgstr ""

@@ -28,7 +28,7 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
         plainEntries.put("Version %s", "Version %s");
         plainEntries.put("Code & Design", "Code & Design");
-        plainEntries.put("Musics", "Musiques");
+        plainEntries.put("Music", "Musique");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
         plainEntries.put("Testers", "Testeurs");
         plainEntries.put("Fonts", "Fontes");
