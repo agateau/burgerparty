@@ -9,7 +9,6 @@ import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
-import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.AboutScreen;
@@ -39,7 +38,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.scenes.scene2d.Action;
 
 public class BurgerPartyGame extends Game {
     private static final String PROGRESS_FILE = "progress.xml";
@@ -123,11 +121,6 @@ public class BurgerPartyGame extends Game {
     void setupAnimScriptLoader() {
         AnimScriptLoader loader = mAssets.getAnimScriptLoader();
         loader.registerMemberMethod("play", mAssets.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
-        loader.registerMemberMethod("playMealItem", this, "createPlayMealItemAction", new StringArgumentDefinition());
-    }
-
-    public Action createPlayMealItemAction(String name) {
-        return MealItem.createPlayMealItemAction(mAssets.getSoundAtlas(), name);
     }
 
     private void setupUniverse() {

@@ -37,14 +37,16 @@ public class Assets implements Disposable {
 
         mSoundAtlas = new SoundAtlas(mAssetManager, "sounds/", musicController);
         String[] names = {
-            "add-item.wav",
             "add-item-bottom.wav",
             "add-item-cheese.wav",
             "add-item-coconut.wav",
+            "add-item-fries.wav",
             "add-item-onion.wav",
             "add-item-salad.wav",
             "add-item-meat.wav",
             "add-item-tomato.wav",
+            "add-item-soda.wav",
+            "add-item-sundae.wav",
             "click.wav",
             "coin.wav",
             "error.wav",

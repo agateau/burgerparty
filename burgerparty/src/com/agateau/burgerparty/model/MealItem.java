@@ -3,8 +3,6 @@ package com.agateau.burgerparty.model;
 
 import com.agateau.burgerparty.utils.AnimScript;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
-import com.agateau.burgerparty.utils.SoundAtlas;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.XmlReader;
 
 public class MealItem {
@@ -16,7 +14,7 @@ public class MealItem {
         "parallel\n" +
         "    alpha 1 1\n" +
         "    moveBy 0 -1 1 pow2In\n" +
-        "    playMealItem @itemName@\n" +
+        "    play @soundName@\n" +
         "end\n";
 
     public static final int WORLD_INDEX_NOT_SET = -2;
@@ -62,7 +60,8 @@ public class MealItem {
     }
 
     public void initFromXml(XmlReader.Element element) {
-        mAnim = element.get("anim", DEFAULT_ANIM).replace("@itemName@", mName);
+        String soundName = element.getAttribute("sound", "add-item-" + mName);
+        mAnim = element.get("anim", DEFAULT_ANIM).replace("@soundName@", soundName);
         mMinWorldIndex = element.getIntAttribute("world", 1) - 1;
         mMinLevelIndex = element.getIntAttribute("level", 1) - 1;
     }
@@ -119,13 +118,5 @@ public class MealItem {
             return true;
         }
         return levelIndex >= mMinLevelIndex;
-    }
-
-    public static Action createPlayMealItemAction(SoundAtlas atlas, String name) {
-        if (atlas.contains("add-item-" + name)) {
-            return atlas.createPlayAction("add-item-" + name);
-        } else {
-            return atlas.createPlayAction("add-item");
-        }
     }
 }

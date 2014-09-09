@@ -94,6 +94,8 @@ public class AboutScreen extends BurgerPartyScreen {
         addText("Autistic Lucario - www.freesound.org/people/Autistic%20Lucario");
         addText("DrMinky - www.freesound.org/people/DrMinky");
         addText("Florian Reinke - www.freesound.org/people/florian_reinke");
+        addText("Iwan Gabovitch - qubodup.net");
+        addText("John McDonald - jcpmcdonald.com");
         addText("p0ss - opengameart.org/content/spell-sounds-starter-pack");
         addText("Scriptique - www.freesound.org/people/scriptique");
         addText("Soundjay - www.soundjay.com");

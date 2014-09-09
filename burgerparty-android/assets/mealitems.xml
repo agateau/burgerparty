@@ -13,7 +13,7 @@
                     alpha 1 1
                     moveBy 0 -1 1 pow2In
                     rotateTo 0 1
-                    playMealItem @itemName@
+                    play add-item-bottom
                 end
                 ]]></anim>
     </item>
@@ -22,7 +22,7 @@
     <item name="salad" row="0" column="3" type="burger" subType="middle-other" height="3" offset="-4"/>
     <item name="cheese" row="0" column="4" type="burger" subType="middle-other" height="4" offset="-19"/>
     <item name="onion" row="0" column="5" type="burger" subType="middle-other" height="4" offset="-4" world="3" level="6"/>
-    <item name="cucumber" row="0" column="6" type="burger" subType="middle-other" height="4" offset="-2" world="3" level="9"/>
+    <item name="cucumber" row="0" column="6" type="burger" subType="middle-other" height="4" offset="-2" world="3" level="9" sound="add-item-onion"/>
     <!-- burger, row 1 -->
     <item name="top" row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
       <anim><![CDATA[
@@ -35,7 +35,7 @@
                     alpha 1 1
                     moveBy 0 -1 1 pow2In
                     rotateTo 0 1
-                    playMealItem bottom
+                    play add-item-bottom
                 end
                 ]]></anim>
     </item>
@@ -50,12 +50,12 @@
                     alpha 1 1
                     moveBy 0 -1 1 pow2In
                     rotateTo 0 1
-                    play add-item
+                    play add-item-bottom
                 end
                 ]]></anim>
     </item>
-    <item name="fish" row="1" column="2" type="burger" subType="middle-main" height="24" offset="0" world="3" level="3"/>
-    <item name="bacon" row="1" column="3" type="burger" subType="middle-other" height="3" offset="-7" world="1" level="6"/>
+    <item name="fish" row="1" column="2" type="burger" subType="middle-main" height="24" offset="0" world="3" level="3" sound="add-item-meat"/>
+    <item name="bacon" row="1" column="3" type="burger" subType="middle-other" height="3" offset="-7" world="1" level="6" sound="add-item-meat"/>
     <item name="ketchup" row="1" column="7" type="burger" subType="middle-sauce" height="6" offset="-4" world="1" level="3">
       <anim><![CDATA[
                 scaleTo 0.2 0.2
@@ -71,12 +71,12 @@
                 ]]></anim>
     </item>
     <!-- extra -->
-    <item name="small-fries" row="0" column="0" type="side-order"/>
-    <item name="big-fries" row="1" column="0" type="side-order" world="2" level="6"/>
+    <item name="small-fries" row="0" column="0" type="side-order" sound="add-item-fries"/>
+    <item name="big-fries" row="1" column="0" type="side-order" world="2" level="6" sound="add-item-fries"/>
     <item name="soda" row="0" column="1" type="drink" world="1" level="9"/>
-    <item name="juice" row="1" column="1" type="drink" world="2" level="9"/>
+    <item name="juice" row="1" column="1" type="drink" world="2" level="9" sound="add-item-soda"/>
     <item name="sundae" row="0" column="2" type="side-order" world="2" level="12"/>
-    <item name="sundae2" row="1" column="2" type="side-order" world="3" level="12"/>
+    <item name="sundae2" row="1" column="2" type="side-order" world="3" level="12" sound="add-item-sundae"/>
   </generic>
   <world index="2">
     <item name="soda">
@@ -88,7 +88,7 @@
                 parallel
                     alpha 1 1
                     moveBy 0 -1 1.5 bounceOut
-                    playMealItem @itemName@
+                    play add-item-coconut
                 end
                 ]]></anim>
     </item>
@@ -105,7 +105,7 @@
                     alpha 1 1
                     moveBy 0 -1 1 pow2In
                     rotateTo 0 1
-                    play add-item
+                    play add-item-bottom
                 end
                 ]]></anim>
     </item>
