@@ -71,8 +71,8 @@
                 ]]></anim>
     </item>
     <!-- extra -->
-    <item name="small-fries" row="0" column="0" type="side-order" sound="add-item-fries"/>
-    <item name="big-fries" row="1" column="0" type="side-order" world="2" level="6" sound="add-item-fries"/>
+    <item name="small-fries" row="0" column="0" type="side-order" sound="add-item-bottom"/>
+    <item name="big-fries" row="1" column="0" type="side-order" world="2" level="6" sound="add-item-bottom"/>
     <item name="soda" row="0" column="1" type="drink" world="1" level="9"/>
     <item name="juice" row="1" column="1" type="drink" world="2" level="9" sound="add-item-soda"/>
     <item name="sundae" row="0" column="2" type="side-order" world="2" level="12"/>

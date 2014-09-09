@@ -40,7 +40,6 @@ public class Assets implements Disposable {
             "add-item-bottom.wav",
             "add-item-cheese.wav",
             "add-item-coconut.wav",
-            "add-item-fries.wav",
             "add-item-onion.wav",
             "add-item-salad.wav",
             "add-item-meat.wav",
@@ -61,7 +60,6 @@ public class Assets implements Disposable {
             "star.wav",
             "tick1.wav",
             "tick2.wav",
-            "time-bonus.wav",
             "trash.wav",
             "wind.ogg",
         };
