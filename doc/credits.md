@@ -36,13 +36,9 @@ add-item-soda.wav
 
 <http://opengameart.org/content/skippy-fish-water-sound-collection>
 
-add-item-fries.wav
-
-<http://opengameart.org/content/inventory-sound-effects>
-
 add-item-sundae.wav
 
-Iwan Gabovitch <qubodup.net>
+Swoshes by Iwan Gabovitch <qubodup.net>
 
 click.wav
 
