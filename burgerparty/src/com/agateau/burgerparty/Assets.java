@@ -60,6 +60,7 @@ public class Assets implements Disposable {
             "star.wav",
             "tick1.wav",
             "tick2.wav",
+            "time-bonus.wav",
             "trash.wav",
             "wind.ogg",
         };
