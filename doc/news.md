@@ -1,4 +1,15 @@
-# 1.0rc1 - 2014-08-xx
+# 1.0rc2 - 2014-09-10
+
+- Fixed the annoying intermittent "can't add any item after an error" bug
+
+- Adjusted proportions of character in "new world" cut scenes
+
+- Adjusted colors of pickles
+
+- New sounds for soda and sundae, reassigned existing sounds to other
+  ingredients
+
+# 1.0rc1 - 2014-09-02
 
 - Made the game a little bit easier
 
