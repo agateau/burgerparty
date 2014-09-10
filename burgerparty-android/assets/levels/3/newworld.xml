@@ -4,7 +4,7 @@
         <gdxui>
             <AnchorGroup id="root">
                 <Image x="0" y="0" name="levels/2/background" center="root.center"/>
-                <Image x="350" y="30" name="cutscenes/leaving-restaurant"/>
+                <Image x="320" y="40" name="cutscenes/leaving-restaurant"/>
             </AnchorGroup>
         </gdxui>
     </view>
