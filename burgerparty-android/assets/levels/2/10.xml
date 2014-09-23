@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<level burgerSize="6">
+<level burgerSize="7">
   <customers>
     <customer type="pirate-girls"/>
     <customer type="pirate-boys"/>
-    <customer type="pirate-girls"/>
+    <customer type="pirate-girls" burgerSize="8"/>
     <customer type="pirate-boys"/>
     <customer type="pirate-girls"/>
     <customer type="pirate-boys"/>
-    <customer type="pirate-boys"/>
+    <customer type="pirate-boys" burgerSize="8"/>
     <customer type="pirate-girls"/>
   </customers>
 </level>

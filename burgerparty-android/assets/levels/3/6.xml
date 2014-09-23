@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<level burgerSize="7">
+<level burgerSize="8">
   <customers>
     <customer type="ninjas"/>
     <customer type="ninjas"/>
     <customer type="boys"/>
-    <customer type="japan-girls"/>
+    <customer type="japan-girls" burgerSize="9"/>
     <customer type="ninjas"/>
     <customer type="girls"/>
     <customer type="ninjas"/>
-    <customer type="boys"/>
+    <customer type="boys" burgerSize="9"/>
     <customer type="ninjas"/>
     <customer type="boys"/>
     <customer type="japan-girls"/>

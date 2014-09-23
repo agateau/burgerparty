@@ -3,7 +3,7 @@
   <customers>
     <customer type="boys"/>
     <customer type="girls"/>
-    <customer type="girls"/>
+    <customer type="girls" burgerSize="7"/>
     <customer type="boys"/>
     <customer type="girls"/>
   </customers>
