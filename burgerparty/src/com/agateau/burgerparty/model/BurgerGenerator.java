@@ -3,6 +3,7 @@ package com.agateau.burgerparty.model;
 import java.util.Collection;
 import java.util.Vector;
 
+import com.agateau.burgerparty.Constants;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
@@ -43,14 +44,24 @@ public class BurgerGenerator {
         TopBottom topBottom = mTopBottomItems.get(MathUtils.random(mTopBottomItems.size - 1));
         lst.set(0, topBottom.bottom);
         lst.set(count - 1, topBottom.top);
-        // Create a second stage for tall burgers
-        if (count >= 7) {
-            int separator = count / 2;
-            lst.set(separator, topBottom.bottom);
-            fillStage(lst, 1, separator);
-            fillStage(lst, separator + 1, count - 1);
+        int stageCount;
+        if (count >= Constants.BIG_BURGER_SIZE) {
+            stageCount = 3;
+        } else if (count >= Constants.MED_BURGER_SIZE) {
+            stageCount = 2;
         } else {
-            fillStage(lst, 1, count - 1);
+            stageCount = 1;
+        }
+        // stageSize is the number of burger items in a stage, excluding top, bottom and separator items
+        int stageSize = (count - 2 - (stageCount - 1)) / stageCount;
+        for (int start = 1; stageCount > 0; start += stageSize + 1, stageCount--) {
+            int end = start + stageSize;
+            if (stageCount > 1) {
+                lst.set(end, topBottom.bottom);
+                fillStage(lst, start, end);
+            } else {
+                fillStage(lst, start, count - 1);
+            }
         }
         return lst;
     }
