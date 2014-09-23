@@ -1,6 +1,9 @@
 # Create .apk
 
-Bump version number in AndroidManifest.xml and in Constants
+Bump version numbers:
+    AndroidManifest.xml versionCode
+    AndroidManifest.xml versionName
+    Constants
 
 Check translations are up to date
 
