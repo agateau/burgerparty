@@ -1,3 +1,11 @@
+# 1.0 - 2014-09-26
+
+- Slightly increased size of burgers, made super-big burgers 3 stages high
+
+- Improved the game icon
+
+- Made character a bit taller in cut scenes
+
 # 1.0rc2 - 2014-09-10
 
 - Fixed the annoying intermittent "can't add any item after an error" bug
