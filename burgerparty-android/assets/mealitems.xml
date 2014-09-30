@@ -21,7 +21,7 @@
     <item name="tomato" row="0" column="2" type="burger" subType="middle-other" height="8" offset="-4"/>
     <item name="salad" row="0" column="3" type="burger" subType="middle-other" height="3" offset="-4"/>
     <item name="cheese" row="0" column="4" type="burger" subType="middle-other" height="4" offset="-19"/>
-    <item name="onion" row="0" column="5" type="burger" subType="middle-other" height="4" offset="-4" world="3" level="6"/>
+    <item name="onion" row="0" column="5" type="burger" subType="middle-other" height="4" offset="-2" world="3" level="6"/>
     <item name="cucumber" row="0" column="6" type="burger" subType="middle-other" height="4" offset="-2" sound="add-item-onion" world="3" level="9"/>
     <!-- burger, row 1 -->
     <item name="top" row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
@@ -79,6 +79,21 @@
     <item name="sundae2" row="1" column="2" type="side-order" sound="add-item-sundae" world="3" level="12"/>
   </generic>
   <world index="2">
+    <item name="salad" height="16" offset="5">
+      <anim><![CDATA[
+                parallel
+                    alpha 0
+                    moveBy 1 0.2
+                    rotateTo -10
+                end
+                parallel
+                    alpha 1 1
+                    moveBy -1 -0.2 1 pow2In
+                    rotateTo 0 0.9
+                    play add-item-salad
+                end
+                ]]></anim>
+    </item>
     <item name="soda">
       <anim><![CDATA[
                 parallel
