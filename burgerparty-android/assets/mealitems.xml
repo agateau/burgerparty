@@ -22,7 +22,7 @@
     <item name="salad" row="0" column="3" type="burger" subType="middle-other" height="3" offset="-4"/>
     <item name="cheese" row="0" column="4" type="burger" subType="middle-other" height="4" offset="-19"/>
     <item name="onion" row="0" column="5" type="burger" subType="middle-other" height="4" offset="-4" world="3" level="6"/>
-    <item name="cucumber" row="0" column="6" type="burger" subType="middle-other" height="4" offset="-2" world="3" level="9" sound="add-item-onion"/>
+    <item name="cucumber" row="0" column="6" type="burger" subType="middle-other" height="4" offset="-2" sound="add-item-onion" world="3" level="9"/>
     <!-- burger, row 1 -->
     <item name="top" row="1" column="0" type="burger" subType="top" bottom="bottom" height="32" offset="0">
       <anim><![CDATA[
@@ -54,8 +54,8 @@
                 end
                 ]]></anim>
     </item>
-    <item name="fish" row="1" column="2" type="burger" subType="middle-main" height="24" offset="0" world="3" level="3" sound="add-item-meat"/>
-    <item name="bacon" row="1" column="3" type="burger" subType="middle-other" height="3" offset="-7" world="1" level="6" sound="add-item-meat"/>
+    <item name="fish" row="1" column="2" type="burger" subType="middle-main" height="24" offset="0" sound="add-item-meat" world="3" level="3"/>
+    <item name="bacon" row="1" column="3" type="burger" subType="middle-other" height="3" offset="-7" sound="add-item-meat" world="1" level="6"/>
     <item name="ketchup" row="1" column="7" type="burger" subType="middle-sauce" height="6" offset="-4" world="1" level="3">
       <anim><![CDATA[
                 scaleTo 0.2 0.2
@@ -72,11 +72,11 @@
     </item>
     <!-- extra -->
     <item name="small-fries" row="0" column="0" type="side-order" sound="add-item-bottom"/>
-    <item name="big-fries" row="1" column="0" type="side-order" world="2" level="6" sound="add-item-bottom"/>
+    <item name="big-fries" row="1" column="0" type="side-order" sound="add-item-bottom" world="2" level="6"/>
     <item name="soda" row="0" column="1" type="drink" world="1" level="9"/>
-    <item name="juice" row="1" column="1" type="drink" world="2" level="9" sound="add-item-soda"/>
+    <item name="juice" row="1" column="1" type="drink" sound="add-item-soda" world="2" level="9"/>
     <item name="sundae" row="0" column="2" type="side-order" world="2" level="12"/>
-    <item name="sundae2" row="1" column="2" type="side-order" world="3" level="12" sound="add-item-sundae"/>
+    <item name="sundae2" row="1" column="2" type="side-order" sound="add-item-sundae" world="3" level="12"/>
   </generic>
   <world index="2">
     <item name="soda">
