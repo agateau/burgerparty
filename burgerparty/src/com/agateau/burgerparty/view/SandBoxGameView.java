@@ -74,7 +74,7 @@ public class SandBoxGameView extends AbstractWorldView {
             }
         });
 
-        ImageButton worldButton = BurgerPartyUiBuilder.createRoundButton(mAssets, "ui/icon-levels");
+        ImageButton worldButton = BurgerPartyUiBuilder.createRoundButton(mAssets, "ui/icon-world-map");
         worldButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 switchWorld();
