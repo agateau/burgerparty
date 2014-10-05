@@ -4,10 +4,11 @@ public class Constants {
     public static final String VERSION = "1.0";
 
     public static final int LEVEL_PER_WORLD = 15;
+    public static final int WORLD_COUNT = 3;
 
-    public static final float SECOND_PER_MEALITEM = 0.75f;
-    public static final float MIN_EASINESS = 1;
-    public static final float MAX_EASINESS = 2.4f;
+    public static final float SECOND_PER_MEALITEM = 0.6f;
+    public static final float STARTS[] = {2.4f, 1.5f, 1.2f};
+    public static final float SLOPES[] = {-1f, -0.35f, -0.3f};
 
     public static final int SCORE_BONUS_PER_REMAINING_SECOND = 100;
 
