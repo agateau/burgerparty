@@ -1,77 +1,86 @@
 # Create .apk
 
-Bump version numbers:
+- Bump version numbers:
     AndroidManifest.xml versionCode
     AndroidManifest.xml versionName
     Constants
 
-Check translations are up to date
+- Check translations are up to date
 
     pot-generate
     # translate
     po-compile-all
 
-Run unit tests
+- Run unit tests
 
-Generate .apk
+- Generate .apk
 
-Smoke test
+- Smoke test
+    - on PC
+    - on phone
+    - on tablet
 
-- on PC
-- on phone
-- on tablet
+- Update news.md
 
-Update news.md
+- Commit
 
-Commit
-
-Tag:
+- Tag:
 
     git tag -a $newv
 
-Push
+- Push
 
     git push
     git push --tags
 
 # Upload .apk
 
-Upload on Google Play
+- Upload on Google Play
 
-Upload on greenyetilab.com
+- Upload on greenyetilab.com
 
 # Prepare spread
 
-Take screenshots
+- Take screenshots
 
 ## Greenyetilab.com
 
-Update greenyetilab.com/burgerparty
+- Update greenyetilab.com/burgerparty
 
-Publish
+- Publish
 
-Write announcement blog post
+- Write announcement blog post
 
-Publish
+- Publish
 
 ## Slidedb
 
-Post news
+- Post news
 
 ## Google Play
 
-Update Google Play
+- Update Google Play
 
-Publish
+- Publish
+
+## Amazon
+
+- Update Amazon Appstore
+
+- Publish
 
 # Spread
 
-Notify Google Group
+- Notify Google Group
 
-Notify G+ community
+- Notify G+ community
 
-Post link to announcement on:
-
-- G+
-- FB
-- libgdx forum
+- Announce on G+
+    - GYL
+    - Self
+- Announce on FB
+    - GYL
+    - Self
+- Announce on Twitter
+    - GYL
+    - Self
