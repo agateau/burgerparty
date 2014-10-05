@@ -1,11 +1,10 @@
 package com.agateau.burgerparty.model;
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.agateau.burgerparty.Constants;
+import com.agateau.burgerparty.utils.CsvWriter;
 import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -15,13 +14,13 @@ import com.badlogic.gdx.utils.Array;
 public class UniverseLoader {
     private static final int TIME_STEP = 5;
     private static final boolean DEBUG_DURATION = false;
-    private FileHandle mCsvHandle;
-    private Writer mCsvWriter;
+    private CsvWriter mCsvWriter;
 
     public void run(Universe universe) {
         if (DEBUG_DURATION) {
-            mCsvHandle = Gdx.files.external("/tmp/duration.csv");
-            mCsvWriter = mCsvHandle.writer(false);
+            FileHandle handle = Gdx.files.external("/tmp/duration.dat");
+            mCsvWriter = new CsvWriter(handle);
+            mCsvWriter.setSeparator(' ');
         }
         for (int n=1;; n++) {
             String dirName = "levels/" + n + "/";
@@ -33,12 +32,7 @@ public class UniverseLoader {
             universe.addWorld(world);
         }
         if (DEBUG_DURATION) {
-            try {
-                mCsvWriter.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            mCsvWriter.close();
         }
         initNewItemFields(universe.getWorlds());
     }
@@ -67,19 +61,7 @@ public class UniverseLoader {
         int duration = roundUp(itemCount * Constants.SECOND_PER_MEALITEM * easiness);
         level.definition.duration = duration;
         if (DEBUG_DURATION) {
-            NLog.d(" world=" + (worldIndex + 1)
-                  + " level=" + (levelIndex + 1)
-                  + " normLevelIndex=" + normLevelIndex
-                  + " easiness=" + easiness
-                  + " itemCount=" + itemCount
-                  + " duration=" + level.definition.duration
-                 );
-            try {
-                mCsvWriter.write(itemCount + "\n");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            mCsvWriter.write((worldIndex + 1) * 100 + levelIndex + 1, itemCount, duration, (float)duration / itemCount);
         }
     }
 
