@@ -79,7 +79,7 @@
     <item name="sundae2" row="1" column="2" type="side-order" sound="add-item-sundae" world="3" level="12"/>
   </generic>
   <world index="2">
-    <item name="salad" height="16" offset="5">
+    <item name="salad" height="16" offset="2">
       <anim><![CDATA[
                 parallel
                     alpha 0
