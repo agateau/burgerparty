@@ -7,8 +7,8 @@ public class Constants {
     public static final int WORLD_COUNT = 3;
 
     public static final float SECOND_PER_MEALITEM = 0.6f;
-    public static final float STARTS[] = {2.4f, 1.5f, 1.2f};
-    public static final float SLOPES[] = {-1f, -0.35f, -0.3f};
+    public static final float DIFFICULTY_STARTS[] = {2.4f, 1.45f, 1.1f};
+    public static final float DIFFICULTY_SLOPES[] = {-1f, -0.4f, -0.3f};
 
     public static final int SCORE_BONUS_PER_REMAINING_SECOND = 100;
 
