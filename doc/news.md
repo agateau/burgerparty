@@ -1,3 +1,11 @@
+# 1.1.0 - 2014-10-07
+
+- Make the game slightly harder
+
+- New item: Pineapple replaces salad in pirate world
+
+- Sandbox mode: Use a world map icon for the world selector button
+
 # 1.0 - 2014-09-26
 
 - Slightly increased size of burgers, made super-big burgers 3 stages high
