@@ -30,4 +30,19 @@ public class Constants {
 
     public static final int BIG_BURGER_EXTRA_SECS = 2;
     public static final int MED_BURGER_EXTRA_SECS = 1;
+
+    public static Difficulty EASY = new Difficulty();
+    public static Difficulty NORMAL = new Difficulty();
+    public static Difficulty HARD = new Difficulty();
+
+    static {
+        EASY.timeLimited = false;
+        EASY.showArrow = true;
+
+        NORMAL.timeLimited = true;
+        NORMAL.showArrow = true;
+
+        HARD.timeLimited = true;
+        HARD.showArrow = false;
+    }
 }

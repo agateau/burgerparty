@@ -26,9 +26,17 @@ public class MealView extends Group implements ResizeToFitChildren {
     private Image mPlatter = null;
     private BurgerView mBurgerView;
     private MealExtraView mMealExtraView;
+    private final Config mConfig;
 
-    public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, boolean withPlatter) {
-        if (withPlatter) {
+    public enum Config {
+        WITH_PLATTER,
+        WITH_ARROW,
+        WITHOUT_ARROW
+    }
+
+    public MealView(Burger burger, MealExtra mealExtra, TextureAtlas atlas, SoundAtlas soundAtlas, AnimScriptLoader loader, Config config) {
+        mConfig = config;
+        if (mConfig == Config.WITH_PLATTER) {
             mPlatter = new Image(atlas.findRegion("platter"));
             addActor(mPlatter);
         }
@@ -37,9 +45,9 @@ public class MealView extends Group implements ResizeToFitChildren {
         mBurgerView = new BurgerView(burger, atlas, soundAtlas, loader);
         addActor(mBurgerView);
 
-        if (withPlatter) {
+        if (mConfig == Config.WITH_PLATTER) {
             mBurgerView.setPosition(PLATTER_BURGER_X, PLATTER_MEAL_Y);
-        } else {
+        } else if (mConfig == Config.WITH_ARROW) {
             mBurgerView.setPosition(NextBurgerItemArrow.OVERALL_WIDTH, 0);
             NextBurgerItemArrow arrow = new NextBurgerItemArrow(getBurgerView(), atlas);
             addActor(arrow);
@@ -82,7 +90,7 @@ public class MealView extends Group implements ResizeToFitChildren {
     public void updateGeometry() {
         mMealExtraView.setPosition(mBurgerView.getRight() + MEAL_ITEM_PADDING, mBurgerView.getY());
         setSize(
-            mPlatter == null ? mMealExtraView.getRight() : mPlatter.getWidth(),
+            (mConfig == Config.WITH_PLATTER) ? mPlatter.getWidth() : mMealExtraView.getRight(),
             Math.max(mBurgerView.getHeight(), mMealExtraView.getHeight())
         );
         UiUtils.notifyResizeToFitParent(this);

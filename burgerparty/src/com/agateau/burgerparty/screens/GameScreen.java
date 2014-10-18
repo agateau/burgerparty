@@ -1,6 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;
@@ -12,7 +13,7 @@ public class GameScreen extends BurgerPartyScreen {
 
     public GameScreen(BurgerPartyGame game, Level level) {
         super(game);
-        mWorld = new World(game.getGameStats(), level);
+        mWorld = new World(game.getGameStats(), level, Constants.HARD);
         mWorldView = new WorldView(this, game, mWorld);
         if (level.getLevelWorld().getIndex() == 0 && level.getIndex() == 0) {
             mWorldView.showTutorial();

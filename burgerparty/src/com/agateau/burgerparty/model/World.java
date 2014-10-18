@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import com.agateau.burgerparty.Constants;
+import com.agateau.burgerparty.Difficulty;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.ConnectionManager;
 import com.agateau.burgerparty.utils.Counter;
@@ -43,6 +44,7 @@ public class World {
     private MealExtraGenerator mMealExtraGenerator;
     private Counter mItemAddedCounter = new Counter();
     private Counter mMealDoneCounter = new Counter();
+    private final Difficulty mDifficulty;
 
     private Level mLevel;
     private int mStarCost;
@@ -65,10 +67,11 @@ public class World {
     private boolean mIsTrashing = false; // Set to true when we are in the middle of a trash animation
     private long mLastUpdateTime;
 
-    public World(BurgerPartyGameStats gameStats, Level level) {
+    public World(BurgerPartyGameStats gameStats, Level level, Difficulty difficulty) {
         NLog.d("");
         mGameStats = gameStats;
         mLevel = level;
+        mDifficulty = difficulty;
         mCustomers = level.definition.createCustomers();
         int worldIndex = level.getLevelWorld().getIndex();
         mBurgerGenerator = new BurgerGenerator(worldIndex, mLevel.definition.getBurgerItems());
@@ -175,8 +178,14 @@ public class World {
         return mTargetBurger.getItems().size() + mTargetMealExtra.getItems().size();
     }
 
+    public Difficulty getDifficulty() {
+        return mDifficulty;
+    }
+
     public void start() {
-        mRemainingSeconds = mLevel.definition.duration;
+        if (mDifficulty.timeLimited) {
+            mRemainingSeconds = mLevel.definition.duration;
+        }
         generateTarget();
         mLastUpdateTime = TimeUtils.nanoTime();
         mGameStats.onLevelStarted(this);
@@ -190,6 +199,9 @@ public class World {
      * shortened time or even going directly to game over state.
      */
     public void updateRemainingSeconds() {
+        if (!mDifficulty.timeLimited) {
+            return;
+        }
         if (mIsPaused) {
             return;
         }

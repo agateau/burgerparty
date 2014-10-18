@@ -144,7 +144,7 @@ public class TutorialOverlay extends Overlay {
         mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
 
         Assets assets = mGame.getAssets();
-        MealView targetMealView = new MealView(mTargetBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), false);
+        MealView targetMealView = new MealView(mTargetBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), MealView.Config.WITH_ARROW);
         targetMealView.getBurgerView().setPadding(WorldView.TARGET_BURGER_PADDING);
 
         MealViewScrollPane scrollPane = new MealViewScrollPane(targetMealView, mAtlas);
@@ -157,7 +157,7 @@ public class TutorialOverlay extends Overlay {
         mBurger = new Burger();
         MealExtra extra = new MealExtra();
         Assets assets = mGame.getAssets();
-        mMealView = new MealView(mBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), true);
+        mMealView = new MealView(mBurger, extra, mAtlas, assets.getSoundAtlas(), assets.getAnimScriptLoader(), MealView.Config.WITH_PLATTER);
         mTutorialController.setMealView(mMealView);
     }
 

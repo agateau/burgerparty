@@ -156,7 +156,7 @@ public class SandBoxGameView extends AbstractWorldView {
         mWorld.getBurger().clear();
         mWorld.getMealExtra().clear();
         mUndoStack.clear();
-        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
+        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), MealView.Config.WITH_PLATTER);
         slideInMealView(mMealView);
     }
 
