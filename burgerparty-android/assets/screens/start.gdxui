@@ -4,34 +4,101 @@
 
         <Image id="titleImage"
             name="ui/title"
-            topCenter="root.topCenter 0 -2"/>
+            x="140"
+            y="220">
+            <Action duration="1">
+                moveBy 0 20
+                alpha 0
+                parallel
+                    alpha 1 0.2
+                    moveBy 0 -20 0.7 pow2Out
+                end
+            </Action>
+        </Image>
 
-        <ImageButton id="startButton"
-            style="round-button-big"
-            topCenter="titleImage.bottomCenter 0 -1"
-            imageName="ui/icon-play-big"/>
+        <Image id="startEasy"
+            name="ui/start-easy"
+            topCenter="root.center -9.5 -3"
+            originX="64"
+            originY="32">
+            <Action duration="1">
+                alpha 0
+                moveBy 0 -100
+                parallel
+                    alpha 1 0.5
+                    moveBy 0 100 0.3 pow2Out
+                    rotateTo 10 0.3 pow2Out
+                end
+                rotateBy 1 0.5 pow2
+                repeat
+                    rotateBy -2 1 pow2
+                    rotateBy 2 1 pow2
+                end
+            </Action>
+        </Image>
+
+        <Image id="startNormal"
+            name="ui/start-normal"
+            topCenter="root.center -0.5 -2"
+            originX="64"
+            originY="32">
+            <Action duration="1">
+                alpha 0
+                moveBy 0 -100
+                delay 0.1
+                parallel
+                    alpha 1 0.5
+                    moveBy 0 100 0.3 pow2Out
+                    rotateTo -5 0.3 pow2Out
+                end
+                rotateBy -1 0.3 pow2
+                repeat
+                    rotateBy 2 1.1 pow2
+                    rotateBy -2 1.1 pow2
+                end
+            </Action>
+        </Image>
+
+        <Image id="startHard"
+            name="ui/start-hard"
+            topCenter="root.center 9.5 -3"
+            originX="64"
+            originY="32">
+            <Action duration="1">
+                alpha 0
+                moveBy 0 -100
+                delay 0.2
+                parallel
+                    alpha 1 0.5
+                    moveBy 0 100 0.3 pow2Out
+                    rotateTo 5 0.3 pow2Out
+                end
+                rotateBy 1 0.4 pow2
+                repeat
+                    rotateBy -2 0.9 pow2
+                    rotateBy 2 0.9 pow2
+                end
+            </Action>
+        </Image>
 
         <ImageButton id="moreButton"
             style="checked-round-button"
             imageName="ui/icon-config"
-            bottomLeft="root.bottomLeft 1 1"/>
+            topRight="root.topRight -1 -1">
+            <Action duration="1">
+                alpha 0
+                delay 0.5
+                alpha 1 0.5 pow2In
+            </Action>
+        </ImageButton>
 
-        <AnchorGroup id="moreGroup" spacing="20"
-            bottomzLeft="moreButton.topLeft 0 1"
-            >
+        <VerticalGroup id="moreGroup" spacing="20">
             <ImageButton id="muteButton"
                 style="round-button"
-                imageName="ui/icon-sound-on"
-                bottomLeft="moreGroup.bottomLeft 0 0"/>
+                imageName="ui/icon-sound-on"/>
             <ImageButton id="aboutButton"
                 style="round-button"
-                imageName="ui/icon-info"
-                bottomLeft="muteButton.topLeft 0 1"/>
-        </AnchorGroup>
-
-        <ImageButton id="achievementsButton"
-            style="round-button"
-            imageName="ui/icon-achievement"
-            bottomRight="root.bottomRight -1 1"/>
+                imageName="ui/icon-info"/>
+        </VerticalGroup>
     </AnchorGroup>
 </gdxui>

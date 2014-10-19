@@ -56,6 +56,8 @@ public class BurgerPartyGame extends Game {
     private int mHeight = 0;
     private boolean mWaitInLoadingScreen = false;
 
+    private Difficulty mDifficulty = Constants.NORMAL;
+
     @Override
     public void create() {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -290,7 +292,7 @@ public class BurgerPartyGame extends Game {
     private void doStartLevel() {
         NLog.i("%d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
         Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
-        setScreenAndDispose(new GameScreen(this, level));
+        setScreenAndDispose(new GameScreen(this, level, mDifficulty ));
     }
 
     @Override
@@ -319,5 +321,13 @@ public class BurgerPartyGame extends Game {
 
     public void setAdSystem(AdSystem adSystem) {
         mAdController = new AdController(getPreferences(), adSystem);
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        mDifficulty = difficulty;
+    }
+
+    public Difficulty getDifficulty() {
+        return mDifficulty;
     }
 }

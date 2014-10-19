@@ -10,6 +10,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.TiledImage;
+import com.agateau.burgerparty.view.AchievementsButtonController;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
@@ -23,6 +24,9 @@ import com.badlogic.gdx.utils.XmlReader;
 public class WorldListScreen extends BurgerPartyScreen {
     private HashSet<Object> mHandlers = new HashSet<Object>();
     private int mStarCount;
+
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
 
     public WorldListScreen(BurgerPartyGame game) {
         super(game);
@@ -106,5 +110,8 @@ public class WorldListScreen extends BurgerPartyScreen {
 
         Label starCountLabel = builder.<Label>getActor("starCountLabel");
         starCountLabel.setText(String.valueOf(mStarCount));
+
+        mAchievementsButtonController = new AchievementsButtonController(
+            builder.<ImageButton>getActor("achievementsButton"), getGame());
     }
 }
