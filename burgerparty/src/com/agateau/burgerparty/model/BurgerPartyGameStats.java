@@ -108,7 +108,7 @@ public class BurgerPartyGameStats {
     public void onLevelStarted(final World world) {
         world.levelFinished.connect(mHandlers, new Signal0.Handler() {
             public void handle() {
-                if (world.getRemainingSeconds() <= CLOSE_CALL_COUNT) {
+                if (world.getDifficulty().timeLimited && world.getRemainingSeconds() <= CLOSE_CALL_COUNT) {
                     mCloseCall.unlock();
                 }
             }
