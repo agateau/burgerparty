@@ -46,7 +46,7 @@ public class BurgerView extends Group {
         mAtlas = atlas;
         mSoundAtlas = soundAtlas;
         mAnimScriptLoader = loader;
-        float maxWidth = mAtlas.findRegion("mealitems/0/bottom").getRegionWidth();
+        float maxWidth = mAtlas.findRegion("mealitems/3/toast").getRegionWidth();
         setWidth(maxWidth);
 
         mBurger.initialized.connect(mHandlers, new Signal0.Handler() {
