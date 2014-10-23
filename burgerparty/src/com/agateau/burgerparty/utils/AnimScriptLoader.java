@@ -30,6 +30,11 @@ public class AnimScriptLoader {
                        new InterpolationArgumentDefinition(Interpolation.linear)
                       );
         registerAction("rotateTo",
+            new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+            new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+            new InterpolationArgumentDefinition(Interpolation.linear)
+           );
+        registerAction("rotateBy",
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
                        new InterpolationArgumentDefinition(Interpolation.linear)
@@ -50,6 +55,9 @@ public class AnimScriptLoader {
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
                        new InterpolationArgumentDefinition(Interpolation.linear)
+                      );
+        registerAction("delay",
+                       new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration)
                       );
         mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
         mInstructionDefinitionMap.put("repeat", new RepeatInstructionDefinition(this));
