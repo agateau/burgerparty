@@ -17,7 +17,7 @@ public class PerfectAchievement extends Achievement {
                 tr("Get a perfect in all levels of world %d.", index + 1)
                 );
         mWorld = universe.get(index);
-        universe.saveRequested.connect(mHandler, new Signal0.Handler() {
+        universe.saved.connect(mHandler, new Signal0.Handler() {
             @Override
             public void handle() {
                 update();

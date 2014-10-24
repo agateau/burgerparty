@@ -124,12 +124,6 @@ public class BurgerPartyGame extends Game {
     }
 
     private void setupUniverse() {
-        mUniverse.saveRequested.connect(mHandlers, new Signal0.Handler() {
-            @Override
-            public void handle() {
-                saveLevelProgress();
-            }
-        });
         UniverseLoader loader = new UniverseLoader();
         loader.run(mUniverse);
         assert(mUniverse.getWorlds().size > 0);
@@ -148,10 +142,6 @@ public class BurgerPartyGame extends Game {
     private void onAchievementUnlocked(Achievement achievement) {
         NLog.i("%s", achievement.getTitle());
         mAchievementViewController.show(achievement);
-    }
-
-    private void saveLevelProgress() {
-        mUniverse.saveProgress(mDifficulty);
     }
 
     public Assets getAssets() {
@@ -190,7 +180,7 @@ public class BurgerPartyGame extends Game {
                 @Override
                 public void handle() {
                     level.setScore(0);
-                    saveLevelProgress();
+                    mUniverse.saveProgress();
                     showAd();
                 }
             });
@@ -310,7 +300,8 @@ public class BurgerPartyGame extends Game {
 
     public void setDifficulty(Difficulty difficulty) {
         mDifficulty = difficulty;
-        mUniverse.loadProgress(mDifficulty);
+        mUniverse.setDifficulty(mDifficulty);
+        mUniverse.loadProgress();
     }
 
     public Difficulty getDifficulty() {

@@ -17,10 +17,15 @@ public class Universe {
     private static final String OLD_PROGRESS_FILE = "progress.xml";
     private static final String PROGRESS_FILE = "progress-%s.xml";
 
-    public Signal0 saveRequested = new Signal0();
+    public Signal0 saved = new Signal0();
     public final CounterGameStat starCount = new CounterGameStat();
 
+    private Difficulty mDifficulty;
     private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
+
+    public void setDifficulty(Difficulty difficulty) {
+        mDifficulty = difficulty;
+    }
 
     public void addWorld(LevelWorld world) {
         mLevelWorlds.add(world);
@@ -90,12 +95,12 @@ public class Universe {
         }
 
         updateStarCount();
-        saveRequested.emit();
+        saveProgress();
     }
 
-    public void loadProgress(Difficulty difficulty) {
+    public void loadProgress() {
         resetProgress();
-        String name = getProgressFileName(difficulty);
+        String name = getProgressFileName(mDifficulty);
         FileHandle handle = FileUtils.getUserWritableFile(name);
         if (handle.exists()) {
             ProgressIO progressIO = new ProgressIO(mLevelWorlds);
@@ -104,11 +109,12 @@ public class Universe {
         updateStarCount();
     }
 
-    public void saveProgress(Difficulty difficulty) {
-        String name = getProgressFileName(difficulty);
+    public void saveProgress() {
+        String name = getProgressFileName(mDifficulty);
         FileHandle handle = FileUtils.getUserWritableFile(name);
         ProgressIO progressIO = new ProgressIO(mLevelWorlds);
         progressIO.save(handle);
+        saved.emit();
     }
 
     private void resetProgress() {

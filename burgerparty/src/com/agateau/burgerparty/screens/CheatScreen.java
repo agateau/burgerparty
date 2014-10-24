@@ -76,7 +76,7 @@ public class CheatScreen extends BurgerPartyScreen {
         }
         universe.get(0).getLevel(0).unlock();
         universe.updateStarCount();
-        universe.saveRequested.emit();
+        universe.saveProgress();
     }
 
     private void setStars(int worldIndex, int stars) {
@@ -90,6 +90,6 @@ public class CheatScreen extends BurgerPartyScreen {
             }
         }
         universe.updateStarCount();
-        universe.saveRequested.emit();
+        universe.saveProgress();
     }
 }
