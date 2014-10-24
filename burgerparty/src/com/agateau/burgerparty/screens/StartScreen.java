@@ -2,7 +2,7 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Constants;
-import com.agateau.burgerparty.Difficulty;
+import com.agateau.burgerparty.model.Difficulty;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;

@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 
 import com.agateau.burgerparty.Constants;
-import com.agateau.burgerparty.Difficulty;
 import com.agateau.burgerparty.model.Inventory;
 import com.agateau.burgerparty.utils.ConnectionManager;
 import com.agateau.burgerparty.utils.Counter;

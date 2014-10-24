@@ -3,8 +3,8 @@ package com.agateau.burgerparty.view;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.AchievementManager;
 import com.agateau.burgerparty.screens.AchievementsScreen;
-import com.agateau.burgerparty.utils.AchievementManager;
 import com.agateau.burgerparty.utils.Signal0;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;

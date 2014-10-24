@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 
-import com.agateau.burgerparty.utils.Achievement;
-import com.agateau.burgerparty.utils.AchievementManager;
 import com.agateau.burgerparty.utils.CounterAchievement;
 import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;

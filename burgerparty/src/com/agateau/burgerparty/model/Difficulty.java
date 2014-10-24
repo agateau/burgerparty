@@ -1,4 +1,4 @@
-package com.agateau.burgerparty;
+package com.agateau.burgerparty.model;
 
 public class Difficulty {
     public String name;

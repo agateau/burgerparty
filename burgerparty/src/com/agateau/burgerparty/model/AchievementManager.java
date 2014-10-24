@@ -1,9 +1,13 @@
-package com.agateau.burgerparty.utils;
+package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.agateau.burgerparty.utils.FileUtils;
+import com.agateau.burgerparty.utils.NLog;
+import com.agateau.burgerparty.utils.Signal0;
+import com.agateau.burgerparty.utils.Signal1;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;

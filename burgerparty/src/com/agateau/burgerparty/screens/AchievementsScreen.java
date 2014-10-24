@@ -1,8 +1,8 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.utils.Achievement;
-import com.agateau.burgerparty.utils.AchievementManager;
+import com.agateau.burgerparty.model.Achievement;
+import com.agateau.burgerparty.model.AchievementManager;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;

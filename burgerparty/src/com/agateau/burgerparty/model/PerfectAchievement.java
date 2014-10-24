@@ -3,7 +3,6 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.Signal0;
 
 import static com.greenyetilab.linguaj.Translator.tr;

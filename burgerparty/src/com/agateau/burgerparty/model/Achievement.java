@@ -1,4 +1,6 @@
-package com.agateau.burgerparty.utils;
+package com.agateau.burgerparty.model;
+
+import com.agateau.burgerparty.utils.Signal0;
 
 
 public class Achievement {

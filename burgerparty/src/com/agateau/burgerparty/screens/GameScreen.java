@@ -1,7 +1,7 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.Difficulty;
+import com.agateau.burgerparty.model.Difficulty;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.World;
 import com.agateau.burgerparty.view.WorldView;

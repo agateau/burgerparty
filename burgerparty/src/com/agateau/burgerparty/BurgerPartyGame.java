@@ -4,8 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 
+import com.agateau.burgerparty.model.Achievement;
 import com.agateau.burgerparty.model.AdController;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
+import com.agateau.burgerparty.model.Difficulty;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
@@ -22,7 +24,6 @@ import com.agateau.burgerparty.screens.NewWorldScreen;
 import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
-import com.agateau.burgerparty.utils.Achievement;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
