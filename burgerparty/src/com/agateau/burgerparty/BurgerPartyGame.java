@@ -40,7 +40,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 
 public class BurgerPartyGame extends Game {
-    private static final String PROGRESS_FILE = "progress.xml";
+    private static final String OLD_PROGRESS_FILE = "progress.xml";
+    private static final String PROGRESS_FILE = "progress-%s.xml";
 
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -135,17 +136,6 @@ public class BurgerPartyGame extends Game {
         UniverseLoader loader = new UniverseLoader();
         loader.run(mUniverse);
         assert(mUniverse.getWorlds().size > 0);
-
-        // At least, unlock first level
-        mUniverse.get(0).getLevel(0).unlock();
-
-        FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
-        if (!handle.exists()) {
-            return;
-        }
-        ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
-        progressIO.load(handle);
-        mUniverse.updateStarCount();
     }
 
     private void setupAchievements() {
@@ -164,7 +154,8 @@ public class BurgerPartyGame extends Game {
     }
 
     private void saveLevelProgress() {
-        FileHandle handle = FileUtils.getUserWritableFile(PROGRESS_FILE);
+        String name = String.format(PROGRESS_FILE, mDifficulty.name);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
         ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
         progressIO.save(handle);
     }
@@ -325,6 +316,22 @@ public class BurgerPartyGame extends Game {
 
     public void setDifficulty(Difficulty difficulty) {
         mDifficulty = difficulty;
+        mUniverse.resetProgress();
+
+        String name = String.format(PROGRESS_FILE, mDifficulty.name);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        if (!handle.exists() && mDifficulty == Constants.NORMAL) {
+            FileHandle oldHandle = FileUtils.getUserWritableFile(OLD_PROGRESS_FILE);
+            if (oldHandle.exists()) {
+                oldHandle.moveTo(handle);
+            }
+        }
+        if (!handle.exists()) {
+            return;
+        }
+        ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
+        progressIO.load(handle);
+        mUniverse.updateStarCount();
     }
 
     public Difficulty getDifficulty() {

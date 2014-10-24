@@ -86,4 +86,15 @@ public class Universe {
         updateStarCount();
         saveRequested.emit();
     }
+
+    public void resetProgress() {
+        for (LevelWorld world: mLevelWorlds) {
+            for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+                Level level = world.getLevel(levelIndex);
+                level.lock();
+            }
+        }
+        // At least, unlock first level
+        mLevelWorlds.get(0).getLevel(0).unlock();
+    }
 }
