@@ -3,14 +3,20 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.utils.CounterGameStat;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Signal0;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Knows all the LevelWorld instances of the game
  */
 public class Universe {
+    private static final String OLD_PROGRESS_FILE = "progress.xml";
+    private static final String PROGRESS_FILE = "progress-%s.xml";
+
     public Signal0 saveRequested = new Signal0();
     public final CounterGameStat starCount = new CounterGameStat();
 
@@ -87,7 +93,25 @@ public class Universe {
         saveRequested.emit();
     }
 
-    public void resetProgress() {
+    public void loadProgress(Difficulty difficulty) {
+        resetProgress();
+        String name = getProgressFileName(difficulty);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        if (handle.exists()) {
+            ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+            progressIO.load(handle);
+        }
+        updateStarCount();
+    }
+
+    public void saveProgress(Difficulty difficulty) {
+        String name = getProgressFileName(difficulty);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+        progressIO.save(handle);
+    }
+
+    private void resetProgress() {
         for (LevelWorld world: mLevelWorlds) {
             for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
                 Level level = world.getLevel(levelIndex);
@@ -96,5 +120,19 @@ public class Universe {
         }
         // At least, unlock first level
         mLevelWorlds.get(0).getLevel(0).unlock();
+    }
+
+    public static void migrateOldProgress() {
+        FileHandle oldHandle = FileUtils.getUserWritableFile(OLD_PROGRESS_FILE);
+        if (!oldHandle.exists()) {
+            return;
+        }
+        String name = getProgressFileName(Constants.NORMAL);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        oldHandle.moveTo(handle);
+    }
+
+    private static String getProgressFileName(Difficulty difficulty) {
+        return String.format(PROGRESS_FILE, difficulty.name);
     }
 }

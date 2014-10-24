@@ -12,7 +12,6 @@ import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
 import com.agateau.burgerparty.model.MealItemDb;
-import com.agateau.burgerparty.model.ProgressIO;
 import com.agateau.burgerparty.screens.AboutScreen;
 import com.agateau.burgerparty.screens.AchievementsScreen;
 import com.agateau.burgerparty.screens.CheatScreen;
@@ -25,7 +24,6 @@ import com.agateau.burgerparty.screens.SandBoxGameScreen;
 import com.agateau.burgerparty.screens.StartScreen;
 import com.agateau.burgerparty.screens.WorldListScreen;
 import com.agateau.burgerparty.utils.AnimScriptLoader;
-import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
@@ -38,12 +36,8 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 
 public class BurgerPartyGame extends Game {
-    private static final String OLD_PROGRESS_FILE = "progress.xml";
-    private static final String PROGRESS_FILE = "progress-%s.xml";
-
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
     private Assets mAssets;
@@ -62,6 +56,8 @@ public class BurgerPartyGame extends Game {
 
     @Override
     public void create() {
+        Universe.migrateOldProgress();
+
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
         NLog.i("date=%s", timeStamp);
 
@@ -155,10 +151,7 @@ public class BurgerPartyGame extends Game {
     }
 
     private void saveLevelProgress() {
-        String name = String.format(PROGRESS_FILE, mDifficulty.name);
-        FileHandle handle = FileUtils.getUserWritableFile(name);
-        ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
-        progressIO.save(handle);
+        mUniverse.saveProgress(mDifficulty);
     }
 
     public Assets getAssets() {
@@ -317,22 +310,7 @@ public class BurgerPartyGame extends Game {
 
     public void setDifficulty(Difficulty difficulty) {
         mDifficulty = difficulty;
-        mUniverse.resetProgress();
-
-        String name = String.format(PROGRESS_FILE, mDifficulty.name);
-        FileHandle handle = FileUtils.getUserWritableFile(name);
-        if (!handle.exists() && mDifficulty == Constants.NORMAL) {
-            FileHandle oldHandle = FileUtils.getUserWritableFile(OLD_PROGRESS_FILE);
-            if (oldHandle.exists()) {
-                oldHandle.moveTo(handle);
-            }
-        }
-        if (!handle.exists()) {
-            return;
-        }
-        ProgressIO progressIO = new ProgressIO(mUniverse.getWorlds());
-        progressIO.load(handle);
-        mUniverse.updateStarCount();
+        mUniverse.loadProgress(mDifficulty);
     }
 
     public Difficulty getDifficulty() {
