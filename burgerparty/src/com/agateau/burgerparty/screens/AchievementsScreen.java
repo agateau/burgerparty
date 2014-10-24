@@ -66,6 +66,9 @@ public class AchievementsScreen extends BurgerPartyScreen {
         AchievementManager manager = getGame().getGameStats().manager;
         boolean first = true;
         for (Achievement achievement: manager.getAchievements()) {
+            if (!achievement.isValidForDifficulty(getGame().getDifficulty())) {
+                continue;
+            }
             // VerticalGroup spacing is buggy and adds spacing on top of the first element.
             // We create spaces manually to work-around this.
             if (first) {

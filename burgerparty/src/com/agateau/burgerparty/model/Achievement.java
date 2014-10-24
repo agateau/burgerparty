@@ -65,4 +65,8 @@ public class Achievement {
         mSeen = true;
         changed.emit();
     }
+
+    public boolean isValidForDifficulty(Difficulty difficulty) {
+        return true;
+    }
 }

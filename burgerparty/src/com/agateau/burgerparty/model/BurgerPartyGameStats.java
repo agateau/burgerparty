@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.utils.CounterAchievement;
 import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;
@@ -78,7 +79,15 @@ public class BurgerPartyGameStats {
         achievement.init(levelPlayedCount, count);
         manager.add(achievement);
 
-        mCloseCall = new Achievement("close-call", tr("Close Call"), trn("ignore-close-call", "Finish a level with less than %# seconds left.", CLOSE_CALL_COUNT + 1));
+        mCloseCall = new Achievement("close-call",
+            tr("Close Call"),
+            trn("ignore-close-call", "Finish a level with less than %# seconds left.", CLOSE_CALL_COUNT + 1)
+            ) {
+            @Override
+            public boolean isValidForDifficulty(Difficulty difficulty) {
+                return difficulty.timeLimited;
+            }
+        };
         manager.add(mCloseCall);
 
         count = 4;
@@ -88,11 +97,11 @@ public class BurgerPartyGameStats {
         mEveningGamer = new Achievement("evening-gamer", tr("Evening Gamer"), trn("ignore-evening", "Start a game between 7PM and 11PM for %# days.", count));
         manager.add(mEveningGamer);
 
-        for (int index = 0, n = universe.getWorlds().size; index < n; ++index) {
+        for (int index = 0, n = Constants.WORLD_COUNT; index < n; ++index) {
             manager.add(new AllStarsAchievement(universe, index));
         }
 
-        for (int index = 0, n = universe.getWorlds().size; index < n; ++index) {
+        for (int index = 0, n = Constants.WORLD_COUNT; index < n; ++index) {
             manager.add(new PerfectAchievement(universe, index));
         }
 
