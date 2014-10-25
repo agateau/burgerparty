@@ -12,10 +12,13 @@ import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
 
 public class CheatScreen extends BurgerPartyScreen {
+    private Array<Label> mWorldLabels = new Array<Label>();
     public CheatScreen(BurgerPartyGame game) {
         super(game);
         Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
@@ -50,6 +53,8 @@ public class CheatScreen extends BurgerPartyScreen {
         });
 
         for (int idx = 1; idx <= 3; ++idx) {
+            Label label = builder.<Label>getActor(String.format("world-%d-label", idx));
+            mWorldLabels.add(label);
             final int worldIndex = idx - 1;
             for (int star = 0; star <= 3; ++star) {
                 final int fstar = star;
@@ -59,7 +64,15 @@ public class CheatScreen extends BurgerPartyScreen {
                     }
                 });
             }
+            updateWorldLabel(worldIndex);
         }
+    }
+
+    private void updateWorldLabel(int worldIndex) {
+        Universe universe = getGame().getUniverse();
+        int stars = universe.getWorlds().get(worldIndex).getWonStarCount();
+        String text = String.format("World %d: %d", worldIndex + 1, stars);
+        mWorldLabels.get(worldIndex).setText(text);
     }
 
     @Override
@@ -73,6 +86,7 @@ public class CheatScreen extends BurgerPartyScreen {
             for (Level level: world.getLevels()) {
                 level.lock();
             }
+            updateWorldLabel(world.getIndex());
         }
         universe.get(0).getLevel(0).unlock();
         universe.updateStarCount();
@@ -91,5 +105,6 @@ public class CheatScreen extends BurgerPartyScreen {
         }
         universe.updateStarCount();
         universe.saveProgress();
+        updateWorldLabel(worldIndex);
     }
 }
