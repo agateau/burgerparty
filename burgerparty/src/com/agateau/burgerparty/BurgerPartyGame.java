@@ -168,7 +168,7 @@ public class BurgerPartyGame extends Game {
         return mLevelIndex;
     }
 
-    public Universe getUniverse() {
+    public Universe getCurrentUniverse() {
         return mUniverseForDifficulty.get(mDifficulty);
     }
 
@@ -181,14 +181,14 @@ public class BurgerPartyGame extends Game {
         mMusicController.fadeOut();
         mLevelWorldIndex = levelWorldIndex;
         mLevelIndex = levelIndex;
-        final Level level = getUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
+        final Level level = getCurrentUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
         if (level.hasBrandNewItem()) {
             NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem());
             screen.done.connect(mHandlers, new Signal0.Handler() {
                 @Override
                 public void handle() {
                     level.setScore(0);
-                    getUniverse().saveProgress();
+                    getCurrentUniverse().saveProgress();
                     showAd();
                 }
             });
@@ -274,7 +274,7 @@ public class BurgerPartyGame extends Game {
 
     private void doStartLevel() {
         NLog.i("%d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
-        Level level = getUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
+        Level level = getCurrentUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
         setScreenAndDispose(new GameScreen(this, level, mDifficulty ));
     }
 

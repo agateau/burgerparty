@@ -43,7 +43,7 @@ public class LevelListScreen extends BurgerPartyScreen {
         Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
         setBackgroundActor(bgImage);
 
-        mLevelWorld = game.getUniverse().get(worldIndex);
+        mLevelWorld = game.getCurrentUniverse().get(worldIndex);
 
         mStarOff = atlas.findRegion("ui/star-off");
         mStarOn = atlas.findRegion("ui/star-on");

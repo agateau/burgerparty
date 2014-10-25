@@ -37,7 +37,7 @@ public class PauseOverlay extends Overlay {
         addActor(root);
 
         String txt = tr("Level %d-%d", mGame.getLevelWorldIndex() + 1, mGame.getLevelIndex() + 1) + "\n";
-        int highScore = mGame.getUniverse().getHighScore(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
+        int highScore = mGame.getCurrentUniverse().getHighScore(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
         if (highScore > 0) {
             txt += tr("High score: %d", highScore);
         } else {

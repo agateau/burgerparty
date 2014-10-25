@@ -69,7 +69,7 @@ public class CheatScreen extends BurgerPartyScreen {
     }
 
     private void updateWorldLabel(int worldIndex) {
-        Universe universe = getGame().getUniverse();
+        Universe universe = getGame().getCurrentUniverse();
         int stars = universe.getWorlds().get(worldIndex).getWonStarCount();
         String text = String.format("World %d: %d", worldIndex + 1, stars);
         mWorldLabels.get(worldIndex).setText(text);
@@ -81,7 +81,7 @@ public class CheatScreen extends BurgerPartyScreen {
     }
 
     private void reset() {
-        Universe universe = getGame().getUniverse();
+        Universe universe = getGame().getCurrentUniverse();
         for (LevelWorld world: universe.getWorlds()) {
             for (Level level: world.getLevels()) {
                 level.lock();
@@ -94,7 +94,7 @@ public class CheatScreen extends BurgerPartyScreen {
     }
 
     private void setStars(int worldIndex, int stars) {
-        Universe universe = getGame().getUniverse();
+        Universe universe = getGame().getCurrentUniverse();
         LevelWorld world = universe.get(worldIndex);
         for (Level level: world.getLevels()) {
             level.unlock();

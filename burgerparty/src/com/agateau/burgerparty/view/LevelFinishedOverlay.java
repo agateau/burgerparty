@@ -198,7 +198,7 @@ public class LevelFinishedOverlay extends Overlay {
         int starCount = Math.min(levelResult.getCoinCount() / levelResult.getStarCost(), 3);
 
         // Store final score *now*
-        mGame.getUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
+        mGame.getCurrentUniverse().updateLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex(), finalScore, starCount, perfect);
 
         mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-off-big")));
         mStarTextures.add(new TextureRegionDrawable(atlas.findRegion("ui/star-on-big")));
@@ -247,11 +247,11 @@ public class LevelFinishedOverlay extends Overlay {
 
         int levelWorldIndex = mGame.getLevelWorldIndex();
         int levelIndex = mGame.getLevelIndex();
-        LevelWorld levelWorld = mGame.getUniverse().get(levelWorldIndex);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(levelWorldIndex);
         Label mainLabel = builder.<Label>getActor("mainLabel");
         if (levelIndex < levelWorld.getLevelCount() - 1) {
             mainLabel.setText(tr("Congratulations, you finished level %d-%d!", levelWorldIndex + 1, levelIndex + 1));
-        } else if (levelWorldIndex < mGame.getUniverse().getWorlds().size - 1) {
+        } else if (levelWorldIndex < mGame.getCurrentUniverse().getWorlds().size - 1) {
             mainLabel.setText(tr("Congratulations, you finished world %d!", levelWorldIndex + 1));
         } else {
             mainLabel.setText(tr("Congratulations, you finished the game!"));
@@ -276,7 +276,7 @@ public class LevelFinishedOverlay extends Overlay {
     }
 
     private void goToNextLevel() {
-        LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(mLevelWorldIndex);
         if (mLevelIndex < levelWorld.getLevelCount() - 1) {
             mGame.startLevel(mLevelWorldIndex, mLevelIndex + 1);
         } else {

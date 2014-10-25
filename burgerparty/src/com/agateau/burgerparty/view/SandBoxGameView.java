@@ -45,7 +45,7 @@ public class SandBoxGameView extends AbstractWorldView {
     private ImageButton mDeliverButton;
 
     public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
-        super(game.getAssets(), game.getUniverse().get(0).getDirName());
+        super(game.getAssets(), game.getCurrentUniverse().get(0).getDirName());
         mScreen = screen;
         mLevelWorldIndex = 0;
         mGame = game;
@@ -91,7 +91,7 @@ public class SandBoxGameView extends AbstractWorldView {
             mBottomRightBar.remove();
         }
         BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
-        LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(mLevelWorldIndex);
         FileHandle handle = Gdx.files.internal(levelWorld.getDirName() + "/sandbox.gdxui");
         builder.build(handle, this);
 
@@ -125,7 +125,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
     private void setupInventories() {
         HashSet<String> names = new HashSet<String>();
-        for (MealItem item: mGame.getUniverse().getKnownItems()) {
+        for (MealItem item: mGame.getCurrentUniverse().getKnownItems()) {
             names.add(item.getName());
         }
         mWorld.getBurgerInventory().clear();
@@ -213,7 +213,7 @@ public class SandBoxGameView extends AbstractWorldView {
     }
 
     private void switchWorld() {
-        Array<LevelWorld> worlds = mGame.getUniverse().getWorlds();
+        Array<LevelWorld> worlds = mGame.getCurrentUniverse().getWorlds();
         WorldListOverlay overlay = new WorldListOverlay(mScreen, worlds, mLevelWorldIndex);
         overlay.currentIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
             @Override
@@ -226,7 +226,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
     private void setLevelWorldIndex(int index) {
         mLevelWorldIndex = index;
-        LevelWorld levelWorld = mGame.getUniverse().get(index);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(index);
         String dirName = levelWorld.getDirName();
         setWorldDirName(dirName);
         setupInventories();
