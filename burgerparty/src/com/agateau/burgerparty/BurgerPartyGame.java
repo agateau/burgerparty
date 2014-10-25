@@ -2,6 +2,7 @@ package com.agateau.burgerparty;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Achievement;
@@ -42,7 +43,7 @@ public class BurgerPartyGame extends Game {
 
     private Assets mAssets;
     private MusicController mMusicController;
-    private Universe mUniverse = new Universe();
+    private HashMap<Difficulty, Universe> mUniverseForDifficulty = new HashMap<Difficulty, Universe>();
     private int mLevelWorldIndex = 0;
     private int mLevelIndex = 0;
     private AdController mAdController;
@@ -56,8 +57,6 @@ public class BurgerPartyGame extends Game {
 
     @Override
     public void create() {
-        Universe.migrateOldProgress();
-
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Calendar.getInstance().getTime());
         NLog.i("date=%s", timeStamp);
 
@@ -123,14 +122,23 @@ public class BurgerPartyGame extends Game {
         loader.registerMemberMethod("play", mAssets.getSoundAtlas(), "createPlayAction", new StringArgumentDefinition());
     }
 
-    private void setupUniverse() {
+    private void setupUniverses() {
+        setupUniverse(Constants.EASY);
+        setupUniverse(Constants.NORMAL);
+        setupUniverse(Constants.HARD);
+    }
+
+    private void setupUniverse(Difficulty difficulty) {
+        Universe universe = new Universe(difficulty);
+        mUniverseForDifficulty.put(difficulty, universe);
         UniverseLoader loader = new UniverseLoader();
-        loader.run(mUniverse);
-        assert(mUniverse.getWorlds().size > 0);
+        loader.run(universe);
+        assert(universe.getWorlds().size > 0);
+        universe.loadProgress();
     }
 
     private void setupAchievements() {
-        mGameStats = new BurgerPartyGameStats(mUniverse);
+        mGameStats = new BurgerPartyGameStats(mUniverseForDifficulty.values());
         mGameStats.manager.achievementUnlocked.connect(mHandlers, new Signal1.Handler<Achievement>() {
             @Override
             public void handle(Achievement achievement) {
@@ -161,7 +169,7 @@ public class BurgerPartyGame extends Game {
     }
 
     public Universe getUniverse() {
-        return mUniverse;
+        return mUniverseForDifficulty.get(mDifficulty);
     }
 
     public BurgerPartyGameStats getGameStats() {
@@ -173,14 +181,14 @@ public class BurgerPartyGame extends Game {
         mMusicController.fadeOut();
         mLevelWorldIndex = levelWorldIndex;
         mLevelIndex = levelIndex;
-        final Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
+        final Level level = getUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
         if (level.hasBrandNewItem()) {
             NewItemScreen screen = new NewItemScreen(this, mLevelWorldIndex, level.definition.getNewItem());
             screen.done.connect(mHandlers, new Signal0.Handler() {
                 @Override
                 public void handle() {
                     level.setScore(0);
-                    mUniverse.saveProgress();
+                    getUniverse().saveProgress();
                     showAd();
                 }
             });
@@ -215,7 +223,7 @@ public class BurgerPartyGame extends Game {
         mMusicController.setMusic(music);
         mMusicController.play();
         setupAnimScriptLoader();
-        setupUniverse();
+        setupUniverses();
         setupAchievements();
         showStartScreen();
     }
@@ -266,7 +274,7 @@ public class BurgerPartyGame extends Game {
 
     private void doStartLevel() {
         NLog.i("%d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
-        Level level = mUniverse.get(mLevelWorldIndex).getLevel(mLevelIndex);
+        Level level = getUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
         setScreenAndDispose(new GameScreen(this, level, mDifficulty ));
     }
 
@@ -300,8 +308,6 @@ public class BurgerPartyGame extends Game {
 
     public void setDifficulty(Difficulty difficulty) {
         mDifficulty = difficulty;
-        mUniverse.setDifficulty(mDifficulty);
-        mUniverse.loadProgress();
     }
 
     public Difficulty getDifficulty() {

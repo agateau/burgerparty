@@ -3,7 +3,6 @@ package com.agateau.burgerparty.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.utils.CounterGameStat;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Signal0;
@@ -14,16 +13,15 @@ import com.badlogic.gdx.utils.Array;
  * Knows all the LevelWorld instances of the game
  */
 public class Universe {
-    private static final String OLD_PROGRESS_FILE = "progress.xml";
-    private static final String PROGRESS_FILE = "progress-%s.xml";
+    private static final String PROGRESS_FILE = "progress%s.xml";
 
     public Signal0 saved = new Signal0();
     public final CounterGameStat starCount = new CounterGameStat();
 
-    private Difficulty mDifficulty;
+    private final Difficulty mDifficulty;
     private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
 
-    public void setDifficulty(Difficulty difficulty) {
+    public Universe(Difficulty difficulty) {
         mDifficulty = difficulty;
     }
 
@@ -41,6 +39,10 @@ public class Universe {
 
     public int getHighScore(int world, int level) {
         return mLevelWorlds.get(world).getLevel(level).getScore();
+    }
+
+    public Difficulty getDifficulty() {
+        return mDifficulty;
     }
 
     public void updateStarCount() {
@@ -128,17 +130,7 @@ public class Universe {
         mLevelWorlds.get(0).getLevel(0).unlock();
     }
 
-    public static void migrateOldProgress() {
-        FileHandle oldHandle = FileUtils.getUserWritableFile(OLD_PROGRESS_FILE);
-        if (!oldHandle.exists()) {
-            return;
-        }
-        String name = getProgressFileName(Constants.NORMAL);
-        FileHandle handle = FileUtils.getUserWritableFile(name);
-        oldHandle.moveTo(handle);
-    }
-
     private static String getProgressFileName(Difficulty difficulty) {
-        return String.format(PROGRESS_FILE, difficulty.name);
+        return String.format(PROGRESS_FILE, difficulty.suffix);
     }
 }

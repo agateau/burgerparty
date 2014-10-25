@@ -38,15 +38,15 @@ public class Constants {
     public static Difficulty HARD = new Difficulty();
 
     static {
-        EASY.name = "easy";
+        EASY.suffix = "-easy";
         EASY.timeLimited = false;
         EASY.showArrow = true;
 
-        NORMAL.name = "normal";
+        NORMAL.suffix = "";
         NORMAL.timeLimited = true;
         NORMAL.showArrow = true;
 
-        HARD.name = "hard";
+        HARD.suffix = "-hard";
         HARD.timeLimited = true;
         HARD.showArrow = false;
     }
