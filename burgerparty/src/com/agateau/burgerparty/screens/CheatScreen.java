@@ -1,6 +1,8 @@
 package com.agateau.burgerparty.screens;
 
+
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.Constants;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.Universe;
@@ -10,17 +12,26 @@ import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class CheatScreen extends BurgerPartyScreen {
     private Array<Label> mWorldLabels = new Array<Label>();
+    private Array<Universe> mUniverses = new Array<Universe>();
+    private Array<TextButton> mDifficultyButtons = new Array<TextButton>();
+    private int mCurrentDifficultyIdx = -1;
+
     public CheatScreen(BurgerPartyGame game) {
         super(game);
+        for (Universe universe: getGame().getUniverses()) {
+            mUniverses.add(universe);
+        }
         Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
         setBackgroundActor(bgImage);
         setupWidgets();
@@ -52,6 +63,7 @@ public class CheatScreen extends BurgerPartyScreen {
             }
         });
 
+        // Init world buttons
         for (int idx = 1; idx <= 3; ++idx) {
             Label label = builder.<Label>getActor(String.format("world-%d-label", idx));
             mWorldLabels.add(label);
@@ -64,12 +76,42 @@ public class CheatScreen extends BurgerPartyScreen {
                     }
                 });
             }
+        }
+
+        // Init difficulty buttons
+        for (int idx = 0; idx < 3; ++idx) {
+            final TextButton button = builder.<TextButton>getActor(String.format("difficulty-%d", idx));
+            mDifficultyButtons.add(button);
+            final int fidx = idx;
+            button.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (button.isChecked()) {
+                        setCurrentDifficultyIdx(fidx);
+                    }
+                }
+            });
+        }
+
+        setCurrentDifficultyIdx(0);
+        mDifficultyButtons.get(0).setChecked(true);
+    }
+
+    private void setCurrentDifficultyIdx(int idx) {
+        if (idx == mCurrentDifficultyIdx) {
+            return;
+        }
+        if (mCurrentDifficultyIdx != -1) {
+            mDifficultyButtons.get(mCurrentDifficultyIdx).setChecked(false);
+        }
+        mCurrentDifficultyIdx = idx;
+        for (int worldIndex = 0; worldIndex < Constants.WORLD_COUNT; ++worldIndex) {
             updateWorldLabel(worldIndex);
         }
     }
 
     private void updateWorldLabel(int worldIndex) {
-        Universe universe = getGame().getCurrentUniverse();
+        Universe universe = mUniverses.get(mCurrentDifficultyIdx);
         int stars = universe.getWorlds().get(worldIndex).getWonStarCount();
         String text = String.format("World %d: %d", worldIndex + 1, stars);
         mWorldLabels.get(worldIndex).setText(text);
@@ -81,7 +123,7 @@ public class CheatScreen extends BurgerPartyScreen {
     }
 
     private void reset() {
-        Universe universe = getGame().getCurrentUniverse();
+        Universe universe = mUniverses.get(mCurrentDifficultyIdx);
         for (LevelWorld world: universe.getWorlds()) {
             for (Level level: world.getLevels()) {
                 level.lock();
@@ -94,7 +136,7 @@ public class CheatScreen extends BurgerPartyScreen {
     }
 
     private void setStars(int worldIndex, int stars) {
-        Universe universe = getGame().getCurrentUniverse();
+        Universe universe = mUniverses.get(mCurrentDifficultyIdx);
         LevelWorld world = universe.get(worldIndex);
         for (Level level: world.getLevels()) {
             level.unlock();

@@ -2,6 +2,7 @@ package com.agateau.burgerparty;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -170,6 +171,10 @@ public class BurgerPartyGame extends Game {
 
     public Universe getCurrentUniverse() {
         return mUniverseForDifficulty.get(mDifficulty);
+    }
+
+    public Collection<Universe> getUniverses() {
+        return mUniverseForDifficulty.values();
     }
 
     public BurgerPartyGameStats getGameStats() {

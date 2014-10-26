@@ -4,6 +4,11 @@
         <VerticalGroup
             topLeft="root.topCenter"
             >
+            <HorizontalGroup>
+                <TextButton id="difficulty-0" style="checked">Kids</TextButton>
+                <TextButton id="difficulty-1" style="checked">Normal</TextButton>
+                <TextButton id="difficulty-2" style="checked">Expert</TextButton>
+            </HorizontalGroup>
             <TextButton id="reset">Reset</TextButton>
             <Label id="world-1-label"/>
             <HorizontalGroup>
