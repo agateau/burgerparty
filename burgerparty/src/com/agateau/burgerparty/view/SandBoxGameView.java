@@ -11,6 +11,7 @@ import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.SandBoxWorld;
+import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.screens.BurgerPartyScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
@@ -125,8 +126,10 @@ public class SandBoxGameView extends AbstractWorldView {
 
     private void setupInventories() {
         HashSet<String> names = new HashSet<String>();
-        for (MealItem item: mGame.getCurrentUniverse().getKnownItems()) {
-            names.add(item.getName());
+        for (Universe universe: mGame.getUniverses()) {
+            for (MealItem item: universe.getKnownItems()) {
+                names.add(item.getName());
+            }
         }
         mWorld.getBurgerInventory().clear();
         mWorld.getMealExtraInventory().clear();
