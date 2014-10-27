@@ -23,12 +23,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="3144.6724"
-     inkscape:cy="-1727.0212"
-     inkscape:current-layer="layer3"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="3514.4365"
+     inkscape:cy="-1301.9653"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
-     showgrid="true"
+     showgrid="false"
      inkscape:window-width="1563"
      inkscape:window-height="880"
      inkscape:window-x="34"
@@ -24109,6 +24109,102 @@
          d="m 2971.0592,2573.674 c -11.4043,0 -17.7813,2.2689 -17.7813,5.0677 l 35.5626,0 c 0,-2.7988 -6.3771,-5.0677 -17.7813,-5.0677 z m -14.6266,6.4754 c -0.7944,0 -1.4339,0.6278 -1.4339,1.4078 0,0.7798 0.6395,1.4076 1.4339,1.4076 l 29.2531,0 c 0.7944,0 1.434,-0.6278 1.434,-1.4076 0,-0.78 -0.6396,-1.4078 -1.434,-1.4078 z m -2.5811,4.2231 0,2.0109 34.4154,0 0,-2.0109 z m 2.5811,3.4185 c -0.7944,0 -1.4339,0.6279 -1.4339,1.4078 0,0.7799 0.6395,1.4077 1.4339,1.4077 l 29.2531,0 c 0.7944,0 1.434,-0.6278 1.434,-1.4077 0,-0.7799 -0.6396,-1.4078 -1.434,-1.4078 z m -3.1547,4.2232 c 0,2.8154 1.7208,4.2231 17.7813,4.2231 16.0605,0 17.7813,-1.4077 17.7813,-4.2231 z"
          style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.0638864;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          sodipodi:nodetypes="sccsssssssscccccssssssscscc" />
+    </g>
+    <g
+       id="g6198">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path6190"
+         d="m 3488,2322 74,74 0,-36 -38,-38 z"
+         style="color:#000000;fill:#009100;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"
+         sodipodi:linespacing="125%"
+         id="text6192"
+         y="-830.14343"
+         x="4143.6465"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         xml:space="preserve"><tspan
+           y="-830.14343"
+           x="4143.6465"
+           id="tspan6194"
+           sodipodi:role="line">KIDS</tspan></text>
+    </g>
+    <g
+       id="g6203"
+       transform="translate(270,0)"
+       inkscape:export-filename="corner-hard.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="color:#000000;fill:#912525;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 3488,2322 74,74 0,-36 -38,-38 z"
+         id="path6205"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <text
+         xml:space="preserve"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         x="4134.4541"
+         y="-830.85065"
+         id="text6207"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan6209"
+           x="4134.4541"
+           y="-830.85065">EXPERT</tspan></text>
+    </g>
+    <g
+       id="g6211"
+       transform="translate(180,0)"
+       inkscape:export-filename="corner-normal.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="color:#000000;fill:#d07300;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 3488,2322 74,74 0,-36 -38,-38 z"
+         id="path6213"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <text
+         xml:space="preserve"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         x="4133.04"
+         y="-830.85065"
+         id="text6215"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan6217"
+           x="4133.04"
+           y="-830.85065">NORMAL</tspan></text>
+    </g>
+    <g
+       id="g6219"
+       transform="translate(90,0)"
+       inkscape:export-filename="corner-easy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="color:#000000;fill:#009100;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m 3488,2322 74,74 0,-36 -38,-38 z"
+         id="path6221"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <text
+         xml:space="preserve"
+         style="font-size:21px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sanitechtro;-inkscape-font-specification:Sanitechtro Bold"
+         x="4143.6465"
+         y="-830.14343"
+         id="text6223"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan6225"
+           x="4143.6465"
+           y="-830.14343">KIDS</tspan></text>
     </g>
   </g>
   <g

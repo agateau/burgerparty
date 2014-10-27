@@ -6,7 +6,7 @@
             imageName="ui/icon-back"/>
 
         <LevelGrid id="levelGrid"
-            topCenter="root.topCenter 0 -1"
+            topCenter="root.topCenter 0 -2"
             cellSize="99"
             cellSpacing="20"
             starScale="0.6"
@@ -20,5 +20,8 @@
             width="76"
             height="58"
             />
+
+        <Image id="difficultyImage"
+            topRight="root.topRight"/>
     </AnchorGroup>
 </gdxui>

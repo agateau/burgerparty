@@ -38,18 +38,21 @@ public class Constants {
     public static Difficulty HARD = new Difficulty();
 
     static {
+        EASY.name = "easy";
         EASY.suffix = "-easy";
         EASY.timeLimited = false;
         EASY.showArrow = true;
         EASY.moodMinSeconds = 0.7f;
         EASY.moodSecondPerItem = 1.0f;
 
+        NORMAL.name = "normal";
         NORMAL.suffix = "";
         NORMAL.timeLimited = true;
         NORMAL.showArrow = true;
         NORMAL.moodMinSeconds = 0.5f;
         NORMAL.moodSecondPerItem = 0.8f;
 
+        HARD.name = "hard";
         HARD.suffix = "-hard";
         HARD.timeLimited = true;
         HARD.showArrow = false;

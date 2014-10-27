@@ -10,10 +10,12 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.TiledImage;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.AchievementsButtonController;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -113,5 +115,8 @@ public class WorldListScreen extends BurgerPartyScreen {
 
         mAchievementsButtonController = new AchievementsButtonController(
             builder.<ImageButton>getActor("achievementsButton"), getGame());
+
+        TextureRegion region = getGame().getAssets().getTextureAtlas().findRegion("ui/corner-" + getGame().getDifficulty().name);
+        UiUtils.setImageRegion(builder.<Image>getActor("difficultyImage"), region);
     }
 }

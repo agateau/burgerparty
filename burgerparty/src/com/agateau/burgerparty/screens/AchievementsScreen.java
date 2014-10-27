@@ -6,9 +6,11 @@ import com.agateau.burgerparty.model.AchievementManager;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.AchievementView;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -60,6 +62,9 @@ public class AchievementsScreen extends BurgerPartyScreen {
         VerticalGroup group = new VerticalGroup();
         pane.setWidget(group);
         createAchievementViews(group);
+
+        TextureRegion region = getGame().getAssets().getTextureAtlas().findRegion("ui/corner-" + getGame().getDifficulty().name);
+        UiUtils.setImageRegion(builder.<Image>getActor("difficultyImage"), region);
     }
 
     private void createAchievementViews(VerticalGroup parent) {
