@@ -72,6 +72,9 @@ public class World {
         mLevel = level;
         mDifficulty = difficulty;
         mCustomers = level.definition.createCustomers();
+        for (Customer customer: mCustomers) {
+            customer.setDifficulty(mDifficulty);
+        }
         int worldIndex = level.getLevelWorld().getIndex();
         mBurgerGenerator = new BurgerGenerator(worldIndex, mLevel.definition.getBurgerItems());
         mMealExtraGenerator = new MealExtraGenerator(mLevel.definition.getExtraItems());

@@ -4,4 +4,6 @@ public class Difficulty {
     public String suffix;
     public boolean timeLimited;
     public boolean showArrow;
+    public float moodMinSeconds;
+    public float moodSecondPerItem;
 }

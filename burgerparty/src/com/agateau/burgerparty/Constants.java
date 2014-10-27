@@ -41,13 +41,19 @@ public class Constants {
         EASY.suffix = "-easy";
         EASY.timeLimited = false;
         EASY.showArrow = true;
+        EASY.moodMinSeconds = 0.7f;
+        EASY.moodSecondPerItem = 1.0f;
 
         NORMAL.suffix = "";
         NORMAL.timeLimited = true;
         NORMAL.showArrow = true;
+        NORMAL.moodMinSeconds = 0.5f;
+        NORMAL.moodSecondPerItem = 0.8f;
 
         HARD.suffix = "-hard";
         HARD.timeLimited = true;
         HARD.showArrow = false;
+        HARD.moodMinSeconds = 0.4f;
+        HARD.moodSecondPerItem = 0.8f;
     }
 }
