@@ -7,4 +7,5 @@ public class Difficulty {
     public boolean showArrow;
     public float moodMinSeconds;
     public float moodSecondPerItem;
+    public float secondPerItem;
 }

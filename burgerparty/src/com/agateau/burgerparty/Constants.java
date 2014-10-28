@@ -8,7 +8,6 @@ public class Constants {
     public static final int LEVEL_PER_WORLD = 15;
     public static final int WORLD_COUNT = 3;
 
-    public static final float SECOND_PER_MEALITEM = 0.6f;
     public static final float DIFFICULTY_STARTS[] = {2.4f, 1.45f, 1.1f};
     public static final float DIFFICULTY_SLOPES[] = {-1f, -0.4f, -0.3f};
 
@@ -44,6 +43,7 @@ public class Constants {
         EASY.showArrow = true;
         EASY.moodMinSeconds = 0.7f;
         EASY.moodSecondPerItem = 1.0f;
+        EASY.secondPerItem = 0.6f;
 
         NORMAL.name = "normal";
         NORMAL.suffix = "";
@@ -51,6 +51,7 @@ public class Constants {
         NORMAL.showArrow = true;
         NORMAL.moodMinSeconds = 0.5f;
         NORMAL.moodSecondPerItem = 0.8f;
+        NORMAL.secondPerItem = 0.6f;
 
         HARD.name = "hard";
         HARD.suffix = "-hard";
@@ -58,5 +59,6 @@ public class Constants {
         HARD.showArrow = false;
         HARD.moodMinSeconds = 0.4f;
         HARD.moodSecondPerItem = 0.8f;
+        HARD.secondPerItem = 0.5f;
     }
 }
