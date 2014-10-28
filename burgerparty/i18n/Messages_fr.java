@@ -56,10 +56,10 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             }
         );
         pluralEntries.put(
-            new PluralId("ignore-practice", "Collect %# stars to unlock the practice area."),
+            new PluralId("ignore-practice", "Play %# levels to unlock the practice area."),
             new String[] {
                 "-",
-                "Récupérer %# étoiles pour débloquer le laboratoire.",
+                "Jouer %# niveaux pour débloquer le laboratoire.",
             }
         );
         pluralEntries.put(

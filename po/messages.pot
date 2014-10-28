@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 22:53+0200\n"
+"POT-Creation-Date: 2014-10-28 23:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:32
+#: burgerparty/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
 msgid "1 remaining."
 msgid_plural "%# remaining."
 msgstr[0] ""
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Game Over"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:354
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358
 msgid "+%# sec"
 msgid_plural "+%# sec"
 msgstr[0] ""
@@ -100,75 +100,75 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:69
 msgid "ignore-practice"
-msgid_plural "Collect %# stars to unlock the practice area."
+msgid_plural "Play %# levels to unlock the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:74
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:76
 msgid "Star Collector"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:74
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:76
 msgid "ignore-collect"
 msgid_plural "Collect %# stars."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:79
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:82
 msgid "Fan"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:79
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:82
 msgid "ignore-fan"
 msgid_plural "Play %# levels."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:83
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
 msgid "Close Call"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:83
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:88
 msgid "ignore-close-call"
 msgid_plural "Finish a level with less than %# seconds left."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:98
 msgid "Morning Gamer"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:98
 msgid "ignore-morning"
 msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:90
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
 msgid "Evening Gamer"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:90
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
 msgid "ignore-evening"
 msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "Creative"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "ignore-creative"
 msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:326
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:340
 msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:330
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:344
 msgid "Happy customer!"
 msgstr ""
 
@@ -197,7 +197,6 @@ msgid "Music"
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:74
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:91
 msgid "Thomas Tripon"
 msgstr ""
 
@@ -205,14 +204,14 @@ msgstr ""
 msgid "Testers"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:85
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:86
 msgid "Fonts"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:89
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:90
 msgid "Sounds"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:105
+#: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:106
 msgid "© 2013 - 2014 Green Yeti Lab"
 msgstr ""
