@@ -18,7 +18,7 @@
 
         <Image id="startEasy"
             name="ui/start-easy"
-            topCenter="root.center -9.5 -3"
+            topCenter="root.center -9 -3"
             originX="64"
             originY="32">
             <Action duration="1">
