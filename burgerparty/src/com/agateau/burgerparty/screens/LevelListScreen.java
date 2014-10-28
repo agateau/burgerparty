@@ -10,6 +10,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.GridGroup;
 import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RefreshHelper;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -43,7 +44,7 @@ public class LevelListScreen extends BurgerPartyScreen {
         Image bgImage = new Image(atlas.findRegion("ui/menu-bg"));
         setBackgroundActor(bgImage);
 
-        mLevelWorld = game.getUniverse().get(worldIndex);
+        mLevelWorld = game.getCurrentUniverse().get(worldIndex);
 
         mStarOff = atlas.findRegion("ui/star-off");
         mStarOn = atlas.findRegion("ui/star-on");
@@ -100,6 +101,9 @@ public class LevelListScreen extends BurgerPartyScreen {
         } else {
             cutSceneReplayButton.setVisible(false);
         }
+
+        TextureRegion region = getGame().getAssets().getTextureAtlas().findRegion("ui/corner-" + getGame().getDifficulty().name);
+        UiUtils.setImageRegion(builder.<Image>getActor("difficultyImage"), region);
     }
 
     private GridGroup createLevelButtonGridGroup(XmlReader.Element element) {

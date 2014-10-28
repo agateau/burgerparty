@@ -2,6 +2,7 @@
 set -e
 cd $(dirname $0)/..
 BP_DIR=$PWD
+ASSETS_DIR=$BP_DIR/burgerparty-android/assets
 
 CLASSPATH="bin:"
 for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
@@ -11,4 +12,8 @@ done
 cd burgerparty-desktop
 notify-send Packer "Start packing"
 java -cp $CLASSPATH com.agateau.burgerparty.PackerMain
+
+sleep 1
+touch $ASSETS_DIR/*.png $ASSETS_DIR/burgerparty.atlas
+
 notify-send Packer "Done"

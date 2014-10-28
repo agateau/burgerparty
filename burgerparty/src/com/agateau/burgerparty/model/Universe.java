@@ -4,17 +4,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.agateau.burgerparty.utils.CounterGameStat;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.Signal0;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Knows all the LevelWorld instances of the game
  */
 public class Universe {
-    public Signal0 saveRequested = new Signal0();
+    private static final String PROGRESS_FILE = "progress%s.xml";
+
+    public Signal0 saved = new Signal0();
     public final CounterGameStat starCount = new CounterGameStat();
 
+    private final Difficulty mDifficulty;
     private Array<LevelWorld> mLevelWorlds = new Array<LevelWorld>();
+
+    public Universe(Difficulty difficulty) {
+        mDifficulty = difficulty;
+    }
 
     public void addWorld(LevelWorld world) {
         mLevelWorlds.add(world);
@@ -30,6 +39,10 @@ public class Universe {
 
     public int getHighScore(int world, int level) {
         return mLevelWorlds.get(world).getLevel(level).getScore();
+    }
+
+    public Difficulty getDifficulty() {
+        return mDifficulty;
     }
 
     public void updateStarCount() {
@@ -84,6 +97,40 @@ public class Universe {
         }
 
         updateStarCount();
-        saveRequested.emit();
+        saveProgress();
+    }
+
+    public void loadProgress() {
+        resetProgress();
+        String name = getProgressFileName(mDifficulty);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        if (handle.exists()) {
+            ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+            progressIO.load(handle);
+        }
+        updateStarCount();
+    }
+
+    public void saveProgress() {
+        String name = getProgressFileName(mDifficulty);
+        FileHandle handle = FileUtils.getUserWritableFile(name);
+        ProgressIO progressIO = new ProgressIO(mLevelWorlds);
+        progressIO.save(handle);
+        saved.emit();
+    }
+
+    private void resetProgress() {
+        for (LevelWorld world: mLevelWorlds) {
+            for (int levelIndex = 0; levelIndex < world.getLevelCount(); ++levelIndex) {
+                Level level = world.getLevel(levelIndex);
+                level.lock();
+            }
+        }
+        // At least, unlock first level
+        mLevelWorlds.get(0).getLevel(0).unlock();
+    }
+
+    private static String getProgressFileName(Difficulty difficulty) {
+        return String.format(PROGRESS_FILE, difficulty.suffix);
     }
 }

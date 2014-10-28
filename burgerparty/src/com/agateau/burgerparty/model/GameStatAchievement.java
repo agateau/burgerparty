@@ -1,6 +1,9 @@
-package com.agateau.burgerparty.utils;
+package com.agateau.burgerparty.model;
 
 import java.util.HashSet;
+
+import com.agateau.burgerparty.utils.GameStat;
+import com.agateau.burgerparty.utils.Signal0;
 
 
 /**

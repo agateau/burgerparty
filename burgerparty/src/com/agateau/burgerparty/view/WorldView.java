@@ -184,8 +184,10 @@ public class WorldView extends AbstractWorldView {
     @Override
     public void act(float delta) {
         super.act(delta);
-        mWorld.updateRemainingSeconds();
-        updateTimerDisplay();
+        if (mWorld.getDifficulty().timeLimited) {
+            mWorld.updateRemainingSeconds();
+            updateTimerDisplay();
+        }
     }
 
     private void setupCustomers() {
@@ -207,7 +209,9 @@ public class WorldView extends AbstractWorldView {
         mBubble = new Bubble(mAtlas.createPatch("ui/bubble-callout-left"));
         mCustomersLayer.addActor(mBubble);
 
-        mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), false);
+        mTargetMealView = new MealView(mWorld.getTargetBurger(), mWorld.getTargetMealExtra(),
+            mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(),
+            mWorld.getDifficulty().showArrow ? MealView.Config.WITH_ARROW : MealView.Config.WITHOUT_ARROW);
         mTargetMealView.getBurgerView().setPadding(TARGET_BURGER_PADDING);
         mTargetMealView.getMealExtraView().setOverlapping(false);
 
@@ -232,7 +236,7 @@ public class WorldView extends AbstractWorldView {
 
     private void setupMealView() {
         scrollTo(0);
-        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
+        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAtlas, mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), MealView.Config.WITH_PLATTER);
         slideInMealView(mMealView);
     }
 
@@ -240,7 +244,7 @@ public class WorldView extends AbstractWorldView {
         mHudImage = new Image(mAtlas.findRegion("ui/hud-bg"));
         mScoreDisplay = new Label("0", mSkin, "hud-small");
         updateScoreDisplay();
-        mTimerDisplay = new Label("0", mSkin, "hud");
+        mTimerDisplay = new Label("--:--", mSkin, "hud");
         mPauseButton = new Image(mAtlas.findRegion("ui/pause"));
 
         ClickListener listener = new ClickListener() {
@@ -350,7 +354,7 @@ public class WorldView extends AbstractWorldView {
                 mScoreDisplay.getY() - actor.getPrefHeight()
             );
         }
-        if (score.deltaSeconds > 0) {
+        if (mWorld.getDifficulty().timeLimited && score.deltaSeconds > 0) {
             String text = trn("+%# sec", "+%# sec", score.deltaSeconds);
             ScoreFeedbackActor actor = new ScoreFeedbackActor(this, 20, text, mAssets.getSkin(), "score-feedback");
             actor.setPosition(

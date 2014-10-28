@@ -13,8 +13,10 @@ import com.badlogic.gdx.utils.Array;
 public class UniverseLoader {
     private static final boolean DEBUG_DURATION = false;
     private CsvWriter mCsvWriter;
+    private Universe mUniverse;
 
     public void run(Universe universe) {
+        mUniverse = universe;
         if (DEBUG_DURATION) {
             FileHandle handle = Gdx.files.external("/tmp/duration.dat");
             mCsvWriter = new CsvWriter(handle);
@@ -22,7 +24,7 @@ public class UniverseLoader {
             mCsvWriter.write("# SLOPES[0]", Constants.DIFFICULTY_SLOPES[0]);
             mCsvWriter.write("# SLOPES[1]", Constants.DIFFICULTY_SLOPES[1]);
             mCsvWriter.write("# SLOPES[2]", Constants.DIFFICULTY_SLOPES[2]);
-            mCsvWriter.write("# SECOND_PER_MEALITEM", Constants.SECOND_PER_MEALITEM);
+            mCsvWriter.write("# SECOND_PER_MEALITEM", universe.getDifficulty().secondPerItem);
             mCsvWriter.write("# level", "itemCount", "duration", "durationPerItem");
         }
         for (int n=1;; n++) {
@@ -57,7 +59,7 @@ public class UniverseLoader {
         float normLevelIndex = levelIndex / (Constants.LEVEL_PER_WORLD - 1f);
         int itemCount = level.definition.getTotalItemCount();
         float easiness = Constants.DIFFICULTY_STARTS[worldIndex] + Constants.DIFFICULTY_SLOPES[worldIndex] * normLevelIndex;
-        int duration = (int)(itemCount * Constants.SECOND_PER_MEALITEM * easiness);
+        int duration = (int)(itemCount * mUniverse.getDifficulty().secondPerItem * easiness);
         level.definition.duration = duration;
         if (DEBUG_DURATION) {
             mCsvWriter.write((worldIndex + 1) * 100 + levelIndex + 1, itemCount, duration, (float)duration / itemCount);

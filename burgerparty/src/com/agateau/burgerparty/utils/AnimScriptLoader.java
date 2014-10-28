@@ -30,6 +30,11 @@ public class AnimScriptLoader {
                        new InterpolationArgumentDefinition(Interpolation.linear)
                       );
         registerAction("rotateTo",
+            new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
+            new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
+            new InterpolationArgumentDefinition(Interpolation.linear)
+           );
+        registerAction("rotateBy",
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
                        new InterpolationArgumentDefinition(Interpolation.linear)
@@ -50,6 +55,9 @@ public class AnimScriptLoader {
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Scalar),
                        new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration, 0),
                        new InterpolationArgumentDefinition(Interpolation.linear)
+                      );
+        registerAction("delay",
+                       new FloatArgumentDefinition(FloatArgumentDefinition.Domain.Duration)
                       );
         mInstructionDefinitionMap.put("parallel", new ParallelInstructionDefinition(this));
         mInstructionDefinitionMap.put("repeat", new RepeatInstructionDefinition(this));
@@ -84,7 +92,9 @@ public class AnimScriptLoader {
             if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
                 break;
             }
-            assert(tokenizer.ttype == StreamTokenizer.TT_WORD);
+            if (tokenizer.ttype != StreamTokenizer.TT_WORD) {
+                throw new RuntimeException(String.format("line %d: Unexpected token type %d, (sval='%s')", tokenizer.lineno(), tokenizer.ttype, tokenizer.sval));
+            }
             String cmd = tokenizer.sval;
             assert(cmd != null);
             if (end != null && cmd.equals(end)) {

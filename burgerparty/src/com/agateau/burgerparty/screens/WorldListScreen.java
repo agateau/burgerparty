@@ -10,9 +10,12 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.Signal1;
 import com.agateau.burgerparty.utils.TiledImage;
+import com.agateau.burgerparty.utils.UiUtils;
+import com.agateau.burgerparty.view.AchievementsButtonController;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.agateau.burgerparty.view.WorldBaseButton;
 import com.agateau.burgerparty.view.WorldListView;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -24,10 +27,13 @@ public class WorldListScreen extends BurgerPartyScreen {
     private HashSet<Object> mHandlers = new HashSet<Object>();
     private int mStarCount;
 
+    @SuppressWarnings("unused")
+    private AchievementsButtonController mAchievementsButtonController;
+
     public WorldListScreen(BurgerPartyGame game) {
         super(game);
         Image bgImage = new Image(getTextureAtlas().findRegion("ui/menu-bg"));
-        mStarCount = getGame().getUniverse().starCount.getValue();
+        mStarCount = getGame().getCurrentUniverse().starCount.getValue();
         setBackgroundActor(bgImage);
         setupWidgets();
         new RefreshHelper(getStage()) {
@@ -63,7 +69,7 @@ public class WorldListScreen extends BurgerPartyScreen {
         @Override
         protected Actor createActorForElement(XmlReader.Element element) {
             if (element.getName().equals("WorldListView")) {
-                Universe universe = getGame().getUniverse();
+                Universe universe = getGame().getCurrentUniverse();
                 WorldListView view = new WorldListView(universe.getWorlds(), -1, getGame().getAssets(), WorldListView.Details.SHOW_STARS);
 
                 SandBoxButton button = new SandBoxButton();
@@ -106,5 +112,11 @@ public class WorldListScreen extends BurgerPartyScreen {
 
         Label starCountLabel = builder.<Label>getActor("starCountLabel");
         starCountLabel.setText(String.valueOf(mStarCount));
+
+        mAchievementsButtonController = new AchievementsButtonController(
+            builder.<ImageButton>getActor("achievementsButton"), getGame());
+
+        TextureRegion region = getGame().getAssets().getTextureAtlas().findRegion("ui/corner-" + getGame().getDifficulty().name);
+        UiUtils.setImageRegion(builder.<Image>getActor("difficultyImage"), region);
     }
 }

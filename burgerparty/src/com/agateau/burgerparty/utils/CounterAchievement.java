@@ -2,6 +2,8 @@ package com.agateau.burgerparty.utils;
 
 import static com.greenyetilab.linguaj.Translator.trn;
 
+import com.agateau.burgerparty.model.GameStatAchievement;
+
 public class CounterAchievement extends GameStatAchievement {
     private CounterGameStat mStat;
     private int mMinValue;

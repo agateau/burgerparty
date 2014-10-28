@@ -186,6 +186,7 @@ public class Level {
 
     public void lock() {
         mStatus = Status.LOCKED;
+        mPerfect = false;
     }
 
     public void unlock() {

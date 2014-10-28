@@ -1,14 +1,16 @@
 package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.utils.Achievement;
-import com.agateau.burgerparty.utils.AchievementManager;
+import com.agateau.burgerparty.model.Achievement;
+import com.agateau.burgerparty.model.AchievementManager;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
+import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.AchievementView;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -60,12 +62,18 @@ public class AchievementsScreen extends BurgerPartyScreen {
         VerticalGroup group = new VerticalGroup();
         pane.setWidget(group);
         createAchievementViews(group);
+
+        TextureRegion region = getGame().getAssets().getTextureAtlas().findRegion("ui/corner-" + getGame().getDifficulty().name);
+        UiUtils.setImageRegion(builder.<Image>getActor("difficultyImage"), region);
     }
 
     private void createAchievementViews(VerticalGroup parent) {
         AchievementManager manager = getGame().getGameStats().manager;
         boolean first = true;
         for (Achievement achievement: manager.getAchievements()) {
+            if (!achievement.isValidForDifficulty(getGame().getDifficulty())) {
+                continue;
+            }
             // VerticalGroup spacing is buggy and adds spacing on top of the first element.
             // We create spaces manually to work-around this.
             if (first) {

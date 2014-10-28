@@ -1,4 +1,4 @@
-package com.agateau.burgerparty.utils;
+package com.agateau.burgerparty.model;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,6 @@ import java.io.StringWriter;
 
 import org.junit.Test;
 
-import com.agateau.burgerparty.model.TestUtils;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 

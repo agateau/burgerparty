@@ -5,9 +5,6 @@ import com.agateau.burgerparty.utils.NLog;
 import com.agateau.burgerparty.utils.Signal0;
 
 public class Customer {
-    private static final float MOOD_MIN_SEC = 0.5f;
-    private static final float MOOD_SEC_PER_ITEM = 0.8f;
-
     public Signal0 moodChanged = new Signal0();
 
     private final String mType;
@@ -16,6 +13,7 @@ public class Customer {
     private Mood mMood = Mood.HAPPY;
     private State mState = State.WAITING;
     private FixedTimer mMoodTimer = new FixedTimer();
+    private Difficulty mDifficulty;
 
     public enum Mood {
         HAPPY("happy"),
@@ -85,7 +83,7 @@ public class Customer {
     public void markActive(int itemCount) {
         assert(mState == State.WAITING);
         mState = State.ACTIVE;
-        mMoodDelay = MOOD_MIN_SEC + itemCount * MOOD_SEC_PER_ITEM;
+        mMoodDelay = mDifficulty.moodMinSeconds + itemCount * mDifficulty.moodSecondPerItem;
         NLog.i("itemCount=%d => delay=%dms", itemCount, (int)(mMoodDelay * 1000));
         scheduleMoodChange();
     }
@@ -129,5 +127,9 @@ public class Customer {
             mMood = Mood.ANGRY;
         }
         moodChanged.emit();
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        mDifficulty = difficulty;
     }
 }

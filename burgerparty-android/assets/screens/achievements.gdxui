@@ -10,5 +10,8 @@
             width="600"
             height="480"
             />
+
+        <Image id="difficultyImage"
+            topRight="root.topRight"/>
     </AnchorGroup>
 </gdxui>

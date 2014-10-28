@@ -10,10 +10,13 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class UiUtils {
     public static final int BUTTON_WIDTH = 200;
@@ -123,5 +126,15 @@ public class UiUtils {
 
     public static String actorToString(Actor actor) {
         return String.format("%s pos=%.2fx%.2f size=%.2fx%.2f", actor, actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+    }
+
+    public static void setImageRegion(Image image, TextureRegion region) {
+        image.setDrawable(new TextureRegionDrawable(region));
+        if (image.getWidth() == 0) {
+            image.setWidth(region.getRegionWidth());
+        }
+        if (image.getHeight() == 0) {
+            image.setHeight(region.getRegionHeight());
+        }
     }
 }

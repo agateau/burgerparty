@@ -11,6 +11,7 @@ import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.MealItemDb;
 import com.agateau.burgerparty.model.SandBoxWorld;
+import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.screens.BurgerPartyScreen;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.Signal1;
@@ -45,7 +46,7 @@ public class SandBoxGameView extends AbstractWorldView {
     private ImageButton mDeliverButton;
 
     public SandBoxGameView(BurgerPartyScreen screen, BurgerPartyGame game) {
-        super(game.getAssets(), game.getUniverse().get(0).getDirName());
+        super(game.getAssets(), game.getCurrentUniverse().get(0).getDirName());
         mScreen = screen;
         mLevelWorldIndex = 0;
         mGame = game;
@@ -91,7 +92,7 @@ public class SandBoxGameView extends AbstractWorldView {
             mBottomRightBar.remove();
         }
         BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(mAssets);
-        LevelWorld levelWorld = mGame.getUniverse().get(mLevelWorldIndex);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(mLevelWorldIndex);
         FileHandle handle = Gdx.files.internal(levelWorld.getDirName() + "/sandbox.gdxui");
         builder.build(handle, this);
 
@@ -125,8 +126,10 @@ public class SandBoxGameView extends AbstractWorldView {
 
     private void setupInventories() {
         HashSet<String> names = new HashSet<String>();
-        for (MealItem item: mGame.getUniverse().getKnownItems()) {
-            names.add(item.getName());
+        for (Universe universe: mGame.getUniverses()) {
+            for (MealItem item: universe.getKnownItems()) {
+                names.add(item.getName());
+            }
         }
         mWorld.getBurgerInventory().clear();
         mWorld.getMealExtraInventory().clear();
@@ -156,7 +159,7 @@ public class SandBoxGameView extends AbstractWorldView {
         mWorld.getBurger().clear();
         mWorld.getMealExtra().clear();
         mUndoStack.clear();
-        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), true);
+        mMealView = new MealView(mWorld.getBurger(), mWorld.getMealExtra(), mAssets.getTextureAtlas(), mAssets.getSoundAtlas(), mAssets.getAnimScriptLoader(), MealView.Config.WITH_PLATTER);
         slideInMealView(mMealView);
     }
 
@@ -213,7 +216,7 @@ public class SandBoxGameView extends AbstractWorldView {
     }
 
     private void switchWorld() {
-        Array<LevelWorld> worlds = mGame.getUniverse().getWorlds();
+        Array<LevelWorld> worlds = mGame.getCurrentUniverse().getWorlds();
         WorldListOverlay overlay = new WorldListOverlay(mScreen, worlds, mLevelWorldIndex);
         overlay.currentIndexChanged.connect(mHandlers, new Signal1.Handler<Integer>() {
             @Override
@@ -226,7 +229,7 @@ public class SandBoxGameView extends AbstractWorldView {
 
     private void setLevelWorldIndex(int index) {
         mLevelWorldIndex = index;
-        LevelWorld levelWorld = mGame.getUniverse().get(index);
+        LevelWorld levelWorld = mGame.getCurrentUniverse().get(index);
         String dirName = levelWorld.getDirName();
         setWorldDirName(dirName);
         setupInventories();
