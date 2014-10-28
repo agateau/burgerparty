@@ -92,7 +92,9 @@ public class AnimScriptLoader {
             if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
                 break;
             }
-            assert(tokenizer.ttype == StreamTokenizer.TT_WORD);
+            if (tokenizer.ttype != StreamTokenizer.TT_WORD) {
+                throw new RuntimeException(String.format("line %d: Unexpected token type %d, (sval='%s')", tokenizer.lineno(), tokenizer.ttype, tokenizer.sval));
+            }
             String cmd = tokenizer.sval;
             assert(cmd != null);
             if (end != null && cmd.equals(end)) {
