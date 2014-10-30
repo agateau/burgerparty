@@ -1,6 +1,13 @@
+# 1.1.1 - 2014-10-30
+
+- Introduced three difficulty levels:
+    - kids: no global timer, customers are more patient
+    - normal: just like before
+    - expert: shorter times, less patient customers, no arrow indicating the next item to add
+
 # 1.1.0 - 2014-10-07
 
-- Make the game slightly harder
+- Made the game slightly harder
 
 - New item: Pineapple replaces salad in pirate world
 
