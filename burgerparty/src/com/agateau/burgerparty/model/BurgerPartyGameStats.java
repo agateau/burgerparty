@@ -40,6 +40,22 @@ public class BurgerPartyGameStats {
     private Achievement mEveningGamer;
     private Achievement mCreative;
 
+    private static class StarCollectorAchievement extends CounterAchievement {
+        private final Difficulty mDifficulty;
+        public StarCollectorAchievement(Difficulty difficulty, int count) {
+            super("star-collector" + difficulty.suffix, tr("Star Collector"), trn("ignore-collect", "Collect %# stars.", count));
+            mDifficulty = difficulty;
+        }
+        @Override
+        public String getIconName() {
+            return "star-collector";
+        }
+        @Override
+        public boolean isValidForDifficulty(Difficulty difficulty) {
+            return difficulty == mDifficulty;
+        }
+    };
+
     public BurgerPartyGameStats(Collection<Universe> universes) {
         mGameStatManager.add("levelPlayedCount", levelPlayedCount);
         mGameStatManager.add("morningPlayDates", morningPlayDates);
@@ -72,8 +88,7 @@ public class BurgerPartyGameStats {
 
         count = 36;
         for(Universe universe: universes) {
-            String name = "star-collector" + universe.getDifficulty().suffix;
-            achievement = new CounterAchievement(name, tr("Star Collector"), trn("ignore-collect", "Collect %# stars.", count));
+            achievement = new StarCollectorAchievement(universe.getDifficulty(), count);
             achievement.init(universe.starCount, count);
             manager.add(achievement);
         }
