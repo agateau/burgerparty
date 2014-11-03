@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-28 23:50+0100\n"
+"POT-Creation-Date: 2014-11-03 23:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,91 +74,91 @@ msgstr ""
 msgid "Get a perfect in all levels of world %d."
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:54
-msgid "Burger Apprentice"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:54
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:59
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:64
-msgid "ignore-n-burgers"
-msgid_plural "Serve %# burgers."
-msgstr[0] ""
-msgstr[1] ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:59
-msgid "Burger Master"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:64
-msgid "Burger God"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:69
-msgid "Practice Area"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:69
-msgid "ignore-practice"
-msgid_plural "Play %# levels to unlock the practice area."
-msgstr[0] ""
-msgstr[1] ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:76
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
 msgid "Star Collector"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:76
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
 msgid "ignore-collect"
 msgid_plural "Collect %# stars."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:82
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+msgid "Burger Apprentice"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:80
+msgid "ignore-n-burgers"
+msgid_plural "Serve %# burgers."
+msgstr[0] ""
+msgstr[1] ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
+msgid "Burger Master"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:80
+msgid "Burger God"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
+msgid "Practice Area"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
+msgid "ignore-practice"
+msgid_plural "Play %# levels to unlock the practice area."
+msgstr[0] ""
+msgstr[1] ""
+
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:97
 msgid "Fan"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:82
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:97
 msgid "ignore-fan"
 msgid_plural "Play %# levels."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:87
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:102
 msgid "Close Call"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:88
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:103
 msgid "ignore-close-call"
 msgid_plural "Finish a level with less than %# seconds left."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:98
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
 msgid "Morning Gamer"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:98
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
 msgid "ignore-morning"
 msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "Evening Gamer"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:101
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "ignore-evening"
 msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:131
 msgid "Creative"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
+#: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:131
 msgid "ignore-creative"
 msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Finish all levels of world %d with 3 stars."
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:117
+#: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:118
 msgid "New item unlocked!"
 msgstr ""
 

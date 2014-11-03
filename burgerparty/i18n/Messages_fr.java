@@ -11,11 +11,11 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Perfect #%d", "Perfect #%d");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
+        plainEntries.put("Star Collector", "Collectionneur d'étoiles");
         plainEntries.put("Burger Apprentice", "Apprenti");
         plainEntries.put("Burger Master", "Maître Burger");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Practice Area", "Laboratoire");
-        plainEntries.put("Star Collector", "Collectionneur d'étoiles");
         plainEntries.put("Fan", "Fan");
         plainEntries.put("Close Call", "C'était juste");
         plainEntries.put("Morning Gamer", "Joueur du matin");
@@ -49,6 +49,13 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             }
         );
         pluralEntries.put(
+            new PluralId("ignore-collect", "Collect %# stars."),
+            new String[] {
+                "-",
+                "Récupérer %# étoiles.",
+            }
+        );
+        pluralEntries.put(
             new PluralId("ignore-n-burgers", "Serve %# burgers."),
             new String[] {
                 "-",
@@ -60,13 +67,6 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             new String[] {
                 "-",
                 "Jouer %# niveaux pour débloquer le laboratoire.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-collect", "Collect %# stars."),
-            new String[] {
-                "-",
-                "Récupérer %# étoiles.",
             }
         );
         pluralEntries.put(
