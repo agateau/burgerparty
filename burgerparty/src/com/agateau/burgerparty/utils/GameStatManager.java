@@ -37,6 +37,10 @@ public class GameStatManager {
     }
 
     public void load(XmlReader.Element root) {
+        if (root == null) {
+            NLog.e("GameStatManager.load called with a null object, not loading anything.");
+            return;
+        }
         for (int idx = 0; idx < root.getChildCount(); ++idx) {
             XmlReader.Element element = root.getChild(idx);
             String id = element.getAttribute("id");

@@ -50,15 +50,19 @@ public class ProgressIO {
     }
 
     public void load(XmlReader.Element root) {
-        int version = root.getIntAttribute("version", 1);
-        if (version == 1) {
-            loadV1(root);
-        } else if (version == 2) {
-            loadV2(root);
-        } else if (version == 3) {
-            loadV3(root);
+        if (root == null) {
+            NLog.e("ProgressIO.load called with a null object, not loading anything.");
         } else {
-            NLog.e("Don't know how to load progress version " + version + ". Did not load anything.");
+            int version = root.getIntAttribute("version", 1);
+            if (version == 1) {
+                loadV1(root);
+            } else if (version == 2) {
+                loadV2(root);
+            } else if (version == 3) {
+                loadV3(root);
+            } else {
+                NLog.e("Don't know how to load progress version " + version + ". Did not load anything.");
+            }
         }
         ensureLevelsBeforeLastUnlockedAreUnlocked();
         ensureNextLevelIsUnlocked();

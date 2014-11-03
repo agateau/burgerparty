@@ -51,6 +51,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
 
     private void loadXml() {
         XmlReader.Element rootElement = FileUtils.parseXml(FileUtils.assets("levels/" + (mWorldIndex + 1) + "/newworld.xml"));
+        assert(rootElement != null);
         BurgerPartyUiBuilder builder = new BurgerPartyUiBuilder(getGame().getAssets());
 
         float width = getStage().getWidth();

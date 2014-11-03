@@ -47,10 +47,12 @@ public class FileUtils {
         try {
             root = reader.parse(handle);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to parse xml file from " + handle.path() + ". Exception: " + e.toString() + ".");
+            NLog.e("Failed to parse xml file from %s. Exception: %s.", handle.path(), e.toString());
+            return null;
         }
         if (root == null) {
-            throw new RuntimeException("Failed to parse xml file from " + handle.path() + ". No root element.");
+            NLog.e("Failed to parse xml file from %s. No root element.", handle.path());
+            return null;
         }
         return root;
     }

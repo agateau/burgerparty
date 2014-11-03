@@ -59,6 +59,10 @@ public class AchievementManager {
     }
 
     public void load(XmlReader.Element root) {
+        if (root == null) {
+            NLog.e("AchievementManager.load called with a null object, not loading anything.");
+            return;
+        }
         /**
          * <achievements>
          *   <achievement id='foo' unlocked='true' seen='false'/>

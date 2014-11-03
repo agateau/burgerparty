@@ -81,6 +81,7 @@ public class NewItemScreen extends BurgerPartyScreen {
         TextureRegion region = game.getAssets().getTextureAtlas().findRegion(fgName);
 
         XmlReader.Element root = FileUtils.parseXml(FileUtils.assets(levelDir + "/newitemscreen.xml"));
+        assert(root != null);
         Color bgColor1 = Color.valueOf(root.getAttribute("bgColor1"));
         Color bgColor2 = Color.valueOf(root.getAttribute("bgColor2"));
         Color fgColor = Color.valueOf(root.getAttribute("fgColor"));
