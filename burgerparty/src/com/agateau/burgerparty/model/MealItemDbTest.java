@@ -11,7 +11,7 @@ public class MealItemDbTest {
 
     @Test
     public void testGet() {
-        XmlReader.Element root = parseXml(
+        XmlReader.Element root = TestUtils.parseXml(
                                      "<items>"
                                      + "<generic>"
                                      + "  <item name='foo' type='burger' subType='middle-other' row='1' column='3' height='12'/>"
@@ -64,10 +64,5 @@ public class MealItemDbTest {
         assertEquals(2, lst.size);
         assertEquals("2/salad", lst.get(0).getPath());
         assertEquals("0/onion", lst.get(1).getPath());
-    }
-
-    private static XmlReader.Element parseXml(String xml) {
-        XmlReader reader = new XmlReader();
-        return reader.parse(xml);
     }
 }
