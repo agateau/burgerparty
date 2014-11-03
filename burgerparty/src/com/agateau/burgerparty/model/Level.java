@@ -1,11 +1,10 @@
 package com.agateau.burgerparty.model;
 
-import java.io.IOException;
 import java.util.HashSet;
-import java.util.MissingResourceException;
 import java.util.Random;
 import java.util.Set;
 
+import com.agateau.burgerparty.utils.FileUtils;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
@@ -102,16 +101,8 @@ public class Level {
 
     public static Level fromXml(LevelWorld levelWorld, int levelIndex, FileHandle handle) {
         int worldIndex = levelWorld.getIndex();
-        XmlReader reader = new XmlReader();
-        XmlReader.Element root = null;
-        try {
-            root = reader.parse(handle);
-        } catch (IOException e) {
-            throw new MissingResourceException("Failed to load level from " + handle.path() + ". Exception: " + e.toString() + ".", "Level", handle.path());
-        }
-        if (root == null) {
-            throw new MissingResourceException("Failed to load level from " + handle.path() + ". No root element.", "Level", handle.path());
-        }
+        XmlReader.Element root = FileUtils.parseXml(handle);
+        assert(root != null);
         Level level = new Level(levelWorld, handle.path());
         level.mIndex = levelIndex;
         int burgerSize = root.getIntAttribute("burgerSize");

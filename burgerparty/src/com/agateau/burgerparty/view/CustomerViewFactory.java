@@ -1,10 +1,8 @@
 package com.agateau.burgerparty.view;
 
-import java.io.IOException;
-
 import com.agateau.burgerparty.model.Customer;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.NLog;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
@@ -133,14 +131,8 @@ public class CustomerViewFactory {
 
     private void initMap(FileHandle handle) {
         mCustomerPartForPath.clear();
-        XmlReader.Element root = null;
-        try {
-            XmlReader reader = new XmlReader();
-            root = reader.parse(handle);
-        } catch (IOException e) {
-            Gdx.app.error("CustomerFactory.initMap", "Failed to load customer parts from " + handle.path() + ". Exception: " + e.toString());
-            return;
-        }
+        XmlReader.Element root = FileUtils.parseXml(handle);
+        assert(root != null);
         for (int idx = 0; idx < root.getChildCount(); ++idx) {
             CustomerPart part;
             XmlReader.Element element = root.getChild(idx);

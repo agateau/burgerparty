@@ -1,9 +1,7 @@
 package com.agateau.burgerparty.model;
 
-import java.io.IOException;
-
 import com.agateau.burgerparty.model.MealItem.Type;
-import com.badlogic.gdx.Gdx;
+import com.agateau.burgerparty.utils.FileUtils;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
@@ -47,18 +45,11 @@ public class MealItemDb {
     }
 
     public void load(FileHandle handle) {
-        XmlReader.Element root = null;
-        try {
-            XmlReader reader = new XmlReader();
-            root = reader.parse(handle);
-        } catch (IOException e) {
-            Gdx.app.error("MealItem.initMap", "Failed to load items definition from " + handle.path() + ". Exception: " + e.toString());
-            return;
-        }
-        load(root);
+        load(FileUtils.parseXml(handle));
     }
 
     public void load(XmlReader.Element root) {
+        assert(root != null);
         mGenericMap.clear();
         mWorldMaps.clear();
         loadGenericItems(root.getChildByName("generic"));

@@ -1,6 +1,5 @@
 package com.agateau.burgerparty.utils;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,13 +76,7 @@ public class UiBuilder {
     }
 
     public Actor build(FileHandle handle, Group parentActor) {
-        XmlReader reader = new XmlReader();
-        XmlReader.Element element = null;
-        try {
-            element = reader.parse(handle);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to decode XML from " + handle.path());
-        }
+        XmlReader.Element element = FileUtils.parseXml(handle);
         assert(element != null);
         return build(element, parentActor);
     }
