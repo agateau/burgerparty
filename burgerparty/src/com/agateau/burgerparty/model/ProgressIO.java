@@ -2,6 +2,7 @@ package com.agateau.burgerparty.model;
 
 import java.io.IOException;
 
+import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.NLog;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -45,19 +46,7 @@ public class ProgressIO {
     }
 
     public void load(FileHandle handle) {
-        XmlReader reader = new XmlReader();
-        XmlReader.Element root = null;
-        try {
-            root = reader.parse(handle);
-        } catch (IOException e) {
-            NLog.e("Failed to load progress from %s. Exception: %s", handle.path(), e);
-            return;
-        }
-        if (root == null) {
-            NLog.e("Failed to load progress from %s. No root XML element found.", handle.path());
-            return;
-        }
-        load(root);
+        load(FileUtils.parseXml(handle));
     }
 
     public void load(XmlReader.Element root) {
