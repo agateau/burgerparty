@@ -1,3 +1,8 @@
+# 1.1.2 - 2014-11-03
+
+- Fix "Star Collector" achievement appearing 3 times in achievement screen
+- Make parsing of saved data more resilient
+
 # 1.1.1 - 2014-10-30
 
 - Introduced three difficulty levels:
