@@ -187,6 +187,8 @@ public class World {
     public void start() {
         if (mDifficulty.timeLimited) {
             mRemainingSeconds = mLevel.definition.duration;
+        } else {
+            mRemainingSeconds = 0;
         }
         generateTarget();
         mLastUpdateTime = TimeUtils.nanoTime();

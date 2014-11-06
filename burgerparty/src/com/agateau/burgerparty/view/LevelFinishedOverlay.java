@@ -62,16 +62,15 @@ public class LevelFinishedOverlay extends Overlay {
             if (mWaitDelta > 0) {
                 return false;
             }
+            if (mRemainingSeconds <= 0) {
+                return true;
+            }
             mWaitDelta = CONSUME_SECONDS_INTERVAL;
             mSound.play(0.1f);
             mScore += Constants.SCORE_BONUS_PER_REMAINING_SECOND;
             mScoreLabel.setText(String.valueOf(mScore));
             --mRemainingSeconds;
-            if (mRemainingSeconds == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 
