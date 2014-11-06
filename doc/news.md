@@ -1,3 +1,7 @@
+# 1.1.3 - 2014-11-06
+
+- Fixed bug in score count in Kids difficulty level
+
 # 1.1.2 - 2014-11-03
 
 - Fix "Star Collector" achievement appearing 3 times in achievement screen
