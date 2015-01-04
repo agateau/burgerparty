@@ -53,18 +53,23 @@ public class CustomerEditorScreen extends StageScreen {
         Array<String> keys = mGame.getCustomerFactory().getTypes();
         keys.sort();
 
-        mMoodList = new List(getMoodStrings(), mSkin);
-        group.addRule(mMoodList, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-        group.addRule(new AnchorGroup.SizeRule(mMoodList, group, 0.1f, 0.3f));
+        mCustomerTypeList = new List(keys.toArray(), mSkin, "customer-editor");
+        ScrollPane typePane = new ScrollPane(mCustomerTypeList);
 
-        mCustomerTypeList = new List(keys.toArray(), mSkin);
-        group.addRule(new AnchorGroup.SizeRule(mCustomerTypeList, group, 0.1f, 0.6f));
-        group.addRule(mCustomerTypeList, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT); //, 0, 1);
+        mMoodList = new List(getMoodStrings(), mSkin, "customer-editor");
+        ScrollPane moodPane = new ScrollPane(mMoodList);
 
         mCustomerContainer = new VerticalGroup();
-        ScrollPane pane = new ScrollPane(mCustomerContainer);
-        group.addRule(new AnchorGroup.SizeRule(pane, group, 0.9f, 1));
-        group.addRule(pane, Anchor.TOP_LEFT, mCustomerTypeList, Anchor.TOP_RIGHT, 1, 0);
+        ScrollPane customerPane = new ScrollPane(mCustomerContainer);
+
+        group.addRule(new AnchorGroup.SizeRule(typePane, group, 0.12f, 0.7f));
+        group.addRule(typePane, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT); //, 0, 1);
+
+        group.addRule(moodPane, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
+        group.addRule(new AnchorGroup.SizeRule(moodPane, group, 0.12f, 0.3f));
+
+        group.addRule(new AnchorGroup.SizeRule(customerPane, group, 0.9f, 1));
+        group.addRule(customerPane, Anchor.TOP_LEFT, mCustomerTypeList, Anchor.TOP_RIGHT, 1, 0);
 
         // Connections
         mCustomerTypeList.addListener(new ChangeListener() {

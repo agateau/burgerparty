@@ -110,6 +110,12 @@
             fontColorSelected: white,
             fontColorUnselected: black,
             selection: ui/level-button
+        },
+        customer-editor: {
+            font: main-font-plain-small,
+            fontColorSelected: black,
+            fontColorUnselected: black,
+            selection: ui/vertical-gradient
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
