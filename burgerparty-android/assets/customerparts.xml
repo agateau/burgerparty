@@ -72,4 +72,9 @@
     <face name="customers/dragon/face-0-happy" />
     <face name="customers/dragon/face-0-neutral" />
     <face name="customers/dragon/face-0-angry" />
+
+    <body name="customers/sumos/body-0" xCenter="117" yFace="85"/>
+    <face name="customers/sumos/face-0-happy" />
+    <face name="customers/sumos/face-0-neutral" yOffset="3"/>
+    <face name="customers/sumos/face-0-angry"  yOffset="1"/>
 </parts>

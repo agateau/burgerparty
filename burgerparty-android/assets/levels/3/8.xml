@@ -11,7 +11,7 @@
     <customer type="ninjas"/>
     <customer type="girls" burgerSize="9"/>
     <customer type="japan-girls"/>
-    <customer type="boys"/>
+    <customer type="dragon"/>
     <customer type="ninjas"/>
   </customers>
 </level>

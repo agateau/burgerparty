@@ -3,7 +3,7 @@
   <customers>
     <customer type="ninjas"/>
     <customer type="boys"/>
-    <customer type="boys"/>
+    <customer type="dragon"/>
     <customer type="ninjas" burgerSize="9"/>
     <customer type="ninjas"/>
     <customer type="japan-girls"/>

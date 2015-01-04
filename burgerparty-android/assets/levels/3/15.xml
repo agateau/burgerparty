@@ -7,13 +7,13 @@
     <customer type="japan-girls"/>
     <customer type="boys"/>
     <customer type="ninjas"/>
-    <customer type="dragon" burgerSize="10"/>
-    <customer type="boys"/>
+    <customer type="sumos" burgerSize="10"/>
+    <customer type="dragon"/>
     <customer type="girls"/>
     <customer type="ninjas"/>
-    <customer type="dragon" burgerSize="12"/>
+    <customer type="sumos" burgerSize="12"/>
     <customer type="japan-girls"/>
     <customer type="ninjas"/>
-    <customer type="dragon" burgerSize="14"/>
+    <customer type="sumos" burgerSize="14"/>
   </customers>
 </level>

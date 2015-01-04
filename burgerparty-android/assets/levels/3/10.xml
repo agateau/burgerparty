@@ -2,7 +2,7 @@
 <level burgerSize="8">
   <customers>
     <customer type="ninjas"/>
-    <customer type="boys"/>
+    <customer type="dragon"/>
     <customer type="japan-girls" burgerSize="9"/>
     <customer type="ninjas"/>
     <customer type="ninjas" burgerSize="9"/>
