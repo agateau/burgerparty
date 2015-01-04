@@ -36,7 +36,7 @@ public class FileUtils {
     public static FileHandle assets(String path) {
         FileHandle handle = Gdx.files.internal(path);
         if (Gdx.app.getType() == ApplicationType.Desktop) {
-            handle = new FileHandle(new File("../burgerparty-android/assets/" + handle.path()));
+            handle = new FileHandle(new File(handle.path()));
         }
         return handle;
     }
