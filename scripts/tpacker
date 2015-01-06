@@ -4,7 +4,9 @@ cd $(dirname $0)/..
 BP_DIR=$PWD
 ASSETS_DIR=$BP_DIR/burgerparty-android/assets
 
-CLASSPATH="bin:"
+BUILD_DIR=$BP_DIR/out/production
+
+CLASSPATH="$BUILD_DIR/burgerparty:$BUILD_DIR/burgerparty-desktop:$BUILD_DIR/linguaj"
 for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
     CLASSPATH="$CLASSPATH:$jar"
 done

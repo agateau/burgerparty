@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+cd $(dirname $0)/..
+BP_DIR=$PWD
+
+BUILD_DIR=out/production/burgerparty
+
+CLASSPATH="$BP_DIR/$BUILD_DIR"
+for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
+    CLASSPATH="$CLASSPATH:$jar"
+done
+
+TESTS=$(cd burgerparty/src && find -name '*Test.java' | sed -e 's|^\./||' -e 's|\.java$||' -e 's|/|.|g')
+java -cp $CLASSPATH org.junit.runner.JUnitCore $TESTS
