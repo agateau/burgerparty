@@ -1,0 +1,28 @@
+﻿Hi,
+
+I recently published Burger Party, a time management game for Android where you play a fast-food owner who must put together the burgers ordered by her customers before times run out.
+
+Burger Party stands out from other burger games with:
+
+- Several worlds to visit: United States, Pirates and Japan with some world-specific burger ingredients, for example a coconut drink in the Pirate world, or a rice bun in Japan.
+
+- Three difficulty levels:
+  * "Kids" is geared towards younger players: no timer, more patient customers
+  * "Normal" is just, well, normal
+  * "Experts" comes with shorter level times and less patient customers
+
+- Cute cartoonish graphics.
+
+- "Perfects": in addition to the classic 3-stars score, if you really nail a level fast enough, you get a "Perfect" ribbon. Getting "Perfects" for all levels is quite challenging!
+
+Burger Party is available for free on Google Play: https://play.google.com/store/apps/details?id=com.agateau.burgerparty
+
+More links:
+- The launch trailer: https://www.youtube.com/watch?v=u2ebyoaBFJg
+
+- More details about Green Yeti Lab: http://greenyetilab.com/press
+
+It would be awesome if you could review it!
+
+Kind regards,
+Aurélien Gâteau - http://greenyetilab.com
