@@ -14,7 +14,7 @@
    height="1200px"
    id="svg6972"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="ui.svg">
   <sodipodi:namedview
      id="base"
@@ -23,18 +23,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="3036.4735"
-     inkscape:cy="-1672.766"
+     inkscape:zoom="16"
+     inkscape:cx="253.37406"
+     inkscape:cy="754.69022"
      inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:window-width="1883"
-     inkscape:window-height="1060"
-     inkscape:window-x="34"
+     inkscape:window-width="1571"
+     inkscape:window-height="880"
+     inkscape:window-x="26"
      inkscape:window-y="-3"
      inkscape:window-maximized="1"
-     showguides="false"
+     showguides="true"
      inkscape:guide-bbox="true">
     <inkscape:grid
        dotted="true"
@@ -10699,7 +10699,7 @@
        style="color:#000000;fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:3.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
-     style="opacity:0.40136055;display:inline"
+     style="opacity:0.40136055;display:none"
      inkscape:label="Selection"
      id="layer3"
      inkscape:groupmode="layer">
@@ -10953,6 +10953,17 @@
        x="3309"
        y="2841"
        inkscape:export-filename="start-hard.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       id="rect4899"
+       width="40"
+       height="40"
+       x="252"
+       y="428"
+       ry="3.2638393e-17"
+       inkscape:export-filename="icon-rate.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
@@ -16935,14 +16946,6 @@
        id="path4897"
        d="m 240,441 0,14 -17,-1 0,9 -15,-15 15,-15 0,9 z"
        style="fill:#ffffff;fill-opacity:1;stroke:#009100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-    <rect
-       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="rect4899"
-       width="40"
-       height="40"
-       x="252"
-       y="428"
-       ry="3.2638393e-17" />
     <g
        id="g7807">
       <path
@@ -24364,4 +24367,20 @@
      inkscape:label="sketch"
      id="layer2"
      inkscape:groupmode="layer" />
+  <path
+     sodipodi:type="star"
+     style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#009100;stroke-width:2.01748967;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     id="path11357"
+     sodipodi:sides="5"
+     sodipodi:cx="272"
+     sodipodi:cy="448"
+     sodipodi:r1="16.970564"
+     sodipodi:r2="9.6732216"
+     sodipodi:arg1="0.78539816"
+     sodipodi:arg2="1.4137167"
+     inkscape:flatsided="false"
+     inkscape:rounded="-3.469447e-18"
+     inkscape:randomized="0"
+     d="m 284,460 -10.48677,-2.44587 -9.2177,5.56675 -0.91443,-10.72933 -8.14273,-7.04633 9.92163,-4.18522 4.18522,-9.92163 7.04633,8.14273 10.72933,0.91443 -5.56675,9.2177 z"
+     transform="matrix(0.44793979,-0.88435679,0.88435679,0.44793979,-246.01902,489.46268)" />
 </svg>

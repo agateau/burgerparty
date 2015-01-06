@@ -99,6 +99,9 @@
             <ImageButton id="aboutButton"
                 style="round-button"
                 imageName="ui/icon-info"/>
+            <ImageButton id="rateButton"
+                style="round-button"
+                imageName="ui/icon-rate"/>
         </VerticalGroup>
     </AnchorGroup>
 </gdxui>

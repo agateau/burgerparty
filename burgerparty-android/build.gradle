@@ -15,6 +15,12 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
+        amz {
+            java.srcDirs = ['src/amz']
+        }
+        gp {
+            java.srcDirs = ['src/gp']
+        }
 
         instrumentTest.setRoot('tests')
     }

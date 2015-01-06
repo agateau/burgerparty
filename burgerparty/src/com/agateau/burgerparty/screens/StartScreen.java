@@ -66,6 +66,12 @@ public class StartScreen extends BurgerPartyScreen {
                 getGame().showAboutScreen();
             }
         });
+        builder.<ImageButton>getActor("rateButton").addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+                getGame().getRatingController().rate();
+            }
+        });
 
         final ImageButton moreButton = builder.<ImageButton>getActor("moreButton");
         final VerticalGroup moreGroup = builder.<VerticalGroup>getActor("moreGroup");

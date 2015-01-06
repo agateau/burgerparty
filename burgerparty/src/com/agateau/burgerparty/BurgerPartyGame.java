@@ -11,6 +11,7 @@ import com.agateau.burgerparty.model.AdController;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Difficulty;
 import com.agateau.burgerparty.model.Level;
+import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.model.Universe;
 import com.agateau.burgerparty.model.UniverseLoader;
 import com.agateau.burgerparty.model.MealItemDb;
@@ -55,6 +56,7 @@ public class BurgerPartyGame extends Game {
     private boolean mWaitInLoadingScreen = false;
 
     private Difficulty mDifficulty = Constants.NORMAL;
+    private final RatingController mRatingController = new RatingController();
 
     @Override
     public void create() {
@@ -309,6 +311,14 @@ public class BurgerPartyGame extends Game {
 
     public void setAdSystem(AdSystem adSystem) {
         mAdController = new AdController(getPreferences(), adSystem);
+    }
+
+    public RatingController getRatingController() {
+        return mRatingController;
+    }
+
+    public void setRatingControllerImplementation(RatingController.Implementation implementation) {
+        mRatingController.setImplementation(implementation);
     }
 
     public void setDifficulty(Difficulty difficulty) {
