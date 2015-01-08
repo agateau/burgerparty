@@ -3,3 +3,5 @@
 .idea
 hs_err_pid*.log
 out/
+.gradle
+build/
