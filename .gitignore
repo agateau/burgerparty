@@ -1,7 +1,14 @@
 */bin
 .metadata
-.idea
 hs_err_pid*.log
 out/
+
+# Gradle
 .gradle
 build/
+local.properties
+gradle-app.setting
+
+# IntelliJ
+.idea
+*.iml
