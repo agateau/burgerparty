@@ -9,9 +9,9 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
+            java.srcDirs = ['src/main']
+            aidl.srcDirs = ['src/main']
+            renderscript.srcDirs = ['src/main']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
@@ -20,6 +20,13 @@ android {
     }
     packagingOptions {
         exclude 'LICENSE.txt'
+    }
+    defaultConfig {}
+    productFlavors {
+        amz {
+        }
+        gp {
+        }
     }
 }
 // needed to insert JNI shared libraries to APK when compiling on CLI
