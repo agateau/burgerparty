@@ -102,6 +102,10 @@
         achievement-small: {
             font: main-font-plain,
             fontColor: white
+        },
+        config-button: {
+            font: main-font-plain,
+            fontColor: black
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
@@ -143,6 +147,21 @@
         }
     },
     com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+        default: {
+            down: ui/icon-button-down,
+            up: ui/icon-button,
+            pressedOffsetY: -2
+        },
+        fb-button: {
+            down: ui/fb-button-down,
+            up: ui/fb-button,
+            pressedOffsetY: -2
+        },
+        gplus-button: {
+            down: ui/gplus-button-down,
+            up: ui/gplus-button,
+            pressedOffsetY: -2
+        },
         round-button: {
             down: ui/icon-button-down,
             up: ui/icon-button,
@@ -183,15 +202,6 @@
     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
         world-button: {
             up: ui/world-button
-        }
-    },
-    com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
-        image-text-button: {
-            down: ui/text-button-down,
-            up: ui/text-button,
-            pressedOffsetY: -2,
-            font: main-font,
-            fontColor: white
         }
     }
 }
