@@ -1,3 +1,8 @@
+# 1.2.0 - 2015-01-17
+
+- Added a sumo customer
+- Turned the "more" menu into a dialog with links to Facebook, Google+ and Google Play
+
 # 1.1.3 - 2014-11-06
 
 - Fixed bug in score count in Kids difficulty level
