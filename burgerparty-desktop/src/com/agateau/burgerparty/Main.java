@@ -78,6 +78,7 @@ public class Main {
             game.waitInLoadingScreen();
         }
         game.setAdSystem(new DummyAdSystem());
+        game.setRatingControllerImplementation(new DummyRatingControllerImplementation());
     }
 
     private static void parseArgs(String[] _args) {

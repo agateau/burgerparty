@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-03 23:02+0100\n"
-"PO-Revision-Date: 2014-10-28 23:52+0100\n"
+"POT-Creation-Date: 2015-01-17 22:16+0100\n"
+"PO-Revision-Date: 2015-01-17 22:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -23,19 +23,19 @@ msgid_plural "%# remaining."
 msgstr[0] "Encore 1."
 msgstr[1] "Encore %#."
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:125
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
 msgid "New High Score!"
 msgstr "Nouveau record !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:253
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
 msgid "Congratulations, you finished level %d-%d!"
 msgstr "Félicitations, vous avez terminé le niveau %d-%d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:255
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
 msgid "Congratulations, you finished world %d!"
 msgstr "Félicitations, vous avez terminé le monde %d !"
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:257
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
 msgid "Congratulations, you finished the game!"
 msgstr "Félicitations, vous avez terminé le jeu !"
 
@@ -58,6 +58,26 @@ msgstr "Pause"
 #: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
 msgid "Game Over"
 msgstr "Game Over"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:55
+msgid "Sound"
+msgstr "Effets sonores"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:56
+msgid "About"
+msgstr "A propos"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:57
+msgid "Like us"
+msgstr "Aimez-nous"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:58
+msgid "Add us"
+msgstr "Ajoutez-nous"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:59
+msgid "Rate Burger Party"
+msgstr "Noter Burger Party"
 
 #: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358
 msgid "+%# sec"
@@ -163,11 +183,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] "-"
 msgstr[1] "Créer %# burgers différents dans le laboratoire."
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:340
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:342
 msgid "%dx combo!"
 msgstr "%dx combo !"
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:344
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:346
 msgid "Happy customer!"
 msgstr "Client satisfait !"
 

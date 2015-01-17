@@ -119,8 +119,16 @@ ui/frame
   rotate: false
   xy: 992, 5
   size: 26, 26
-  split: 7, 7, 7, 9
+  split: 9, 9, 9, 9
+  pad: 7, 7, 7, 7
   orig: 26, 26
+  offset: 0, 0
+  index: -1
+ui/icon-fb
+  rotate: false
+  xy: 999, 478
+  size: 15, 28
+  orig: 15, 28
   offset: 0, 0
   index: -1
 ui/icon-info
@@ -160,7 +168,7 @@ ui/vertical-gradient
   index: -1
 ui/white-pixel
   rotate: false
-  xy: 999, 490
+  xy: 999, 460
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -450,7 +458,7 @@ ui/coin
   orig: 39, 19
   offset: 0, 0
   index: -1
-ui/icon-button-down
+ui/fb-button-down
   rotate: false
   xy: 945, 198
   size: 76, 76
@@ -604,9 +612,16 @@ newworld/plane
   orig: 50, 33
   offset: 0, 0
   index: -1
-ui/icon-levels
+ui/icon-gplus
   rotate: false
   xy: 991, 828
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+ui/icon-levels
+  rotate: false
+  xy: 992, 861
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
@@ -1306,14 +1321,14 @@ achievements/perfect
   index: -1
 achievements/sandbox
   rotate: false
-  xy: 770, 737
+  xy: 624, 630
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/star-collector
   rotate: false
-  xy: 624, 630
+  xy: 618, 509
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -1327,14 +1342,14 @@ customers/boys/body-2
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 848, 697
+  xy: 848, 674
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 848, 647
+  xy: 848, 624
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
@@ -1348,56 +1363,56 @@ customers/boys/top-1
   index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 624, 580
+  xy: 770, 698
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 770, 687
+  xy: 692, 652
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 692, 647
+  xy: 848, 773
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 692, 748
+  xy: 770, 748
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 770, 803
+  xy: 624, 575
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 770, 638
+  xy: 848, 724
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-happy
   rotate: false
-  xy: 692, 697
+  xy: 770, 647
   size: 76, 49
   orig: 76, 49
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-neutral
   rotate: false
-  xy: 692, 803
+  xy: 770, 803
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
@@ -1516,7 +1531,7 @@ mealitems/0/fish-inventory
   index: -1
 mealitems/0/onion-inventory
   rotate: false
-  xy: 848, 785
+  xy: 115, 140
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
@@ -1537,7 +1552,7 @@ mealitems/0/sundae2
   index: -1
 mealitems/0/toast-inventory
   rotate: false
-  xy: 836, 747
+  xy: 114, 102
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
@@ -1557,6 +1572,13 @@ ui/achievement-small-bg
   orig: 84, 47
   offset: 0, 0
   index: -1
+ui/fb-button
+  rotate: false
+  xy: 115, 178
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
 ui/finger
   rotate: false
   xy: 115, 256
@@ -1564,28 +1586,63 @@ ui/finger
   orig: 60, 86
   offset: 0, 0
   index: -1
-ui/icon-button
+ui/gplus-button
   rotate: false
-  xy: 115, 178
+  xy: 614, 696
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
-ui/icon-config
+ui/gplus-button-down
+  rotate: false
+  xy: 614, 774
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/icon-button
+  rotate: false
+  xy: 692, 702
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/icon-button-down
+  rotate: false
+  xy: 692, 780
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+ui/icon-close
   rotate: false
   xy: 966, 982
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-level-video-play
+ui/icon-config
   rotate: false
   xy: 966, 940
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
+ui/icon-level-video-play
+  rotate: false
+  xy: 114, 60
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
 ui/icon-next
+  rotate: false
+  xy: 156, 60
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ui/icon-rate
   rotate: false
   xy: 407, 278
   size: 40, 40
@@ -1601,14 +1658,14 @@ ui/icon-sound-off
   index: -1
 ui/icon-sound-on
   rotate: false
-  xy: 702, 605
+  xy: 130, 18
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/icon-world-map
   rotate: false
-  xy: 936, 820
+  xy: 172, 18
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -1629,14 +1686,14 @@ ui/minigame
   index: -1
 ui/star-off
   rotate: false
-  xy: 930, 778
+  xy: 936, 820
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 702, 563
+  xy: 926, 778
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -1646,24 +1703,6 @@ ui/start-normal
   xy: 2, 344
   size: 127, 164
   orig: 127, 164
-  offset: 0, 0
-  index: -1
-ui/text-button
-  rotate: false
-  xy: 614, 696
-  size: 76, 76
-  split: 37, 37, 37, 37
-  pad: 36, 36, 13, 15
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
-ui/text-button-down
-  rotate: false
-  xy: 614, 774
-  size: 76, 76
-  split: 37, 37, 37, 37
-  pad: 36, 36, 13, 15
-  orig: 76, 76
   offset: 0, 0
   index: -1
 

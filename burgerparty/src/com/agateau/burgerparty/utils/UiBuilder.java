@@ -183,7 +183,7 @@ public class UiBuilder {
     }
 
     protected ImageButton createImageButton(XmlReader.Element element) {
-        String styleName = element.getAttribute("style", "");
+        String styleName = element.getAttribute("style", "default");
         ImageButton button = new ImageButton(mSkin, styleName);
         String imageName = element.getAttribute("imageName", "");
         if (!imageName.isEmpty()) {

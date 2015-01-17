@@ -82,7 +82,7 @@
         </Image>
 
         <ImageButton id="moreButton"
-            style="checked-round-button"
+            style="round-button"
             imageName="ui/icon-config"
             topRight="root.topRight -1 -1">
             <Action duration="1">
@@ -91,14 +91,5 @@
                 alpha 1 0.5 pow2In
             </Action>
         </ImageButton>
-
-        <VerticalGroup id="moreGroup" spacing="20">
-            <ImageButton id="muteButton"
-                style="round-button"
-                imageName="ui/icon-sound-on"/>
-            <ImageButton id="aboutButton"
-                style="round-button"
-                imageName="ui/icon-info"/>
-        </VerticalGroup>
     </AnchorGroup>
 </gdxui>

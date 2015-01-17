@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-03 23:02+0100\n"
+"POT-Creation-Date: 2015-01-17 22:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,19 +24,19 @@ msgid_plural "%# remaining."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:125
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
 msgid "New High Score!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:253
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
 msgid "Congratulations, you finished level %d-%d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:255
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
 msgid "Congratulations, you finished world %d!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:257
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
 msgid "Congratulations, you finished the game!"
 msgstr ""
 
@@ -58,6 +58,26 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
 msgid "Game Over"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:55
+msgid "Sound"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:56
+msgid "About"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:57
+msgid "Like us"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:58
+msgid "Add us"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:59
+msgid "Rate Burger Party"
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358
@@ -164,11 +184,11 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:340
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:342
 msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:344
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:346
 msgid "Happy customer!"
 msgstr ""
 

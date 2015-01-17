@@ -24,5 +24,6 @@ public class MainActivity extends AndroidApplication {
         NLog.addPrinter(new GdxPrinter("BP"));
         NLog.i("");
         game.setAdSystem(new HeyzapAdSystem(this));
+        game.setRatingControllerImplementation(new AndroidRatingControllerImplementation(this));
     }
 }
