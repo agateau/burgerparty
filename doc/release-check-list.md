@@ -1,5 +1,9 @@
 # Create .apk
 
+- Check current branch is master
+
+- Check working tree is clean
+
 - Bump version numbers:
     AndroidManifest.xml versionCode
     AndroidManifest.xml versionName
