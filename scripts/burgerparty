@@ -3,11 +3,21 @@ set -e
 cd $(dirname $0)/..
 BP_DIR=$PWD
 
-BUILD_DIR=$BP_DIR/out/production
+DIRS="
+burgerparty/build/libs
+burgerparty/libs
+burgerparty-desktop/build/libs
+burgerparty-desktop/libs
+linguaj/linguaj/build/libs
+"
 
-CLASSPATH="$BUILD_DIR/burgerparty:$BUILD_DIR/burgerparty-desktop:$BUILD_DIR/linguaj"
-for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
-    CLASSPATH="$CLASSPATH:$jar"
+CLASSPATH=""
+for dir in $DIRS ; do
+    echo "# $dir"
+    for jar in $(ls $BP_DIR/$dir/*.jar) ; do
+        echo "- $jar"
+        CLASSPATH="$CLASSPATH:$jar"
+    done
 done
 
 cd burgerparty-android/assets
