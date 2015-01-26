@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-17 22:16+0100\n"
+"POT-Creation-Date: 2015-01-26 22:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,24 +60,48 @@ msgstr ""
 msgid "Game Over"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:55
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:77
 msgid "Sound"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:56
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
 msgid "About"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:57
-msgid "Like us"
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
+msgid "Who made this?"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:58
-msgid "Add us"
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "Facebook"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:59
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "Become a fan"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Google+"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Add us to your circles"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
 msgid "Rate Burger Party"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
+msgid "Like the game? Would be awesome if you could give it a good rate!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
+msgid "Sound is OFF"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
+msgid "Sound is ON"
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-17 22:16+0100\n"
-"PO-Revision-Date: 2015-01-17 22:17+0100\n"
+"POT-Creation-Date: 2015-01-26 22:49+0100\n"
+"PO-Revision-Date: 2015-01-26 22:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -59,25 +59,49 @@ msgstr "Pause"
 msgid "Game Over"
 msgstr "Game Over"
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:55
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:77
 msgid "Sound"
 msgstr "Effets sonores"
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:56
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
 msgid "About"
 msgstr "A propos"
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:57
-msgid "Like us"
-msgstr "Aimez-nous"
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
+msgid "Who made this?"
+msgstr "Qui a fait ce jeu ?"
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:58
-msgid "Add us"
-msgstr "Ajoutez-nous"
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "Facebook"
+msgstr "Facebook"
 
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:59
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "Become a fan"
+msgstr "Devenir fan"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Google+"
+msgstr "Google+"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Add us to your circles"
+msgstr "Nous ajouter à vos cercles"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
 msgid "Rate Burger Party"
 msgstr "Noter Burger Party"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
+msgid "Like the game? Would be awesome if you could give it a good rate!"
+msgstr "Vous aimez le jeu ? Donnez-nous une bonne note !"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
+msgid "Sound is OFF"
+msgstr "Effets sonores désactivés"
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
+msgid "Sound is ON"
+msgstr "Effets sonores activés"
 
 #: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358
 msgid "+%# sec"
@@ -234,6 +258,12 @@ msgstr "Effets sonores"
 #: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:106
 msgid "© 2013 - 2014 Green Yeti Lab"
 msgstr "© 2013 - 2014 Green Yeti Lab"
+
+#~ msgid "Like us"
+#~ msgstr "Aimez-nous"
+
+#~ msgid "Add us"
+#~ msgstr "Ajoutez-nous"
 
 #~ msgid "Aurélien Gâteau"
 #~ msgstr "Aurélien Gâteau"

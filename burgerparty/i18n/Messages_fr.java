@@ -14,9 +14,15 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Sound", "Effets sonores");
         plainEntries.put("About", "A propos");
-        plainEntries.put("Like us", "Aimez-nous");
-        plainEntries.put("Add us", "Ajoutez-nous");
+        plainEntries.put("Who made this?", "Qui a fait ce jeu ?");
+        plainEntries.put("Facebook", "Facebook");
+        plainEntries.put("Become a fan", "Devenir fan");
+        plainEntries.put("Google+", "Google+");
+        plainEntries.put("Add us to your circles", "Nous ajouter à vos cercles");
         plainEntries.put("Rate Burger Party", "Noter Burger Party");
+        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-nous une bonne note !");
+        plainEntries.put("Sound is OFF", "Effets sonores désactivés");
+        plainEntries.put("Sound is ON", "Effets sonores activés");
         plainEntries.put("Perfect #%d", "Perfect #%d");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
         plainEntries.put("Star Collector", "Collectionneur d'étoiles");
