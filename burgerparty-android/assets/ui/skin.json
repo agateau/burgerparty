@@ -103,8 +103,12 @@
             font: main-font-plain,
             fontColor: white
         },
-        config-button: {
+        config-button-title: {
             font: main-font-plain,
+            fontColor: black
+        },
+        config-button-subtitle: {
+            font: main-font-plain-small,
             fontColor: black
         }
     },
