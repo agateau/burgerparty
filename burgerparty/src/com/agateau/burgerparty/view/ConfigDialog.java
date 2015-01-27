@@ -81,11 +81,6 @@ public class ConfigDialog extends Dialog {
         ConfigButton gplusButton = new ConfigButton(assets, "ui/icon-gplus", tr("Google+"), tr("Add us to your circles"), "gplus-button");
         ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Would be awesome if you could give it a good rate!"));
 
-        //mMuteButton.setWidth(columnWidth);
-        //aboutButton.setWidth(columnWidth);
-        //facebookButton.setWidth(columnWidth);
-        //gplusButton.setWidth(columnWidth);
-
         Table root = new Table(assets.getSkin());
         final float spacing = UiUtils.SPACING;
         root.defaults().width(columnWidth).left().padBottom(spacing).padRight(spacing);
