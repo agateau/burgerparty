@@ -87,7 +87,7 @@ public class Main {
             String arg = args.removeIndex(0);
             if (arg.equals("-h") || arg.equals("--help")) {
                 usage();
-            } else if (arg.equals("-f") || args.equals("--fullscreen")) {
+            } else if (arg.equals("-f") || arg.equals("--fullscreen")) {
                 sFullScreen = true;
             } else if (arg.equals("--hide-cursor")) {
                 sHideCursor = true;
