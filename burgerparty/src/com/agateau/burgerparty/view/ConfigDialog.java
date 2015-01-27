@@ -72,7 +72,7 @@ public class ConfigDialog extends Dialog {
 
     public ConfigDialog(StageScreen stageScreen, final BurgerPartyGame game) {
         super(stageScreen, game.getAssets());
-        final float columnWidth = Gdx.app.getGraphics().getWidth() * 0.35f;
+        final float columnWidth = stageScreen.getStage().getWidth() * 0.35f;
         mGame = game;
         Assets assets = game.getAssets();
         mMuteButton = new ConfigButton(assets, "ui/icon-sound-on", tr("Sound"), "");
