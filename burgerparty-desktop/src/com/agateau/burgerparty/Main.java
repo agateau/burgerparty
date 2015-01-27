@@ -23,6 +23,8 @@ public class Main {
     private static boolean sFullScreen = false;
     private static boolean sHideCursor = false;
     private static boolean sWait = false;
+    private static int sWindowWidth = 800;
+    private static int sWindowHeight = 480;
 
     private static void hideCursor() {
         Cursor sEmptyCursor;
@@ -57,8 +59,8 @@ public class Main {
             cfg.fullscreen = true;
             cfg.vSyncEnabled = true;
         } else {
-            cfg.width = 800;
-            cfg.height = 480;
+            cfg.width = sWindowWidth;
+            cfg.height = sWindowHeight;
         }
         BurgerPartyGame game = new BurgerPartyGame();
         new LwjglApplication(game, cfg);
@@ -89,6 +91,23 @@ public class Main {
                 usage();
             } else if (arg.equals("-f") || arg.equals("--fullscreen")) {
                 sFullScreen = true;
+            } else if (arg.equals("-s") || arg.equals("--size")) {
+                if (args.size == 0) {
+                    die(String.format("Missing value for %s argument", arg));
+                }
+                String value = args.removeIndex(0);
+                String[] tokens = value.split("x");
+                if (tokens.length != 2) {
+                    die(String.format("Invalid size: %s", value));
+                }
+                sWindowWidth = Integer.valueOf(tokens[0]);
+                sWindowHeight = Integer.valueOf(tokens[1]);
+                if (sWindowWidth <= 0) {
+                    die("Invalid width");
+                }
+                if (sWindowHeight <= 0) {
+                    die("Invalid height");
+                }
             } else if (arg.equals("--hide-cursor")) {
                 sHideCursor = true;
             } else if (arg.equals("--wait")) {
@@ -97,21 +116,26 @@ public class Main {
                 String locale = args.removeIndex(0);
                 Translator.init(locale);
             } else {
-                System.err.println("ERROR: Unknown argument: " + arg);
-                System.exit(1);
+                die("Unknown argument: " + arg);
             }
         }
+    }
+
+    private static void die(String msg) {
+        System.err.println("ERROR: " + msg);
+        System.exit(1);
     }
 
     private static void usage() {
         System.err.println("Usage: burgeparty [OPTIONS]\n"
             + "\n"
             + "Options:\n"
-            + "  -h,--help        This screen\n"
-            + "  -f,--fullscreen  Start in fullscreen mode\n"
-            + "  --hide-cursor    Hide cursor\n"
-            + "  --wait           Wait for a click on the loading screen to continue\n"
-            + "  --locale LOCALE  Force usage of LOCALE\n"
+            + "  -h, --help         This screen\n"
+            + "  -f, --fullscreen   Start in fullscreen mode\n"
+            + "  -s, --size <w>x<h> Start with a window size of <w>x<h>\n"
+            + "  --hide-cursor      Hide cursor\n"
+            + "  --wait             Wait for a click on the loading screen to continue\n"
+            + "  --locale LOCALE    Force usage of LOCALE\n"
         );
         System.exit(1);
     }
