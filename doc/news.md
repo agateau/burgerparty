@@ -1,3 +1,8 @@
+# 1.2.1 - 2015-01-27
+
+- Fix missing translations
+- Nicer buttons in the configuration dialog
+
 # 1.2.0 - 2015-01-17
 
 - Added a sumo customer
