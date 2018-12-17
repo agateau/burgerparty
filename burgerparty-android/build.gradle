@@ -4,8 +4,8 @@ android {
             storeFile file('/home/aurelien/doc/ref/agateau.com.keystore')
         }
     }
-    buildToolsVersion "21.1.1"
-    compileSdkVersion 21
+    buildToolsVersion "27.0.3"
+    compileSdkVersion 26
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -14,6 +14,7 @@ android {
             renderscript.srcDirs = ['src/main']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
         }
         amz {
             java.srcDirs = ['src/amz']
@@ -34,11 +35,6 @@ android {
         gp {
         }
     }
-}
-// needed to insert JNI shared libraries to APK when compiling on CLI
-tasks.withType(com.android.build.gradle.tasks.PackageApplication) { pkgTask ->
-    pkgTask.jniFolders = new HashSet<File>()
-    pkgTask.jniFolders.add(new File(projectDir, 'libs'))
 }
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
