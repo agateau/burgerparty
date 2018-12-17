@@ -1,11 +1,7 @@
 android {
-    signingConfigs {
-        config {
-            storeFile file('/home/aurelien/doc/ref/agateau.com.keystore')
-        }
-    }
     buildToolsVersion "27.0.3"
     compileSdkVersion 26
+    defaultConfig {}
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -25,10 +21,17 @@ android {
 
         instrumentTest.setRoot('tests')
     }
+    signingConfigs {
+        apply from: 'signing.gradle', to: release
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
     packagingOptions {
         exclude 'LICENSE.txt'
     }
-    defaultConfig {}
     productFlavors {
         amz {
         }
