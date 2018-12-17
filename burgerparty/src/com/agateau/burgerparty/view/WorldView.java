@@ -310,7 +310,6 @@ public class WorldView extends AbstractWorldView {
     }
 
     private void onLevelFailed() {
-        mGame.getAdController().onLevelFailed();
         mGameScreen.setOverlay(new GameOverOverlay(mGame, mAtlas, mSkin));
     }
 

@@ -66,7 +66,6 @@ public class StartScreen extends BurgerPartyScreen {
 
     private void onStartClicked(Difficulty difficulty) {
         getGame().setDifficulty(difficulty);
-        getGame().getAdController().onStartPlaying();
         getGame().showWorldListScreen();
     }
 

@@ -79,7 +79,6 @@ public class Main {
         if (sWait) {
             game.waitInLoadingScreen();
         }
-        game.setAdSystem(new DummyAdSystem());
         game.setRatingControllerImplementation(new DummyRatingControllerImplementation());
     }
 

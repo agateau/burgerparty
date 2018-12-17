@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import com.agateau.burgerparty.model.Achievement;
-import com.agateau.burgerparty.model.AdController;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Difficulty;
 import com.agateau.burgerparty.model.Level;
@@ -48,7 +47,6 @@ public class BurgerPartyGame extends Game {
     private HashMap<Difficulty, Universe> mUniverseForDifficulty = new HashMap<Difficulty, Universe>();
     private int mLevelWorldIndex = 0;
     private int mLevelIndex = 0;
-    private AdController mAdController;
     private BurgerPartyGameStats mGameStats;
     private AchievementViewController mAchievementViewController = new AchievementViewController(this);
     private int mWidth = 0;
@@ -196,12 +194,12 @@ public class BurgerPartyGame extends Game {
                 public void handle() {
                     level.setScore(0);
                     getCurrentUniverse().saveProgress();
-                    showAd();
+                    doStartLevel();
                 }
             });
             setScreenAndDispose(screen);
         } else {
-            showAd();
+            doStartLevel();
         }
     }
 
@@ -270,15 +268,6 @@ public class BurgerPartyGame extends Game {
         setScreenAndDispose(new CheatScreen(this));
     }
 
-    private void showAd() {
-        mAdController.maybeShowAd(new Runnable() {
-            @Override
-            public void run() {
-                doStartLevel();
-            }
-        });
-    }
-
     private void doStartLevel() {
         NLog.i("%d-%d", mLevelWorldIndex + 1, mLevelIndex + 1);
         Level level = getCurrentUniverse().get(mLevelWorldIndex).getLevel(mLevelIndex);
@@ -302,15 +291,6 @@ public class BurgerPartyGame extends Game {
 
     public Preferences getPreferences() {
         return Gdx.app.getPreferences("burgerparty");
-    }
-
-    public AdController getAdController() {
-        assert(mAdController != null);
-        return mAdController;
-    }
-
-    public void setAdSystem(AdSystem adSystem) {
-        mAdController = new AdController(getPreferences(), adSystem);
     }
 
     public RatingController getRatingController() {

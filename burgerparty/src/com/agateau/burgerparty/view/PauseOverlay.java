@@ -57,7 +57,6 @@ public class PauseOverlay extends Overlay {
 
         builder.getActor("restartButton").addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                mGame.getAdController().onLevelRestarted();
                 mGame.startLevel(mGame.getLevelWorldIndex(), mGame.getLevelIndex());
             }
         });
