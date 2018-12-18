@@ -1,8 +1,10 @@
 # Create .apk
 
-- Check current branch is master
+- Check source tree is clean
 
-- Check working tree is clean
+    git checkout master
+    git pull
+    git status
 
 - Bump version numbers:
     AndroidManifest.xml versionCode
@@ -10,14 +12,15 @@
     Constants
 
 - Check translations are up to date
-
-    pot-generate
-    # translate
-    po-compile-all
+    - Run `pot-generate`
+    - Translate new strings
 
 - Run unit tests
 
 - Generate .apk
+
+    - Check burgerparty-android/signing.gradle exists
+    - Run `make`
 
 - Smoke test
     - on PC
@@ -41,17 +44,15 @@
 
 - Upload on Google Play
 
-- Upload on greenyetilab.com
+- Upload on agateau.com
 
 # Prepare spread
 
 - Take screenshots
 
-## Greenyetilab.com
+## agateau.com
 
-- Update greenyetilab.com/burgerparty
-
-- Publish
+- Update project page
 
 - Write announcement blog post
 
@@ -77,14 +78,6 @@
 
 - Notify Google Group
 
-- Notify G+ community
-
-- Announce on G+
-    - GYL
-    - Self
 - Announce on FB
-    - GYL
-    - Self
+
 - Announce on Twitter
-    - GYL
-    - Self
