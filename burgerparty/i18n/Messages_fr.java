@@ -3,58 +3,51 @@
 
 public class Messages_fr extends com.greenyetilab.linguaj.Messages {
     public Messages_fr() {
-        plainEntries.put("New High Score!", "Nouveau record !");
+        plainEntries.put("%dx combo!", "%dx combo !");
+        plainEntries.put("About", "A propos");
+        plainEntries.put("Add us to your circles", "Nous ajouter à vos cercles");
+        plainEntries.put("All Stars #%d", "Toutes les étoiles #%d");
+        plainEntries.put("Become a fan", "Devenir fan");
+        plainEntries.put("Burger Apprentice", "Apprenti");
+        plainEntries.put("Burger God", "Dieu des Burgers");
+        plainEntries.put("Burger Master", "Maître Burger");
+        plainEntries.put("Close Call", "C'était juste");
+        plainEntries.put("Code & Design", "Code & Design");
         plainEntries.put("Congratulations, you finished level %d-%d!", "Félicitations, vous avez terminé le niveau %d-%d !");
-        plainEntries.put("Congratulations, you finished world %d!", "Félicitations, vous avez terminé le monde %d !");
         plainEntries.put("Congratulations, you finished the game!", "Félicitations, vous avez terminé le jeu !");
-        plainEntries.put("Level %d-%d", "Niveau %d-%d");
+        plainEntries.put("Congratulations, you finished world %d!", "Félicitations, vous avez terminé le monde %d !");
+        plainEntries.put("Creative", "Créatif");
+        plainEntries.put("Evening Gamer", "Joueur du soir");
+        plainEntries.put("Facebook", "Facebook");
+        plainEntries.put("Fan", "Fan");
+        plainEntries.put("Finish all levels of world %d with 3 stars.", "Finir tous les niveaux du monde %d avec 3 étoiles.");
+        plainEntries.put("Fonts", "Fontes");
+        plainEntries.put("Game Over", "Game Over");
+        plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
+        plainEntries.put("Google+", "Google+");
+        plainEntries.put("Happy customer!", "Client satisfait !");
         plainEntries.put("High score: %d", "Record : %d");
+        plainEntries.put("Level %d-%d", "Niveau %d-%d");
+        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-nous une bonne note !");
+        plainEntries.put("Morning Gamer", "Joueur du matin");
+        plainEntries.put("Music", "Musique");
+        plainEntries.put("New High Score!", "Nouveau record !");
+        plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
         plainEntries.put("No high score yet", "Pas encore de record");
         plainEntries.put("Paused", "Pause");
-        plainEntries.put("Game Over", "Game Over");
-        plainEntries.put("Sound", "Effets sonores");
-        plainEntries.put("About", "A propos");
-        plainEntries.put("Who made this?", "Qui a fait ce jeu ?");
-        plainEntries.put("Facebook", "Facebook");
-        plainEntries.put("Become a fan", "Devenir fan");
-        plainEntries.put("Google+", "Google+");
-        plainEntries.put("Add us to your circles", "Nous ajouter à vos cercles");
+        plainEntries.put("Perfect #%d", "Perfect #%d");
+        plainEntries.put("Practice Area", "Laboratoire");
         plainEntries.put("Rate Burger Party", "Noter Burger Party");
-        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-nous une bonne note !");
+        plainEntries.put("Sound", "Effets sonores");
         plainEntries.put("Sound is OFF", "Effets sonores désactivés");
         plainEntries.put("Sound is ON", "Effets sonores activés");
-        plainEntries.put("Perfect #%d", "Perfect #%d");
-        plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
-        plainEntries.put("Star Collector", "Collectionneur d'étoiles");
-        plainEntries.put("Burger Apprentice", "Apprenti");
-        plainEntries.put("Burger Master", "Maître Burger");
-        plainEntries.put("Burger God", "Dieu des Burgers");
-        plainEntries.put("Practice Area", "Laboratoire");
-        plainEntries.put("Fan", "Fan");
-        plainEntries.put("Close Call", "C'était juste");
-        plainEntries.put("Morning Gamer", "Joueur du matin");
-        plainEntries.put("Evening Gamer", "Joueur du soir");
-        plainEntries.put("Creative", "Créatif");
-        plainEntries.put("%dx combo!", "%dx combo !");
-        plainEntries.put("Happy customer!", "Client satisfait !");
-        plainEntries.put("All Stars #%d", "Toutes les étoiles #%d");
-        plainEntries.put("Finish all levels of world %d with 3 stars.", "Finir tous les niveaux du monde %d avec 3 étoiles.");
-        plainEntries.put("New item unlocked!", "Nouvel ingrédient débloqué !");
-        plainEntries.put("Version %s", "Version %s");
-        plainEntries.put("Code & Design", "Code & Design");
-        plainEntries.put("Music", "Musique");
-        plainEntries.put("Thomas Tripon", "Thomas Tripon");
-        plainEntries.put("Testers", "Testeurs");
-        plainEntries.put("Fonts", "Fontes");
         plainEntries.put("Sounds", "Effets sonores");
+        plainEntries.put("Star Collector", "Collectionneur d'étoiles");
+        plainEntries.put("Testers", "Testeurs");
+        plainEntries.put("Thomas Tripon", "Thomas Tripon");
+        plainEntries.put("Version %s", "Version %s");
+        plainEntries.put("Who made this?", "Qui a fait ce jeu ?");
         plainEntries.put("© 2013 - 2014 Green Yeti Lab", "© 2013 - 2014 Green Yeti Lab");
-        pluralEntries.put(
-            new PluralId("1 remaining.", "%# remaining."),
-            new String[] {
-                "Encore 1.",
-                "Encore %#.",
-            }
-        );
         pluralEntries.put(
             new PluralId("+%# sec", "+%# sec"),
             new String[] {
@@ -63,10 +56,52 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             }
         );
         pluralEntries.put(
+            new PluralId("1 remaining.", "%# remaining."),
+            new String[] {
+                "Encore 1.",
+                "Encore %#.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-close-call", "Finish a level with less than %# seconds left."),
+            new String[] {
+                "-",
+                "Finir un niveau avec moins de %# secondes restantes.",
+            }
+        );
+        pluralEntries.put(
             new PluralId("ignore-collect", "Collect %# stars."),
             new String[] {
                 "-",
                 "Récupérer %# étoiles.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-creative", "Create %# different burgers in the practice area."),
+            new String[] {
+                "-",
+                "Créer %# burgers différents dans le laboratoire.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-evening", "Start a game between 7PM and 11PM for %# days."),
+            new String[] {
+                "-",
+                "Jouer entre 19:00 et 23:00 pendant %# jours.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-fan", "Play %# levels."),
+            new String[] {
+                "-",
+                "Jouer à %# niveaux.",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %# days."),
+            new String[] {
+                "-",
+                "Jouer entre 7:00 et 10:00 pendant %# jours.",
             }
         );
         pluralEntries.put(
@@ -81,41 +116,6 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
             new String[] {
                 "-",
                 "Jouer %# niveaux pour débloquer le laboratoire.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-fan", "Play %# levels."),
-            new String[] {
-                "-",
-                "Jouer à %# niveaux.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-close-call", "Finish a level with less than %# seconds left."),
-            new String[] {
-                "-",
-                "Finir un niveau avec moins de %# secondes restantes.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %# days."),
-            new String[] {
-                "-",
-                "Jouer entre 7:00 et 10:00 pendant %# jours.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-evening", "Start a game between 7PM and 11PM for %# days."),
-            new String[] {
-                "-",
-                "Jouer entre 19:00 et 23:00 pendant %# jours.",
-            }
-        );
-        pluralEntries.put(
-            new PluralId("ignore-creative", "Create %# different burgers in the practice area."),
-            new String[] {
-                "-",
-                "Créer %# burgers différents dans le laboratoire.",
             }
         );
     }
