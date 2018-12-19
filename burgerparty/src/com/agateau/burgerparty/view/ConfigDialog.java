@@ -26,8 +26,8 @@ import static com.greenyetilab.linguaj.Translator.tr;
  * Configuration dialog which appears when one clicks the config button
  */
 public class ConfigDialog extends Dialog {
-    private static final String FACEBOOK_URL = "https://facebook.com/GreenYetiLab";
-    private static final String GPLUS_URL = "https://plus.google.com/+GreenYetiLab";
+    private static final String MASTODON_URL = "https://mastodon.xyz/@agateau";
+    private static final String TWITTER_URL = "https://twitter.com/aureliengateau";
     private final BurgerPartyGame mGame;
     private final ConfigButton mMuteButton;
 
@@ -77,8 +77,8 @@ public class ConfigDialog extends Dialog {
         Assets assets = game.getAssets();
         mMuteButton = new ConfigButton(assets, "ui/icon-sound-on", tr("Sound"), "");
         ConfigButton aboutButton = new ConfigButton(assets, "ui/icon-info", tr("About"), tr("Who made this?"));
-        ConfigButton facebookButton = new ConfigButton(assets, "ui/icon-fb", tr("Facebook"), tr("Become a fan"), "fb-button");
-        ConfigButton gplusButton = new ConfigButton(assets, "ui/icon-gplus", tr("Google+"), tr("Add us to your circles"), "gplus-button");
+        ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon,"), "mastodon-button");
+        ConfigButton twitterButton = new ConfigButton(assets, "ui/icon-twitter", tr("Twitter"), tr("or on Twitter!"), "twitter-button");
         ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Would be awesome if you could give it a good rate!"));
 
         Table root = new Table(assets.getSkin());
@@ -86,10 +86,10 @@ public class ConfigDialog extends Dialog {
         root.defaults().width(columnWidth).left().padBottom(spacing).padRight(spacing);
         root.padTop(spacing).padLeft(spacing);
         root.add(mMuteButton);
-        root.add(facebookButton);
+        root.add(mastodonButton);
         root.row();
         root.add(aboutButton);
-        root.add(gplusButton);
+        root.add(twitterButton);
         root.row();
         root.add(rateButton).colspan(2);
         root.setSize(MathUtils.round(root.getPrefWidth()), MathUtils.round(root.getPrefHeight()));
@@ -117,17 +117,17 @@ public class ConfigDialog extends Dialog {
             }
         });
 
-        facebookButton.addListener(new ChangeListener() {
+        mastodonButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI(FACEBOOK_URL);
+                Gdx.net.openURI(MASTODON_URL);
             }
         });
 
-        gplusButton.addListener(new ChangeListener() {
+        twitterButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI(GPLUS_URL);
+                Gdx.net.openURI(TWITTER_URL);
             }
         });
     }

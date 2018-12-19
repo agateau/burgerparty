@@ -156,14 +156,14 @@
             up: ui/icon-button,
             pressedOffsetY: -2
         },
-        fb-button: {
-            down: ui/fb-button-down,
-            up: ui/fb-button,
+        mastodon-button: {
+            down: ui/mastodon-button-down,
+            up: ui/mastodon-button,
             pressedOffsetY: -2
         },
-        gplus-button: {
-            down: ui/gplus-button-down,
-            up: ui/gplus-button,
+        twitter-button: {
+            down: ui/twitter-button-down,
+            up: ui/twitter-button,
             pressedOffsetY: -2
         },
         round-button: {

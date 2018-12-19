@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-26 22:49+0100\n"
+"POT-Creation-Date: 2018-12-19 18:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,98 +24,20 @@ msgid_plural "%# remaining."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
-msgid "New High Score!"
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:342
+msgid "%dx combo!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
-msgid "Congratulations, you finished level %d-%d!"
+#: burgerparty/src/com/agateau/burgerparty/model/World.java:346
+msgid "Happy customer!"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
-msgid "Congratulations, you finished world %d!"
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
+msgid "All Stars #%d"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
-msgid "Congratulations, you finished the game!"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:39
-msgid "Level %d-%d"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:42
-msgid "High score: %d"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:44
-msgid "No high score yet"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:50
-msgid "Paused"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
-msgid "Game Over"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:77
-msgid "Sound"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
-msgid "About"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
-msgid "Who made this?"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
-msgid "Facebook"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
-msgid "Become a fan"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
-msgid "Google+"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
-msgid "Add us to your circles"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
-msgid "Rate Burger Party"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
-msgid "Like the game? Would be awesome if you could give it a good rate!"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
-msgid "Sound is OFF"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:138
-msgid "Sound is ON"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:358
-msgid "+%# sec"
-msgid_plural "+%# sec"
-msgstr[0] ""
-msgstr[1] ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
-msgid "Perfect #%d"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
-msgid "Get a perfect in all levels of world %d."
+#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
+msgid "Finish all levels of world %d with 3 stars."
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
@@ -208,20 +130,12 @@ msgid_plural "Create %# different burgers in the practice area."
 msgstr[0] ""
 msgstr[1] ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:342
-msgid "%dx combo!"
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
+msgid "Perfect #%d"
 msgstr ""
 
-#: burgerparty/src/com/agateau/burgerparty/model/World.java:346
-msgid "Happy customer!"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
-msgid "All Stars #%d"
-msgstr ""
-
-#: burgerparty/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
-msgid "Finish all levels of world %d with 3 stars."
+#: burgerparty/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
+msgid "Get a perfect in all levels of world %d."
 msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/NewItemScreen.java:118
@@ -258,4 +172,90 @@ msgstr ""
 
 #: burgerparty/src/com/agateau/burgerparty/screens/AboutScreen.java:106
 msgid "© 2013 - 2014 Green Yeti Lab"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:39
+msgid "Level %d-%d"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:42
+msgid "High score: %d"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:44
+msgid "No high score yet"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/PauseOverlay.java:50
+msgid "Paused"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
+msgid "Game Over"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
+msgid "New High Score!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
+msgid "Congratulations, you finished level %d-%d!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
+msgid "Congratulations, you finished world %d!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
+msgid "Congratulations, you finished the game!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/WorldView.java:357
+msgid "+%# sec"
+msgid_plural "+%# sec"
+msgstr[0] ""
+msgstr[1] ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:78
+msgid "Sound"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "About"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:79
+msgid "Who made this?"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Mastodon"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:80
+msgid "Follow me on Mastodon,"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
+msgid "Twitter"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:81
+msgid "or on Twitter!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:82
+msgid "Rate Burger Party"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:82
+msgid "Like the game? Would be awesome if you could give it a good rate!"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:139
+msgid "Sound is OFF"
+msgstr ""
+
+#: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:139
+msgid "Sound is ON"
 msgstr ""

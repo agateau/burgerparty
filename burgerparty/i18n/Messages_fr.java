@@ -5,9 +5,7 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
     public Messages_fr() {
         plainEntries.put("%dx combo!", "%dx combo !");
         plainEntries.put("About", "A propos");
-        plainEntries.put("Add us to your circles", "Nous ajouter à vos cercles");
         plainEntries.put("All Stars #%d", "Toutes les étoiles #%d");
-        plainEntries.put("Become a fan", "Devenir fan");
         plainEntries.put("Burger Apprentice", "Apprenti");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Burger Master", "Maître Burger");
@@ -18,17 +16,17 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Congratulations, you finished world %d!", "Félicitations, vous avez terminé le monde %d !");
         plainEntries.put("Creative", "Créatif");
         plainEntries.put("Evening Gamer", "Joueur du soir");
-        plainEntries.put("Facebook", "Facebook");
         plainEntries.put("Fan", "Fan");
         plainEntries.put("Finish all levels of world %d with 3 stars.", "Finir tous les niveaux du monde %d avec 3 étoiles.");
+        plainEntries.put("Follow me on Mastodon,", "Suivez-moi sur Mastodon,");
         plainEntries.put("Fonts", "Fontes");
         plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
-        plainEntries.put("Google+", "Google+");
         plainEntries.put("Happy customer!", "Client satisfait !");
         plainEntries.put("High score: %d", "Record : %d");
         plainEntries.put("Level %d-%d", "Niveau %d-%d");
         plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-nous une bonne note !");
+        plainEntries.put("Mastodon", "Mastodon");
         plainEntries.put("Morning Gamer", "Joueur du matin");
         plainEntries.put("Music", "Musique");
         plainEntries.put("New High Score!", "Nouveau record !");
@@ -45,8 +43,10 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Star Collector", "Collectionneur d'étoiles");
         plainEntries.put("Testers", "Testeurs");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
+        plainEntries.put("Twitter", "Twitter");
         plainEntries.put("Version %s", "Version %s");
         plainEntries.put("Who made this?", "Qui a fait ce jeu ?");
+        plainEntries.put("or on Twitter!", "ou sur Twitter !");
         plainEntries.put("© 2013 - 2014 Green Yeti Lab", "© 2013 - 2014 Green Yeti Lab");
         pluralEntries.put(
             new PluralId("+%# sec", "+%# sec"),
