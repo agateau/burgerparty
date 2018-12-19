@@ -1238,11 +1238,11 @@ ui/icon-button-big-down
   orig: 128, 128
   offset: 0, 0
   index: -1
-ui/icon-mastodon
+ui/icon-close
   rotate: false
-  xy: 967, 8
-  size: 38, 41
-  orig: 38, 41
+  xy: 967, 9
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
 ui/mastodon-button
@@ -1649,51 +1649,51 @@ ui/icon-button-down
   orig: 76, 76
   offset: 0, 0
   index: -1
-ui/icon-close
+ui/icon-config
   rotate: false
   xy: 977, 982
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-config
+ui/icon-level-video-play
   rotate: false
   xy: 465, 468
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-level-video-play
+ui/icon-mastodon
+  rotate: false
+  xy: 949, 874
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+ui/icon-next
   rotate: false
   xy: 465, 426
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-next
+ui/icon-rate
   rotate: false
   xy: 977, 940
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-rate
+ui/icon-sound-off
   rotate: false
   xy: 655, 462
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-ui/icon-sound-off
-  rotate: false
-  xy: 465, 384
-  size: 40, 40
-  orig: 40, 40
-  offset: 0, 0
-  index: -1
 ui/icon-sound-on
   rotate: false
-  xy: 823, 882
+  xy: 465, 384
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -1701,13 +1701,13 @@ ui/icon-sound-on
 ui/icon-twitter
   rotate: false
   xy: 754, 752
-  size: 34, 28
-  orig: 34, 28
+  size: 35, 28
+  orig: 35, 28
   offset: 0, 0
   index: -1
 ui/icon-world-map
   rotate: false
-  xy: 865, 874
+  xy: 823, 882
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -1728,14 +1728,14 @@ ui/minigame
   index: -1
 ui/star-off
   rotate: false
-  xy: 907, 874
+  xy: 865, 874
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 ui/star-on
   rotate: false
-  xy: 949, 874
+  xy: 907, 874
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
