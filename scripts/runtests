@@ -3,10 +3,8 @@ set -e
 cd $(dirname $0)/..
 BP_DIR=$PWD
 
-BUILD_DIR=out/production/burgerparty
-
-CLASSPATH="$BP_DIR/$BUILD_DIR"
-for jar in $BP_DIR/burgerparty/libs/*.jar $BP_DIR/burgerparty-desktop/libs/*.jar ; do
+CLASSPATH=""
+for jar in $BP_DIR/burgerparty/build/libs/*.jar $BP_DIR/burgerparty-desktop/build/libs/*.jar ; do
     CLASSPATH="$CLASSPATH:$jar"
 done
 

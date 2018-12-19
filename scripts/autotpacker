@@ -1,5 +1,5 @@
 #!/bin/sh
-cd $(dirname $0)
-SCRIPT_DIR=$PWD
+cd $(dirname $0)/..
+BP_DIR=$PWD
 cd ../burgerparty/assets
-inotifyrun $SCRIPT_DIR/tpacker
+inotifyrun make -C $BP_DIR packer
