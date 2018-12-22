@@ -28,6 +28,7 @@ import static com.greenyetilab.linguaj.Translator.tr;
 public class ConfigDialog extends Dialog {
     private static final String MASTODON_URL = "https://mastodon.xyz/@agateau";
     private static final String TWITTER_URL = "https://twitter.com/aureliengateau";
+    private static final String GOODIES_URL = "http://agateau.com/redirect/bp-goodies";
     private final BurgerPartyGame mGame;
     private final ConfigButton mMuteButton;
 
@@ -80,9 +81,10 @@ public class ConfigDialog extends Dialog {
         ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon,"), "mastodon-button");
         ConfigButton twitterButton = new ConfigButton(assets, "ui/icon-twitter", tr("Twitter"), tr("or on Twitter!"), "twitter-button");
         ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Would be awesome if you could give it a good rate!"));
+        ConfigButton goodiesButton = new ConfigButton(assets, "ui/icon-goodies", tr("Goodies"), tr("Get Burger Party goodies!"), "goodies-button");
 
         Table root = new Table(assets.getSkin());
-        final float spacing = UiUtils.SPACING;
+        final float spacing = UiUtils.SPACING * 0.8f;
         root.defaults().width(columnWidth).left().padBottom(spacing).padRight(spacing);
         root.padTop(spacing).padLeft(spacing);
         root.add(mMuteButton);
@@ -92,6 +94,8 @@ public class ConfigDialog extends Dialog {
         root.add(twitterButton);
         root.row();
         root.add(rateButton).colspan(2);
+        root.row();
+        root.add(goodiesButton).colspan(2);
         root.setSize(MathUtils.round(root.getPrefWidth()), MathUtils.round(root.getPrefHeight()));
         setChild(root);
 
@@ -128,6 +132,13 @@ public class ConfigDialog extends Dialog {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.net.openURI(TWITTER_URL);
+            }
+        });
+
+        goodiesButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.net.openURI(GOODIES_URL);
             }
         });
     }

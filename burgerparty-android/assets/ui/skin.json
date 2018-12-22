@@ -166,6 +166,11 @@
             up: ui/twitter-button,
             pressedOffsetY: -2
         },
+        goodies-button: {
+            down: ui/goodies-button-down,
+            up: ui/goodies-button,
+            pressedOffsetY: -2
+        },
         round-button: {
             down: ui/icon-button-down,
             up: ui/icon-button,

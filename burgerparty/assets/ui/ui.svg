@@ -23,19 +23,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4"
-     inkscape:cx="654.20372"
-     inkscape:cy="621.57763"
+     inkscape:zoom="11.313708"
+     inkscape:cx="366.5127"
+     inkscape:cy="568.87995"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
-     showgrid="false"
-     inkscape:window-width="1868"
-     inkscape:window-height="1053"
-     inkscape:window-x="52"
+     showgrid="true"
+     inkscape:window-width="1556"
+     inkscape:window-height="875"
+     inkscape:window-x="44"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     showguides="true"
-     inkscape:guide-bbox="true">
+     showguides="false"
+     inkscape:guide-bbox="true"
+     inkscape:snap-others="false">
     <inkscape:grid
        dotted="true"
        spacingy="0.5"
@@ -64,6 +65,11 @@
        empspacing="4"
        id="grid7390"
        type="xygrid" />
+    <sodipodi:guide
+       position="357.08894,585.0425"
+       orientation="0,1"
+       id="guide4079"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
      id="defs6974">
@@ -24209,9 +24215,9 @@
     <g
        transform="matrix(1.0047958,0,0,1.0047958,-1.6882765,183.85156)"
        id="g10626"
-       inkscape:export-filename="gplus-button.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"
+       inkscape:export-filename="goodies-button.png"
+       inkscape:export-xdpi="96.000305"
+       inkscape:export-ydpi="96.000305"
        style="display:inline">
       <path
          d="m 384,448 a 32,32 0 0 1 -32,32 32,32 0 0 1 -32,-32 32,32 0 0 1 32,-32 32,32 0 0 1 32,32 z"
@@ -24248,9 +24254,9 @@
     <g
        transform="matrix(1.0047958,0,0,1.0047958,-2.1198985,183.85156)"
        id="g10637"
-       inkscape:export-filename="gplus-button-down.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"
+       inkscape:export-filename="goodies-button-down.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
        style="display:inline">
       <path
          transform="matrix(1.1507275,0,0,1.1507275,36.943952,-67.525881)"
@@ -24432,6 +24438,15 @@
          id="path4213"
          inkscape:connector-curvature="0" />
     </g>
+    <path
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#a42b1c;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
+       d="M 340.96094,625 H 337 l -3,25 h 36 l -3,-25 h -3.96094 C 360,609 344,609 340.96094,625 Z m 17.98828,0 H 345.05078 C 348,614 356,614 358.94922,625 Z"
+       id="path11165"
+       inkscape:export-filename="icon-goodies.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc" />
   </g>
   <g
      style="opacity:0.35864982;display:inline"
