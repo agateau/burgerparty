@@ -30,7 +30,6 @@ By Aurélien Gâteau. CC-BY-SA 4.0:
 - sauce.wav
 - splat.wav
 - time-bonus.wav
-- trash.wav
 
 - add-item-bottom.wav, from "Inside a snowball" by AlienXXX. CC-BY 3.0.
   <http://www.freesound.org/people/AlienXXX/sounds/174929/>
@@ -64,3 +63,6 @@ By Aurélien Gâteau. CC-BY-SA 4.0:
 
 - tick.wav, from "Watch tick", by DrMinky. CC-BY 3.0.
   <http://www.freesound.org/people/DrMinky/sounds/174721/>
+
+- trash.wav, from "PieceofWoodonGlass01", by kingsrow. CC0 1.0.
+  <https://freesound.org/people/kingsrow/sounds/194698/>
