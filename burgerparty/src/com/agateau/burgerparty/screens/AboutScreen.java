@@ -99,7 +99,7 @@ public class AboutScreen extends BurgerPartyScreen {
         addText("John McDonald - jcpmcdonald.com");
         addText("p0ss - opengameart.org/content/spell-sounds-starter-pack");
         addText("Scriptique - www.freesound.org/people/scriptique");
-        addText("Soundjay - www.soundjay.com");
+        addText("organicmanpl - www.freesound.org/people/organicmanpl");
 
         float screenHeight = getStage().getHeight();
         addPadding(screenHeight / 3);
