@@ -81,7 +81,7 @@ public class ConfigDialog extends Dialog {
         ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon,"), "mastodon-button");
         ConfigButton twitterButton = new ConfigButton(assets, "ui/icon-twitter", tr("Twitter"), tr("or on Twitter!"), "twitter-button");
         ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Would be awesome if you could give it a good rate!"));
-        ConfigButton goodiesButton = new ConfigButton(assets, "ui/icon-goodies", tr("Goodies"), tr("Get Burger Party goodies!"), "goodies-button");
+        ConfigButton goodiesButton = new ConfigButton(assets, "ui/icon-goodies", tr("Goodies"), tr("Buy Burger Party goodies!"), "goodies-button");
 
         Table root = new Table(assets.getSkin());
         final float spacing = UiUtils.SPACING * 0.8f;

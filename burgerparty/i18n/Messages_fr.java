@@ -9,6 +9,7 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Burger Apprentice", "Apprenti");
         plainEntries.put("Burger God", "Dieu des Burgers");
         plainEntries.put("Burger Master", "Maître Burger");
+        plainEntries.put("Buy Burger Party goodies!", "Achetez des goodies Burger Party !");
         plainEntries.put("Close Call", "C'était juste");
         plainEntries.put("Code & Design", "Code & Design");
         plainEntries.put("Congratulations, you finished level %d-%d!", "Félicitations, vous avez terminé le niveau %d-%d !");
@@ -22,10 +23,11 @@ public class Messages_fr extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Fonts", "Fontes");
         plainEntries.put("Game Over", "Game Over");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtenir un Perfect dans tous les niveaux du monde %d.");
+        plainEntries.put("Goodies", "Goodies");
         plainEntries.put("Happy customer!", "Client satisfait !");
         plainEntries.put("High score: %d", "Record : %d");
         plainEntries.put("Level %d-%d", "Niveau %d-%d");
-        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-nous une bonne note !");
+        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Vous aimez le jeu ? Donnez-lui une bonne note !");
         plainEntries.put("Mastodon", "Mastodon");
         plainEntries.put("Morning Gamer", "Joueur du matin");
         plainEntries.put("Music", "Musique");
