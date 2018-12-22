@@ -10,15 +10,17 @@
 
 # Sounds
 
+By Thomas Tripon. CC-BY-SA 4.0:
+
 - burger-party_main_theme.mp3
 - gameover.ogg
 
-By Thomas Tripon. CC-BY-SA 4.0.
+By Clara Gâteau. CC-BY-SA 4.0:
 
 - finished.wav
 - perfect.ogg
 
-By Clara Gâteau. CC-BY-SA 4.0.
+By Aurélien Gâteau. CC-BY-SA 4.0:
 
 - add-item-cheese.wav
 - add-item-coconut.wav
@@ -30,26 +32,35 @@ By Clara Gâteau. CC-BY-SA 4.0.
 - time-bonus.wav
 - trash.wav
 
-By Aurélien Gâteau. CC-BY-SA 4.0.
+- add-item-bottom.wav, from "Inside a snowball" by AlienXXX. CC-BY 3.0.
+  <http://www.freesound.org/people/AlienXXX/sounds/174929/>
 
-add-item-bottom.wav <http://www.freesound.org/people/AlienXXX/sounds/174929/>
+- add-item-onion.wav, from "Knife slides" by scriptique. CC-BY 3.0.
+  <http://www.freesound.org/people/scriptique/sounds/50823/>
 
-add-item-onion.wav <http://www.freesound.org/people/scriptique/sounds/50823/>
+- add-item-soda.wav, from "Skippy Fish Water Sound Collection", by jcpmcdonald. CC0 1.0.
+  <http://opengameart.org/content/skippy-fish-water-sound-collection>
 
-add-item-soda.wav <http://opengameart.org/content/skippy-fish-water-sound-collection>
+- add-item-sundae.wav, from "SWOSH-01", by qubodup. CC0 1.0.
+  <https://freesound.org/people/qubodup/sounds/59988/>
 
-add-item-sundae.wav <https://freesound.org/people/qubodup/sounds/59988/>
+- click.wav, from "click2.wav", by Florian Reinke. CC0 1.0.
+  <http://www.freesound.org/people/florian_reinke/sounds/63532/>
 
-click.wav <http://www.freesound.org/people/florian_reinke/sounds/63532/>
+- coin.wav, from "Inventory Sound Effects", by artisticdude. CC-BY 3.0.
+  <http://opengameart.org/content/inventory-sound-effects>
 
-coin.wav <http://opengameart.org/content/inventory-sound-effects>
+- error.wav, from "Error.wav", by Autistic Lucario. CC-BY 3.0.
+  <http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/>
 
-error.wav <http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/>
+- jet.wav, from "Jet Flyby 1", by unfa. CC-BY 3.0.
+  <http://www.freesound.org/people/unfa/sounds/168079/>
 
-jet.wav <http://www.freesound.org/people/unfa/sounds/168079/>
+- meal-done.wav, from "ding 1", by organicmanpl. CC0 1.0.
+  <https://freesound.org/people/organicmanpl/sounds/149270/>
 
-meal-done.wav <http://www.soundjay.com/appliances/microwave-oven-bell-1.wav>
+- star.wav, from "Spell Sounds Starter Pack", by p0ss. CC-BY-SA 3.0.
+  <http://opengameart.org/content/spell-sounds-starter-pack>
 
-star.wav <http://opengameart.org/content/spell-sounds-starter-pack>
-
-tick.wav <http://www.freesound.org/people/DrMinky/sounds/174721/>
+- tick.wav, from "Watch tick", by DrMinky. CC-BY 3.0.
+  <http://www.freesound.org/people/DrMinky/sounds/174721/>
