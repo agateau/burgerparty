@@ -27,7 +27,7 @@
     - on phone
     - on tablet
 
-- Update news.md
+- Update CHANGELOG.md
 
 - Commit
 
