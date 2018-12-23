@@ -51,3 +51,9 @@ release it without releasing the sources of your changes: the license forbids
 you to do so, go find another prey.
 
 [utils]: burgerparty/src/com/agateau/burgerparty/utils
+
+## Goodies
+
+You can find T-shirt and other Burger Party goodies [here][goodies].
+
+[goodies]: http://agateau.com/redirect/bp-goodies
