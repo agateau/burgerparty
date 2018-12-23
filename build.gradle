@@ -44,7 +44,6 @@ project(":burgerparty-android") {
 
     dependencies {
         compile project(":burgerparty")
-        compile files("3rdparty/heyzap-ads-sdk.jar")
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
