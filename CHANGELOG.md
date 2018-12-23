@@ -1,7 +1,6 @@
 # 1.3.0 - 2018-12-22
 
-- Removed ads!
-- Burger Party is now free software
+- Removed ads! Burger Party is now free software
 - Added a goodies button
 - Replaced Facebook and Google+ buttons with Mastodon and Twitter buttons
 
