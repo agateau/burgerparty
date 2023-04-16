@@ -27,15 +27,15 @@ compile-po:
 	scripts/po-compile-all
 
 desktop: compile-po
-	${GRADLEW} burgerparty-desktop:dist
+	$(GRADLEW) burgerparty-desktop:dist
 
 run: desktop
-	cd burgerparty-android/assets && java -jar ${DESKTOP_JAR}
+	cd burgerparty-android/assets && java -jar $(DESKTOP_JAR)
 
 check:
 	scripts/runtests
 
 packer:
-	cd burgerparty-desktop && java -cp ${DESKTOP_JAR} com.agateau.burgerparty.PackerMain
+	cd burgerparty-desktop && java -cp $(DESKTOP_JAR) com.agateau.burgerparty.PackerMain
 	sleep 1
-	touch ${ASSETS_DIR}/*.png ${ASSETS_DIR}/burgerparty.atlas
+	touch $(ASSETS_DIR)/*.png $(ASSETS_DIR)/burgerparty.atlas
