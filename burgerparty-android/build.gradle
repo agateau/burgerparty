@@ -1,5 +1,4 @@
 android {
-    buildToolsVersion "27.0.3"
     compileSdkVersion 26
     defaultConfig {}
     sourceSets {
@@ -18,8 +17,6 @@ android {
         gp {
             java.srcDirs = ['src/gp']
         }
-
-        instrumentTest.setRoot('tests')
     }
     signingConfigs {
         apply from: 'signing.gradle', to: release
@@ -32,10 +29,14 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+
+    flavorDimensions 'store'
     productFlavors {
         amz {
+            dimension 'store'
         }
         gp {
+            dimension 'store'
         }
     }
 }
