@@ -1,3 +1,16 @@
+apply plugin: "com.android.application"
+
+configurations { natives }
+
+dependencies {
+    implementation project(":core")
+    implementation project(":linguaj:linguaj")
+    implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+}
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -5,6 +18,16 @@ android {
         targetSdkVersion 29
         versionCode 29
         versionName '1.3.0'
+    }
+
+    flavorDimensions 'store'
+    productFlavors {
+        amz {
+            dimension 'store'
+        }
+        gp {
+            dimension 'store'
+        }
     }
 
     sourceSets {
@@ -35,17 +58,8 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
-
-    flavorDimensions 'store'
-    productFlavors {
-        amz {
-            dimension 'store'
-        }
-        gp {
-            dimension 'store'
-        }
-    }
 }
+
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
 // so they get packed with the APK.
@@ -68,6 +82,7 @@ task copyAndroidNatives() {
         }
     }
 }
+
 task run(type: Exec) {
     def path
     def localProperties = project.file("../local.properties")
@@ -89,6 +104,7 @@ task run(type: Exec) {
     def adb = path + "/platform-tools/adb"
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.agateau.burgerparty/com.agateau.burgerparty.MainActivity'
 }
+
 // sets up the Android Idea project, using the old Ant based build.
 idea {
     module {
@@ -110,6 +126,4 @@ idea {
             }
         }
     }
-}
-dependencies {
 }

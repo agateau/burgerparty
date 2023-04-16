@@ -1,5 +1,10 @@
 apply plugin: "java"
 
+dependencies {
+    implementation project(":linguaj:linguaj")
+    implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
