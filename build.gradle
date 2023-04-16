@@ -35,7 +35,6 @@ project(":burgerparty-desktop") {
         implementation project(":linguaj:linguaj")
         implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
     }
 }
 
@@ -60,7 +59,6 @@ project(":burgerparty") {
     dependencies {
         implementation project(":linguaj:linguaj")
         implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
-        implementation "junit:junit:4.11"
     }
 }
 

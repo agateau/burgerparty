@@ -12,6 +12,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 DESKTOP_JAR=$(CURDIR)/burgerparty-desktop/build/libs/burgerparty-desktop-1.0.jar
+TOOLS_JAR=$(CURDIR)/tools/build/libs/tools-1.0.jar
 ASSETS_DIR=$(CURDIR)/burgerparty-android/assets
 GRADLEW=./gradlew
 ifdef OFFLINE
@@ -42,23 +43,29 @@ apk: compile-po
 run: build
 	cd burgerparty-android/assets && java -jar $(DESKTOP_JAR)
 
+$(TOOLS_JAR):
+	$(GRADLEW) tools:dist
+
 # Assets
-packer:
-	cd burgerparty-desktop && java -cp $(DESKTOP_JAR) com.agateau.burgerparty.PackerMain
+packer: $(TOOLS_JAR)
+	cd burgerparty-desktop && java -cp $(TOOLS_JAR) $(GAME_CP).PackerMain
 	sleep 1
 	touch $(ASSETS_DIR)/*.png $(ASSETS_DIR)/burgerparty.atlas
 
+customer-editor: $(TOOLS_JAR)
+	cd burgerparty-desktop && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
+
 # Dist
 desktop-archives: build
-	@echo Moving desktop jar
+	@echo Copying desktop jar
 	@mkdir -p $(ARCHIVE_DIR)
-	mv -v $(DESKTOP_JAR) $(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION).jar
+	cp -v $(DESKTOP_JAR) $(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION).jar
 
 apk-archives: apk
-	@echo Moving apk files
+	@echo Copying apk files
 	@mkdir -p $(ARCHIVE_DIR)
 	@for store in amz gp ; do \
-		mv burgerparty-android/build/outputs/apk/$$store/release/burgerparty-android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
+		cp burgerparty-android/build/outputs/apk/$$store/release/burgerparty-android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
 	done
 
 dist: check desktop-archives apk-archives

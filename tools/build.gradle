@@ -1,0 +1,36 @@
+apply plugin: "java"
+
+dependencies {
+    implementation project(":burgerparty")
+    implementation project(":linguaj:linguaj")
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+project.ext.mainClassName = "PackerMain"
+project.ext.assetsDir = new File("../burgerparty-android/assets")
+
+task run(dependsOn: classes, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+}
+
+task dist(type: Jar) {
+    from files(sourceSets.main.output.classesDirs)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }}
+    from files(project.assetsDir)
+ 
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+dist.dependsOn classes
