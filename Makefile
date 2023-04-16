@@ -32,6 +32,9 @@ ANDROID_PACKAGE_NAME=$(GAME_CP)
 
 all: build
 
+clean:
+	rm -f $(TOOLS_JAR) $(DESKTOP_JAR)
+
 build: $(DESKTOP_JAR)
 
 $(DESKTOP_JAR): compile-po
