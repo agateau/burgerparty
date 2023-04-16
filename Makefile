@@ -65,7 +65,7 @@ dist: check desktop-archives apk-archives
 
 # Tests
 check: build
-	scripts/runtests
+	$(GRADLEW) test
 
 android-run-from-dist:
 	# uninstall any existing version in case we have an unsigned version installed
