@@ -30,7 +30,7 @@ allprojects {
     }
 }
 
-project(":burgerparty-desktop") {
+project(":desktop") {
     apply plugin: "java"
 
     dependencies {

@@ -11,7 +11,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-DESKTOP_JAR=$(CURDIR)/burgerparty-desktop/build/libs/burgerparty-desktop-1.0.jar
+DESKTOP_JAR=$(CURDIR)/desktop/build/libs/desktop-1.0.jar
 TOOLS_JAR=$(CURDIR)/tools/build/libs/tools-1.0.jar
 ASSETS_DIR=$(CURDIR)/android/assets
 GRADLEW=./gradlew
@@ -38,7 +38,7 @@ clean:
 build: $(DESKTOP_JAR)
 
 $(DESKTOP_JAR): compile-po
-	${GRADLEW} burgerparty-desktop:dist
+	${GRADLEW} desktop:dist
 
 apk: compile-po
 	./gradlew android:assembleRelease
@@ -51,12 +51,12 @@ $(TOOLS_JAR):
 
 # Assets
 packer: $(TOOLS_JAR)
-	cd burgerparty-desktop && java -cp $(TOOLS_JAR) $(GAME_CP).PackerMain
+	cd desktop && java -cp $(TOOLS_JAR) $(GAME_CP).PackerMain
 	sleep 1
 	touch $(ASSETS_DIR)/*.png $(ASSETS_DIR)/burgerparty.atlas
 
 customer-editor: $(TOOLS_JAR)
-	cd burgerparty-desktop && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
+	cd desktop && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
 
 # Dist
 desktop-archives: build

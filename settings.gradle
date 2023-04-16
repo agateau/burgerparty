@@ -1,4 +1,4 @@
-include "burgerparty-desktop"
+include "desktop"
 include "android"
 include "burgerparty"
 include "linguaj:linguaj"
