@@ -12,10 +12,10 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode 29
         versionName '1.3.0'
     }
@@ -64,9 +64,9 @@ android {
 // the natives configuration, and extracts them to the proper libs/ folders
 // so they get packed with the APK.
 task copyAndroidNatives() {
-    file("libs/armeabi/").mkdirs();
-    file("libs/armeabi-v7a/").mkdirs();
-    file("libs/x86/").mkdirs();
+    file("libs/armeabi/").mkdirs()
+    file("libs/armeabi-v7a/").mkdirs()
+    file("libs/x86/").mkdirs()
 
     configurations.natives.files.each { jar ->
         def outputDir = null
@@ -103,27 +103,4 @@ task run(type: Exec) {
 
     def adb = path + "/platform-tools/adb"
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.agateau.burgerparty/com.agateau.burgerparty.MainActivity'
-}
-
-// sets up the Android Idea project, using the old Ant based build.
-idea {
-    module {
-        sourceDirs += file("src");
-        scopes = [COMPILE: [plus: [project.configurations.compile]]]
-
-        iml {
-            withXml {
-                def node = it.asNode()
-                def builder = NodeBuilder.newInstance();
-                builder.current = node;
-                builder.component(name: "FacetManager") {
-                    facet(type: "android", name: "Android") {
-                        configuration {
-                            option(name: "UPDATE_PROPERTY_FILES", value: "true")
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

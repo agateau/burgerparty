@@ -5,7 +5,6 @@ dependencies {
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/", "i18n" ]
