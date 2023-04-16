@@ -18,11 +18,16 @@ ifdef OFFLINE
 	GRADLEW=./gradlew --offline
 endif
 
+GAME_CP=com.agateau.burgerparty
 EXECUTABLE=burgerparty
 # TODO Centralize version numbers
 VERSION=1.3.0
 
+ANDROID_GP_RUN_DIST_NAME=$(EXECUTABLE)-gp-$(VERSION)
+
 ARCHIVE_DIR=$(CURDIR)/archives
+
+ANDROID_PACKAGE_NAME=$(GAME_CP)
 
 all: build
 
@@ -61,6 +66,12 @@ dist: check desktop-archives apk-archives
 # Tests
 check: build
 	scripts/runtests
+
+android-run-from-dist:
+	# uninstall any existing version in case we have an unsigned version installed
+	adb uninstall $(ANDROID_PACKAGE_NAME) || true
+	adb install -f $(ARCHIVE_DIR)/$(ANDROID_GP_RUN_DIST_NAME).apk
+	adb shell am start -n $(ANDROID_PACKAGE_NAME)/$(GAME_CP).MainActivity
 
 # Translations
 compile-po:
