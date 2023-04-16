@@ -34,7 +34,7 @@ project(":desktop") {
     apply plugin: "java"
 
     dependencies {
-        implementation project(":burgerparty")
+        implementation project(":core")
         implementation project(":linguaj:linguaj")
         implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
@@ -47,7 +47,7 @@ project(":android") {
     configurations { natives }
 
     dependencies {
-        implementation project(":burgerparty")
+        implementation project(":core")
         implementation project(":linguaj:linguaj")
         implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
@@ -56,7 +56,7 @@ project(":android") {
     }
 }
 
-project(":burgerparty") {
+project(":core") {
     apply plugin: "java"
 
     dependencies {

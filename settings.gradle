@@ -1,6 +1,6 @@
 include "desktop"
 include "android"
-include "burgerparty"
+include "core"
 include "linguaj:linguaj"
 include "tests"
 include "tools"

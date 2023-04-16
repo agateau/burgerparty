@@ -659,7 +659,7 @@
              style="fill:#ffcdcd;fill-opacity:1"
              inkscape:export-ydpi="90"
              inkscape:export-xdpi="90"
-             inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/head-0.png"
+             inkscape:export-filename="customers/head-0.png"
              id="g5832-7-9"
              transform="matrix(1.9488555,0,0,1.9488555,-439.46229,198.62415)">
             <path
@@ -761,7 +761,7 @@
          inkscape:export-ydpi="90">
         <g
            id="g4732"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/eyes-1.png"
+           inkscape:export-filename="customers/eyes-1.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90"
            transform="matrix(1.9488555,0,0,1.9488555,-232.20296,163.21471)">
@@ -853,7 +853,7 @@
            d="m 3018.2288,639.70057 c 0,0 -10.7443,11.74427 -26.3351,11.74427 -15.5909,0 -20.3351,-5.74427 -20.3351,-5.74427"
            id="path4764"
            inkscape:connector-curvature="0"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/mouth-0.png"
+           inkscape:export-filename="customers/mouth-0.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90" />
       </g>

@@ -3113,7 +3113,7 @@
          style="fill:#ffc5c5;fill-opacity:1;stroke:#ff9696;stroke-width:0.9582321;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/head-0.png"
+         inkscape:export-filename="customers/head-0.png"
          id="g5966"
          transform="matrix(2.0871769,0,0,2.0871769,-2630.0264,-15.120592)">
         <path
@@ -3173,7 +3173,7 @@
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/mouth-0.png"
+         inkscape:export-filename="customers/mouth-0.png"
          inkscape:connector-curvature="0"
          id="path5978"
          d="m 407.78363,752.78017 c 0,0 -4.46533,7.33117 -11.6097,7.33117 -7.14448,0 -11.60981,-7.33117 -11.60981,-7.33117 7.73984,1.58002 15.47967,1.72451 23.21951,0 z"
@@ -3182,7 +3182,7 @@
       <path
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/customers/nose-0.png"
+         inkscape:export-filename="customers/nose-0.png"
          style="fill:none;stroke:#ff9696;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          d="m 400.17156,740.11269 c 0,0 -2.39609,-2.23391 -3.99763,-2.23391 -1.60165,0 -3.99774,2.23391 -3.99774,2.23391"
          id="path5980"
@@ -3675,7 +3675,7 @@
        style="display:inline"
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/platter.png"
+       inkscape:export-filename="platter.png"
        id="g4608"
        transform="matrix(1.0276546,0,0,0.5614802,-421.22717,239.71914)">
       <path
@@ -3714,7 +3714,7 @@
         <g
            transform="translate(-340,0)"
            id="g13171"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/burgeritems/bottom.png"
+           inkscape:export-filename="burgeritems/bottom.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90">
           <g
@@ -4160,7 +4160,7 @@
         <g
            inkscape:export-ydpi="90"
            inkscape:export-xdpi="90"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/burgeritems/bottom.png"
+           inkscape:export-filename="burgeritems/bottom.png"
            id="g14337"
            transform="translate(-340,0)">
           <g
@@ -5113,7 +5113,7 @@
         <g
            transform="translate(-340,0)"
            id="g13171-1"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/burgeritems/bottom.png"
+           inkscape:export-filename="burgeritems/bottom.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90">
           <g
@@ -5559,7 +5559,7 @@
         <g
            inkscape:export-ydpi="90"
            inkscape:export-xdpi="90"
-           inkscape:export-filename="/home/aurelien/workspace/burgerparty/assets/burgeritems/bottom.png"
+           inkscape:export-filename="burgeritems/bottom.png"
            id="g14337-4"
            transform="translate(-340,0)">
           <g
