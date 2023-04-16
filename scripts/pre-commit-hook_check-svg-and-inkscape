@@ -1,0 +1,14 @@
+#!/bin/sh -e
+#
+# If some modified files are svg, check Inkscape is not running
+
+if [ -z "$(git diff --cached --name-only | egrep '\.(svg|png)$')" ] ; then
+    exit 0
+fi
+
+pid=$(pidof inkscape || true)
+if [ -n "$pid" ] ; then
+    echo "SVG or PNG files have been modified and Inkscape is still running (pid=$pid)."
+    echo "You should quit Inkscape to ensure changes have been saved."
+    exit 1
+fi
