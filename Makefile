@@ -33,7 +33,7 @@ ANDROID_PACKAGE_NAME=$(GAME_CP)
 all: build
 
 clean:
-	rm -f $(TOOLS_JAR) $(DESKTOP_JAR)
+	rm -rf $(TOOLS_JAR) $(DESKTOP_JAR) burgerparty-android/build/outputs
 
 build: $(DESKTOP_JAR)
 
