@@ -3,7 +3,7 @@
 cd $(dirname $0)/..
 
 EXTRA_DIR=extra
-RES_DIR=burgerparty-android/res
+RES_DIR=android/res
 
 NAME=ic_launcher.png
 

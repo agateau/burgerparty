@@ -12,7 +12,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "PackerMain"
-project.ext.assetsDir = new File("../burgerparty-android/assets")
+project.ext.assetsDir = new File("../android/assets")
 
 task run(dependsOn: classes, type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath

@@ -13,7 +13,7 @@ MAKEFLAGS += --no-builtin-rules
 
 DESKTOP_JAR=$(CURDIR)/burgerparty-desktop/build/libs/burgerparty-desktop-1.0.jar
 TOOLS_JAR=$(CURDIR)/tools/build/libs/tools-1.0.jar
-ASSETS_DIR=$(CURDIR)/burgerparty-android/assets
+ASSETS_DIR=$(CURDIR)/android/assets
 GRADLEW=./gradlew
 ifdef OFFLINE
 	GRADLEW=./gradlew --offline
@@ -33,7 +33,7 @@ ANDROID_PACKAGE_NAME=$(GAME_CP)
 all: build
 
 clean:
-	rm -rf $(TOOLS_JAR) $(DESKTOP_JAR) burgerparty-android/build/outputs
+	rm -rf $(TOOLS_JAR) $(DESKTOP_JAR) android/build/outputs
 
 build: $(DESKTOP_JAR)
 
@@ -41,10 +41,10 @@ $(DESKTOP_JAR): compile-po
 	${GRADLEW} burgerparty-desktop:dist
 
 apk: compile-po
-	./gradlew burgerparty-android:assembleRelease
+	./gradlew android:assembleRelease
 
 run: build
-	cd burgerparty-android/assets && java -jar $(DESKTOP_JAR)
+	cd android/assets && java -jar $(DESKTOP_JAR)
 
 $(TOOLS_JAR):
 	$(GRADLEW) tools:dist
@@ -68,7 +68,7 @@ apk-archives: apk
 	@echo Copying apk files
 	@mkdir -p $(ARCHIVE_DIR)
 	@for store in amz gp ; do \
-		cp burgerparty-android/build/outputs/apk/$$store/release/burgerparty-android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
+		cp android/build/outputs/apk/$$store/release/android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
 	done
 
 dist: check desktop-archives apk-archives

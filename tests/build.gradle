@@ -14,6 +14,6 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 sourceSets.test.java.srcDirs = [ "src/" ]
 
 test {
-    String assetsDir = project.file("../burgerparty-android/assets")
+    String assetsDir = project.file("../android/assets")
     systemProperty("agc.assetsDir", assetsDir)
 }

@@ -21,7 +21,7 @@
 
 - Generate .apk
 
-    - Check burgerparty-android/signing.gradle exists
+    - Check android/signing.gradle exists
     - Run `make dist`
 
 - Smoke test

@@ -41,7 +41,7 @@ project(":burgerparty-desktop") {
     }
 }
 
-project(":burgerparty-android") {
+project(":android") {
     apply plugin: "android"
 
     configurations { natives }

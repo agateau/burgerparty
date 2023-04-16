@@ -4,7 +4,7 @@ cd $(dirname $0)/..
 
 lst=/tmp/bp-pot-lst
 rm -f $lst
-for d in burgerparty burgerparty-android burgerparty-desktop ; do
+for d in burgerparty android burgerparty-desktop ; do
     find $d -name '*.java' | grep -v 'Messages_[_a-zA-Z]*.java' >> $lst
 done
 
