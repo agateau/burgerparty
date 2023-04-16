@@ -4,7 +4,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:4.1.3'
     }
 }
 
@@ -31,10 +31,11 @@ project(":burgerparty-desktop") {
     apply plugin: "java"
 
     dependencies {
-        compile project(":burgerparty")
-        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        implementation project(":burgerparty")
+        implementation project(":linguaj:linguaj")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
     }
 }
 
@@ -45,6 +46,7 @@ project(":burgerparty-android") {
 
     dependencies {
         implementation project(":burgerparty")
+        implementation project(":linguaj:linguaj")
         implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
@@ -56,9 +58,9 @@ project(":burgerparty") {
     apply plugin: "java"
 
     dependencies {
-        compile project(":linguaj:linguaj")
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "junit:junit:4.11"
+        implementation project(":linguaj:linguaj")
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "junit:junit:4.11"
     }
 }
 

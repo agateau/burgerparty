@@ -1,6 +1,12 @@
 android {
     compileSdkVersion 26
-    defaultConfig {}
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 26
+        versionCode 29
+        versionName '1.3.0'
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
