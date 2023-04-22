@@ -56,7 +56,7 @@ packer: $(TOOLS_JAR)
 	touch $(ASSETS_DIR)/*.png $(ASSETS_DIR)/burgerparty.atlas
 
 customer-editor: $(TOOLS_JAR)
-	cd desktop && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
+	cd $(ASSETS_DIR) && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
 
 # Dist
 desktop-archives: build
