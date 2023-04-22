@@ -64,7 +64,7 @@ public class TileActor extends Actor implements Disposable {
         }
         mFrameBuffer.begin();
 
-        Batch batch = getStage().getSpriteBatch();
+        Batch batch = getStage().getBatch();
         batch.disableBlending();
         batch.setColor(Color.WHITE);
         batch.begin();
