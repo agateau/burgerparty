@@ -2,8 +2,8 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
-import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.model.Level;
+import com.agateau.burgerparty.model.LevelWorld;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
@@ -12,7 +12,7 @@ import com.agateau.burgerparty.utils.HorizontalGroup;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -129,7 +129,7 @@ public class LevelListScreen extends BurgerPartyScreen {
             mAssets = assets;
         }
         @Override
-        public void draw(SpriteBatch batch, float parentAlpha) {
+        public void draw(Batch batch, float parentAlpha) {
             if (isDisabled()) {
                 batch.setShader(mAssets.getDisabledShader());
                 super.draw(batch, parentAlpha);
@@ -173,7 +173,7 @@ public class LevelListScreen extends BurgerPartyScreen {
         }
 
         @Override
-        public void draw(SpriteBatch batch, float parentAlpha) {
+        public void draw(Batch batch, float parentAlpha) {
             super.draw(batch, parentAlpha);
             if (isDisabled()) {
                 float width = mLock.getRegionWidth();

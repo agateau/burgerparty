@@ -2,10 +2,10 @@ package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
@@ -46,7 +46,7 @@ public class TileActor extends Actor implements Disposable {
     }
 
     @Override
-    public void draw(SpriteBatch batch, float parentAlpha) {
+    public void draw(Batch batch, float parentAlpha) {
         Texture texture = mFrameBuffer.getColorBufferTexture();
         Color color = getColor();
         batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
@@ -64,13 +64,13 @@ public class TileActor extends Actor implements Disposable {
         }
         mFrameBuffer.begin();
 
-        SpriteBatch batch = getStage().getSpriteBatch();
+        Batch batch = getStage().getSpriteBatch();
         batch.disableBlending();
         batch.setColor(Color.WHITE);
         batch.begin();
 
         Gdx.gl.glClearColor(1, 1, 1, 0);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(mFrameBufferProjectionMatrix);
         int tileWidth = mMap.getTileWidth();
         int tileHeight = mMap.getTileHeight();

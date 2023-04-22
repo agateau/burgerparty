@@ -65,7 +65,7 @@ public class CoinView extends Group {
 
             float finalY = mCoinCount * COIN_THICKNESS;
             image.setPosition(0, finalY + 60);
-            image.rotate(MathUtils.random(-80, 80));
+            image.rotateBy(MathUtils.random(-80, 80));
             image.addAction(
                 Actions.delay(delay,
                               Actions.sequence(

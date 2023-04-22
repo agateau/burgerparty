@@ -1,6 +1,6 @@
 package com.agateau.burgerparty.utils;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -32,7 +32,7 @@ public abstract class Overlay extends WidgetGroup {
     }
 
     @Override
-    public void draw(SpriteBatch batch, float parentAlpha) {
+    public void draw(Batch batch, float parentAlpha) {
         batch.setColor(0, 0, 0, ALPHA);
         batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
         super.draw(batch, parentAlpha);

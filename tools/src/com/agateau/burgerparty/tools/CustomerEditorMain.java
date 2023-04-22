@@ -7,7 +7,6 @@ public class CustomerEditorMain {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "burgerparty";
-        cfg.useGL20 = true;
         cfg.width = 800;
         cfg.height = 480;
 

@@ -49,7 +49,6 @@ public class Main {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "burgerparty";
-        cfg.useGL20 = true;
 
         parseArgs(args);
         if (sFullScreen) {

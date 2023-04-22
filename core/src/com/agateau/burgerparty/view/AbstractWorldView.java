@@ -3,7 +3,7 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.UiUtils;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -56,7 +56,7 @@ public class AbstractWorldView extends AnchorGroup {
     }
 
     @Override
-    public void draw(SpriteBatch batch, float parentAlpha) {
+    public void draw(Batch batch, float parentAlpha) {
         batch.setColor(1, 1, 1, parentAlpha);
         batch.draw(mBackgroundRegion, 0, 0, getWidth(), getHeight());
         super.draw(batch, parentAlpha);

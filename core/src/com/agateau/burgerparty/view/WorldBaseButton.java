@@ -3,7 +3,7 @@ package com.agateau.burgerparty.view;
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.utils.Anchor;
 import com.agateau.burgerparty.utils.AnchorGroup;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -26,7 +26,7 @@ public class WorldBaseButton extends Button {
         }
 
         @Override
-        public void draw(SpriteBatch batch, float parentAlpha) {
+        public void draw(Batch batch, float parentAlpha) {
             if (mShader == null) {
                 super.draw(batch, parentAlpha);
             } else {

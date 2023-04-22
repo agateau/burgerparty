@@ -17,8 +17,7 @@ allprojects {
     version = '1.0'
     ext {
         appName = 'burgerparty'
-        gdxVersion = '0.9.9'
-        roboVMVersion = '1.0.0-alpha-04'
+        gdxVersion = '1.0.0'
     }
 
     repositories {

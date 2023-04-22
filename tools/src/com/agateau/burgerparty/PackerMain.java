@@ -1,8 +1,7 @@
 package com.agateau.burgerparty;
 
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
-import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
 public class PackerMain {
     public static void main(String[] args) {
@@ -10,12 +9,12 @@ public class PackerMain {
     }
 
     private static void packTextures() {
-        Settings settings = new Settings();
+        TexturePacker.Settings settings = new TexturePacker.Settings();
         settings.filterMin = TextureFilter.Linear;
         settings.filterMag = TextureFilter.Linear;
         settings.pot = false;
         settings.combineSubdirectories = true;
-        TexturePacker2.process(settings, "../core/assets", "../android/assets", "burgerparty");
+        TexturePacker.process(settings, "../core/assets", "../android/assets", "burgerparty");
         System.out.println("Done");
     }
 }

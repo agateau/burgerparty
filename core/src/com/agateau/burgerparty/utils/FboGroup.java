@@ -2,10 +2,10 @@ package com.agateau.burgerparty.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Disposable;
@@ -25,7 +25,7 @@ public class FboGroup extends Group implements Disposable {
     }
 
     @Override
-    public void draw(SpriteBatch batch, float parentAlpha) {
+    public void draw(Batch batch, float parentAlpha) {
         if (mFrameBuffer == null) {
             createFrameBuffer();
         }
@@ -45,14 +45,14 @@ public class FboGroup extends Group implements Disposable {
         mFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, w, h, false);
     }
 
-    private void fillFrameBuffer(SpriteBatch batch) {
+    private void fillFrameBuffer(Batch batch) {
         float oldAlpha = getColor().a;
         getColor().a = 1;
 
         mFrameBuffer.begin();
         batch.begin();
         Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         super.draw(batch, 1);
         batch.end();
         mFrameBuffer.end();

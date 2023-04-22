@@ -253,7 +253,7 @@ public class UiBuilder {
 
     protected VerticalGroup createVerticalGroup(XmlReader.Element element) {
         VerticalGroup group = new VerticalGroup();
-        group.setSpacing(element.getFloatAttribute("spacing", 0));
+        group.space(element.getFloatAttribute("spacing", 0));
         return group;
     }
 

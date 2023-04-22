@@ -41,7 +41,7 @@ public class ConfigDialog extends Dialog {
         }
 
         public ConfigButton(Assets assets, String imageName, String titleText, String subtitleText, String styleName) {
-            setSpacing(UiUtils.SPACING / 2);
+            space(UiUtils.SPACING / 2);
 
             mButton = BurgerPartyUiBuilder.createRoundButton(assets, imageName, styleName);
             mButton.setTouchable(Touchable.disabled);
@@ -53,10 +53,10 @@ public class ConfigDialog extends Dialog {
 
             addActor(mButton);
             VerticalGroup vGroup = new VerticalGroup();
-            vGroup.setAlignment(Align.left);
+            vGroup.align(Align.left);
             vGroup.addActor(titleLabel);
             vGroup.addActor(mSubtitleLabel);
-            vGroup.setSpacing(-10);
+            vGroup.space(-10);
 
             addActor(vGroup);
             setSize(getPrefWidth(), getPrefHeight());

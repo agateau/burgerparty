@@ -1,10 +1,9 @@
 package com.agateau.burgerparty.view;
 
-import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.model.Inventory;
+import com.agateau.burgerparty.model.MealItem;
 import com.agateau.burgerparty.utils.Signal1;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -61,7 +60,7 @@ public class InventoryView extends Group {
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch, float parentAlpha) {
+    public void draw(Batch spriteBatch, float parentAlpha) {
         spriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
 
         final float cellWidth = getWidth() / COLUMN_COUNT;

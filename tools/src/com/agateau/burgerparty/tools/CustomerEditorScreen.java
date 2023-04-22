@@ -9,7 +9,6 @@ import com.agateau.burgerparty.utils.TiledImage;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.agateau.burgerparty.view.CustomerView;
 import com.agateau.burgerparty.view.CustomerViewFactory;
-
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -28,9 +27,9 @@ public class CustomerEditorScreen extends StageScreen {
     private CustomerEditorGame mGame;
     private Skin mSkin;
 
-    private List mCustomerTypeList;
+    private List<String> mCustomerTypeList;
     private VerticalGroup mCustomerContainer;
-    private List mMoodList;
+    private List<String> mMoodList;
     private Array<Customer> mCustomers = new Array<Customer>();
 
     public CustomerEditorScreen(CustomerEditorGame game, TextureAtlas atlas, Skin skin) {
@@ -53,23 +52,25 @@ public class CustomerEditorScreen extends StageScreen {
         Array<String> keys = mGame.getCustomerFactory().getTypes();
         keys.sort();
 
-        mCustomerTypeList = new List(keys.toArray(), mSkin, "customer-editor");
+        mCustomerTypeList = new List<>(mSkin, "customer-editor");
+        mCustomerTypeList.setItems(keys);
         ScrollPane typePane = new ScrollPane(mCustomerTypeList);
 
-        mMoodList = new List(getMoodStrings(), mSkin, "customer-editor");
+        mMoodList = new List<>(mSkin, "customer-editor");
+        mMoodList.setItems(getMoodStrings());
         ScrollPane moodPane = new ScrollPane(mMoodList);
 
         mCustomerContainer = new VerticalGroup();
         ScrollPane customerPane = new ScrollPane(mCustomerContainer);
 
-        group.addRule(new AnchorGroup.SizeRule(typePane, group, 0.12f, 0.7f));
-        group.addRule(typePane, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT); //, 0, 1);
+        group.addRule(new AnchorGroup.SizeRule(typePane, group, 0.12f, 0.75f));
+        group.addRule(typePane, Anchor.TOP_LEFT, group, Anchor.TOP_LEFT);
 
         group.addRule(moodPane, Anchor.BOTTOM_LEFT, group, Anchor.BOTTOM_LEFT);
-        group.addRule(new AnchorGroup.SizeRule(moodPane, group, 0.12f, 0.3f));
+        group.addRule(new AnchorGroup.SizeRule(moodPane, group, 0.12f, 0.25f));
 
         group.addRule(new AnchorGroup.SizeRule(customerPane, group, 0.9f, 1));
-        group.addRule(customerPane, Anchor.TOP_LEFT, mCustomerTypeList, Anchor.TOP_RIGHT, 1, 0);
+        group.addRule(customerPane, Anchor.TOP_LEFT, mCustomerTypeList, Anchor.TOP_RIGHT);
 
         // Connections
         mCustomerTypeList.addListener(new ChangeListener() {
@@ -116,7 +117,7 @@ public class CustomerEditorScreen extends StageScreen {
     private void fillCustomerContainer() {
         mCustomerContainer.clear();
         mCustomers.clear();
-        String type = mCustomerTypeList.getSelection();
+        String type = mCustomerTypeList.getSelected();
         CustomerViewFactory.Elements elements = mGame.getCustomerFactory().getElementsForType(type);
         Customer.Mood mood = getSelectedMood();
 
@@ -157,7 +158,7 @@ public class CustomerEditorScreen extends StageScreen {
     }
 
     private Customer.Mood getSelectedMood() {
-        return Customer.Mood.fromString(mMoodList.getSelection());
+        return Customer.Mood.fromString(mMoodList.getSelected());
     }
 
     private static String[] getMoodStrings() {

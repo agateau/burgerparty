@@ -3,18 +3,18 @@ burgerparty.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-levels/1/counter
-  rotate: false
-  xy: 2, 5
-  size: 800, 82
-  orig: 800, 82
-  offset: 0, 0
-  index: -1
 levels/2/newworld-map
   rotate: false
   xy: 2, 89
   size: 1019, 933
   orig: 1019, 933
+  offset: 0, 0
+  index: -1
+levels/3/counter
+  rotate: false
+  xy: 2, 5
+  size: 800, 82
+  orig: 800, 82
   offset: 0, 0
   index: -1
 mealitems/0/salad
@@ -73,7 +73,7 @@ cutscenes/leaving-restaurant
   orig: 193, 344
   offset: 0, 0
   index: -1
-levels/1/background
+levels/3/background
   rotate: false
   xy: 2, 60
   size: 800, 480
@@ -185,6 +185,13 @@ customers/dragon/body-0
   orig: 134, 64
   offset: 0, 0
   index: -1
+levels/1/background
+  rotate: false
+  xy: 2, 542
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
 levels/1/bottom-left-button-bar
   rotate: false
   xy: 934, 853
@@ -201,77 +208,70 @@ levels/1/bottom-right-button-bar
   index: -1
 levels/1/button
   rotate: false
-  xy: 934, 435
+  xy: 934, 599
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/1/button-down
   rotate: false
-  xy: 934, 681
+  xy: 934, 353
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/1/preview
   rotate: false
-  xy: 804, 722
+  xy: 804, 420
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
   index: -1
 levels/2/background
   rotate: false
-  xy: 2, 542
+  xy: 2, 60
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 levels/2/button
   rotate: false
-  xy: 934, 353
+  xy: 934, 517
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/2/button-down
   rotate: false
-  xy: 934, 599
+  xy: 934, 271
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/2/preview
   rotate: false
-  xy: 804, 420
+  xy: 804, 118
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
   index: -1
-levels/3/background
-  rotate: false
-  xy: 2, 60
-  size: 800, 480
-  orig: 800, 480
-  offset: 0, 0
-  index: -1
 levels/3/button
   rotate: false
-  xy: 934, 271
+  xy: 934, 681
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/3/button-down
   rotate: false
-  xy: 934, 517
+  xy: 934, 435
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 levels/3/preview
   rotate: false
-  xy: 804, 118
+  xy: 804, 722
   size: 128, 300
   orig: 128, 300
   offset: 0, 0
@@ -451,7 +451,7 @@ ui/coin
   orig: 39, 19
   offset: 0, 0
   index: -1
-ui/goodies-button-down
+ui/goodies-button
   rotate: false
   xy: 945, 198
   size: 76, 76
@@ -535,13 +535,6 @@ customers/pirate-girls/face-greeneyes-angry
   orig: 158, 119
   offset: 0, 0
   index: -1
-levels/1/shelf
-  rotate: false
-  xy: 921, 608
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
 levels/3/newitem-fg
   rotate: false
   xy: 2, 2
@@ -549,7 +542,14 @@ levels/3/newitem-fg
   orig: 500, 522
   offset: 0, 0
   index: -1
-main-font-plain-small
+levels/3/shelf
+  rotate: false
+  xy: 921, 608
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+main-font
   rotate: false
   xy: 504, 12
   size: 512, 512
@@ -736,6 +736,13 @@ customers/sumos/face-0-neutral
   orig: 72, 57
   offset: 0, 0
   index: -1
+levels/1/counter
+  rotate: false
+  xy: 2, 940
+  size: 800, 82
+  orig: 800, 82
+  offset: 0, 0
+  index: -1
 levels/2/bottom-left-button-bar
   rotate: false
   xy: 394, 71
@@ -745,7 +752,7 @@ levels/2/bottom-left-button-bar
   index: -1
 levels/2/counter
   rotate: false
-  xy: 2, 940
+  xy: 2, 856
   size: 800, 82
   orig: 800, 82
   offset: 0, 0
@@ -756,13 +763,6 @@ levels/3/button-bar
   size: 111, 204
   split: 8, 7, 14, 12
   orig: 111, 204
-  offset: 0, 0
-  index: -1
-levels/3/counter
-  rotate: false
-  xy: 2, 856
-  size: 800, 82
-  orig: 800, 82
   offset: 0, 0
   index: -1
 main-font-plain
@@ -1146,7 +1146,7 @@ levels/2/newitem-fg
   orig: 312, 481
   offset: 0, 0
   index: -1
-main-font-small
+main-font-plain-small
   rotate: false
   xy: 2, 510
   size: 512, 512
@@ -1212,14 +1212,14 @@ ui/icon-achievement
   index: -1
 ui/icon-button-big
   rotate: false
-  xy: 780, 441
+  xy: 780, 571
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/icon-button-big-down
   rotate: false
-  xy: 780, 571
+  xy: 780, 441
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -1233,14 +1233,14 @@ ui/icon-close
   index: -1
 ui/mastodon-button
   rotate: false
-  xy: 707, 426
+  xy: 950, 836
   size: 71, 71
   orig: 71, 71
   offset: 0, 0
   index: -1
 ui/mastodon-button-down
   rotate: false
-  xy: 950, 836
+  xy: 707, 426
   size: 71, 71
   orig: 71, 71
   offset: 0, 0
@@ -1261,14 +1261,14 @@ ui/start-hard
   index: -1
 ui/twitter-button
   rotate: false
-  xy: 707, 280
+  xy: 707, 353
   size: 71, 71
   orig: 71, 71
   offset: 0, 0
   index: -1
 ui/twitter-button-down
   rotate: false
-  xy: 707, 353
+  xy: 707, 280
   size: 71, 71
   orig: 71, 71
   offset: 0, 0
@@ -1502,6 +1502,13 @@ customers/pirate-girls/top-red
   orig: 105, 59
   offset: 0, 0
   index: -1
+levels/1/shelf
+  rotate: false
+  xy: 516, 596
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
 levels/2/bottom-right-button-bar
   rotate: false
   xy: 357, 404
@@ -1511,19 +1518,12 @@ levels/2/bottom-right-button-bar
   index: -1
 levels/2/shelf
   rotate: false
-  xy: 516, 596
-  size: 100, 90
-  orig: 100, 90
-  offset: 0, 0
-  index: -1
-levels/3/shelf
-  rotate: false
   xy: 516, 504
   size: 100, 90
   orig: 100, 90
   offset: 0, 0
   index: -1
-main-font
+main-font-small
   rotate: false
   xy: 2, 508
   size: 512, 512
@@ -1600,7 +1600,7 @@ ui/finger
   orig: 60, 86
   offset: 0, 0
   index: -1
-ui/goodies-button
+ui/goodies-button-down
   rotate: false
   xy: 614, 762
   size: 76, 76
@@ -1609,14 +1609,14 @@ ui/goodies-button
   index: -1
 ui/icon-button
   rotate: false
-  xy: 618, 550
+  xy: 618, 628
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-button-down
   rotate: false
-  xy: 618, 628
+  xy: 618, 550
   size: 76, 76
   orig: 76, 76
   offset: 0, 0

@@ -6,7 +6,7 @@ import java.util.Date;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -82,11 +82,11 @@ public class UiUtils {
     }
 
     public static Pixmap getPixmap(int left, int top, int width, int height) {
-        Gdx.gl.glPixelStorei(GL10.GL_PACK_ALIGNMENT, 1);
+        Gdx.gl.glPixelStorei(GL20.GL_PACK_ALIGNMENT, 1);
 
         final Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
         ByteBuffer pixels = pixmap.getPixels();
-        Gdx.gl.glReadPixels(left, top, width, height, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, pixels);
+        Gdx.gl.glReadPixels(left, top, width, height, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE, pixels);
 
         // Swap top and bottom lines, set alpha to 255 (otherwise some areas appear transparent)
         // Not efficient at all
