@@ -1,6 +1,6 @@
 
 burgerparty.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -57,7 +57,7 @@ ui/vruler
   index: -1
 
 burgerparty2.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -170,7 +170,7 @@ ui/white-pixel
   index: -1
 
 burgerparty3.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -339,7 +339,7 @@ ui/level-button
   index: -1
 
 burgerparty4.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -522,7 +522,7 @@ ui/world-button
   index: -1
 
 burgerparty5.png
-size: 1021,1006
+size: 1023,1008
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -633,7 +633,7 @@ ui/star-off-big
   index: -1
 
 burgerparty6.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -967,7 +967,7 @@ ui/title
   index: -1
 
 burgerparty7.png
-size: 1022,1022
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -1282,7 +1282,7 @@ ui/twitter-button-down
   index: -1
 
 burgerparty8.png
-size: 1017,1020
+size: 1019,1022
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -1736,7 +1736,7 @@ ui/start-normal
   index: -1
 
 burgerparty9.png
-size: 514,514
+size: 516,516
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -1749,7 +1749,7 @@ new-highscore-font
   index: -1
 
 burgerparty10.png
-size: 514,514
+size: 516,516
 format: RGBA8888
 filter: Linear,Linear
 repeat: none

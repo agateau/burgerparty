@@ -184,12 +184,14 @@ public class UiBuilder {
 
     protected ImageButton createImageButton(XmlReader.Element element) {
         String styleName = element.getAttribute("style", "default");
-        ImageButton button = new ImageButton(mSkin, styleName);
+        ImageButton.ImageButtonStyle style =
+                new ImageButton.ImageButtonStyle(
+                        mSkin.get(styleName, ImageButton.ImageButtonStyle.class));
         String imageName = element.getAttribute("imageName", "");
         if (!imageName.isEmpty()) {
-            Drawable drawable = mSkin.getDrawable(imageName);
-            button.getImage().setDrawable(drawable);
+            style.imageUp = mSkin.getDrawable(imageName);
         }
+        ImageButton button = new ImageButton(style);
         String imageColor = element.getAttribute("imageColor", "");
         if (!imageColor.isEmpty()) {
             Color color = Color.valueOf(imageColor);
