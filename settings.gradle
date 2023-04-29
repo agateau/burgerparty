@@ -1,1 +1,6 @@
-include "burgerparty-desktop", "burgerparty-android", "burgerparty", "linguaj:linguaj"
+include "desktop"
+include "android"
+include "core"
+include "linguaj:linguaj"
+include "tests"
+include "tools"

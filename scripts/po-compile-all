@@ -4,12 +4,12 @@ set -e
 cd $(dirname $0)
 PO_COMPILE=../linguaj/scripts/po-compile
 
-OUT_DIR=burgerparty/i18n
+OUT_DIR=core/i18n
 
 for pofile in ../po/*.po ; do
     locale=$(basename $pofile .po)
     echo $locale
     $PO_COMPILE $pofile \
         --locale $locale \
-        --output ../burgerparty/i18n/Messages_$locale.java
+        --output ../core/i18n/Messages_$locale.java
 done

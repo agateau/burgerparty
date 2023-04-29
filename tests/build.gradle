@@ -1,0 +1,18 @@
+apply plugin: "java"
+
+dependencies {
+    implementation project(":core")
+    implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "junit:junit:4.12"
+    implementation "org.mockito:mockito-core:3.12.4"
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.test.java.srcDirs = [ "src/" ]
+
+test {
+    String assetsDir = project.file("../android/assets")
+    systemProperty("agc.assetsDir", assetsDir)
+}

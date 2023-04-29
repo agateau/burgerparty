@@ -50,7 +50,7 @@ On the other hand, if your plan is to take the game, slap some ads on it, and
 release it without releasing the sources of your changes: the license forbids
 you to do so, go find another prey.
 
-[utils]: burgerparty/src/com/agateau/burgerparty/utils
+[utils]: core/src/com/agateau/burgerparty/utils
 
 ## Goodies
 

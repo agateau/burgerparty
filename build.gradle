@@ -1,63 +1,29 @@
 buildscript {
+    ext {
+        agp_version = '7.2.2'
+    }
     repositories {
-        jcenter()
         mavenCentral()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "com.android.tools.build:gradle:$agp_version"
     }
 }
 
 allprojects {
-    apply plugin: "eclipse"
     apply plugin: "idea"
 
     version = '1.0'
     ext {
         appName = 'burgerparty'
-        gdxVersion = '0.9.9'
-        roboVMVersion = '1.0.0-alpha-04'
+        gdxVersion = '1.4.1'
     }
 
     repositories {
         mavenCentral()
+        google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
 }
-
-project(":burgerparty-desktop") {
-    apply plugin: "java"
-
-    dependencies {
-        compile project(":burgerparty")
-        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-    }
-}
-
-project(":burgerparty-android") {
-    apply plugin: "android"
-
-    configurations { natives }
-
-    dependencies {
-        compile project(":burgerparty")
-        compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
-    }
-}
-
-project(":burgerparty") {
-    apply plugin: "java"
-
-    dependencies {
-        compile project(":linguaj:linguaj")
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "junit:junit:4.11"
-    }
-}
-

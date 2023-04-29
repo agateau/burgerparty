@@ -7,9 +7,11 @@
     git status
 
 - Bump version numbers:
+
     AndroidManifest.xml versionCode
     AndroidManifest.xml versionName
-    Constants
+    Constants.java
+    Makefile
 
 - Check translations are up to date
     - Run `pot-generate`
@@ -19,8 +21,8 @@
 
 - Generate .apk
 
-    - Check burgerparty-android/signing.gradle exists
-    - Run `make`
+    - Check android/signing.gradle exists
+    - Run `make dist`
 
 - Smoke test
     - on PC
