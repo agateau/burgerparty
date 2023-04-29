@@ -16,6 +16,7 @@ public class MainActivity extends AndroidApplication {
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useCompass = false;
         cfg.useAccelerometer = false;
+        cfg.useImmersiveMode = true;
         cfg.hideStatusBar = true;
         initialize(game, cfg);
         // Must be done *after* initialize because it requires Gdx.app to be
