@@ -11,6 +11,9 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
+# Override this with `make run LANG=some_other_lang` to test translations
+LANG ?= en
+
 DESKTOP_JAR=$(CURDIR)/desktop/build/libs/desktop-1.0.jar
 TOOLS_JAR=$(CURDIR)/tools/build/libs/tools-1.0.jar
 ASSETS_DIR=$(CURDIR)/android/assets
@@ -44,7 +47,7 @@ apk: compile-po
 	./gradlew android:assembleRelease
 
 run: build
-	cd android/assets && java -jar $(DESKTOP_JAR)
+	cd android/assets && java -Duser.language=$$LANG -jar $(DESKTOP_JAR)
 
 $(TOOLS_JAR):
 	$(GRADLEW) tools:dist
