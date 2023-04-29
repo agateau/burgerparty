@@ -1,0 +1,10 @@
+apply plugin: "java"
+
+dependencies {
+    implementation project(":linguaj:linguaj")
+    implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/", "i18n" ]

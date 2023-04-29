@@ -3,7 +3,8 @@
 hs_err_pid*.log
 out/
 
-burgerparty-android/libs
+archives/
+android/libs
 
 # Gradle
 .gradle

@@ -1,5 +1,5 @@
 " Open with `gvim -S edit-levels.vim`
-cd ../burgerparty-android/assets/levels/1
+cd ../android/assets/levels/1
 
 split
 split

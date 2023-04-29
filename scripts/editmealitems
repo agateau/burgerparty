@@ -2,7 +2,7 @@
 set -e
 cd $(dirname $0)/..
 
-XML_FILE=$PWD/burgerparty-android/assets/mealitems.xml
+XML_FILE=$PWD/android/assets/mealitems.xml
 
 show=0
 if [ "$1" = "show" ] ; then
