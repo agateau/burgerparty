@@ -233,8 +233,7 @@ msgstr "Beoordeel Burger Party"
 
 #: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:83
 msgid "Like the game? Would be awesome if you could give it a good rate!"
-msgstr ""
-"Beleef je veel plezier aan het spel? Laat dan een goede beoordeling achter!"
+msgstr "Speel je het spel graag? Laat dan een goede beoordeling achter!"
 
 #: burgerparty/src/com/agateau/burgerparty/view/ConfigDialog.java:84
 msgid "Goodies"
