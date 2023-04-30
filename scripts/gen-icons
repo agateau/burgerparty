@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+import subprocess
+
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from PIL import Image
+
+ROOT_DIR = Path(__file__).parent.parent
+
+EXTRA_DIR = ROOT_DIR / "extra"
+RES_DIR = ROOT_DIR / "android/res"
+GPLAY_ICON_PATH = ROOT_DIR / "fastlane/metadata/android/en-US/images/icon.png"
+
+SOURCE_SVG_PATH = EXTRA_DIR / "launcher.svg"
+
+MAX_SIZE = 512
+
+BG_NAME = "ic_launcher_background.png"
+FG_NAME = "ic_launcher_foreground.png"
+ADAPTIVE_FG_PERCENT = 0.48
+
+FLAT_NAME = "ic_launcher.png"
+FLAT_FG_PERCENT = 0.6
+
+SIZE_AND_DIRS = [
+    (48, RES_DIR / "mipmap-mdpi"),
+    (72, RES_DIR / "mipmap-hdpi"),
+    (96, RES_DIR / "mipmap-xhdpi"),
+    (144, RES_DIR / "mipmap-xxhdpi"),
+    (192, RES_DIR / "mipmap-xxxhdpi"),
+]
+
+
+def export_png(element_id: str, path: Path):
+    cmd = ["inkscape", "--export-id", element_id, "--export-id-only",
+           "--export-width", MAX_SIZE, "--export-height", MAX_SIZE,
+           "--export-filename", path, SOURCE_SVG_PATH
+           ]
+    subprocess.run([str(x) for x in cmd], check=True)
+
+
+def resized(image: Image, size: int) -> Image:
+    return image.resize((size, size), Image.Resampling.LANCZOS)
+
+
+def generate_flat_icon(dst_path: Path, size: int, bg_image: Image, fg_image: Image):
+    # Generate resized bg
+    resized_bg = resized(bg_image, size)
+
+    # Generate resized fg
+    resized_fg = resized(fg_image, int(size * FLAT_FG_PERCENT))
+    xy = tuple(int((size - u) / 2) for u in resized_fg.size)
+
+    # Composite fg on top of bg
+    dst = resized_bg
+    dst.alpha_composite(resized_fg, xy)
+
+    # Save the result
+    dst.save(dst_path)
+
+
+def generate_adaptive_icons(dst_dir: Path, size: int, bg_image: Image, fg_image: Image):
+    # Generate resized bg
+    resized_bg = resized(bg_image, size)
+    resized_bg.save(dst_dir / BG_NAME)
+
+    # Generate resized fg
+    resized_fg = resized(fg_image, int(size * ADAPTIVE_FG_PERCENT))
+    xy = tuple(int((size - u) / 2) for u in resized_fg.size)
+
+    dst = Image.new("RGBA", (size, size), 0)
+    dst.alpha_composite(resized_fg, xy)
+    dst.save(dst_dir / FG_NAME)
+
+
+def main():
+    with TemporaryDirectory() as temp_dir:
+        bg_png_path = Path(temp_dir) / "bg.png"
+        fg_png_path = Path(temp_dir) / "fg.png"
+        export_png("background", bg_png_path)
+        export_png("foreground", fg_png_path)
+        bg_png = Image.open(bg_png_path)
+        fg_png = Image.open(fg_png_path)
+        for size, dst_dir in SIZE_AND_DIRS:
+            print(f"{size} => {dst_dir}")
+            dst_dir.mkdir(exist_ok=True, parents=True)
+            generate_flat_icon(dst_dir / FLAT_NAME, size, bg_png, fg_png)
+            generate_adaptive_icons(dst_dir, size, bg_png, fg_png)
+
+        print("GPlay icon")
+        generate_flat_icon(GPLAY_ICON_PATH, 512, bg_png, fg_png)
+
+
+if __name__ == "__main__":
+    main()
