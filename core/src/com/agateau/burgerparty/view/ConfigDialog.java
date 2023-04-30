@@ -49,6 +49,7 @@ public class ConfigDialog extends Dialog {
 
             Label titleLabel = new Label(titleText, assets.getSkin(), "config-button-title");
             mSubtitleLabel = new Label(subtitleText, assets.getSkin(), "config-button-subtitle");
+            mSubtitleLabel.setWrap(true);
 
             addActor(mButton);
             VerticalGroup vGroup = new VerticalGroup();
@@ -77,8 +78,8 @@ public class ConfigDialog extends Dialog {
         Assets assets = game.getAssets();
         mMuteButton = new ConfigButton(assets, "ui/icon-sound-on", tr("Sound"), "");
         ConfigButton aboutButton = new ConfigButton(assets, "ui/icon-info", tr("About"), tr("Who made this?"));
-        ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon,"), "mastodon-button");
-        ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Would be awesome if you could give it a good rate!"));
+        ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon"), "mastodon-button");
+        ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Give it a good rate!"));
         ConfigButton goodiesButton = new ConfigButton(assets, "ui/icon-goodies", tr("Goodies"), tr("Buy Burger Party goodies!"), "goodies-button");
 
         Table root = new Table(assets.getSkin());
@@ -89,10 +90,9 @@ public class ConfigDialog extends Dialog {
         root.add(mastodonButton);
         root.row();
         root.add(aboutButton);
+        root.add(goodiesButton);
         root.row();
         root.add(rateButton).colspan(2);
-        root.row();
-        root.add(goodiesButton).colspan(2);
         root.setSize(MathUtils.round(root.getPrefWidth()), MathUtils.round(root.getPrefHeight()));
         setChild(root);
 
