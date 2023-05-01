@@ -21,32 +21,31 @@ public class NewWorldScreen extends BurgerPartyScreen {
 
     private final int mWorldIndex;
     private final Array<Actor> mViews = new Array<Actor>();
+    private final Runnable mNextRunnable;
 
     private int mCurrentViewIndex = -1;
 
-    public NewWorldScreen(BurgerPartyGame game, int worldIndex) {
+    public NewWorldScreen(BurgerPartyGame game, int worldIndex, Runnable nextRunnable) {
         super(game);
         mWorldIndex = worldIndex;
+        mNextRunnable = nextRunnable;
         createRefreshHelper();
         loadXml();
     }
 
     @Override
     public void onBackPressed() {
-        startNextLevel();
+        goToNextView();
     }
 
     private void createRefreshHelper() {
         new RefreshHelper(getStage()) {
             @Override
             protected void refresh() {
-                getGame().showNewWorldScreen(mWorldIndex);
+                NewWorldScreen screen = new NewWorldScreen(getGame(), mWorldIndex, mNextRunnable);
+                getGame().setScreenAndDispose(screen);
             }
         };
-    }
-
-    private void startNextLevel() {
-        getGame().startLevel(mWorldIndex, 0);
     }
 
     private void loadXml() {
@@ -134,12 +133,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
         ++mCurrentViewIndex;
         Actor newView = mCurrentViewIndex < mViews.size ? mViews.get(mCurrentViewIndex) : null;
         if (newView == null) {
-            nextAction = Actions.run(new Runnable() {
-                @Override
-                public void run() {
-                    startNextLevel();
-                }
-            });
+            nextAction = Actions.run(mNextRunnable);
         } else {
             getStage().addActor(newView);
             // Fade in from behind
