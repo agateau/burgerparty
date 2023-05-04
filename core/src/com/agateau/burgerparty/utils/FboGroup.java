@@ -42,7 +42,8 @@ public class FboGroup extends Group implements Disposable {
     private void createFrameBuffer() {
         int w = (int)getWidth();
         int h = (int)getHeight();
-        mFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, w, h, false);
+        // Do not use RGBA8888, it causes jagged pixels on transparent edges
+        mFrameBuffer = new FrameBuffer(Pixmap.Format.RGB888, w, h, false);
     }
 
     private void fillFrameBuffer(Batch batch) {
