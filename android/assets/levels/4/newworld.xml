@@ -1,5 +1,5 @@
 <newworld>
-    <view type="gdxui" duration="3">
+    <view type="gdxui" duration="2">
         <sound name="goodbye"/>
         <gdxui>
             <AnchorGroup id="root">
@@ -8,7 +8,7 @@
             </AnchorGroup>
         </gdxui>
     </view>
-    <view type="gdxui" duration="3">
+    <view type="gdxui" duration="2">
         <sound name="wind"/>
         <gdxui>
             <AnchorGroup id="root">
@@ -23,10 +23,23 @@
             <point x="519" y="283"/>
         </points>
     </view>
-    <view type="gdxui" duration="30">
+    <view type="gdxui" duration="50">
         <gdxui>
             <AnchorGroup id="root">
-                <Image x="0" y="0" name="cutscenes/end" center="root.center"/>
+                <Image x="0" y="0" name="cutscenes/end-bg" center="root.center"/>
+                <Image x="700" y="320" name="cutscenes/cloud1">
+                    <Action duration="50">
+                        alpha 0.9
+                        moveBy -400 0 1
+                    </Action>
+                </Image>
+                <Image x="650" y="250" name="cutscenes/cloud2">
+                    <Action duration="50">
+                        alpha 0.85
+                        moveBy -200 0 0.95
+                    </Action>
+                </Image>
+                <Image x="0" y="0" name="cutscenes/end-fg" center="root.center"/>
             </AnchorGroup>
         </gdxui>
     </view>
