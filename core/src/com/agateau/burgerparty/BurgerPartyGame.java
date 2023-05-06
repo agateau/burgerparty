@@ -9,7 +9,7 @@ import java.util.HashSet;
 import com.agateau.burgerparty.model.Achievement;
 import com.agateau.burgerparty.model.BurgerPartyGameStats;
 import com.agateau.burgerparty.model.Difficulty;
-import com.agateau.burgerparty.model.DummyRatingController;
+import com.agateau.burgerparty.model.SupportRatingController;
 import com.agateau.burgerparty.model.Level;
 import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.model.Universe;
@@ -55,7 +55,7 @@ public class BurgerPartyGame extends Game {
     private boolean mWaitInLoadingScreen = false;
 
     private Difficulty mDifficulty = Constants.NORMAL;
-    private RatingController mRatingController = new DummyRatingController();
+    private RatingController mRatingController = new SupportRatingController();
 
     @Override
     public void create() {

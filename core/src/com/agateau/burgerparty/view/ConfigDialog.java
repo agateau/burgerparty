@@ -2,6 +2,7 @@ package com.agateau.burgerparty.view;
 
 import com.agateau.burgerparty.Assets;
 import com.agateau.burgerparty.BurgerPartyGame;
+import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.utils.Dialog;
 import com.agateau.burgerparty.utils.MusicController;
 import com.agateau.burgerparty.utils.StageScreen;
@@ -76,11 +77,12 @@ public class ConfigDialog extends Dialog {
         super(stageScreen, game.getAssets());
         final float columnWidth = stageScreen.getStage().getWidth() * 0.35f;
         mGame = game;
+        RatingController ratingController = mGame.getRatingController();
         Assets assets = game.getAssets();
         mMuteButton = new ConfigButton(assets, "ui/icon-sound-on", tr("Sound"), "");
         ConfigButton aboutButton = new ConfigButton(assets, "ui/icon-info", tr("About"), tr("Who made this?"));
         ConfigButton mastodonButton = new ConfigButton(assets, "ui/icon-mastodon", tr("Mastodon"), tr("Follow me on Mastodon"), "mastodon-button");
-        ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", tr("Rate Burger Party"), tr("Like the game? Give it a good rate!"));
+        ConfigButton rateButton = new ConfigButton(assets, "ui/icon-rate", ratingController.getActionTitle(), ratingController.getActionDescription());
         ConfigButton goodiesButton = new ConfigButton(assets, "ui/icon-goodies", tr("Goodies"), tr("Buy Burger Party goodies!"), "goodies-button");
 
         Table root = new Table(assets.getSkin());
