@@ -27,7 +27,7 @@ import static com.greenyetilab.linguaj.Translator.tr;
  * Configuration dialog which appears when one clicks the config button
  */
 public class ConfigDialog extends Dialog {
-    private static final String MASTODON_URL = "https://mastodon.xyz/@agateau";
+    private static final String MASTODON_URL = "https://agateau.com/redirect/mastodon";
     private static final String GOODIES_URL = "https://agateau.com/redirect/bp-goodies";
     private final BurgerPartyGame mGame;
     private final ConfigButton mMuteButton;
