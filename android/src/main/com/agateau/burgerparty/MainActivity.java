@@ -23,6 +23,8 @@ public class MainActivity extends AndroidApplication {
         // valid
         NLog.addPrinter(new GdxPrinter("BP"));
         NLog.i("");
-        game.setRatingControllerImplementation(new AndroidRatingControllerImplementation(this));
+        if (AndroidRatingController.isAvailable()) {
+            game.setRatingController(new AndroidRatingController(this));
+        }
     }
 }

@@ -1,20 +1,12 @@
 package com.agateau.burgerparty.model;
 
 /**
- * Handles rating
+ * Handles rating or support
  */
-public class RatingController {
-    public interface Implementation {
-        void rate();
-    }
+public interface RatingController {
+    String getActionTitle();
 
-    private Implementation mImplementation;
+    String getActionDescription();
 
-    public void setImplementation(Implementation implementation) {
-        mImplementation = implementation;
-    }
-
-    public void rate() {
-        mImplementation.rate();
-    }
+    void rate();
 }

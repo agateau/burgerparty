@@ -23,6 +23,9 @@ android {
 
     flavorDimensions 'store'
     productFlavors {
+        agc {
+            dimension 'store'
+        }
         amz {
             dimension 'store'
         }
@@ -40,6 +43,9 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['libs']
+        }
+        agc {
+            java.srcDirs = ['src/agc']
         }
         amz {
             java.srcDirs = ['src/amz']

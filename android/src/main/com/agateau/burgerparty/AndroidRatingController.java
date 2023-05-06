@@ -8,12 +8,24 @@ import android.net.Uri;
 import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.utils.NLog;
 
-public class AndroidRatingControllerImplementation implements RatingController.Implementation {
+import static com.greenyetilab.linguaj.Translator.tr;
+
+public class AndroidRatingController implements RatingController {
     private static final String APP_ID = "com.agateau.burgerparty";
     private final Activity mMainActivity;
 
-    public AndroidRatingControllerImplementation(Activity mainActivity) {
+    public AndroidRatingController(Activity mainActivity) {
         mMainActivity = mainActivity;
+    }
+
+    @Override
+    public String getActionTitle() {
+        return tr("Rate Burger Party");
+    }
+
+    @Override
+    public String getActionDescription() {
+        return tr("Like the game? Give it a good rate!");
     }
 
     @Override
@@ -30,5 +42,9 @@ public class AndroidRatingControllerImplementation implements RatingController.I
             }
         }
         NLog.e("No store available for rating");
+    }
+
+    public static boolean isAvailable() {
+        return StoreConstants.INTENT_BASE_URIS.length > 0;
     }
 }
