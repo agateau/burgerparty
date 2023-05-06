@@ -5,6 +5,7 @@ import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.utils.Dialog;
 import com.agateau.burgerparty.utils.MusicController;
+import com.agateau.burgerparty.utils.PlatformUtils;
 import com.agateau.burgerparty.utils.StageScreen;
 import com.agateau.burgerparty.utils.UiUtils;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +28,7 @@ import static com.greenyetilab.linguaj.Translator.tr;
  * Configuration dialog which appears when one clicks the config button
  */
 public class ConfigDialog extends Dialog {
-    private static final String MASTODON_URL = "https://mastodon.xyz/@agateau";
+    private static final String MASTODON_URL = "https://agateau.com/redirect/mastodon";
     private static final String GOODIES_URL = "https://agateau.com/redirect/bp-goodies";
     private final BurgerPartyGame mGame;
     private final ConfigButton mMuteButton;
@@ -124,14 +125,14 @@ public class ConfigDialog extends Dialog {
         mastodonButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI(MASTODON_URL);
+                PlatformUtils.openURI(MASTODON_URL);
             }
         });
 
         goodiesButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.net.openURI(GOODIES_URL);
+                PlatformUtils.openURI(GOODIES_URL);
             }
         });
     }
