@@ -54,6 +54,7 @@ public class ConfigDialog extends Dialog {
             addActor(mButton);
             VerticalGroup vGroup = new VerticalGroup();
             vGroup.align(Align.left);
+            vGroup.columnAlign(Align.left);
             vGroup.addActor(titleLabel);
             vGroup.addActor(mSubtitleLabel);
             vGroup.space(-10);
