@@ -43,4 +43,8 @@ public class AndroidRatingController implements RatingController {
         }
         NLog.e("No store available for rating");
     }
+
+    public static boolean isAvailable() {
+        return StoreConstants.INTENT_BASE_URIS.length > 0;
+    }
 }
