@@ -8,11 +8,11 @@ import android.net.Uri;
 import com.agateau.burgerparty.model.RatingController;
 import com.agateau.burgerparty.utils.NLog;
 
-public class AndroidRatingControllerImplementation implements RatingController.Implementation {
+public class AndroidRatingController implements RatingController {
     private static final String APP_ID = "com.agateau.burgerparty";
     private final Activity mMainActivity;
 
-    public AndroidRatingControllerImplementation(Activity mainActivity) {
+    public AndroidRatingController(Activity mainActivity) {
         mMainActivity = mainActivity;
     }
 
