@@ -90,16 +90,18 @@ public class AboutScreen extends BurgerPartyScreen {
         addHeading(tr("Sounds"));
         addText("Clara Gâteau");
         addText("Thomas Tripon");
-        addText("AlienXXX - www.freesound.org/people/AlienXXX");
+        addText("AlienXXX - freesound.org/people/AlienXXX");
         addText("artisticdude - opengameart.org/content/inventory-sound-effects");
-        addText("Autistic Lucario - www.freesound.org/people/Autistic%20Lucario");
-        addText("DrMinky - www.freesound.org/people/DrMinky");
-        addText("Florian Reinke - www.freesound.org/people/florian_reinke");
+        addText("Autistic Lucario - freesound.org/people/Autistic%20Lucario");
+        addText("DrMinky - freesound.org/people/DrMinky");
+        addText("Florian Reinke - freesound.org/people/florian_reinke");
         addText("Iwan Gabovitch - qubodup.net");
         addText("John McDonald - jcpmcdonald.com");
         addText("p0ss - opengameart.org/content/spell-sounds-starter-pack");
-        addText("Scriptique - www.freesound.org/people/scriptique");
-        addText("organicmanpl - www.freesound.org/people/organicmanpl");
+        addText("Scriptique - freesound.org/people/scriptique");
+        addText("Organicmanpl - freesound.org/people/organicmanpl");
+        addText("Breviceps - freesound.org/people/Breviceps");
+        addText("Jasinski - freesound.org/people/jasinski");
 
         float screenHeight = getStage().getHeight();
         addPadding(screenHeight / 3);

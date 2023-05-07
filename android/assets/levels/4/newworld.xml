@@ -23,7 +23,8 @@
             <point x="519" y="283"/>
         </points>
     </view>
-    <view type="gdxui" duration="50">
+    <view type="gdxui" duration="19">
+        <sound name="end"/>
         <gdxui>
             <AnchorGroup id="root">
                 <Image x="0" y="0" name="cutscenes/end-bg" center="root.center"/>
