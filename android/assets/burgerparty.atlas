@@ -931,6 +931,13 @@ customers/sumos/face-0-happy
   orig: 72, 52
   offset: 0, 0
   index: -1
+customers/wrestler/face-0-neutral
+  rotate: false
+  xy: 947, 4
+  size: 66, 71
+  orig: 66, 71
+  offset: 0, 0
+  index: -1
 levels/1/counter
   rotate: false
   xy: 2, 940
@@ -1167,13 +1174,6 @@ ui/title
   orig: 495, 236
   offset: 0, 0
   index: -1
-ui/twitter-button
-  rotate: false
-  xy: 947, 4
-  size: 71, 71
-  orig: 71, 71
-  offset: 0, 0
-  index: -1
 
 burgerparty8.png
 size: 1024, 1024
@@ -1189,12 +1189,19 @@ achievements/all-stars
   index: -1
 achievements/burger-apprentice
   rotate: false
-  xy: 953, 626
+  xy: 879, 9
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/burger-god
+  rotate: false
+  xy: 953, 626
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+achievements/burger-master
   rotate: false
   xy: 953, 560
   size: 64, 64
@@ -1334,13 +1341,6 @@ customers/sumos/face-0-neutral
   orig: 72, 57
   offset: 0, 0
   index: -1
-customers/wrestler/face-0-neutral
-  rotate: false
-  xy: 952, 24
-  size: 66, 71
-  orig: 66, 71
-  offset: 0, 0
-  index: -1
 levels/1/newitem-fg
   rotate: false
   xy: 2, 28
@@ -1440,6 +1440,13 @@ ui/finger
   orig: 60, 86
   offset: 0, 0
   index: -1
+ui/goodies-button-down
+  rotate: false
+  xy: 945, 19
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
 ui/hud-bg
   rotate: false
   xy: 682, 114
@@ -1482,13 +1489,6 @@ ui/icon-next-item
   orig: 34, 32
   offset: 0, 0
   index: -1
-ui/icon-twitter
-  rotate: false
-  xy: 516, 511
-  size: 35, 28
-  orig: 35, 28
-  offset: 0, 0
-  index: -1
 ui/star-on
   rotate: false
   xy: 959, 770
@@ -1517,274 +1517,253 @@ ui/start-normal
   orig: 127, 164
   offset: 0, 0
   index: -1
-ui/twitter-button-down
-  rotate: false
-  xy: 879, 2
-  size: 71, 71
-  orig: 71, 71
-  offset: 0, 0
-  index: -1
 
 burgerparty9.png
-size: 981, 1024
+size: 991, 997
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-achievements/burger-master
-  rotate: false
-  xy: 516, 721
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
 achievements/close-call
   rotate: false
-  xy: 2, 172
+  xy: 2, 200
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/creative
   rotate: false
-  xy: 516, 655
+  xy: 516, 706
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/fan
   rotate: false
-  xy: 2, 106
+  xy: 2, 134
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/morning-gamer
   rotate: false
-  xy: 516, 589
+  xy: 516, 640
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/perfect
   rotate: false
-  xy: 2, 40
+  xy: 2, 68
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/sandbox
   rotate: false
-  xy: 516, 523
+  xy: 516, 574
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 achievements/star-collector
   rotate: false
-  xy: 80, 383
+  xy: 2, 2
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 customers/boys/face-0-angry
   rotate: false
-  xy: 80, 331
+  xy: 516, 522
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-happy
   rotate: false
-  xy: 80, 279
+  xy: 516, 470
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-0-neutral
   rotate: false
-  xy: 80, 227
+  xy: 80, 370
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-2-angry
   rotate: false
-  xy: 68, 126
+  xy: 753, 898
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-happy
   rotate: false
-  xy: 68, 76
+  xy: 828, 897
   size: 73, 48
   orig: 73, 48
   offset: 0, 0
   index: -1
 customers/boys/face-2-neutral
   rotate: false
-  xy: 68, 176
+  xy: 80, 267
   size: 73, 49
   orig: 73, 49
   offset: 0, 0
   index: -1
 customers/boys/face-3-angry
   rotate: false
-  xy: 821, 923
+  xy: 153, 378
   size: 71, 48
   orig: 71, 48
   offset: 0, 0
   index: -1
 customers/boys/face-3-happy
   rotate: false
-  xy: 146, 403
+  xy: 80, 318
   size: 71, 50
   orig: 71, 50
   offset: 0, 0
   index: -1
 customers/boys/face-3-neutral
   rotate: false
-  xy: 153, 356
+  xy: 153, 331
   size: 71, 45
   orig: 71, 45
   offset: 0, 0
   index: -1
 customers/boys/top-3
   rotate: false
-  xy: 2, 449
+  xy: 2, 422
   size: 107, 59
   orig: 107, 59
   offset: 0, 0
   index: -1
 customers/girls/face-0-angry
   rotate: false
-  xy: 903, 974
+  xy: 349, 433
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-happy
   rotate: false
-  xy: 271, 460
+  xy: 427, 433
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-0-neutral
   rotate: false
-  xy: 349, 460
+  xy: 835, 947
   size: 76, 48
   orig: 76, 48
   offset: 0, 0
   index: -1
 customers/girls/face-1-angry
   rotate: false
-  xy: 111, 455
+  xy: 111, 428
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-happy
   rotate: false
-  xy: 2, 238
+  xy: 675, 942
   size: 76, 53
   orig: 76, 53
   offset: 0, 0
   index: -1
 customers/girls/face-1-neutral
   rotate: false
-  xy: 427, 461
+  xy: 913, 948
   size: 76, 47
   orig: 76, 47
   offset: 0, 0
   index: -1
 customers/japan-girls/face-0-happy
   rotate: false
-  xy: 825, 973
+  xy: 271, 432
   size: 76, 49
   orig: 76, 49
   offset: 0, 0
   index: -1
 customers/wrestler/face-0-happy
   rotate: false
-  xy: 675, 958
+  xy: 516, 772
   size: 66, 64
   orig: 66, 64
   offset: 0, 0
   index: -1
 main-font-small
   rotate: false
-  xy: 2, 510
+  xy: 2, 483
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 mealitems/0/meat-inventory
   rotate: false
-  xy: 743, 973
+  xy: 189, 432
   size: 80, 49
   orig: 80, 49
   offset: 0, 0
   index: -1
 mealitems/0/onion-inventory
   rotate: false
-  xy: 2, 2
+  xy: 505, 432
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
 mealitems/0/toast-inventory
   rotate: false
-  xy: 743, 935
+  xy: 675, 904
   size: 76, 36
   orig: 76, 36
   offset: 0, 0
   index: -1
 mealitems/0/tomato-inventory
   rotate: false
-  xy: 189, 461
+  xy: 753, 948
   size: 80, 47
   orig: 80, 47
   offset: 0, 0
   index: -1
 ui/corner-normal
   rotate: false
-  xy: 516, 943
+  xy: 516, 916
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
-ui/goodies-button-down
-  rotate: false
-  xy: 2, 371
-  size: 76, 76
-  orig: 76, 76
-  offset: 0, 0
-  index: -1
 ui/icon-button
   rotate: false
-  xy: 516, 865
+  xy: 2, 344
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/icon-button-down
   rotate: false
-  xy: 597, 946
+  xy: 516, 838
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/mastodon-button
   rotate: false
-  xy: 2, 293
+  xy: 597, 919
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
   index: -1
 ui/mastodon-button-down
   rotate: false
-  xy: 516, 787
+  xy: 2, 266
   size: 76, 76
   orig: 76, 76
   offset: 0, 0
