@@ -33,6 +33,8 @@ ARCHIVE_DIR=$(CURDIR)/archives
 
 ANDROID_PACKAGE_NAME=$(GAME_CP)
 
+FLAVORS=agc gp amz
+
 all: build
 
 clean:
@@ -70,7 +72,7 @@ desktop-archives: build
 apk-archives: apk
 	@echo Copying apk files
 	@mkdir -p $(ARCHIVE_DIR)
-	@for store in amz gp ; do \
+	@for store in $(FLAVORS) ; do \
 		cp android/build/outputs/apk/$$store/release/android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
 	done
 
