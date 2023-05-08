@@ -2,6 +2,7 @@ package com.agateau.burgerparty.screens;
 
 import com.agateau.burgerparty.BurgerPartyGame;
 import com.agateau.burgerparty.Constants;
+import com.agateau.burgerparty.VersionInfo;
 import com.agateau.burgerparty.utils.AnchorGroup;
 import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
@@ -66,7 +67,7 @@ public class AboutScreen extends BurgerPartyScreen {
         mScrollPane = builder.<ScrollPane>getActor("scrollPane");
 
         mScrollGroup = builder.<VerticalGroup>getActor("scrollGroup");
-        addText(tr("Version %s", Constants.VERSION));
+        addText(tr("Version %s", VersionInfo.VERSION));
         addHeading(tr("Code & Design"));
         addText("Aurélien Gâteau");
 

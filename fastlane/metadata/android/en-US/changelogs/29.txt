@@ -1,0 +1,3 @@
+- Removed ads! Burger Party is now free software
+- Added a goodies button
+- Replaced Facebook and Google+ buttons with Mastodon and Twitter buttons

@@ -24,8 +24,8 @@ endif
 
 GAME_CP=com.agateau.burgerparty
 EXECUTABLE=burgerparty
-# TODO Centralize version numbers
-VERSION=1.3.0
+
+include version.properties
 
 ANDROID_GP_RUN_DIST_NAME=$(EXECUTABLE)-gp-$(VERSION)
 
@@ -89,3 +89,15 @@ android-run-from-dist:
 # Translations
 compile-po:
 	scripts/po-compile-all
+
+# Tag
+tag:
+	git tag -f -m "Burger Party $(VERSION)" $(VERSION)
+
+tagpush: tag
+	git push
+	git push --tags
+
+# Uploading
+fastlane-beta:
+	fastlane supply --track beta --apk $(ARCHIVE_DIR)/$(ANDROID_GP_RUN_DIST_NAME).apk

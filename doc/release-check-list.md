@@ -2,16 +2,17 @@
 
 - Check source tree is clean
 
+    ```
     git checkout master
     git pull
     git status
+    ```
 
 - Bump version numbers:
 
-    AndroidManifest.xml versionCode
-    AndroidManifest.xml versionName
-    Constants.java
-    Makefile
+    ```
+    vi version.properties
+    ```
 
 - Check translations are up to date
     - Run `pot-generate`
@@ -19,32 +20,45 @@
 
 - Run unit tests
 
+    ```
+    make check
+    ```
+
 - Generate .apk
 
-    - Check android/signing.gradle exists
-    - Run `make dist`
+    Check android/signing.gradle exists
+
+    ```
+    make dist
+    ```
 
 - Smoke test
     - on PC
     - on phone
     - on tablet
 
-- Update CHANGELOG.md
+- Update changelogs
+
+    ```
+    vi CHANGELOG.md
+    vi fastlane/metadata/android/en-US/changelogs/${versionCode}.txt
+    ```
 
 - Commit
 
 - Tag:
 
-    git tag -a $newv
-
-- Push
-
-    git push
-    git push --tags
+    ```
+    make tagpush
+    ```
 
 # Upload .apk
 
 - Upload on Google Play
+
+    ```
+    make fastlane-beta
+    ```
 
 - Upload on agateau.com
 
@@ -78,8 +92,6 @@
 
 # Spread
 
-- Notify Google Group
-
-- Announce on FB
+- Announce on Mastodon
 
 - Announce on Twitter
