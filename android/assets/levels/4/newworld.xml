@@ -24,7 +24,7 @@
         </points>
     </view>
     <view type="gdxui" duration="19">
-        <sound name="end"/>
+        <EndMusic/>
         <gdxui>
             <AnchorGroup id="root">
                 <Image x="0" y="0" name="cutscenes/end-bg" center="root.center"/>

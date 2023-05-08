@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 public class Assets implements Disposable {
     private static final String MAIN_MUSIC = "music/burger-party_main-theme.mp3";
+    private static final String END_MUSIC = "music/end.ogg";
 
     private AnimScriptLoader mAnimScriptLoader = new AnimScriptLoader();
     private SoundAtlas mSoundAtlas;
@@ -26,6 +27,7 @@ public class Assets implements Disposable {
     private Skin mSkin;
     private Sound mClickSound;
     private Music mMusic;
+    private Music mEndMusic;
     private ChangeListener mClickListener;
     private AssetManager mAssetManager;
     private ShaderProgram mDisabledShader = createDisabledShader();
@@ -48,7 +50,6 @@ public class Assets implements Disposable {
             "add-item-sundae.wav",
             "click.wav",
             "coin.wav",
-            "end.ogg",
             "error.wav",
             "finished.wav",
             "gameover.ogg",
@@ -68,6 +69,7 @@ public class Assets implements Disposable {
         mSoundAtlas.preload(names);
 
         mAssetManager.load(MAIN_MUSIC, Music.class);
+        mAssetManager.load(END_MUSIC, Music.class);
     }
 
     @Override
@@ -75,6 +77,7 @@ public class Assets implements Disposable {
         NLog.i("");
         mTextureAtlas.dispose();
         mMusic.dispose();
+        mEndMusic.dispose();
     }
 
     public void finishLoad() {
@@ -102,6 +105,7 @@ public class Assets implements Disposable {
         };
 
         mMusic = mAssetManager.get(MAIN_MUSIC);
+        mEndMusic = mAssetManager.get(END_MUSIC);
     }
 
     public TextureAtlas getTextureAtlas() {
@@ -130,6 +134,10 @@ public class Assets implements Disposable {
 
     public Music getMusic() {
         return mMusic;
+    }
+
+    public Music getEndMusic() {
+        return mEndMusic;
     }
 
     public ShaderProgram getDisabledShader() {
