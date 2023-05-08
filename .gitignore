@@ -16,3 +16,6 @@ gradle-app.setting
 .idea
 *.iml
 .*.swp
+
+# Fastlane
+fastlane/google-play-api.json
