@@ -246,7 +246,14 @@ public class BurgerPartyGame extends Game {
 
     public void showNewWorldScreen(int worldIndex) {
         mMusicController.fadeOut();
-        setScreenAndDispose(new NewWorldScreen(this, worldIndex));
+        setScreenAndDispose(new NewWorldScreen(this, worldIndex,
+                () -> startLevel(worldIndex, 0)));
+    }
+
+    public void showEndScreen() {
+        mMusicController.fadeOut();
+        int endIndex = getCurrentUniverse().getWorlds().size;
+        setScreenAndDispose(new NewWorldScreen(this, endIndex, this::showAboutScreen));
     }
 
     public void showLevelListScreen(int worldIndex) {

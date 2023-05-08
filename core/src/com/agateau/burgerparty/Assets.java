@@ -48,6 +48,7 @@ public class Assets implements Disposable {
             "add-item-sundae.wav",
             "click.wav",
             "coin.wav",
+            "end.ogg",
             "error.wav",
             "finished.wav",
             "gameover.ogg",
