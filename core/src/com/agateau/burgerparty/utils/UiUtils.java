@@ -1,22 +1,23 @@
 package com.agateau.burgerparty.utils;
 
-import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UiUtils {
     public static final int BUTTON_WIDTH = 200;
@@ -136,5 +137,13 @@ public class UiUtils {
         if (image.getHeight() == 0) {
             image.setHeight(region.getRegionHeight());
         }
+    }
+
+    /**
+     * Make the style used by an ImageButton unique. This is useful to update its imageUp drawable.
+     */
+    public static void makeImageButtonStyleUnique(ImageButton button) {
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(button.getStyle());
+        button.setStyle(style);
     }
 }

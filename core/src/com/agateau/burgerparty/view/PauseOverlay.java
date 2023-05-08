@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
+import static com.agateau.burgerparty.utils.UiUtils.makeImageButtonStyleUnique;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 public class PauseOverlay extends Overlay {
@@ -68,6 +69,7 @@ public class PauseOverlay extends Overlay {
         });
 
         mMuteButton = builder.getActor("muteButton");
+        makeImageButtonStyleUnique(mMuteButton);
         mMuteButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
                 MusicController controller = mGame.getMusicController();
@@ -89,6 +91,6 @@ public class PauseOverlay extends Overlay {
     private void updateMuteButton() {
         boolean muted = mGame.getMusicController().isMuted();
         Drawable drawable = mGame.getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
-        mMuteButton.getImage().setDrawable(drawable);
+        mMuteButton.getStyle().imageUp = drawable;
     }
 }

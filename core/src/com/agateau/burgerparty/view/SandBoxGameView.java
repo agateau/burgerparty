@@ -27,6 +27,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 
+import static com.agateau.burgerparty.utils.UiUtils.makeImageButtonStyleUnique;
+
 public class SandBoxGameView extends AbstractWorldView {
     private HashSet<Object> mHandlers = new HashSet<Object>();
 
@@ -96,6 +98,7 @@ public class SandBoxGameView extends AbstractWorldView {
         builder.build(handle, this);
 
         mSwitchInventoriesButton = builder.getActor("switchInventoriesButton");
+        makeImageButtonStyleUnique(mSwitchInventoriesButton);
         updateSwitchInventoriesButton();
         mSwitchInventoriesButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
@@ -182,7 +185,7 @@ public class SandBoxGameView extends AbstractWorldView {
             iconName = "ui/inventory-extra";
         }
         Drawable drawable = mGame.getAssets().getSkin().getDrawable(iconName);
-        mSwitchInventoriesButton.getImage().setDrawable(drawable);
+        mSwitchInventoriesButton.getStyle().imageUp = drawable;
     }
 
     private void deliver() {

@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 
+import static com.agateau.burgerparty.utils.UiUtils.makeImageButtonStyleUnique;
 import static com.greenyetilab.linguaj.Translator.tr;
 
 /**
@@ -45,6 +46,7 @@ public class ConfigDialog extends Dialog {
             space(UiUtils.SPACING / 2);
 
             mButton = BurgerPartyUiBuilder.createRoundButton(assets, imageName, styleName);
+            makeImageButtonStyleUnique(mButton);
             mButton.setTouchable(Touchable.disabled);
             setTouchable(Touchable.enabled);
             addListener(mButton.getClickListener());
@@ -65,8 +67,8 @@ public class ConfigDialog extends Dialog {
             setSize(getPrefWidth(), getPrefHeight());
         }
 
-        public Image getImage() {
-            return mButton.getImage();
+        public void setDrawable(Drawable drawable) {
+            mButton.getStyle().imageUp = drawable;
         }
 
         public void setSubtitleLabel(String subtitleLabel) {
@@ -140,7 +142,7 @@ public class ConfigDialog extends Dialog {
     private void updateMuteButton() {
         boolean muted = mGame.getMusicController().isMuted();
         Drawable drawable = mGame.getAssets().getSkin().getDrawable(muted ? "ui/icon-sound-off" : "ui/icon-sound-on");
-        mMuteButton.getImage().setDrawable(drawable);
+        mMuteButton.setDrawable(drawable);
         mMuteButton.setSubtitleLabel(muted ? tr("Sound is OFF") : tr("Sound is ON"));
     }
 }
