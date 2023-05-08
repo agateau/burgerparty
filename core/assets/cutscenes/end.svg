@@ -28,15 +28,15 @@
      inkscape:document-units="px"
      showgrid="false"
      units="px"
-     inkscape:zoom="1"
-     inkscape:cx="566"
-     inkscape:cy="178.5"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="434.87067"
+     inkscape:cy="203.2932"
      inkscape:window-width="1880"
      inkscape:window-height="1044"
      inkscape:window-x="40"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g99948"
+     inkscape:current-layer="layer6"
      inkscape:snap-global="false" />
   <defs
      id="defs85289">
@@ -259,6 +259,18 @@
          stdDeviation="0.56955792"
          id="feGaussianBlur71231" />
     </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8585">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#rect101630"
+         id="use8587"
+         style="stroke-width:0.999999"
+         width="100%"
+         height="100%" />
+    </clipPath>
   </defs>
   <g
      inkscape:label="Sketches"
@@ -297,7 +309,8 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="sky"
-     style="display:inline;opacity:1">
+     style="display:inline;opacity:1"
+     sodipodi:insensitive="true">
     <g
        id="g7108"
        inkscape:export-filename="end-bg.png"
@@ -573,8 +586,7 @@
      inkscape:groupmode="layer"
      id="layer14"
      inkscape:label="sand &amp; sea"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        sodipodi:nodetypes="cccccc"
        inkscape:connector-curvature="0"
@@ -819,7 +831,7 @@
        d="m 264.06208,-24.44718 c 1.38388,4.216485 0.62211,6.932136 -1.43029,11.895727 1.4382,-4.012321 1.83537,-7.286371 1.43029,-11.895727 z"
        style="display:inline;fill:#603a00;fill-opacity:1;stroke:none;stroke-width:0.264583" />
     <rect
-       style="color:#000000;overflow:visible;opacity:1;fill:#1a5fb4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
+       style="color:#000000;overflow:visible;opacity:1;fill:#418ed8;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
        id="rect52472"
        width="211.66666"
        height="29.00551"
@@ -878,6 +890,15 @@
     <g
        id="g99948"
        transform="rotate(20.870625,456.36758,104.8923)">
+      <path
+         style="color:#000000;overflow:visible;opacity:1;fill:#63452c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
+         sodipodi:type="inkscape:offset"
+         inkscape:radius="0.53795207"
+         inkscape:original="M 50.019531 23.958984 L 47.474609 24.927734 L 79.369141 108.58008 L 81.914062 107.60938 L 50.019531 23.958984 z "
+         xlink:href="#rect101630"
+         id="path2366"
+         inkscape:href="#rect101630"
+         d="m 49.828125,23.457031 -2.544922,0.96875 a 0.53800586,0.53800586 0 0 0 -0.310547,0.69336 l 31.894532,83.652339 a 0.53800586,0.53800586 0 0 0 0.693359,0.31055 l 2.544922,-0.9707 a 0.53800586,0.53800586 0 0 0 0.310547,-0.69336 L 50.521484,23.767578 a 0.53800586,0.53800586 0 0 0 -0.693359,-0.310547 z" />
       <rect
          style="color:#000000;overflow:visible;opacity:1;fill:#b5835a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
          id="rect101630"
@@ -886,6 +907,12 @@
          x="35.47934"
          y="40.206413"
          transform="rotate(-20.870625)" />
+      <path
+         style="fill:#865e3c;fill-rule:evenodd;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 56.046354,52.611341 5.260189,-2.924768 3.150807,10.145819 c -0.57141,0.716604 -1.173639,0.865427 -2.352231,1.142783 l 18.708934,49.069325 -1.492196,0.81678 z"
+         id="path8435"
+         clip-path="url(#clipPath8585)"
+         sodipodi:nodetypes="ccccccc" />
       <g
          id="g108284"
          transform="translate(-0.49516614,0.18879473)">
