@@ -1,0 +1,1 @@
+Added an end sequence. Turned the app icon into an adaptive one.
