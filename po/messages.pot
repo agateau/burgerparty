@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-08 11:37+0200\n"
+"POT-Creation-Date: 2023-05-08 16:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,36 +28,36 @@ msgstr[1] ""
 msgid "New item unlocked!"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:69
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:70
 #, java-printf-format
 msgid "Version %s"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:70
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:71
 msgid "Code & Design"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:73
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:74
 msgid "Music"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:74
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:75
 msgid "Thomas Tripon"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:76
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:77
 msgid "Testers"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:86
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:87
 msgid "Fonts"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:90
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:91
 msgid "Sounds"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:108
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:109
 msgid "Thank you for playing!"
 msgstr ""
 
