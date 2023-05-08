@@ -24,8 +24,8 @@ endif
 
 GAME_CP=com.agateau.burgerparty
 EXECUTABLE=burgerparty
-# TODO Centralize version numbers
-VERSION=1.3.0
+
+include version.properties
 
 ANDROID_GP_RUN_DIST_NAME=$(EXECUTABLE)-gp-$(VERSION)
 

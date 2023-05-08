@@ -5,6 +5,7 @@ out/
 
 archives/
 android/libs
+core/generated
 
 # Gradle
 .gradle

@@ -13,12 +13,15 @@ dependencies {
 }
 
 android {
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(file('../version.properties')))
+
     compileSdkVersion 33
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 33
-        versionCode 29
-        versionName '1.3.0'
+        versionCode versionProps['VERSION_CODE'].toInteger()
+        versionName versionProps['VERSION']
     }
 
     flavorDimensions 'store'

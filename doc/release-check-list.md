@@ -8,10 +8,7 @@
 
 - Bump version numbers:
 
-    AndroidManifest.xml versionCode
-    AndroidManifest.xml versionName
-    Constants.java
-    Makefile
+    vi version.properties
 
 - Check translations are up to date
     - Run `pot-generate`
@@ -29,7 +26,10 @@
     - on phone
     - on tablet
 
-- Update CHANGELOG.md
+- Update changelogs
+
+    vi CHANGELOG.md
+    vi fastlane/metadata/android/en-US/changelogs/${versionCode}.txt
 
 - Commit
 
