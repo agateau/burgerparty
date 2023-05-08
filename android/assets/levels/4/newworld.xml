@@ -28,11 +28,17 @@
         <gdxui>
             <AnchorGroup id="root">
                 <Image x="0" y="0" name="cutscenes/end-bg" center="root.center"/>
-                <Image x="200" y="190" name="cutscenes/cloud2">
+                <Image x="250" y="190" name="cutscenes/cloud2">
                     <Action duration="50">
-                        scaleTo 0.8 0.8
+                        scaleTo 0.7 0.7
                         alpha 0.85
-                        moveBy -180 0 0.95
+                        moveBy -100 0 1
+                    </Action>
+                </Image>
+                <Image x="350" y="280" name="cutscenes/cloud2">
+                    <Action duration="50">
+                        alpha 0.85
+                        moveBy -200 0 1
                     </Action>
                 </Image>
                 <Image x="800" y="240" name="cutscenes/cloud1">
@@ -42,28 +48,22 @@
                         moveBy -400 0 1
                     </Action>
                 </Image>
-                <Image x="350" y="280" name="cutscenes/cloud2">
-                    <Action duration="50">
-                        alpha 0.85
-                        moveBy -200 0 0.95
-                    </Action>
-                </Image>
-                <Image x="-200" y="450" name="cutscenes/plane">
+                <Image x="-200" y="480" name="cutscenes/plane">
                     <Action duration="20">
                         parallel
-                        moveBy 1000 0 1
-                        moveBy 0 -60 0.6 pow5Out
-                        repeat
-                        moveBy 0 -1 0.001
-                        moveBy 0 1 0.001
-                        end
+                            moveBy 1000 0 1
+                            repeat 1
+                                moveBy 0 -100 0.4 pow2Out
+                                delay 0.2
+                                moveBy 0 100 0.4 pow2In
+                            end
                         end
                     </Action>
                 </Image>
-                <Image x="700" y="360" name="cutscenes/cloud1">
+                <Image x="650" y="360" name="cutscenes/cloud1">
                     <Action duration="50">
                         alpha 0.9
-                        moveBy -400 0 1
+                        moveBy -600 0 1
                     </Action>
                 </Image>
                 <Image x="0" y="0" name="cutscenes/end-fg" center="root.center"/>
