@@ -35,16 +35,13 @@
 
 - Tag:
 
-    git tag -a $newv
-
-- Push
-
-    git push
-    git push --tags
+    make tagpush
 
 # Upload .apk
 
 - Upload on Google Play
+
+    make fastlane-beta
 
 - Upload on agateau.com
 
