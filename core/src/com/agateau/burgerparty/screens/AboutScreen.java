@@ -105,7 +105,7 @@ public class AboutScreen extends BurgerPartyScreen {
 
         float screenHeight = getStage().getHeight();
         addPadding(screenHeight / 3);
-        addText(tr("© 2013 - 2014 Green Yeti Lab"));
+        addText(tr("Thank you for playing!"));
         addPadding(screenHeight * 2 / 3);
     }
 
