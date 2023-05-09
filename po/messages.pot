@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-08 16:03+0200\n"
+"POT-Creation-Date: 2023-05-09 08:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,57 +71,57 @@ msgid_plural "+%# sec"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:83
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:85
 msgid "Sound"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:84
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:86
 msgid "About"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:84
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:86
 msgid "Who made this?"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:85
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
 msgid "Mastodon"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:85
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
 msgid "Follow me on Mastodon"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Goodies"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:144
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:144
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is ON"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:39
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:40
 #, java-printf-format
 msgid "Level %d-%d"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:42
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:43
 #, java-printf-format
 msgid "High score: %d"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:44
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:45
 msgid "No high score yet"
 msgstr ""
 
-#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:50
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:51
 msgid "Paused"
 msgstr ""
 
