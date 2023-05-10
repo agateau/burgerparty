@@ -1,3 +1,8 @@
+# 1.4.0 - 2023-05-08
+
+- Added an end sequence
+- Turned the app icon into an adaptive one
+
 # 1.3.0 - 2018-12-22
 
 - Removed ads! Burger Party is now free software

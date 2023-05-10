@@ -161,11 +161,6 @@
             up: ui/mastodon-button,
             pressedOffsetY: -2
         },
-        twitter-button: {
-            down: ui/twitter-button-down,
-            up: ui/twitter-button,
-            pressedOffsetY: -2
-        },
         goodies-button: {
             down: ui/goodies-button-down,
             up: ui/goodies-button,

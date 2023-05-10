@@ -1,0 +1,3 @@
+- Supprimé les pubs! Burger Party est maintenant un logiciel libre
+- Ajouté un bouton Goodies
+- Remplacé les boutons Facebook et Google+ par des boutons Mastodon et Twitter

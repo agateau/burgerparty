@@ -16,12 +16,15 @@ public class MainActivity extends AndroidApplication {
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useCompass = false;
         cfg.useAccelerometer = false;
+        cfg.useImmersiveMode = true;
         cfg.hideStatusBar = true;
         initialize(game, cfg);
         // Must be done *after* initialize because it requires Gdx.app to be
         // valid
         NLog.addPrinter(new GdxPrinter("BP"));
         NLog.i("");
-        game.setRatingControllerImplementation(new AndroidRatingControllerImplementation(this));
+        if (AndroidRatingController.isAvailable()) {
+            game.setRatingController(new AndroidRatingController(this));
+        }
     }
 }

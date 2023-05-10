@@ -5,6 +5,29 @@ dependencies {
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
 }
 
+task generateVersionInfoClass {
+    doFirst {
+        def outputDir = file("$buildDir/../generated/com/agateau/burgerparty")
+
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(file('../version.properties')))
+
+        if (!outputDir.exists()) {
+            outputDir.mkdirs()
+        }
+
+        def version = versionProps["VERSION"]
+        def src = "// Generated file, do not edit!\n" \
+            + "package com.agateau.burgerparty;\n" \
+            + "public class VersionInfo {\n" \
+            + "    public static final String VERSION = \"$version\";\n" \
+            + "}\n"
+        new File(outputDir, "VersionInfo.java").write(src)
+    }
+}
+
+compileJava.dependsOn(generateVersionInfoClass)
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-sourceSets.main.java.srcDirs = [ "src/", "i18n" ]
+sourceSets.main.java.srcDirs = [ "src/", "generated/", "i18n/" ]

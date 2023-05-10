@@ -78,7 +78,6 @@ public class Main {
         if (sWait) {
             game.waitInLoadingScreen();
         }
-        game.setRatingControllerImplementation(new DummyRatingControllerImplementation());
     }
 
     private static void parseArgs(String[] _args) {

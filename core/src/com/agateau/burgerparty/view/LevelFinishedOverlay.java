@@ -254,17 +254,13 @@ public class LevelFinishedOverlay extends Overlay {
             mainLabel.setText(tr("Congratulations, you finished world %d!", levelWorldIndex + 1));
         } else {
             mainLabel.setText(tr("Congratulations, you finished the game!"));
-            nextButton.setVisible(false);
-            nextButton = null;
         }
         UiUtils.adjustToPrefSize(mainLabel);
-        if (nextButton != null) {
-            nextButton.addListener(new ChangeListener() {
-                public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
-                    goToNextLevel();
-                }
-            });
-        }
+        nextButton.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent Event, Actor actor) {
+                goToNextLevel();
+            }
+        });
 
         mStarGroup = builder.<AnchorGroup>getActor("starGroup");
         for (int i = 0; i < 3; ++i) {
@@ -278,8 +274,10 @@ public class LevelFinishedOverlay extends Overlay {
         LevelWorld levelWorld = mGame.getCurrentUniverse().get(mLevelWorldIndex);
         if (mLevelIndex < levelWorld.getLevelCount() - 1) {
             mGame.startLevel(mLevelWorldIndex, mLevelIndex + 1);
-        } else {
+        } else if (mLevelWorldIndex < mGame.getCurrentUniverse().getWorlds().size - 1) {
             mGame.showNewWorldScreen(mLevelWorldIndex + 1);
+        } else {
+            mGame.showEndScreen();
         }
     }
 

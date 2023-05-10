@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * A group which uses a Frame Buffer Object to render its children
@@ -42,10 +43,12 @@ public class FboGroup extends Group implements Disposable {
     private void createFrameBuffer() {
         int w = (int)getWidth();
         int h = (int)getHeight();
-        mFrameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, w, h, false);
+        // Do not use RGBA8888, it causes jagged pixels on transparent edges
+        mFrameBuffer = new FrameBuffer(Pixmap.Format.RGB888, w, h, false);
     }
 
     private void fillFrameBuffer(Batch batch) {
+        Viewport viewport = getStage().getViewport();
         float oldAlpha = getColor().a;
         getColor().a = 1;
 
@@ -55,7 +58,7 @@ public class FboGroup extends Group implements Disposable {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         super.draw(batch, 1);
         batch.end();
-        mFrameBuffer.end();
+        mFrameBuffer.end(viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
 
         getColor().a = oldAlpha;
     }

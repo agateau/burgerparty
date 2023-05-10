@@ -6,6 +6,7 @@ import com.agateau.burgerparty.utils.FileUtils;
 import com.agateau.burgerparty.utils.RefreshHelper;
 import com.agateau.burgerparty.utils.UiBuilder;
 import com.agateau.burgerparty.view.BurgerPartyUiBuilder;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,32 +22,31 @@ public class NewWorldScreen extends BurgerPartyScreen {
 
     private final int mWorldIndex;
     private final Array<Actor> mViews = new Array<Actor>();
+    private final Runnable mNextRunnable;
 
     private int mCurrentViewIndex = -1;
 
-    public NewWorldScreen(BurgerPartyGame game, int worldIndex) {
+    public NewWorldScreen(BurgerPartyGame game, int worldIndex, Runnable nextRunnable) {
         super(game);
         mWorldIndex = worldIndex;
+        mNextRunnable = nextRunnable;
         createRefreshHelper();
         loadXml();
     }
 
     @Override
     public void onBackPressed() {
-        startNextLevel();
+        goToNextView();
     }
 
     private void createRefreshHelper() {
         new RefreshHelper(getStage()) {
             @Override
             protected void refresh() {
-                getGame().showNewWorldScreen(mWorldIndex);
+                NewWorldScreen screen = new NewWorldScreen(getGame(), mWorldIndex, mNextRunnable);
+                getGame().setScreenAndDispose(screen);
             }
         };
-    }
-
-    private void startNextLevel() {
-        getGame().startLevel(mWorldIndex, 0);
     }
 
     private void loadXml() {
@@ -67,9 +67,14 @@ public class NewWorldScreen extends BurgerPartyScreen {
                 throw new RuntimeException("Unknown view type '" + type + "'");
             }
             assert(view != null);
-            XmlReader.Element soundElement = viewElement.getChildByName("sound");
-            if (soundElement != null) {
-                view.addAction(createSoundAction(soundElement));
+            XmlReader.Element child = viewElement.getChildByName("sound");
+            if (child != null) {
+                view.addAction(createSoundAction(child));
+            }
+
+            child = viewElement.getChildByName("EndMusic");
+            if (child != null) {
+                view.addAction(createEndMusicAction());
             }
             mViews.add(createContainerForView(view, width, height));
         }
@@ -79,6 +84,12 @@ public class NewWorldScreen extends BurgerPartyScreen {
     private Action createSoundAction(XmlReader.Element soundElement) {
         String soundName = soundElement.getAttribute("name");
         Action action = getGame().getAssets().getSoundAtlas().createPlayAction(soundName);
+        return Actions.delay(ANIM_DURATION, action);
+    }
+
+    private Action createEndMusicAction() {
+        Music music = getGame().getAssets().getEndMusic();
+        Action action = Actions.run(music::play);
         return Actions.delay(ANIM_DURATION, action);
     }
 
@@ -134,12 +145,7 @@ public class NewWorldScreen extends BurgerPartyScreen {
         ++mCurrentViewIndex;
         Actor newView = mCurrentViewIndex < mViews.size ? mViews.get(mCurrentViewIndex) : null;
         if (newView == null) {
-            nextAction = Actions.run(new Runnable() {
-                @Override
-                public void run() {
-                    startNextLevel();
-                }
-            });
+            nextAction = Actions.run(mNextRunnable);
         } else {
             getStage().addActor(newView);
             // Fade in from behind

@@ -157,14 +157,6 @@ public class SoundAtlas {
             mSound.setPan(soundId, pan, volume);
         }
 
-        @Override
-        public void setPriority(long soundId, int priority) {
-            if (mMusicController.isMuted()) {
-                return;
-            }
-            mSound.setPriority(soundId, priority);
-        }
-
         Sound mSound;
     }
 

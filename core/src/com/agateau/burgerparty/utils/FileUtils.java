@@ -1,7 +1,6 @@
 package com.agateau.burgerparty.utils;
 
 import java.io.File;
-import java.io.IOException;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -43,13 +42,7 @@ public class FileUtils {
 
     public static XmlReader.Element parseXml(FileHandle handle) {
         XmlReader reader = new XmlReader();
-        XmlReader.Element root = null;
-        try {
-            root = reader.parse(handle);
-        } catch (IOException e) {
-            NLog.e("Failed to parse xml file from %s. Exception: %s.", handle.path(), e.toString());
-            return null;
-        }
+        XmlReader.Element root = reader.parse(handle);
         if (root == null) {
             NLog.e("Failed to parse xml file from %s. No root element.", handle.path());
             return null;

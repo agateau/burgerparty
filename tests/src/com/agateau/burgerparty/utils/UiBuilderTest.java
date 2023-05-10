@@ -25,8 +25,7 @@ public class UiBuilderTest {
         XmlReader.Element rootElement = TestUtils.parseXml(
               "<gdxui>"
             + "  <AnchorGroup id='root'>"
-            + "    <ScrollPane bottomLeft='root.bottomLeft 1 1'>"
-            + "    </ScrollPane>"
+            + "    <VerticalGroup bottomLeft='root.bottomLeft 1 1'/>"
             + "  </AnchorGroup>"
             + "</gdxui>"
         );
