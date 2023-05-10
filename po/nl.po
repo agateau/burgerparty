@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-09 08:54+0200\n"
-"PO-Revision-Date: 2023-04-21 14:59+0200\n"
+"PO-Revision-Date: 2023-05-10 11:35+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: core/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
 msgid "1 remaining."
@@ -58,7 +58,7 @@ msgstr "Geluiden"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:109
 msgid "Thank you for playing!"
-msgstr ""
+msgstr "Bedankt voor het spelen!"
 
 #: core/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
 msgid "Game Over"
@@ -87,9 +87,8 @@ msgid "Mastodon"
 msgstr "Mastodon"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
-#, fuzzy
 msgid "Follow me on Mastodon"
-msgstr "Volg me op Mastodon,"
+msgstr "Volg me op Mastodon"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Goodies"
@@ -154,13 +153,12 @@ msgid "Finish all levels of world %d with 3 stars."
 msgstr "Rond alle levels van wereld %d af met 3 sterren."
 
 #: core/src/com/agateau/burgerparty/model/SupportRatingController.java:14
-#, fuzzy
 msgid "Support Burger Party"
-msgstr "Beoordeel Burger Party"
+msgstr "Ondersteun Burger Party"
 
 #: core/src/com/agateau/burgerparty/model/SupportRatingController.java:19
 msgid "Like the game? Support my work!"
-msgstr ""
+msgstr "Speel je graag? Ondersteun dan mijn werk!"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
 msgid "Star Collector"
@@ -276,10 +274,8 @@ msgid "Rate Burger Party"
 msgstr "Beoordeel Burger Party"
 
 #: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:28
-#, fuzzy
 msgid "Like the game? Give it a good rate!"
-msgstr ""
-"Beleef je veel plezier aan het spel? Laat dan een goede beoordeling achter!"
+msgstr "Speel je graag? Laat dan een goede beoordeling achter!"
 
 #~ msgid "© 2013 - 2014 Green Yeti Lab"
 #~ msgstr "© 2013 - 2014 Green Yeti Lab"
