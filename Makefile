@@ -35,6 +35,20 @@ ANDROID_PACKAGE_NAME=$(GAME_CP)
 
 FLAVORS=agc gp amz
 
+HIERO_JAR ?= ""
+HIERO_CMD = java -jar "$(HIERO_JAR)"
+
+HIERO_DIR = core/assets/fonts
+FONT_PNG_DIR = core/assets
+FONT_FNT_DIR = android/assets/ui
+
+
+HIERO_FILES := $(wildcard $(HIERO_DIR)/*.hiero)
+FONT_PNGS := $(subst $(HIERO_DIR), $(FONT_PNG_DIR), $(patsubst %.hiero, %.png, $(HIERO_FILES)))
+
+t:
+	@for x in $(FONT_PNGS) ; do echo $$x ; done
+
 all: build
 
 clean:
@@ -59,6 +73,23 @@ packer: $(TOOLS_JAR)
 	cd desktop && java -cp $(TOOLS_JAR) $(GAME_CP).PackerMain
 	sleep 1
 	touch $(ASSETS_DIR)/*.png $(ASSETS_DIR)/burgerparty.atlas
+
+# Fonts
+clean-fonts:
+	rm -f $(FONT_PNGS)
+
+fonts: $(FONT_PNGS)
+
+$(FONT_PNG_DIR)/%.png: $(HIERO_DIR)/%.hiero
+	@echo "$< -> $@"
+	@if [ -z "$(HIERO_JAR)" ] ; then
+		echo "Please set the path to hiero.jar in the HIERO_JAR environment variable"
+		exit 1
+	fi
+	@name_without_ext=$(patsubst %.png,%,$@)
+	$(HIERO_CMD) --input $< --output $$name_without_ext --batch
+	mv $$name_without_ext.fnt $(FONT_FNT_DIR)
+
 
 customer-editor: $(TOOLS_JAR)
 	cd $(ASSETS_DIR) && java -cp $(TOOLS_JAR) $(GAME_CP).tools.CustomerEditorMain $(ASSETS_DIR)/customerparts.xml
