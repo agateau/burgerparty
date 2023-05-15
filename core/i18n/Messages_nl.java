@@ -19,7 +19,7 @@ public class Messages_nl extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Evening Gamer", "Avondmens");
         plainEntries.put("Fan", "Fan");
         plainEntries.put("Finish all levels of world %d with 3 stars.", "Rond alle levels van wereld %d af met 3 sterren.");
-        plainEntries.put("Follow me on Mastodon,", "Volg me op Mastodon,");
+        plainEntries.put("Follow me on Mastodon", "Volg me op Mastodon");
         plainEntries.put("Fonts", "Lettertypen");
         plainEntries.put("Game Over", "Spel afgelopen");
         plainEntries.put("Get a perfect in all levels of world %d.", "Rond alle levels van wereld %d af met een perfecte score.");
@@ -27,7 +27,8 @@ public class Messages_nl extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Happy customer!", "Tevreden klant!");
         plainEntries.put("High score: %d", "Topscore: %d");
         plainEntries.put("Level %d-%d", "Level %d-%d");
-        plainEntries.put("Like the game? Would be awesome if you could give it a good rate!", "Beleef je veel plezier aan het spel? Laat dan een goede beoordeling achter!");
+        plainEntries.put("Like the game? Give it a good rate!", "Speel je graag? Laat dan een goede beoordeling achter!");
+        plainEntries.put("Like the game? Support my work!", "Speel je graag? Ondersteun dan mijn werk!");
         plainEntries.put("Mastodon", "Mastodon");
         plainEntries.put("Morning Gamer", "Ochtendmens");
         plainEntries.put("Music", "Muziek");
@@ -43,13 +44,12 @@ public class Messages_nl extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Sound is ON", "Geluid is AAN");
         plainEntries.put("Sounds", "Geluiden");
         plainEntries.put("Star Collector", "Sterrenjager");
+        plainEntries.put("Support Burger Party", "Ondersteun Burger Party");
         plainEntries.put("Testers", "Testers");
+        plainEntries.put("Thank you for playing!", "Bedankt voor het spelen!");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
-        plainEntries.put("Twitter", "Twitter");
         plainEntries.put("Version %s", "Versie %s");
         plainEntries.put("Who made this?", "Wie heeft dit spel gemaakt?");
-        plainEntries.put("or on Twitter!", "of op Twitter!");
-        plainEntries.put("© 2013 - 2014 Green Yeti Lab", "© 2013 - 2014 Green Yeti Lab");
         pluralEntries.put(
             new PluralId("+%# sec", "+%# sec"),
             new String[] {
