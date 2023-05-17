@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""
+Use stdin to define the `glyph.text` entry in the given .hiero files.
+
+Common usage:
+
+list-po-chars po/*.po -a | scripts/update-hiero-glyph-text core/assets/fonts/*.hiero
+"""
+import argparse
+import re
+import sys
+
+from pathlib import Path
+
+
+WRAP_LENGTH = 32
+
+
+def wrap_chars(chars):
+    dst = [chars[idx:idx+WRAP_LENGTH] for idx in range(0, len(chars), WRAP_LENGTH)]
+    return "\\n".join(dst)
+
+
+def update_glyph_text(hiero_file, chars):
+    text = Path(hiero_file).read_text()
+    repl = f"glyph.text={chars}".replace("\\", r"\\")
+    text, count = re.subn(r"^glyph\.text=.*", repl, text, flags=re.MULTILINE)
+    if count != 1:
+        sys.exit(f"Expected to make one replacement in {hiero_file}, made {count}")
+    Path(hiero_file).write_text(text)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__)
+
+    parser.add_argument("hiero_file", nargs="+")
+
+    args = parser.parse_args()
+
+    chars = sys.stdin.read().strip()
+
+    chars = wrap_chars(chars)
+
+    for hiero_file in args.hiero_file:
+        update_glyph_text(hiero_file, chars)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+# vi: ts=4 sw=4 et
