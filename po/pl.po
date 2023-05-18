@@ -90,7 +90,7 @@ msgstr "Mastodon"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
 msgid "Follow me on Mastodon"
-msgstr "Obserwuj mnie na Mastodonie"
+msgstr "Obserwuj mnie na\nMastodonie"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Goodies"

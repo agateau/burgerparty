@@ -12,7 +12,7 @@ pad.top=2
 pad.right=2
 pad.bottom=2
 pad.left=2
-pad.advance.x=-2
+pad.advance.x=-4
 pad.advance.y=0
 
 glyph.native.rendering=false
