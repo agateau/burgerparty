@@ -80,7 +80,9 @@ fonts: $(FONT_PNGS)
 $(FONT_PNG_DIR)/%.png: $(HIERO_DIR)/%.hiero
 	@echo "$< -> $@"
 	@if [ -z "$(HIERO_JAR)" ] ; then
-		echo "Please set the path to hiero.jar in the HIERO_JAR environment variable"
+		@echo "Please set the path to hiero.jar in the HIERO_JAR environment variable."
+		@echo "Use a version with support for relative font paths. You can find one here:"
+		@echo "https://github.com/agateau/libgdx/releases/tag/hiero-20230518"
 		exit 1
 	fi
 	@name_without_ext=$(patsubst %.png,%,$@)

@@ -24,6 +24,8 @@ Fonts are stored in `core/assets/fonts`. This directory contains the .ttf files 
 
 For the `fonts` target to work, the `HIERO_JAR` environment variable must contain the path to Hiero jar file.
 
+At the moment, you must use a version of Hiero with support for relative font paths. You can find one here: <https://github.com/agateau/libgdx/releases/tag/hiero-20230518>.
+
 ## individual PNG to atlas PNGs
 
 The `packer` target takes all PNGs from `core/assets` and its sub-directories and generates atlas PNGs in `android/assets` as well as the `burgerparty.atlas` file.
