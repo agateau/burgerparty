@@ -2,18 +2,25 @@ font.name=Sanitechtro
 font.size=40
 font.bold=false
 font.italic=false
+font.gamma=0.0
+font.mono=false
+
+font2.file=sanitechtro/Sanitechtro.ttf
+font2.use=true
 
 pad.top=2
 pad.right=2
 pad.bottom=2
 pad.left=2
-pad.advance.x=0
+pad.advance.x=-2
 pad.advance.y=0
 
 glyph.native.rendering=false
 glyph.page.width=512
 glyph.page.height=512
-glyph.text=ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n1234567890\n"!`?'.,;:()[]{}<>|/@\^$-%+=#_&~*\n\n ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»\n¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙ\nÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷\nøùúûüýþÿ
+glyph.text=!"#$%&'()*+,-./0123456789:;<=>?@\nABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`\nabcdefghijklmnopqrstuvwxyz{|}~©à\nâéëî
+
+render_type=0
 
 effect.class=com.badlogic.gdx.tools.hiero.unicodefont.effects.ColorEffect
 effect.Color=ffffff
