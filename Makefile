@@ -46,9 +46,6 @@ FONT_FNT_DIR = android/assets/ui
 HIERO_FILES := $(wildcard $(HIERO_DIR)/*.hiero)
 FONT_PNGS := $(subst $(HIERO_DIR), $(FONT_PNG_DIR), $(patsubst %.hiero, %.png, $(HIERO_FILES)))
 
-t:
-	@for x in $(FONT_PNGS) ; do echo $$x ; done
-
 all: build
 
 clean:
