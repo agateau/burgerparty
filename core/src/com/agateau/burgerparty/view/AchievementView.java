@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class AchievementView extends AnchorGroup {
     private static final float WIDTH = 600;
+    private static final float PADDING = 10;
 
     public AchievementView(Assets assets, Achievement achievement) {
         TextureAtlas atlas = assets.getTextureAtlas();
@@ -42,15 +43,18 @@ public class AchievementView extends AnchorGroup {
             descriptionLabel.setColor(1, 1, 1, 0.8f);
         }
 
+        titleLabel.pack();
+        descriptionLabel.pack();
+
         setWidth(WIDTH);
-        addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, 10, -10);
-        addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, 7, 14f);
+        addRule(icon, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT, PADDING, 0);
+        addRule(titleLabel, Anchor.BOTTOM_LEFT, icon, Anchor.CENTER_RIGHT, PADDING, -8f);
         addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
         if (statusIcon != null) {
-            addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -12, 0);
+            addRule(statusIcon, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT, -PADDING, 0);
         }
 
-        setHeight(titleLabel.getHeight() + descriptionLabel.getHeight());
+        setHeight(icon.getPrefHeight() + 2 * PADDING);
     }
 
 }

@@ -12,13 +12,13 @@ pad.top=2
 pad.right=2
 pad.bottom=2
 pad.left=2
-pad.advance.x=-2
+pad.advance.x=-4
 pad.advance.y=0
 
 glyph.native.rendering=false
 glyph.page.width=512
 glyph.page.height=512
-glyph.text=!"#$%&'()*+,-./0123456789:;<=>?@\nABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`\nabcdefghijklmnopqrstuvwxyz{|}~©à\nâéëî
+glyph.text=!"#$%&'()*+,-./0123456789:;<=>?@\nABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`\nabcdefghijklmnopqrstuvwxyz{|}~©à\nâéëîóĄąćęŁłńśźż
 
 render_type=0
 
