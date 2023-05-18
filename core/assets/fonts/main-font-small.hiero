@@ -11,7 +11,7 @@ pad.right=1
 pad.bottom=1
 pad.left=1
 pad.advance.x=-2
-pad.advance.y=0
+pad.advance.y=-2
 
 glyph.native.rendering=false
 glyph.page.width=512

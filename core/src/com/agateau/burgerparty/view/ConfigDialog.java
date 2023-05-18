@@ -61,7 +61,7 @@ public class ConfigDialog extends Dialog {
             vGroup.columnAlign(Align.left);
             vGroup.addActor(titleLabel);
             vGroup.addActor(mSubtitleLabel);
-            vGroup.space(-10);
+            vGroup.space(-5);
 
             addActor(vGroup);
             setSize(getPrefWidth(), getPrefHeight());
