@@ -22,7 +22,9 @@ msgstr ""
 #: core/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
 msgid "1 remaining."
 msgid_plural "%# remaining."
-msgstr "Pozostało: %#."
+msgstr[0] "Pozostało: %#."
+msgstr[1] "Pozostało: %#."
+msgstr[2] "Pozostało: %#."
 
 #: core/src/com/agateau/burgerparty/screens/NewItemScreen.java:118
 msgid "New item unlocked!"

@@ -4,7 +4,6 @@
 public class Messages_pl extends com.greenyetilab.linguaj.Messages {
     public Messages_pl() {
         plainEntries.put("%dx combo!", "%dx combo!");
-        plainEntries.put("1 remaining.", "Pozostało: %#.");
         plainEntries.put("About", "O grze");
         plainEntries.put("All Stars #%d", "Wszystkie gwiazdki #%d");
         plainEntries.put("Burger Apprentice", "Burgerowy uczeń");
@@ -57,6 +56,14 @@ public class Messages_pl extends com.greenyetilab.linguaj.Messages {
                 "+%# sekunda",
                 "+%# sekundy",
                 "+%# sekund",
+            }
+        );
+        pluralEntries.put(
+            new PluralId("1 remaining.", "%# remaining."),
+            new String[] {
+                "Pozostało: %#.",
+                "Pozostało: %#.",
+                "Pozostało: %#.",
             }
         );
         pluralEntries.put(
