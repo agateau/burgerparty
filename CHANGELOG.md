@@ -1,3 +1,8 @@
+# 1.4.1 - 2023-05-19
+
+- Burger Party now speaks Dutch, thanks to Heimen Stoffels
+- It also speaks Polish, thanks to Marek Szumny
+
 # 1.4.0 - 2023-05-08
 
 - Added an end sequence
