@@ -102,8 +102,8 @@ desktop-archives: build
 apk-archives: apk
 	@echo Copying apk files
 	@mkdir -p $(ARCHIVE_DIR)
-	@for store in $(FLAVORS) ; do \
-		cp android/build/outputs/apk/$$store/release/android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
+	@for flavor in $(FLAVORS) ; do \
+		cp android/build/outputs/apk/$$flavor/release/android-$$flavor-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION)-$$flavor.apk ; \
 	done
 
 dist: check desktop-archives apk-archives
