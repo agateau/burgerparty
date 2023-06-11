@@ -54,10 +54,10 @@ clean:
 build: $(DESKTOP_JAR)
 
 $(DESKTOP_JAR): compile-po
-	${GRADLEW} desktop:dist
+	$(GRADLEW) desktop:dist
 
 apk: compile-po
-	./gradlew android:assembleRelease
+	$(GRADLEW) android:assembleRelease
 
 run: build
 	cd android/assets && java -Duser.language=$$LANG -jar $(DESKTOP_JAR)
