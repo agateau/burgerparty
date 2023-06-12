@@ -16,6 +16,7 @@ android {
     Properties versionProps = new Properties()
     versionProps.load(new FileInputStream(file('../version.properties')))
 
+    // Must match ci/install-android-sdk
     compileSdkVersion 33
     defaultConfig {
         minSdkVersion 9
@@ -58,7 +59,16 @@ android {
         }
     }
     signingConfigs {
-        apply from: 'signing.gradle', to: release
+        release {
+            if (project.file('signing.gradle').exists()) {
+                apply from: 'signing.gradle', to: release
+            } else if (System.getenv("KEYSTORE_BASE64") != null) {
+                storeFile decodeKeyStoreFileFromBase64Env('KEYSTORE_BASE64')
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEYSTORE_KEY_ALIAS')
+                keyPassword System.getenv('KEYSTORE_KEY_PASSWORD')
+            }
+        }
     }
     buildTypes {
         release {
@@ -66,7 +76,9 @@ android {
         }
     }
     packagingOptions {
-        exclude 'LICENSE.txt'
+        resources {
+            excludes += ['LICENSE.txt']
+        }
     }
 }
 
@@ -115,4 +127,24 @@ task run(type: Exec) {
 
     def adb = path + "/platform-tools/adb"
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.agateau.burgerparty/com.agateau.burgerparty.MainActivity'
+}
+
+// Thanks to https://gist.github.com/mariotaku/7a0c51955d14def2fa0e#file-signing-gradle-L82
+static def decodeKeyStoreFileFromBase64Env(String name) {
+    String keyStoreBase64 = System.getenv(name)
+    if (keyStoreBase64 == null) {
+        return null
+    }
+    File tempKeyStoreFile = File.createTempFile("tmp_ks_", ".jks", File.createTempDir())
+    FileOutputStream fos = null
+    try {
+        fos = new FileOutputStream(tempKeyStoreFile)
+        fos.write(keyStoreBase64.decodeBase64())
+        fos.flush()
+    } finally {
+        if (fos != null) {
+            fos.close()
+        }
+    }
+    return tempKeyStoreFile
 }

@@ -46,6 +46,12 @@ FONT_FNT_DIR = android/assets/ui
 HIERO_FILES := $(wildcard $(HIERO_DIR)/*.hiero)
 FONT_PNGS := $(subst $(HIERO_DIR), $(FONT_PNG_DIR), $(patsubst %.hiero, %.png, $(HIERO_FILES)))
 
+# Update VERSION variable for snapshots
+ifdef SNAPSHOT
+	BRANCH:=$(shell git rev-parse --abbrev-ref HEAD | sed s,/,-,g)
+	VERSION:=$(VERSION)+$(BRANCH)-$(shell git show --no-patch --format="%cd-%h" --date=format:%Y%m%dT%H%M%S)
+endif
+
 all: build
 
 clean:
@@ -107,6 +113,12 @@ apk-archives: apk
 	done
 
 dist: check desktop-archives apk-archives
+
+clean-dist: clean dist
+
+desktop-dist: check desktop-archives
+
+clean-desktop-dist: clean desktop-dist
 
 # Tests
 check: build

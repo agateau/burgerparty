@@ -1,0 +1,6 @@
+*
+!ci/*
+!requirements.txt
+!linguaj/requirements.txt
+!gradle/*
+!gradlew
