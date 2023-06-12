@@ -46,6 +46,12 @@ FONT_FNT_DIR = android/assets/ui
 HIERO_FILES := $(wildcard $(HIERO_DIR)/*.hiero)
 FONT_PNGS := $(subst $(HIERO_DIR), $(FONT_PNG_DIR), $(patsubst %.hiero, %.png, $(HIERO_FILES)))
 
+# Update VERSION variable for snapshots
+ifdef SNAPSHOT
+	BRANCH:=$(shell git rev-parse --abbrev-ref HEAD | sed s,/,-,g)
+	VERSION:=$(VERSION)+$(BRANCH)-$(shell git show --no-patch --format="%cd-%h" --date=format:%Y%m%dT%H%M%S)
+endif
+
 all: build
 
 clean:
@@ -54,10 +60,10 @@ clean:
 build: $(DESKTOP_JAR)
 
 $(DESKTOP_JAR): compile-po
-	${GRADLEW} desktop:dist
+	$(GRADLEW) desktop:dist
 
 apk: compile-po
-	./gradlew android:assembleRelease
+	$(GRADLEW) android:assembleRelease
 
 run: build
 	cd android/assets && java -Duser.language=$$LANG -jar $(DESKTOP_JAR)
@@ -102,11 +108,17 @@ desktop-archives: build
 apk-archives: apk
 	@echo Copying apk files
 	@mkdir -p $(ARCHIVE_DIR)
-	@for store in $(FLAVORS) ; do \
-		cp android/build/outputs/apk/$$store/release/android-$$store-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$$store-$(VERSION).apk ; \
+	@for flavor in $(FLAVORS) ; do \
+		cp android/build/outputs/apk/$$flavor/release/android-$$flavor-release.apk $(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION)-$$flavor.apk ; \
 	done
 
 dist: check desktop-archives apk-archives
+
+clean-dist: clean dist
+
+desktop-dist: check desktop-archives
+
+clean-desktop-dist: clean desktop-dist
 
 # Tests
 check: build

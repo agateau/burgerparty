@@ -1,0 +1,34 @@
+#!/bin/sh
+set -e
+
+cd $(dirname $0)
+
+make_args=$@
+
+SRC_DIR=$PWD/..
+LOCAL_PROPERTIES=$SRC_DIR/local.properties
+
+if [ -n "$KEYSTORE_BASE64" ]; then
+    echo "Building desktop and apk archives"
+    make_target=clean-dist
+else
+    echo "Not building apk archives: \$KEYSTORE_BASE64 environment variable not set."
+    # Creat an empty signing.gradle, otherwise tests won't pass
+    touch $SRC_DIR/android/signing.gradle
+    make_target=clean-desktop-dist
+fi
+
+if [ ! -e "$LOCAL_PROPERTIES" ]; then
+    echo "Creating $LOCAL_PROPERTIES"
+    # Must match ci/install-android-sdk
+    echo "sdk.dir=/opt/android-sdk" > "$LOCAL_PROPERTIES"
+fi
+
+docker run --rm \
+    -v $SRC_DIR:/src/burgerparty \
+    --env "KEYSTORE_BASE64=$KEYSTORE_BASE64" \
+    --env "KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD" \
+    --env "KEYSTORE_KEY_ALIAS=$KEYSTORE_KEY_ALIAS" \
+    --env "KEYSTORE_KEY_PASSWORD=$KEYSTORE_KEY_PASSWORD" \
+    burgerparty \
+    -c "make GRADLEW='./gradlew --console plain' -C /src/burgerparty $make_target $make_args"
