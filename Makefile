@@ -145,3 +145,8 @@ tagpush: tag
 # Uploading
 fastlane-beta:
 	fastlane supply --track beta --apk $(ARCHIVE_DIR)/$(ANDROID_GP_RUN_DIST_NAME).apk
+
+gh-upload:
+	gh release create --draft ${VERSION} \
+		$(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION).jar \
+		$(ARCHIVE_DIR)/$(EXECUTABLE)-$(VERSION)-agc.apk
