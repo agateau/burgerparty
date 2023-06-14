@@ -27,7 +27,7 @@ EXECUTABLE=burgerparty
 
 include version.properties
 
-ANDROID_GP_RUN_DIST_NAME=$(EXECUTABLE)-gp-$(VERSION)
+ANDROID_GP_RUN_DIST_NAME=$(EXECUTABLE)-$(VERSION)-gp
 
 ARCHIVE_DIR=$(CURDIR)/archives
 
