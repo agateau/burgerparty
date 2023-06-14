@@ -1,3 +1,7 @@
+# 1.4.2 - 2023-06-14
+
+- Rebuilt to remove unnecessary files shipped in the APK
+
 # 1.4.1 - 2023-05-19
 
 - Burger Party now speaks Dutch, thanks to Heimen Stoffels
