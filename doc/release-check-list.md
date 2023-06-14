@@ -1,30 +1,31 @@
 # Create .apk
 
-- Check source tree is clean
+- [ ] Clone source tree
 
     ```
-    git checkout master
-    git pull
-    git status
+    cd ~/tmp
+    git clone git@github.com:agateau/burgerparty --reference ~/src/burgerparty
+    cd burgerparty
+    git checkout -b prep-release
     ```
 
-- Bump version numbers:
+- [ ] Bump version numbers:
 
     ```
     vi version.properties
     ```
 
-- Check translations are up to date
+- [ ] Check translations are up to date
     - Run `pot-generate`
     - Translate new strings
 
-- Run unit tests
+- [ ] Run unit tests
 
     ```
     make check
     ```
 
-- Generate .apk
+- [ ] Generate .apk
 
     Check android/signing.gradle exists
 
@@ -32,21 +33,37 @@
     make dist
     ```
 
-- Smoke test
+- [ ] Smoke test
     - on PC
     - on phone
     - on tablet
 
-- Update changelogs
+- [ ] Update changelogs
 
     ```
     vi CHANGELOG.md
     vi fastlane/metadata/android/en-US/changelogs/${versionCode}.txt
     ```
 
-- Commit
+- [ ] Commit changes
 
-- Tag:
+- [ ] Push changes
+
+    ```
+    git push -u origin prep-release
+    ```
+
+- [ ] Check CI is happy
+
+- [ ] Merge in master
+
+    ```
+    git checkout master
+    git pull
+    git merge --ff-only dev
+    ```
+
+- [ ] Tag:
 
     ```
     make tagpush
@@ -54,44 +71,52 @@
 
 # Upload .apk
 
-- Upload on Google Play
+- [ ] Upload on Google Play
 
     ```
     make fastlane-beta
     ```
 
-- Upload on agateau.com
+- [ ] Upload on agateau.com
 
 # Prepare spread
 
-- Take screenshots
+- [ ] Take screenshots
 
 ## agateau.com
 
-- Update project page
+- [ ] Update project page
 
-- Write announcement blog post
+- [ ] Write announcement blog post
 
-- Publish
+- [ ] Publish
+
+## GitHub
+
+- [ ] Upload on GitHub
+
+    ```
+    make gh-upload
+    ```
 
 ## Slidedb
 
-- Post news
+- [ ] Post news
 
 ## Google Play
 
-- Update Google Play
+- [ ] Update Google Play
 
-- Publish
+- [ ] Publish
 
 ## Amazon
 
-- Update Amazon Appstore
+- [ ] Update Amazon Appstore
 
-- Publish
+- [ ] Publish
 
 # Spread
 
-- Announce on Mastodon
+- [ ] Announce on Mastodon
 
-- Announce on Twitter
+- [ ] Announce on Twitter
