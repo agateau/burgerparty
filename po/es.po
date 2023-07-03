@@ -96,7 +96,7 @@ msgstr "Golosinas"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "Compra golosinas de Burger Party!"
+msgstr "Compra golosinas de\nBurger Party!"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"
