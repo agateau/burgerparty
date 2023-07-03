@@ -1,0 +1,279 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-19 08:01+0200\n"
+"PO-Revision-Date: 2023-06-07 10:21+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: core/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
+msgid "1 remaining."
+msgid_plural "%# remaining."
+msgstr[0] "1 faltan."
+msgstr[1] "%# falta."
+
+#: core/src/com/agateau/burgerparty/screens/NewItemScreen.java:118
+msgid "New item unlocked!"
+msgstr "Item berria lortu duzu!"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:70
+#, java-printf-format
+msgid "Version %s"
+msgstr "%s bertsioa"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:71
+msgid "Code & Design"
+msgstr "Kodea & Diseinua"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:74
+msgid "Music"
+msgstr "Musika"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:75
+msgid "Thomas Tripon"
+msgstr "Thomas Tripon"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:77
+msgid "Testers"
+msgstr "Tester-ak"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:87
+msgid "Fonts"
+msgstr "Letra-tipoak"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:91
+msgid "Sounds"
+msgstr "Soinuak"
+
+#: core/src/com/agateau/burgerparty/screens/AboutScreen.java:109
+msgid "Thank you for playing!"
+msgstr "Eskerrik asko jostatzeagatik!"
+
+#: core/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
+msgid "Game Over"
+msgstr "Akabo Jokoa"
+
+#: core/src/com/agateau/burgerparty/view/WorldView.java:357
+msgid "+%# sec"
+msgid_plural "+%# sec"
+msgstr[0] "+%# segundo"
+msgstr[1] "+%# segundo"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:85
+msgid "Sound"
+msgstr "Soinua"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:86
+msgid "About"
+msgstr "Honi buruz"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:86
+msgid "Who made this?"
+msgstr "Nork egin du hau?"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
+msgid "Follow me on Mastodon"
+msgstr "Jarrai nazazu Mastodon-en"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
+msgid "Goodies"
+msgstr "Gutiziak"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
+msgid "Buy Burger Party goodies!"
+msgstr "Erosi Burger Party-ko gutiziak!"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
+msgid "Sound is OFF"
+msgstr "Soinua OFF"
+
+#: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
+msgid "Sound is ON"
+msgstr "Soinua ON"
+
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:40
+#, java-printf-format
+msgid "Level %d-%d"
+msgstr "%d-%d maila"
+
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:43
+#, java-printf-format
+msgid "High score: %d"
+msgstr "Marka: %d"
+
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:45
+msgid "No high score yet"
+msgstr "Oraindik markarik ez"
+
+#: core/src/com/agateau/burgerparty/view/PauseOverlay.java:51
+msgid "Paused"
+msgstr "Pausatuta"
+
+#: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
+msgid "New High Score!"
+msgstr "Marka berria!"
+
+#: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
+#, java-printf-format
+msgid "Congratulations, you finished level %d-%d!"
+msgstr "Zorionak, %d-%d maila bukatu duzu!"
+
+#: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
+#, java-printf-format
+msgid "Congratulations, you finished world %d!"
+msgstr "Zorionak, %d mundua bukatu duzu!"
+
+#: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
+msgid "Congratulations, you finished the game!"
+msgstr "Zorionak, jokoa bukatu duzu!"
+
+#: core/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
+#, java-printf-format
+msgid "All Stars #%d"
+msgstr "#%d izar guztiak"
+
+#: core/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
+#, java-printf-format
+msgid "Finish all levels of world %d with 3 stars."
+msgstr "Bukatu %d munduko maila guztiak 3 izarrekin."
+
+#: core/src/com/agateau/burgerparty/model/SupportRatingController.java:14
+msgid "Support Burger Party"
+msgstr "Babestu Burger Party"
+
+#: core/src/com/agateau/burgerparty/model/SupportRatingController.java:19
+msgid "Like the game? Support my work!"
+msgstr "Jokoa gustuko duzu? Babestu nire lana!"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
+msgid "Star Collector"
+msgstr "Izar Biltzailea"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
+msgid "ignore-collect"
+msgid_plural "Collect %# stars."
+msgstr[0] "ignore-collect"
+msgstr[1] "Lortu %# izar."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+msgid "Burger Apprentice"
+msgstr "Burger Ikaslea"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:80
+msgid "ignore-n-burgers"
+msgid_plural "Serve %# burgers."
+msgstr[0] "ignore-n-burgers"
+msgstr[1] "Zerbitzatu %# burger."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
+msgid "Burger Master"
+msgstr "Burger Nagusia"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:80
+msgid "Burger God"
+msgstr "Burger Jainkoa"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
+msgid "Practice Area"
+msgstr "Praktika Txokoa"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
+msgid "ignore-practice"
+msgid_plural "Play %# levels to unlock the practice area."
+msgstr[0] "ignore-practice"
+msgstr[1] "Jokatu %# maila praktika txokoa irekitzeko."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:97
+msgid "Fan"
+msgstr "Fan"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:97
+msgid "ignore-fan"
+msgid_plural "Play %# levels."
+msgstr[0] "ignore-fan"
+msgstr[1] "Jokatu %# maila."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:102
+msgid "Close Call"
+msgstr "Azken Deia"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:103
+msgid "ignore-close-call"
+msgid_plural "Finish a level with less than %# seconds left."
+msgstr[0] "ignore-close-call"
+msgstr[1] "Buka ezazu maila bat %# baino segundo gutxiago falta direlarik."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
+msgid "Morning Gamer"
+msgstr "Goizeko Jokalaria"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
+msgid "ignore-morning"
+msgid_plural "Start a game between 7AM and 10AM for %# days."
+msgstr[0] "ignore-morning"
+msgstr[1] "Hasi jokoan goizeko 7:00ak eta 10:00akak bitartean %# egunez."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
+msgid "Evening Gamer"
+msgstr "Arratsaldeko Jokalaria"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
+msgid "ignore-evening"
+msgid_plural "Start a game between 7PM and 11PM for %# days."
+msgstr[0] "ignore-evening"
+msgstr[1] "Hasi jokoan arratsaldeko 19:00ak eta 23:00ak bitartean %# egunez."
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:131
+msgid "Creative"
+msgstr "Sortzailea"
+
+#: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:131
+msgid "ignore-creative"
+msgid_plural "Create %# different burgers in the practice area."
+msgstr[0] "ignore-creative"
+msgstr[1] "Sortu %# burger desberdin praktika txokoan."
+
+#: core/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
+#, java-printf-format
+msgid "Perfect #%d"
+msgstr "#%d bikain"
+
+#: core/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
+#, java-printf-format
+msgid "Get a perfect in all levels of world %d."
+msgstr "Egizu bikain %d munduko maila guztietan."
+
+#: core/src/com/agateau/burgerparty/model/World.java:342
+#, java-printf-format
+msgid "%dx combo!"
+msgstr "%dx konboa!"
+
+#: core/src/com/agateau/burgerparty/model/World.java:346
+msgid "Happy customer!"
+msgstr "Bezeroa pozik!"
+
+#: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:23
+msgid "Rate Burger Party"
+msgstr "Puntuatu Burger Party"
+
+#: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:28
+msgid "Like the game? Give it a good rate!"
+msgstr "Jokoa gustuko duzu? Puntua ezazu altu!"
