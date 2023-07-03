@@ -81,11 +81,16 @@ packer: $(TOOLS_JAR)
 clean-fonts:
 	rm -f $(FONT_PNGS)
 
-fonts: $(FONT_PNGS)
+fonts: update-hiero-glyph-text $(FONT_PNGS)
+
+update-hiero-glyph-text:
+	list-po-chars po/*.po --ascii | scripts/update-hiero-glyph-text core/assets/fonts/*.hiero
 
 $(FONT_PNG_DIR)/%.png: $(HIERO_DIR)/%.hiero
 	@echo "$< -> $@"
 	@if [ -z "$(HIERO_JAR)" ] ; then
+		@echo "Error: can't find the hiero tool."
+		@echo ""
 		@echo "Please set the path to hiero.jar in the HIERO_JAR environment variable."
 		@echo "Use a version with support for relative font paths. You can find one here:"
 		@echo "https://github.com/agateau/libgdx/releases/tag/hiero-20230518"
