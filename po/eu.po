@@ -209,7 +209,7 @@ msgstr "Fan"
 msgid "ignore-fan"
 msgid_plural "Play %# levels."
 msgstr[0] "ignore-fan"
-msgstr[1] "Jokatu %# maila."
+msgstr[1] "Jostatu %# mailatan."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:102
 msgid "Close Call"
@@ -229,7 +229,7 @@ msgstr "Goizeko Jokalaria"
 msgid "ignore-morning"
 msgid_plural "Start a game between 7AM and 10AM for %# days."
 msgstr[0] "ignore-morning"
-msgstr[1] "Hasi jokoan goizeko 7:00ak eta 10:00akak bitartean %# egunez."
+msgstr[1] "Hasi jokoan 7:00ak eta 10:00akak bitartean %# egunez."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "Evening Gamer"

@@ -25,7 +25,7 @@ public class Messages_eu extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Fonts", "Letra-tipoak");
         plainEntries.put("Game Over", "Akabo Jokoa");
         plainEntries.put("Get a perfect in all levels of world %d.",
-                "Egizu bikain %d munduko maila guztietan..");
+                "Egizu bikain %d munduko maila guztietan.");
         plainEntries.put("Goodies", "Gutiziak");
         plainEntries.put("Happy customer!", "Bezeroa pozik!");
         plainEntries.put("High score: %d", "Marka: %d");
@@ -93,13 +93,13 @@ public class Messages_eu extends com.greenyetilab.linguaj.Messages {
                 new PluralId("ignore-fan", "Play %# levels."),
                 new String[] {
                         "-",
-                        "Jouer à %# niveaux.",
+                        "Jostatu %# mailatan.",
                 });
         pluralEntries.put(
                 new PluralId("ignore-morning", "Start a game between 7AM and 10AM for %# days."),
                 new String[] {
                         "-",
-                        "Hasi jokoan goizeko 7:00ak eta 10:00ak bitartean %# egunez.",
+                        "Hasi jokoan 7:00ak eta 10:00ak bitartean %# egunez.",
                 });
         pluralEntries.put(
                 new PluralId("ignore-n-burgers", "Serve %# burgers."),
