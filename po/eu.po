@@ -97,7 +97,7 @@ msgstr "Gutiziak"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "Erosi Burger Party-ko gutiziak!"
+msgstr "Erosi Burger Party-ko\ngutiziak!"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"

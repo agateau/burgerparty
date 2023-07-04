@@ -9,7 +9,7 @@ public class Messages_eu extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Burger Apprentice", "Burger Ikaslea");
         plainEntries.put("Burger God", "Burger Jainkoa");
         plainEntries.put("Burger Master", "Burger Nagusia");
-        plainEntries.put("Buy Burger Party goodies!", "Erosi Burger Party-ko gutiziak!");
+        plainEntries.put("Buy Burger Party goodies!", "Erosi Burger Party-ko\ngutiziak!");
         plainEntries.put("Close Call", "Azken Deia");
         plainEntries.put("Code & Design", "Kodea & Diseinua");
         plainEntries.put("Congratulations, you finished level %d-%d!",
