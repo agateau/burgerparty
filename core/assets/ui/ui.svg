@@ -23,10 +23,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.41762288"
-     inkscape:cx="899.13656"
-     inkscape:cy="296.9186"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="5.3910474"
+     inkscape:cx="483.02302"
+     inkscape:cy="1696.4236"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1880"
@@ -10819,7 +10819,7 @@
        style="color:#000000;fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:3.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
-     style="opacity:0.40136055;display:none"
+     style="display:inline;opacity:0.401361"
      inkscape:label="Selection"
      id="layer3"
      inkscape:groupmode="layer">
@@ -10827,7 +10827,7 @@
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="vruler.png"
-       style="opacity:0.63999999;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.64;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;enable-background:accumulate"
        id="rect6698"
        width="6"
        height="12"
@@ -10845,7 +10845,7 @@
        y="656"
        ry="6.5276786e-17" />
     <rect
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect6153"
        width="40"
        height="40"
@@ -10859,7 +10859,7 @@
        height="40"
        width="40"
        id="rect6155"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
@@ -10870,12 +10870,12 @@
        height="40"
        width="40"
        id="rect5288"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-sound-off.png"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5338"
        width="40"
        height="40"
@@ -10892,7 +10892,7 @@
        height="40"
        width="40"
        id="rect5612"
-       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;enable-background:accumulate" />
     <rect
        ry="3.2638393e-17"
        y="476"
@@ -10900,7 +10900,7 @@
        height="40"
        width="40"
        id="rect5671"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        inkscape:export-filename="icon-achievement.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -10913,22 +10913,12 @@
        height="71"
        width="71"
        id="rect6981"
-       style="opacity:0.35864982;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-    <rect
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="achievement-unlocked.png"
-       style="opacity:0.35864982;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="rect7193"
-       width="71"
-       height="71"
-       x="404.5"
-       y="1612.5" />
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.35865;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-achievement.png"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5695"
        width="40"
        height="40"
@@ -10942,12 +10932,12 @@
        height="40"
        width="40"
        id="rect6488"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        inkscape:export-filename="icon-config.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5779"
        width="40"
        height="40"
@@ -10958,7 +10948,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5808"
        width="40"
        height="40"
@@ -11005,7 +10995,7 @@
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-world-map.png"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5836"
        width="40"
        height="40"
@@ -11019,7 +11009,7 @@
        height="40"
        width="40"
        id="rect5840"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        inkscape:export-filename="icon-easy.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -11027,7 +11017,7 @@
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="icon-normal.png"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect5842"
        width="40"
        height="40"
@@ -11041,12 +11031,12 @@
        height="40"
        width="40"
        id="rect5844"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        inkscape:export-filename="icon-hard.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="color:#000000;fill:#009100;fill-opacity:0.2606839;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#009100;fill-opacity:0.260684;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;enable-background:accumulate"
        id="rect6186"
        width="127"
        height="164"
@@ -11061,12 +11051,12 @@
        height="164"
        width="127"
        id="rect6974"
-       style="color:#000000;fill:#009100;fill-opacity:0.2606839;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#009100;fill-opacity:0.260684;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;enable-background:accumulate"
        inkscape:export-filename="start-normal.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="color:#000000;fill:#009100;fill-opacity:0.2606839;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#009100;fill-opacity:0.260684;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;enable-background:accumulate"
        id="rect6976"
        width="127"
        height="164"
@@ -11076,7 +11066,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       style="display:inline;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect4899"
        width="40"
        height="40"
@@ -11096,7 +11086,7 @@
        height="40"
        width="40"
        id="rect11518"
-       style="opacity:0.35864982;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+       style="display:inline;opacity:0.35865;fill:#90cf00;fill-opacity:1;fill-rule:nonzero;stroke:none" />
   </g>
   <g
      style="display:inline"
@@ -21213,9 +21203,9 @@
          style="color:#000000;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter6600-5);enable-background:accumulate" />
     </g>
     <g
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="achievement-locked.png"
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="achievement-unlocked.png"
        id="g7163-9"
        transform="translate(-57,-287)">
       <path
