@@ -28,6 +28,7 @@ public class AchievementView extends AnchorGroup {
         Image icon = new Image(iconRegion);
         Label titleLabel = new Label(achievement.getTitle(), assets.getSkin(), "achievement-title");
         Label descriptionLabel = new Label(achievement.getDescription(), assets.getSkin(), "achievement-description");
+        descriptionLabel.setWrap(true);
 
         Actor statusIcon = null;
         if (achievement.isUnlocked()) {
@@ -47,14 +48,18 @@ public class AchievementView extends AnchorGroup {
         descriptionLabel.pack();
 
         setWidth(WIDTH);
-        addRule(icon, Anchor.CENTER_LEFT, this, Anchor.CENTER_LEFT, PADDING, 0);
-        addRule(titleLabel, Anchor.BOTTOM_LEFT, icon, Anchor.CENTER_RIGHT, PADDING, -8f);
+        addRule(icon, Anchor.TOP_LEFT, this, Anchor.TOP_LEFT, PADDING, -PADDING);
+        addRule(titleLabel, Anchor.TOP_LEFT, icon, Anchor.TOP_RIGHT, PADDING, 0);
         addRule(descriptionLabel, Anchor.TOP_LEFT, titleLabel, Anchor.BOTTOM_LEFT, 0, 6f);
         if (statusIcon != null) {
-            addRule(statusIcon, Anchor.CENTER_RIGHT, this, Anchor.CENTER_RIGHT, -PADDING, 0);
+            addRule(statusIcon, Anchor.TOP_RIGHT, this, Anchor.TOP_RIGHT, -PADDING, -PADDING);
         }
 
-        setHeight(icon.getPrefHeight() + 2 * PADDING);
+        // Call layout() now so that we can compute the height
+        layout();
+        float height = titleLabel.getTop() - descriptionLabel.getY() + 1;
+
+        setHeight(height + 2 * PADDING);
     }
 
 }
