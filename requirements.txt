@@ -1,2 +1,3 @@
 -r linguaj/requirements.txt
 Pillow==9.5.0
+git+https://gitlab.com/agateau/poglyph@0.0.2

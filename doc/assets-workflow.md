@@ -10,6 +10,10 @@ Inside this directory, most images are stored in "atlas" PNGs called `burgerpart
 
 The only exception is the `loading.png` image used for the splash screen.
 
+## Translations
+
+Translations are stored in the `po` directory as .po files. These .po files are turned into Java files by the build system. These Java files are stored in `core/i18n/Messages_*.java`.
+
 ## In-game SVG to PNG files
 
 SVG files are in `core/assets` and its sub-directories. They are manually exported from Inkscape to PNG files in `core/assets` and its sub-directories.
@@ -24,7 +28,7 @@ Fonts are stored in `core/assets/fonts`. This directory contains the .ttf files 
 
 For the `fonts` target to work, the `HIERO_JAR` environment variable must contain the path to Hiero jar file.
 
-At the moment, you must use a version of Hiero with support for relative font paths. You can find one here: <https://github.com/agateau/libgdx/releases/tag/hiero-20230518>.
+As of now, you must use a version of Hiero with support for relative font paths. You can find one here: <https://github.com/agateau/libgdx/releases/tag/hiero-20230518>.
 
 ## individual PNG to atlas PNGs
 
