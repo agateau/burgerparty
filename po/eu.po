@@ -239,7 +239,7 @@ msgstr "Arratsaldeko Jokalaria"
 msgid "ignore-evening"
 msgid_plural "Start a game between 7PM and 11PM for %# days."
 msgstr[0] "ignore-evening"
-msgstr[1] "Hasi jokoan arratsaldeko 19:00ak eta 23:00ak bitartean %# egunez."
+msgstr[1] "Hasi jokoan arratsaldeko 19:00ak eta 23:00ak bitartean\n%# egunez."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:131
 msgid "Creative"
