@@ -1,22 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# SPDX-FileCopyrightText: 2023 victorhck <victorhck@mailbox.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-14 09:12+0200\n"
-"PO-Revision-Date: 2023-06-29 17:30+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2023-09-09 20:15+0200\n"
+"Last-Translator: victorhck <victorhck@mailbox.org>\n"
+"Language-Team: Spanish <>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Lokalize 23.08.0\n"
 
 #: core/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
 msgid "1 remaining."
@@ -26,7 +25,7 @@ msgstr[1] "%# restantes."
 
 #: core/src/com/agateau/burgerparty/screens/NewItemScreen.java:118
 msgid "New item unlocked!"
-msgstr "Nuevo elemento desbloqueado!"
+msgstr "¡Nuevo elemento desbloqueado!"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:70
 msgid "Version %s"
@@ -34,7 +33,7 @@ msgstr "Versión %s"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:71
 msgid "Code & Design"
-msgstr "Código y Diseño"
+msgstr "Código y diseño"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:74
 msgid "Music"
@@ -58,11 +57,11 @@ msgstr "Sonidos"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:109
 msgid "Thank you for playing!"
-msgstr "Gracias por jugar!"
+msgstr "¡Gracias por jugar!"
 
 #: core/src/com/agateau/burgerparty/view/GameOverOverlay.java:35
 msgid "Game Over"
-msgstr "Juego Fallido"
+msgstr "Juego terminado"
 
 #: core/src/com/agateau/burgerparty/view/WorldView.java:357
 msgid "+%# sec"
@@ -80,7 +79,7 @@ msgstr "Acerca de"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:86
 msgid "Who made this?"
-msgstr "Quién hizo esto?"
+msgstr "¿Quién hizo esto?"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:87
 msgid "Mastodon"
@@ -96,7 +95,7 @@ msgstr "Golosinas"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "Compra golosinas de\nBurger Party!"
+msgstr "¡Compra golosinas de\nBurger Party!"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"
@@ -124,19 +123,19 @@ msgstr "Pausado"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
 msgid "New High Score!"
-msgstr "Nueva Puntuación más Alta!"
+msgstr "¡Nueva puntuación más alta!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
 msgid "Congratulations, you finished level %d-%d!"
-msgstr "Enhorabuena, has finalizado el nivel %d-%d!"
+msgstr "¡Enhorabuena, has finalizado el nivel %d-%d!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
 msgid "Congratulations, you finished world %d!"
-msgstr "Enhorabuena, has finalizado el mundo %d!"
+msgstr "¡Enhorabuena, has finalizado el mundo %d!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:256
 msgid "Congratulations, you finished the game!"
-msgstr "Enhorabuena, has finalizado el juego!"
+msgstr "¡Enhorabuena, has finalizado el juego!"
 
 #: core/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
 msgid "All Stars #%d"
@@ -152,11 +151,11 @@ msgstr "Apoya a Burger Party"
 
 #: core/src/com/agateau/burgerparty/model/SupportRatingController.java:19
 msgid "Like the game? Support my work!"
-msgstr "¿Te gusta el juego? Apoya mi trabajo!"
+msgstr "¿Te gusta el juego? ¡Apoya mi trabajo!"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
 msgid "Star Collector"
-msgstr "Colector de Estrellas"
+msgstr "Colector de estrellas"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:46
 msgid "ignore-collect"
@@ -166,7 +165,7 @@ msgstr[1] "Colecciona %# estrellas."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 msgid "Burger Apprentice"
-msgstr "Aprendiz de Hamburguesas"
+msgstr "Aprendiz de hamburguesas"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:70
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
@@ -178,15 +177,15 @@ msgstr[1] "Sirve %# hamburguesas."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:75
 msgid "Burger Master"
-msgstr "Maestro de Hamburguesas"
+msgstr "Maestro de hamburguesas"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:80
 msgid "Burger God"
-msgstr "Dios de las Hamburguesas."
+msgstr "Dios de las hamburguesas"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
 msgid "Practice Area"
-msgstr "Area de Práctica"
+msgstr "Área de práctica"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:85
 msgid "ignore-practice"
@@ -216,7 +215,7 @@ msgstr[1] "Finaliza un nivel con menos de %# segundos restantes."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
 msgid "Morning Gamer"
-msgstr "Jugador Mañanero"
+msgstr "Jugador mañanero"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:113
 msgid "ignore-morning"
@@ -226,7 +225,7 @@ msgstr[1] "Empieza un juego entre las 7AM y las 10AM por %# días."
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "Evening Gamer"
-msgstr "Jugador de la Tarde"
+msgstr "Jugador de la tarde"
 
 #: core/src/com/agateau/burgerparty/model/BurgerPartyGameStats.java:116
 msgid "ignore-evening"
@@ -254,11 +253,11 @@ msgstr "Obtén un perfecto en todos los niveles del mundo %d."
 
 #: core/src/com/agateau/burgerparty/model/World.java:342
 msgid "%dx combo!"
-msgstr "%dx combo!"
+msgstr "¡%dx combo!"
 
 #: core/src/com/agateau/burgerparty/model/World.java:346
 msgid "Happy customer!"
-msgstr "Cliente feliz!"
+msgstr "¡Cliente feliz!"
 
 #: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:23
 msgid "Rate Burger Party"
@@ -266,4 +265,5 @@ msgstr "Valora Burger Party"
 
 #: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:28
 msgid "Like the game? Give it a good rate!"
-msgstr "¿Te gusta el juego? Dale una buena puntuación!"
+msgstr "¿Te gusta el juego? ¡Dale una buena puntuación!"
+
