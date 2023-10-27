@@ -1,3 +1,8 @@
+# 1.4.3 - 2023-10-30
+
+- Burger party now speaks Basque, thanks to Josu Igoa
+- Spanish translation has been updated, thanks to Victor Hck
+
 # 1.4.2 - 2023-06-14
 
 - Rebuilt to remove unnecessary files shipped in the APK
