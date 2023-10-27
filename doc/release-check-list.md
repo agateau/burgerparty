@@ -6,6 +6,7 @@
     cd ~/tmp
     git clone git@github.com:agateau/burgerparty --reference ~/src/burgerparty
     cd burgerparty
+    git submodule update --init
     git checkout -b prep-release
     ```
 
