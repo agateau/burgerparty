@@ -30,6 +30,8 @@ For the `fonts` target to work, the `HIERO_JAR` environment variable must contai
 
 As of now, you must use a version of Hiero with support for relative font paths. You can find one here: <https://github.com/agateau/libgdx/releases/tag/hiero-20230518>.
 
+.hiero files contain a list of all glyphs to include. To update this list from the .po files, use `scripts/update-hiero-glyph-text`. Note that the `fonts` target calls this script.
+
 ## individual PNG to atlas PNGs
 
 The `packer` target takes all PNGs from `core/assets` and its sub-directories and generates atlas PNGs in `android/assets` as well as the `burgerparty.atlas` file.
