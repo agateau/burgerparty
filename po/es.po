@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-14 09:12+0200\n"
+"POT-Creation-Date: 2023-10-27 07:58+0200\n"
 "PO-Revision-Date: 2023-09-09 20:15+0200\n"
 "Last-Translator: victorhck <victorhck@mailbox.org>\n"
 "Language-Team: Spanish <>\n"
@@ -28,6 +28,7 @@ msgid "New item unlocked!"
 msgstr "¡Nuevo elemento desbloqueado!"
 
 #: core/src/com/agateau/burgerparty/screens/AboutScreen.java:70
+#, java-printf-format
 msgid "Version %s"
 msgstr "Versión %s"
 
@@ -95,7 +96,9 @@ msgstr "Golosinas"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "¡Compra golosinas de\nBurger Party!"
+msgstr ""
+"¡Compra golosinas de\n"
+"Burger Party!"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"
@@ -106,10 +109,12 @@ msgid "Sound is ON"
 msgstr "El sonido está encendido"
 
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:40
+#, java-printf-format
 msgid "Level %d-%d"
 msgstr "Nivel %d-%d"
 
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:43
+#, java-printf-format
 msgid "High score: %d"
 msgstr "Puntuación más alta: %d"
 
@@ -126,10 +131,12 @@ msgid "New High Score!"
 msgstr "¡Nueva puntuación más alta!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
+#, java-printf-format
 msgid "Congratulations, you finished level %d-%d!"
 msgstr "¡Enhorabuena, has finalizado el nivel %d-%d!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:254
+#, java-printf-format
 msgid "Congratulations, you finished world %d!"
 msgstr "¡Enhorabuena, has finalizado el mundo %d!"
 
@@ -138,10 +145,12 @@ msgid "Congratulations, you finished the game!"
 msgstr "¡Enhorabuena, has finalizado el juego!"
 
 #: core/src/com/agateau/burgerparty/model/AllStarsAchievement.java:17
+#, java-printf-format
 msgid "All Stars #%d"
 msgstr "Todas las Estrellas #%d"
 
 #: core/src/com/agateau/burgerparty/model/AllStarsAchievement.java:18
+#, java-printf-format
 msgid "Finish all levels of world %d with 3 stars."
 msgstr "Finaliza todos los niveles del mundo %d con 3 estrellas."
 
@@ -244,14 +253,17 @@ msgstr[0] "ignorar-creativo"
 msgstr[1] "Crea %# hamburguesas diferentes en el área de práctica."
 
 #: core/src/com/agateau/burgerparty/model/PerfectAchievement.java:17
+#, java-printf-format
 msgid "Perfect #%d"
 msgstr "Perfecto #%d"
 
 #: core/src/com/agateau/burgerparty/model/PerfectAchievement.java:18
+#, java-printf-format
 msgid "Get a perfect in all levels of world %d."
 msgstr "Obtén un perfecto en todos los niveles del mundo %d."
 
 #: core/src/com/agateau/burgerparty/model/World.java:342
+#, java-printf-format
 msgid "%dx combo!"
 msgstr "¡%dx combo!"
 
@@ -266,4 +278,3 @@ msgstr "Valora Burger Party"
 #: android/src/main/com/agateau/burgerparty/AndroidRatingController.java:28
 msgid "Like the game? Give it a good rate!"
 msgstr "¿Te gusta el juego? ¡Dale una buena puntuación!"
-
