@@ -3,53 +3,53 @@
 
 public class Messages_es extends com.greenyetilab.linguaj.Messages {
     public Messages_es() {
-        plainEntries.put("%dx combo!", "%dx combo!");
+        plainEntries.put("%dx combo!", "¡%dx combo!");
         plainEntries.put("About", "Acerca de");
         plainEntries.put("All Stars #%d", "Todas las Estrellas #%d");
-        plainEntries.put("Burger Apprentice", "Aprendiz de Hamburguesas");
-        plainEntries.put("Burger God", "Dios de las Hamburguesas.");
-        plainEntries.put("Burger Master", "Maestro de Hamburguesas");
-        plainEntries.put("Buy Burger Party goodies!", "Compra golosinas de\nBurger Party!");
+        plainEntries.put("Burger Apprentice", "Aprendiz de hamburguesas");
+        plainEntries.put("Burger God", "Dios de las hamburguesas");
+        plainEntries.put("Burger Master", "Maestro de hamburguesas");
+        plainEntries.put("Buy Burger Party goodies!", "¡Compra golosinas de\nBurger Party!");
         plainEntries.put("Close Call", "Llamada cercana");
-        plainEntries.put("Code & Design", "Código y Diseño");
-        plainEntries.put("Congratulations, you finished level %d-%d!", "Enhorabuena, has finalizado el nivel %d-%d!");
-        plainEntries.put("Congratulations, you finished the game!", "Enhorabuena, has finalizado el juego!");
-        plainEntries.put("Congratulations, you finished world %d!", "Enhorabuena, has finalizado el mundo %d!");
+        plainEntries.put("Code & Design", "Código y diseño");
+        plainEntries.put("Congratulations, you finished level %d-%d!", "¡Enhorabuena, has finalizado el nivel %d-%d!");
+        plainEntries.put("Congratulations, you finished the game!", "¡Enhorabuena, has finalizado el juego!");
+        plainEntries.put("Congratulations, you finished world %d!", "¡Enhorabuena, has finalizado el mundo %d!");
         plainEntries.put("Creative", "Creativo");
-        plainEntries.put("Evening Gamer", "Jugador de la Tarde");
+        plainEntries.put("Evening Gamer", "Jugador de la tarde");
         plainEntries.put("Fan", "Fan");
         plainEntries.put("Finish all levels of world %d with 3 stars.", "Finaliza todos los niveles del mundo %d con 3 estrellas.");
         plainEntries.put("Follow me on Mastodon", "Sígueme en Mastodon");
         plainEntries.put("Fonts", "Fuentes");
-        plainEntries.put("Game Over", "Juego Fallido");
+        plainEntries.put("Game Over", "Juego terminado");
         plainEntries.put("Get a perfect in all levels of world %d.", "Obtén un perfecto en todos los niveles del mundo %d.");
         plainEntries.put("Goodies", "Golosinas");
-        plainEntries.put("Happy customer!", "Cliente feliz!");
+        plainEntries.put("Happy customer!", "¡Cliente feliz!");
         plainEntries.put("High score: %d", "Puntuación más alta: %d");
         plainEntries.put("Level %d-%d", "Nivel %d-%d");
-        plainEntries.put("Like the game? Give it a good rate!", "¿Te gusta el juego? Dale una buena puntuación!");
-        plainEntries.put("Like the game? Support my work!", "¿Te gusta el juego? Apoya mi trabajo!");
+        plainEntries.put("Like the game? Give it a good rate!", "¿Te gusta el juego? ¡Dale una buena puntuación!");
+        plainEntries.put("Like the game? Support my work!", "¿Te gusta el juego? ¡Apoya mi trabajo!");
         plainEntries.put("Mastodon", "Mastodon");
-        plainEntries.put("Morning Gamer", "Jugador Mañanero");
+        plainEntries.put("Morning Gamer", "Jugador mañanero");
         plainEntries.put("Music", "Música");
-        plainEntries.put("New High Score!", "Nueva Puntuación más Alta!");
-        plainEntries.put("New item unlocked!", "Nuevo elemento desbloqueado!");
+        plainEntries.put("New High Score!", "¡Nueva puntuación más alta!");
+        plainEntries.put("New item unlocked!", "¡Nuevo elemento desbloqueado!");
         plainEntries.put("No high score yet", "Todavía no hay puntuación más alta");
         plainEntries.put("Paused", "Pausado");
         plainEntries.put("Perfect #%d", "Perfecto #%d");
-        plainEntries.put("Practice Area", "Area de Práctica");
+        plainEntries.put("Practice Area", "Área de práctica");
         plainEntries.put("Rate Burger Party", "Valora Burger Party");
         plainEntries.put("Sound", "Sonido");
         plainEntries.put("Sound is OFF", "El sonido está apagado");
         plainEntries.put("Sound is ON", "El sonido está encendido");
         plainEntries.put("Sounds", "Sonidos");
-        plainEntries.put("Star Collector", "Colector de Estrellas");
+        plainEntries.put("Star Collector", "Colector de estrellas");
         plainEntries.put("Support Burger Party", "Apoya a Burger Party");
         plainEntries.put("Testers", "Probadores");
-        plainEntries.put("Thank you for playing!", "Gracias por jugar!");
+        plainEntries.put("Thank you for playing!", "¡Gracias por jugar!");
         plainEntries.put("Thomas Tripon", "Thomas Tripon");
         plainEntries.put("Version %s", "Versión %s");
-        plainEntries.put("Who made this?", "Quién hizo esto?");
+        plainEntries.put("Who made this?", "¿Quién hizo esto?");
         pluralEntries.put(
             new PluralId("+%# sec", "+%# sec"),
             new String[] {
