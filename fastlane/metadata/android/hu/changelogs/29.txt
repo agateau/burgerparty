@@ -1,0 +1,3 @@
+- Reklámok eltávolítva! A Burger Party mostantól szabad szoftver.
+- Finomságok gomb hozzáadva.
+- A Facebook és Google+ gombok lecserélve Mastodon és Twitter gombokra.
