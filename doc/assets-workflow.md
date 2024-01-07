@@ -32,6 +32,8 @@ As of now, you must use a version of Hiero with support for relative font paths.
 
 .hiero files contain a list of all glyphs to include. To update this list from the .po files, use `scripts/update-hiero-glyph-text`. Note that the `fonts` target calls this script.
 
+Note: Make sure the fonts are not installed on the system, otherwise Hiero picks the system version, not the local version.
+
 ## individual PNG to atlas PNGs
 
 The `packer` target takes all PNGs from `core/assets` and its sub-directories and generates atlas PNGs in `android/assets` as well as the `burgerparty.atlas` file.
