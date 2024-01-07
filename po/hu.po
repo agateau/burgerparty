@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: master\n"
 "Report-Msgid-Bugs-To: https://github.com/agateau/burgerparty/issues\n"
 "POT-Creation-Date: 2023-10-27 07:58+0200\n"
-"PO-Revision-Date: 2023-12-19 22:22+0100\n"
+"PO-Revision-Date: 2024-01-07 11:45+0100\n"
 "Last-Translator: Balázs Úr <balazs@urbalazs.hu>\n"
 "Language-Team: Hungarian\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: core/src/com/agateau/burgerparty/utils/CounterAchievement.java:34
 msgid "1 remaining."
@@ -97,7 +97,9 @@ msgstr "Finomságok"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "Vásárolj Burger Party finomságokat!"
+msgstr ""
+"Vásárolj Burger Party\n"
+"finomságokat!"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"
