@@ -1,6 +1,10 @@
+# 1.4.4 - Unreleased
+
+- Burger Party now speaks Hungarian, thanks to Balázs Úr
+
 # 1.4.3 - 2023-10-30
 
-- Burger party now speaks Basque, thanks to Josu Igoa
+- Burger Party now speaks Basque, thanks to Josu Igoa
 - Spanish translation has been updated, thanks to Victor Hck
 
 # 1.4.2 - 2023-06-14

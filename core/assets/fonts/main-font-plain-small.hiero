@@ -16,7 +16,7 @@ pad.advance.y=0
 glyph.native.rendering=false
 glyph.page.width=512
 glyph.page.height=512
-glyph.text=!"#$%&'()*+,-./0123456789:;<=>?@\nABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`\nabcdefghijklmnopqrstuvwxyz{|}~¡©\n¿ÁàáâéëíîñóúĄąćęŁłńśźż
+glyph.text=!"#$%&'()*+,-./0123456789:;<=>?@\nABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`\nabcdefghijklmnopqrstuvwxyz{|}~¡©\n¿ÁÉÖÚàáâéëíîñóöúüĄąćęŁłńőśűźż
 
 render_type=0
 

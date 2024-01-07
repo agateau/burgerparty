@@ -1,0 +1,1 @@
+Újra-összeállítás az APK-val szállított szükségtelen fájlok eltávolításához.
