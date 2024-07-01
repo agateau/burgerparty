@@ -1,4 +1,4 @@
-# 1.4.4 - Unreleased
+# 1.4.4 - 2024-06-30
 
 - Burger Party now speaks Hungarian, thanks to Balázs Úr
 
