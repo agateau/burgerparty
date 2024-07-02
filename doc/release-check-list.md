@@ -54,25 +54,26 @@
     git push -u origin prep-release
     ```
 
-- [ ] Check CI is happy
-
 - [ ] Merge in master
 
     ```
-    git checkout master
-    git pull
-    git merge --ff-only dev
+    gh pr create --fill
+    gh pr merge -dm --auto
     ```
 
 - [ ] Tag:
 
     ```
+    git checkout master
+    git pull
     make tagpush
     ```
 
 # Upload .apk
 
 - [ ] Upload on Google Play
+
+    Check fastlane/google-play-api.json exists
 
     ```
     make fastlane-beta
@@ -120,4 +121,6 @@
 
 - [ ] Announce on Mastodon
 
-- [ ] Announce on Twitter
+# Post release
+
+- [ ] Update release check list
