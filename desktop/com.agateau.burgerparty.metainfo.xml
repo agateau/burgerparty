@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<component type="desktop-application">
+  <id>com.agateau.burgerparty</id>
+  <name>BurgerParty</name>
+  <summary>Play a fast-food owner who must put together the burgers ordered by her customers</summary>
+  <description>
+    <p>Burger Party is a fun and cute burger game for Android.
+
+You just opened a burger restaurant, let's see if you can put together burgers fast enough to satisfy your ever growing number of customers! As you progress through the levels, unlock new items and visit new places!</p>
+  </description>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <url type="homepage">https://agateau.com/projects/burgerparty/</url>
+  <url type="bugtracker">https://github.com/agateau/burgerparty/issues/</url>
+  <url type="vcs-browser">https://github.com/agateau/burgerparty</url>
+  <launchable type="desktop-id">com.agateau.burgerparty.desktop</launchable>
+  <categories>
+    <category>Game</category>
+    <category>ActionGame</category>
+  </categories>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://agateau.com/projects/burgerparty/</image>
+    </screenshot>
+  </screenshots>
+  <developer id="com.agateau">
+    <name>agateau</name>
+  </developer>
+</component>
