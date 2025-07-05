@@ -94,7 +94,7 @@ msgstr "Футболки"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:89
 msgid "Buy Burger Party goodies!"
-msgstr "Купить футболки Бургерной Вечеринки"
+msgstr "Купить футболки\nБургерной Вечеринки"
 
 #: core/src/com/agateau/burgerparty/view/ConfigDialog.java:146
 msgid "Sound is OFF"

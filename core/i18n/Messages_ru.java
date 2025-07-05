@@ -9,7 +9,7 @@ public class Messages_ru extends com.greenyetilab.linguaj.Messages {
         plainEntries.put("Burger Apprentice", "Бургерный ученик");
         plainEntries.put("Burger God", "Бургерный король");
         plainEntries.put("Burger Master", "Бургерный мастер");
-        plainEntries.put("Buy Burger Party goodies!", "Купить футболки Бургерной Вечеринки");
+        plainEntries.put("Buy Burger Party goodies!", "Купить футболки\nБургерной Вечеринки");
         plainEntries.put("Close Call", "На грани краха");
         plainEntries.put("Code & Design", "Код и дизайн");
         plainEntries.put("Congratulations, you finished level %d-%d!", "Поздравляем, вы прошли уровень %d-%d!");
