@@ -17,10 +17,10 @@ android {
     versionProps.load(new FileInputStream(file('../version.properties')))
 
     // Must match ci/install-android-sdk
-    compileSdkVersion 33
+    compileSdkVersion 34
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode versionProps['VERSION_CODE'].toInteger()
         versionName versionProps['VERSION']
     }
