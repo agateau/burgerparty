@@ -86,7 +86,7 @@ fonts: update-hiero-glyph-text $(FONT_PNGS)
 update-hiero-glyph-text:
 	list-po-chars po/*.po --ascii | scripts/update-hiero-glyph-text core/assets/fonts/*.hiero
 
-$(FONT_PNG_DIR)/%.png: $(HIERO_DIR)/%.hiero
+$(FONT_PNG_DIR)/%.png: $(HIERO_DIR)/%.hiero $(HIERO_DIR)/sanitechtro/Sanitechtro.ttf
 	@echo "$< -> $@"
 	@if [ -z "$(HIERO_JAR)" ] ; then
 		@echo "Error: can't find the hiero tool."
