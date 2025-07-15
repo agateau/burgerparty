@@ -13,6 +13,7 @@ dependencies {
 }
 
 android {
+    namespace "com.agateau.burgerparty"
     Properties versionProps = new Properties()
     versionProps.load(new FileInputStream(file('../version.properties')))
 
@@ -79,6 +80,10 @@ android {
         resources {
             excludes += ['LICENSE.txt']
         }
+    }
+    buildFeatures {
+        renderScript true
+        aidl true
     }
 }
 
