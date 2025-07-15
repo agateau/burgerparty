@@ -6,7 +6,7 @@ RUN apt-get update \
         gettext \
         git \
         make \
-        openjdk-11-jdk \
+        openjdk-17-jdk \
         python3-pip \
         python3-setuptools \
         unzip \
