@@ -1,3 +1,7 @@
+# 1.4.5 - 2024-07-27
+
+- Burger Party now speaks Russian, thanks to Yurt Page
+
 # 1.4.4 - 2024-06-30
 
 - Burger Party now speaks Hungarian, thanks to Balázs Úr
