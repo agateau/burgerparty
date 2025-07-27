@@ -13,14 +13,15 @@ dependencies {
 }
 
 android {
+    namespace "com.agateau.burgerparty"
     Properties versionProps = new Properties()
     versionProps.load(new FileInputStream(file('../version.properties')))
 
     // Must match ci/install-android-sdk
-    compileSdkVersion 33
+    compileSdkVersion 35
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 33
+        targetSdkVersion 35
         versionCode versionProps['VERSION_CODE'].toInteger()
         versionName versionProps['VERSION']
     }
@@ -79,6 +80,10 @@ android {
         resources {
             excludes += ['LICENSE.txt']
         }
+    }
+    buildFeatures {
+        renderScript true
+        aidl true
     }
 }
 
