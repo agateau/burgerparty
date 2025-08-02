@@ -26,19 +26,6 @@
     make check
     ```
 
-- [ ] Generate .apk
-
-    Check android/signing.gradle exists
-
-    ```
-    make dist
-    ```
-
-- [ ] Smoke test
-    - on PC
-    - on phone
-    - on tablet
-
 - [ ] Update changelogs
 
     ```
@@ -60,6 +47,19 @@
     gh pr create --fill
     gh pr merge -dm --auto
     ```
+
+- [ ] Generate .apk (after the merge to fix #24)
+
+    Check android/signing.gradle exists
+
+    ```
+    make dist
+    ```
+
+- [ ] Smoke test
+    - on PC
+    - on phone
+    - on tablet
 
 - [ ] Tag:
 
