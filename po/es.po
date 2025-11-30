@@ -117,10 +117,11 @@ msgstr "Nivel %d-%d"
 #, java-printf-format
 msgid "High score: %d"
 msgstr "Puntuación más alta: %d"
+msgstr "Máx Puntuación: %d"
 
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:45
 msgid "No high score yet"
-msgstr "Todavía no hay puntuación más alta"
+msgstr "Todavía no hay máxima puntuación"
 
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:51
 msgid "Paused"
@@ -128,7 +129,7 @@ msgstr "Pausado"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:124
 msgid "New High Score!"
-msgstr "¡Nueva puntuación más alta!"
+msgstr "¡Nueva máx puntuación!"
 
 #: core/src/com/agateau/burgerparty/view/LevelFinishedOverlay.java:252
 #, java-printf-format
