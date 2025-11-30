@@ -29,6 +29,12 @@ You can also build and run it on Linux, macOS and Windows. It's just not much
 fun unless you have a touch screen (or you are really fast and precise with
 your mouse!)
 
+## Status
+
+I consider this game to be done. This means I may release bug fixes or publish
+required updates to make sure the game continues to be available on mobile
+platforms, but I won't be adding any new features.
+
 ## License
 
 - All the code is licensed under GPL 3.0 or later, except for the more reusable
@@ -52,8 +58,8 @@ you to do so, go find another prey.
 
 [utils]: core/src/com/agateau/burgerparty/utils
 
-## Goodies
+## Merch
 
-You can find T-shirt and other Burger Party goodies [here][goodies].
+You can find T-shirts and other Burger Party merch [here][goodies].
 
 [goodies]: http://agateau.com/redirect/bp-goodies
