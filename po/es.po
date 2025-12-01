@@ -116,7 +116,6 @@ msgstr "Nivel %d-%d"
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:43
 #, java-printf-format
 msgid "High score: %d"
-msgstr "Puntuación más alta: %d"
 msgstr "Máx Puntuación: %d"
 
 #: core/src/com/agateau/burgerparty/view/PauseOverlay.java:45
