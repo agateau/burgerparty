@@ -85,6 +85,13 @@ android {
         renderScript true
         aidl true
     }
+    // Make sure archives do not include DependencyInfoBlock
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
 }
 
 // called every time gradle gets executed, takes the native dependencies of
