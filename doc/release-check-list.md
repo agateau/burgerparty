@@ -61,14 +61,6 @@
     - on phone
     - on tablet
 
-- [ ] Tag:
-
-    ```
-    git checkout master
-    git pull
-    make tagpush
-    ```
-
 # Upload .apk
 
 - [ ] Upload on Google Play
@@ -77,6 +69,16 @@
 
     ```
     make fastlane-beta
+    ```
+
+- [ ] Check Google Play is happy
+
+- [ ] Tag and push
+
+    ```
+    git checkout master
+    git pull
+    make tagpush
     ```
 
 - [ ] Upload on agateau.com
