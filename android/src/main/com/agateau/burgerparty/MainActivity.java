@@ -18,6 +18,9 @@ public class MainActivity extends AndroidApplication {
         cfg.useAccelerometer = false;
         cfg.useImmersiveMode = true;
         cfg.hideStatusBar = true;
+        // Make sure screen does not go off
+        // https://github.com/agateau/burgerparty/issues/14
+        cfg.useWakelock = true;
         initialize(game, cfg);
         // Must be done *after* initialize because it requires Gdx.app to be
         // valid
