@@ -1,0 +1,1 @@
+Spanish translation has been fixed to always fit the screen, thanks to Miguel de Dios. Screen no longer goes off while playing.

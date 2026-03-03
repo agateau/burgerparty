@@ -1,3 +1,8 @@
+# 1.4.6 - 2026-03-03
+
+- Spanish translation has been fixed to always fit the screen, thanks to Miguel de Dios
+- Screen no longer goes off while playing (#14)
+
 # 1.4.5 - 2024-07-27
 
 - Burger Party now speaks Russian, thanks to Yurt Page
